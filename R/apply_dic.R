@@ -32,7 +32,7 @@ apply_dic <- function(data, dic, factors = TRUE) {
 
   names(dic) <- toupper(names(dic))
 
-  if (is.null(dic$VAR)) dic$VAR <- dic$LABEL
+  if (!("VAR" %in% names(dic))) dic$VAR <- dic$LABEL
 
   miss <- unlist(opt.attr)[which(!(unlist(opt.attr) %in% names(dic)))]
   if (!is.null(miss)) dic[, miss] <- NA

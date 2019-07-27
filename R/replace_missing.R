@@ -6,7 +6,7 @@
 #' @export
 replace_missing <- function(data, replace = NA, report = FALSE) {
   id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
-  var_names <- names(dat)
+  var_names <- names(data)
 
   for (i in id) {
     missing <- dic_attr(data[[i]], .opt$missing)
