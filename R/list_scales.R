@@ -1,6 +1,7 @@
 #' List scales
 #'
 #' @param data The target data frame
+#' @param labels If set TRUE, scale labels instead of abreviations are shown.
 #'
 #' @return A list with scales on diferent levels
 #' @export

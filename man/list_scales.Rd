@@ -8,6 +8,8 @@ list_scales(data, labels = FALSE)
 }
 \arguments{
 \item{data}{The target data frame}
+
+\item{labels}{If set TRUE, scale labels instead of abreviations are shown.}
 }
 \value{
 A list with scales on diferent levels

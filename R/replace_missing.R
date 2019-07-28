@@ -2,6 +2,7 @@
 #'
 #' @param data A data frame
 #' @param replace Replace value for missing values
+#' @param report If TRUE, proportioin of missing values is printed.
 #' @return A data frame with replaced missing values.
 #' @export
 replace_missing <- function(data, replace = NA, report = FALSE) {

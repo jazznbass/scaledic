@@ -14,6 +14,8 @@ dic_attr(x, var) <- value
 
 \item{var}{Attribute}
 
+\item{value}{Value}
+
 \item{values}{set value}
 }
 \value{

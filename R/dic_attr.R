@@ -2,6 +2,7 @@
 #'
 #' @param x Variable
 #' @param var Attribute
+#' @param value Value
 #'
 #'
 #' @return Attribute value
