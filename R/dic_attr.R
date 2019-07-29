@@ -2,7 +2,6 @@
 #'
 #' @param x Variable
 #' @param var Attribute
-#' @param value Value
 #'
 #'
 #' @return Attribute value
@@ -13,7 +12,7 @@ dic_attr <- function(x, var) {
 }
 
 #' @rdname dic_attr
-#' @param values set value
+#' @param value set value
 "dic_attr<-" <- function(x, var, value) {
   dic_attr <- attr(x, .opt$dic)
   if (is.null(dic_attr)) dic_attr <- list()
