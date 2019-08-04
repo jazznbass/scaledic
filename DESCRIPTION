@@ -1,10 +1,11 @@
 Package: scaledic
 Type: Package
 Title: Functions and data frame extension for scale based operations
-Version: 0.1.1
-Author: Jürgen Wilbert
+Version: 0.1.2
+Author: Juergen Wilbert
 Maintainer: Jürgen Wilbert <jwilbert@uni-potsdam.de>
-Description: This package was designed to implement (psychometric) scale information to items of a data frame. These include values, labels, subscales, weights etc.. A couple of functions help to organize, extract, replace missing values, find typos etc.
+Description: This package was designed to implement (psychometric) scale information to items of a data frame. 
+  These include values, labels, subscales, weights etc.. A couple of functions help to organize, extract, replace missing values, find typos etc.
 Imports: Amelia, purrr, dplyr
 License: GPL
 Encoding: UTF-8
