@@ -4,8 +4,8 @@
 \name{ITRF}
 \alias{ITRF}
 \alias{dic_ITRF}
-\title{Integrated Teacher Report Formula for more than 5000 subjects}
-\format{A data frame with 6643 rows and 40 variables}
+\title{Integrated Teacher Report Form}
+\format{A data frame with 4776 rows and 40 variables}
 \usage{
 ITRF
 

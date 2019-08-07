@@ -1,4 +1,4 @@
-#' Score scales
+#' Score scale
 #' Calculates the scale scores.
 #'
 #' @inheritParams get_index
@@ -8,6 +8,7 @@
 #' @param ... Further arguments passed to the FUN function (e.g., na.rm = TRUE)
 #' @return A data frame
 #' @export
+
 score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, bind = FALSE, FUN = sum, ...) {
 
   vars <- get_index(data, scale, subscale, subscale_2)
@@ -41,5 +42,16 @@ score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, 
     names(df) <- bind
     df <- cbind(data, df)
   }
+
+  ### set dictionary attributes
+  attr(df, .opt$dic) <- list()
+  dic_attr(df, .opt$class) <- "score"
+  dic_attr(df, .opt$scale) <- scale
+  dic_attr(df, .opt$subscale) <- subscale
+  dic_attr(df, .opt$subscale_2) <- subscale_2
+  dic_attr(df, .opt$item_label_short) <- paste(scale, subscale, subscale_2)
+  dic_attr(df, .opt$item_label) <- paste(scale, subscale, subscale_2)
+  ###
+
   df
 }

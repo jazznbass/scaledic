@@ -14,7 +14,8 @@
   "type" = "type",
   "values" = "values",
   "missing" = "missing",
-  "dic" = "dic"
+  "dic" = "dic",
+  "class" = "class"
 )
 
 .vars <- as.data.frame(matrix(c(
@@ -39,3 +40,15 @@ ncol = 3,
 byrow = TRUE,
 dimnames = list(NULL, c("internal", "label", "dicname"))
 ))
+
+.get_dic_items <- function(data) {
+
+  which(
+    sapply(data,
+      function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
+    )
+  )
+
+}
+
+

@@ -27,7 +27,8 @@ extract_dic <- function(data) {
 
   dic_names <- names(opt.attr)
 
-  id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
+  #id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
+  id <- .get_dic_items(data)
   N <- length(id)
 
   vars <- list(

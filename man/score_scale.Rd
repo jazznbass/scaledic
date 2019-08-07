@@ -2,7 +2,7 @@
 % Please edit documentation in R/score_scales.R
 \name{score_scale}
 \alias{score_scale}
-\title{Score scales
+\title{Score scale
 Calculates the scale scores.}
 \usage{
 score_scale(data, scale = NULL, subscale = NULL, subscale_2 = NULL,
@@ -28,6 +28,6 @@ returns a data frame with the new score variables for each scale}
 A data frame
 }
 \description{
-Score scales
+Score scale
 Calculates the scale scores.
 }

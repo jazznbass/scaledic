@@ -90,6 +90,9 @@ apply_dic <- function(data, dic, factors = TRUE) {
         labels = names(dic_attr(data[[id]], .opt$values))
       )
     }
+
+    dic_attr(data[[id]], .opt$class) <- "item"
+
   }
 
   data

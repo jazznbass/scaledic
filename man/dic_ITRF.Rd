@@ -4,7 +4,7 @@
 \name{dic_ITRF}
 \alias{dic_ITRF}
 \title{Dictionary file for the Integrated Teacher Report Formula.}
-\format{A data frame with 39 rows and 16 variables}
+\format{A data frame with 39 rows and 15 variables}
 \usage{
 dic_ITRF
 }

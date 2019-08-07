@@ -7,7 +7,13 @@
 #' @export
 list_scales <- function(data, labels = FALSE) {
 
-  filter <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
+  #filter <- which(
+  #  sapply(
+  #    data, function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
+  #  )
+  #)
+
+  filter <- .get_dic_items(data)
 
   if(!labels) {
     out <- sapply(data[filter], function(x)
