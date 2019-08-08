@@ -13,7 +13,7 @@
 
 <meta name="author" content="Jürgen Wilbert" />
 
-<meta name="date" content="2019-08-07" />
+<meta name="date" content="2019-08-08" />
 
 <title>Introduction to scaledic</title>
 
@@ -21,9 +21,9 @@
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -33,14 +33,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -49,9 +51,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -211,7 +213,7 @@ pre, code {
 background-color: #f7f7f7;
 border-radius: 3px;
 color: #333;
-white-space: pre-wrap; 
+white-space: pre-wrap;
 }
 pre {
 border-radius: 3px;
@@ -279,17 +281,17 @@ text-decoration: underline; }
 a[href^="https:"] {
 text-decoration: underline; }
 
-code > span.kw { color: #555; font-weight: bold; } 
-code > span.dt { color: #902000; } 
-code > span.dv { color: #40a070; } 
-code > span.bn { color: #d14; } 
-code > span.fl { color: #d14; } 
-code > span.ch { color: #d14; } 
-code > span.st { color: #d14; } 
-code > span.co { color: #888888; font-style: italic; } 
-code > span.ot { color: #007020; } 
-code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.kw { color: #555; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #d14; }
+code > span.fl { color: #d14; }
+code > span.ch { color: #d14; }
+code > span.st { color: #d14; }
+code > span.co { color: #888888; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; }
 </style>
 
 
@@ -304,12 +306,29 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Introduction to scaledic</h1>
 <h4 class="author">Jürgen Wilbert</h4>
-<h4 class="date">2019-08-07</h4>
+<h4 class="date">2019-08-08</h4>
 
 
 
-<div id="how-to-use-scaledic." class="section level1">
-<h1>How to use scaledic.</h1>
+<div id="note" class="section level1">
+<h1>Note</h1>
+<p>This is a short description on how to use the scaledic package. The code eyamples in this package make use of the pipe operator <code>%&gt;%</code> (see the <code>magrittr</code> package).<br />
+Once you are used to the pipe operator, it makes code easier to understand. Basically, it is just a shortcut:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>newdat &lt;-<span class="st"> </span><span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>newdat &lt;-<span class="st"> </span><span class="kw">describe</span>(newdat)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>newdat &lt;-<span class="st"> </span><span class="kw">round</span>(newdat, <span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">kable</span>(newdat)</span></code></pre></div>
+<p>or even worth</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">kable</span>(<span class="kw">round</span>(<span class="kw">describe</span>(<span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)), <span class="dv">2</span>))</span></code></pre></div>
+<p>becomes:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">describe</span>() <span class="op">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+</div>
+<div id="how-to-use-scaledic" class="section level1">
+<h1>How to use scaledic</h1>
 <p>You need two things:</p>
 <ol style="list-style-type: decimal">
 <li>a dataset,</li>
@@ -317,7 +336,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </ol>
 <div id="a-dictionary-file" class="section level2">
 <h2>A dictionary file</h2>
-<p>A dictionary file is actually a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.</p>
+<p>A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.</p>
 <p>The following table shows the parameters and the naming of the columns of a dictionary file:</p>
 <table>
 <caption>Columns of a dictionary file</caption>
@@ -331,12 +350,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <tbody>
 <tr class="odd">
 <td align="left">LABEL</td>
-<td align="left">A short label</td>
+<td align="left">A short item label</td>
 <td align="left">itrf_1</td>
 </tr>
 <tr class="even">
 <td align="left">SCALE</td>
-<td align="left">Abreviation of the scale</td>
+<td align="left">Abreviation of the scale the item belongs to</td>
 <td align="left">irtf</td>
 </tr>
 <tr class="odd">
@@ -346,13 +365,13 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr class="even">
 <td align="left">SUB_SCALE_2</td>
-<td align="left">Abrevation of the secon order sub scale</td>
+<td align="left">Abrevation of the second order sub scale</td>
 <td align="left">shy</td>
 </tr>
 <tr class="odd">
 <td align="left">SCALE_LABEL</td>
 <td align="left">Name of the scale</td>
-<td align="left">Integrated Teacher Report Fromula</td>
+<td align="left">Integrated Teacher Report Form</td>
 </tr>
 <tr class="even">
 <td align="left">SUB_SCALE_LABEL</td>
@@ -391,7 +410,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr class="odd">
 <td align="left">TYPE</td>
-<td align="left">Data type (factor, integer, float, reel)</td>
+<td align="left">Data type (factor, integer, float, real)</td>
 <td align="left">integer</td>
 </tr>
 <tr class="even">
@@ -412,18 +431,17 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tbody>
 </table>
 <p>Here is extract of a dic file from the included example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>)  <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
 <th align="left">LABEL</th>
-<th align="left">SCALE</th>
-<th align="left">SCALE_LABEL</th>
-<th align="left">…4</th>
-<th align="left">SUB_SCALE</th>
-<th align="left">SUB_SCALE_LABEL</th>
 <th align="right">INDEX</th>
+<th align="left">SCALE</th>
+<th align="left">SUB_SCALE</th>
 <th align="left">SUB_SCALE_2</th>
+<th align="left">SCALE_LABEL</th>
+<th align="left">SUB_SCALE_LABEL</th>
 <th align="left">SUB_SCALE_2_LABEL</th>
 <th align="left">ITEM</th>
 <th align="right">WEIGHT</th>
@@ -437,13 +455,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <tbody>
 <tr class="odd">
 <td align="left">ITRF_I_1</td>
-<td align="left">ITRF</td>
-<td align="left">Integrated teacher report formula</td>
-<td align="left">NA</td>
-<td align="left">Int</td>
-<td align="left">Internalisierend</td>
 <td align="right">1</td>
+<td align="left">ITRF</td>
+<td align="left">Int</td>
 <td align="left">SR</td>
+<td align="left">Integrated teacher report formula</td>
+<td align="left">Internalisierend</td>
 <td align="left">Sozialer Rückzug</td>
 <td align="left">Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
@@ -455,13 +472,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr class="even">
 <td align="left">ITRF_I_2</td>
-<td align="left">ITRF</td>
-<td align="left">Integrated teacher report formula</td>
-<td align="left">NA</td>
-<td align="left">Int</td>
-<td align="left">Internalisierend</td>
 <td align="right">2</td>
+<td align="left">ITRF</td>
+<td align="left">Int</td>
 <td align="left">L</td>
+<td align="left">Integrated teacher report formula</td>
+<td align="left">Internalisierend</td>
 <td align="left">Leidend</td>
 <td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">1</td>
@@ -473,13 +489,12 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 </tr>
 <tr class="odd">
 <td align="left">ITRF_I_3</td>
-<td align="left">ITRF</td>
-<td align="left">Integrated teacher report formula</td>
-<td align="left">NA</td>
-<td align="left">Int</td>
-<td align="left">Internalisierend</td>
 <td align="right">3</td>
+<td align="left">ITRF</td>
+<td align="left">Int</td>
 <td align="left">SCH</td>
+<td align="left">Integrated teacher report formula</td>
+<td align="left">Internalisierend</td>
 <td align="left">Schüchternheit</td>
 <td align="left">Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
 <td align="right">1</td>
@@ -497,11 +512,11 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <p>When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.<br />
 The resulting dataset now is ready to be used with all further <code>scaledic</code> functions.</p>
 <p>The <code>apply_dic</code> function takes the name of the dataset and the dictionary file and combines them:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># Here we use the example dataset &quot;ITRF&quot; and the example dic file &quot;dic_ITRF&quot;</span></a>
-<a class="sourceLine" id="cb2-2" title="2">dat &lt;-<span class="st"> </span><span class="kw">apply_dic</span>(ITRF, dic_ITRF)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Here we use the example dataset &quot;ITRF&quot; and the example dic file &quot;dic_ITRF&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>dat &lt;-<span class="st"> </span><span class="kw">apply_dic</span>(ITRF, dic_ITRF)</span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" title="2"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -592,33 +607,33 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div id="clean-raw-data" class="section level2">
 <h2>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">check_values</span>(dat, <span class="dt">replace =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>dat &lt;-<span class="st"> </span><span class="kw">check_values</span>(dat, <span class="dt">replace =</span> <span class="ot">NA</span>)</span></code></pre></div>
 <p>… and replace missing values as defined in the dic file with NAs</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">dat &lt;-<span class="st"> </span><span class="kw">replace_missing</span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>dat &lt;-<span class="st"> </span><span class="kw">replace_missing</span>(dat)</span></code></pre></div>
 <p>Now we impute missing values:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># Imputation for items of the subscale ITRF_Ext</span></a>
-<a class="sourceLine" id="cb6-2" title="2">dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Ext&quot;</span>)</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;   1  2  3</span></a>
-<a class="sourceLine" id="cb6-8" title="8"></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co"># Imputation for items of the subscale ITRF_Int</span></a>
-<a class="sourceLine" id="cb6-10" title="10">dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>)</a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt;   1  2  3</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Imputation for items of the subscale ITRF_Ext</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Ext&quot;</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="co">#&gt; -- Imputation 1 --</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a><span class="co">#&gt; </span></span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="co">#&gt;   1  2  3</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a></span>
+<span id="cb9-9"><a href="#cb9-9"></a><span class="co"># Imputation for items of the subscale ITRF_Int</span></span>
+<span id="cb9-10"><a href="#cb9-10"></a>dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>)</span>
+<span id="cb9-11"><a href="#cb9-11"></a><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></span>
+<span id="cb9-12"><a href="#cb9-12"></a><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></span>
+<span id="cb9-13"><a href="#cb9-13"></a><span class="co">#&gt; -- Imputation 1 --</span></span>
+<span id="cb9-14"><a href="#cb9-14"></a><span class="co">#&gt; </span></span>
+<span id="cb9-15"><a href="#cb9-15"></a><span class="co">#&gt;   1  2  3</span></span></code></pre></div>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2>Select scales for analyszing</h2>
 <p>Let us see descriptive statistics for the Internalizing sub scale:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-2" title="2"><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-3" title="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb7-4" title="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -638,96 +653,96 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>ITRF_I_1</td>
 <td align="right">1</td>
 <td align="right">4772</td>
-<td align="right">0.3807628</td>
-<td align="right">0.7120772</td>
+<td align="right">0.3780386</td>
+<td align="right">0.7133806</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103081</td>
+<td align="right">0.0103269</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_2</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">0.3497485</td>
-<td align="right">0.6869246</td>
+<td align="right">0.3501676</td>
+<td align="right">0.6873212</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099439</td>
+<td align="right">0.0099497</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_3</td>
 <td align="right">3</td>
 <td align="right">4772</td>
-<td align="right">0.7896060</td>
-<td align="right">0.9656394</td>
+<td align="right">0.7898156</td>
+<td align="right">0.9657936</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0139786</td>
+<td align="right">0.0139809</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_4</td>
 <td align="right">4</td>
 <td align="right">4772</td>
-<td align="right">0.3049036</td>
-<td align="right">0.6326155</td>
+<td align="right">0.3051132</td>
+<td align="right">0.6326801</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0091578</td>
+<td align="right">0.0091587</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_5</td>
 <td align="right">5</td>
 <td align="right">4772</td>
-<td align="right">0.2441324</td>
-<td align="right">0.5913840</td>
+<td align="right">0.2443420</td>
+<td align="right">0.5918289</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085609</td>
+<td align="right">0.0085673</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_6</td>
 <td align="right">6</td>
 <td align="right">4772</td>
-<td align="right">0.2103940</td>
-<td align="right">0.5095533</td>
+<td align="right">0.2106035</td>
+<td align="right">0.5096724</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0073763</td>
+<td align="right">0.0073780</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_7</td>
 <td align="right">7</td>
 <td align="right">4772</td>
-<td align="right">0.4067477</td>
-<td align="right">0.7168223</td>
+<td align="right">0.4054904</td>
+<td align="right">0.7166575</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103767</td>
+<td align="right">0.0103744</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_8</td>
 <td align="right">8</td>
 <td align="right">4772</td>
-<td align="right">0.3474434</td>
-<td align="right">0.6952151</td>
+<td align="right">0.3470243</td>
+<td align="right">0.6945196</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0100640</td>
+<td align="right">0.0100539</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_9</td>
 <td align="right">9</td>
 <td align="right">4772</td>
-<td align="right">0.4803018</td>
-<td align="right">0.7697853</td>
+<td align="right">0.4800922</td>
+<td align="right">0.7697799</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
@@ -737,166 +752,166 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>ITRF_I_10</td>
 <td align="right">10</td>
 <td align="right">4772</td>
-<td align="right">0.2764040</td>
-<td align="right">0.6625635</td>
+<td align="right">0.2770327</td>
+<td align="right">0.6627754</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0095913</td>
+<td align="right">0.0095944</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_11</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3271165</td>
-<td align="right">0.6794235</td>
+<td align="right">0.3273261</td>
+<td align="right">0.6794768</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098354</td>
+<td align="right">0.0098361</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_12</td>
 <td align="right">12</td>
 <td align="right">4772</td>
 <td align="right">0.3681894</td>
-<td align="right">0.6873549</td>
+<td align="right">0.6876598</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099502</td>
+<td align="right">0.0099546</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_13</td>
 <td align="right">13</td>
 <td align="right">4772</td>
-<td align="right">0.4214166</td>
-<td align="right">0.7191618</td>
+<td align="right">0.4220453</td>
+<td align="right">0.7195216</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0104106</td>
+<td align="right">0.0104158</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_14</td>
 <td align="right">14</td>
 <td align="right">4772</td>
 <td align="right">0.3495390</td>
-<td align="right">0.6890114</td>
+<td align="right">0.6887072</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099742</td>
+<td align="right">0.0099698</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_15</td>
 <td align="right">15</td>
 <td align="right">4772</td>
-<td align="right">0.3723806</td>
-<td align="right">0.7112121</td>
+<td align="right">0.3725901</td>
+<td align="right">0.7115443</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102955</td>
+<td align="right">0.0103003</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_16</td>
 <td align="right">16</td>
 <td align="right">4772</td>
-<td align="right">0.4316848</td>
-<td align="right">0.7604135</td>
+<td align="right">0.4318944</td>
+<td align="right">0.7604323</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0110078</td>
+<td align="right">0.0110080</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_17</td>
 <td align="right">17</td>
 <td align="right">4772</td>
-<td align="right">0.3782481</td>
-<td align="right">0.7122402</td>
+<td align="right">0.3786672</td>
+<td align="right">0.7126059</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103104</td>
+<td align="right">0.0103157</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_18</td>
 <td align="right">18</td>
 <td align="right">4772</td>
-<td align="right">0.7273680</td>
-<td align="right">0.9145309</td>
+<td align="right">0.7265298</td>
+<td align="right">0.9147389</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0132388</td>
+<td align="right">0.0132418</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_19</td>
 <td align="right">19</td>
 <td align="right">4772</td>
-<td align="right">0.2290444</td>
-<td align="right">0.5874847</td>
+<td align="right">0.2288349</td>
+<td align="right">0.5870310</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085045</td>
+<td align="right">0.0084979</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_20</td>
 <td align="right">20</td>
 <td align="right">4772</td>
 <td align="right">0.5513412</td>
-<td align="right">0.9055618</td>
+<td align="right">0.9057933</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0131089</td>
+<td align="right">0.0131123</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_21</td>
 <td align="right">21</td>
 <td align="right">4772</td>
-<td align="right">0.8206203</td>
-<td align="right">1.0194556</td>
+<td align="right">0.8202012</td>
+<td align="right">1.0193817</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0147577</td>
+<td align="right">0.0147566</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_22</td>
 <td align="right">22</td>
 <td align="right">4772</td>
-<td align="right">0.7296731</td>
-<td align="right">0.9350393</td>
+<td align="right">0.7311400</td>
+<td align="right">0.9346777</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0135357</td>
+<td align="right">0.0135304</td>
 </tr>
 <tr class="odd">
 <td>ITRF_I_23</td>
 <td align="right">23</td>
 <td align="right">4772</td>
-<td align="right">0.3619028</td>
-<td align="right">0.6809061</td>
+<td align="right">0.3610645</td>
+<td align="right">0.6801195</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098568</td>
+<td align="right">0.0098454</td>
 </tr>
 <tr class="even">
 <td>ITRF_I_24</td>
 <td align="right">24</td>
 <td align="right">4772</td>
-<td align="right">0.3776194</td>
-<td align="right">0.7053304</td>
+<td align="right">0.3774099</td>
+<td align="right">0.7055912</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102104</td>
+<td align="right">0.0102142</td>
 </tr>
 </tbody>
 </table>
@@ -904,11 +919,11 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div id="see-items-instead-of-labels" class="section level2">
 <h2>See items instead of labels</h2>
 <p>It is more convinient to see the original items instead of the short lables:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span><span class="kw">names2item</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-4" title="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-5" title="5"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">names2item</span>() <span class="op">%&gt;%</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -928,96 +943,96 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
 <td align="right">4772</td>
-<td align="right">0.3807628</td>
-<td align="right">0.7120772</td>
+<td align="right">0.3780386</td>
+<td align="right">0.7133806</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103081</td>
+<td align="right">0.0103269</td>
 </tr>
 <tr class="even">
 <td>Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">0.3497485</td>
-<td align="right">0.6869246</td>
+<td align="right">0.3501676</td>
+<td align="right">0.6873212</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099439</td>
+<td align="right">0.0099497</td>
 </tr>
 <tr class="odd">
 <td>Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
 <td align="right">3</td>
 <td align="right">4772</td>
-<td align="right">0.7896060</td>
-<td align="right">0.9656394</td>
+<td align="right">0.7898156</td>
+<td align="right">0.9657936</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0139786</td>
+<td align="right">0.0139809</td>
 </tr>
 <tr class="even">
 <td>Vermeidet soziale Interaktionen</td>
 <td align="right">4</td>
 <td align="right">4772</td>
-<td align="right">0.3049036</td>
-<td align="right">0.6326155</td>
+<td align="right">0.3051132</td>
+<td align="right">0.6326801</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0091578</td>
+<td align="right">0.0091587</td>
 </tr>
 <tr class="odd">
 <td>Spielt bevorzugt alleine</td>
 <td align="right">5</td>
 <td align="right">4772</td>
-<td align="right">0.2441324</td>
-<td align="right">0.5913840</td>
+<td align="right">0.2443420</td>
+<td align="right">0.5918289</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085609</td>
+<td align="right">0.0085673</td>
 </tr>
 <tr class="even">
 <td>Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 <td align="right">6</td>
 <td align="right">4772</td>
-<td align="right">0.2103940</td>
-<td align="right">0.5095533</td>
+<td align="right">0.2106035</td>
+<td align="right">0.5096724</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0073763</td>
+<td align="right">0.0073780</td>
 </tr>
 <tr class="odd">
 <td>Macht sich Sorgen über unwichtige Details</td>
 <td align="right">7</td>
 <td align="right">4772</td>
-<td align="right">0.4067477</td>
-<td align="right">0.7168223</td>
+<td align="right">0.4054904</td>
+<td align="right">0.7166575</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103767</td>
+<td align="right">0.0103744</td>
 </tr>
 <tr class="even">
 <td>Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td align="right">8</td>
 <td align="right">4772</td>
-<td align="right">0.3474434</td>
-<td align="right">0.6952151</td>
+<td align="right">0.3470243</td>
+<td align="right">0.6945196</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0100640</td>
+<td align="right">0.0100539</td>
 </tr>
 <tr class="odd">
 <td>Wirkt unglücklich oder traurig</td>
 <td align="right">9</td>
 <td align="right">4772</td>
-<td align="right">0.4803018</td>
-<td align="right">0.7697853</td>
+<td align="right">0.4800922</td>
+<td align="right">0.7697799</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
@@ -1027,265 +1042,265 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Klammert sich an Erwachsene</td>
 <td align="right">10</td>
 <td align="right">4772</td>
-<td align="right">0.2764040</td>
-<td align="right">0.6625635</td>
+<td align="right">0.2770327</td>
+<td align="right">0.6627754</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0095913</td>
+<td align="right">0.0095944</td>
 </tr>
 <tr class="odd">
 <td>Verhält sich nervös</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3271165</td>
-<td align="right">0.6794235</td>
+<td align="right">0.3273261</td>
+<td align="right">0.6794768</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098354</td>
+<td align="right">0.0098361</td>
 </tr>
 <tr class="even">
 <td>Verhält sich ängstlich</td>
 <td align="right">12</td>
 <td align="right">4772</td>
 <td align="right">0.3681894</td>
-<td align="right">0.6873549</td>
+<td align="right">0.6876598</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099502</td>
+<td align="right">0.0099546</td>
 </tr>
 <tr class="odd">
 <td>Behauptet sich nicht gegenüber anderen</td>
 <td align="right">13</td>
 <td align="right">4772</td>
-<td align="right">0.4214166</td>
-<td align="right">0.7191618</td>
+<td align="right">0.4220453</td>
+<td align="right">0.7195216</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0104106</td>
+<td align="right">0.0104158</td>
 </tr>
 <tr class="even">
 <td>Verhält sich übermäßig schüchtern</td>
 <td align="right">14</td>
 <td align="right">4772</td>
 <td align="right">0.3495390</td>
-<td align="right">0.6890114</td>
+<td align="right">0.6887072</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099742</td>
+<td align="right">0.0099698</td>
 </tr>
 <tr class="odd">
 <td>Beklagt sich oder jammert</td>
 <td align="right">15</td>
 <td align="right">4772</td>
-<td align="right">0.3723806</td>
-<td align="right">0.7112121</td>
+<td align="right">0.3725901</td>
+<td align="right">0.7115443</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102955</td>
+<td align="right">0.0103003</td>
 </tr>
 <tr class="even">
 <td>Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="right">16</td>
 <td align="right">4772</td>
-<td align="right">0.4316848</td>
-<td align="right">0.7604135</td>
+<td align="right">0.4318944</td>
+<td align="right">0.7604323</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0110078</td>
+<td align="right">0.0110080</td>
 </tr>
 <tr class="odd">
 <td>Macht sich selbst schlecht</td>
 <td align="right">17</td>
 <td align="right">4772</td>
-<td align="right">0.3782481</td>
-<td align="right">0.7122402</td>
+<td align="right">0.3786672</td>
+<td align="right">0.7126059</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103104</td>
+<td align="right">0.0103157</td>
 </tr>
 <tr class="even">
 <td>Beteiligt sich nicht am Unterricht</td>
 <td align="right">18</td>
 <td align="right">4772</td>
-<td align="right">0.7273680</td>
-<td align="right">0.9145309</td>
+<td align="right">0.7265298</td>
+<td align="right">0.9147389</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0132388</td>
+<td align="right">0.0132418</td>
 </tr>
 <tr class="odd">
 <td>Weint oder ist weinerlich</td>
 <td align="right">19</td>
 <td align="right">4772</td>
-<td align="right">0.2290444</td>
-<td align="right">0.5874847</td>
+<td align="right">0.2288349</td>
+<td align="right">0.5870310</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085045</td>
+<td align="right">0.0084979</td>
 </tr>
 <tr class="even">
 <td>Ist schnell verärgert</td>
 <td align="right">20</td>
 <td align="right">4772</td>
 <td align="right">0.5513412</td>
-<td align="right">0.9055618</td>
+<td align="right">0.9057933</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0131089</td>
+<td align="right">0.0131123</td>
 </tr>
 <tr class="odd">
 <td>Ist schnell überfordert</td>
 <td align="right">21</td>
 <td align="right">4772</td>
-<td align="right">0.8206203</td>
-<td align="right">1.0194556</td>
+<td align="right">0.8202012</td>
+<td align="right">1.0193817</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0147577</td>
+<td align="right">0.0147566</td>
 </tr>
 <tr class="even">
 <td>Ist schnell entmutigt</td>
 <td align="right">22</td>
 <td align="right">4772</td>
-<td align="right">0.7296731</td>
-<td align="right">0.9350393</td>
+<td align="right">0.7311400</td>
+<td align="right">0.9346777</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0135357</td>
+<td align="right">0.0135304</td>
 </tr>
 <tr class="odd">
 <td>Macht sich ständig Sorgen</td>
 <td align="right">23</td>
 <td align="right">4772</td>
-<td align="right">0.3619028</td>
-<td align="right">0.6809061</td>
+<td align="right">0.3610645</td>
+<td align="right">0.6801195</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098568</td>
+<td align="right">0.0098454</td>
 </tr>
 <tr class="even">
 <td>Lässt sich langsam auf neue Personen ein</td>
 <td align="right">24</td>
 <td align="right">4772</td>
-<td align="right">0.3776194</td>
-<td align="right">0.7053304</td>
+<td align="right">0.3774099</td>
+<td align="right">0.7055912</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102104</td>
+<td align="right">0.0102142</td>
 </tr>
 </tbody>
 </table>
-<p>And a further we analyse the factor structure</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">scale =</span> <span class="st">&quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">40</span>, <span class="dt">short =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw">fa</span>(<span class="dt">nfactors =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-5" title="5"><span class="st">  </span><span class="kw">print</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">cut =</span> <span class="fl">0.3</span>)</a>
-<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt; Lade nötigen Namensraum: GPArotation</span></a>
-<a class="sourceLine" id="cb9-7" title="7"><span class="co">#&gt; Factor Analysis using method =  minres</span></a>
-<a class="sourceLine" id="cb9-8" title="8"><span class="co">#&gt; Call: psych::fa(r = ., nfactors = 2)</span></a>
-<a class="sourceLine" id="cb9-9" title="9"><span class="co">#&gt; Standardized loadings (pattern matrix) based upon correlation matrix</span></a>
-<a class="sourceLine" id="cb9-10" title="10"><span class="co">#&gt;                                          item   MR2   MR1   h2   u2 com</span></a>
-<a class="sourceLine" id="cb9-11" title="11"><span class="co">#&gt; Int:Vermeidet soziale Interaktionen         4  0.73       0.51 0.49 1.0</span></a>
-<a class="sourceLine" id="cb9-12" title="12"><span class="co">#&gt; Int:Verhält sich übermäßig schüchtern      14  0.70 -0.33 0.47 0.53 1.4</span></a>
-<a class="sourceLine" id="cb9-13" title="13"><span class="co">#&gt; Int:Behauptet sich nicht gegenüber ander   13  0.69       0.45 0.55 1.2</span></a>
-<a class="sourceLine" id="cb9-14" title="14"><span class="co">#&gt; Int:Beteiligt sich nicht an Gruppenaktio   16  0.68       0.49 0.51 1.0</span></a>
-<a class="sourceLine" id="cb9-15" title="15"><span class="co">#&gt; Int:Verhält sich ängstlich                 12  0.68       0.44 0.56 1.0</span></a>
-<a class="sourceLine" id="cb9-16" title="16"><span class="co">#&gt; Int:Vermeidet die Teilnahme an Diskussio    3  0.66       0.41 0.59 1.0</span></a>
-<a class="sourceLine" id="cb9-17" title="17"><span class="co">#&gt; Int:Spielt bevorzugt alleine                5  0.64       0.40 0.60 1.0</span></a>
-<a class="sourceLine" id="cb9-18" title="18"><span class="co">#&gt; Int:Geht nicht auf Kontaktversuche der M    6  0.64       0.39 0.61 1.0</span></a>
-<a class="sourceLine" id="cb9-19" title="19"><span class="co">#&gt; Int:Verbringt zu viel Zeit alleine          1  0.61       0.38 0.62 1.0</span></a>
-<a class="sourceLine" id="cb9-20" title="20"><span class="co">#&gt; Int:Beteiligt sich nicht am Unterricht     18  0.61       0.39 0.61 1.0</span></a>
-<a class="sourceLine" id="cb9-21" title="21"><span class="co">#&gt; Int:Wirkt unglücklich oder traurig          9  0.59       0.45 0.55 1.2</span></a>
-<a class="sourceLine" id="cb9-22" title="22"><span class="co">#&gt; Ext:Beteiligt sich nicht am Unterricht     39  0.57       0.37 0.63 1.1</span></a>
-<a class="sourceLine" id="cb9-23" title="23"><span class="co">#&gt; Int:Lässt sich langsam auf neue Personen   24  0.54       0.35 0.65 1.1</span></a>
-<a class="sourceLine" id="cb9-24" title="24"><span class="co">#&gt; Int:Ist schnell überfordert                21  0.48  0.40 0.49 0.51 1.9</span></a>
-<a class="sourceLine" id="cb9-25" title="25"><span class="co">#&gt; Int:Macht sich ständig Sorgen              23  0.48       0.30 0.70 1.3</span></a>
-<a class="sourceLine" id="cb9-26" title="26"><span class="co">#&gt; Int:Ist schnell entmutigt                  22  0.46  0.44 0.52 0.48 2.0</span></a>
-<a class="sourceLine" id="cb9-27" title="27"><span class="co">#&gt; Int:Klammert sich an Erwachsene            10  0.46       0.25 0.75 1.1</span></a>
-<a class="sourceLine" id="cb9-28" title="28"><span class="co">#&gt; Int:Macht sich Sorgen über unwichtige De    7  0.46       0.26 0.74 1.2</span></a>
-<a class="sourceLine" id="cb9-29" title="29"><span class="co">#&gt; Int:Weint oder ist weinerlich              19  0.44       0.23 0.77 1.1</span></a>
-<a class="sourceLine" id="cb9-30" title="30"><span class="co">#&gt; Int:Beschwert sich über Kopfschmerzen od    8  0.40       0.23 0.77 1.4</span></a>
-<a class="sourceLine" id="cb9-31" title="31"><span class="co">#&gt; Int:Beschwert sich über Krankheit oder S    2  0.39       0.23 0.77 1.5</span></a>
-<a class="sourceLine" id="cb9-32" title="32"><span class="co">#&gt; Int:Verhält sich nervös                    11  0.38       0.27 0.73 1.8</span></a>
-<a class="sourceLine" id="cb9-33" title="33"><span class="co">#&gt; Int:Macht sich selbst schlecht             17  0.38  0.34 0.33 0.67 2.0</span></a>
-<a class="sourceLine" id="cb9-34" title="34"><span class="co">#&gt; Int:Beklagt sich oder jammert              15  0.36  0.36 0.33 0.67 2.0</span></a>
-<a class="sourceLine" id="cb9-35" title="35"><span class="co">#&gt; Ext:Macht unangebrachte Bemerkungen        37        0.82 0.64 0.36 1.0</span></a>
-<a class="sourceLine" id="cb9-36" title="36"><span class="co">#&gt; Ext:Stört andere                           33        0.80 0.62 0.38 1.0</span></a>
-<a class="sourceLine" id="cb9-37" title="37"><span class="co">#&gt; Ext:Hat Konflikte mit Mitschülerinnen un   35        0.80 0.64 0.36 1.0</span></a>
-<a class="sourceLine" id="cb9-38" title="38"><span class="co">#&gt; Ext:Verliert die Beherrschung              32        0.80 0.62 0.38 1.0</span></a>
-<a class="sourceLine" id="cb9-39" title="39"><span class="co">#&gt; Ext:Verwendet unangemessene Sprache        34        0.79 0.60 0.40 1.0</span></a>
-<a class="sourceLine" id="cb9-40" title="40"><span class="co">#&gt; Ext:Streitet und zankt mit Lehrkräften     31        0.79 0.60 0.40 1.0</span></a>
-<a class="sourceLine" id="cb9-41" title="41"><span class="co">#&gt; Int:Ist schnell verärgert                  20        0.74 0.58 0.42 1.0</span></a>
-<a class="sourceLine" id="cb9-42" title="42"><span class="co">#&gt; Ext:Kommandiert rum                        36        0.70 0.45 0.55 1.1</span></a>
-<a class="sourceLine" id="cb9-43" title="43"><span class="co">#&gt; Ext:Respektiert nicht die Privatsphäre a   40        0.67 0.45 0.55 1.0</span></a>
-<a class="sourceLine" id="cb9-44" title="44"><span class="co">#&gt; Ext:Kommt unvorbereitet zum Unterricht     38        0.53 0.36 0.64 1.2</span></a>
-<a class="sourceLine" id="cb9-45" title="45"><span class="co">#&gt; Ext:Nimmt Materialien, die zu Hause benö   30        0.49 0.33 0.67 1.3</span></a>
-<a class="sourceLine" id="cb9-46" title="46"><span class="co">#&gt; Ext:Kontrolliert seine eigene Arbeit nic   29  0.31  0.48 0.41 0.59 1.7</span></a>
-<a class="sourceLine" id="cb9-47" title="47"><span class="co">#&gt; Ext:Erledigt Hausaufgaben unvollständig    27        0.47 0.33 0.67 1.5</span></a>
-<a class="sourceLine" id="cb9-48" title="48"><span class="co">#&gt; Ext:Beginnt mit der Aufgabenbearbeitung    26  0.36  0.46 0.43 0.57 1.9</span></a>
-<a class="sourceLine" id="cb9-49" title="49"><span class="co">#&gt; Ext:Zeigt Unterrichtsaufgaben nicht selb   28  0.32  0.44 0.37 0.63 1.8</span></a>
-<a class="sourceLine" id="cb9-50" title="50"><span class="co">#&gt; Ext:Stellt Unterrichtsaufgaben nicht rec   25  0.36  0.39 0.35 0.65 2.0</span></a>
-<a class="sourceLine" id="cb9-51" title="51"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-52" title="52"><span class="co">#&gt;                        MR2  MR1</span></a>
-<a class="sourceLine" id="cb9-53" title="53"><span class="co">#&gt; SS loadings           8.44 8.31</span></a>
-<a class="sourceLine" id="cb9-54" title="54"><span class="co">#&gt; Proportion Var        0.21 0.21</span></a>
-<a class="sourceLine" id="cb9-55" title="55"><span class="co">#&gt; Cumulative Var        0.21 0.42</span></a>
-<a class="sourceLine" id="cb9-56" title="56"><span class="co">#&gt; Proportion Explained  0.50 0.50</span></a>
-<a class="sourceLine" id="cb9-57" title="57"><span class="co">#&gt; Cumulative Proportion 0.50 1.00</span></a>
-<a class="sourceLine" id="cb9-58" title="58"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-59" title="59"><span class="co">#&gt;  With factor correlations of </span></a>
-<a class="sourceLine" id="cb9-60" title="60"><span class="co">#&gt;      MR2  MR1</span></a>
-<a class="sourceLine" id="cb9-61" title="61"><span class="co">#&gt; MR2 1.00 0.27</span></a>
-<a class="sourceLine" id="cb9-62" title="62"><span class="co">#&gt; MR1 0.27 1.00</span></a>
-<a class="sourceLine" id="cb9-63" title="63"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-64" title="64"><span class="co">#&gt; Mean item complexity =  1.3</span></a>
-<a class="sourceLine" id="cb9-65" title="65"><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></a>
-<a class="sourceLine" id="cb9-66" title="66"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-67" title="67"><span class="co">#&gt; The degrees of freedom for the null model are  780  and the objective function was  27.72 with Chi Square of  183690.6</span></a>
-<a class="sourceLine" id="cb9-68" title="68"><span class="co">#&gt; The degrees of freedom for the model are 701  and the objective function was  10.56 </span></a>
-<a class="sourceLine" id="cb9-69" title="69"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-70" title="70"><span class="co">#&gt; The root mean square of the residuals (RMSR) is  0.1 </span></a>
-<a class="sourceLine" id="cb9-71" title="71"><span class="co">#&gt; The df corrected root mean square of the residuals is  0.1 </span></a>
-<a class="sourceLine" id="cb9-72" title="72"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-73" title="73"><span class="co">#&gt; The harmonic number of observations is  4769 with the empirical chi square  67810.8  with prob &lt;  0 </span></a>
-<a class="sourceLine" id="cb9-74" title="74"><span class="co">#&gt; The total number of observations was  6643  with Likelihood Chi Square =  69953.09  with prob &lt;  0 </span></a>
-<a class="sourceLine" id="cb9-75" title="75"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-76" title="76"><span class="co">#&gt; Tucker Lewis Index of factoring reliability =  0.579</span></a>
-<a class="sourceLine" id="cb9-77" title="77"><span class="co">#&gt; RMSEA index =  0.122  and the 90 % confidence intervals are  0.121 0.123</span></a>
-<a class="sourceLine" id="cb9-78" title="78"><span class="co">#&gt; BIC =  63783.37</span></a>
-<a class="sourceLine" id="cb9-79" title="79"><span class="co">#&gt; Fit based upon off diagonal values = 0.92</span></a>
-<a class="sourceLine" id="cb9-80" title="80"><span class="co">#&gt; Measures of factor score adequacy             </span></a>
-<a class="sourceLine" id="cb9-81" title="81"><span class="co">#&gt;                                                    MR2  MR1</span></a>
-<a class="sourceLine" id="cb9-82" title="82"><span class="co">#&gt; Correlation of (regression) scores with factors   0.97 0.97</span></a>
-<a class="sourceLine" id="cb9-83" title="83"><span class="co">#&gt; Multiple R square of scores with factors          0.93 0.94</span></a>
-<a class="sourceLine" id="cb9-84" title="84"><span class="co">#&gt; Minimum correlation of possible factor scores     0.86 0.89</span></a></code></pre></div>
+<p>And further we analyse the factor structure</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="st">  </span><span class="kw">select_scale</span>(<span class="dt">scale =</span> <span class="st">&quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">40</span>, <span class="dt">short =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">fa</span>(<span class="dt">nfactors =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="st">  </span><span class="kw">print</span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">cut =</span> <span class="fl">0.3</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt; Loading required namespace: GPArotation</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co">#&gt; Factor Analysis using method =  minres</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; Call: psych::fa(r = ., nfactors = 2)</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="co">#&gt; Standardized loadings (pattern matrix) based upon correlation matrix</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="co">#&gt;                                          item   MR2   MR1   h2   u2 com</span></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co">#&gt; Int:Vermeidet soziale Interaktionen         4  0.73       0.51 0.49 1.0</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a><span class="co">#&gt; Int:Verhält sich übermäßig schüchtern      14  0.70 -0.33 0.47 0.53 1.4</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a><span class="co">#&gt; Int:Behauptet sich nicht gegenüber ander   13  0.69       0.45 0.55 1.2</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a><span class="co">#&gt; Int:Beteiligt sich nicht an Gruppenaktio   16  0.68       0.49 0.51 1.0</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="co">#&gt; Int:Verhält sich ängstlich                 12  0.68       0.44 0.56 1.0</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a><span class="co">#&gt; Int:Vermeidet die Teilnahme an Diskussio    3  0.66       0.41 0.59 1.0</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a><span class="co">#&gt; Int:Spielt bevorzugt alleine                5  0.64       0.40 0.60 1.0</span></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="co">#&gt; Int:Geht nicht auf Kontaktversuche der M    6  0.63       0.39 0.61 1.0</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a><span class="co">#&gt; Int:Verbringt zu viel Zeit alleine          1  0.61       0.38 0.62 1.0</span></span>
+<span id="cb12-20"><a href="#cb12-20"></a><span class="co">#&gt; Int:Beteiligt sich nicht am Unterricht     18  0.61       0.39 0.61 1.0</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a><span class="co">#&gt; Int:Wirkt unglücklich oder traurig          9  0.59       0.45 0.55 1.2</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a><span class="co">#&gt; Ext:Beteiligt sich nicht am Unterricht     39  0.57       0.37 0.63 1.1</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="co">#&gt; Int:Lässt sich langsam auf neue Personen   24  0.54       0.35 0.65 1.1</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a><span class="co">#&gt; Int:Macht sich ständig Sorgen              23  0.48       0.30 0.70 1.3</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a><span class="co">#&gt; Int:Ist schnell überfordert                21  0.48  0.39 0.49 0.51 1.9</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a><span class="co">#&gt; Int:Ist schnell entmutigt                  22  0.46  0.44 0.52 0.48 2.0</span></span>
+<span id="cb12-27"><a href="#cb12-27"></a><span class="co">#&gt; Int:Klammert sich an Erwachsene            10  0.46       0.25 0.75 1.1</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a><span class="co">#&gt; Int:Macht sich Sorgen über unwichtige De    7  0.46       0.26 0.74 1.2</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a><span class="co">#&gt; Int:Weint oder ist weinerlich              19  0.44       0.23 0.77 1.1</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a><span class="co">#&gt; Int:Beschwert sich über Kopfschmerzen od    8  0.40       0.23 0.77 1.4</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a><span class="co">#&gt; Int:Beschwert sich über Krankheit oder S    2  0.39       0.23 0.77 1.5</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a><span class="co">#&gt; Int:Verhält sich nervös                    11  0.38       0.27 0.73 1.8</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a><span class="co">#&gt; Int:Macht sich selbst schlecht             17  0.38  0.34 0.33 0.67 2.0</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a><span class="co">#&gt; Int:Beklagt sich oder jammert              15  0.36  0.36 0.33 0.67 2.0</span></span>
+<span id="cb12-35"><a href="#cb12-35"></a><span class="co">#&gt; Ext:Macht unangebrachte Bemerkungen        37        0.82 0.64 0.36 1.0</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a><span class="co">#&gt; Ext:Verliert die Beherrschung              32        0.80 0.62 0.38 1.0</span></span>
+<span id="cb12-37"><a href="#cb12-37"></a><span class="co">#&gt; Ext:Hat Konflikte mit Mitschülerinnen un   35        0.80 0.64 0.36 1.0</span></span>
+<span id="cb12-38"><a href="#cb12-38"></a><span class="co">#&gt; Ext:Stört andere                           33        0.80 0.62 0.38 1.0</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a><span class="co">#&gt; Ext:Verwendet unangemessene Sprache        34        0.79 0.60 0.40 1.0</span></span>
+<span id="cb12-40"><a href="#cb12-40"></a><span class="co">#&gt; Ext:Streitet und zankt mit Lehrkräften     31        0.79 0.60 0.40 1.0</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a><span class="co">#&gt; Int:Ist schnell verärgert                  20        0.74 0.58 0.42 1.0</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a><span class="co">#&gt; Ext:Kommandiert rum                        36        0.70 0.45 0.55 1.1</span></span>
+<span id="cb12-43"><a href="#cb12-43"></a><span class="co">#&gt; Ext:Respektiert nicht die Privatsphäre a   40        0.67 0.45 0.55 1.0</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a><span class="co">#&gt; Ext:Kommt unvorbereitet zum Unterricht     38        0.53 0.36 0.64 1.2</span></span>
+<span id="cb12-45"><a href="#cb12-45"></a><span class="co">#&gt; Ext:Nimmt Materialien, die zu Hause benö   30        0.49 0.33 0.67 1.3</span></span>
+<span id="cb12-46"><a href="#cb12-46"></a><span class="co">#&gt; Ext:Kontrolliert seine eigene Arbeit nic   29  0.31  0.48 0.41 0.59 1.7</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a><span class="co">#&gt; Ext:Erledigt Hausaufgaben unvollständig    27        0.47 0.33 0.67 1.5</span></span>
+<span id="cb12-48"><a href="#cb12-48"></a><span class="co">#&gt; Ext:Beginnt mit der Aufgabenbearbeitung    26  0.36  0.46 0.43 0.57 1.9</span></span>
+<span id="cb12-49"><a href="#cb12-49"></a><span class="co">#&gt; Ext:Zeigt Unterrichtsaufgaben nicht selb   28  0.32  0.44 0.37 0.63 1.8</span></span>
+<span id="cb12-50"><a href="#cb12-50"></a><span class="co">#&gt; Ext:Stellt Unterrichtsaufgaben nicht rec   25  0.36  0.39 0.35 0.65 2.0</span></span>
+<span id="cb12-51"><a href="#cb12-51"></a><span class="co">#&gt; </span></span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="co">#&gt;                        MR2  MR1</span></span>
+<span id="cb12-53"><a href="#cb12-53"></a><span class="co">#&gt; SS loadings           8.44 8.32</span></span>
+<span id="cb12-54"><a href="#cb12-54"></a><span class="co">#&gt; Proportion Var        0.21 0.21</span></span>
+<span id="cb12-55"><a href="#cb12-55"></a><span class="co">#&gt; Cumulative Var        0.21 0.42</span></span>
+<span id="cb12-56"><a href="#cb12-56"></a><span class="co">#&gt; Proportion Explained  0.50 0.50</span></span>
+<span id="cb12-57"><a href="#cb12-57"></a><span class="co">#&gt; Cumulative Proportion 0.50 1.00</span></span>
+<span id="cb12-58"><a href="#cb12-58"></a><span class="co">#&gt; </span></span>
+<span id="cb12-59"><a href="#cb12-59"></a><span class="co">#&gt;  With factor correlations of </span></span>
+<span id="cb12-60"><a href="#cb12-60"></a><span class="co">#&gt;      MR2  MR1</span></span>
+<span id="cb12-61"><a href="#cb12-61"></a><span class="co">#&gt; MR2 1.00 0.27</span></span>
+<span id="cb12-62"><a href="#cb12-62"></a><span class="co">#&gt; MR1 0.27 1.00</span></span>
+<span id="cb12-63"><a href="#cb12-63"></a><span class="co">#&gt; </span></span>
+<span id="cb12-64"><a href="#cb12-64"></a><span class="co">#&gt; Mean item complexity =  1.3</span></span>
+<span id="cb12-65"><a href="#cb12-65"></a><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></span>
+<span id="cb12-66"><a href="#cb12-66"></a><span class="co">#&gt; </span></span>
+<span id="cb12-67"><a href="#cb12-67"></a><span class="co">#&gt; The degrees of freedom for the null model are  780  and the objective function was  27.71 with Chi Square of  131916.8</span></span>
+<span id="cb12-68"><a href="#cb12-68"></a><span class="co">#&gt; The degrees of freedom for the model are 701  and the objective function was  10.54 </span></span>
+<span id="cb12-69"><a href="#cb12-69"></a><span class="co">#&gt; </span></span>
+<span id="cb12-70"><a href="#cb12-70"></a><span class="co">#&gt; The root mean square of the residuals (RMSR) is  0.1 </span></span>
+<span id="cb12-71"><a href="#cb12-71"></a><span class="co">#&gt; The df corrected root mean square of the residuals is  0.1 </span></span>
+<span id="cb12-72"><a href="#cb12-72"></a><span class="co">#&gt; </span></span>
+<span id="cb12-73"><a href="#cb12-73"></a><span class="co">#&gt; The harmonic number of observations is  4769 with the empirical chi square  67607.64  with prob &lt;  0 </span></span>
+<span id="cb12-74"><a href="#cb12-74"></a><span class="co">#&gt; The total number of observations was  4776  with Likelihood Chi Square =  50151.05  with prob &lt;  0 </span></span>
+<span id="cb12-75"><a href="#cb12-75"></a><span class="co">#&gt; </span></span>
+<span id="cb12-76"><a href="#cb12-76"></a><span class="co">#&gt; Tucker Lewis Index of factoring reliability =  0.58</span></span>
+<span id="cb12-77"><a href="#cb12-77"></a><span class="co">#&gt; RMSEA index =  0.122  and the 90 % confidence intervals are  0.121 0.122</span></span>
+<span id="cb12-78"><a href="#cb12-78"></a><span class="co">#&gt; BIC =  44212.63</span></span>
+<span id="cb12-79"><a href="#cb12-79"></a><span class="co">#&gt; Fit based upon off diagonal values = 0.92</span></span>
+<span id="cb12-80"><a href="#cb12-80"></a><span class="co">#&gt; Measures of factor score adequacy             </span></span>
+<span id="cb12-81"><a href="#cb12-81"></a><span class="co">#&gt;                                                    MR2  MR1</span></span>
+<span id="cb12-82"><a href="#cb12-82"></a><span class="co">#&gt; Correlation of (regression) scores with factors   0.97 0.97</span></span>
+<span id="cb12-83"><a href="#cb12-83"></a><span class="co">#&gt; Multiple R square of scores with factors          0.93 0.94</span></span>
+<span id="cb12-84"><a href="#cb12-84"></a><span class="co">#&gt; Minimum correlation of possible factor scores     0.86 0.89</span></span></code></pre></div>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Ext&quot;</span>)</a>
-<a class="sourceLine" id="cb10-2" title="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Ext&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a>dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, <span class="dt">subscale =</span> <span class="st">&quot;Int&quot;</span>)</span></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1305,23 +1320,23 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>itrf_ext</td>
 <td align="right">1</td>
 <td align="right">4771</td>
-<td align="right">9.521274</td>
-<td align="right">9.587778</td>
+<td align="right">9.525047</td>
+<td align="right">9.594217</td>
 <td align="right">0</td>
 <td align="right">48</td>
 <td align="right">48</td>
-<td align="right">0.1388076</td>
+<td align="right">0.1389008</td>
 </tr>
 <tr class="even">
 <td>itrf_int</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">10.236588</td>
-<td align="right">10.630332</td>
+<td align="right">10.234493</td>
+<td align="right">10.631443</td>
 <td align="right">0</td>
 <td align="right">60</td>
 <td align="right">60</td>
-<td align="right">0.1538851</td>
+<td align="right">0.1539012</td>
 </tr>
 </tbody>
 </table>
