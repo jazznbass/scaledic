@@ -12,35 +12,41 @@
 apply_dic <- function(data, dic, factors = TRUE) {
 
   opt.attr <- list(
-    "item_label" = "ITEM",
-    "item_label_short" = "LABEL",
-    "scale" = "SCALE",
-    "subscale" = "SUB_SCALE",
-    "subscale_2" = "SUB_SCALE_2",
-    "scale_label" = "SCALE_LABEL",
-    "subscale_label" = "SUB_SCALE_LABEL",
-    "subscale_2_label" = "SUB_SCALE_2_LABEL",
-    "index" = "INDEX",
-    "weight" = "WEIGHT",
-    "source" = "SOURCE",
-    "note" = "NOTE",
-    "type" = "TYPE",
-    "values" = "VALUES",
-    "value_labels" = "VALUE_LABELS",
-    "missing" = "MISSING"
+    "variable" = "var",
+    "item_label" = "item",
+    "item_label_short" = "label",
+    "scale" = "scale",
+    "subscale" = "sub_scale",
+    "subscale_2" = "sub_scale_2",
+    "scale_label" = "scale_label",
+    "subscale_label" = "sub_scale_label",
+    "subscale_2_label" = "sub_scale_2_label",
+    "index" = "index",
+    "weight" = "weight",
+    "source" = "source",
+    "note" = "note",
+    "type" = "type",
+    "values" = "values",
+    "value_labels" = "value_labels",
+    "missing" = "missing"
   )
 
-  names(dic) <- toupper(names(dic))
+  #names(dic) <- toupper(names(dic))
+  names(dic) <- tolower(names(dic))
 
-  if (!("VAR" %in% names(dic))) dic$VAR <- dic$LABEL
+  if (!(opt.attr$variable %in% names(dic)))
+    dic[[opt.attr$variable]] <- dic[[opt.attr$item_label_short]]
 
+  # checking missing variables in dictionary file
   miss <- unlist(opt.attr)[which(!(unlist(opt.attr) %in% names(dic)))]
-  if (!is.null(miss)) dic[, miss] <- NA
-
+  if (!is.null(miss)) {
+    message("The following variables were missing in the dictionary file: ", miss, "\n")
+    dic[, miss] <- NA
+  }
   for (i in 1:nrow(dic)) {
-    id <- which(names(data) == dic$VAR[i])
+    id <- which(names(data) == dic[[opt.attr$variable]][i])
 
-    names(data)[id] <- dic$LABEL[i]
+    names(data)[id] <- dic[[opt.attr$item_label_short]][i]
 
     ### extract values and value labels
     values <-
@@ -67,7 +73,6 @@ apply_dic <- function(data, dic, factors = TRUE) {
       paste0("c(", as.character(dic[[opt.attr$missing]][i]), ")") %>%
       parse(text = .) %>%
       eval()
-
 
     ### assign attributes
     set <- c(

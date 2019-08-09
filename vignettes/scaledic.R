@@ -11,14 +11,30 @@ knitr::opts_chunk$set(
   
 )
 
+## ----eval=FALSE----------------------------------------------------------
+#  newdat <- select(dat, "iq", "age")
+#  newdat <- describe(newdat)
+#  newdat <- round(newdat, 2)
+#  kable(newdat)
+
+## ----eval=FALSE----------------------------------------------------------
+#  kable(round(describe(select(dat, "iq", "age")), 2))
+
+## ----eval=FALSE----------------------------------------------------------
+#  dat %>%
+#    select("iq", "age") %>%
+#    describe() %>%
+#    round(2) %>%
+#    kable()
+
 ## ----echo = FALSE--------------------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
-  "LABEL", "A short label", "itrf_1",
-  "SCALE", "Abreviation of the scale", "irtf",
+  "LABEL", "A short item label", "itrf_1",
+  "SCALE", "Abreviation of the scale the item belongs to", "irtf",
   "SUB_SCALE", "Abrevation of the sub scale", "int",
-  "SUB_SCALE_2", "Abrevation of the secon order sub scale", "shy",
-  "SCALE_LABEL", "Name of the scale", "Integrated Teacher Report Fromula",
+  "SUB_SCALE_2", "Abrevation of the second order sub scale", "shy",
+  "SCALE_LABEL", "Name of the scale", "Integrated Teacher Report Form",
   "SUB_SCALE_LABEL", "Name of the sub scale", "internalizing problems",
   "SUB_SCALE_2_LABEL", "Name of the second order sub scale", "shyness",
   "ITEM", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
@@ -26,7 +42,7 @@ out <- tribble(
   "VALUES", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "VALUE_LABELS", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
   "MISSING", "Missing values", "-888, -999",
-  "TYPE", "Data type (factor, integer, float, reel)", "integer",
+  "TYPE", "Data type (factor, integer, float, real)", "integer",
   "WEIGHT", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
   "SOURCE", "Reference", "Casale et al. (2017)",
   "NOTE", "Further notes", "Item has low descrimination"

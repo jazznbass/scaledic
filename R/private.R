@@ -15,7 +15,8 @@
   "values" = "values",
   "missing" = "missing",
   "dic" = "dic",
-  "class" = "class"
+  "class" = "class",
+  "var" = "var"
 )
 
 .vars <- as.data.frame(matrix(c(

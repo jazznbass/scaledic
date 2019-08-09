@@ -11,7 +11,7 @@ Basically, scaledic loads a dictionary file that contains all relevant informati
 
 The package contains an example data frame `ITRF` with 4767 participants that filled out the "integrated teacher report formula" questionnaire. `dic_ITRF` is a corresponding dictionary file for the `ITRF` (as the original data were collected in Germany the dictionary file has also the German labels).  
 
-See  `example(scaledic)`.
+See  `vignette("scaledic")` for an example.
 
 
 
