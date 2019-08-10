@@ -30,22 +30,22 @@ knitr::opts_chunk$set(
 ## ----echo = FALSE--------------------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
-  "LABEL", "A short item label", "itrf_1",
-  "SCALE", "Abreviation of the scale the item belongs to", "irtf",
-  "SUB_SCALE", "Abrevation of the sub scale", "int",
-  "SUB_SCALE_2", "Abrevation of the second order sub scale", "shy",
-  "SCALE_LABEL", "Name of the scale", "Integrated Teacher Report Form",
-  "SUB_SCALE_LABEL", "Name of the sub scale", "internalizing problems",
-  "SUB_SCALE_2_LABEL", "Name of the second order sub scale", "shyness",
-  "ITEM", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
-  "INDEX", "An index number", "1",
-  "VALUES", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
-  "VALUE_LABELS", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
-  "MISSING", "Missing values", "-888, -999",
-  "TYPE", "Data type (factor, integer, float, real)", "integer",
-  "WEIGHT", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-  "SOURCE", "Reference", "Casale et al. (2017)",
-  "NOTE", "Further notes", "Item has low descrimination"
+  "label", "A short item label", "itrf_1",
+  "scale", "Abreviation of the scale the item belongs to", "irtf",
+  "sub_scale", "Abrevation of the sub scale", "int",
+  "sub_scale_2", "Abrevation of the second order sub scale", "shy",
+  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
+  "sub_scale_label", "Name of the sub scale", "internalizing problems",
+  "scale_2_label", "Name of the second order sub scale", "shyness",
+  "item", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
+  "index", "An index number", "1",
+  "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
+  "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
+  "missing", "Missing values", "-888, -999",
+  "type", "Data type (factor, integer, float, real)", "integer",
+  "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
+  "source", "Reference", "Casale et al. (2017)",
+  "note", "Further notes", "Item has low descrimination"
 )
 
 kable(out, caption = "Columns of a dictionary file")
