@@ -20,7 +20,7 @@ apply_dic <- function(data, dic, factors = TRUE) {
 
   # checking missing variables in dictionary file
   miss <- unlist(opt.attr)[which(!(unlist(opt.attr) %in% names(dic)))]
-  if (!is.null(miss)) {
+  if (length(miss) > 0) {
     miss %>%
       paste(collapse = ", ") %>%
       message("The following variables were missing in the dictionary file: ", ., "\n")
