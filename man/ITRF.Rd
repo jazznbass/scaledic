@@ -12,7 +12,7 @@ ITRF
 ITRF
 }
 \description{
-A dataset containing the response teacher formula data (40 items).
+A dataset containing the response teacher form data (40 items).
 
 Data of the ITRF and a correponding dic file'
 }

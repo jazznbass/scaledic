@@ -1,4 +1,6 @@
+
 .opt <- list(
+  "variable" = "var",
   "item_label" = "item_label",
   "item_label_short" = "item_label_short",
   "scale" = "scale",
@@ -13,11 +15,38 @@
   "note" = "note",
   "type" = "type",
   "values" = "values",
+  "value_labels" = "value_labels",
   "missing" = "missing",
   "dic" = "dic",
-  "class" = "class",
-  "var" = "var"
+  "class" = "class"
 )
+
+.dic_file <- list(
+  "variable" = "var",
+  "item_label_short" = "label",
+  "scale" = "scale",
+  "subscale" = "sub_scale",
+  "subscale_2" = "sub_scale_2",
+  "index" = "index",
+  "scale_label" = "scale_label",
+  "subscale_label" = "sub_scale_label",
+  "subscale_2_label" = "sub_scale_2_label",
+  "item_label" = "item",
+  "weight" = "weight",
+  "values" = "values",
+  "value_labels" = "value_labels",
+  "missing" = "missing",
+  "type" = "type",
+  "source" = "source",
+  "note" = "note"
+)
+
+#.dic_file <- .opt[c(
+#  "variable", "item_label", "item_label_short", "scale", "subscale",
+#  "subscale_2", "scale_label", "subscale_label", "subscale_2_label", "index",
+#  "values", "value_labels", "missing", "weight", "source", "note", "type"
+#)]
+
 
 .vars <- as.data.frame(matrix(c(
   "item_label", "item_label", "ITEM",

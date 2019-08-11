@@ -11,27 +11,8 @@
 
 apply_dic <- function(data, dic, factors = TRUE) {
 
-  opt.attr <- list(
-    "variable" = "var",
-    "item_label" = "item",
-    "item_label_short" = "label",
-    "scale" = "scale",
-    "subscale" = "sub_scale",
-    "subscale_2" = "sub_scale_2",
-    "scale_label" = "scale_label",
-    "subscale_label" = "sub_scale_label",
-    "subscale_2_label" = "sub_scale_2_label",
-    "index" = "index",
-    "weight" = "weight",
-    "source" = "source",
-    "note" = "note",
-    "type" = "type",
-    "values" = "values",
-    "value_labels" = "value_labels",
-    "missing" = "missing"
-  )
+  opt.attr <- .dic_file
 
-  #names(dic) <- toupper(names(dic))
   names(dic) <- tolower(names(dic))
 
   if (!(opt.attr$variable %in% names(dic)))
@@ -40,7 +21,9 @@ apply_dic <- function(data, dic, factors = TRUE) {
   # checking missing variables in dictionary file
   miss <- unlist(opt.attr)[which(!(unlist(opt.attr) %in% names(dic)))]
   if (!is.null(miss)) {
-    message("The following variables were missing in the dictionary file: ", miss, "\n")
+    miss %>%
+      paste(collapse = ", ") %>%
+      message("The following variables were missing in the dictionary file: ", ., "\n")
     dic[, miss] <- NA
   }
   for (i in 1:nrow(dic)) {
@@ -75,16 +58,14 @@ apply_dic <- function(data, dic, factors = TRUE) {
       eval()
 
     ### assign attributes
-    set <- c(
-      "item_label", "item_label_short", "scale", "subscale",
-      "subscale_2", "scale_label", "subscale_label",
-      "subscale_2_label", "index", "weight", "source", "note", "type"
-    )
+    filter <- !(names(opt.attr) %in% c("values", "value_labels", "missing", "variables"))
+    set <- names(.dic_file)[filter]
 
     for (j in set) {
       target <- .opt[[j]]
       source <- opt.attr[[j]]
-      dic_attr(data[[id]], target) <- as.character(dic[[source]][i])
+      value_dic <- as.character(dic[[source]][i])
+      dic_attr(data[[id]], target) <- value_dic
     }
 
     ### set factors

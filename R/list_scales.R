@@ -22,6 +22,7 @@ list_scales <- function(data, labels = FALSE) {
         dic_attr(x, .opt$subscale),
         dic_attr(x, .opt$subscale_2)
       ))
+    #return(list(out, filter))
     out <- as.data.frame(unique(t(out)))
     names(out) <- c("Scale", "Subscale", "Subscale_2")
   }

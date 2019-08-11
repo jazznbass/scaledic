@@ -3,12 +3,12 @@
 \docType{data}
 \name{dic_ITRF}
 \alias{dic_ITRF}
-\title{Dictionary file for the Integrated Teacher Report Formula.}
+\title{Dictionary file for the Integrated Teacher Report Form.}
 \format{A data frame with 39 rows and 15 variables}
 \usage{
 dic_ITRF
 }
 \description{
-A dictionary file of the German version of the ntegrated Teacher Report Formula (ITRF).
+A dictionary file of the German version of the ntegrated Teacher Report Form (ITRF).
 }
 \keyword{datasets}
