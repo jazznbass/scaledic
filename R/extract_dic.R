@@ -6,35 +6,13 @@
 #' @export
 
 extract_dic <- function(data) {
-  # opt.attr <- list(
-  #   "item_label_short" = "LABEL",
-  #   "scale" = "SCALE",
-  #   "subscale" = "SUB_SCALE",
-  #   "subscale_2" = "SUB_SCALE_2",
-  #   "scale_label" = "SCALE_LABEL",
-  #   "subscale_label" = "SUB_SCALE_LABEL",
-  #   "subscale_2_label" = "SUB_SCALE_2_LABEL",
-  #   "index" = "INDEX",
-  #   "item_label" = "ITEM",
-  #   "weight" = "WEIGHT",
-  #   "source" = "SOURCE",
-  #   "note" = "NOTE",
-  #   "type" = "TYPE",
-  #   # "values" = "VALUES",
-  #   # "value_labels" = "VALUE_LABELS",
-  #   "missing" = "MISSING"
-  # )
-
-  opt.attr <- .dic_file[!names(.dic_file) %in% c("variable", "values", "value_labels") ]
-
+  opt.attr <- .dic_file[
+    !names(.dic_file) %in% c("variable", "values", "value_labels")
+  ]
   dic_names <- names(opt.attr)
-
-  #id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
   id <- .get_dic_items(data)
   N <- length(id)
-
   vars <- unlist(.dic_file[!names(.dic_file) %in% "variable"])
-
   out <- matrix(NA, nrow = N, ncol = length(vars))
   out <- as.data.frame(out)
   names(out) <- vars
