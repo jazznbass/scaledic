@@ -39,6 +39,10 @@ check_values <- function(data, replace = NULL, return = TRUE, include_missing = 
       id_error <- which(!(data[[i]] %in% values) & !is.na(data[[i]]))
     }
 
+    if (type %in% c("character", "characters", "string")) {
+      id_error <- NULL
+    }
+
     x <- data[[i]][id_error]
     names(x) <- id_error
     if (!(length(id_error) > 0)) x <- NULL
