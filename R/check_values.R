@@ -5,6 +5,7 @@
 #' @param data A data frame
 #' @param replace Value which relaces unvalid values (e.g., NA).
 #' @param return If TRUE, a data frame is returned with replaced values.
+#' @param report If TRUE, an overview of invalid values will be given.
 #' @param include_missing If TRUE, missing values (provided in the dic file)
 #' will be considered as valid values.
 #'
@@ -13,7 +14,7 @@
 #' @examples
 #' dat <- apply_dic(ITRF, dic_ITRF)
 #' check_values(dat, return = FALSE)
-check_values <- function(data, replace = NULL, return = TRUE, include_missing = TRUE) {
+check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = TRUE) {
   id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
   name <- names(data)
   errors <- list()
@@ -50,8 +51,8 @@ check_values <- function(data, replace = NULL, return = TRUE, include_missing = 
 
     if (!is.null(replace)) data[id_error, i] <- replace
   }
+  if (report) print(errors)
   if (return) {
     return(data)
   }
-  return(errors)
 }
