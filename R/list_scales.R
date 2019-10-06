@@ -1,17 +1,12 @@
 #' List scales
 #'
 #' @param data The target data frame
-#' @param labels If set TRUE, scale labels instead of abreviations are shown.
+#' @param labels If TRUE, scale labels instead of abreviations are shown.
+#' @param n_items If TRUE, number of items for each scale, subscale, and sub_subscale is shown
 #'
 #' @return A list with scales on diferent levels
 #' @export
-list_scales <- function(data, labels = FALSE) {
-
-  #filter <- which(
-  #  sapply(
-  #    data, function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
-  #  )
-  #)
+list_scales <- function(data, labels = FALSE, n_items = TRUE) {
 
   filter <- .get_dic_items(data)
 
@@ -22,8 +17,13 @@ list_scales <- function(data, labels = FALSE) {
         dic_attr(x, .opt$subscale),
         dic_attr(x, .opt$subscale_2)
       ))
-    #return(list(out, filter))
-    out <- as.data.frame(unique(t(out)))
+
+
+
+
+    out <- out %>%
+      t() %>%
+      as.data.frame()
     names(out) <- c("Scale", "Subscale", "Subscale_2")
   }
 
@@ -37,13 +37,42 @@ list_scales <- function(data, labels = FALSE) {
         dic_attr(x, .opt$subscale_label),
         dic_attr(x, .opt$subscale_2_label)
       ))
-    out <- as.data.frame(unique(t(out)))
+    out <- out %>%
+      t() %>%
+      as.data.frame()
+
     names(out) <- c("Scale", "Subscale", "Subscale_2", "Label scale", "Label subscale", "Label subscale_2")
 
   }
-  #out <- out[order(out[["Scale"]], out[["Subscale"]], out[["Subscale_2"]]), ]
-  #rownames(out) <- NULL
+
+  if (n_items) {
+    n_scale <- out %>%
+      select(Scale) %>%
+      table() %>%
+      as.data.frame()
+    n_subscale <- out %>%
+      select(Subscale) %>%
+      table() %>%
+      as.data.frame()
+    n_subscale2 <- out %>%
+      select(Subscale_2) %>%
+      table() %>%
+      as.data.frame()
+
+    out <- out %>%
+      full_join(n_scale, by = c("Scale" = ".")) %>%
+      full_join(n_subscale, by = c("Subscale" = ".")) %>%
+      full_join(n_subscale2, by = c("Subscale_2" = ".")) %>%
+      rename(
+        "n Scale" =Freq.x,
+        "n Subscale" = Freq.y,
+        "n Subscale_2" = Freq
+      )
+  }
+
+
   out %>%
+    unique() %>%
     as_tibble() %>%
     arrange(Scale, Subscale, Subscale_2)
 
