@@ -6,43 +6,39 @@
 #'
 #' @return A list with scales on diferent levels
 #' @export
-list_scales <- function(data, labels = FALSE, n_items = TRUE) {
+list_scales <- function(data, labels = FALSE, n_items = FALSE) {
 
   filter <- .get_dic_items(data)
 
   if(!labels) {
-    out <- sapply(data[filter], function(x)
-      cbind(
-        dic_attr(x, .opt$scale),
-        dic_attr(x, .opt$subscale),
-        dic_attr(x, .opt$subscale_2)
-      ))
-
-
-
-
-    out <- out %>%
+    out <- data %>%
+      select(filter) %>%
+      sapply(function(x)
+        cbind(
+          dic_attr(x, .opt$scale),
+          dic_attr(x, .opt$subscale),
+          dic_attr(x, .opt$subscale_2)
+        )) %>%
       t() %>%
       as.data.frame()
     names(out) <- c("Scale", "Subscale", "Subscale_2")
   }
 
   if(labels) {
-    out <- sapply(data[filter], function(x)
-      cbind(
-        dic_attr(x, .opt$scale),
-        dic_attr(x, .opt$subscale),
-        dic_attr(x, .opt$subscale_2),
-        dic_attr(x, .opt$scale_label),
-        dic_attr(x, .opt$subscale_label),
-        dic_attr(x, .opt$subscale_2_label)
-      ))
-    out <- out %>%
+    out <- data %>%
+      select(filter) %>%
+      sapply(function(x)
+        cbind(
+          dic_attr(x, .opt$scale),
+          dic_attr(x, .opt$subscale),
+          dic_attr(x, .opt$subscale_2),
+          dic_attr(x, .opt$scale_label),
+          dic_attr(x, .opt$subscale_label),
+          dic_attr(x, .opt$subscale_2_label)
+        )) %>%
       t() %>%
       as.data.frame()
-
-    names(out) <- c("Scale", "Subscale", "Subscale_2", "Label scale", "Label subscale", "Label subscale_2")
-
+    names(out) <- c("Scale", "Subscale", "Subscale_2", "Label scale", "Label subscale", "Label subscale 2")
   }
 
   if (n_items) {
@@ -64,9 +60,9 @@ list_scales <- function(data, labels = FALSE, n_items = TRUE) {
       full_join(n_subscale, by = c("Subscale" = ".")) %>%
       full_join(n_subscale2, by = c("Subscale_2" = ".")) %>%
       rename(
-        "n Scale" =Freq.x,
+        "n Scale" = Freq.x,
         "n Subscale" = Freq.y,
-        "n Subscale_2" = Freq
+        "n Subscale 2" = Freq
       )
   }
 

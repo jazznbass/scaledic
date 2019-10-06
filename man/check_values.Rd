@@ -6,7 +6,7 @@
 Checks if values in variables are within the set difined in
 the values and type dictionary attributes.}
 \usage{
-check_values(data, replace = NULL, return = TRUE,
+check_values(data, replace = NULL, return = TRUE, report = FALSE,
   include_missing = TRUE)
 }
 \arguments{
@@ -15,6 +15,8 @@ check_values(data, replace = NULL, return = TRUE,
 \item{replace}{Value which relaces unvalid values (e.g., NA).}
 
 \item{return}{If TRUE, a data frame is returned with replaced values.}
+
+\item{report}{If TRUE, an overview of invalid values will be given.}
 
 \item{include_missing}{If TRUE, missing values (provided in the dic file)
 will be considered as valid values.}

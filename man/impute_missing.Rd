@@ -5,7 +5,7 @@
 \title{Impute missing values}
 \usage{
 impute_missing(data, scale = NULL, subscale = NULL,
-  subscale_2 = NULL)
+  subscale_2 = NULL, force_to_scale = TRUE)
 }
 \arguments{
 \item{data}{A data frame}
@@ -15,6 +15,9 @@ impute_missing(data, scale = NULL, subscale = NULL,
 \item{subscale}{String with subscale name}
 
 \item{subscale_2}{String with sub subscale name}
+
+\item{force_to_scale}{If TRUE, imputed values will be rounded and forced to the scale.
+That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.}
 }
 \value{
 A data frame with imputed data.

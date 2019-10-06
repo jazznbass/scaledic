@@ -108,7 +108,7 @@ dat <- apply_dic(ITRF, dic_ITRF)
 Let us get an overview of all scales in the dataset:
 
 ```{r}
-list_scales(dat, labels = TRUE) %>%
+list_scales(dat, labels = TRUE, n_items = TRUE) %>%
   kable()
 ```
 

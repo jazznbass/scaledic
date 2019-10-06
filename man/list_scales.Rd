@@ -4,7 +4,7 @@
 \alias{list_scales}
 \title{List scales}
 \usage{
-list_scales(data, labels = FALSE, n_items = TRUE)
+list_scales(data, labels = FALSE, n_items = FALSE)
 }
 \arguments{
 \item{data}{The target data frame}

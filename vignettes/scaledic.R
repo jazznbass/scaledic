@@ -58,7 +58,7 @@ dic_ITRF %>% slice(1:3)  %>% kable()
 dat <- apply_dic(ITRF, dic_ITRF)
 
 ## ------------------------------------------------------------------------
-list_scales(dat, labels = TRUE) %>%
+list_scales(dat, labels = TRUE, n_items = TRUE) %>%
   kable()
 
 ## ------------------------------------------------------------------------
