@@ -23,7 +23,7 @@ knitr::opts_chunk$set(
 
 # Note
 
-This is a short description on how to use the scaledic package. The code examples in this package make use of the pipe operator `%>%` (see the `magrittr` package).  
+This is a short description on how to use the scaledic package. The following code examples in this package make use of the pipe operator `%>%` (see the `magrittr` package).  
 Once you are used to the pipe operator, it makes code easier to read. Basically, it is just a shortcut. The pipe operator takes the return of the previous function and sets it as the **first** argument of the following function. An example:  
 
 ```{r eval=FALSE}
@@ -82,7 +82,6 @@ out <- tribble(
   "source", "Reference", "Casale et al. (2017)",
   "note", "Further notes", "Item has low descrimination"
 )
-
 kable(out, caption = "Columns of a dictionary file")
 
 ```

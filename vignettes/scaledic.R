@@ -47,7 +47,6 @@ out <- tribble(
   "source", "Reference", "Casale et al. (2017)",
   "note", "Further notes", "Item has low descrimination"
 )
-
 kable(out, caption = "Columns of a dictionary file")
 
 

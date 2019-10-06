@@ -4,12 +4,14 @@
 \alias{list_scales}
 \title{List scales}
 \usage{
-list_scales(data, labels = FALSE)
+list_scales(data, labels = FALSE, n_items = TRUE)
 }
 \arguments{
 \item{data}{The target data frame}
 
-\item{labels}{If set TRUE, scale labels instead of abreviations are shown.}
+\item{labels}{If TRUE, scale labels instead of abreviations are shown.}
+
+\item{n_items}{If TRUE, number of items for each scale, subscale, and sub_subscale is shown}
 }
 \value{
 A list with scales on diferent levels
