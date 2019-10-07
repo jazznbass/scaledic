@@ -93,6 +93,9 @@ the values and type dictionary attributes." />
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -122,7 +125,7 @@ Checks if values in variables are within the set difined in
 the values and type dictionary attributes.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_values</span>(<span class='no'>data</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+    <pre class="usage"><span class='fu'>check_values</span>(<span class='no'>data</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>report</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>include_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -141,6 +144,10 @@ the values and type dictionary attributes.</p>
       <td><p>If TRUE, a data frame is returned with replaced values.</p></td>
     </tr>
     <tr>
+      <th>report</th>
+      <td><p>If TRUE, an overview of invalid values will be given.</p></td>
+    </tr>
+    <tr>
       <th>include_missing</th>
       <td><p>If TRUE, missing values (provided in the dic file)
 will be considered as valid values.</p></td>
@@ -153,62 +160,7 @@ will be considered as valid values.</p></td>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span>(<span class='no'>ITRF</span>, <span class='no'>dic_ITRF</span>)
-<span class='fu'>check_values</span>(<span class='no'>dat</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='output co'>#&gt; $itrf_I_1
-#&gt; 3192 
-#&gt;    7 
-#&gt; 
-#&gt; $itrf_I_2
-#&gt; 4651 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_I_13
-#&gt; 3699 
-#&gt;    4 
-#&gt; 
-#&gt; $itrf_I_20
-#&gt; 2799 
-#&gt;    4 
-#&gt; 
-#&gt; $itrf_E_4
-#&gt; 2621 
-#&gt;    6 
-#&gt; 
-#&gt; $itrf_E_6
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_7
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_8
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_9
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_10
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_11
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_12
-#&gt; 2599 
-#&gt;    9 
-#&gt; 
-#&gt; $itrf_E_13
-#&gt; 2599 4146 
-#&gt;    9   11 
-#&gt; 
-#&gt; $itrf_E_14
-#&gt; 2599 
-#&gt;    9 
-#&gt; </div></pre>
+<span class='fu'>check_values</span>(<span class='no'>dat</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

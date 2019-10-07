@@ -12,23 +12,53 @@
 apply_dic <- function(data, dic, factors = TRUE) {
 
   opt.attr <- .dic_file
-
   names(dic) <- tolower(names(dic))
 
-  if (!(opt.attr$variable %in% names(dic)))
-    dic[[opt.attr$variable]] <- dic[[opt.attr$item_label_short]]
+  # type NA to integer
+  miss_type <- which(is.na(dic[[.dic_file$type]]))
+  if (length(miss_type) > 0) {
+    message(length(miss_type), " missing types found and replaced with 'integer'.")
+    dic[miss_type, .dic_file$type] <- "integer"
+  }
+
+  # weight NA to integer
+  miss_weight <- which(is.na(dic[[.dic_file$weight]]))
+  if (length(miss_weight) > 0) {
+    message(length(miss_weight), " missing weights found and replaced with 1.")
+    dic[miss_weight, .dic_file$weight] <- 1
+  }
+
+  # set default name when label is missing
+  for (i in 1:nrow(dic)){
+    if (is.na(dic[[.dic_file$item_label_short]][i])) {
+      message("Missing label found at variabel no. ", i, " in dic file.")
+      # dic[[.dic_file$item_label_short]][i] <- paste0(
+      #   dic[[.dic_file$scale]][i], "_",
+      #   dic[[.dic_file$subscale]][i], "_",
+      #   dic[[.dic_file$index]][i]
+      # )
+      # message("Replaced missing label to ", dic[[.dic_file$item_label_short]][i])
+    }
+  }
+
+  #copy label to var when var is missing
+  if (!(.dic_file$variable %in% names(dic)))
+    dic[[.dic_file$variable]] <- dic[[.dic_file$item_label_short]]
 
   # checking missing variables in dictionary file
-  miss <- unlist(opt.attr)[which(!(unlist(opt.attr) %in% names(dic)))]
+  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
   if (length(miss) > 0) {
     miss %>%
       paste(collapse = ", ") %>%
-      message("The following variables were missing in the dictionary file: ", ., "\n")
+      message("The following variables were missing in the dictionary file: ", .)
     dic[, miss] <- NA
   }
   for (i in 1:nrow(dic)) {
-    id <- which(names(data) == dic[[opt.attr$variable]][i])
-
+    id <- which(names(data) == dic[[.dic_file$variable]][i])
+    if (length(id) == 0) {
+      message("Variable ", dic[[.dic_file$variable]][i], " not found in data file.\n")
+      next
+    }
     names(data)[id] <- dic[[opt.attr$item_label_short]][i]
 
     ### extract values and value labels

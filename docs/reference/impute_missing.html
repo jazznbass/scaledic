@@ -87,6 +87,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -113,7 +116,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>impute_missing</span>(<span class='no'>data</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subscale_2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>subscale_2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>force_to_scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -133,6 +136,11 @@
     <tr>
       <th>subscale_2</th>
       <td><p>String with sub subscale name</p></td>
+    </tr>
+    <tr>
+      <th>force_to_scale</th>
+      <td><p>If TRUE, imputed values will be rounded and forced to the scale.
+That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.</p></td>
     </tr>
     </table>
 

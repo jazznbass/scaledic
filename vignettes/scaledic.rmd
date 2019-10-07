@@ -145,7 +145,7 @@ Let us see descriptive statistics for the Internalizing sub scale:
 dat %>% 
   select_scale(subscale = "Int") %>%
   psych::describe(fast = TRUE) %>%
-  kable()
+  kable(digits = 1)
 ```
 
 ## See items instead of labels
@@ -157,7 +157,7 @@ dat %>%
   select_scale(subscale = "Int") %>%
   names2item() %>%
   psych::describe(fast = TRUE) %>%
-  kable()
+  kable(digits = 1)
 ```
 
 And further we analyse the factor structure  

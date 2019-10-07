@@ -49,6 +49,9 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li>
+  <a href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <ul class="nav navbar-nav navbar-right"></ul>
 </div>
@@ -282,7 +285,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/apply_dic.html">apply_dic</a></span>(ITRF, dic_ITRF)</a></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/list_scales.html">list_scales</a></span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/list_scales.html">list_scales</a></span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">n_items =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -291,7 +294,10 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <th align="left">Subscale_2</th>
 <th align="left">Label scale</th>
 <th align="left">Label subscale</th>
-<th align="left">Label subscale_2</th>
+<th align="left">Label subscale 2</th>
+<th align="right">n Scale</th>
+<th align="right">n Subscale</th>
+<th align="right">n Subscale 2</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
@@ -301,6 +307,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Aggressiveness</td>
+<td align="right">40</td>
+<td align="right">16</td>
+<td align="right">9</td>
 </tr>
 <tr class="even">
 <td align="left">ITRF</td>
@@ -309,6 +318,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Maladjusted</td>
+<td align="right">40</td>
+<td align="right">16</td>
+<td align="right">8</td>
 </tr>
 <tr class="odd">
 <td align="left">ITRF</td>
@@ -317,6 +329,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Aggressiveness</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">9</td>
 </tr>
 <tr class="even">
 <td align="left">ITRF</td>
@@ -325,6 +340,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Negative Emotions</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">9</td>
 </tr>
 <tr class="odd">
 <td align="left">ITRF</td>
@@ -333,6 +351,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Shyness</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">ITRF</td>
@@ -341,6 +362,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Social rejection</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">5</td>
 </tr>
 <tr class="odd">
 <td align="left">ITRF</td>
@@ -349,6 +373,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Suffering</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">3</td>
 </tr>
 <tr class="even">
 <td align="left">ITRF</td>
@@ -357,6 +384,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">NA</td>
+<td align="right">40</td>
+<td align="right">24</td>
+<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
@@ -392,7 +422,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -410,265 +440,265 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>itrf_I_1</td>
 <td align="right">1</td>
 <td align="right">4772</td>
-<td align="right">0.3744761</td>
-<td align="right">0.7107008</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102881</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_2</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">0.3501676</td>
-<td align="right">0.6870161</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099453</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_3</td>
 <td align="right">3</td>
 <td align="right">4772</td>
-<td align="right">0.7889774</td>
-<td align="right">0.9653937</td>
+<td align="right">0.8</td>
+<td align="right">1.0</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0139751</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_4</td>
 <td align="right">4</td>
 <td align="right">4772</td>
-<td align="right">0.3055323</td>
-<td align="right">0.6328090</td>
+<td align="right">0.3</td>
+<td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0091606</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_5</td>
 <td align="right">5</td>
 <td align="right">4772</td>
-<td align="right">0.2441324</td>
-<td align="right">0.5913840</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085609</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_6</td>
 <td align="right">6</td>
 <td align="right">4772</td>
-<td align="right">0.2099749</td>
-<td align="right">0.5093149</td>
+<td align="right">0.2</td>
+<td align="right">0.5</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0073729</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_7</td>
 <td align="right">7</td>
 <td align="right">4772</td>
-<td align="right">0.4059095</td>
-<td align="right">0.7167127</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103752</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_8</td>
 <td align="right">8</td>
 <td align="right">4772</td>
-<td align="right">0.3472339</td>
-<td align="right">0.6948675</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0100589</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_9</td>
 <td align="right">9</td>
 <td align="right">4772</td>
-<td align="right">0.4798826</td>
-<td align="right">0.7697744</td>
+<td align="right">0.5</td>
+<td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0111433</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_10</td>
 <td align="right">10</td>
 <td align="right">4772</td>
-<td align="right">0.2764040</td>
-<td align="right">0.6625635</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0095913</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_11</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3275356</td>
-<td align="right">0.6798384</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098414</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_12</td>
 <td align="right">12</td>
 <td align="right">4772</td>
-<td align="right">0.3690277</td>
-<td align="right">0.6878199</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099569</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_13</td>
 <td align="right">13</td>
 <td align="right">4772</td>
-<td align="right">0.4218357</td>
-<td align="right">0.7192075</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0104113</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_14</td>
 <td align="right">14</td>
 <td align="right">4772</td>
-<td align="right">0.3497485</td>
-<td align="right">0.6884485</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099660</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_15</td>
 <td align="right">15</td>
 <td align="right">4772</td>
-<td align="right">0.3730092</td>
-<td align="right">0.7116192</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103014</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_16</td>
 <td align="right">16</td>
 <td align="right">4772</td>
-<td align="right">0.4325231</td>
-<td align="right">0.7604884</td>
+<td align="right">0.4</td>
+<td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0110089</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_17</td>
 <td align="right">17</td>
 <td align="right">4772</td>
-<td align="right">0.3784577</td>
-<td align="right">0.7125702</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103152</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_18</td>
 <td align="right">18</td>
 <td align="right">4772</td>
-<td align="right">0.7273680</td>
-<td align="right">0.9149891</td>
+<td align="right">0.7</td>
+<td align="right">0.9</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0132454</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_19</td>
 <td align="right">19</td>
 <td align="right">4772</td>
-<td align="right">0.2288349</td>
-<td align="right">0.5870310</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0084979</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_20</td>
 <td align="right">20</td>
 <td align="right">4772</td>
-<td align="right">0.5509220</td>
-<td align="right">0.9055855</td>
+<td align="right">0.6</td>
+<td align="right">0.9</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0131093</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_21</td>
 <td align="right">21</td>
 <td align="right">4772</td>
-<td align="right">0.8229254</td>
-<td align="right">1.0201668</td>
+<td align="right">0.8</td>
+<td align="right">1.0</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0147680</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_22</td>
 <td align="right">22</td>
 <td align="right">4772</td>
-<td align="right">0.7311400</td>
-<td align="right">0.9362461</td>
+<td align="right">0.7</td>
+<td align="right">0.9</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0135531</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
 <td>itrf_I_23</td>
 <td align="right">23</td>
 <td align="right">4772</td>
-<td align="right">0.3606454</td>
-<td align="right">0.6803419</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098487</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>itrf_I_24</td>
 <td align="right">24</td>
 <td align="right">4772</td>
-<td align="right">0.3765717</td>
-<td align="right">0.7051478</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102077</td>
+<td align="right">0</td>
 </tr>
 </tbody>
 </table>
@@ -699,45 +729,45 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
 <td align="right">4772</td>
-<td align="right">0.3744761</td>
-<td align="right">0.7107008</td>
+<td align="right">0.3782481</td>
+<td align="right">0.7122402</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102881</td>
+<td align="right">0.0103104</td>
 </tr>
 <tr class="even">
 <td>Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">2</td>
 <td align="right">4772</td>
 <td align="right">0.3501676</td>
-<td align="right">0.6870161</td>
+<td align="right">0.6879308</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099453</td>
+<td align="right">0.0099585</td>
 </tr>
 <tr class="odd">
 <td>Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
 <td align="right">3</td>
 <td align="right">4772</td>
-<td align="right">0.7889774</td>
-<td align="right">0.9653937</td>
+<td align="right">0.7904443</td>
+<td align="right">0.9664726</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0139751</td>
+<td align="right">0.0139907</td>
 </tr>
 <tr class="even">
 <td>Vermeidet soziale Interaktionen</td>
 <td align="right">4</td>
 <td align="right">4772</td>
-<td align="right">0.3055323</td>
-<td align="right">0.6328090</td>
+<td align="right">0.3049036</td>
+<td align="right">0.6326155</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0091606</td>
+<td align="right">0.0091578</td>
 </tr>
 <tr class="odd">
 <td>Spielt bevorzugt alleine</td>
@@ -754,78 +784,78 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 <td align="right">6</td>
 <td align="right">4772</td>
-<td align="right">0.2099749</td>
-<td align="right">0.5093149</td>
+<td align="right">0.2103940</td>
+<td align="right">0.5095533</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0073729</td>
+<td align="right">0.0073763</td>
 </tr>
 <tr class="odd">
 <td>Macht sich Sorgen über unwichtige Details</td>
 <td align="right">7</td>
 <td align="right">4772</td>
-<td align="right">0.4059095</td>
-<td align="right">0.7167127</td>
+<td align="right">0.4063286</td>
+<td align="right">0.7164751</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103752</td>
+<td align="right">0.0103717</td>
 </tr>
 <tr class="even">
 <td>Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td align="right">8</td>
 <td align="right">4772</td>
-<td align="right">0.3472339</td>
-<td align="right">0.6948675</td>
+<td align="right">0.3478625</td>
+<td align="right">0.6959096</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0100589</td>
+<td align="right">0.0100740</td>
 </tr>
 <tr class="odd">
 <td>Wirkt unglücklich oder traurig</td>
 <td align="right">9</td>
 <td align="right">4772</td>
-<td align="right">0.4798826</td>
-<td align="right">0.7697744</td>
+<td align="right">0.4805113</td>
+<td align="right">0.7703350</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0111433</td>
+<td align="right">0.0111514</td>
 </tr>
 <tr class="even">
 <td>Klammert sich an Erwachsene</td>
 <td align="right">10</td>
 <td align="right">4772</td>
-<td align="right">0.2764040</td>
-<td align="right">0.6625635</td>
+<td align="right">0.2768231</td>
+<td align="right">0.6630210</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0095913</td>
+<td align="right">0.0095979</td>
 </tr>
 <tr class="odd">
 <td>Verhält sich nervös</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3275356</td>
-<td align="right">0.6798384</td>
+<td align="right">0.3269070</td>
+<td align="right">0.6793701</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098414</td>
+<td align="right">0.0098346</td>
 </tr>
 <tr class="even">
 <td>Verhält sich ängstlich</td>
 <td align="right">12</td>
 <td align="right">4772</td>
-<td align="right">0.3690277</td>
-<td align="right">0.6878199</td>
+<td align="right">0.3686085</td>
+<td align="right">0.6880447</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099569</td>
+<td align="right">0.0099602</td>
 </tr>
 <tr class="odd">
 <td>Behauptet sich nicht gegenüber anderen</td>
@@ -842,122 +872,122 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Verhält sich übermäßig schüchtern</td>
 <td align="right">14</td>
 <td align="right">4772</td>
-<td align="right">0.3497485</td>
-<td align="right">0.6884485</td>
+<td align="right">0.3493294</td>
+<td align="right">0.6883569</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099660</td>
+<td align="right">0.0099647</td>
 </tr>
 <tr class="odd">
 <td>Beklagt sich oder jammert</td>
 <td align="right">15</td>
 <td align="right">4772</td>
-<td align="right">0.3730092</td>
-<td align="right">0.7116192</td>
+<td align="right">0.3727997</td>
+<td align="right">0.7115818</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103014</td>
+<td align="right">0.0103009</td>
 </tr>
 <tr class="even">
 <td>Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="right">16</td>
 <td align="right">4772</td>
-<td align="right">0.4325231</td>
-<td align="right">0.7604884</td>
+<td align="right">0.4323135</td>
+<td align="right">0.7604698</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0110089</td>
+<td align="right">0.0110086</td>
 </tr>
 <tr class="odd">
 <td>Macht sich selbst schlecht</td>
 <td align="right">17</td>
 <td align="right">4772</td>
-<td align="right">0.3784577</td>
-<td align="right">0.7125702</td>
+<td align="right">0.3778290</td>
+<td align="right">0.7121684</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103152</td>
+<td align="right">0.0103094</td>
 </tr>
 <tr class="even">
 <td>Beteiligt sich nicht am Unterricht</td>
 <td align="right">18</td>
 <td align="right">4772</td>
-<td align="right">0.7273680</td>
-<td align="right">0.9149891</td>
+<td align="right">0.7267393</td>
+<td align="right">0.9153742</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0132454</td>
+<td align="right">0.0132510</td>
 </tr>
 <tr class="odd">
 <td>Weint oder ist weinerlich</td>
 <td align="right">19</td>
 <td align="right">4772</td>
 <td align="right">0.2288349</td>
-<td align="right">0.5870310</td>
+<td align="right">0.5873879</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0084979</td>
+<td align="right">0.0085031</td>
 </tr>
 <tr class="even">
 <td>Ist schnell verärgert</td>
 <td align="right">20</td>
 <td align="right">4772</td>
-<td align="right">0.5509220</td>
-<td align="right">0.9055855</td>
+<td align="right">0.5523889</td>
+<td align="right">0.9061960</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0131093</td>
+<td align="right">0.0131181</td>
 </tr>
 <tr class="odd">
 <td>Ist schnell überfordert</td>
 <td align="right">21</td>
 <td align="right">4772</td>
-<td align="right">0.8229254</td>
-<td align="right">1.0201668</td>
+<td align="right">0.8193630</td>
+<td align="right">1.0186164</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0147680</td>
+<td align="right">0.0147455</td>
 </tr>
 <tr class="even">
 <td>Ist schnell entmutigt</td>
 <td align="right">22</td>
 <td align="right">4772</td>
-<td align="right">0.7311400</td>
-<td align="right">0.9362461</td>
+<td align="right">0.7298826</td>
+<td align="right">0.9352120</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0135531</td>
+<td align="right">0.0135382</td>
 </tr>
 <tr class="odd">
 <td>Macht sich ständig Sorgen</td>
 <td align="right">23</td>
 <td align="right">4772</td>
-<td align="right">0.3606454</td>
-<td align="right">0.6803419</td>
+<td align="right">0.3610645</td>
+<td align="right">0.6804276</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098487</td>
+<td align="right">0.0098499</td>
 </tr>
 <tr class="even">
 <td>Lässt sich langsam auf neue Personen ein</td>
 <td align="right">24</td>
 <td align="right">4772</td>
-<td align="right">0.3765717</td>
-<td align="right">0.7051478</td>
+<td align="right">0.3772003</td>
+<td align="right">0.7052576</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0102077</td>
+<td align="right">0.0102093</td>
 </tr>
 </tbody>
 </table>
@@ -985,11 +1015,11 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; Int:Wirkt unglücklich oder traurig          9  0.59       0.45 0.55 1.2</span></a>
 <a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; Ext:Beteiligt sich nicht am Unterricht     39  0.57       0.37 0.63 1.1</span></a>
 <a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co">#&gt; Int:Lässt sich langsam auf neue Personen   24  0.54       0.35 0.65 1.1</span></a>
-<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; Int:Macht sich ständig Sorgen              23  0.48       0.31 0.69 1.2</span></a>
+<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; Int:Macht sich ständig Sorgen              23  0.48       0.30 0.70 1.2</span></a>
 <a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co">#&gt; Int:Ist schnell überfordert                21  0.48  0.40 0.49 0.51 1.9</span></a>
 <a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co">#&gt; Int:Ist schnell entmutigt                  22  0.46  0.44 0.52 0.48 2.0</span></a>
-<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; Int:Macht sich Sorgen über unwichtige De    7  0.46       0.26 0.74 1.2</span></a>
-<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt; Int:Klammert sich an Erwachsene            10  0.46       0.25 0.75 1.1</span></a>
+<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; Int:Klammert sich an Erwachsene            10  0.46       0.25 0.75 1.1</span></a>
+<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt; Int:Macht sich Sorgen über unwichtige De    7  0.46       0.26 0.74 1.2</span></a>
 <a class="sourceLine" id="cb12-29" data-line-number="29"><span class="co">#&gt; Int:Weint oder ist weinerlich              19  0.44       0.23 0.77 1.1</span></a>
 <a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">#&gt; Int:Beschwert sich über Kopfschmerzen od    8  0.40       0.23 0.77 1.4</span></a>
 <a class="sourceLine" id="cb12-31" data-line-number="31"><span class="co">#&gt; Int:Beschwert sich über Krankheit oder S    2  0.39       0.23 0.77 1.5</span></a>
@@ -1007,14 +1037,14 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <a class="sourceLine" id="cb12-43" data-line-number="43"><span class="co">#&gt; Ext:Respektiert nicht die Privatsphäre a   40        0.67 0.45 0.55 1.0</span></a>
 <a class="sourceLine" id="cb12-44" data-line-number="44"><span class="co">#&gt; Ext:Kommt unvorbereitet zum Unterricht     38        0.53 0.36 0.64 1.2</span></a>
 <a class="sourceLine" id="cb12-45" data-line-number="45"><span class="co">#&gt; Ext:Nimmt Materialien, die zu Hause benö   30        0.49 0.33 0.67 1.3</span></a>
-<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">#&gt; Ext:Kontrolliert seine eigene Arbeit nic   29  0.31  0.49 0.41 0.59 1.7</span></a>
+<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">#&gt; Ext:Kontrolliert seine eigene Arbeit nic   29  0.31  0.48 0.41 0.59 1.7</span></a>
 <a class="sourceLine" id="cb12-47" data-line-number="47"><span class="co">#&gt; Ext:Erledigt Hausaufgaben unvollständig    27        0.47 0.33 0.67 1.5</span></a>
 <a class="sourceLine" id="cb12-48" data-line-number="48"><span class="co">#&gt; Ext:Beginnt mit der Aufgabenbearbeitung    26  0.36  0.46 0.44 0.56 1.9</span></a>
-<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">#&gt; Ext:Zeigt Unterrichtsaufgaben nicht selb   28  0.32  0.44 0.38 0.62 1.8</span></a>
-<a class="sourceLine" id="cb12-50" data-line-number="50"><span class="co">#&gt; Ext:Stellt Unterrichtsaufgaben nicht rec   25  0.36  0.39 0.36 0.64 2.0</span></a>
+<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">#&gt; Ext:Zeigt Unterrichtsaufgaben nicht selb   28  0.32  0.44 0.37 0.63 1.8</span></a>
+<a class="sourceLine" id="cb12-50" data-line-number="50"><span class="co">#&gt; Ext:Stellt Unterrichtsaufgaben nicht rec   25  0.36  0.39 0.35 0.65 2.0</span></a>
 <a class="sourceLine" id="cb12-51" data-line-number="51"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-52" data-line-number="52"><span class="co">#&gt;                        MR2  MR1</span></a>
-<a class="sourceLine" id="cb12-53" data-line-number="53"><span class="co">#&gt; SS loadings           8.44 8.32</span></a>
+<a class="sourceLine" id="cb12-53" data-line-number="53"><span class="co">#&gt; SS loadings           8.44 8.31</span></a>
 <a class="sourceLine" id="cb12-54" data-line-number="54"><span class="co">#&gt; Proportion Var        0.21 0.21</span></a>
 <a class="sourceLine" id="cb12-55" data-line-number="55"><span class="co">#&gt; Cumulative Var        0.21 0.42</span></a>
 <a class="sourceLine" id="cb12-56" data-line-number="56"><span class="co">#&gt; Proportion Explained  0.50 0.50</span></a>
@@ -1028,18 +1058,18 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <a class="sourceLine" id="cb12-64" data-line-number="64"><span class="co">#&gt; Mean item complexity =  1.3</span></a>
 <a class="sourceLine" id="cb12-65" data-line-number="65"><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></a>
 <a class="sourceLine" id="cb12-66" data-line-number="66"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-67" data-line-number="67"><span class="co">#&gt; The degrees of freedom for the null model are  780  and the objective function was  27.74 with Chi Square of  132063.1</span></a>
-<a class="sourceLine" id="cb12-68" data-line-number="68"><span class="co">#&gt; The degrees of freedom for the model are 701  and the objective function was  10.56 </span></a>
+<a class="sourceLine" id="cb12-67" data-line-number="67"><span class="co">#&gt; The degrees of freedom for the null model are  780  and the objective function was  27.72 with Chi Square of  131952.9</span></a>
+<a class="sourceLine" id="cb12-68" data-line-number="68"><span class="co">#&gt; The degrees of freedom for the model are 701  and the objective function was  10.55 </span></a>
 <a class="sourceLine" id="cb12-69" data-line-number="69"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-70" data-line-number="70"><span class="co">#&gt; The root mean square of the residuals (RMSR) is  0.1 </span></a>
 <a class="sourceLine" id="cb12-71" data-line-number="71"><span class="co">#&gt; The df corrected root mean square of the residuals is  0.1 </span></a>
 <a class="sourceLine" id="cb12-72" data-line-number="72"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-73" data-line-number="73"><span class="co">#&gt; The harmonic number of observations is  4769 with the empirical chi square  67792.04  with prob &lt;  0 </span></a>
-<a class="sourceLine" id="cb12-74" data-line-number="74"><span class="co">#&gt; The total number of observations was  4776  with Likelihood Chi Square =  50269.09  with prob &lt;  0 </span></a>
+<a class="sourceLine" id="cb12-73" data-line-number="73"><span class="co">#&gt; The harmonic number of observations is  4769 with the empirical chi square  67739.66  with prob &lt;  0 </span></a>
+<a class="sourceLine" id="cb12-74" data-line-number="74"><span class="co">#&gt; The total number of observations was  4776  with Likelihood Chi Square =  50223.86  with prob &lt;  0 </span></a>
 <a class="sourceLine" id="cb12-75" data-line-number="75"><span class="co">#&gt; </span></a>
 <a class="sourceLine" id="cb12-76" data-line-number="76"><span class="co">#&gt; Tucker Lewis Index of factoring reliability =  0.58</span></a>
 <a class="sourceLine" id="cb12-77" data-line-number="77"><span class="co">#&gt; RMSEA index =  0.122  and the 90 % confidence intervals are  0.121 0.123</span></a>
-<a class="sourceLine" id="cb12-78" data-line-number="78"><span class="co">#&gt; BIC =  44330.67</span></a>
+<a class="sourceLine" id="cb12-78" data-line-number="78"><span class="co">#&gt; BIC =  44285.44</span></a>
 <a class="sourceLine" id="cb12-79" data-line-number="79"><span class="co">#&gt; Fit based upon off diagonal values = 0.92</span></a>
 <a class="sourceLine" id="cb12-80" data-line-number="80"><span class="co">#&gt; Measures of factor score adequacy             </span></a>
 <a class="sourceLine" id="cb12-81" data-line-number="81"><span class="co">#&gt;                                                    MR2  MR1</span></a>
@@ -1075,23 +1105,23 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>itrf_ext</td>
 <td align="right">1</td>
 <td align="right">4771</td>
-<td align="right">9.525676</td>
-<td align="right">9.597689</td>
+<td align="right">9.51813</td>
+<td align="right">9.587938</td>
 <td align="right">0</td>
 <td align="right">48</td>
 <td align="right">48</td>
-<td align="right">0.1389511</td>
+<td align="right">0.1388099</td>
 </tr>
 <tr class="even">
 <td>itrf_int</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">10.233235</td>
-<td align="right">10.634152</td>
+<td align="right">10.23491</td>
+<td align="right">10.632814</td>
 <td align="right">0</td>
 <td align="right">60</td>
 <td align="right">60</td>
-<td align="right">0.1539404</td>
+<td align="right">0.1539210</td>
 </tr>
 </tbody>
 </table>
