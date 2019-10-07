@@ -3,6 +3,7 @@ library(knitr)
 library(dplyr)
 library(tibble)
 library(psych)
+library(sjPlot)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -79,30 +80,50 @@ dat <- impute_missing(dat, subscale = "Int")
 dat %>% 
   select_scale(subscale = "Int") %>%
   psych::describe(fast = TRUE) %>%
-  kable()
+  kable(digits = 1)
 
 ## ------------------------------------------------------------------------
 dat %>% 
   select_scale(subscale = "Int") %>%
   names2item() %>%
   psych::describe(fast = TRUE) %>%
-  kable()
+  kable(digits = 1)
 
 ## ------------------------------------------------------------------------
 dat %>%
   select_scale(scale = "ITRF") %>%
-  names2item(chars = 40, short = TRUE) %>%
-  psych::fa(nfactors = 2) %>%
-  print(sort = TRUE, cut = 0.3)
+  names2item(chars = 70, prefix = "subscale2") %>% 
+  sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
+
+## ------------------------------------------------------------------------
+dat %>%
+  select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "APD") %>%
+  names2item(chars = 70) %>% 
+  sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
+
+dat %>%
+  select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "OPP") %>%
+  names2item(chars = 70) %>% 
+  sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
+
+dat %>%
+  select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "SW") %>%
+  names2item(chars = 70) %>% 
+  sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
+
+dat %>%
+  select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "AD") %>%
+  names2item(chars = 70) %>% 
+  sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
+
 
 ## ------------------------------------------------------------------------
 dat$itrf_ext <- score_scale(dat, subscale = "Ext")
 dat$itrf_int <- score_scale(dat, subscale = "Int")
 
-
 ## ------------------------------------------------------------------------
 dat %>%
   select_scores() %>%
   psych::describe(fast = TRUE) %>%
-  kable()
+  kable(digits = 1)
 

@@ -205,7 +205,7 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <th align="right">index</th>
 <th align="left">scale</th>
 <th align="left">sub_scale</th>
-<th align="left">sub_scale_2</th>
+<th align="left">SUB_SCALE_2</th>
 <th align="left">scale_label</th>
 <th align="left">sub_scale_label</th>
 <th align="left">sub_scale_2_label</th>
@@ -224,17 +224,17 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <td align="right">1</td>
 <td align="left">ITRF</td>
 <td align="left">Int</td>
-<td align="left">SR</td>
+<td align="left">SW</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
-<td align="left">Social rejection</td>
+<td align="left">Socially Withdrawn</td>
 <td align="left">Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
 <td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
-<td align="left">Casale et al. (2017)</td>
+<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
@@ -242,35 +242,35 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <td align="right">2</td>
 <td align="left">ITRF</td>
 <td align="left">Int</td>
-<td align="left">SU</td>
+<td align="left">AD</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
-<td align="left">Suffering</td>
+<td align="left">Anxious/Depressed</td>
 <td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
 <td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
-<td align="left">Casale et al. (2017)</td>
+<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">itrf_I_3</td>
-<td align="right">3</td>
+<td align="left">itrf_I_4</td>
+<td align="right">4</td>
 <td align="left">ITRF</td>
 <td align="left">Int</td>
-<td align="left">SH</td>
+<td align="left">SW</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
-<td align="left">Shyness</td>
-<td align="left">Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
+<td align="left">Socially Withdrawn</td>
+<td align="left">Vermeidet soziale Interaktionen</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
 <td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
-<td align="left">Casale et al. (2017)</td>
+<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -303,90 +303,46 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td align="left">ITRF</td>
 <td align="left">Ext</td>
-<td align="left">A</td>
+<td align="left">APD</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
-<td align="left">Aggressiveness</td>
-<td align="right">40</td>
-<td align="right">16</td>
-<td align="right">9</td>
+<td align="left">Academic Productivity/Disorganization</td>
+<td align="right">36</td>
+<td align="right">17</td>
+<td align="right">8</td>
 </tr>
 <tr class="even">
 <td align="left">ITRF</td>
 <td align="left">Ext</td>
-<td align="left">MA</td>
+<td align="left">OPP</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
-<td align="left">Maladjusted</td>
-<td align="right">40</td>
-<td align="right">16</td>
+<td align="left">Oppositional/Disruptive</td>
+<td align="right">36</td>
+<td align="right">17</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="left">ITRF</td>
+<td align="left">Int</td>
+<td align="left">AD</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Internalizing</td>
+<td align="left">Anxious/Depressed</td>
+<td align="right">36</td>
+<td align="right">19</td>
+<td align="right">11</td>
+</tr>
+<tr class="even">
+<td align="left">ITRF</td>
+<td align="left">Int</td>
+<td align="left">SW</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Internalizing</td>
+<td align="left">Socially Withdrawn</td>
+<td align="right">36</td>
+<td align="right">19</td>
 <td align="right">8</td>
-</tr>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">A</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Aggressiveness</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">9</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">NE</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Negative Emotions</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SH</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Shyness</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SR</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Social rejection</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">5</td>
-</tr>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SU</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Suffering</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">NA</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">NA</td>
-<td align="right">40</td>
-<td align="right">24</td>
-<td align="right">NA</td>
 </tr>
 </tbody>
 </table>
@@ -401,19 +357,17 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <p>Now we impute missing values:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Imputation for items of the subscale ITRF_Ext</span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt;   1  2  3</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co"># Imputation for items of the subscale ITRF_Int</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15"><span class="co">#&gt;   1  2  3</span></a></code></pre></div>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; -- Imputation 1 --</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;   1  2  3</span></a>
+<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Imputation for items of the subscale ITRF_Int</span></a>
+<a class="sourceLine" id="cb9-8" data-line-number="8">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a>
+<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
+<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
+<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt; -- Imputation 1 --</span></a>
+<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;   1  2  3</span></a></code></pre></div>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2 class="hasAnchor">
@@ -451,7 +405,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>itrf_I_2</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">0.4</td>
+<td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
@@ -459,19 +413,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_3</td>
-<td align="right">3</td>
-<td align="right">4772</td>
-<td align="right">0.8</td>
-<td align="right">1.0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
 <td>itrf_I_4</td>
-<td align="right">4</td>
+<td align="right">3</td>
 <td align="right">4772</td>
 <td align="right">0.3</td>
 <td align="right">0.6</td>
@@ -480,31 +423,31 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>itrf_I_5</td>
+<td align="right">4</td>
+<td align="right">4772</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>itrf_I_6</td>
 <td align="right">5</td>
 <td align="right">4772</td>
 <td align="right">0.2</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>itrf_I_6</td>
-<td align="right">6</td>
-<td align="right">4772</td>
-<td align="right">0.2</td>
 <td align="right">0.5</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>itrf_I_7</td>
-<td align="right">7</td>
+<td align="right">6</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
@@ -513,9 +456,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>itrf_I_8</td>
-<td align="right">8</td>
+<td align="right">7</td>
 <td align="right">4772</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
@@ -524,9 +467,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>itrf_I_9</td>
-<td align="right">9</td>
+<td align="right">8</td>
 <td align="right">4772</td>
 <td align="right">0.5</td>
 <td align="right">0.8</td>
@@ -535,8 +478,19 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>itrf_I_10</td>
+<td align="right">9</td>
+<td align="right">4772</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>itrf_I_11</td>
 <td align="right">10</td>
 <td align="right">4772</td>
 <td align="right">0.3</td>
@@ -547,10 +501,10 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_11</td>
+<td>itrf_I_12</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3</td>
+<td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
@@ -558,7 +512,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_12</td>
+<td>itrf_I_13</td>
 <td align="right">12</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
@@ -569,19 +523,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_13</td>
-<td align="right">13</td>
-<td align="right">4772</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
 <td>itrf_I_14</td>
-<td align="right">14</td>
+<td align="right">13</td>
 <td align="right">4772</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
@@ -590,9 +533,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>itrf_I_15</td>
-<td align="right">15</td>
+<td align="right">14</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
@@ -601,9 +544,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>itrf_I_16</td>
-<td align="right">16</td>
+<td align="right">15</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.8</td>
@@ -612,9 +555,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td>itrf_I_17</td>
-<td align="right">17</td>
+<td align="right">16</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
@@ -623,20 +566,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
-<td>itrf_I_18</td>
-<td align="right">18</td>
-<td align="right">4772</td>
-<td align="right">0.7</td>
-<td align="right">0.9</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
 <tr class="odd">
 <td>itrf_I_19</td>
-<td align="right">19</td>
+<td align="right">17</td>
 <td align="right">4772</td>
 <td align="right">0.2</td>
 <td align="right">0.6</td>
@@ -646,41 +578,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_20</td>
-<td align="right">20</td>
-<td align="right">4772</td>
-<td align="right">0.6</td>
-<td align="right">0.9</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>itrf_I_21</td>
-<td align="right">21</td>
-<td align="right">4772</td>
-<td align="right">0.8</td>
-<td align="right">1.0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>itrf_I_22</td>
-<td align="right">22</td>
-<td align="right">4772</td>
-<td align="right">0.7</td>
-<td align="right">0.9</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
 <td>itrf_I_23</td>
-<td align="right">23</td>
+<td align="right">18</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
@@ -689,9 +588,9 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">3</td>
 <td align="right">0</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td>itrf_I_24</td>
-<td align="right">24</td>
+<td align="right">19</td>
 <td align="right">4772</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
@@ -711,7 +610,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>() <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -729,365 +628,2105 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
 <td align="right">4772</td>
-<td align="right">0.3782481</td>
-<td align="right">0.7122402</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103104</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
 <td>Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">0.3501676</td>
-<td align="right">0.6879308</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099585</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
+<td>Vermeidet soziale Interaktionen</td>
 <td align="right">3</td>
 <td align="right">4772</td>
-<td align="right">0.7904443</td>
-<td align="right">0.9664726</td>
+<td align="right">0.3</td>
+<td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0139907</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Vermeidet soziale Interaktionen</td>
+<td>Spielt bevorzugt alleine</td>
 <td align="right">4</td>
 <td align="right">4772</td>
-<td align="right">0.3049036</td>
-<td align="right">0.6326155</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0091578</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Spielt bevorzugt alleine</td>
+<td>Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 <td align="right">5</td>
 <td align="right">4772</td>
-<td align="right">0.2441324</td>
-<td align="right">0.5913840</td>
+<td align="right">0.2</td>
+<td align="right">0.5</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085609</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
+<td>Macht sich Sorgen über unwichtige Details</td>
 <td align="right">6</td>
 <td align="right">4772</td>
-<td align="right">0.2103940</td>
-<td align="right">0.5095533</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0073763</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Macht sich Sorgen über unwichtige Details</td>
+<td>Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td align="right">7</td>
 <td align="right">4772</td>
-<td align="right">0.4063286</td>
-<td align="right">0.7164751</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103717</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
+<td>Wirkt unglücklich oder traurig</td>
 <td align="right">8</td>
 <td align="right">4772</td>
-<td align="right">0.3478625</td>
-<td align="right">0.6959096</td>
+<td align="right">0.5</td>
+<td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0100740</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Wirkt unglücklich oder traurig</td>
+<td>Klammert sich an Erwachsene</td>
 <td align="right">9</td>
 <td align="right">4772</td>
-<td align="right">0.4805113</td>
-<td align="right">0.7703350</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0111514</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Klammert sich an Erwachsene</td>
+<td>Verhält sich nervös</td>
 <td align="right">10</td>
 <td align="right">4772</td>
-<td align="right">0.2768231</td>
-<td align="right">0.6630210</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0095979</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Verhält sich nervös</td>
+<td>Verhält sich ängstlich</td>
 <td align="right">11</td>
 <td align="right">4772</td>
-<td align="right">0.3269070</td>
-<td align="right">0.6793701</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0098346</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Verhält sich ängstlich</td>
+<td>Behauptet sich nicht gegenüber anderen</td>
 <td align="right">12</td>
 <td align="right">4772</td>
-<td align="right">0.3686085</td>
-<td align="right">0.6880447</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099602</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Behauptet sich nicht gegenüber anderen</td>
+<td>Verhält sich übermäßig schüchtern</td>
 <td align="right">13</td>
 <td align="right">4772</td>
-<td align="right">0.4218357</td>
-<td align="right">0.7192075</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0104113</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Verhält sich übermäßig schüchtern</td>
+<td>Beklagt sich oder jammert</td>
 <td align="right">14</td>
 <td align="right">4772</td>
-<td align="right">0.3493294</td>
-<td align="right">0.6883569</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0099647</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>Beklagt sich oder jammert</td>
+<td>Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="right">15</td>
 <td align="right">4772</td>
-<td align="right">0.3727997</td>
-<td align="right">0.7115818</td>
+<td align="right">0.4</td>
+<td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0103009</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>Beteiligt sich nicht an Gruppenaktionen</td>
+<td>Macht sich selbst schlecht</td>
 <td align="right">16</td>
 <td align="right">4772</td>
-<td align="right">0.4323135</td>
-<td align="right">0.7604698</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0110086</td>
-</tr>
-<tr class="odd">
-<td>Macht sich selbst schlecht</td>
-<td align="right">17</td>
-<td align="right">4772</td>
-<td align="right">0.3778290</td>
-<td align="right">0.7121684</td>
 <td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0103094</td>
-</tr>
-<tr class="even">
-<td>Beteiligt sich nicht am Unterricht</td>
-<td align="right">18</td>
-<td align="right">4772</td>
-<td align="right">0.7267393</td>
-<td align="right">0.9153742</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0132510</td>
 </tr>
 <tr class="odd">
 <td>Weint oder ist weinerlich</td>
+<td align="right">17</td>
+<td align="right">4772</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td>Macht sich ständig Sorgen</td>
+<td align="right">18</td>
+<td align="right">4772</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td>Lässt sich langsam auf neue Personen ein</td>
 <td align="right">19</td>
 <td align="right">4772</td>
-<td align="right">0.2288349</td>
-<td align="right">0.5873879</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
-<td align="right">0.0085031</td>
-</tr>
-<tr class="even">
-<td>Ist schnell verärgert</td>
-<td align="right">20</td>
-<td align="right">4772</td>
-<td align="right">0.5523889</td>
-<td align="right">0.9061960</td>
 <td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0131181</td>
-</tr>
-<tr class="odd">
-<td>Ist schnell überfordert</td>
-<td align="right">21</td>
-<td align="right">4772</td>
-<td align="right">0.8193630</td>
-<td align="right">1.0186164</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0147455</td>
-</tr>
-<tr class="even">
-<td>Ist schnell entmutigt</td>
-<td align="right">22</td>
-<td align="right">4772</td>
-<td align="right">0.7298826</td>
-<td align="right">0.9352120</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0135382</td>
-</tr>
-<tr class="odd">
-<td>Macht sich ständig Sorgen</td>
-<td align="right">23</td>
-<td align="right">4772</td>
-<td align="right">0.3610645</td>
-<td align="right">0.6804276</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0098499</td>
-</tr>
-<tr class="even">
-<td>Lässt sich langsam auf neue Personen ein</td>
-<td align="right">24</td>
-<td align="right">4772</td>
-<td align="right">0.3772003</td>
-<td align="right">0.7052576</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0.0102093</td>
 </tr>
 </tbody>
 </table>
 <p>And further we analyse the factor structure</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">40</span>, <span class="dt">short =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/fa.html">fa</a></span>(<span class="dt">nfactors =</span> <span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="dt">sort =</span> <span class="ot">TRUE</span>, <span class="dt">cut =</span> <span class="fl">0.3</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"><span class="co">#&gt; Loading required namespace: GPArotation</span></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co">#&gt; Factor Analysis using method =  minres</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="co">#&gt; Call: psych::fa(r = ., nfactors = 2)</span></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co">#&gt; Standardized loadings (pattern matrix) based upon correlation matrix</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10"><span class="co">#&gt;                                          item   MR2   MR1   h2   u2 com</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"><span class="co">#&gt; Int:Vermeidet soziale Interaktionen         4  0.73       0.51 0.49 1.0</span></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co">#&gt; Int:Verhält sich übermäßig schüchtern      14  0.70 -0.33 0.47 0.53 1.4</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13"><span class="co">#&gt; Int:Behauptet sich nicht gegenüber ander   13  0.69       0.44 0.56 1.2</span></a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"><span class="co">#&gt; Int:Beteiligt sich nicht an Gruppenaktio   16  0.68       0.49 0.51 1.0</span></a>
-<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co">#&gt; Int:Verhält sich ängstlich                 12  0.68       0.44 0.56 1.0</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16"><span class="co">#&gt; Int:Vermeidet die Teilnahme an Diskussio    3  0.66       0.41 0.59 1.0</span></a>
-<a class="sourceLine" id="cb12-17" data-line-number="17"><span class="co">#&gt; Int:Spielt bevorzugt alleine                5  0.64       0.40 0.60 1.0</span></a>
-<a class="sourceLine" id="cb12-18" data-line-number="18"><span class="co">#&gt; Int:Geht nicht auf Kontaktversuche der M    6  0.63       0.39 0.61 1.0</span></a>
-<a class="sourceLine" id="cb12-19" data-line-number="19"><span class="co">#&gt; Int:Verbringt zu viel Zeit alleine          1  0.62       0.38 0.62 1.0</span></a>
-<a class="sourceLine" id="cb12-20" data-line-number="20"><span class="co">#&gt; Int:Beteiligt sich nicht am Unterricht     18  0.61       0.39 0.61 1.0</span></a>
-<a class="sourceLine" id="cb12-21" data-line-number="21"><span class="co">#&gt; Int:Wirkt unglücklich oder traurig          9  0.59       0.45 0.55 1.2</span></a>
-<a class="sourceLine" id="cb12-22" data-line-number="22"><span class="co">#&gt; Ext:Beteiligt sich nicht am Unterricht     39  0.57       0.37 0.63 1.1</span></a>
-<a class="sourceLine" id="cb12-23" data-line-number="23"><span class="co">#&gt; Int:Lässt sich langsam auf neue Personen   24  0.54       0.35 0.65 1.1</span></a>
-<a class="sourceLine" id="cb12-24" data-line-number="24"><span class="co">#&gt; Int:Macht sich ständig Sorgen              23  0.48       0.30 0.70 1.2</span></a>
-<a class="sourceLine" id="cb12-25" data-line-number="25"><span class="co">#&gt; Int:Ist schnell überfordert                21  0.48  0.40 0.49 0.51 1.9</span></a>
-<a class="sourceLine" id="cb12-26" data-line-number="26"><span class="co">#&gt; Int:Ist schnell entmutigt                  22  0.46  0.44 0.52 0.48 2.0</span></a>
-<a class="sourceLine" id="cb12-27" data-line-number="27"><span class="co">#&gt; Int:Klammert sich an Erwachsene            10  0.46       0.25 0.75 1.1</span></a>
-<a class="sourceLine" id="cb12-28" data-line-number="28"><span class="co">#&gt; Int:Macht sich Sorgen über unwichtige De    7  0.46       0.26 0.74 1.2</span></a>
-<a class="sourceLine" id="cb12-29" data-line-number="29"><span class="co">#&gt; Int:Weint oder ist weinerlich              19  0.44       0.23 0.77 1.1</span></a>
-<a class="sourceLine" id="cb12-30" data-line-number="30"><span class="co">#&gt; Int:Beschwert sich über Kopfschmerzen od    8  0.40       0.23 0.77 1.4</span></a>
-<a class="sourceLine" id="cb12-31" data-line-number="31"><span class="co">#&gt; Int:Beschwert sich über Krankheit oder S    2  0.39       0.23 0.77 1.5</span></a>
-<a class="sourceLine" id="cb12-32" data-line-number="32"><span class="co">#&gt; Int:Verhält sich nervös                    11  0.38       0.27 0.73 1.8</span></a>
-<a class="sourceLine" id="cb12-33" data-line-number="33"><span class="co">#&gt; Int:Macht sich selbst schlecht             17  0.38  0.34 0.33 0.67 2.0</span></a>
-<a class="sourceLine" id="cb12-34" data-line-number="34"><span class="co">#&gt; Int:Beklagt sich oder jammert              15  0.36  0.35 0.33 0.67 2.0</span></a>
-<a class="sourceLine" id="cb12-35" data-line-number="35"><span class="co">#&gt; Ext:Macht unangebrachte Bemerkungen        37        0.82 0.64 0.36 1.0</span></a>
-<a class="sourceLine" id="cb12-36" data-line-number="36"><span class="co">#&gt; Ext:Stört andere                           33        0.80 0.62 0.38 1.0</span></a>
-<a class="sourceLine" id="cb12-37" data-line-number="37"><span class="co">#&gt; Ext:Hat Konflikte mit Mitschülerinnen un   35        0.80 0.64 0.36 1.0</span></a>
-<a class="sourceLine" id="cb12-38" data-line-number="38"><span class="co">#&gt; Ext:Verliert die Beherrschung              32        0.80 0.62 0.38 1.0</span></a>
-<a class="sourceLine" id="cb12-39" data-line-number="39"><span class="co">#&gt; Ext:Verwendet unangemessene Sprache        34        0.79 0.60 0.40 1.0</span></a>
-<a class="sourceLine" id="cb12-40" data-line-number="40"><span class="co">#&gt; Ext:Streitet und zankt mit Lehrkräften     31        0.79 0.60 0.40 1.0</span></a>
-<a class="sourceLine" id="cb12-41" data-line-number="41"><span class="co">#&gt; Int:Ist schnell verärgert                  20        0.74 0.58 0.42 1.0</span></a>
-<a class="sourceLine" id="cb12-42" data-line-number="42"><span class="co">#&gt; Ext:Kommandiert rum                        36        0.70 0.45 0.55 1.1</span></a>
-<a class="sourceLine" id="cb12-43" data-line-number="43"><span class="co">#&gt; Ext:Respektiert nicht die Privatsphäre a   40        0.67 0.45 0.55 1.0</span></a>
-<a class="sourceLine" id="cb12-44" data-line-number="44"><span class="co">#&gt; Ext:Kommt unvorbereitet zum Unterricht     38        0.53 0.36 0.64 1.2</span></a>
-<a class="sourceLine" id="cb12-45" data-line-number="45"><span class="co">#&gt; Ext:Nimmt Materialien, die zu Hause benö   30        0.49 0.33 0.67 1.3</span></a>
-<a class="sourceLine" id="cb12-46" data-line-number="46"><span class="co">#&gt; Ext:Kontrolliert seine eigene Arbeit nic   29  0.31  0.48 0.41 0.59 1.7</span></a>
-<a class="sourceLine" id="cb12-47" data-line-number="47"><span class="co">#&gt; Ext:Erledigt Hausaufgaben unvollständig    27        0.47 0.33 0.67 1.5</span></a>
-<a class="sourceLine" id="cb12-48" data-line-number="48"><span class="co">#&gt; Ext:Beginnt mit der Aufgabenbearbeitung    26  0.36  0.46 0.44 0.56 1.9</span></a>
-<a class="sourceLine" id="cb12-49" data-line-number="49"><span class="co">#&gt; Ext:Zeigt Unterrichtsaufgaben nicht selb   28  0.32  0.44 0.37 0.63 1.8</span></a>
-<a class="sourceLine" id="cb12-50" data-line-number="50"><span class="co">#&gt; Ext:Stellt Unterrichtsaufgaben nicht rec   25  0.36  0.39 0.35 0.65 2.0</span></a>
-<a class="sourceLine" id="cb12-51" data-line-number="51"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-52" data-line-number="52"><span class="co">#&gt;                        MR2  MR1</span></a>
-<a class="sourceLine" id="cb12-53" data-line-number="53"><span class="co">#&gt; SS loadings           8.44 8.31</span></a>
-<a class="sourceLine" id="cb12-54" data-line-number="54"><span class="co">#&gt; Proportion Var        0.21 0.21</span></a>
-<a class="sourceLine" id="cb12-55" data-line-number="55"><span class="co">#&gt; Cumulative Var        0.21 0.42</span></a>
-<a class="sourceLine" id="cb12-56" data-line-number="56"><span class="co">#&gt; Proportion Explained  0.50 0.50</span></a>
-<a class="sourceLine" id="cb12-57" data-line-number="57"><span class="co">#&gt; Cumulative Proportion 0.50 1.00</span></a>
-<a class="sourceLine" id="cb12-58" data-line-number="58"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-59" data-line-number="59"><span class="co">#&gt;  With factor correlations of </span></a>
-<a class="sourceLine" id="cb12-60" data-line-number="60"><span class="co">#&gt;      MR2  MR1</span></a>
-<a class="sourceLine" id="cb12-61" data-line-number="61"><span class="co">#&gt; MR2 1.00 0.27</span></a>
-<a class="sourceLine" id="cb12-62" data-line-number="62"><span class="co">#&gt; MR1 0.27 1.00</span></a>
-<a class="sourceLine" id="cb12-63" data-line-number="63"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-64" data-line-number="64"><span class="co">#&gt; Mean item complexity =  1.3</span></a>
-<a class="sourceLine" id="cb12-65" data-line-number="65"><span class="co">#&gt; Test of the hypothesis that 2 factors are sufficient.</span></a>
-<a class="sourceLine" id="cb12-66" data-line-number="66"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-67" data-line-number="67"><span class="co">#&gt; The degrees of freedom for the null model are  780  and the objective function was  27.72 with Chi Square of  131952.9</span></a>
-<a class="sourceLine" id="cb12-68" data-line-number="68"><span class="co">#&gt; The degrees of freedom for the model are 701  and the objective function was  10.55 </span></a>
-<a class="sourceLine" id="cb12-69" data-line-number="69"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-70" data-line-number="70"><span class="co">#&gt; The root mean square of the residuals (RMSR) is  0.1 </span></a>
-<a class="sourceLine" id="cb12-71" data-line-number="71"><span class="co">#&gt; The df corrected root mean square of the residuals is  0.1 </span></a>
-<a class="sourceLine" id="cb12-72" data-line-number="72"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-73" data-line-number="73"><span class="co">#&gt; The harmonic number of observations is  4769 with the empirical chi square  67739.66  with prob &lt;  0 </span></a>
-<a class="sourceLine" id="cb12-74" data-line-number="74"><span class="co">#&gt; The total number of observations was  4776  with Likelihood Chi Square =  50223.86  with prob &lt;  0 </span></a>
-<a class="sourceLine" id="cb12-75" data-line-number="75"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb12-76" data-line-number="76"><span class="co">#&gt; Tucker Lewis Index of factoring reliability =  0.58</span></a>
-<a class="sourceLine" id="cb12-77" data-line-number="77"><span class="co">#&gt; RMSEA index =  0.122  and the 90 % confidence intervals are  0.121 0.123</span></a>
-<a class="sourceLine" id="cb12-78" data-line-number="78"><span class="co">#&gt; BIC =  44285.44</span></a>
-<a class="sourceLine" id="cb12-79" data-line-number="79"><span class="co">#&gt; Fit based upon off diagonal values = 0.92</span></a>
-<a class="sourceLine" id="cb12-80" data-line-number="80"><span class="co">#&gt; Measures of factor score adequacy             </span></a>
-<a class="sourceLine" id="cb12-81" data-line-number="81"><span class="co">#&gt;                                                    MR2  MR1</span></a>
-<a class="sourceLine" id="cb12-82" data-line-number="82"><span class="co">#&gt; Correlation of (regression) scores with factors   0.97 0.97</span></a>
-<a class="sourceLine" id="cb12-83" data-line-number="83"><span class="co">#&gt; Multiple R square of scores with factors          0.93 0.94</span></a>
-<a class="sourceLine" id="cb12-84" data-line-number="84"><span class="co">#&gt; Minimum correlation of possible factor scores     0.86 0.89</span></a></code></pre></div>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="st">"subscale2"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">sjt.fa</span>(<span class="dt">nmbr.fctr =</span> <span class="dv">4</span>, <span class="dt">wrap.labels =</span> <span class="dv">70</span>, <span class="dt">show.comm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: GPArotation</span></a></code></pre></div>
+<table class="table">
+<caption style="font-weight: bold; text-align:left;">
+Factor Analysis
+</caption>
+<tr>
+<th style="border-top:double black; padding:0.2cm;">
+ 
+</th>
+<th style="border-top:double black; padding:0.2cm;">
+Factor 1
+</th>
+<th style="border-top:double black; padding:0.2cm;">
+Factor 2
+</th>
+<th style="border-top:double black; padding:0.2cm;">
+Factor 3
+</th>
+<th style="border-top:double black; padding:0.2cm;">
+Factor 4
+</th>
+<th style="border-top:double black; padding:0.2cm; font-style:italic; color:#666666;">
+Communality
+</th>
+</tr>
+<tr>
+<td style=" border-top:1px solid black;">
+SW:Verbringt zu viel Zeit alleine
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
+-0.02
+</td>
+<td style="padding:0.2cm; text-align:center; border-top:1px solid black;">
+0.75
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
+-0.03
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center; border-top:1px solid black;">
+0.54
+</td>
+</tr>
+<tr>
+<td style>
+AD:Beschwert sich über Krankheit oder Schmerzen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.05
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.09
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.16
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.73
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.44
+</td>
+</tr>
+<tr>
+<td style>
+SW:Vermeidet soziale Interaktionen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.04
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.02
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.95
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.16
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.75
+</td>
+</tr>
+<tr>
+<td style>
+SW:Spielt bevorzugt alleine
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.07
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.90
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.14
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.65
+</td>
+</tr>
+<tr>
+<td style>
+SW:Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler e
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.12
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.07
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.89
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.16
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.64
+</td>
+</tr>
+<tr>
+<td style>
+AD:Macht sich Sorgen über unwichtige Details
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.10
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.72
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.48
+</td>
+</tr>
+<tr>
+<td style>
+AD:Beschwert sich über Kopfschmerzen oder Bauchschmerzen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.10
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.11
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.20
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.77
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.46
+</td>
+</tr>
+<tr>
+<td style>
+AD:Wirkt unglücklich oder traurig
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.08
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.05
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.24
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.49
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.50
+</td>
+</tr>
+<tr>
+<td style>
+AD:Klammert sich an Erwachsene
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.09
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.23
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.42
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.34
+</td>
+</tr>
+<tr>
+<td style>
+AD:Verhält sich nervös
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.16
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.44
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.33
+</td>
+</tr>
+<tr>
+<td style>
+AD:Verhält sich ängstlich
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.15
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.01
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.28
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.51
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.47
+</td>
+</tr>
+<tr>
+<td style>
+SW:Behauptet sich nicht gegenüber anderen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.24
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.04
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.45
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.25
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.40
+</td>
+</tr>
+<tr>
+<td style>
+SW:Verhält sich übermäßig schüchtern
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.30
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.50
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.19
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.40
+</td>
+</tr>
+<tr>
+<td style>
+AD:Beklagt sich oder jammert
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.17
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.11
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.70
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.52
+</td>
+</tr>
+<tr>
+<td style>
+SW:Beteiligt sich nicht an Gruppenaktionen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.16
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.69
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.06
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.54
+</td>
+</tr>
+<tr>
+<td style>
+AD:Macht sich selbst schlecht
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.20
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.04
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.50
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.39
+</td>
+</tr>
+<tr>
+<td style>
+AD:Weint oder ist weinerlich
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.01
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.08
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.65
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.40
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Ist schnell verärgert
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.77
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.15
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.68
+</td>
+</tr>
+<tr>
+<td style>
+AD:Macht sich ständig Sorgen
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.01
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.04
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.07
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.80
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.55
+</td>
+</tr>
+<tr>
+<td style>
+SW:Lässt sich langsam auf neue Personen ein
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.16
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.00
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.46
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.14
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.37
+</td>
+</tr>
+<tr>
+<td style>
+APD:Stellt Unterrichtsaufgaben nicht rechtzeitig fertig
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.08
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.77
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.03
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.09
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.58
+</td>
+</tr>
+<tr>
+<td style>
+APD:Beginnt mit der Aufgabenbearbeitung nicht selbstständig
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.73
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.61
+</td>
+</tr>
+<tr>
+<td style>
+APD:Erledigt Hausaufgaben unvollständig
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.02
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.84
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.08
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.00
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.65
+</td>
+</tr>
+<tr>
+<td style>
+APD:Zeigt Unterrichtsaufgaben nicht selbstständig vor
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.00
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.82
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.08
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.68
+</td>
+</tr>
+<tr>
+<td style>
+APD:Kontrolliert seine eigene Arbeit nicht
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.74
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.00
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.61
+</td>
+</tr>
+<tr>
+<td style>
+APD:Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. f
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.75
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.02
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.57
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Streitet und zankt mit Lehrkräften
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.82
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.00
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.00
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.67
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Verliert die Beherrschung
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.86
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.04
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.73
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Stört andere
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.65
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.28
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.05
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.62
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Verwendet unangemessene Sprache
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.80
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.00
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.04
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.66
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Hat Konflikte mit Mitschülerinnen und Mitschülern
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.80
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.69
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Kommandiert rum
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.78
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.13
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.04
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.55
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Macht unangebrachte Bemerkungen
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.84
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.03
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.02
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.04
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.70
+</td>
+</tr>
+<tr>
+<td style>
+APD:Kommt unvorbereitet zum Unterricht
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.09
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.75
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.11
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.00
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.59
+</td>
+</tr>
+<tr>
+<td style>
+APD:Beteiligt sich nicht am Unterricht
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.12
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.52
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.30
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+-0.03
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.40
+</td>
+</tr>
+<tr>
+<td style>
+OPP:Respektiert nicht die Privatsphäre anderer
+</td>
+<td style="padding:0.2cm; text-align:center;">
+0.64
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.07
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.06
+</td>
+<td style="padding:0.2cm; text-align:center; color:#cccccc;">
+0.01
+</td>
+<td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
+0.48
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; font-style:italic;">
+Total Communalities
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic;" colspan="4">
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic;">
+19.64
+</td>
+</tr>
+<tr>
+<td style="padding:0.2cm; font-style:italic; border-bottom:double;">
+Cronbach’s α
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+0.94
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+0.91
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+0.88
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+0.88
+</td>
+<td style="padding:0.2cm; text-align:center; font-style:italic; border-bottom:double;">
+</td>
+</tr>
+</table>
+<p>and provide item analyses</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"APD"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Academic Productivity/ Disorganization"</span>)</a></code></pre></div>
+<table class="table">
+<caption style="font-weight: bold; text-align:left;">
+Academic Productivity/ Disorganization
+</caption>
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left;text-align:left; ">
+Row
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Missings
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Mean
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+SD
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Skew
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Item Difficulty
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">
+Item Discrimination
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">
+α if deleted
+</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Stellt Unterrichtsaufgaben nicht rechtzeitig fertig
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.95
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.04
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.32
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.738
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.895
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Beginnt mit der Aufgabenbearbeitung nicht selbstständig
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.97
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.05
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.25
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.751
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.893
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Erledigt Hausaufgaben unvollständig
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.57
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.9
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.45
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.749
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.893
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Zeigt Unterrichtsaufgaben nicht selbstständig vor
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.58
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.86
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.39
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.19
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.776
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.891
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Kontrolliert seine eigene Arbeit nicht
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.93
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.96
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.31
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.743
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.894
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. für d
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.53
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.87
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.55
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.18
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.688
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.899
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Kommt unvorbereitet zum Unterricht
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.75
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.707
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.898
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; border-bottom: double; background-color:#f2f2f2; ">
+Beteiligt sich nicht am Unterricht
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.7
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.91
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+1.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col7">
+0.527
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col8">
+0.912
+</td>
+</tr>
+<tr>
+<td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">
+Mean inter-item-correlation=0.559 · Cronbach’s α=0.909
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"OPP"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Opposotional/ Disruptive"</span>)</a></code></pre></div>
+<table class="table">
+<caption style="font-weight: bold; text-align:left;">
+Opposotional/ Disruptive
+</caption>
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left;text-align:left; ">
+Row
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Missings
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Mean
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+SD
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Skew
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Item Difficulty
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">
+Item Discrimination
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">
+α if deleted
+</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Ist schnell verärgert
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.55
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.91
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.51
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.18
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.764
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.93
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Streitet und zankt mit Lehrkräften
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.75
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.27
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.788
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.929
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Verliert die Beherrschung
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.49
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.9
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.16
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.814
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.927
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Stört andere
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.83
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.96
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.91
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.28
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.727
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.932
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Verwendet unangemessene Sprache
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.4
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.79
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.03
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.781
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.929
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Hat Konflikte mit Mitschülerinnen und Mitschülern
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.95
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.02
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.26
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.812
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.927
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Kommandiert rum
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.46
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.81
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.73
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.15
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.706
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.933
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Macht unangebrachte Bemerkungen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.47
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.85
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.16
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.813
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.927
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; border-bottom: double; ">
+Respektiert nicht die Privatsphäre anderer
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.00 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+2.1
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">
+0.676
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">
+0.935
+</td>
+</tr>
+<tr>
+<td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">
+Mean inter-item-correlation=0.627 · Cronbach’s α=0.937
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"SW"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Socialy Withdrawn"</span>)</a></code></pre></div>
+<table class="table">
+<caption style="font-weight: bold; text-align:left;">
+Socialy Withdrawn
+</caption>
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left;text-align:left; ">
+Row
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Missings
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Mean
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+SD
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Skew
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Item Difficulty
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">
+Item Discrimination
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">
+α if deleted
+</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Verbringt zu viel Zeit alleine
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.96
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.646
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.86
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Vermeidet soziale Interaktionen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.31
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.63
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.1
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.781
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.846
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Spielt bevorzugt alleine
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.24
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.59
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.717
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.854
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.21
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.51
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.719
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.856
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Behauptet sich nicht gegenüber anderen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.42
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.74
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.563
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.869
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Verhält sich übermäßig schüchtern
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.1
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.558
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.869
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Beteiligt sich nicht an Gruppenaktionen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.43
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.76
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.78
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.66
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.859
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; border-bottom: double; background-color:#f2f2f2; ">
+Lässt sich langsam auf neue Personen ein
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+2
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; ">
+0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col7">
+0.527
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col8">
+0.873
+</td>
+</tr>
+<tr>
+<td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">
+Mean inter-item-correlation=0.484 · Cronbach’s α=0.876
+</td>
+</tr>
+</table>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"AD"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Anxious/ Depressed"</span>)</a></code></pre></div>
+<table class="table">
+<caption style="font-weight: bold; text-align:left;">
+Anxious/ Depressed
+</caption>
+<tr>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; text-align:left;text-align:left; ">
+Row
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Missings
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Mean
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+SD
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Skew
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; ">
+Item Difficulty
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col7">
+Item Discrimination
+</th>
+<th style="border-top: double; text-align:center; font-style:italic; font-weight:normal; padding:0.2cm; border-bottom:1px solid black; col8">
+α if deleted
+</th>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Beschwert sich über Krankheit oder Schmerzen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.07
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.602
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.873
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Macht sich Sorgen über unwichtige Details
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.41
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.72
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.82
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.14
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.64
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.871
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Beschwert sich über Kopfschmerzen oder Bauchschmerzen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.35
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.61
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.873
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Wirkt unglücklich oder traurig
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.48
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.77
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+1.6
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.16
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.639
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.871
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Klammert sich an Erwachsene
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.28
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.66
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+2.58
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.09
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.522
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.878
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Verhält sich nervös
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.33
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.68
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.22
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.11
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.522
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.878
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Verhält sich ängstlich
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.69
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.98
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.563
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.876
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Beklagt sich oder jammert
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.37
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.653
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.87
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; ">
+Macht sich selbst schlecht
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.38
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.71
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+1.98
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
+0.13
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
+0.561
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
+0.876
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; background-color:#f2f2f2; ">
+Weint oder ist weinerlich
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.23
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.59
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+2.88
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
+0.08
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
+0.574
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
+0.875
+</td>
+</tr>
+<tr>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:left;text-align:left; border-bottom: double; ">
+Macht sich ständig Sorgen
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.08 %
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.36
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.68
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+2.01
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
+0.12
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col7">
+0.693
+</td>
+<td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">
+0.867
+</td>
+</tr>
+<tr>
+<td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">
+Mean inter-item-correlation=0.409 · Cronbach’s α=0.884
+</td>
+</tr>
+</table>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2 class="hasAnchor">
 <a href="#build-scale-scores" class="anchor"></a>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scores.html">select_scores</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scores.html">select_scores</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -1104,24 +2743,24 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td>itrf_ext</td>
 <td align="right">1</td>
-<td align="right">4771</td>
-<td align="right">9.51813</td>
-<td align="right">9.587938</td>
+<td align="right">4776</td>
+<td align="right">10.1</td>
+<td align="right">10.2</td>
 <td align="right">0</td>
-<td align="right">48</td>
-<td align="right">48</td>
-<td align="right">0.1388099</td>
+<td align="right">51</td>
+<td align="right">51</td>
+<td align="right">0.1</td>
 </tr>
 <tr class="even">
 <td>itrf_int</td>
 <td align="right">2</td>
 <td align="right">4772</td>
-<td align="right">10.23491</td>
-<td align="right">10.632814</td>
+<td align="right">6.6</td>
+<td align="right">8.1</td>
 <td align="right">0</td>
-<td align="right">60</td>
-<td align="right">60</td>
-<td align="right">0.1539210</td>
+<td align="right">50</td>
+<td align="right">50</td>
+<td align="right">0.1</td>
 </tr>
 </tbody>
 </table>
