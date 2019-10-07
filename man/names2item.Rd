@@ -6,8 +6,8 @@
 \title{Rename items
 Set names of items as long labels and vice versa.}
 \usage{
-names2item(data, chars = NULL, short = FALSE, id = FALSE,
-  reverse = FALSE, scale = NULL, sep = "_")
+names2item(data, chars = NULL, prefix = "", short = FALSE,
+  id = FALSE, reverse = FALSE, scale = NULL, sep = "_")
 
 names2label(data)
 }

@@ -13,17 +13,20 @@
 #'
 #' @return A renamed data frame
 #' @export
-names2item <- function(data, chars = NULL, short = FALSE, id = FALSE,
+names2item <- function(data, chars = NULL, prefix = "", short = FALSE, id = FALSE,
                        reverse = FALSE, scale = NULL, sep = "_") {
+  if (isTRUE(short)) prefix <- "subscale"
   for (i in 1:ncol(data)) {
     item_label <- dic_attr(data[[i]], .opt$item_label)
     if (!is.null(item_label)) {
-      prefix <- ""
-      if (short) prefix <- dic_attr(data[[i]], .opt$subscale)
-      if (id) prefix <- paste0(prefix, dic_attr(data[[i]], .opt$index), sep = sep)
-      if (reverse) prefix <- paste0(prefix, dic_attr(data[[i]], .opt$weight), sep = sep)
-      if (short || id) prefix <- paste0(prefix, ":")
-      item_label <- paste0(prefix, item_label)
+      item_prefix <- ""
+      if (prefix %in% "scale") item_prefix <- dic_attr(data[[i]], .opt$scale)
+      if (prefix %in% "subscale") item_prefix <- dic_attr(data[[i]], .opt$subscale)
+      if (prefix %in% "subscale2") item_prefix <- dic_attr(data[[i]], .opt$subscale_2)
+      if (id) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), sep = sep)
+      if (reverse) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$weight), sep = sep)
+      if (prefix != "" || id) item_prefix <- paste0(item_prefix, ":")
+      item_label <- paste0(item_prefix, item_label)
       if (!is.null(chars)) item_label <- substring(item_label, 1, chars)
       names(data)[i] <- item_label
     }
