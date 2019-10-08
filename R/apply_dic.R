@@ -3,13 +3,14 @@
 #' @param data Data frame
 #' @param dic Dictionary file
 #' @param factors If set TRUE, factor variables will be turned into factors.
+#' @param replace_missing If TRUE, missing values from the dic are replaced with NA
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(ITRF, dic_ITRF)
 #' list_scales(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE) {
+apply_dic <- function(data, dic, factors = TRUE, replace_missing = TRUE) {
 
   #opt.attr <- .dic_file
   names(dic) <- tolower(names(dic))
@@ -116,5 +117,11 @@ apply_dic <- function(data, dic, factors = TRUE) {
 
     dic_attr(data[[id]], .opt$class) <- "item"
   }
+
+  if (replace_missing) {
+    data <- replace_missing(data)
+    message("Replaced missging values.")
+  }
+
   data
 }
