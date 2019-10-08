@@ -11,8 +11,6 @@ vignette: >
 library(knitr)
 library(dplyr)
 library(tibble)
-library(psych)
-library(sjPlot)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -97,7 +95,7 @@ dic_ITRF %>% slice(1:3)  %>% kable()
 When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.  
 The resulting dataset now is ready to be used with all further `scaledic` functions.  
 
-The `apply_dic` function takes the name of the dataset and the dictionary file and combines them:
+The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:
 
 ```{r}
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
@@ -117,12 +115,6 @@ Firstly, we check for invalid values in the dataset (e.g., typos) and replace th
 
 ```{r}
 dat <- check_values(dat, replace = NA)
-```
-
-... and replace missing values as defined in the dic file with NAs
-
-```{r}
-dat <- replace_missing(dat)
 ```
 
 Now we impute missing values:
@@ -164,8 +156,8 @@ And further we analyse the factor structure
 ```{r}
 dat %>%
   select_scale(scale = "ITRF") %>%
-  names2item(chars = 70, prefix = "subscale2") %>% 
-  sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
+  names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
+  sjPlot::sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
 ```
 
 and provide item analyses
@@ -174,26 +166,24 @@ and provide item analyses
 dat %>%
   select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "APD") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "OPP") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "SW") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "AD") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
 
 ```
-
-
 
 ## Build scale scores
 

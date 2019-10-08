@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Set and get dictionary attributes — dic_attr • scaledic</title>
+<title>Build a dictionary file template — build_scaledic_skeleton • scaledic</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Set and get dictionary attributes — dic_attr" />
-<meta property="og:description" content="Set and get dictionary attributes" />
+<meta property="og:title" content="Build a dictionary file template — build_scaledic_skeleton" />
+<meta property="og:description" content="Build a dictionary file template" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,39 +118,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Set and get dictionary attributes</h1>
+    <h1>Build a dictionary file template</h1>
     
-    <div class="hidden name"><code>dic_attr.Rd</code></div>
+    <div class="hidden name"><code>build_scaledic_skeleton.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Set and get dictionary attributes</p>
+    <p>Build a dictionary file template</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dic_attr</span>(<span class='no'>x</span>, <span class='no'>var</span>)
-
-<span class='fu'>dic_attr</span>(<span class='no'>x</span>, <span class='no'>var</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+    <pre class="usage"><span class='fu'>build_scaledic_skeleton</span>(<span class='kw'>filename</span> <span class='kw'>=</span> <span class='st'>"dic_template.xlsx"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>Variable</p></td>
-    </tr>
-    <tr>
-      <th>var</th>
-      <td><p>Attribute</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>set value</p></td>
+      <th>filename</th>
+      <td><p>Character string. Default is 'dic_template.xlsx'</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Attribute value</p>
+    <p>Writes an Excel file with an empty template of a dic file.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

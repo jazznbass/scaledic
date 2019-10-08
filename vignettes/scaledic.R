@@ -2,8 +2,6 @@
 library(knitr)
 library(dplyr)
 library(tibble)
-library(psych)
-library(sjPlot)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -64,9 +62,6 @@ list_scales(dat, labels = TRUE, n_items = TRUE) %>%
 ## ------------------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
 
-## ------------------------------------------------------------------------
-dat <- replace_missing(dat)
-
 ## ----message=FALSE, warning=FALSE----------------------------------------
 # Imputation for items of the subscale ITRF_Ext
 dat <- impute_missing(dat, subscale = "Ext")
@@ -91,29 +86,29 @@ dat %>%
 ## ------------------------------------------------------------------------
 dat %>%
   select_scale(scale = "ITRF") %>%
-  names2item(chars = 70, prefix = "subscale2") %>% 
-  sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
+  names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
+  sjPlot::sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
 
 ## ------------------------------------------------------------------------
 dat %>%
   select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "APD") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "OPP") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "SW") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
 
 dat %>%
   select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "AD") %>%
   names2item(chars = 70) %>% 
-  sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
+  sjPlot::sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
 
 
 ## ------------------------------------------------------------------------

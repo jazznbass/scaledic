@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -132,8 +132,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># apply a dictionary file to a data frame</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span>(<span class='no'>ITRF</span>, <span class='no'>dic_ITRF</span>)
-<span class='co'># check for typos (not allowed values)</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span>(<span class='no'>ITRF</span>, <span class='no'>dic_ITRF</span>)</div><div class='output co'>#&gt; <span class='message'>Replaced missging values.</span></div><div class='input'><span class='co'># check for typos (not allowed values)</span>
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='check_values.html'>check_values</a></span>(<span class='no'>dat</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
 <span class='co'># Single imputation (EM algorith from the Amelia package)</span>
 <span class='co'># based on the variables of the provided scale</span>
@@ -146,12 +145,17 @@
 #&gt; </span><span style='color: #555555;'>3</span><span> ITRF  Int      AD         Integrated teac… Internalizing    Anxious/Depressed 
 #&gt; </span><span style='color: #555555;'>4</span><span> ITRF  Int      SW         Integrated teac… Internalizing    Socially Withdrawn</div><div class='input'><span class='co'># Example with pipeline syntax. Would be much easier to use the "describe" function</span>
 <span class='co'># from the psch packages instead of summarise_all here.</span>
-<span class='no'>dat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'>select</span>(<span class='fu'><a href='get_index.html'>get_index</a></span>(<span class='no'>dat</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF"</span>, <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='st'>"Ext"</span>)) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='names2item.html'>names2item</a></span>(<span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'>summarise_all</span>(<span class='no'>mean</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
+#&gt; <span class='message'></span>
+#&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>dat</span> <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_scale.html'>select_scale</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF"</span>, <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='st'>"Ext"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='names2item.html'>names2item</a></span>(<span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>"subscale2"</span>, <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>summarise_all</a></span>(<span class='no'>mean</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in dat %&gt;% select(get_index(dat, scale = "ITRF", subscale = "Ext")) %&gt;%     names2item(short = TRUE, id = TRUE) %&gt;% summarise_all(mean,     na.rm = TRUE) %&gt;% round(2) %&gt;% t(): could not find function "%&gt;%"</span></div></span></pre>
+  <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>()</div><div class='output co'>#&gt; <span class='error'>Error in names2item(., prefix = "subscale2", id = TRUE): unused argument (id = TRUE)</span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -124,12 +124,19 @@
 <h1 class="page-header">
 <a href="#scaledic-0-1-6" class="anchor"></a>scaledic 0.1.6</h1>
 <ul>
+<li>new function <code><a href="../reference/build_scaledic_skeleton.html">build_scaledic_skeleton()</a></code>: Creates an Excel file with a template for a dic file.</li>
 <li>
 <code><a href="../reference/list_scales.html">list_scales()</a></code>: new argument <code>n_items</code> for displaying number of items per scale.</li>
 <li>
 <em>dic_file</em>: new <em>type</em> values possible: ‘string’, ‘character’, or ‘characters’</li>
 <li>
-<code>names2labels()</code>: new argument <code>prefix</code> taking values ‘scale’, ‘subscale’, or ‘subsclae2’ adding the respective information before the item.</li>
+<code>names2labels()</code>: new argument <code>prefix</code> takes character vector with possible values ‘scale’, ‘subscale’, ‘subsclae2’, ‘reverse’, and ‘weight’ adding the respective information before the item.</li>
+<li>
+<code><a href="../reference/names2item.html">names2label()</a></code>: deletet arguments <code>short</code> and <code>reverse</code>.</li>
+<li>
+<code><a href="../reference/names2item.html">names2label()</a></code>: New arguments <code>char_weight</code>, <code>char_sep</code>, and <code>char_prefix_end</code> help to specify look of output.</li>
+<li>
+<code><a href="../reference/apply_dic.html">apply_dic()</a></code>: new <code>replace_missing</code> argument replaces missing values as defined in the dic file with NAs.</li>
 </ul>
 </div>
   </div>

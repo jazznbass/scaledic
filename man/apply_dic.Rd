@@ -4,7 +4,7 @@
 \alias{apply_dic}
 \title{Apply dictionary}
 \usage{
-apply_dic(data, dic, factors = TRUE)
+apply_dic(data, dic, factors = TRUE, replace_missing = TRUE)
 }
 \arguments{
 \item{data}{Data frame}
@@ -12,6 +12,8 @@ apply_dic(data, dic, factors = TRUE)
 \item{dic}{Dictionary file}
 
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
+
+\item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
 }
 \value{
 A data frame with dictionary information.

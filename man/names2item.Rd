@@ -6,8 +6,8 @@
 \title{Rename items
 Set names of items as long labels and vice versa.}
 \usage{
-names2item(data, chars = NULL, prefix = "", short = FALSE,
-  id = FALSE, reverse = FALSE, scale = NULL, sep = "_")
+names2item(data, chars = NULL, prefix = "", char_sep = "_",
+  char_weight = c("(-)", "(+)"), char_prefix_end = ": ")
 
 names2label(data)
 }
@@ -16,17 +16,14 @@ names2label(data)
 
 \item{chars}{If not NULL, only the first n chars og the long label will be applied.}
 
-\item{prefix}{A string defining a Prefix. Either "scale", "subscale", or "subscale2"}
+\item{prefix}{A character string or vector of character strings defining a prefix.
+May include "scale", "subscale", "subscale2", "index", "reverse", or "weight".}
 
-\item{short}{If TRUE, the sublabel will be set before the variable name.}
+\item{char_sep}{Character with seperator between prefix information.}
 
-\item{id}{If set TRUE, the item id will be set in the variable name}
+\item{char_weight}{Character vector of length two with signs for negative and positive weights.}
 
-\item{reverse}{If set TRUE, weights will be set in the varibable name}
-
-\item{scale}{Unused}
-
-\item{sep}{Character with seperator.}
+\item{char_prefix_end}{Character with seperator between prefi and item.}
 }
 \value{
 A renamed data frame

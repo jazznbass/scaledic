@@ -72,7 +72,7 @@ Set names of items as long labels and vice versa." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -132,8 +132,8 @@ Set names of items as long labels and vice versa.</h1>
 Set names of items as long labels and vice versa.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>names2item</span>(<span class='no'>data</span>, <span class='kw'>chars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>short</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>id</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>reverse</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>)
+    <pre class="usage"><span class='fu'>names2item</span>(<span class='no'>data</span>, <span class='kw'>chars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>char_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
+  <span class='kw'>char_weight</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"(-)"</span>, <span class='st'>"(+)"</span>), <span class='kw'>char_prefix_end</span> <span class='kw'>=</span> <span class='st'>": "</span>)
 
 <span class='fu'>names2label</span>(<span class='no'>data</span>)</pre>
 
@@ -150,27 +150,20 @@ Set names of items as long labels and vice versa.</p>
     </tr>
     <tr>
       <th>prefix</th>
-      <td><p>A string defining a Prefix. Either "scale", "subscale", or "subscale2"</p></td>
+      <td><p>A character string or vector of character strings defining a prefix.
+May include "scale", "subscale", "subscale2", "index", "reverse", or "weight".</p></td>
     </tr>
     <tr>
-      <th>short</th>
-      <td><p>If TRUE, the sublabel will be set before the variable name.</p></td>
+      <th>char_sep</th>
+      <td><p>Character with seperator between prefix information.</p></td>
     </tr>
     <tr>
-      <th>id</th>
-      <td><p>If set TRUE, the item id will be set in the variable name</p></td>
+      <th>char_weight</th>
+      <td><p>Character vector of length two with signs for negative and positive weights.</p></td>
     </tr>
     <tr>
-      <th>reverse</th>
-      <td><p>If set TRUE, weights will be set in the varibable name</p></td>
-    </tr>
-    <tr>
-      <th>scale</th>
-      <td><p>Unused</p></td>
-    </tr>
-    <tr>
-      <th>sep</th>
-      <td><p>Character with seperator.</p></td>
+      <th>char_prefix_end</th>
+      <td><p>Character with seperator between prefi and item.</p></td>
     </tr>
     </table>
 

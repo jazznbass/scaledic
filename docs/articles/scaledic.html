@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
       </span>
     </div>
 
@@ -293,9 +293,10 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <a href="#apply-a-dictionary-file" class="anchor"></a>Apply a dictionary file</h2>
 <p>When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.<br>
 The resulting dataset now is ready to be used with all further <code>scaledic</code> functions.</p>
-<p>The <code>apply_dic</code> function takes the name of the dataset and the dictionary file and combines them:</p>
+<p>The <code>apply_dic</code> function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/apply_dic.html">apply_dic</a></span>(ITRF, dic_ITRF)</a></code></pre></div>
+<a class="sourceLine" id="cb5-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/apply_dic.html">apply_dic</a></span>(ITRF, dic_ITRF)</a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt; Replaced missging values.</span></a></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/list_scales.html">list_scales</a></span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">n_items =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
@@ -364,31 +365,29 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <a href="#clean-raw-data" class="anchor"></a>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/check_values.html">check_values</a></span>(dat, <span class="dt">replace =</span> <span class="ot">NA</span>)</a></code></pre></div>
-<p>… and replace missing values as defined in the dic file with NAs</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/replace_missing.html">replace_missing</a></span>(dat)</a></code></pre></div>
 <p>Now we impute missing values:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># Imputation for items of the subscale ITRF_Ext</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co">#&gt;   1  2  3</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># Imputation for items of the subscale ITRF_Int</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"><span class="co">#&gt; -- Imputation 1 --</span></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13"><span class="co">#&gt;   1  2  3</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Imputation for items of the subscale ITRF_Ext</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; -- Imputation 1 --</span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt;   1  2  3</span></a>
+<a class="sourceLine" id="cb8-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co"># Imputation for items of the subscale ITRF_Int</span></a>
+<a class="sourceLine" id="cb8-8" data-line-number="8">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/impute_missing.html">impute_missing</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a>
+<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt; Warning: There are observations in the data that are completely missing. </span></a>
+<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;          These observations will remain unimputed in the final datasets. </span></a>
+<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt; -- Imputation 1 --</span></a>
+<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt; </span></a>
+<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;   1  2  3</span></a></code></pre></div>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2 class="hasAnchor">
 <a href="#select-scales-for-analyszing" class="anchor"></a>Select scales for analyszing</h2>
 <p>Let us see descriptive statistics for the Internalizing sub scale:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -618,11 +617,11 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <h2 class="hasAnchor">
 <a href="#see-items-instead-of-labels" class="anchor"></a>See items instead of labels</h2>
 <p>It is more convinient to see the original items instead of the short lables:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">subscale =</span> <span class="st">"Int"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -848,11 +847,11 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 <p>And further we analyse the factor structure</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="st">"subscale2"</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">sjt.fa</span>(<span class="dt">nmbr.fctr =</span> <span class="dv">4</span>, <span class="dt">wrap.labels =</span> <span class="dv">70</span>, <span class="dt">show.comm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: GPArotation</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"reverse"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale2"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span>sjPlot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sjPlot/man/sjt.fa.html">sjt.fa</a></span>(<span class="dt">nmbr.fctr =</span> <span class="dv">4</span>, <span class="dt">wrap.labels =</span> <span class="dv">70</span>, <span class="dt">show.comm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="co">#&gt; Loading required namespace: GPArotation</span></a></code></pre></div>
 <table class="table">
 <caption style="font-weight: bold; text-align:left;">
 Factor Analysis
@@ -879,7 +878,7 @@ Communality
 </tr>
 <tr>
 <td style=" border-top:1px solid black;">
-SW:Verbringt zu viel Zeit alleine
+(+)Int_SW: Verbringt zu viel Zeit alleine
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
 0.07
@@ -891,15 +890,15 @@ SW:Verbringt zu viel Zeit alleine
 0.75
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc; border-top:1px solid black;">
--0.04
+-0.03
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center; border-top:1px solid black;">
-0.54
+0.55
 </td>
 </tr>
 <tr>
 <td style>
-AD:Beschwert sich über Krankheit oder Schmerzen
+(+)Int_AD: Beschwert sich über Krankheit oder Schmerzen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.05
@@ -919,10 +918,10 @@ AD:Beschwert sich über Krankheit oder Schmerzen
 </tr>
 <tr>
 <td style>
-SW:Vermeidet soziale Interaktionen
+(+)Int_SW: Vermeidet soziale Interaktionen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.04
+0.05
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.02
@@ -939,7 +938,7 @@ SW:Vermeidet soziale Interaktionen
 </tr>
 <tr>
 <td style>
-SW:Spielt bevorzugt alleine
+(+)Int_SW: Spielt bevorzugt alleine
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.08
@@ -951,7 +950,7 @@ SW:Spielt bevorzugt alleine
 0.90
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.15
+-0.14
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.66
@@ -959,7 +958,7 @@ SW:Spielt bevorzugt alleine
 </tr>
 <tr>
 <td style>
-SW:Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler e
+(+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.12
@@ -979,7 +978,7 @@ SW:Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler e
 </tr>
 <tr>
 <td style>
-AD:Macht sich Sorgen über unwichtige Details
+(+)Int_AD: Macht sich Sorgen über unwichtige Details
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.01
@@ -999,10 +998,10 @@ AD:Macht sich Sorgen über unwichtige Details
 </tr>
 <tr>
 <td style>
-AD:Beschwert sich über Kopfschmerzen oder Bauchschmerzen
+(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.09
+-0.10
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.11
@@ -1019,7 +1018,7 @@ AD:Beschwert sich über Kopfschmerzen oder Bauchschmerzen
 </tr>
 <tr>
 <td style>
-AD:Wirkt unglücklich oder traurig
+(+)Int_AD: Wirkt unglücklich oder traurig
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.08
@@ -1034,12 +1033,12 @@ AD:Wirkt unglücklich oder traurig
 0.49
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.51
+0.50
 </td>
 </tr>
 <tr>
 <td style>
-AD:Klammert sich an Erwachsene
+(+)Int_AD: Klammert sich an Erwachsene
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.08
@@ -1059,7 +1058,7 @@ AD:Klammert sich an Erwachsene
 </tr>
 <tr>
 <td style>
-AD:Verhält sich nervös
+(+)Int_AD: Verhält sich nervös
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.16
@@ -1079,7 +1078,7 @@ AD:Verhält sich nervös
 </tr>
 <tr>
 <td style>
-AD:Verhält sich ängstlich
+(+)Int_AD: Verhält sich ängstlich
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.15
@@ -1094,12 +1093,12 @@ AD:Verhält sich ängstlich
 0.51
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.47
+0.46
 </td>
 </tr>
 <tr>
 <td style>
-SW:Behauptet sich nicht gegenüber anderen
+(+)Int_SW: Behauptet sich nicht gegenüber anderen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.24
@@ -1111,7 +1110,7 @@ SW:Behauptet sich nicht gegenüber anderen
 0.45
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.26
+0.25
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.40
@@ -1119,7 +1118,7 @@ SW:Behauptet sich nicht gegenüber anderen
 </tr>
 <tr>
 <td style>
-SW:Verhält sich übermäßig schüchtern
+(+)Int_SW: Verhält sich übermäßig schüchtern
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.30
@@ -1139,7 +1138,7 @@ SW:Verhält sich übermäßig schüchtern
 </tr>
 <tr>
 <td style>
-AD:Beklagt sich oder jammert
+(+)Int_AD: Beklagt sich oder jammert
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.17
@@ -1159,7 +1158,7 @@ AD:Beklagt sich oder jammert
 </tr>
 <tr>
 <td style>
-SW:Beteiligt sich nicht an Gruppenaktionen
+(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.06
@@ -1168,10 +1167,10 @@ SW:Beteiligt sich nicht an Gruppenaktionen
 0.16
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.68
+0.69
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.06
+-0.07
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.53
@@ -1179,7 +1178,7 @@ SW:Beteiligt sich nicht an Gruppenaktionen
 </tr>
 <tr>
 <td style>
-AD:Macht sich selbst schlecht
+(+)Int_AD: Macht sich selbst schlecht
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.20
@@ -1194,12 +1193,12 @@ AD:Macht sich selbst schlecht
 0.50
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.40
+0.39
 </td>
 </tr>
 <tr>
 <td style>
-AD:Weint oder ist weinerlich
+(+)Int_AD: Weint oder ist weinerlich
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.01
@@ -1219,7 +1218,7 @@ AD:Weint oder ist weinerlich
 </tr>
 <tr>
 <td style>
-OPP:Ist schnell verärgert
+(+)Ext_OPP: Ist schnell verärgert
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.77
@@ -1239,7 +1238,7 @@ OPP:Ist schnell verärgert
 </tr>
 <tr>
 <td style>
-AD:Macht sich ständig Sorgen
+(+)Int_AD: Macht sich ständig Sorgen
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.02
@@ -1248,7 +1247,7 @@ AD:Macht sich ständig Sorgen
 -0.04
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.08
+-0.07
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.80
@@ -1259,7 +1258,7 @@ AD:Macht sich ständig Sorgen
 </tr>
 <tr>
 <td style>
-SW:Lässt sich langsam auf neue Personen ein
+(+)Int_SW: Lässt sich langsam auf neue Personen ein
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.16
@@ -1268,7 +1267,7 @@ SW:Lässt sich langsam auf neue Personen ein
 0.01
 </td>
 <td style="padding:0.2cm; text-align:center;">
-0.45
+0.46
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.15
@@ -1279,7 +1278,7 @@ SW:Lässt sich langsam auf neue Personen ein
 </tr>
 <tr>
 <td style>
-APD:Stellt Unterrichtsaufgaben nicht rechtzeitig fertig
+(+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 -0.08
@@ -1299,7 +1298,7 @@ APD:Stellt Unterrichtsaufgaben nicht rechtzeitig fertig
 </tr>
 <tr>
 <td style>
-APD:Beginnt mit der Aufgabenbearbeitung nicht selbstständig
+(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.03
@@ -1314,15 +1313,15 @@ APD:Beginnt mit der Aufgabenbearbeitung nicht selbstständig
 0.06
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.60
+0.61
 </td>
 </tr>
 <tr>
 <td style>
-APD:Erledigt Hausaufgaben unvollständig
+(+)Ext_APD: Erledigt Hausaufgaben unvollständig
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.02
+-0.01
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.84
@@ -1339,7 +1338,7 @@ APD:Erledigt Hausaufgaben unvollständig
 </tr>
 <tr>
 <td style>
-APD:Zeigt Unterrichtsaufgaben nicht selbstständig vor
+(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.00
@@ -1359,7 +1358,7 @@ APD:Zeigt Unterrichtsaufgaben nicht selbstständig vor
 </tr>
 <tr>
 <td style>
-APD:Kontrolliert seine eigene Arbeit nicht
+(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.07
@@ -1379,7 +1378,7 @@ APD:Kontrolliert seine eigene Arbeit nicht
 </tr>
 <tr>
 <td style>
-APD:Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. f
+(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.07
@@ -1399,7 +1398,7 @@ APD:Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. f
 </tr>
 <tr>
 <td style>
-OPP:Streitet und zankt mit Lehrkräften
+(+)Ext_OPP: Streitet und zankt mit Lehrkräften
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.82
@@ -1419,7 +1418,7 @@ OPP:Streitet und zankt mit Lehrkräften
 </tr>
 <tr>
 <td style>
-OPP:Verliert die Beherrschung
+(+)Ext_OPP: Verliert die Beherrschung
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.86
@@ -1431,7 +1430,7 @@ OPP:Verliert die Beherrschung
 0.02
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.04
+0.05
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.73
@@ -1439,7 +1438,7 @@ OPP:Verliert die Beherrschung
 </tr>
 <tr>
 <td style>
-OPP:Stört andere
+(+)Ext_OPP: Stört andere
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.65
@@ -1459,7 +1458,7 @@ OPP:Stört andere
 </tr>
 <tr>
 <td style>
-OPP:Verwendet unangemessene Sprache
+(+)Ext_OPP: Verwendet unangemessene Sprache
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.80
@@ -1468,10 +1467,10 @@ OPP:Verwendet unangemessene Sprache
 0.06
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.01
+-0.00
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.03
+-0.04
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.66
@@ -1479,7 +1478,7 @@ OPP:Verwendet unangemessene Sprache
 </tr>
 <tr>
 <td style>
-OPP:Hat Konflikte mit Mitschülerinnen und Mitschülern
+(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.80
@@ -1488,18 +1487,18 @@ OPP:Hat Konflikte mit Mitschülerinnen und Mitschülern
 0.03
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
-0.06
+0.05
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.01
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
-0.69
+0.70
 </td>
 </tr>
 <tr>
 <td style>
-OPP:Kommandiert rum
+(+)Ext_OPP: Kommandiert rum
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.78
@@ -1519,7 +1518,7 @@ OPP:Kommandiert rum
 </tr>
 <tr>
 <td style>
-OPP:Macht unangebrachte Bemerkungen
+(+)Ext_OPP: Macht unangebrachte Bemerkungen
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.84
@@ -1531,7 +1530,7 @@ OPP:Macht unangebrachte Bemerkungen
 0.02
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.04
+-0.05
 </td>
 <td style="padding:0.2cm; font-style:italic; color:#666666; text-align:center;">
 0.70
@@ -1539,7 +1538,7 @@ OPP:Macht unangebrachte Bemerkungen
 </tr>
 <tr>
 <td style>
-APD:Kommt unvorbereitet zum Unterricht
+(+)Ext_APD: Kommt unvorbereitet zum Unterricht
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
 0.09
@@ -1559,10 +1558,10 @@ APD:Kommt unvorbereitet zum Unterricht
 </tr>
 <tr>
 <td style>
-APD:Beteiligt sich nicht am Unterricht
+(+)Ext_APD: Beteiligt sich nicht am Unterricht
 </td>
 <td style="padding:0.2cm; text-align:center; color:#cccccc;">
--0.13
+-0.12
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.52
@@ -1579,7 +1578,7 @@ APD:Beteiligt sich nicht am Unterricht
 </tr>
 <tr>
 <td style>
-OPP:Respektiert nicht die Privatsphäre anderer
+(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer
 </td>
 <td style="padding:0.2cm; text-align:center;">
 0.64
@@ -1604,7 +1603,7 @@ Total Communalities
 <td style="padding:0.2cm; text-align:center; font-style:italic;" colspan="4">
 </td>
 <td style="padding:0.2cm; text-align:center; font-style:italic;">
-19.64
+19.65
 </td>
 </tr>
 <tr>
@@ -1628,10 +1627,10 @@ Cronbach’s α
 </tr>
 </table>
 <p>and provide item analyses</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"APD"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Academic Productivity/ Disorganization"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"APD"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span>sjPlot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sjPlot/man/sjt.itemanalysis.html">sjt.itemanalysis</a></span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Academic Productivity/ Disorganization"</span>)</a></code></pre></div>
 <table class="table">
 <caption style="font-weight: bold; text-align:left;">
 Academic Productivity/ Disorganization
@@ -1728,7 +1727,7 @@ Erledigt Hausaufgaben unvollständig
 0.9
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
-1.46
+1.45
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
 0.19
@@ -1754,13 +1753,13 @@ Zeigt Unterrichtsaufgaben nicht selbstständig vor
 0.86
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-1.4
+1.39
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
 0.19
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.777
+0.775
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.891
@@ -1812,10 +1811,10 @@ Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. für d
 0.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.688
+0.689
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
-0.899
+0.898
 </td>
 </tr>
 <tr>
@@ -1832,13 +1831,13 @@ Kommt unvorbereitet zum Unterricht
 0.75
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
-2.03
+2.04
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
 0.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.708
+0.706
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.898
@@ -1876,11 +1875,11 @@ Mean inter-item-correlation=0.559 · Cronbach’s α=0.909
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"OPP"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Opposotional/ Disruptive"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Ext"</span>, <span class="dt">subscale_2 =</span> <span class="st">"OPP"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="st">  </span>sjPlot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sjPlot/man/sjt.itemanalysis.html">sjt.itemanalysis</a></span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Opposotional/ Disruptive"</span>)</a></code></pre></div>
 <table class="table">
 <caption style="font-weight: bold; text-align:left;">
 Opposotional/ Disruptive
@@ -1931,7 +1930,7 @@ Ist schnell verärgert
 0.18
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.764
+0.763
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.93
@@ -1957,7 +1956,7 @@ Streitet und zankt mit Lehrkräften
 0.12
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.787
+0.788
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.929
@@ -1977,7 +1976,7 @@ Verliert die Beherrschung
 0.9
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
-1.72
+1.73
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
 0.16
@@ -2035,7 +2034,7 @@ Verwendet unangemessene Sprache
 0.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.781
+0.782
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.929
@@ -2049,7 +2048,7 @@ Hat Konflikte mit Mitschülerinnen und Mitschülern
 0.00 %
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-0.76
+0.77
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
 0.95
@@ -2058,10 +2057,10 @@ Hat Konflikte mit Mitschülerinnen und Mitschülern
 1.03
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-0.25
+0.26
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.812
+0.813
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.927
@@ -2113,7 +2112,7 @@ Macht unangebrachte Bemerkungen
 0.16
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.813
+0.814
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.927
@@ -2142,7 +2141,7 @@ Respektiert nicht die Privatsphäre anderer
 0.676
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; col8">
-0.934
+0.935
 </td>
 </tr>
 <tr>
@@ -2151,11 +2150,11 @@ Mean inter-item-correlation=0.627 · Cronbach’s α=0.937
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"SW"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Socialy Withdrawn"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"SW"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5"><span class="st">  </span>sjPlot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sjPlot/man/sjt.itemanalysis.html">sjt.itemanalysis</a></span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Socialy Withdrawn"</span>)</a></code></pre></div>
 <table class="table">
 <caption style="font-weight: bold; text-align:left;">
 Socialy Withdrawn
@@ -2200,13 +2199,13 @@ Verbringt zu viel Zeit alleine
 0.71
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
-2
+1.97
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
 0.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.649
+0.652
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.86
@@ -2232,10 +2231,10 @@ Vermeidet soziale Interaktionen
 0.1
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.782
+0.781
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
-0.846
+0.847
 </td>
 </tr>
 <tr>
@@ -2258,7 +2257,7 @@ Spielt bevorzugt alleine
 0.08
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.717
+0.718
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.854
@@ -2278,7 +2277,7 @@ Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein
 0.51
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-2.7
+2.71
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
 0.07
@@ -2313,7 +2312,7 @@ Behauptet sich nicht gegenüber anderen
 0.564
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
-0.869
+0.87
 </td>
 </tr>
 <tr>
@@ -2330,7 +2329,7 @@ Verhält sich übermäßig schüchtern
 0.69
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-2.1
+2.11
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
 0.12
@@ -2339,7 +2338,7 @@ Verhält sich übermäßig schüchtern
 0.559
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
-0.869
+0.87
 </td>
 </tr>
 <tr>
@@ -2362,7 +2361,7 @@ Beteiligt sich nicht an Gruppenaktionen
 0.14
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.659
+0.66
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.859
@@ -2388,7 +2387,7 @@ Lässt sich langsam auf neue Personen ein
 0.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col7">
-0.527
+0.53
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; background-color:#f2f2f2; col8">
 0.873
@@ -2396,15 +2395,15 @@ Lässt sich langsam auf neue Personen ein
 </tr>
 <tr>
 <td colspan="9" style="font-style:italic; border-top:double black; text-align:right;">
-Mean inter-item-correlation=0.485 · Cronbach’s α=0.876
+Mean inter-item-correlation=0.485 · Cronbach’s α=0.877
 </td>
 </tr>
 </table>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"AD"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="st">  </span><span class="kw">sjt.itemanalysis</span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Anxious/ Depressed"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw"><a href="../reference/select_scale.html">select_scale</a></span>(<span class="dt">scale =</span> <span class="st">"ITRF"</span>, <span class="dt">subscale =</span> <span class="st">"Int"</span>, <span class="dt">subscale_2 =</span> <span class="st">"AD"</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw"><a href="../reference/names2item.html">names2item</a></span>(<span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="st">  </span>sjPlot<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sjPlot/man/sjt.itemanalysis.html">sjt.itemanalysis</a></span>(<span class="dt">factor.groups.titles =</span> <span class="st">"Anxious/ Depressed"</span>)</a></code></pre></div>
 <table class="table">
 <caption style="font-weight: bold; text-align:left;">
 Anxious/ Depressed
@@ -2481,7 +2480,7 @@ Macht sich Sorgen über unwichtige Details
 0.14
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.64
+0.641
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.871
@@ -2507,7 +2506,7 @@ Beschwert sich über Kopfschmerzen oder Bauchschmerzen
 0.12
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.61
+0.611
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.873
@@ -2533,7 +2532,7 @@ Wirkt unglücklich oder traurig
 0.16
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.639
+0.64
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.871
@@ -2585,7 +2584,7 @@ Verhält sich nervös
 0.11
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col7">
-0.523
+0.522
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
 0.878
@@ -2611,7 +2610,7 @@ Verhält sich ängstlich
 0.12
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.563
+0.562
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.876
@@ -2657,13 +2656,13 @@ Macht sich selbst schlecht
 0.71
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
-1.97
+1.98
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; ">
 0.13
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col7">
-0.562
+0.561
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; col8">
 0.876
@@ -2683,7 +2682,7 @@ Weint oder ist weinerlich
 0.59
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
-2.89
+2.88
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; ">
 0.08
@@ -2692,7 +2691,7 @@ Weint oder ist weinerlich
 0.575
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; background-color:#f2f2f2; col8">
-0.875
+0.876
 </td>
 </tr>
 <tr>
@@ -2709,7 +2708,7 @@ Macht sich ständig Sorgen
 0.68
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
-2.01
+2
 </td>
 <td style=" padding:0.2cm; text-align:left; vertical-align:top; text-align:center; border-bottom: double; ">
 0.12
@@ -2732,13 +2731,13 @@ Mean inter-item-correlation=0.409 · Cronbach’s α=0.884
 <h2 class="hasAnchor">
 <a href="#build-scale-scores" class="anchor"></a>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Ext"</span>)</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw"><a href="../reference/score_scale.html">score_scale</a></span>(dat, <span class="dt">subscale =</span> <span class="st">"Int"</span>)</a></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scores.html">select_scores</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw"><a href="../reference/select_scores.html">select_scores</a></span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/psych/man/describe.html">describe</a></span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>(<span class="dt">digits =</span> <span class="dv">1</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>

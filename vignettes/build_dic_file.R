@@ -5,6 +5,7 @@ library(tibble)
 library(psych)
 library(sjPlot)
 library(scaledic)
+library(MASS)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
