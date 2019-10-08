@@ -3,30 +3,36 @@
 #'
 #' @param data A data frame
 #' @param chars If not NULL, only the first n chars og the long label will be applied.
-#' @param short If TRUE, the sublabel will be set before the variable name.
-#' @param prefix A string defining a Prefix. Either "scale", "subscale", or "subscale2"
-#' @param id If set TRUE, the item id will be set in the variable name
-#' @param reverse If set TRUE, weights will be set in the varibable name
-#' @param scale Unused
-#' @param sep Character with seperator.
+#' @param prefix A character string or vector of character strings defining a prefix.
+#' May include "scale", "subscale", "subscale2", "index", "reverse", or "weight".
+#' @param char_sep Character with seperator between prefix information.
+#' @param char_weight Character vector of length two with signs for negative and positive weights.
+#' @param char_prefix_end Character with seperator between prefi and item.
 #' @details names2item renames to the long label.
 #' names2label renames to the short label.
 #'
 #' @return A renamed data frame
 #' @export
-names2item <- function(data, chars = NULL, prefix = "", short = FALSE, id = FALSE,
-                       reverse = FALSE, scale = NULL, sep = "_") {
-  if (isTRUE(short)) prefix <- "subscale"
+names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
+
   for (i in 1:ncol(data)) {
     item_label <- dic_attr(data[[i]], .opt$item_label)
     if (!is.null(item_label)) {
       item_prefix <- ""
-      if ("scale" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$scale)
-      if ("subscale" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$subscale)
-      if ("subscale2" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$subscale_2)
-      if (id) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), sep = sep)
-      if (reverse) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$weight), sep = sep)
-      if (prefix != "" || id) item_prefix <- paste0(item_prefix, ":")
+      if (any(c("reverse", "weight") %in% prefix))
+        item_prefix <- paste0(
+          item_prefix,
+          ifelse(dic_attr(data[[i]], .opt$weight) < 0, char_weight[1], char_weight[2])
+        )
+      if ("scale" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$scale), char_sep)
+      if ("subscale" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale), char_sep)
+      if ("subscale2" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale_2), char_sep)
+      if ("index" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), char_sep)
+
+      if (item_prefix != "") {
+        item_prefix <- paste0(substring(item_prefix, 1, nchar(item_prefix) - length(char_sep)), char_prefix_end)
+      }
+
       item_label <- paste0(item_prefix, item_label)
       if (!is.null(chars)) item_label <- substring(item_label, 1, chars)
       names(data)[i] <- item_label
