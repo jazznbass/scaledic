@@ -16,6 +16,8 @@ names2label(data)
 
 \item{chars}{If not NULL, only the first n chars og the long label will be applied.}
 
+\item{prefix}{A string defining a Prefix. Either "scale", "subscale", or "subscale2"}
+
 \item{short}{If TRUE, the sublabel will be set before the variable name.}
 
 \item{id}{If set TRUE, the item id will be set in the variable name}

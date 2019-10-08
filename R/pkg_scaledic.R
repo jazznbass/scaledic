@@ -7,6 +7,7 @@
 #' @docType package
 #' @author Juergen Wilbert [aut, cre]
 #' @keywords package
+#' @importFrom openxlsx write.xlsx
 #' @import purrr
 #' @import Amelia
 #' @import dplyr
@@ -23,9 +24,10 @@
 #' list_scales(dat, labels = TRUE)
 #' # Example with pipeline syntax. Would be much easier to use the "describe" function
 #' # from the psch packages instead of summarise_all here.
+#' library(dplyr)
 #' dat %>%
-#'   select(get_index(dat, scale = "ITRF", subscale = "Ext")) %>%
-#'   names2item(short = TRUE, id = TRUE) %>%
+#'   select_scale(scale = "ITRF", subscale = "Ext") %>%
+#'   names2item(prefix = "subscale2", id = TRUE) %>%
 #'   summarise_all(mean, na.rm = TRUE) %>%
 #'   round(2) %>%
 #'   t()

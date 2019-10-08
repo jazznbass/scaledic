@@ -18,7 +18,6 @@ library(scaledic)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
-  
 )
 ```
 
@@ -92,7 +91,6 @@ Here is extract of a dic file from the included example:
 ```{r}
 dic_ITRF %>% slice(1:3)  %>% kable()
 ```
-
 
 ## Apply a dictionary file
 

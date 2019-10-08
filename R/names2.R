@@ -4,6 +4,7 @@
 #' @param data A data frame
 #' @param chars If not NULL, only the first n chars og the long label will be applied.
 #' @param short If TRUE, the sublabel will be set before the variable name.
+#' @param prefix A string defining a Prefix. Either "scale", "subscale", or "subscale2"
 #' @param id If set TRUE, the item id will be set in the variable name
 #' @param reverse If set TRUE, weights will be set in the varibable name
 #' @param scale Unused
@@ -20,9 +21,9 @@ names2item <- function(data, chars = NULL, prefix = "", short = FALSE, id = FALS
     item_label <- dic_attr(data[[i]], .opt$item_label)
     if (!is.null(item_label)) {
       item_prefix <- ""
-      if (prefix %in% "scale") item_prefix <- dic_attr(data[[i]], .opt$scale)
-      if (prefix %in% "subscale") item_prefix <- dic_attr(data[[i]], .opt$subscale)
-      if (prefix %in% "subscale2") item_prefix <- dic_attr(data[[i]], .opt$subscale_2)
+      if ("scale" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$scale)
+      if ("subscale" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$subscale)
+      if ("subscale2" %in% prefix) item_prefix <- dic_attr(data[[i]], .opt$subscale_2)
       if (id) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), sep = sep)
       if (reverse) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$weight), sep = sep)
       if (prefix != "" || id) item_prefix <- paste0(item_prefix, ":")

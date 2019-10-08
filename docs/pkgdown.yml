@@ -2,5 +2,6 @@ pandoc: 2.3.1
 pkgdown: 1.4.1
 pkgdown_sha: ~
 articles:
+  build_dic_file: build_dic_file.html
   scaledic: scaledic.html
 
