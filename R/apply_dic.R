@@ -11,8 +11,33 @@
 
 apply_dic <- function(data, dic, factors = TRUE) {
 
-  opt.attr <- .dic_file
+  #opt.attr <- .dic_file
   names(dic) <- tolower(names(dic))
+
+  #copy label to var when var is missing
+  if (is.null(dic[[.dic_file$variable]]))
+    dic[[.dic_file$variable]] <- dic[[.dic_file$item_label_short]]
+
+  # check for missing weight variable
+  if (is.null(dic[[.dic_file$weight]])) {
+    message("'Weight' variable missing in the dictionary file. Variable inserted with default of 1.")
+    dic[[.dic_file$weight]] <- 1
+  }
+
+  # check for missing type variable
+  if (is.null(dic[[.dic_file$type]])) {
+    message("'type' variable missing in the dictionary file. Variable inserted with default of 'integer'.")
+    dic[[.dic_file$type]] <- "integer"
+  }
+
+  # checking other missing variables in dictionary file
+  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
+  if (length(miss) > 0) {
+    miss %>%
+      paste(collapse = ", ") %>%
+      message("The following variables were missing in the dictionary file: ", .)
+    dic[, miss] <- NA
+  }
 
   # type NA to integer
   miss_type <- which(is.na(dic[[.dic_file$type]]))
@@ -32,43 +57,25 @@ apply_dic <- function(data, dic, factors = TRUE) {
   for (i in 1:nrow(dic)){
     if (is.na(dic[[.dic_file$item_label_short]][i])) {
       message("Missing label found at variabel no. ", i, " in dic file.")
-      # dic[[.dic_file$item_label_short]][i] <- paste0(
-      #   dic[[.dic_file$scale]][i], "_",
-      #   dic[[.dic_file$subscale]][i], "_",
-      #   dic[[.dic_file$index]][i]
-      # )
-      # message("Replaced missing label to ", dic[[.dic_file$item_label_short]][i])
     }
   }
 
-  #copy label to var when var is missing
-  if (!(.dic_file$variable %in% names(dic)))
-    dic[[.dic_file$variable]] <- dic[[.dic_file$item_label_short]]
-
-  # checking missing variables in dictionary file
-  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
-  if (length(miss) > 0) {
-    miss %>%
-      paste(collapse = ", ") %>%
-      message("The following variables were missing in the dictionary file: ", .)
-    dic[, miss] <- NA
-  }
   for (i in 1:nrow(dic)) {
     id <- which(names(data) == dic[[.dic_file$variable]][i])
     if (length(id) == 0) {
       message("Variable ", dic[[.dic_file$variable]][i], " not found in data file.\n")
       next
     }
-    names(data)[id] <- dic[[opt.attr$item_label_short]][i]
+    names(data)[id] <- dic[[.dic_file$item_label_short]][i]
 
     ### extract values and value labels
     values <-
-      paste0("c(", as.character(dic[i, opt.attr$values]), ")") %>%
+      paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
       parse(text = .) %>%
       eval()
 
     value_labels <-
-      dic[i, opt.attr$value_labels] %>%
+      dic[i, .dic_file$value_labels] %>%
       as.character() %>%
       strsplit(";") %>%
       unlist() %>%
@@ -83,17 +90,17 @@ apply_dic <- function(data, dic, factors = TRUE) {
 
     ### extract missing
     dic_attr(data[[id]], .opt$missing) <-
-      paste0("c(", as.character(dic[[opt.attr$missing]][i]), ")") %>%
+      paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")") %>%
       parse(text = .) %>%
       eval()
 
     ### assign attributes
-    filter <- !(names(opt.attr) %in% c("values", "value_labels", "missing", "variables"))
+    filter <- !(names(.dic_file) %in% c("values", "value_labels", "missing", "variables"))
     set <- names(.dic_file)[filter]
 
     for (j in set) {
       target <- .opt[[j]]
-      source <- opt.attr[[j]]
+      source <- .dic_file[[j]]
       value_dic <- as.character(dic[[source]][i])
       dic_attr(data[[id]], target) <- value_dic
     }
@@ -108,8 +115,6 @@ apply_dic <- function(data, dic, factors = TRUE) {
     }
 
     dic_attr(data[[id]], .opt$class) <- "item"
-
   }
-
   data
 }
