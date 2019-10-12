@@ -108,11 +108,14 @@ apply_dic <- function(data, dic, factors = TRUE, replace_missing = TRUE) {
 
     ### set factors
     if (factors && dic_attr(data[[id]], .opt$type) == "factor") {
-      data[, id] <- factor(
-        data[, id],
-        levels = dic_attr(data[[id]], .opt$values),
-        labels = names(dic_attr(data[[id]], .opt$values))
+      values <- dic_attr(data[[id]], .opt$values)
+      temp <- factor(
+        data[[id]],
+        levels = values,
+        labels = names(values)
       )
+      attr(temp, .opt$dic) <- attr(data[[id]], .opt$dic)
+      data[[id]] <- temp
     }
 
     dic_attr(data[[id]], .opt$class) <- "item"

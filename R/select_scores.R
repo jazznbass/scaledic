@@ -5,9 +5,10 @@
 #' @return A data frame
 #' @export
 select_scores <- function(data) {
+
   filter <- which(
     sapply(
-      data, function(x) dic_attr(x, .opt$class) == "score"
+      data, function(x) isTRUE(dic_attr(x, .opt$class) == "score")
     )
   )
 

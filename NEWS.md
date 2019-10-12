@@ -1,5 +1,9 @@
-# scaledic 0.1.6
 
+# scaledic 0.1.7
+
+- `apply_dic()`: Bug with factor type solved
+
+# scaledic 0.1.6
 
 - new function `build_scaledic_skeleton()`: Creates an Excel file with a template for a dic file.
 - `list_scales()`: new argument `n_items` for displaying number of items per scale.
