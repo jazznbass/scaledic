@@ -17,16 +17,16 @@ get_index <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, na
   if (!is.null(subscale)) {
     id.sub <- which(data %>% map(~ dic_attr(.x, .opt$subscale)) %in% subscale)
   }
-  if (is.null(scale) && !is.null(subscale)) {
-    id <- id.sub
-  }
-  if (!is.null(scale) && !is.null(subscale)) {
-    id <- intersect(id, id.sub)
-  }
+
+  if (is.null(scale) && !is.null(subscale)) id <- id.sub
+  if (!is.null(scale) && !is.null(subscale)) id <- intersect(id, id.sub)
+
   if (!is.null(subscale_2)) {
     id.sub2 <- which(data %>% map(~ dic_attr(.x, .opt$subscale_2)) %in% subscale_2)
     id <- intersect(id, id.sub2)
   }
+
+  id <- id[which(data[id] %>% map(~ dic_attr(.x, .opt$class)) == "item")]
 
   if (names) id <- names(data)[id]
   id

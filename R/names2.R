@@ -4,7 +4,7 @@
 #' @param data A data frame
 #' @param chars If not NULL, only the first n chars og the long label will be applied.
 #' @param prefix A character string or vector of character strings defining a prefix.
-#' May include "scale", "subscale", "subscale2", "index", "reverse", or "weight".
+#' May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "label".
 #' @param char_sep Character with seperator between prefix information.
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
 #' @param char_prefix_end Character with seperator between prefi and item.
@@ -28,6 +28,7 @@ names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_wei
       if ("subscale" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale), char_sep)
       if ("subscale2" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale_2), char_sep)
       if ("index" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), char_sep)
+      if ("label" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$item_label_short), char_sep)
 
       if (item_prefix != "") {
         item_prefix <- paste0(substring(item_prefix, 1, nchar(item_prefix) - length(char_sep)), char_prefix_end)

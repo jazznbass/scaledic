@@ -20,7 +20,7 @@ impute_missing <- function(data, scale = NULL, subscale = NULL, subscale_2 = NUL
     for (i in id) {
       type <- dic_attr(data[[i]], .opt$type)
       values <- dic_attr(data[[i]], .opt$values)
-      if (!(type %in% c("integer", "float", "real")) || is.null(values)) next
+      if (!(type %in% c("integer", "float", "real", "numeric", "double")) || is.null(values)) next
       x <- data[[i]]
       max_values <- max(values)
       min_values <- min(values)

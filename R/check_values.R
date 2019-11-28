@@ -14,7 +14,7 @@
 #' @examples
 #' dat <- apply_dic(ITRF, dic_ITRF)
 #' check_values(dat, return = FALSE)
-check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = TRUE) {
+check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = TRUE, integer_as_double = TRUE) {
   id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
   name <- names(data)
   errors <- list()
@@ -26,18 +26,20 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
 
     ### strict checking integers otherwise use float
 
+    if(type %in% "integer" && integer_as_double) type <- "float"
+
     if (type %in% "integer" || is.na(type)) {
       id_error <- which(!(data[[i]] %in% values) & !is.na(data[[i]]))
     }
 
-    if (type %in% c("float", "real")) {
+    if (type %in% c("float", "real", "numeric", "")) {
       id_error <- which(
         (data[[i]] > max(values) | data[[i]] < min(values)) & !is.na(data[[i]])
       )
     }
 
     if (type %in% "factor") {
-      id_error <- which(!(data[[i]] %in% values) & !is.na(data[[i]]))
+      id_error <- which(!(data[[i]] %in% levels(data[[i]])) & !is.na(data[[i]]))
     }
 
     if (type %in% c("character", "characters", "string")) {

@@ -13,6 +13,7 @@ dic_attr <- function(x, var) {
 
 #' @rdname dic_attr
 #' @param value set value
+#' @export
 "dic_attr<-" <- function(x, var, value) {
   dic_attr <- attr(x, .opt$dic)
   if (is.null(dic_attr)) dic_attr <- list()

@@ -7,7 +7,7 @@ Checks if values in variables are within the set difined in
 the values and type dictionary attributes.}
 \usage{
 check_values(data, replace = NULL, return = TRUE, report = FALSE,
-  include_missing = TRUE)
+  include_missing = TRUE, integer_as_double = TRUE)
 }
 \arguments{
 \item{data}{A data frame}

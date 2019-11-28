@@ -1,4 +1,8 @@
 
+# scaledic 0.1.8
+
+- *dic_file*: new *type* values possible: 'numeric' or 'double'
+
 # scaledic 0.1.7
 
 - `apply_dic()`: Bug with factor type solved
