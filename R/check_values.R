@@ -8,7 +8,6 @@
 #' @param report If TRUE, an overview of invalid values will be given.
 #' @param include_missing If TRUE, missing values (provided in the dic file)
 #' will be considered as valid values.
-#'
 #' @return A data frame with replaced values if replaces is not NULL.
 #' @export
 #' @examples

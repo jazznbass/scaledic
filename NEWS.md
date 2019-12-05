@@ -2,6 +2,7 @@
 # scaledic 0.1.8
 
 - *dic_file*: new *type* values possible: 'numeric' or 'double'
+- *get_index()* now takes any dictionary attribute and returns an error message when an invalid dic attribute is selected.
 
 # scaledic 0.1.7
 

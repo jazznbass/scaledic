@@ -5,17 +5,18 @@
 \title{Score scale
 Calculates the scale scores.}
 \usage{
-score_scale(data, scale = NULL, subscale = NULL, subscale_2 = NULL,
-  bind = FALSE, FUN = sum, ...)
+score_scale(
+  data,
+  scale = NULL,
+  subscale = NULL,
+  subscale_2 = NULL,
+  bind = FALSE,
+  FUN = sum,
+  ...
+)
 }
 \arguments{
 \item{data}{A data frame}
-
-\item{scale}{String with scale name}
-
-\item{subscale}{String with subscale name}
-
-\item{subscale_2}{String with sub subscale name}
 
 \item{bind}{If set TRUE, returns the complete data frame. If set false,
 returns a data frame with the new score variables for each scale}

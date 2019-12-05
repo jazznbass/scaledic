@@ -24,7 +24,7 @@ list_scales(dat, labels = TRUE)
 library(dplyr)
 dat \%>\%
   select_scale(scale = "ITRF", subscale = "Ext") \%>\%
-  names2item(prefix = "subscale2", id = TRUE) \%>\%
+  names2item(prefix = c("subscale2", "index")) \%>\%
   summarise_all(mean, na.rm = TRUE) \%>\%
   round(2) \%>\%
   t()

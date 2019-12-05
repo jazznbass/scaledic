@@ -42,8 +42,6 @@ list_scales <- function(data, labels = FALSE, n_items = FALSE, char_na = "") {
     names(out) <- c("Scale", "Subscale", "Subscale_2", "Label scale", "Label subscale", "Label subscale 2")
   }
 
-
-
   if (n_items) {
     n_scale <- out %>%
       select(Scale) %>%
@@ -64,12 +62,12 @@ list_scales <- function(data, labels = FALSE, n_items = FALSE, char_na = "") {
         rename("n Scale" = Freq)
     if (nrow(n_subscale) > 0)
       out <- out %>%
-      full_join(n_subscale, by = c("Subscale" = ".")) %>%
-      rename("n Subscale" = Freq)
+        full_join(n_subscale, by = c("Subscale" = ".")) %>%
+        rename("n Subscale" = Freq)
     if (nrow(n_subscale2) > 0)
       out <- out %>%
-      full_join(n_subscale2, by = c("Subscale_2" = ".")) %>%
-      rename("n Subscale 2" = Freq)
+        full_join(n_subscale2, by = c("Subscale_2" = ".")) %>%
+        rename("n Subscale 2" = Freq)
   }
 
   out <- out %>%

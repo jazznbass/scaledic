@@ -6,8 +6,14 @@
 \title{Rename items
 Set names of items as long labels and vice versa.}
 \usage{
-names2item(data, chars = NULL, prefix = "", char_sep = "_",
-  char_weight = c("(-)", "(+)"), char_prefix_end = ": ")
+names2item(
+  data,
+  chars = NULL,
+  prefix = "",
+  char_sep = "_",
+  char_weight = c("(-)", "(+)"),
+  char_prefix_end = ": "
+)
 
 names2label(data)
 }

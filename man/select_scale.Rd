@@ -9,12 +9,6 @@ select_scale(data, scale = NULL, subscale = NULL, subscale_2 = NULL)
 }
 \arguments{
 \item{data}{A data frame}
-
-\item{scale}{String with scale name}
-
-\item{subscale}{String with subscale name}
-
-\item{subscale_2}{String with sub subscale name}
 }
 \value{
 A data frame

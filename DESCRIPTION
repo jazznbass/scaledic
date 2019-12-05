@@ -1,8 +1,8 @@
 Package: scaledic
 Type: Package
 Title: Functions and data frame extension for scale based operations
-Version: 0.1.7.2
-Date: 18.11.2019
+Version: 0.1.7.4
+Date: 2019-12-05
 Author: Juergen Wilbert
 Maintainer: Jürgen Wilbert <jwilbert@uni-potsdam.de>
 Description: This package was designed to implement (psychometric) scale information to items of a data frame. 
@@ -18,9 +18,9 @@ Suggests:
   knitr,
   tibble,
   psych,
-  dplyr
+  MASS
 License: GPL
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 6.1.1
+RoxygenNote: 7.0.1

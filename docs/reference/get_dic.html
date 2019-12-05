@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes. — check_values • scaledic</title>
+<title>Get dictionary information — get_dic • scaledic</title>
 
 
 <!-- jquery -->
@@ -37,12 +35,8 @@ the values and type dictionary attributes. — check_values • scaledic</title>
 
 
 
-<meta property="og:title" content="Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes. — check_values" />
-<meta property="og:description" content="Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes." />
+<meta property="og:title" content="Get dictionary information — get_dic" />
+<meta property="og:description" content="Get dictionary information" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,27 +118,16 @@ the values and type dictionary attributes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.</h1>
+    <h1>Get dictionary information</h1>
     
-    <div class="hidden name"><code>check_values.Rd</code></div>
+    <div class="hidden name"><code>get_dic.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.</p>
+    <p>Get dictionary information</p>
     </div>
 
-    <pre class="usage"><span class='fu'>check_values</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>replace</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>report</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>include_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>integer_as_double</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_dic</span>(<span class='no'>data</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -153,38 +136,18 @@ the values and type dictionary attributes.</p>
       <th>data</th>
       <td><p>A data frame</p></td>
     </tr>
-    <tr>
-      <th>replace</th>
-      <td><p>Value which relaces unvalid values (e.g., NA).</p></td>
-    </tr>
-    <tr>
-      <th>return</th>
-      <td><p>If TRUE, a data frame is returned with replaced values.</p></td>
-    </tr>
-    <tr>
-      <th>report</th>
-      <td><p>If TRUE, an overview of invalid values will be given.</p></td>
-    </tr>
-    <tr>
-      <th>include_missing</th>
-      <td><p>If TRUE, missing values (provided in the dic file)
-will be considered as valid values.</p></td>
-    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with replaced values if replaces is not NULL.</p>
+    <p>A list with dic information</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span>(<span class='no'>ITRF</span>, <span class='no'>dic_ITRF</span>)</div><div class='output co'>#&gt; <span class='message'>Replaced missging values.</span></div><div class='input'><span class='fu'>check_values</span>(<span class='no'>dat</span>, <span class='kw'>return</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
     </ul>
 
   </div>

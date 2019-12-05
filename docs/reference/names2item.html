@@ -72,7 +72,7 @@ Set names of items as long labels and vice versa." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.4</span>
       </span>
     </div>
 
@@ -132,8 +132,14 @@ Set names of items as long labels and vice versa.</h1>
 Set names of items as long labels and vice versa.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>names2item</span>(<span class='no'>data</span>, <span class='kw'>chars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>char_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
-  <span class='kw'>char_weight</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"(-)"</span>, <span class='st'>"(+)"</span>), <span class='kw'>char_prefix_end</span> <span class='kw'>=</span> <span class='st'>": "</span>)
+    <pre class="usage"><span class='fu'>names2item</span>(
+  <span class='no'>data</span>,
+  <span class='kw'>chars</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>prefix</span> <span class='kw'>=</span> <span class='st'>""</span>,
+  <span class='kw'>char_sep</span> <span class='kw'>=</span> <span class='st'>"_"</span>,
+  <span class='kw'>char_weight</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"(-)"</span>, <span class='st'>"(+)"</span>),
+  <span class='kw'>char_prefix_end</span> <span class='kw'>=</span> <span class='st'>": "</span>
+)
 
 <span class='fu'>names2label</span>(<span class='no'>data</span>)</pre>
 
@@ -151,7 +157,7 @@ Set names of items as long labels and vice versa.</p>
     <tr>
       <th>prefix</th>
       <td><p>A character string or vector of character strings defining a prefix.
-May include "scale", "subscale", "subscale2", "index", "reverse", or "weight".</p></td>
+May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "label".</p></td>
     </tr>
     <tr>
       <th>char_sep</th>
