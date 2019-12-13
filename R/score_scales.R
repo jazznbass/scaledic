@@ -11,7 +11,7 @@
 
 score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, bind = FALSE, FUN = sum, ...) {
 
-  vars <- get_index(data = data, scale = scale, subscale = subscale, subscale_2 = subscale_2)
+  vars <- get_index(data = data, scale = scale, subscale = subscale, subscale_2 = subscale_2, class = "item")
 
   df <- data %>% select(one_of(vars))
   #weight <- as.numeric(unlist(data[, vars, drop = FALSE] %>% map(~ dic_attr(.x, .opt$weight))))
