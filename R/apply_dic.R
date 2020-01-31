@@ -10,10 +10,13 @@
 #' list_scales(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, replace_missing = TRUE) {
+apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = FALSE, replace_missing = TRUE) {
 
   #opt.attr <- .dic_file
   names(dic) <- tolower(names(dic))
+
+  #rename dic names
+  #names(dic)[which(names(dic) %in% )] <- names
 
   #copy label to var when var is missing
   if (is.null(dic[[.dic_file$variable]]))
@@ -119,12 +122,18 @@ apply_dic <- function(data, dic, factors = TRUE, replace_missing = TRUE) {
     }
 
     dic_attr(data[[id]], .opt$class) <- "item"
+    if (set_dic_attr) class(data[[id]]) <- c("dic", class(data[[id]]))
   }
 
   if (replace_missing) {
     data <- replace_missing(data)
-    message("Replaced missging values.")
+    message("Replaced missing values.")
   }
 
+  if (set_label_attr) {
+    message("`label` attribute set.")
+    data <- dic_haven(data)
+  }
+  #class(data) <- c("dic_df", class(data))
   data
 }

@@ -1,7 +1,8 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 library(knitr)
 library(dplyr)
 library(tibble)
+library(MASS)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -9,23 +10,23 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  newdat <- select(dat, "iq", "age")
 #  newdat <- describe(newdat)
 #  newdat <- round(newdat, 2)
 #  kable(newdat)
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  kable(round(describe(select(dat, "iq", "age")), 2))
 
-## ----eval=FALSE----------------------------------------------------------
+## ----eval=FALSE---------------------------------------------------------------
 #  dat %>%
 #    select("iq", "age") %>%
 #    describe() %>%
 #    round(2) %>%
 #    kable()
 
-## ----echo = FALSE--------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "label", "A short item label", "itrf_1",
@@ -48,21 +49,21 @@ out <- tribble(
 kable(out, caption = "Columns of a dictionary file")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dic_ITRF %>% slice(1:3)  %>% kable()
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
 dat <- apply_dic(ITRF, dic_ITRF)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 list_scales(dat, labels = TRUE, n_items = TRUE) %>%
   kable()
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
 
-## ----message=FALSE, warning=FALSE----------------------------------------
+## ----message=FALSE, warning=FALSE---------------------------------------------
 # Imputation for items of the subscale ITRF_Ext
 dat <- impute_missing(dat, subscale = "Ext")
 
@@ -70,26 +71,26 @@ dat <- impute_missing(dat, subscale = "Ext")
 dat <- impute_missing(dat, subscale = "Int")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat %>% 
   select_scale(subscale = "Int") %>%
   psych::describe(fast = TRUE) %>%
   kable(digits = 1)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat %>% 
   select_scale(subscale = "Int") %>%
   names2item() %>%
   psych::describe(fast = TRUE) %>%
   kable(digits = 1)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat %>%
   select_scale(scale = "ITRF") %>%
   names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
   sjPlot::sjt.fa(nmbr.fctr = 4, wrap.labels = 70, show.comm = TRUE)
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat %>%
   select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "APD") %>%
   names2item(chars = 70) %>% 
@@ -111,11 +112,11 @@ dat %>%
   sjPlot::sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
 
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat$itrf_ext <- score_scale(dat, subscale = "Ext")
 dat$itrf_int <- score_scale(dat, subscale = "Int")
 
-## ------------------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat %>%
   select_scores() %>%
   psych::describe(fast = TRUE) %>%

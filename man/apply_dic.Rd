@@ -4,7 +4,14 @@
 \alias{apply_dic}
 \title{Apply dictionary}
 \usage{
-apply_dic(data, dic, factors = TRUE, replace_missing = TRUE)
+apply_dic(
+  data,
+  dic,
+  factors = TRUE,
+  set_dic_attr = TRUE,
+  set_label_attr = FALSE,
+  replace_missing = TRUE
+)
 }
 \arguments{
 \item{data}{Data frame}

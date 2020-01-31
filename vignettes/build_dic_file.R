@@ -1,17 +1,16 @@
-## ----setup, include = FALSE----------------------------------------------
+## ----setup, include = FALSE---------------------------------------------------
 library(knitr)
 library(dplyr)
 library(tibble)
 library(psych)
 library(sjPlot)
 library(scaledic)
-library(MASS)
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 
-## ----echo = FALSE--------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "label", "A short item label", "itrf_1",
@@ -34,6 +33,6 @@ out <- tribble(
 kable(out, caption = "Columns of a dictionary file")
 
 
-## ----echo = FALSE--------------------------------------------------------
+## ----echo = FALSE-------------------------------------------------------------
 dic_ITRF %>% slice(1:3)  %>% kable()
 

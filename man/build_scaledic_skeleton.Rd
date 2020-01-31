@@ -4,7 +4,7 @@
 \alias{build_scaledic_skeleton}
 \title{Build a dictionary file template}
 \usage{
-build_scaledic_skeleton(filename = "dic_template.xlsx")
+build_scaledic_skeleton(filename = "dic_template.xlsx", nrows = 0)
 }
 \arguments{
 \item{filename}{Character string. Default is 'dic_template.xlsx'}
