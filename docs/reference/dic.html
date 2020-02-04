@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Impute missing values — impute_missing • scaledic</title>
+<title>Show variable with dic information — dic • scaledic</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -32,9 +32,9 @@
 
 
 
-<meta property="og:title" content="Impute missing values — impute_missing" />
+<meta property="og:title" content="Show variable with dic information — dic" />
 
-<meta property="og:description" content="Impute missing values" />
+<meta property="og:description" content="Show variable with dic information" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -116,42 +116,31 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Impute missing values</h1>
+    <h1>Show variable with dic information</h1>
     
-    <div class="hidden name"><code>impute_missing.Rd</code></div>
+    <div class="hidden name"><code>dic.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Impute missing values</p>
+    <p>Show variable with dic information</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>impute_missing</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subscale_2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>force_to_scale</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
-)</pre>
+    <pre class="usage"><span class='fu'>dic</span>(<span class='no'>data</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A data frame</p></td>
-    </tr>
-    <tr>
-      <th>force_to_scale</th>
-      <td><p>If TRUE, imputed values will be rounded and forced to the scale.
-That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.</p></td>
+      <th>A</th>
+      <td><p>variable</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with imputed data.</p>
+    <p>Prints content of varable with dic information added.</p>
     
 
   </div>
