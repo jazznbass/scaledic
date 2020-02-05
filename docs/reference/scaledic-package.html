@@ -8,11 +8,13 @@
 
 <title>Scale Dictionary — scaledic-package • scaledic</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -32,10 +34,11 @@
 
 
 
-<meta property="og:title" content="Scale Dictionary — scaledic-package" />
 
+<meta property="og:title" content="Scale Dictionary — scaledic-package" />
 <meta property="og:description" content="A collection of procedures to bring labels, scales, missing values etc. to a data frame." />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -100,7 +103,6 @@
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -122,12 +124,11 @@
     </div>
 
     <div class="ref-description">
-    
     <p>A collection of procedures to bring labels, scales, missing values etc. to a data frame.</p>
-    
     </div>
 
-        
+
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># apply a dictionary file to a data frame</span>
@@ -139,15 +140,15 @@
 <span class='fu'><a href='list_scales.html'>list_scales</a></span>(<span class='no'>dat</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 6</span><span>
 #&gt;   Scale Subscale Subscale_2 `Label scale`    `Label subscale` `Label subscale 2`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
-#&gt; </span><span style='color: #555555;'>1</span><span> ITRF  Ext      APD        Integrated teac~ Externalizing    Academic Producti~
-#&gt; </span><span style='color: #555555;'>2</span><span> ITRF  Ext      OPP        Integrated teac~ Externalizing    Oppositional/Disr~
-#&gt; </span><span style='color: #555555;'>3</span><span> ITRF  Int      AD         Integrated teac~ Internalizing    Anxious/Depressed 
-#&gt; </span><span style='color: #555555;'>4</span><span> ITRF  Int      SW         Integrated teac~ Internalizing    Socially Withdrawn</div><div class='input'><span class='co'># Example with pipeline syntax. Would be much easier to use the "describe" function</span>
+#&gt; </span><span style='color: #555555;'>1</span><span> ITRF  Ext      APD        Integrated teac… Externalizing    Academic Producti…
+#&gt; </span><span style='color: #555555;'>2</span><span> ITRF  Ext      OPP        Integrated teac… Externalizing    Oppositional/Disr…
+#&gt; </span><span style='color: #555555;'>3</span><span> ITRF  Int      AD         Integrated teac… Internalizing    Anxious/Depressed 
+#&gt; </span><span style='color: #555555;'>4</span><span> ITRF  Int      SW         Integrated teac… Internalizing    Socially Withdrawn</div><div class='input'><span class='co'># Example with pipeline syntax. Would be much easier to use the "describe" function</span>
 <span class='co'># from the psch packages instead of summarise_all here.</span>
 <span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>dplyr</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attache Paket: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>dat</span> <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='select_scale.html'>select_scale</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF"</span>, <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='st'>"Ext"</span>) <span class='kw'>%&gt;%</span>
@@ -176,7 +177,6 @@
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
