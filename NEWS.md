@@ -1,12 +1,13 @@
 
 # scaledic 0.1.7.6
 
-- New class `dic` with a new `[` function. This allows to subset dataframes with dictionaries without loosing the dic information. The class is added as the fist class to each variable in a dataframe that contains dic information.
+- New class `dic` with a `[` method. This allows to subset dataframes with dictionaries without loosing the dic information. The class is added as the fist class to each variable in a dataframe that contains dic information.
+- `print()` method for class *dic*.
 - *dic_file*: new *type* values possible: 'numeric' or 'double'
-- *get_index()* now takes any dictionary attribute and returns an error message when an invalid dic attribute is selected.
-- *dic_haven()*: Adds Hmisc/haven labels from dic infos
-- *haven_dic()*: Adds dic infos from haven labels
-- *apply_dic()*: New argument `set_label_attr`. If TRUE executes `dic_haven()`.
+- `get_index()` now takes any dictionary attribute and returns an error message when an invalid dic attribute is selected.
+- `dic_haven()`: Adds Hmisc/haven labels from dic infos
+- `haven_dic()`: Adds dic infos from haven labels
+- `apply_dic()`: New argument `set_label_attr`. If TRUE executes `dic_haven()`.
 
 # scaledic 0.1.7
 
