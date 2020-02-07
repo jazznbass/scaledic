@@ -50,8 +50,8 @@ score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, 
   dic_attr(df, .opt$scale) <- scale
   dic_attr(df, .opt$subscale) <- subscale
   dic_attr(df, .opt$subscale_2) <- subscale_2
-  dic_attr(df, .opt$item_label_short) <- paste(scale, subscale, subscale_2)
   dic_attr(df, .opt$item_label) <- paste(scale, subscale, subscale_2)
+  dic_attr(df, .opt$item_name) <- paste(scale, subscale, subscale_2)
   ###
 
   df

@@ -16,7 +16,7 @@ set_dic <- function(data, vars, parameters, fill_missing = TRUE) {
   }
 
   set <- c(
-    "item_label", "item_label_short", "scale", "subscale",
+    "item_name", "item_label", "scale", "subscale",
     "subscale_2", "scale_label", "subscale_label",
     "subscale_2_label", "index", "weight", "source", "note", "type"
   )

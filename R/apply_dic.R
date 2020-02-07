@@ -20,7 +20,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
 
   #copy label to var when var is missing
   if (is.null(dic[[.dic_file$variable]]))
-    dic[[.dic_file$variable]] <- dic[[.dic_file$item_label_short]]
+    dic[[.dic_file$variable]] <- dic[[.dic_file$item_label]]
 
   # check for missing weight variable
   if (is.null(dic[[.dic_file$weight]])) {
@@ -59,7 +59,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
 
   # set default name when label is missing
   for (i in 1:nrow(dic)){
-    if (is.na(dic[[.dic_file$item_label_short]][i])) {
+    if (is.na(dic[[.dic_file$item_label]][i])) {
       message("Missing label found at variabel no. ", i, " in dic file.")
     }
   }
@@ -70,7 +70,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
       message("Variable ", dic[[.dic_file$variable]][i], " not found in data file.\n")
       next
     }
-    names(data)[id] <- dic[[.dic_file$item_label_short]][i]
+    names(data)[id] <- dic[[.dic_file$item_label]][i]
 
     ### extract values and value labels
     values <-
