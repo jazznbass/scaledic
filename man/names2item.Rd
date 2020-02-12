@@ -23,7 +23,7 @@ names2label(data)
 \item{chars}{If not NULL, only the first n chars og the long label will be applied.}
 
 \item{prefix}{A character string or vector of character strings defining a prefix.
-May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "label".}
+May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "najme".}
 
 \item{char_sep}{Character with seperator between prefix information.}
 
