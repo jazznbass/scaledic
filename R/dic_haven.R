@@ -6,7 +6,7 @@
 #' @export
 dic_haven <- function(data) {
   for(i in .get_dic_items(data)) {
-    attr(data[[i]], "label") <- dic_attr(data[[i]], .opt$item_name)
+    attr(data[[i]], "label") <- dic_attr(data[[i]], .opt$item_label)
     attr(data[[i]], "labels") <- dic_attr(data[[i]], .opt$values)
   }
   data

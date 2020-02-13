@@ -10,7 +10,7 @@
 #' list_scales(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = FALSE, replace_missing = TRUE) {
+apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE) {
 
   #opt.attr <- .dic_file
   names(dic) <- tolower(names(dic))

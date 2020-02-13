@@ -1,4 +1,15 @@
 
+# scaledic 0.1.7.8
+
+- `score_scale()`: New argument `sum`. If TRUE, calculated the sum and if FALSE, calculates the mean. Argument `label` can be used to set a dic label for the resulting score variable. When label is left NULL, a label will be generated automatically.
+- `apply_dic()`: Agrument `set_label_attr` is now `TRUE` by default.
+
+# scaledic 0.1.7.7
+
+- Internal rename of dic attribute names.
+- Variable name of *dic* file is now "name" by default. `label` is still possible but will be renamed internally.
+
+
 # scaledic 0.1.7.6
 
 - New class `dic` with a `[` method. This allows to subset dataframes with dictionaries without loosing the dic information. The class is added as the fist class to each variable in a dataframe that contains dic information.

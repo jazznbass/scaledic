@@ -3,18 +3,37 @@
 #'
 #' @inheritParams get_index
 #' @param bind If set TRUE, returns the complete data frame. If set false,
-#'  returns a data frame with the new score variables for each scale
-#' @param FUN A function for caluclating the score (e.g., sum, mean, median)
+#'  returns a data frame with the new score variables for each scale.
+#' @param sum If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.
+#' @param label A character string with a label for the resulting score variable. Automatically generated if label is not set.
+#' @param FUN A function for caluclating the score (e.g., median)
 #' @param ... Further arguments passed to the FUN function (e.g., na.rm = TRUE)
 #' @return A data frame
 #' @export
 
-score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, bind = FALSE, FUN = sum, ...) {
+score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL,
+                        bind = FALSE,  sum = FALSE, label = NULL,
+                        FUN = NULL, ...) {
+
+  args <- list(...)
+  function_name <- "score"
+  if(is.null(FUN)) {
+    if (sum) {
+      FUN <- base::sum
+      args <- list(na.rm = TRUE)
+      function_name <- "sum"
+    }
+    if (!sum) {
+      FUN <- base::mean
+      args <- list(na.rm = TRUE)
+      function_name <- "mean"
+    }
+  }
 
   vars <- get_index(data = data, scale = scale, subscale = subscale, subscale_2 = subscale_2, class = "item")
 
   df <- data %>% select(one_of(vars))
-  #weight <- as.numeric(unlist(data[, vars, drop = FALSE] %>% map(~ dic_attr(.x, .opt$weight))))
+
   weight <- df %>%
     map(~ dic_attr(.x, .opt$weight)) %>%
     unlist() %>%
@@ -30,12 +49,10 @@ score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, 
     map(~ min(dic_attr(.x, .opt$values))) %>%
     unlist() %>%
     as.numeric()
-  #max_values <- as.numeric(unlist(data[, vars, drop = FALSE] %>% map(~ max(dic_attr(.x, .opt$values)))))
-  #min_values <- as.numeric(unlist(data[, vars, drop = FALSE] %>% map(~ min(dic_attr(.x, .opt$values)))))
 
   df <- apply(df, 1, function(x) {
     score <- ifelse(sign == 1, x * weight, (max_values - x + min_values) * weight)
-    score <- FUN(score, ...)
+    score <- do.call(FUN, c(list(score), args))
     score
   })
   if (!isFALSE(bind)) {
@@ -45,14 +62,20 @@ score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, 
   }
 
   ### set dictionary attributes
+  if( is.null(label)) label <- paste0(
+    function_name,
+    if (!is.null(scale)) paste0("_", scale),
+    if (!is.null(subscale)) paste0("_", subscale),
+    if (!is.null(subscale_2)) paste0("_", subscale_2)
+  )
   attr(df, .opt$dic) <- list()
   dic_attr(df, .opt$class) <- "score"
   dic_attr(df, .opt$scale) <- scale
   dic_attr(df, .opt$subscale) <- subscale
   dic_attr(df, .opt$subscale_2) <- subscale_2
-  dic_attr(df, .opt$item_label) <- paste(scale, subscale, subscale_2)
-  dic_attr(df, .opt$item_name) <- paste(scale, subscale, subscale_2)
+  dic_attr(df, .opt$item_label) <- label
+  dic_attr(df, .opt$item_name) <- label
   ###
-
+  attr(df, "label") <- label
   df
 }

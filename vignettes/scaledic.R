@@ -113,8 +113,8 @@ dat %>%
 
 
 ## -----------------------------------------------------------------------------
-dat$itrf_ext <- score_scale(dat, subscale = "Ext")
-dat$itrf_int <- score_scale(dat, subscale = "Int")
+dat$itrf_ext <- score_scale(dat, scale = "ITRF", subscale = "Ext")
+dat$itrf_int <- score_scale(dat, scale = "ITRF", subscale = "Int")
 
 ## -----------------------------------------------------------------------------
 dat %>%

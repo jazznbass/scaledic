@@ -11,7 +11,9 @@ score_scale(
   subscale = NULL,
   subscale_2 = NULL,
   bind = FALSE,
-  FUN = sum,
+  sum = FALSE,
+  label = NULL,
+  FUN = NULL,
   ...
 )
 }
@@ -19,9 +21,13 @@ score_scale(
 \item{data}{A data frame}
 
 \item{bind}{If set TRUE, returns the complete data frame. If set false,
-returns a data frame with the new score variables for each scale}
+returns a data frame with the new score variables for each scale.}
 
-\item{FUN}{A function for caluclating the score (e.g., sum, mean, median)}
+\item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.}
+
+\item{label}{A character string with a label for the resulting score variable. Automatically generated if label is not set.}
+
+\item{FUN}{A function for caluclating the score (e.g., median)}
 
 \item{...}{Further arguments passed to the FUN function (e.g., na.rm = TRUE)}
 }

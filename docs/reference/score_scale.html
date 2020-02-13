@@ -72,7 +72,7 @@ Calculates the scale scores." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.8</span>
       </span>
     </div>
 
@@ -138,7 +138,9 @@ Calculates the scale scores.</p>
   <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>subscale_2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>bind</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='no'>sum</span>,
+  <span class='kw'>sum</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>FUN</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='no'>...</span>
 )</pre>
 
@@ -152,11 +154,19 @@ Calculates the scale scores.</p>
     <tr>
       <th>bind</th>
       <td><p>If set TRUE, returns the complete data frame. If set false,
-returns a data frame with the new score variables for each scale</p></td>
+returns a data frame with the new score variables for each scale.</p></td>
+    </tr>
+    <tr>
+      <th>sum</th>
+      <td><p>If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.</p></td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td><p>A character string with a label for the resulting score variable. Automatically generated if label is not set.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
-      <td><p>A function for caluclating the score (e.g., sum, mean, median)</p></td>
+      <td><p>A function for caluclating the score (e.g., median)</p></td>
     </tr>
     <tr>
       <th>...</th>
