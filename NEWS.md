@@ -1,4 +1,11 @@
 
+# scaledic 0.1.7.9
+
+- New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: `select_scale(data, scale == "ITRF")`, `get_index(data, scale == "ITRF" & subscale = "Int" & weight == 1)`. The old specification is still working but depracted.
+- New format is applicable in: `get_index()`, `select_scale()`, `impute_missing()`, `score_scales()`.
+- dicfile: `sub_scale` and `sub_scale_2` renamed to `subscale` and `subscale_2`. Old dic files still work as variables are renamed to new versions on import.
+- Internal reorganization: dic attributes `sub_scale` and `sub_scale_2` renamed to `subscale` and `subscale_2`.
+
 # scaledic 0.1.7.8
 
 - `score_scale()`: New argument `sum`. If TRUE, calculated the sum and if FALSE, calculates the mean. Argument `label` can be used to set a dic label for the resulting score variable. When label is left NULL, a label will be generated automatically.
