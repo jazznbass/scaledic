@@ -17,6 +17,10 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
 
   #rename dic names
   names(dic)[which(names(dic) %in% "label")] <- "name"
+  names(dic)[which(names(dic) %in% "sub_scale_2")] <- "subscale_2"
+  names(dic)[which(names(dic) %in% "sub_scale")] <- "subscale"
+  names(dic)[which(names(dic) %in% "sub_scale_label")] <- "subscale_label"
+  names(dic)[which(names(dic) %in% "sub_scale_2_label")] <- "subscale_2_label"
 
   #copy name to var when var is missing
   if (is.null(dic[[.dic_file$variable]]))
