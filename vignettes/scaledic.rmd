@@ -92,7 +92,9 @@ kable(out, caption = "Columns of a dictionary file")
 Here is extract of a dic file from the included example:
 
 ```{r dic_example}
-dic_ITRF %>% slice(1:3) 
+dic_ITRF %>% 
+  slice(1:3) %>%
+  kable()
 ```
 
 ## Apply a dictionary file
@@ -110,7 +112,8 @@ dat <- apply_dic(ITRF, dic_ITRF)
 Let us get an overview of all scales in the dataset:
 
 ```{r list_scales}
-list_scales(dat, labels = TRUE, n_items = TRUE)
+list_scales(dat, labels = TRUE, n_items = TRUE) %>%
+  kable()
 ```
 
 ## Clean raw data
@@ -145,7 +148,7 @@ Let us see descriptive statistics for the Internalizing sub scale:
 dat %>% 
   select_scale(subscale == "Int") %>%
   psych::describe(fast = TRUE) %>%
-  round(1)
+  kable(digits = 1)
 ```
 
 ## See items instead of labels
@@ -157,7 +160,7 @@ dat %>%
   select_scale(subscale == "Int") %>%
   names2item() %>%
   psych::describe(fast = TRUE) %>%
-  round(1)
+  kable(digits = 1)
 ```
 
 And further we analyse the factor structure  
@@ -166,7 +169,8 @@ And further we analyse the factor structure
 dat %>%
   select_scale(scale == "ITRF") %>%
   names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
-  psych_fa(nfactors = 4, cut = 0.4)
+  psych_fa(nfactors = 4, cut = 0.4) %>%
+  kable()
 ```
 
 and provide item analyses
@@ -178,7 +182,8 @@ scales <- list(
   "Socialy Withdrawn" = get_index(dat, subscale_2 == "SW"),
   "Anxious/ Depressed" = get_index(dat, subscale_2 == "AD")
 )
-alpha_table(dat, scales = scales)
+alpha_table(dat, scales = scales) %>%
+  kable()
 
 ```
 
@@ -197,7 +202,7 @@ and get descriptives for these scores
 dat %>%
   select_scores() %>%
   psych::describe(fast = TRUE) %>%
-  round(1)
+  kable(digits = 1)
 ```
 
 

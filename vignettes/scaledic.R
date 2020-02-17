@@ -6,6 +6,8 @@ library(MASS)
 library(scaledic)
 
 knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
   collapse = TRUE,
   comment = "#>"
 )
@@ -49,17 +51,67 @@ out <- tribble(
 kable(out, caption = "Columns of a dictionary file")
 
 
-## -----------------------------------------------------------------------------
-dic_ITRF %>% slice(1:3)  %>% kable()
+## ----dic_example--------------------------------------------------------------
+dic_ITRF %>% slice(1:3) 
 
-## -----------------------------------------------------------------------------
+## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
 dat <- apply_dic(ITRF, dic_ITRF)
 
-## -----------------------------------------------------------------------------
-list_scales(dat, labels = TRUE, n_items = TRUE) %>%
-  kable()
+## ----list_scales--------------------------------------------------------------
+list_scales(dat, labels = TRUE, n_items = TRUE)
+
+## ----check_values-------------------------------------------------------------
+dat <- check_values(dat, replace = NA)
+
+## ----impute_missing, eval = FALSE---------------------------------------------
+#  # Imputation for items of the subscale Ext
+#  dat <- impute_missing(dat, subscale == "Ext")
+#  
+#  # Imputation for items of the subscale Int
+#  dat <- impute_missing(dat, subscale == "Int")
+#  
+
+## ----include=FALSE------------------------------------------------------------
+dat <- impute_missing(dat, subscale == "Ext")
+dat <- impute_missing(dat, subscale == "Int")
+
+## ----descriptives-------------------------------------------------------------
+dat %>% 
+  select_scale(subscale == "Int") %>%
+  psych::describe(fast = TRUE) %>%
+  round(1)
 
 ## -----------------------------------------------------------------------------
-dat <- check_values(dat, replace = NA)
+dat %>% 
+  select_scale(subscale == "Int") %>%
+  names2item() %>%
+  psych::describe(fast = TRUE) %>%
+  round(1)
+
+## -----------------------------------------------------------------------------
+dat %>%
+  select_scale(scale == "ITRF") %>%
+  names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
+  psych_fa(nfactors = 4, cut = 0.4)
+
+## -----------------------------------------------------------------------------
+scales <- list(
+  'Academic Productivity/ Disorganization' = get_index(dat, subscale_2 == "APD"),
+  'Opposotional/ Disruptive' = get_index(dat, subscale_2 == "OPP"),
+  "Socialy Withdrawn" = get_index(dat, subscale_2 == "SW"),
+  "Anxious/ Depressed" = get_index(dat, subscale_2 == "AD")
+)
+alpha_table(dat, scales = scales)
+
+
+## -----------------------------------------------------------------------------
+dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext")
+dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int")
+
+## -----------------------------------------------------------------------------
+dat %>%
+  select_scores() %>%
+  psych::describe(fast = TRUE) %>%
+  round(1)
 
