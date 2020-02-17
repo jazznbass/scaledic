@@ -14,7 +14,7 @@
 #' dat <- apply_dic(ITRF, dic_ITRF)
 #' check_values(dat, return = FALSE)
 check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = TRUE, integer_as_double = TRUE) {
-  id <- .get_dic_items(data)#which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
+  id <- .get_dic_items(data)
   name <- names(data)
   errors <- list()
   for (i in id) {
