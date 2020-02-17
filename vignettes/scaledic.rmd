@@ -13,6 +13,7 @@ library(dplyr)
 library(tibble)
 library(MASS)
 library(scaledic)
+library(sjPlot)
 
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -66,11 +67,11 @@ out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "label", "A short item label", "itrf_1",
   "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "sub_scale", "Abrevation of the sub scale", "int",
-  "sub_scale_2", "Abrevation of the second order sub scale", "shy",
+  "subscale", "Abrevation of the sub scale", "int",
+  "subscale_2", "Abrevation of the second order sub scale", "shy",
   "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "sub_scale_label", "Name of the sub scale", "internalizing problems",
-  "scale_2_label", "Name of the second order sub scale", "shyness",
+  "subscale_label", "Name of the sub scale", "internalizing problems",
+  "subscale_2_label", "Name of the second order sub scale", "shyness",
   "item", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
   "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
@@ -165,22 +166,22 @@ and provide item analyses
 
 ```{r}
 dat %>%
-  select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "APD") %>%
+  select_scale(scale == "ITRF" & subscale == "Ext" & subscale_2 == "APD") %>%
   names2item(chars = 70) %>% 
   sjPlot::sjt.itemanalysis(factor.groups.titles = "Academic Productivity/ Disorganization")
 
 dat %>%
-  select_scale(scale = "ITRF", subscale = "Ext", subscale_2 = "OPP") %>%
+  select_scale(scale == "ITRF" & subscale == "Ext" & subscale_2 == "OPP") %>%
   names2item(chars = 70) %>% 
   sjPlot::sjt.itemanalysis(factor.groups.titles = "Opposotional/ Disruptive")
 
 dat %>%
-  select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "SW") %>%
+  select_scale(scale == "ITRF" & subscale == "Int" & subscale_2 == "SW") %>%
   names2item(chars = 70) %>% 
   sjPlot::sjt.itemanalysis(factor.groups.titles = "Socialy Withdrawn")
 
 dat %>%
-  select_scale(scale = "ITRF", subscale = "Int", subscale_2 = "AD") %>%
+  select_scale(scale == "ITRF" & subscale == "Int" & subscale_2 == "AD") %>% 
   names2item(chars = 70) %>% 
   sjPlot::sjt.itemanalysis(factor.groups.titles = "Anxious/ Depressed")
 
@@ -191,8 +192,8 @@ dat %>%
 Now we build scores for internalizing and externalizing scales
 
 ```{r}
-dat$itrf_ext <- score_scale(dat, scale = "ITRF", subscale = "Ext")
-dat$itrf_int <- score_scale(dat, scale = "ITRF", subscale = "Int")
+dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext")
+dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int")
 ```
 
 and get descriptives for these scores

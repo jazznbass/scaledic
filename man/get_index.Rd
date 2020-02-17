@@ -4,14 +4,22 @@
 \alias{get_index}
 \title{Get index}
 \usage{
-get_index(data, names = TRUE, ...)
+get_index(
+  data,
+  filter = NULL,
+  scale = NULL,
+  subscale = NULL,
+  subscale_2 = NULL,
+  names = TRUE,
+  class = NULL
+)
 }
 \arguments{
 \item{data}{A data frame}
 
-\item{names}{If names is TRUE, a vector with variable names will be returned.}
+\item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 
-\item{...}{Any dic attribute name with a string vector (e.g., scale = "ITRF", subscale = c("Ext", "Int"), subscale = "ADB")}
+\item{names}{If names is TRUE, a vector with variable names will be returned.}
 }
 \value{
 A vector with indices adhering to the given attribute criteria.

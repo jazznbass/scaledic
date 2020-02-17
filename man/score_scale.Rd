@@ -7,6 +7,7 @@ Calculates the scale scores.}
 \usage{
 score_scale(
   data,
+  filter,
   scale = NULL,
   subscale = NULL,
   subscale_2 = NULL,
@@ -19,6 +20,8 @@ score_scale(
 }
 \arguments{
 \item{data}{A data frame}
+
+\item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 
 \item{bind}{If set TRUE, returns the complete data frame. If set false,
 returns a data frame with the new score variables for each scale.}

@@ -5,10 +5,18 @@
 \title{Select a scale
 Selects a data frame with variables of a specific scale}
 \usage{
-select_scale(data, scale = NULL, subscale = NULL, subscale_2 = NULL)
+select_scale(
+  data,
+  filter = NULL,
+  scale = NULL,
+  subscale = NULL,
+  subscale_2 = NULL
+)
 }
 \arguments{
 \item{data}{A data frame}
+
+\item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 }
 \value{
 A data frame
