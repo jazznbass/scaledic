@@ -27,12 +27,12 @@
   "variable" = "var",
   "item_name" = "name",
   "scale" = "scale",
-  "subscale" = "sub_scale",
-  "subscale_2" = "sub_scale_2",
+  "subscale" = "subscale",
+  "subscale_2" = "subscale_2",
   "index" = "index",
   "scale_label" = "scale_label",
-  "subscale_label" = "sub_scale_label",
-  "subscale_2_label" = "sub_scale_2_label",
+  "subscale_label" = "subscale_label",
+  "subscale_2_label" = "subscale_2_label",
   "item_label" = "item",
   "weight" = "weight",
   "values" = "values",
@@ -54,4 +54,32 @@
 
 }
 
+.to_filter <- function(scale = NULL, subscale = NULL, subscale_2 = NULL) {
+
+  filter <- NULL
+
+  if (!is.null(scale))
+    filter <- paste0("scale %in% c(", paste0("'", scale,"'", collapse = ", "), ")", collapse = "")
+
+  if (!is.null(subscale)) {
+    tmp <- paste0("subscale %in% c(", paste0("'", subscale,"'", collapse = ", "), ")", collapse = "")
+    if (is.null(filter)) {
+      filter <- tmp
+    } else {
+      filter <- paste0(filter, " & ", tmp)
+    }
+  }
+
+  if (!is.null(subscale_2)) {
+    tmp <- paste0("subscale_2 %in% c(", paste0("'", subscale_2,"'", collapse = ", "), ")", collapse = "")
+    if (is.null(filter)) {
+      filter <- tmp
+    } else {
+      filter <- paste0(filter, " & ", tmp)
+    }
+  }
+
+  filter
+
+}
 
