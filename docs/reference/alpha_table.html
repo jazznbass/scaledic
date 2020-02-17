@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Show variable with dic information — dic • scaledic</title>
+<title>Table with alpha values — alpha_table • scaledic</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,8 @@
 
 
 
-<meta property="og:title" content="Show variable with dic information — dic" />
-<meta property="og:description" content="Show variable with dic information" />
+<meta property="og:title" content="Table with alpha values — alpha_table" />
+<meta property="og:description" content="Returns a list of alpha cronbachs." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -118,36 +118,85 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Show variable with dic information</h1>
+    <h1>Table with alpha values</h1>
     
-    <div class="hidden name"><code>dic.Rd</code></div>
+    <div class="hidden name"><code>alpha_table.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Show variable with dic information</p>
+    <p>Returns a list of alpha cronbachs.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dic</span>(<span class='no'>data</span>)</pre>
+    <pre class="usage"><span class='fu'>alpha_table</span>(
+  <span class='no'>data</span>,
+  <span class='no'>scales</span>,
+  <span class='kw'>labels</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>round</span> <span class='kw'>=</span> <span class='fl'>2</span>,
+  <span class='kw'>CI</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>conf_level</span> <span class='kw'>=</span> <span class='fl'>0.95</span>,
+  <span class='kw'>check_key</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>omega</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>keys</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>RMSEA</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>difficulty</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>A</th>
-      <td><p>variable</p></td>
+      <th>data</th>
+      <td><p>A data Frame</p></td>
+    </tr>
+    <tr>
+      <th>scales</th>
+      <td><p>A list containing vectors with variable names. Each list element defines one scale. Named list elements are used as labels.</p></td>
+    </tr>
+    <tr>
+      <th>labels</th>
+      <td><p>Label names for scales (defaults to named list elements in 'scales').</p></td>
+    </tr>
+    <tr>
+      <th>round</th>
+      <td><p>Rounds values to given decimal position.</p></td>
+    </tr>
+    <tr>
+      <th>CI</th>
+      <td><p>If TRUE confidence intervals are calculated.</p></td>
+    </tr>
+    <tr>
+      <th>conf_level</th>
+      <td><p>Confidence level (e.g. 0.95 for 95 percent).</p></td>
+    </tr>
+    <tr>
+      <th>check_key</th>
+      <td><p>Check_key for the psych::alpha function.</p></td>
+    </tr>
+    <tr>
+      <th>omega</th>
+      <td><p>If TRUE Omega reliability estimation is calculated.</p></td>
+    </tr>
+    <tr>
+      <th>keys</th>
+      <td><p>Optional key argument for the psych::alpha function.</p></td>
+    </tr>
+    <tr>
+      <th>RMSEA</th>
+      <td><p>If TRUE RMSEA is calculated.</p></td>
+    </tr>
+    <tr>
+      <th>values</th>
+      <td><p>Sets maximum and minimum valid values necessary to calculate item difficulty</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Prints content of varable with dic information added.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
     </ul>
 
   </div>
