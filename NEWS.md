@@ -1,4 +1,9 @@
 
+# scaledic 0.1.7.10
+
+- New function: `alpha_table()` for creating an item analyses for mutiple scales
+- new function: `psych_fa()` for returning a loading matrix of a factor analyses (based on the psych package)
+
 # scaledic 0.1.7.9
 
 - New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: `select_scale(data, scale == "ITRF")`, `get_index(data, scale == "ITRF" & subscale = "Int" & weight == 1)`. The old specification is still working but depracted.
