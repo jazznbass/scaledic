@@ -11,11 +11,18 @@
 #' @return A data frame
 #' @export
 
-score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL,
+score_scale <- function(data, filter,
+                        scale = NULL, subscale = NULL, subscale_2 = NULL,
                         bind = FALSE,  sum = FALSE, label = NULL,
                         FUN = NULL, ...) {
 
   args <- list(...)
+
+  filter <- deparse(substitute(filter))
+  if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
+    filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
+  }
+
   function_name <- "score"
   if(is.null(FUN)) {
     if (sum) {
@@ -30,7 +37,7 @@ score_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL,
     }
   }
 
-  vars <- get_index(data = data, scale = scale, subscale = subscale, subscale_2 = subscale_2, class = "item")
+  vars <- .get_index(data = data, filter, class = "item")
 
   df <- data %>% select(one_of(vars))
 

@@ -7,10 +7,17 @@
 #'
 #' @return A data frame with imputed data.
 #' @export
-impute_missing <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL, force_to_scale = TRUE) {
-  id <- get_index(data, scale = scale, subscale = subscale, subscale_2 = subscale_2)
+impute_missing <- function(data, filter = NULL, scale = NULL, subscale = NULL,
+                           subscale_2 = NULL, force_to_scale = TRUE) {
+
+  filter <- deparse(substitute(filter))
+  if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
+    filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
+  }
+
+  id <- .get_index(data, filter, class = "item")
   if (!any(is.na(data[, id]))) {
-    cat("No missing data.\n")
+    message("No missing data.\n")
     return(data)
   }
 

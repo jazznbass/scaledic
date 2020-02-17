@@ -4,7 +4,13 @@
 #' @inheritParams get_index
 #' @return A data frame
 #' @export
-select_scale <- function(data, scale = NULL, subscale = NULL, subscale_2 = NULL) {
-  id <- get_index(data = data, scale = scale, subscale = subscale, subscale_2 = subscale_2, class = "item")
+select_scale <- function(data, filter = NULL, scale = NULL, subscale = NULL, subscale_2 = NULL) {
+
+  filter <- deparse(substitute(filter))
+  if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
+    filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
+  }
+
+  id <- .get_index(data = data, filter = filter, class = "item")
   data[, id, drop = FALSE]
 }
