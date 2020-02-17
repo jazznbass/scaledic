@@ -9,10 +9,11 @@ extract_dic <- function(data) {
   opt.attr <- .dic_file[
     !names(.dic_file) %in% c("variable", "values", "value_labels")
   ]
+  opt.attr <- c(opt.attr, list(class = "class"))
   dic_names <- names(opt.attr)
   id <- .get_dic_items(data)
   N <- length(id)
-  vars <- unlist(.dic_file[!names(.dic_file) %in% "variable"])
+  vars <- c(unlist(.dic_file[!names(.dic_file) %in% "variable"]), class = "class")
   out <- matrix(NA, nrow = N, ncol = length(vars))
   out <- as.data.frame(out)
   names(out) <- vars
