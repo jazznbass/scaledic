@@ -8,7 +8,6 @@
 get_dic <- function(data) {
   id <- .get_dic_items(data)
   out <- lapply(data[, id], function(x) attr(x, scaledic:::.opt$dic))
-  #cat("Extracted ", length(id), "dics.\n")
   out
 }
 
