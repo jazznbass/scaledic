@@ -18,15 +18,15 @@
 #' dat <- check_values(dat, replace = NA)
 #' # Single imputation (EM algorith from the Amelia package)
 #' # based on the variables of the provided scale
-#' dat <- impute_missing(dat, scale = "ITRF_Ext")
-#' dat <- impute_missing(dat, scale = "ITRF_Int")
+#' dat <- impute_missing(dat, scale == "ITRF" & subscale == "Ext")
+#' dat <- impute_missing(dat, scale == "ITRF" & subscale == "Int")
 #' # Show a table with all scales and scale labels included in the data frame
 #' list_scales(dat, labels = TRUE)
 #' # Example with pipeline syntax. Would be much easier to use the "describe" function
 #' # from the psch packages instead of summarise_all here.
 #' library(dplyr)
 #' dat %>%
-#'   select_scale(scale = "ITRF", subscale = "Ext") %>%
+#'   select_scale(scale == "ITRF" & subscale == "Ext") %>%
 #'   names2item(prefix = c("subscale2", "index")) %>%
 #'   summarise_all(mean, na.rm = TRUE) %>%
 #'   round(2) %>%
