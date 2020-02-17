@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.9</span>
       </span>
     </div>
 
@@ -136,7 +136,15 @@
 <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='check_values.html'>check_values</a></span>(<span class='no'>dat</span>, <span class='kw'>replace</span> <span class='kw'>=</span> <span class='fl'>NA</span>)
 <span class='co'># Single imputation (EM algorith from the Amelia package)</span>
 <span class='co'># based on the variables of the provided scale</span>
-<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impute_missing.html'>impute_missing</a></span>(<span class='no'>dat</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF_Ext"</span>)</div><div class='output co'>#&gt; No missing data.</div><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impute_missing.html'>impute_missing</a></span>(<span class='no'>dat</span>, <span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF_Int"</span>)</div><div class='output co'>#&gt; No missing data.</div><div class='input'><span class='co'># Show a table with all scales and scale labels included in the data frame</span>
+<span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impute_missing.html'>impute_missing</a></span>(<span class='no'>dat</span>, <span class='no'>scale</span> <span class='kw'>==</span> <span class='st'>"ITRF"</span> <span class='kw'>&amp;</span> <span class='no'>subscale</span> <span class='kw'>==</span> <span class='st'>"Ext"</span>)</div><div class='output co'>#&gt; -- Imputation 1 --
+#&gt; 
+#&gt;   1  2  3
+#&gt; </div><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='impute_missing.html'>impute_missing</a></span>(<span class='no'>dat</span>, <span class='no'>scale</span> <span class='kw'>==</span> <span class='st'>"ITRF"</span> <span class='kw'>&amp;</span> <span class='no'>subscale</span> <span class='kw'>==</span> <span class='st'>"Int"</span>)</div><div class='output co'>#&gt; Warning: There are observations in the data that are completely missing. 
+#&gt;          These observations will remain unimputed in the final datasets. 
+#&gt; -- Imputation 1 --
+#&gt; 
+#&gt;   1  2  3
+#&gt; </div><div class='input'><span class='co'># Show a table with all scales and scale labels included in the data frame</span>
 <span class='fu'><a href='list_scales.html'>list_scales</a></span>(<span class='no'>dat</span>, <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 6</span><span>
 #&gt;   Scale Subscale Subscale_2 `Label scale`    `Label subscale` `Label subscale 2`
 #&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>             
@@ -151,16 +159,16 @@
 #&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='no'>dat</span> <span class='kw'>%&gt;%</span>
-  <span class='fu'><a href='select_scale.html'>select_scale</a></span>(<span class='kw'>scale</span> <span class='kw'>=</span> <span class='st'>"ITRF"</span>, <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='st'>"Ext"</span>) <span class='kw'>%&gt;%</span>
+  <span class='fu'><a href='select_scale.html'>select_scale</a></span>(<span class='no'>scale</span> <span class='kw'>==</span> <span class='st'>"ITRF"</span> <span class='kw'>&amp;</span> <span class='no'>subscale</span> <span class='kw'>==</span> <span class='st'>"Ext"</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='names2item.html'>names2item</a></span>(<span class='kw'>prefix</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"subscale2"</span>, <span class='st'>"index"</span>)) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>summarise_all</a></span>(<span class='no'>mean</span>, <span class='kw'>na.rm</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='fl'>2</span>) <span class='kw'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span>()</div><div class='output co'>#&gt;                                                                                                             [,1]
 #&gt; OPP_17: Ist schnell verärgert                                                                               0.55
 #&gt; APD_1: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig                                                  0.95
-#&gt; APD_2: Beginnt mit der Aufgabenbearbeitung nicht selbstständig                                              0.75
-#&gt; APD_3: Erledigt Hausaufgaben unvollständig                                                                  0.57
-#&gt; APD_4: Zeigt Unterrichtsaufgaben nicht selbstständig vor                                                    0.57
+#&gt; APD_2: Beginnt mit der Aufgabenbearbeitung nicht selbstständig                                              0.76
+#&gt; APD_3: Erledigt Hausaufgaben unvollständig                                                                  0.58
+#&gt; APD_4: Zeigt Unterrichtsaufgaben nicht selbstständig vor                                                    0.58
 #&gt; APD_5: Kontrolliert seine eigene Arbeit nicht                                                               0.93
 #&gt; APD_6: Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. für die Hausaufgaben, Elternbriefe) 0.53
 #&gt; OPP_7: Streitet und zankt mit Lehrkräften                                                                   0.35
