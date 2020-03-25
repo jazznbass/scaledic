@@ -2,7 +2,7 @@
 library(knitr)
 library(dplyr)
 library(tibble)
-library(MASS)
+#library(MASS)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -31,14 +31,14 @@ knitr::opts_chunk$set(
 ## ----echo = FALSE-------------------------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
-  "label", "A short item label", "itrf_1",
+  "item_name", "A short item name", "itrf_1",
   "scale", "Abreviation of the scale the item belongs to", "irtf",
   "subscale", "Abrevation of the sub scale", "int",
   "subscale_2", "Abrevation of the second order sub scale", "shy",
   "scale_label", "Name of the scale", "Integrated Teacher Report Form",
   "subscale_label", "Name of the sub scale", "internalizing problems",
   "subscale_2_label", "Name of the second order sub scale", "shyness",
-  "item", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
+  "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
   "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
@@ -52,14 +52,17 @@ kable(out, caption = "Columns of a dictionary file")
 
 
 ## ----dic_example--------------------------------------------------------------
-dic_ITRF %>% slice(1:3) 
+dic_ITRF %>% 
+  slice(1:3) %>%
+  kable()
 
 ## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
 dat <- apply_dic(ITRF, dic_ITRF)
 
 ## ----list_scales--------------------------------------------------------------
-list_scales(dat, labels = TRUE, n_items = TRUE)
+list_scales(dat, labels = TRUE) %>%
+  kable()
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -79,39 +82,47 @@ dat <- impute_missing(dat, subscale == "Int")
 ## ----descriptives-------------------------------------------------------------
 dat %>% 
   select_scale(subscale == "Int") %>%
-  psych::describe(fast = TRUE) %>%
-  round(1)
+  descriptives(round = 1) %>%
+  kable()
 
 ## -----------------------------------------------------------------------------
 dat %>% 
   select_scale(subscale == "Int") %>%
-  names2item() %>%
-  psych::describe(fast = TRUE) %>%
-  round(1)
+  descriptives(round = 1, label = TRUE) %>%
+  kable()
 
 ## -----------------------------------------------------------------------------
 dat %>%
   select_scale(scale == "ITRF") %>%
   names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
-  psych_fa(nfactors = 4, cut = 0.4)
+  exploratory_fa(nfactors = 4, cut = 0.4) %>%
+  kable()
 
 ## -----------------------------------------------------------------------------
 scales <- list(
-  'Academic Productivity/ Disorganization' = get_index(dat, subscale_2 == "APD"),
-  'Opposotional/ Disruptive' = get_index(dat, subscale_2 == "OPP"),
-  "Socialy Withdrawn" = get_index(dat, subscale_2 == "SW"),
-  "Anxious/ Depressed" = get_index(dat, subscale_2 == "AD")
+  'APD' = get_index(dat, subscale_2 == "APD"),
+  'OPP' = get_index(dat, subscale_2 == "OPP"),
+  "SW" = get_index(dat, subscale_2 == "SW"),
+  "AD" = get_index(dat, subscale_2 == "AD")
 )
-alpha_table(dat, scales = scales)
+alpha_table(dat, scales = scales) %>%
+  kable()
 
 
 ## -----------------------------------------------------------------------------
-dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext")
-dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int")
+model <- lavaan_model(scales)
+cat("SEM model:\n", model)
+res <- lavaan::cfa(model = model, data = dat)
+summary(res)
+
+
+## -----------------------------------------------------------------------------
+dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "Externalizing")
+dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
 
 ## -----------------------------------------------------------------------------
 dat %>%
   select_scores() %>%
-  psych::describe(fast = TRUE) %>%
-  round(1)
+  descriptives(round = 1, label = TRUE) %>%
+  kable()
 

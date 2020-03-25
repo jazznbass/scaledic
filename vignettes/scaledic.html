@@ -340,8 +340,8 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">label</td>
-<td align="left">A short item label</td>
+<td align="left">item_name</td>
+<td align="left">A short item name</td>
 <td align="left">itrf_1</td>
 </tr>
 <tr class="even">
@@ -375,7 +375,7 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <td align="left">shyness</td>
 </tr>
 <tr class="even">
-<td align="left">item</td>
+<td align="left">item_label</td>
 <td align="left">Full text of the item</td>
 <td align="left">Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
 </tr>
@@ -422,20 +422,21 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 </tbody>
 </table>
 <p>Here is extract of a dic file from the included example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) </a></code></pre></div>
-<div class="kable-table">
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="left">label</th>
+<th align="left">item_name</th>
 <th align="right">index</th>
 <th align="left">scale</th>
-<th align="left">sub_scale</th>
-<th align="left">SUB_SCALE_2</th>
+<th align="left">subscale</th>
+<th align="left">subscale_2</th>
 <th align="left">scale_label</th>
-<th align="left">sub_scale_label</th>
-<th align="left">sub_scale_2_label</th>
-<th align="left">item</th>
+<th align="left">subscale_label</th>
+<th align="left">subscale_2_label</th>
+<th align="left">item_label</th>
 <th align="right">weight</th>
 <th align="left">values</th>
 <th align="left">value_labels</th>
@@ -503,7 +504,6 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 </tbody>
 </table>
 </div>
-</div>
 <div id="apply-a-dictionary-file" class="section level2">
 <h2>Apply a dictionary file</h2>
 <p>When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.<br />
@@ -512,70 +512,54 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Here we use the example dataset &quot;ITRF&quot; and the example dic file &quot;dic_ITRF&quot;</span></a>
 <a class="sourceLine" id="cb5-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">apply_dic</span>(ITRF, dic_ITRF)</a></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>, <span class="dt">n_items =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<div class="kable-table">
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th align="left">Scale</th>
-<th align="left">Subscale</th>
-<th align="left">Subscale_2</th>
-<th align="left">Label scale</th>
-<th align="left">Label subscale</th>
-<th align="left">Label subscale 2</th>
-<th align="left">n Scale</th>
-<th align="left">n Subscale</th>
-<th align="left">n Subscale 2</th>
+<th align="left">scale</th>
+<th align="left">subscale</th>
+<th align="left">subscale_2</th>
+<th align="left">scale_label</th>
+<th align="left">subscale_label</th>
+<th align="left">subscale_2_label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">APD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Externalizing</td>
-<td align="left">Academic Productivity/Disorganization</td>
-<td align="left">36</td>
-<td align="left">17</td>
-<td align="left">8</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">OPP</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Externalizing</td>
-<td align="left">Oppositional/Disruptive</td>
-<td align="left">36</td>
-<td align="left">17</td>
-<td align="left">9</td>
-</tr>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Anxious/Depressed</td>
-<td align="left">36</td>
-<td align="left">19</td>
-<td align="left">11</td>
-</tr>
-<tr class="even">
 <td align="left">ITRF</td>
 <td align="left">Int</td>
 <td align="left">SW</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Socially Withdrawn</td>
-<td align="left">36</td>
-<td align="left">19</td>
-<td align="left">8</td>
+</tr>
+<tr class="even">
+<td align="left">ITRF</td>
+<td align="left">Int</td>
+<td align="left">AD</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Internalizing</td>
+<td align="left">Anxious/Depressed</td>
+</tr>
+<tr class="odd">
+<td align="left">ITRF</td>
+<td align="left">Ext</td>
+<td align="left">OPP</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Externalizing</td>
+<td align="left">Oppositional/Disruptive</td>
+</tr>
+<tr class="even">
+<td align="left">ITRF</td>
+<td align="left">Ext</td>
+<td align="left">APD</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Externalizing</td>
+<td align="left">Academic Productivity/Disorganization</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 <div id="clean-raw-data" class="section level2">
 <h2>Clean raw data</h2>
@@ -593,479 +577,534 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <p>Let us see descriptive statistics for the Internalizing sub scale:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>)</a></code></pre></div>
-<div class="kable-table">
+<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
-<th align="right">vars</th>
-<th align="right">n</th>
+<th align="left">name</th>
+<th align="right">valid</th>
+<th align="right">missing</th>
 <th align="right">mean</th>
 <th align="right">sd</th>
 <th align="right">min</th>
 <th align="right">max</th>
 <th align="right">range</th>
-<th align="right">se</th>
+<th align="right">median</th>
+<th align="right">mad</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>itrf_I_1</td>
-<td align="right">1</td>
+<td align="left">itrf_I_1</td>
 <td align="right">4772</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>itrf_I_2</td>
-<td align="right">2</td>
-<td align="right">4772</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>itrf_I_4</td>
-<td align="right">3</td>
-<td align="right">4772</td>
-<td align="right">0.3</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>itrf_I_5</td>
 <td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_2</td>
 <td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_4</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_5</td>
+<td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_6</td>
-<td align="right">5</td>
+<td align="left">itrf_I_6</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.5</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_7</td>
-<td align="right">6</td>
+<td align="left">itrf_I_7</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_8</td>
-<td align="right">7</td>
+<td align="left">itrf_I_8</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_9</td>
-<td align="right">8</td>
+<td align="left">itrf_I_9</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.5</td>
 <td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_10</td>
-<td align="right">9</td>
+<td align="left">itrf_I_10</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_11</td>
-<td align="right">10</td>
+<td align="left">itrf_I_11</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_12</td>
-<td align="right">11</td>
+<td align="left">itrf_I_12</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_13</td>
-<td align="right">12</td>
+<td align="left">itrf_I_13</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_14</td>
-<td align="right">13</td>
+<td align="left">itrf_I_14</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_15</td>
-<td align="right">14</td>
+<td align="left">itrf_I_15</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_16</td>
-<td align="right">15</td>
+<td align="left">itrf_I_16</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_17</td>
-<td align="right">16</td>
+<td align="left">itrf_I_17</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_19</td>
-<td align="right">17</td>
+<td align="left">itrf_I_19</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
 </tr>
 <tr class="even">
-<td>itrf_I_23</td>
-<td align="right">18</td>
+<td align="left">itrf_I_23</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 <tr class="odd">
-<td>itrf_I_24</td>
-<td align="right">19</td>
+<td align="left">itrf_I_24</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
+<td align="right">0</td>
 <td align="right">0</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 <div id="see-items-instead-of-labels" class="section level2">
 <h2>See items instead of labels</h2>
 <p>It is more convinient to see the original items instead of the short lables:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">names2item</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-5" data-line-number="5"><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>)</a></code></pre></div>
-<div class="kable-table">
+<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
-<th align="right">vars</th>
-<th align="right">n</th>
+<th align="left">name</th>
+<th align="right">valid</th>
+<th align="right">missing</th>
 <th align="right">mean</th>
 <th align="right">sd</th>
 <th align="right">min</th>
 <th align="right">max</th>
 <th align="right">range</th>
-<th align="right">se</th>
+<th align="right">median</th>
+<th align="right">mad</th>
+<th align="left">label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Verbringt zu viel Zeit alleine</td>
-<td align="right">1</td>
+<td align="left">itrf_I_1</td>
 <td align="right">4772</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Beschwert sich über Krankheit oder Schmerzen</td>
-<td align="right">2</td>
-<td align="right">4772</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td>Vermeidet soziale Interaktionen</td>
-<td align="right">3</td>
-<td align="right">4772</td>
-<td align="right">0.3</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td>Spielt bevorzugt alleine</td>
 <td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Verbringt zu viel Zeit alleine</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_2</td>
 <td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_4</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Vermeidet soziale Interaktionen</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_5</td>
+<td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Spielt bevorzugt alleine</td>
 </tr>
 <tr class="odd">
-<td>Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
-<td align="right">5</td>
+<td align="left">itrf_I_6</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.5</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 </tr>
 <tr class="even">
-<td>Macht sich Sorgen über unwichtige Details</td>
-<td align="right">6</td>
+<td align="left">itrf_I_7</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Macht sich Sorgen über unwichtige Details</td>
 </tr>
 <tr class="odd">
-<td>Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
-<td align="right">7</td>
+<td align="left">itrf_I_8</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 </tr>
 <tr class="even">
-<td>Wirkt unglücklich oder traurig</td>
-<td align="right">8</td>
+<td align="left">itrf_I_9</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.5</td>
 <td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Wirkt unglücklich oder traurig</td>
 </tr>
 <tr class="odd">
-<td>Klammert sich an Erwachsene</td>
-<td align="right">9</td>
+<td align="left">itrf_I_10</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Klammert sich an Erwachsene</td>
 </tr>
 <tr class="even">
-<td>Verhält sich nervös</td>
-<td align="right">10</td>
+<td align="left">itrf_I_11</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Verhält sich nervös</td>
 </tr>
 <tr class="odd">
-<td>Verhält sich ängstlich</td>
-<td align="right">11</td>
+<td align="left">itrf_I_12</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Verhält sich ängstlich</td>
 </tr>
 <tr class="even">
-<td>Behauptet sich nicht gegenüber anderen</td>
-<td align="right">12</td>
+<td align="left">itrf_I_13</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Behauptet sich nicht gegenüber anderen</td>
 </tr>
 <tr class="odd">
-<td>Verhält sich übermäßig schüchtern</td>
-<td align="right">13</td>
+<td align="left">itrf_I_14</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Verhält sich übermäßig schüchtern</td>
 </tr>
 <tr class="even">
-<td>Beklagt sich oder jammert</td>
-<td align="right">14</td>
+<td align="left">itrf_I_15</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Beklagt sich oder jammert</td>
 </tr>
 <tr class="odd">
-<td>Beteiligt sich nicht an Gruppenaktionen</td>
-<td align="right">15</td>
+<td align="left">itrf_I_16</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.8</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Beteiligt sich nicht an Gruppenaktionen</td>
 </tr>
 <tr class="even">
-<td>Macht sich selbst schlecht</td>
-<td align="right">16</td>
+<td align="left">itrf_I_17</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Macht sich selbst schlecht</td>
 </tr>
 <tr class="odd">
-<td>Weint oder ist weinerlich</td>
-<td align="right">17</td>
+<td align="left">itrf_I_19</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.2</td>
 <td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Weint oder ist weinerlich</td>
 </tr>
 <tr class="even">
-<td>Macht sich ständig Sorgen</td>
-<td align="right">18</td>
+<td align="left">itrf_I_23</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Macht sich ständig Sorgen</td>
 </tr>
 <tr class="odd">
-<td>Lässt sich langsam auf neue Personen ein</td>
-<td align="right">19</td>
+<td align="left">itrf_I_24</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="right">0</td>
+<td align="right">0</td>
+<td align="left">Lässt sich langsam auf neue Personen ein</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p>And further we analyse the factor structure</p>
+<p>And further we analyse the factor structure. Here we use the <code>names2item()</code> function to get a more convenient description.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="kw">c</span>(<span class="st">&quot;reverse&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale2&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">psych_fa</span>(<span class="dt">nfactors =</span> <span class="dv">4</span>, <span class="dt">cut =</span> <span class="fl">0.4</span>)</a></code></pre></div>
-<div class="kable-table">
+<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">exploratory_fa</span>(<span class="dt">nfactors =</span> <span class="dv">4</span>, <span class="dt">cut =</span> <span class="fl">0.4</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1079,7 +1118,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tbody>
 <tr class="odd">
 <td>(+)Ext_OPP: Verliert die Beherrschung</td>
-<td align="left">0.84</td>
+<td align="left">0.85</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1121,7 +1160,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 <tr class="odd">
 <td>(+)Ext_OPP: Ist schnell verärgert</td>
-<td align="left">0.76</td>
+<td align="left">0.77</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1150,7 +1189,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td>(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.8</td>
+<td align="left">0.81</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1178,7 +1217,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td>(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.72</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1228,7 +1267,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.65</td>
+<td align="left">0.66</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1249,7 +1288,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td>(+)Int_SW: Lässt sich langsam auf neue Personen ein</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.47</td>
+<td align="left">0.48</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1331,16 +1370,15 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 </tbody>
 </table>
-</div>
 <p>and provide item analyses</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">scales &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="st">'Academic Productivity/ Disorganization'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;APD&quot;</span>),</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="st">'Opposotional/ Disruptive'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;OPP&quot;</span>),</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="st">&quot;Socialy Withdrawn&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;SW&quot;</span>),</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="st">&quot;Anxious/ Depressed&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;AD&quot;</span>)</a>
+<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="st">'APD'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;APD&quot;</span>),</a>
+<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="st">'OPP'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;OPP&quot;</span>),</a>
+<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="st">&quot;SW&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;SW&quot;</span>),</a>
+<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="st">&quot;AD&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;AD&quot;</span>)</a>
 <a class="sourceLine" id="cb12-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">alpha_table</span>(dat, <span class="dt">scales =</span> scales)</a></code></pre></div>
-<div class="kable-table">
+<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">alpha_table</span>(dat, <span class="dt">scales =</span> scales) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1358,7 +1396,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Academic Productivity/ Disorganization</td>
+<td align="left">APD</td>
 <td align="right">4776</td>
 <td align="right">8</td>
 <td align="left">.91 (.9-.91)</td>
@@ -1370,19 +1408,19 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.55 - .82</td>
 </tr>
 <tr class="even">
-<td align="left">Opposotional/ Disruptive</td>
+<td align="left">OPP</td>
 <td align="right">4776</td>
 <td align="right">9</td>
 <td align="left">.94 (.93-.94)</td>
 <td align="left">.94 (.94-.94)</td>
 <td align="left">.63</td>
 <td align="left">.68 - .81</td>
-<td align="left">0.35 - 0.83</td>
+<td align="left">0.35 - 0.82</td>
 <td align="left">0.72 - 0.96</td>
-<td align="left">.7 - .85</td>
+<td align="left">.69 - .84</td>
 </tr>
 <tr class="odd">
-<td align="left">Socialy Withdrawn</td>
+<td align="left">SW</td>
 <td align="right">4772</td>
 <td align="right">8</td>
 <td align="left">.88 (.87-.88)</td>
@@ -1394,7 +1432,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.56 - .86</td>
 </tr>
 <tr class="even">
-<td align="left">Anxious/ Depressed</td>
+<td align="left">AD</td>
 <td align="right">4772</td>
 <td align="right">11</td>
 <td align="left">.88 (.88-.89)</td>
@@ -1407,59 +1445,74 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 </tbody>
 </table>
-</div>
+<p>and even a confirmatory factor analysis with the use of the lavaan package.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">model &lt;-<span class="st"> </span><span class="kw">lavaan_model</span>(scales)</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;SEM model:</span><span class="ch">\n</span><span class="st">&quot;</span>, model)</a>
+<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; SEM model:</span></a>
+<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt;  APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15</span></a>
+<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16</span></a>
+<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24</span></a>
+<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23</span></a>
+<a class="sourceLine" id="cb13-8" data-line-number="8">res &lt;-<span class="st"> </span>lavaan<span class="op">::</span><span class="kw">cfa</span>(<span class="dt">model =</span> model, <span class="dt">data =</span> dat)</a>
+<a class="sourceLine" id="cb13-9" data-line-number="9"><span class="kw">summary</span>(res)</a>
+<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; Length  Class   Mode </span></a>
+<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt;      1 lavaan     S4</span></a></code></pre></div>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</a></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"><span class="st">  </span>psych<span class="op">::</span><span class="kw">describe</span>(<span class="dt">fast =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">1</span>)</a></code></pre></div>
-<div class="kable-table">
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th></th>
-<th align="right">vars</th>
-<th align="right">n</th>
+<th align="left">name</th>
+<th align="right">valid</th>
+<th align="right">missing</th>
 <th align="right">mean</th>
 <th align="right">sd</th>
 <th align="right">min</th>
 <th align="right">max</th>
 <th align="right">range</th>
-<th align="right">se</th>
+<th align="right">median</th>
+<th align="right">mad</th>
+<th align="left">label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>itrf_ext</td>
-<td align="right">1</td>
+<td align="left">itrf_ext</td>
 <td align="right">4776</td>
+<td align="right">0</td>
 <td align="right">0.6</td>
 <td align="right">0.6</td>
 <td align="right">0</td>
 <td align="right">3.0</td>
 <td align="right">3.0</td>
-<td align="right">0</td>
+<td align="right">0.4</td>
+<td align="right">0.5</td>
+<td align="left">Externalizing</td>
 </tr>
 <tr class="even">
-<td>itrf_int</td>
-<td align="right">2</td>
+<td align="left">itrf_int</td>
 <td align="right">4772</td>
+<td align="right">4</td>
 <td align="right">0.3</td>
 <td align="right">0.4</td>
 <td align="right">0</td>
 <td align="right">2.6</td>
 <td align="right">2.6</td>
-<td align="right">0</td>
+<td align="right">0.2</td>
+<td align="right">0.3</td>
+<td align="left">Internalizing</td>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 </div>
 

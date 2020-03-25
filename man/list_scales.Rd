@@ -4,7 +4,13 @@
 \alias{list_scales}
 \title{List scales}
 \usage{
-list_scales(data, labels = FALSE, n_items = FALSE, char_na = "")
+list_scales(
+  data,
+  levels = c("scale", "subscale", "subscale_2"),
+  labels = FALSE,
+  n_items = FALSE,
+  char_na = ""
+)
 }
 \arguments{
 \item{data}{The target data frame}

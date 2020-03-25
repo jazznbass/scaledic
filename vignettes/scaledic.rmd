@@ -13,7 +13,7 @@ vignette: >
 library(knitr)
 library(dplyr)
 library(tibble)
-library(MASS)
+#library(MASS)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -68,14 +68,14 @@ The following table shows the parameters and the naming of the columns of a dict
 ```{r echo = FALSE}
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
-  "label", "A short item label", "itrf_1",
+  "item_name", "A short item name", "itrf_1",
   "scale", "Abreviation of the scale the item belongs to", "irtf",
   "subscale", "Abrevation of the sub scale", "int",
   "subscale_2", "Abrevation of the second order sub scale", "shy",
   "scale_label", "Name of the scale", "Integrated Teacher Report Form",
   "subscale_label", "Name of the sub scale", "internalizing problems",
   "subscale_2_label", "Name of the second order sub scale", "shyness",
-  "item", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
+  "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
   "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
@@ -112,7 +112,7 @@ dat <- apply_dic(ITRF, dic_ITRF)
 Let us get an overview of all scales in the dataset:
 
 ```{r list_scales}
-list_scales(dat, labels = TRUE, n_items = TRUE) %>%
+list_scales(dat, labels = TRUE) %>%
   kable()
 ```
 
@@ -147,8 +147,8 @@ Let us see descriptive statistics for the Internalizing sub scale:
 ```{r descriptives}
 dat %>% 
   select_scale(subscale == "Int") %>%
-  psych::describe(fast = TRUE) %>%
-  kable(digits = 1)
+  descriptives(round = 1) %>%
+  kable()
 ```
 
 ## See items instead of labels
@@ -158,18 +158,17 @@ It is more convinient to see the original items instead of the short lables:
 ```{r}
 dat %>% 
   select_scale(subscale == "Int") %>%
-  names2item() %>%
-  psych::describe(fast = TRUE) %>%
-  kable(digits = 1)
+  descriptives(round = 1, label = TRUE) %>%
+  kable()
 ```
 
-And further we analyse the factor structure  
+And further we analyse the factor structure. Here we use the `names2item()` function to get a more convenient description.  
 
 ```{r}
 dat %>%
   select_scale(scale == "ITRF") %>%
   names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
-  psych_fa(nfactors = 4, cut = 0.4) %>%
+  exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 ```
 
@@ -177,23 +176,35 @@ and provide item analyses
 
 ```{r}
 scales <- list(
-  'Academic Productivity/ Disorganization' = get_index(dat, subscale_2 == "APD"),
-  'Opposotional/ Disruptive' = get_index(dat, subscale_2 == "OPP"),
-  "Socialy Withdrawn" = get_index(dat, subscale_2 == "SW"),
-  "Anxious/ Depressed" = get_index(dat, subscale_2 == "AD")
+  'APD' = get_index(dat, subscale_2 == "APD"),
+  'OPP' = get_index(dat, subscale_2 == "OPP"),
+  "SW" = get_index(dat, subscale_2 == "SW"),
+  "AD" = get_index(dat, subscale_2 == "AD")
 )
 alpha_table(dat, scales = scales) %>%
   kable()
 
 ```
 
+and even a confirmatory factor analysis with the use of the lavaan package.
+
+```{r}
+model <- lavaan_model(scales)
+cat("SEM model:\n", model)
+res <- lavaan::cfa(model = model, data = dat)
+summary(res)
+
+```
+
+
+
 ## Build scale scores
 
 Now we build scores for internalizing and externalizing scales
 
 ```{r}
-dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext")
-dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int")
+dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "Externalizing")
+dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
 ```
 
 and get descriptives for these scores
@@ -201,8 +212,8 @@ and get descriptives for these scores
 ```{r}
 dat %>%
   select_scores() %>%
-  psych::describe(fast = TRUE) %>%
-  kable(digits = 1)
+  descriptives(round = 1, label = TRUE) %>%
+  kable()
 ```
 
 

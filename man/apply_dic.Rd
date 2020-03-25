@@ -16,7 +16,8 @@ apply_dic(
 \arguments{
 \item{data}{Data frame}
 
-\item{dic}{Dictionary file}
+\item{dic}{A data frame comprising a dictionary or a character string with a
+filename (for now an Microsoft Excel file) containg a dictionary.}
 
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
 

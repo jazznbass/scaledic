@@ -5,7 +5,11 @@
 \alias{ITRF}
 \alias{dic_ITRF}
 \title{Integrated Teacher Report Form}
-\format{A data frame with 4776 rows and 40 variables}
+\format{
+A data frame with 4776 rows and 40 variables
+
+An object of class \code{data.frame} with 4776 rows and 36 columns.
+}
 \usage{
 ITRF
 

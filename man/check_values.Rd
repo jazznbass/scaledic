@@ -11,7 +11,7 @@ check_values(
   replace = NULL,
   return = TRUE,
   report = FALSE,
-  include_missing = TRUE,
+  include_missing = FALSE,
   integer_as_double = TRUE
 )
 }

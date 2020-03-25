@@ -67,7 +67,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.7.10</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8.0</span>
       </span>
     </div>
 
@@ -120,20 +120,31 @@
       
     </div>
 
+    <div id="scaledic-0-1-8-0-2020-03-25" class="section level1">
+<h1 class="page-header">
+<a href="#scaledic-0-1-8-0-2020-03-25" class="anchor"></a>scaledic 0.1.8.0 (2020-03-25)</h1>
+<ul>
+<li>New function: <code><a href="../reference/descriptives.html">descriptives()</a></code> for returning a table with descriptive statistics for variables in a data.frame.</li>
+<li>
+<code><a href="../reference/apply_dic.html">apply_dic()</a></code>: If a charcter string is passed to the <code>dic</code> argument instead of a data frame, the function will take this as a filename and tries to load the file.</li>
+<li>
+<code><a href="../reference/backup_dic.html">get_dic()</a></code> renamed to <code><a href="../reference/backup_dic.html">backup_dic()</a></code>
+</li>
+</ul>
+</div>
     <div id="scaledic-0-1-7-10" class="section level1">
 <h1 class="page-header">
 <a href="#scaledic-0-1-7-10" class="anchor"></a>scaledic 0.1.7.10</h1>
 <ul>
 <li>New function: <code><a href="../reference/alpha_table.html">alpha_table()</a></code> for creating an item analyses for mutiple scales</li>
-<li>new function: <code><a href="../reference/psych_fa.html">psych_fa()</a></code> for returning a loading matrix of a factor analyses (based on the psych package)</li>
+<li>new function: <code>psych_fa()</code> for returning a loading matrix of a factor analyses (based on the psych package)</li>
 </ul>
 </div>
     <div id="scaledic-0-1-7-9" class="section level1">
 <h1 class="page-header">
 <a href="#scaledic-0-1-7-9" class="anchor"></a>scaledic 0.1.7.9</h1>
 <ul>
-<li>New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: <code><a href="../reference/select_scale.html">select_scale(data, scale == "ITRF")</a></code>, <code>get_index(data, scale == "ITRF" &amp; subscale = "Int" &amp; weight == 1)</code>. The old specification is still working but depracted.</li>
-<li>New format is applicable in: <code><a href="../reference/get_index.html">get_index()</a></code>, <code><a href="../reference/select_scale.html">select_scale()</a></code>, <code><a href="../reference/impute_missing.html">impute_missing()</a></code>, <code>score_scales()</code>.</li>
+<li>New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: <code><a href="../reference/select_scale.html">select_scale(data, scale == "ITRF")</a></code>, <code>get_index(data, scale == "ITRF" &amp; subscale = "Int" &amp; weight == 1)</code>. The old specification is still working but deprecated. New format is applicable in: <code><a href="../reference/get_index.html">get_index()</a></code>, <code><a href="../reference/select_scale.html">select_scale()</a></code>, <code><a href="../reference/impute_missing.html">impute_missing()</a></code>, <code>score_scales()</code>.</li>
 <li>dicfile: <code>sub_scale</code> and <code>sub_scale_2</code> renamed to <code>subscale</code> and <code>subscale_2</code>. Old dic files still work as variables are renamed to new versions on import.</li>
 <li>Internal reorganization: dic attributes <code>sub_scale</code> and <code>sub_scale_2</code> renamed to <code>subscale</code> and <code>subscale_2</code>.</li>
 </ul>
@@ -210,6 +221,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#scaledic-0-1-8-0-2020-03-25">0.1.8.0</a></li>
         <li><a href="#scaledic-0-1-7-10">0.1.7.10</a></li>
         <li><a href="#scaledic-0-1-7-9">0.1.7.9</a></li>
         <li><a href="#scaledic-0-1-7-8">0.1.7.8</a></li>

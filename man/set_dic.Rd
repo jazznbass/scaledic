@@ -4,14 +4,14 @@
 \alias{set_dic}
 \title{Set dictionary informations to variable}
 \usage{
-set_dic(data, vars, parameters, fill_missing = TRUE)
+set_dic(data, vars = NULL, ...)
 }
 \arguments{
 \item{data}{A data frame}
 
 \item{vars}{string or vector with string of variable names}
 
-\item{parameters}{List containing parameters}
+\item{...}{More dic parameters}
 }
 \value{
 A data frame

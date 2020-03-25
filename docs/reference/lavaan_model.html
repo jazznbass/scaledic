@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Select a scale
-Selects a data frame with variables of a specific scale — select_scale • scaledic</title>
+<title>Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis — lavaan_model • scaledic</title>
 
 
 <!-- jquery -->
@@ -36,10 +35,8 @@ Selects a data frame with variables of a specific scale — select_scale • sca
 
 
 
-<meta property="og:title" content="Select a scale
-Selects a data frame with variables of a specific scale — select_scale" />
-<meta property="og:description" content="Select a scale
-Selects a data frame with variables of a specific scale" />
+<meta property="og:title" content="Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis — lavaan_model" />
+<meta property="og:description" content="Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -121,41 +118,33 @@ Selects a data frame with variables of a specific scale" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Select a scale
-Selects a data frame with variables of a specific scale</h1>
+    <h1>Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis</h1>
     
-    <div class="hidden name"><code>select_scale.Rd</code></div>
+    <div class="hidden name"><code>lavaan_model.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Select a scale
-Selects a data frame with variables of a specific scale</p>
+    <p>Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis</p>
     </div>
 
-    <pre class="usage"><span class='fu'>select_scale</span>(
-  <span class='no'>data</span>,
-  <span class='kw'>filter</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subscale</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>subscale_2</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>lavaan_model</span>(<span class='no'>scales</span>, <span class='kw'>adds</span> <span class='kw'>=</span> <span class='st'>""</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
-      <td><p>A data frame</p></td>
+      <th>scales</th>
+      <td><p>A list with scale information</p></td>
     </tr>
     <tr>
-      <th>filter</th>
-      <td><p>A logical expression for any dic attribute (e.g. scale == "ITRF" &amp; subscale == "Int")</p></td>
+      <th>adds</th>
+      <td><p>Additional model definitions</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame</p>
+    <p>A character string with a lavaan model definition</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -9,7 +9,7 @@ deploy_dic(data, dic_list)
 \arguments{
 \item{data}{A data frame}
 
-\item{dic_list}{A list created by the get_dic() function.}
+\item{dic_list}{A list created by the backup_dic() function.}
 }
 \value{
 A data frame with added dic information from dic_list
