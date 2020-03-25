@@ -8,6 +8,7 @@
 #' @author Juergen Wilbert [aut, cre]
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
+#' @importFrom readxl read_excel
 #' @import purrr
 #' @import Amelia
 #' @import dplyr

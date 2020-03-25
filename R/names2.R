@@ -14,8 +14,9 @@
 #' @return A renamed data frame
 #' @export
 names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
-  ids <- .get_dic_items(data)
-  for (i in ids) {
+
+  for (i in 1:ncol(data)) {
+    if (is.null(attr(data[[i]], .opt$dic))) next
     item_label <- dic_attr(data[[i]], .opt$item_label)
     item_prefix <- ""
     if (any(c("reverse", "weight") %in% prefix))

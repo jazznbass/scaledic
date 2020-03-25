@@ -1,7 +1,8 @@
 #' Apply dictionary
 #'
 #' @param data Data frame
-#' @param dic Dictionary file
+#' @param dic A data frame comprising a dictionary or a character string with a
+#' filename (for now an Microsoft Excel file) containg a dictionary.
 #' @param factors If set TRUE, factor variables will be turned into factors.
 #' @param replace_missing If TRUE, missing values from the dic are replaced with NA
 #' @return A data frame with dictionary information.
@@ -12,15 +13,22 @@
 
 apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE) {
 
-  #opt.attr <- .dic_file
+  if ("character" %in% class(dic)) {
+    dic <- readxl::read_excel(dic)
+  }
+
+  dic <- dic[apply(dic, 1, function(x) !all(is.na(x))),]
+
   names(dic) <- tolower(names(dic))
 
   #rename dic names
-  names(dic)[which(names(dic) %in% "label")] <- "name"
+  names(dic)[which(names(dic) %in% c("label", "name"))] <- "item_name"
+  names(dic)[which(names(dic) %in% "item")] <- "item_label"
   names(dic)[which(names(dic) %in% "sub_scale_2")] <- "subscale_2"
   names(dic)[which(names(dic) %in% "sub_scale")] <- "subscale"
   names(dic)[which(names(dic) %in% "sub_scale_label")] <- "subscale_label"
   names(dic)[which(names(dic) %in% "sub_scale_2_label")] <- "subscale_2_label"
+
 
   #copy name to var when var is missing
   if (is.null(dic[[.dic_file$variable]]))
@@ -38,6 +46,13 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
     dic[[.dic_file$type]] <- "integer"
   }
 
+  # type NA to integer
+  miss_type <- which(is.na(dic[[.dic_file$type]]))
+  if (length(miss_type) > 0) {
+    message(length(miss_type), " missing types found and replaced with 'integer'.")
+    dic[miss_type, .dic_file$type] <- "integer"
+  }
+
   # checking other missing variables in dictionary file
   miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
   if (length(miss) > 0) {
@@ -47,12 +62,6 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
     dic[, miss] <- NA
   }
 
-  # type NA to integer
-  miss_type <- which(is.na(dic[[.dic_file$type]]))
-  if (length(miss_type) > 0) {
-    message(length(miss_type), " missing types found and replaced with 'integer'.")
-    dic[miss_type, .dic_file$type] <- "integer"
-  }
 
   # weight NA to integer
   miss_weight <- which(is.na(dic[[.dic_file$weight]]))
@@ -61,14 +70,19 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
     dic[miss_weight, .dic_file$weight] <- 1
   }
 
-  # set default name when label is missing
+  # set report missing label
+  missing_label <- NULL
   for (i in 1:nrow(dic)){
-    if (is.na(dic[[.dic_file$item_label]][i])) {
-      message("Missing label found at variabel no. ", i, " in dic file.")
-    }
+    if (is.na(dic[[.dic_file$item_label]][i])) missing_label <- c(missing_label, i)
+  }
+  if (!is.null(missing_label)) {
+    message("Missing item_label found at variabel no. ", paste0(missing_label, collapse = ", "), " in dic file.")
   }
 
+
   for (i in 1:nrow(dic)) {
+
+    # rename columns in dataframe with label when column name is in dic file var variable
     id <- which(names(data) == dic[[.dic_file$variable]][i])
     if (length(id) == 0) {
       message("Variable ", dic[[.dic_file$variable]][i], " not found in data file.\n")
@@ -76,7 +90,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
     }
     names(data)[id] <- dic[[.dic_file$item_name]][i]
 
-    ### extract values and value labels
+    # extract values and value labels
     values <-
       paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
       parse(text = .) %>%
@@ -96,7 +110,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
 
     dic_attr(data[[id]], .opt$values) <- values
 
-    ### extract missing
+    # extract missing
     dic_attr(data[[id]], .opt$missing) <-
       paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")") %>%
       parse(text = .) %>%
@@ -112,6 +126,14 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
       value_dic <- as.character(dic[[source]][i])
       dic_attr(data[[id]], target) <- value_dic
     }
+
+    # set dic attributes for further variables
+    new_dic_attributes <- names(dic)[!names(dic) %in% unlist(.dic_file)]
+
+    for(j in new_dic_attributes) {
+      dic_attr(data[[id]], j) <- dic[[j]][i]
+    }
+
 
     ### set factors
     if (factors && dic_attr(data[[id]], .opt$type) == "factor") {

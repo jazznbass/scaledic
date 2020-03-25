@@ -22,7 +22,7 @@ get_index <- function(data, filter = NULL, scale = NULL, subscale = NULL,
   if (!is.null(class)) filter <- paste0(filter, " & class == '", class, "'")
   dic <- extract_dic(data)
   id <- with(dic, eval(str2lang(filter)))
-  out <- which(names(data) %in% dic$name[id])
+  out <- which(names(data) %in% dic[[.opt$item_name]][id])
   if (names) out <- names(data)[out]
   out
 }

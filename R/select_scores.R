@@ -7,9 +7,7 @@
 select_scores <- function(data) {
 
   filter <- which(
-    sapply(
-      data, function(x) isTRUE(dic_attr(x, .opt$class) == "score")
-    )
+    sapply(data, function(x) isTRUE(dic_attr(x, .opt$class) == "score"))
   )
 
   data[, filter, drop = FALSE]

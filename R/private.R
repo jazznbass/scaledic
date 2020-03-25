@@ -19,13 +19,15 @@
   "values" = "values",
   "value_labels" = "value_labels",
   "missing" = "missing",
-  "class" = "class"
+  "class" = "class",
+  "score_filter" = "score_filter",
+  "score_function" = "score_function"
 )
 
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
   "variable" = "var",
-  "item_name" = "name",
+  "item_name" = "item_name",
   "scale" = "scale",
   "subscale" = "subscale",
   "subscale_2" = "subscale_2",
@@ -33,7 +35,7 @@
   "scale_label" = "scale_label",
   "subscale_label" = "subscale_label",
   "subscale_2_label" = "subscale_2_label",
-  "item_label" = "item",
+  "item_label" = "item_label",
   "weight" = "weight",
   "values" = "values",
   "value_labels" = "value_labels",

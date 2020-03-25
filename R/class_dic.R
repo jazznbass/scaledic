@@ -10,7 +10,7 @@
   cl <- class(x)
   dic <- attr(x, .opt$dic)
   lab <- attr(x, "label")
-  class(x) <- cl[-1]
+  class(x) <- cl[!cl %in% "dic"] #cl[-1]
   out <- do.call("[", c(list(x), list(i), arg))
   class(out) <- cl
   attr(out, .opt$dic) <- dic

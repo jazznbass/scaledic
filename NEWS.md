@@ -1,4 +1,11 @@
 
+# scaledic 0.1.8.0 (2020-03-25)
+
+- New function: `descriptives()` for returning a table with descriptive statistics for variables in a data.frame.
+- `apply_dic()`: If a charcter string is passed to the `dic` argument instead of a data frame, the function will take this as a filename and tries to load the file.
+- `get_dic()` renamed to `backup_dic()`
+
+
 # scaledic 0.1.7.10
 
 - New function: `alpha_table()` for creating an item analyses for mutiple scales
@@ -6,8 +13,7 @@
 
 # scaledic 0.1.7.9
 
-- New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: `select_scale(data, scale == "ITRF")`, `get_index(data, scale == "ITRF" & subscale = "Int" & weight == 1)`. The old specification is still working but depracted.
-- New format is applicable in: `get_index()`, `select_scale()`, `impute_missing()`, `score_scales()`.
+- New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: `select_scale(data, scale == "ITRF")`, `get_index(data, scale == "ITRF" & subscale = "Int" & weight == 1)`. The old specification is still working but deprecated. New format is applicable in: `get_index()`, `select_scale()`, `impute_missing()`, `score_scales()`.
 - dicfile: `sub_scale` and `sub_scale_2` renamed to `subscale` and `subscale_2`. Old dic files still work as variables are renamed to new versions on import.
 - Internal reorganization: dic attributes `sub_scale` and `sub_scale_2` renamed to `subscale` and `subscale_2`.
 

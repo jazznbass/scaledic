@@ -24,6 +24,7 @@ score_scale <- function(data, filter,
   }
 
   function_name <- "score"
+  values <- NA
   if(is.null(FUN)) {
     if (sum) {
       FUN <- base::sum
@@ -62,6 +63,10 @@ score_scale <- function(data, filter,
     score <- do.call(FUN, c(list(score), args))
     score
   })
+
+  class(df) <- c("dic", class(df))
+
+
   if (!isFALSE(bind)) {
     df <- as.data.frame(df)
     names(df) <- bind
@@ -77,6 +82,8 @@ score_scale <- function(data, filter,
   )
   attr(df, .opt$dic) <- list()
   dic_attr(df, .opt$class) <- "score"
+  dic_attr(df, .opt$score_filter) <- filter
+  dic_attr(df, .opt$score_function) <- function_name
   dic_attr(df, .opt$scale) <- scale
   dic_attr(df, .opt$subscale) <- subscale
   dic_attr(df, .opt$subscale_2) <- subscale_2

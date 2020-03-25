@@ -7,77 +7,50 @@
 #'
 #' @return A data.frame with scales on different levels
 #' @export
-list_scales <- function(data, labels = FALSE, n_items = FALSE, char_na = "") {
+list_scales <- function(data, levels = c("scale", "subscale", "subscale_2"), labels = FALSE, n_items = FALSE, char_na = "") {
 
+  if (labels) levels <- c(levels, paste0(levels, "_label"))
   filter <- .get_dic_items(data)
-
-  if(!labels) {
-    out <- data %>%
-      select(filter) %>%
-      sapply(function(x)
-        cbind(
-          dic_attr(x, .opt$scale),
-          dic_attr(x, .opt$subscale),
-          dic_attr(x, .opt$subscale_2)
-        )) %>%
-      t() %>%
-      as.data.frame()
-    names(out) <- c("Scale", "Subscale", "Subscale_2")
-  }
-
-  if(labels) {
-    out <- data %>%
-      select(filter) %>%
-      sapply(function(x)
-        cbind(
-          dic_attr(x, .opt$scale),
-          dic_attr(x, .opt$subscale),
-          dic_attr(x, .opt$subscale_2),
-          dic_attr(x, .opt$scale_label),
-          dic_attr(x, .opt$subscale_label),
-          dic_attr(x, .opt$subscale_2_label)
-        )) %>%
-      t() %>%
-      as.data.frame()
-    names(out) <- c("Scale", "Subscale", "Subscale_2", "Label scale", "Label subscale", "Label subscale 2")
-  }
+  out <- select(data, filter)
+  out <- sapply(out, function(x)
+    cbind(sapply(levels, function(y) dic_attr(x, .opt[[y]])))
+  )
+  out <- as.matrix(out)
+  if (length(levels) > 1) out <- t(out)
+  out <- as.data.frame(out)
+  names(out) <- levels
 
   if (n_items) {
-    n_scale <- out %>%
-      select(Scale) %>%
-      table() %>%
-      as.data.frame()
-    n_subscale <- out %>%
-      select(Subscale) %>%
-      table() %>%
-      as.data.frame()
-    n_subscale2 <- out %>%
-      select(Subscale_2) %>%
-      table() %>%
-      as.data.frame()
+    n_scale <- list()
+    for (i in 1:length(levels)) {
+      n_scale[[i]] <- out %>%
+        select(levels[i]) %>%
+        table() %>%
+        as.data.frame()
+    }
 
-    if (nrow(n_scale) > 0)
-      out <- out %>%
-        full_join(n_scale, by = c("Scale" = ".")) %>%
-        rename("n Scale" = Freq)
-    if (nrow(n_subscale) > 0)
-      out <- out %>%
-        full_join(n_subscale, by = c("Subscale" = ".")) %>%
-        rename("n Subscale" = Freq)
-    if (nrow(n_subscale2) > 0)
-      out <- out %>%
-        full_join(n_subscale2, by = c("Subscale_2" = ".")) %>%
-        rename("n Subscale 2" = Freq)
+    for (i in 1:length(levels)) {
+      if (nrow(n_scale[[i]]) > 0) {
+        by <- "."
+        names(by) <- levels[i]
+        rn <- "Freq"
+        names(rn) <- paste0("n ", levels[i])
+        out <- out %>%
+          full_join(n_scale[[i]], by = by) %>%
+          rename(!!!rn)
+      }
+    }
   }
 
   out <- out %>%
     unique() %>%
-    as_tibble() %>%
-    arrange(Scale, Subscale, Subscale_2)
+    as_tibble()
 
   out <- out[, colSums(is.na(out)) != nrow(out)]
   out[] <- lapply(out, as.character)
   out[is.na(out)] <- char_na
+
+  out <- out[order(out[[1]]),]
 
   out
 }
