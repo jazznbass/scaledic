@@ -11,17 +11,15 @@
 #' list_scales(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE) {
+apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE, rename_var = NULL) {
 
-  if ("character" %in% class(dic)) {
-    dic <- readxl::read_excel(dic)
-  }
+  if ("character" %in% class(dic)) dic <- readxl::read_excel(dic)
+  if ("character" %in% class(data)) data <- readxl::read_excel(data)
 
   dic <- dic[apply(dic, 1, function(x) !all(is.na(x))),]
 
-  names(dic) <- tolower(names(dic))
-
   #rename dic names
+  names(dic) <- tolower(names(dic))
   names(dic)[which(names(dic) %in% c("label", "name"))] <- "item_name"
   names(dic)[which(names(dic) %in% "item")] <- "item_label"
   names(dic)[which(names(dic) %in% "sub_scale_2")] <- "subscale_2"
@@ -29,10 +27,16 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
   names(dic)[which(names(dic) %in% "sub_scale_label")] <- "subscale_label"
   names(dic)[which(names(dic) %in% "sub_scale_2_label")] <- "subscale_2_label"
 
+  #rename data variables
+  if (!is.null(rename_var)) {
+    to_from <- setNames(dic[[rename_var]], dic[[.dic_file$item_name]])
+    for(i in 1:length(to_from))
+      names(data)[which(names(data) == to_from[i])] <- names(to_from[i])
+  }
 
-  #copy name to var when var is missing
-  if (is.null(dic[[.dic_file$variable]]))
-    dic[[.dic_file$variable]] <- dic[[.dic_file$item_name]]
+  #!old code: copy name to var when var is missing
+  #if (is.null(dic[[.dic_file$variable]]))
+  #  dic[[.dic_file$variable]] <- dic[[.dic_file$item_name]]
 
   # check for missing weight variable
   if (is.null(dic[[.dic_file$weight]])) {
@@ -80,12 +84,15 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
   }
 
 
+  var_not_df <- NULL
+
   for (i in 1:nrow(dic)) {
 
     # rename columns in dataframe with label when column name is in dic file var variable
-    id <- which(names(data) == dic[[.dic_file$variable]][i])
+    id <- which(names(data) == dic[[.dic_file$item_name]][i])
     if (length(id) == 0) {
-      message("Variable ", dic[[.dic_file$variable]][i], " not found in data file.\n")
+      #message("Variable ", dic[[.dic_file$item_name]][i], " not found in data file.\n")
+      var_not_df <- c(var_not_df, dic[[.dic_file$item_name]][i])
       next
     }
     names(data)[id] <- dic[[.dic_file$item_name]][i]
@@ -149,6 +156,11 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
 
     dic_attr(data[[id]], .opt$class) <- "item"
     if (set_dic_attr) class(data[[id]]) <- c("dic", class(data[[id]]))
+  }
+
+  if (!is.null(var_not_df)) {
+    #message("Variables from dic not found in data file: ", paste0(var_not_df, collapse = ", "),"\n")
+    message(length(var_not_df), " from ", nrow(dic), " variables from dic not found in data file.\n")
   }
 
   if (replace_missing) {

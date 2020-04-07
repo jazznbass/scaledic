@@ -1,10 +1,13 @@
+# scaledic 0.1.8.2 (2020-04-07)
+
+- New function: `rename_by_list()` for renaming variables in a data file based on a provided list with named strings.
+
 
 # scaledic 0.1.8.0 (2020-03-25)
 
 - New function: `descriptives()` for returning a table with descriptive statistics for variables in a data.frame.
 - `apply_dic()`: If a charcter string is passed to the `dic` argument instead of a data frame, the function will take this as a filename and tries to load the file.
 - `get_dic()` renamed to `backup_dic()`
-
 
 # scaledic 0.1.7.10
 

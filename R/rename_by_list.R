@@ -1,0 +1,49 @@
+#' Rename varibles based on a list
+#'
+#' @param data A data frame with variables to be renamed
+#' @param file A filename of an Excel file containing at least to columns (variables) for renaming. Or a data frame with two columns.
+#' @param to_from When a filename or a data.frame is provided, a named charcter with the names of the target  and source variable names (e.g., c("to" = "from")).
+#' When no filename is provided, to_from must a vector with named variable names c("to1" = "from1", "to2" = "from2")).
+#' @param to When a filename or a data.frame is provided, the name of the column with the target variable names. When no filename is provided, to must a vector with target variable names.
+#' @param from When a filename or a data.frame is provided, the name of the column with the source variable names. When no filename is provided, from must a vector with source variable names.
+#'
+#' @return A data frame
+#' @export
+#' @examples
+#' dat <- data.frame(A = NA, B = NA, C = NA, D = NA)
+#' rename_by_list(dat, to = c("albert", "bea"), from = c("A", "B"))
+#' rename_by_list(dat, to_from = c("carl" = "C", "daniel" = "D"))
+#' dic <- data.frame(old = c("A", "B"), new = c("albert", "bea"))
+#' rename_by_list(dat, dic, to_from = c("new" = "old"))
+#' rename_by_list(dat, dic, to = "new", from = "old")
+#' \dontrun{
+#' rename_by_list(dat, "rename_list,xlsx", to_from = c("new" = "old"))
+#' rename_by_list(dat, "rename_list,xlsx", to = "new", from = "old")
+#' }
+rename_by_list <- function(data,
+                           file = NULL,
+                           to_from = NULL,
+                           to = NULL,
+                           from = NULL) {
+  if (!is.null(file)) {
+    if (!"data.frame" %in% class(file)) dic <- read_xlsx(file)
+    if ("data.frame" %in% class(file)) dic <- file
+    if (!is.null(to_from)) {
+      from <- dic[[to_from]]
+      to <- dic[[names(to_from)]]
+    } else {
+      from <- dic[[from]]
+      to <- dic[[to]]
+    }
+  }
+
+  if (is.null(file) && !is.null(to_from)) {
+    from <- to_from
+    to <- names(to_from)
+  }
+
+  rn <- setNames(from, to)
+  rn <- rn[rn %in% names(data)]
+  out <- rename(data, !!rn)
+  out
+}
