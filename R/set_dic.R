@@ -2,7 +2,6 @@
 #'
 #' @param data A data frame
 #' @param vars string or vector with string of variable names
-#' @param class
 #' @param ... More dic parameters
 #'
 #' @return A data frame

@@ -2,7 +2,7 @@
 
 .opt <- list(
   "dic" = "dic",
-  "variable" = "var",
+  #"variable" = "var",
   "item_name" = "item_name",
   "item_label" = "item_label",
   "scale" = "scale",
@@ -26,7 +26,7 @@
 
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
-  "variable" = "var",
+  #"variable" = "var",
   "item_name" = "item_name",
   "scale" = "scale",
   "subscale" = "subscale",

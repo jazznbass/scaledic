@@ -10,7 +10,8 @@ apply_dic(
   factors = TRUE,
   set_dic_attr = TRUE,
   set_label_attr = TRUE,
-  replace_missing = TRUE
+  replace_missing = TRUE,
+  rename_var = NULL
 )
 }
 \arguments{
