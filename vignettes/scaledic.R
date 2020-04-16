@@ -113,7 +113,7 @@ alpha_table(dat, scales = scales) %>%
 model <- lavaan_model(scales)
 cat("SEM model:\n", model)
 res <- lavaan::cfa(model = model, data = dat)
-summary(res)
+res
 
 
 ## -----------------------------------------------------------------------------

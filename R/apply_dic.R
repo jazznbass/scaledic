@@ -11,12 +11,19 @@
 #' list_scales(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE, rename_var = NULL) {
+apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_attr = TRUE, replace_missing = TRUE, score_scales = TRUE, rename_var = NULL) {
 
   if ("character" %in% class(dic)) dic <- readxl::read_excel(dic)
   if ("character" %in% class(data)) data <- readxl::read_excel(data)
 
   dic <- dic[apply(dic, 1, function(x) !all(is.na(x))),]
+
+  dic_scores <- data.frame()
+  if (.opt$score_filter %in% names(dic)) {
+    dic_scores <- dic[!is.na(dic[[.opt$score_filter]]), ]
+    dic <- dic[is.na(dic[[.opt$score_filter]]), ]
+  }
+
 
   #rename dic names
   names(dic) <- tolower(names(dic))
@@ -162,6 +169,10 @@ apply_dic <- function(data, dic, factors = TRUE, set_dic_attr = TRUE, set_label_
     #message("Variables from dic not found in data file: ", paste0(var_not_df, collapse = ", "),"\n")
     message(length(var_not_df), " from ", nrow(dic), " variables from dic not found in data file.\n")
   }
+
+
+  if (score_scales) data <- score_from_dic(data, dic_scores)
+
 
   if (replace_missing) {
     data <- replace_missing(data)

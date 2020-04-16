@@ -192,7 +192,7 @@ and even a confirmatory factor analysis with the use of the lavaan package.
 model <- lavaan_model(scales)
 cat("SEM model:\n", model)
 res <- lavaan::cfa(model = model, data = dat)
-summary(res)
+res
 
 ```
 
