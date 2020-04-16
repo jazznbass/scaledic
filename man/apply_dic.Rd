@@ -11,6 +11,7 @@ apply_dic(
   set_dic_attr = TRUE,
   set_label_attr = TRUE,
   replace_missing = TRUE,
+  score_scales = TRUE,
   rename_var = NULL
 )
 }

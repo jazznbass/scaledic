@@ -9,7 +9,6 @@ descriptives <- function(data, round = 2, labels = FALSE) {
 
   out <- apply(data, 2, function(x)
     c(
-      #n = length(x),
       valid = sum(!is.na(x)),
       missing  = sum(is.na(x)),
       mean = mean(x, na.rm = TRUE),
@@ -32,6 +31,7 @@ descriptives <- function(data, round = 2, labels = FALSE) {
       lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
     }
     out$label <- lab#extract_dic(data)$item_label
+    out <- out %>% select(name, label, everything())
   }
   out
 }

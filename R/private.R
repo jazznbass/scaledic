@@ -2,7 +2,6 @@
 
 .opt <- list(
   "dic" = "dic",
-  #"variable" = "var",
   "item_name" = "item_name",
   "item_label" = "item_label",
   "scale" = "scale",
@@ -26,7 +25,6 @@
 
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
-  #"variable" = "var",
   "item_name" = "item_name",
   "scale" = "scale",
   "subscale" = "subscale",
@@ -48,11 +46,8 @@
 
 .get_dic_items <- function(data) {
 
-  which(
-    sapply(data,
-      function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
-    )
-  )
+  foobar <- function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
+  which(sapply(data, foobar))
 
 }
 
