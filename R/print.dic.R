@@ -18,18 +18,36 @@ print.dic <- function(x, ...) {
       collapse = ""
     )
 
-  cat(first_line, "\n")
+  cat(first_line, "\n\n")
 
   if (!is.null(dic_attr(data, .opt$values))) {
-    values <- dic_attr(data, .opt$values)
-    labels <- names(dic_attr(data, .opt$values))
-    cat(paste0(values, " = ", labels, collapse = "\n"), "\n")
+    data_type <- dic_attr(data, .opt$type)
+    cat("Data type is", data_type, "\n")
+    if (data_type == "integer") {
+      .string <- paste0(dic_attr(data, .opt$values), collapse = ", ")
+      cat("Valid values: ", .string, "\n")
+    }
+    if (data_type == "float") {
+      .string <- paste0(
+        "From ", min(dic_attr(data, .opt$values)),
+        " to ", max(dic_attr(data, .opt$values)), collapse = ""
+      )
+      cat("Valid values:", .string, "\n")
+    }
+
   }
+
+  if (!is.null(dic_attr(data, .opt$value_labels))) {
+    print(dic_attr(data, .opt$value_labels), row.names = FALSE, right = FALSE)
+  }
+
+
 
   class(data) <- class(data)[!class(data) %in% .opt$dic]
   attr(data, .opt$dic) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL
+  cat("\n")
   print(data)
 
 }

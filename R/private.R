@@ -10,10 +10,10 @@
   "scale_label" = "scale_label",
   "subscale_label" = "subscale_label",
   "subscale_2_label" = "subscale_2_label",
-  "index" = "index",
+  #"index" = "index",
   "weight" = "weight",
   "source" = "source",
-  "note" = "note",
+  #"note" = "note",
   "type" = "type",
   "values" = "values",
   "value_labels" = "value_labels",
@@ -29,7 +29,7 @@
   "scale" = "scale",
   "subscale" = "subscale",
   "subscale_2" = "subscale_2",
-  "index" = "index",
+  #"index" = "index",
   "scale_label" = "scale_label",
   "subscale_label" = "subscale_label",
   "subscale_2_label" = "subscale_2_label",
@@ -40,7 +40,10 @@
   "missing" = "missing",
   "type" = "type",
   "source" = "source",
-  "note" = "note"
+  "class" = "class",
+  "score_filter" = "score_filter",
+  "score_function" = "score_function"
+  #"note" = "note"
 )
 
 

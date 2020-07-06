@@ -8,10 +8,11 @@ apply_dic(
   data,
   dic,
   factors = TRUE,
-  set_dic_attr = TRUE,
   set_label_attr = TRUE,
   replace_missing = TRUE,
   score_scales = TRUE,
+  check_values = FALSE,
+  impute_values = FALSE,
   rename_var = NULL
 )
 }
@@ -24,6 +25,8 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
 
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
+
+\item{check_values}{If TRUE, performs the check_values function on the variables of the data frame included in the dic file.}
 }
 \value{
 A data frame with dictionary information.

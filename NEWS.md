@@ -1,4 +1,8 @@
 
+
+# scaledic 0.1.10 (2020-06-26)
+- Internally reworked the values and value_labels attributes.
+
 # scaledic 0.1.9 (2020-04-16)
 - New function: `score_from_dic()`. Now, a dictionary file can contain information for building scale score (`score_filter`, `score_function`, `item_label`, `item_name`. This function extracts these infromation from the dic file and returns a data frame with the new score variable(s).
 
