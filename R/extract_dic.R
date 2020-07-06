@@ -23,7 +23,8 @@ extract_dic <- function(data) {
     dic <- attr(data[[id[row]]], .opt$dic)
 
     for (col in dic_names[!dic_names %in% c("values", "missing")]) {
-      if (is.null(dic[[col]])) {
+
+      if (is.null(dic[[col]]) || length(dic[[col]]) == 0) {
         out[row, col] <- NA
       } else {
         out[row, col] <- dic[[col]]
