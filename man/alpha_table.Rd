@@ -16,7 +16,8 @@ alpha_table(
   keys = NULL,
   RMSEA = FALSE,
   difficulty = FALSE,
-  values = NULL
+  values = NULL,
+  fa = TRUE
 )
 }
 \arguments{

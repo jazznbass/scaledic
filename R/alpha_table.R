@@ -18,7 +18,7 @@
 alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
                         conf_level = 0.95, check_key = TRUE, omega = FALSE,
                         keys = NULL, RMSEA = FALSE, difficulty = FALSE,
-                        values = NULL) {
+                        values = NULL, fa = TRUE) {
 
   if (difficulty && is.null(values)) {
     stop("Can not calculate item difficulty without min and max scale values.")
@@ -37,7 +37,8 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     if (omega) {
       o <- invisible(psych::omega(data[, scales[[i]]], nfactors = 1, keys = key))
     }
-    f <- invisible(psych::fa(data[, scales[[i]]]))
+
+    if (fa) f <- invisible(psych::fa(data[, scales[[i]]]))
     alpha <- a$total$raw_alpha
     df$"n"[i] <- min(a$item.stats$n, na.rm = TRUE)
 
@@ -73,8 +74,14 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     mmax <- round(max(a$item.stats$mean), round)
     smin <- round(min(a$item.stats$sd), round)
     smax <- round(max(a$item.stats$sd), round)
-    lmin <- round(min(abs(f$loadings)), round)
-    lmax <- round(max(abs(f$loadings)), round)
+    if (fa) {
+      lmin <- round(min(abs(f$loadings)), round)
+      lmax <- round(max(abs(f$loadings)), round)
+    } else {
+      lmin <- NA
+      lmax <- NA
+
+    }
     if (difficulty) {
       dif_min <- round((mmin - min) / (max - min), round)
       dif_max <- round((mmax - min) / (max - min), round)
