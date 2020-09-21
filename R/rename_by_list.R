@@ -44,6 +44,7 @@ rename_by_list <- function(data,
 
   rn <- setNames(from, to)
   rn <- rn[rn %in% names(data)]
+  rn <- rn[!is.na(names(rn))]
   out <- rename(data, !!rn)
   out
 }
