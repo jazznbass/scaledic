@@ -4,7 +4,7 @@
 \alias{score_from_dic}
 \title{Automatic scale scoring from a dic file}
 \usage{
-score_from_dic(data, dic)
+score_from_dic(data, dic, check_values = TRUE, impute_values = FALSE)
 }
 \arguments{
 \item{data}{A data frame with dic information}

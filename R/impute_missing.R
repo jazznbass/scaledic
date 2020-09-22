@@ -15,13 +15,22 @@ impute_missing <- function(data, filter = NULL, scale = NULL, subscale = NULL,
     filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
   }
 
+
+  data <- .impute_missing(data, filter, force_to_scale)
+
+  data
+}
+
+.impute_missing <- function(data, filter, force_to_scale = TRUE) {
+
   id <- .get_index(data, filter, class = "item")
   if (!any(is.na(data[, id]))) {
     message("No missing data.\n")
     return(data)
   }
-
-  data[, id] <- amelia(data[, id], boot.type = "none", m = 1)$imputations[[1]]
+  cl <- class(data)
+  data[, id] <- amelia(as.data.frame(data[, id]), boot.type = "none", m = 1)$imputations[[1]]
+  class(data) <- cl
 
   if (force_to_scale) {
     for (i in id) {

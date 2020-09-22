@@ -155,8 +155,12 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
   }
 
   if (score_scales && nrow(dic_scores > 0)) {
+    message("Values checked.")
+    vars <- names(data) %in% dic[[.opt$item_name]]
+    data[, vars] <- check_values(data[, vars], replace = NA)
+    if (impute_values) message("Scales imputed.")
     message("Scales scored.")
-    data <- score_from_dic(data, dic_scores)
+    data <- score_from_dic(data, dic_scores, impute_values = impute_values)
   }
 
   if (set_label_attr) {

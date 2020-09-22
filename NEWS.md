@@ -1,4 +1,6 @@
 
+# scaledic 0.1.11 (2020-09-22)
+- `apply_dic()`: impute_values before scoring
 
 # scaledic 0.1.10 (2020-06-26)
 - Internally reworked the values and value_labels attributes.
