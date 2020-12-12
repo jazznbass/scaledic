@@ -1,9 +1,9 @@
 #' Impute missing values
 #'
 #' @param data A data frame
+#' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
 #' @param force_to_scale If TRUE, imputed values will be rounded and forced to the scale.
 #' That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.
-#' @inheritParams get_index
 #'
 #' @return A data frame with imputed data.
 #' @export

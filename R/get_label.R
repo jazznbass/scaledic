@@ -8,7 +8,7 @@
 #' @export
 get_label <- function(data, scale, label) {
   scale <- deparse(substitute(scale))
-  id <- scaledic:::.get_index(data = data, filter = scale, class = "item")
+  id <- .get_index(data = data, filter = scale, class = "item")
   dic_names <- sapply(data[id], function(x) dic_attr(x, label))
   dic_names <- unique(dic_names)
   #if (nrow(dic_names) > 1) stop("Multiple labels for given scale.")

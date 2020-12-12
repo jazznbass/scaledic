@@ -193,7 +193,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
   if (is.null(dic[[.dic_file$class]])) dic[[.dic_file$class]] <- "item"
 
   if (.dic_file$score_filter %in% names(dic)) {
-    .filter <- which(!is.na(dic[[.dic_file$score_filter]]) & is.na(dic[[.dic_file$class]]))
+    .filter <- which(!is.na(dic[[.dic_file$score_filter]]))
     dic[.filter, .dic_file$class] <- "scale"
   }
 

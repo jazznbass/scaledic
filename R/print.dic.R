@@ -24,8 +24,15 @@ print.dic <- function(x, ...) {
     data_type <- dic_attr(data, .opt$type)
     cat("Data type is", data_type, "\n")
     if (data_type == "integer") {
-      .string <- paste0(dic_attr(data, .opt$values), collapse = ", ")
-      cat("Valid values: ", .string, "\n")
+      x <- dic_attr(data, .opt$values)
+      d <- diff(x)
+      u <- unique(d)
+      if (length(u) == 1 && u[1] == 1) {
+        x <- paste0(min(x), ":", max(x))
+      } else {
+        x <- paste0(x, collapse = ",")
+      }
+      cat("Valid values: ", x, "\n")
     }
     if (data_type == "float") {
       .string <- paste0(

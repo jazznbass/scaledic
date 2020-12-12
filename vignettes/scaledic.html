@@ -14,13 +14,29 @@
 
 <title>Introduction to scaledic</title>
 
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -30,14 +46,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -46,9 +64,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -305,18 +323,18 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <h1>Note</h1>
 <p>This is a short description on how to use the scaledic package. The following code examples in this package make use of the pipe operator <code>%&gt;%</code> (see the <code>magrittr</code> package).<br />
 Once you are used to the pipe operator, it makes code easier to read. Basically, it is just a shortcut. The pipe operator takes the return of the previous function and sets it as the <strong>first</strong> argument of the following function. An example:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">newdat &lt;-<span class="st"> </span><span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">newdat &lt;-<span class="st"> </span><span class="kw">describe</span>(newdat)</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">newdat &lt;-<span class="st"> </span><span class="kw">round</span>(newdat, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="kw">kable</span>(newdat)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>newdat &lt;-<span class="st"> </span><span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>newdat &lt;-<span class="st"> </span><span class="kw">describe</span>(newdat)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>newdat &lt;-<span class="st"> </span><span class="kw">round</span>(newdat, <span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">kable</span>(newdat)</span></code></pre></div>
 <p>or even worth</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">kable</span>(<span class="kw">round</span>(<span class="kw">describe</span>(<span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)), <span class="dv">2</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">kable</span>(<span class="kw">round</span>(<span class="kw">describe</span>(<span class="kw">select</span>(dat, <span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>)), <span class="dv">2</span>))</span></code></pre></div>
 <p>becomes:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="st">  </span><span class="kw">describe</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="st">  </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="st">&quot;iq&quot;</span>, <span class="st">&quot;age&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">describe</span>() <span class="op">%&gt;%</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">round</span>(<span class="dv">2</span>) <span class="op">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 </div>
 <div id="how-to-use-scaledic" class="section level1">
 <h1>How to use scaledic</h1>
@@ -331,6 +349,11 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <p>The following table shows the parameters and the naming of the columns of a dictionary file:</p>
 <table>
 <caption>Columns of a dictionary file</caption>
+<colgroup>
+<col width="13%"></col>
+<col width="36%"></col>
+<col width="50%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Parameter</th>
@@ -412,7 +435,7 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <tr class="odd">
 <td align="left">source</td>
 <td align="left">Reference</td>
-<td align="left">Casale et al. (2017)</td>
+<td align="left">Casale et al. (2017)</td>
 </tr>
 <tr class="even">
 <td align="left">note</td>
@@ -422,10 +445,31 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 </tbody>
 </table>
 <p>Here is extract of a dic file from the included example:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
-<table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>dic_ITRF <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="st">  </span><span class="kw">slice</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>) <span class="op">%&gt;%</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="22%"></col>
+<col width="1%"></col>
+<col width="1%"></col>
+<col width="2%"></col>
+<col width="2%"></col>
+<col width="7%"></col>
+<col width="3%"></col>
+<col width="4%"></col>
+<col width="10%"></col>
+<col width="1%"></col>
+<col width="1%"></col>
+<col width="20%"></col>
+<col width="1%"></col>
+<col width="1%"></col>
+<col width="7%"></col>
+<col width="1%"></col>
+<col width="3%"></col>
+<col width="3%"></col>
+<col width="1%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">item_name</th>
@@ -444,10 +488,34 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <th align="left">type</th>
 <th align="left">source</th>
 <th align="left">note</th>
+<th align="left">score_filter</th>
+<th align="left">score_function</th>
+<th align="left">class</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"># when the first column of a row begins with a #, this column is considered to be a comment line.</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="right">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">itrf_I_1</td>
 <td align="right">1</td>
 <td align="left">ITRF</td>
@@ -462,10 +530,13 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
+<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">item</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">itrf_I_2</td>
 <td align="right">2</td>
 <td align="left">ITRF</td>
@@ -480,26 +551,11 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
+<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_4</td>
-<td align="right">4</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Socially Withdrawn</td>
-<td align="left">Vermeidet soziale Interaktionen</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
 <td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">item</td>
 </tr>
 </tbody>
 </table>
@@ -509,12 +565,20 @@ Once you are used to the pipe operator, it makes code easier to read. Basically,
 <p>When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.<br />
 The resulting dataset now is ready to be used with all further <code>scaledic</code> functions.</p>
 <p>The <code>apply_dic</code> function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co"># Here we use the example dataset &quot;ITRF&quot; and the example dic file &quot;dic_ITRF&quot;</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">apply_dic</span>(ITRF, dic_ITRF)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Here we use the example dataset &quot;ITRF&quot; and the example dic file &quot;dic_ITRF&quot;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>dat &lt;-<span class="st"> </span><span class="kw">apply_dic</span>(ITRF, dic_ITRF)</span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">list_scales</span>(dat, <span class="dt">labels =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
+<colgroup>
+<col width="5%"></col>
+<col width="8%"></col>
+<col width="10%"></col>
+<col width="28%"></col>
+<col width="13%"></col>
+<col width="34%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">scale</th>
@@ -564,21 +628,21 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div id="clean-raw-data" class="section level2">
 <h2>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">dat &lt;-<span class="st"> </span><span class="kw">check_values</span>(dat, <span class="dt">replace =</span> <span class="ot">NA</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>dat &lt;-<span class="st"> </span><span class="kw">check_values</span>(dat, <span class="dt">replace =</span> <span class="ot">NA</span>)</span></code></pre></div>
 <p>Now we impute missing values:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Imputation for items of the subscale Ext</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co"># Imputation for items of the subscale Int</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5">dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="co"># Imputation for items of the subscale Ext</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>)</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="co"># Imputation for items of the subscale Int</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>dat &lt;-<span class="st"> </span><span class="kw">impute_missing</span>(dat, subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>)</span></code></pre></div>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2>Select scales for analyszing</h2>
 <p>Let us see descriptive statistics for the Internalizing sub scale:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="st">  </span><span class="kw">select_items</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>) <span class="op">%&gt;%</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -829,14 +893,28 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <div id="see-items-instead-of-labels" class="section level2">
 <h2>See items instead of labels</h2>
 <p>It is more convinient to see the original items instead of the short lables:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">dat <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>dat <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="st">  </span><span class="kw">select_items</span>(subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
+<colgroup>
+<col width="7%"></col>
+<col width="54%"></col>
+<col width="4%"></col>
+<col width="6%"></col>
+<col width="3%"></col>
+<col width="3%"></col>
+<col width="3%"></col>
+<col width="3%"></col>
+<col width="4%"></col>
+<col width="5%"></col>
+<col width="3%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">name</th>
+<th align="left">label</th>
 <th align="right">valid</th>
 <th align="right">missing</th>
 <th align="right">mean</th>
@@ -850,6 +928,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">itrf_I_1</td>
 <td align="left">Verbringt zu viel Zeit alleine</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -862,6 +941,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_2</td>
 <td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -874,6 +954,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_4</td>
 <td align="left">Vermeidet soziale Interaktionen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -886,6 +967,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_5</td>
 <td align="left">Spielt bevorzugt alleine</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -898,6 +980,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_6</td>
 <td align="left">Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -910,6 +993,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_7</td>
 <td align="left">Macht sich Sorgen über unwichtige Details</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -922,6 +1006,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_8</td>
 <td align="left">Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -934,6 +1019,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_9</td>
 <td align="left">Wirkt unglücklich oder traurig</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -946,6 +1032,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_10</td>
 <td align="left">Klammert sich an Erwachsene</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -958,6 +1045,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_11</td>
 <td align="left">Verhält sich nervös</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -970,6 +1058,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_12</td>
 <td align="left">Verhält sich ängstlich</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -982,6 +1071,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_13</td>
 <td align="left">Behauptet sich nicht gegenüber anderen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -994,6 +1084,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_14</td>
 <td align="left">Verhält sich übermäßig schüchtern</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1006,6 +1097,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_15</td>
 <td align="left">Beklagt sich oder jammert</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1018,6 +1110,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_16</td>
 <td align="left">Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1030,6 +1123,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_17</td>
 <td align="left">Macht sich selbst schlecht</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1042,6 +1136,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_19</td>
 <td align="left">Weint oder ist weinerlich</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1054,6 +1149,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="even">
+<td align="left">itrf_I_23</td>
 <td align="left">Macht sich ständig Sorgen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1066,6 +1162,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">0</td>
 </tr>
 <tr class="odd">
+<td align="left">itrf_I_24</td>
 <td align="left">Lässt sich langsam auf neue Personen ein</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1080,15 +1177,22 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 <p>And further we analyse the factor structure. Here we use the <code>names2item()</code> function to get a more convenient description.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scale</span>(scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3"><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="kw">c</span>(<span class="st">&quot;reverse&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale2&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4"><span class="st">  </span><span class="kw">exploratory_fa</span>(<span class="dt">nfactors =</span> <span class="dv">4</span>, <span class="dt">cut =</span> <span class="fl">0.4</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb11-5" data-line-number="5"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">select_items</span>(scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="kw">c</span>(<span class="st">&quot;reverse&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale2&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">exploratory_fa</span>(<span class="dt">nfactors =</span> <span class="dv">4</span>, <span class="dt">cut =</span> <span class="fl">0.4</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
+<colgroup>
+<col width="78%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+<col width="5%"></col>
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="left">MR1</th>
 <th align="left">MR3</th>
 <th align="left">MR2</th>
@@ -1097,269 +1201,281 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </thead>
 <tbody>
 <tr class="odd">
-<td>(+)Ext_OPP: Verliert die Beherrschung</td>
+<td align="left">(+)Ext_OPP: Verliert die Beherrschung</td>
 <td align="left">0.85</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_OPP: Macht unangebrachte Bemerkungen</td>
+<td align="left">(+)Ext_OPP: Macht unangebrachte Bemerkungen</td>
 <td align="left">0.83</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_OPP: Streitet und zankt mit Lehrkräften</td>
+<td align="left">(+)Ext_OPP: Streitet und zankt mit Lehrkräften</td>
 <td align="left">0.8</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern</td>
+<td align="left">(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern</td>
 <td align="left">0.8</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_OPP: Kommandiert rum</td>
+<td align="left">(+)Ext_OPP: Kommandiert rum</td>
 <td align="left">0.78</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_OPP: Verwendet unangemessene Sprache</td>
+<td align="left">(+)Ext_OPP: Verwendet unangemessene Sprache</td>
 <td align="left">0.78</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_OPP: Ist schnell verärgert</td>
+<td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
 <td align="left">0.76</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_OPP: Stört andere</td>
+<td align="left">(+)Ext_OPP: Stört andere</td>
 <td align="left">0.65</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer</td>
+<td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer</td>
 <td align="left">0.64</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_APD: Erledigt Hausaufgaben unvollständig</td>
+<td align="left">(+)Ext_APD: Erledigt Hausaufgaben unvollständig</td>
 <td align="left"></td>
 <td align="left">0.82</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor</td>
+<td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.8</td>
+<td align="left">0.81</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig</td>
+<td align="left">(+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig</td>
 <td align="left"></td>
 <td align="left">0.76</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
+<td align="left">(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
 <td align="left"></td>
 <td align="left">0.73</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
+<td align="left">(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
 <td align="left"></td>
 <td align="left">0.73</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
+<td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
 <td align="left"></td>
 <td align="left">0.73</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig</td>
+<td align="left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig</td>
 <td align="left"></td>
 <td align="left">0.72</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
+<td align="left">(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
 <td align="left"></td>
-<td align="left">0.53</td>
+<td align="left">0.52</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Int_SW: Vermeidet soziale Interaktionen</td>
+<td align="left">(+)Int_SW: Vermeidet soziale Interaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.86</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits</td>
+<td align="left">(+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Int_SW: Spielt bevorzugt alleine</td>
+<td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.78</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Int_SW: Verbringt zu viel Zeit alleine</td>
+<td align="left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.66</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
+<td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.66</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Int_SW: Verhält sich übermäßig schüchtern</td>
+<td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.54</td>
+<td align="left">0.55</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Int_SW: Behauptet sich nicht gegenüber anderen</td>
+<td align="left">(+)Int_SW: Behauptet sich nicht gegenüber anderen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.5</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td>(+)Int_SW: Lässt sich langsam auf neue Personen ein</td>
+<td align="left">(+)Int_SW: Lässt sich langsam auf neue Personen ein</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.47</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
+<td align="left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.73</td>
 </tr>
 <tr class="odd">
-<td>(+)Int_AD: Macht sich ständig Sorgen</td>
+<td align="left">(+)Int_AD: Macht sich ständig Sorgen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.71</td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Beschwert sich über Krankheit oder Schmerzen</td>
+<td align="left">(+)Int_AD: Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.7</td>
 </tr>
 <tr class="odd">
-<td>(+)Int_AD: Beklagt sich oder jammert</td>
+<td align="left">(+)Int_AD: Beklagt sich oder jammert</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.65</td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Macht sich Sorgen über unwichtige Details</td>
+<td align="left">(+)Int_AD: Macht sich Sorgen über unwichtige Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.65</td>
+<td align="left">0.64</td>
 </tr>
 <tr class="odd">
-<td>(+)Int_AD: Weint oder ist weinerlich</td>
+<td align="left">(+)Int_AD: Weint oder ist weinerlich</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.59</td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Verhält sich ängstlich</td>
+<td align="left">(+)Int_AD: Verhält sich ängstlich</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.47</td>
 </tr>
 <tr class="odd">
-<td>(+)Int_AD: Wirkt unglücklich oder traurig</td>
+<td align="left">(+)Int_AD: Wirkt unglücklich oder traurig</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.47</td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Macht sich selbst schlecht</td>
+<td align="left">(+)Int_AD: Macht sich selbst schlecht</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.44</td>
 </tr>
 <tr class="odd">
-<td>(+)Int_AD: Klammert sich an Erwachsene</td>
+<td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.4</td>
 </tr>
 <tr class="even">
-<td>(+)Int_AD: Verhält sich nervös</td>
+<td align="left">(+)Int_AD: Verhält sich nervös</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left">0.4</td>
 </tr>
 </tbody>
 </table>
 <p>and provide item analyses</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">scales &lt;-<span class="st"> </span><span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">  <span class="st">'APD'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;APD&quot;</span>),</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3">  <span class="st">'OPP'</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;OPP&quot;</span>),</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4">  <span class="st">&quot;SW&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;SW&quot;</span>),</a>
-<a class="sourceLine" id="cb12-5" data-line-number="5">  <span class="st">&quot;AD&quot;</span> =<span class="st"> </span><span class="kw">get_index</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;AD&quot;</span>)</a>
-<a class="sourceLine" id="cb12-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="kw">alpha_table</span>(dat, <span class="dt">scales =</span> scales) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>scales &lt;-<span class="st"> </span><span class="kw">list</span>(</span>
+<span id="cb12-2"><a href="#cb12-2"></a>  <span class="st">&#39;APD&#39;</span> =<span class="st"> </span><span class="kw">select_items</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;APD&quot;</span>, <span class="dt">names_only =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb12-3"><a href="#cb12-3"></a>  <span class="st">&#39;OPP&#39;</span> =<span class="st"> </span><span class="kw">select_items</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;OPP&quot;</span>, <span class="dt">names_only =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb12-4"><a href="#cb12-4"></a>  <span class="st">&quot;SW&quot;</span> =<span class="st"> </span><span class="kw">select_items</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;SW&quot;</span>, <span class="dt">names_only =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb12-5"><a href="#cb12-5"></a>  <span class="st">&quot;AD&quot;</span> =<span class="st"> </span><span class="kw">select_items</span>(dat, subscale_<span class="dv">2</span> <span class="op">==</span><span class="st"> &quot;AD&quot;</span>, <span class="dt">names_only =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb12-6"><a href="#cb12-6"></a>)</span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="kw">alpha_table</span>(dat, <span class="dt">scales =</span> scales) <span class="op">%&gt;%</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
+<colgroup>
+<col width="4%"></col>
+<col width="4%"></col>
+<col width="6%"></col>
+<col width="11%"></col>
+<col width="14%"></col>
+<col width="9%"></col>
+<col width="12%"></col>
+<col width="9%"></col>
+<col width="9%"></col>
+<col width="16%"></col>
+</colgroup>
 <thead>
 <tr class="header">
 <th align="left">Scale</th>
@@ -1383,7 +1499,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.91 (.91-.91)</td>
 <td align="left">.56</td>
 <td align="left">.53 - .78</td>
-<td align="left">0.38 - 0.95</td>
+<td align="left">0.39 - 0.95</td>
 <td align="left">0.75 - 1.04</td>
 <td align="left">.55 - .82</td>
 </tr>
@@ -1394,10 +1510,10 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.94 (.93-.94)</td>
 <td align="left">.94 (.94-.94)</td>
 <td align="left">.63</td>
-<td align="left">.67 - .81</td>
-<td align="left">0.35 - 0.82</td>
+<td align="left">.68 - .81</td>
+<td align="left">0.35 - 0.83</td>
 <td align="left">0.72 - 0.96</td>
-<td align="left">.69 - .85</td>
+<td align="left">.7 - .85</td>
 </tr>
 <tr class="odd">
 <td align="left">SW</td>
@@ -1426,44 +1542,45 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 <p>and even a confirmatory factor analysis with the use of the lavaan package.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">model &lt;-<span class="st"> </span><span class="kw">lavaan_model</span>(scales)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"><span class="kw">cat</span>(<span class="st">&quot;SEM model:</span><span class="ch">\n</span><span class="st">&quot;</span>, model)</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; SEM model:</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4"><span class="co">#&gt;  APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co">#&gt; OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="co">#&gt; SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24</span></a>
-<a class="sourceLine" id="cb13-7" data-line-number="7"><span class="co">#&gt; AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23</span></a>
-<a class="sourceLine" id="cb13-8" data-line-number="8">res &lt;-<span class="st"> </span>lavaan<span class="op">::</span><span class="kw">cfa</span>(<span class="dt">model =</span> model, <span class="dt">data =</span> dat)</a>
-<a class="sourceLine" id="cb13-9" data-line-number="9">res</a>
-<a class="sourceLine" id="cb13-10" data-line-number="10"><span class="co">#&gt; lavaan 0.6-5 ended normally after 60 iterations</span></a>
-<a class="sourceLine" id="cb13-11" data-line-number="11"><span class="co">#&gt; </span></a>
-<a class="sourceLine" id="cb13-12" data-line-number="12"><span class="co">#&gt;   Estimator                                         ML</span></a>
-<a class="sourceLine" id="cb13-13" data-line-number="13"><span class="co">#&gt;   Optimization method                           NLMINB</span></a>
-<a class="sourceLine" id="cb13-14" data-line-number="14"><span class="co">#&gt;   Number of free parameters                         78</span></a>
-<a class="sourceLine" id="cb13-15" data-line-number="15"><span class="co">#&gt;                                                       </span></a>
-<a class="sourceLine" id="cb13-16" data-line-number="16"><span class="co">#&gt;                                                   Used       Total</span></a>
-<a class="sourceLine" id="cb13-17" data-line-number="17"><span class="co">#&gt;   Number of observations                          4772        4776</span></a>
-<a class="sourceLine" id="cb13-18" data-line-number="18"><span class="co">#&gt;                                                                   </span></a>
-<a class="sourceLine" id="cb13-19" data-line-number="19"><span class="co">#&gt; Model Test User Model:</span></a>
-<a class="sourceLine" id="cb13-20" data-line-number="20"><span class="co">#&gt;                                                        </span></a>
-<a class="sourceLine" id="cb13-21" data-line-number="21"><span class="co">#&gt;   Test statistic                              21190.493</span></a>
-<a class="sourceLine" id="cb13-22" data-line-number="22"><span class="co">#&gt;   Degrees of freedom                                588</span></a>
-<a class="sourceLine" id="cb13-23" data-line-number="23"><span class="co">#&gt;   P-value (Chi-square)                            0.000</span></a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>model &lt;-<span class="st"> </span><span class="kw">lavaan_model</span>(scales)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">cat</span>(<span class="st">&quot;SEM model:</span><span class="ch">\n</span><span class="st">&quot;</span>, model)</span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt; SEM model:</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt;  APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a>res &lt;-<span class="st"> </span>lavaan<span class="op">::</span><span class="kw">cfa</span>(<span class="dt">model =</span> model, <span class="dt">data =</span> dat)</span>
+<span id="cb13-9"><a href="#cb13-9"></a>res</span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; lavaan 0.6-7 ended normally after 60 iterations</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; </span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
+<span id="cb13-13"><a href="#cb13-13"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a><span class="co">#&gt;   Number of free parameters                         78</span></span>
+<span id="cb13-15"><a href="#cb13-15"></a><span class="co">#&gt;                                                       </span></span>
+<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#&gt;                                                   Used       Total</span></span>
+<span id="cb13-17"><a href="#cb13-17"></a><span class="co">#&gt;   Number of observations                          4772        4776</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a><span class="co">#&gt;                                                                   </span></span>
+<span id="cb13-19"><a href="#cb13-19"></a><span class="co">#&gt; Model Test User Model:</span></span>
+<span id="cb13-20"><a href="#cb13-20"></a><span class="co">#&gt;                                                        </span></span>
+<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt;   Test statistic                              21170.035</span></span>
+<span id="cb13-22"><a href="#cb13-22"></a><span class="co">#&gt;   Degrees of freedom                                588</span></span>
+<span id="cb13-23"><a href="#cb13-23"></a><span class="co">#&gt;   P-value (Chi-square)                            0.000</span></span></code></pre></div>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2"></a>dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">dat <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">kable</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
 <th align="left">name</th>
+<th align="left">label</th>
 <th align="right">valid</th>
 <th align="right">missing</th>
 <th align="right">mean</th>
@@ -1477,18 +1594,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Externalizing</td>
-<td align="right">4776</td>
-<td align="right">0</td>
-<td align="right">0.6</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3.0</td>
-<td align="right">3.0</td>
-<td align="right">0.4</td>
-<td align="right">0.5</td>
-</tr>
-<tr class="even">
+<td align="left">itrf_int</td>
 <td align="left">Internalizing</td>
 <td align="right">4772</td>
 <td align="right">4</td>
@@ -1499,6 +1605,19 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="right">2.6</td>
 <td align="right">0.2</td>
 <td align="right">0.3</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_ext</td>
+<td align="left">Externalizing</td>
+<td align="right">4776</td>
+<td align="right">0</td>
+<td align="right">0.6</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3.0</td>
+<td align="right">3.0</td>
+<td align="right">0.4</td>
+<td align="right">0.5</td>
 </tr>
 </tbody>
 </table>

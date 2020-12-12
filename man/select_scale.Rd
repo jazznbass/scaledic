@@ -14,7 +14,7 @@ select_scale(
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame with dic information}
 
 \item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 }

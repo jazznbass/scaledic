@@ -1,6 +1,17 @@
 
+# scaledic 0.1.15 (2020-12-12)
+- implemented vctrs vec_ptype2 vec_cast S3 methods for dic variables for better integration of scaledic into dyplyr
+
+
+# scaledic 0.1.12 (2020-09-22)
+- New function: `comnbine_data_frame()`. Will combine several dataframes (rows and columns) into a new data frame while keeping the dic information
+
+
 # scaledic 0.1.11 (2020-09-22)
-- `apply_dic()`: impute_values before scoring
+- `apply_dic()`: impute_values before scoring when `impute_values = TRUE`.
+- `select_scale()` is deprecated. Instead use `select_items(data, filter)`
+- `get_index()` is deprecated. Instead use `select_items(data, filter, names_only = TRUE)`.
+
 
 # scaledic 0.1.10 (2020-06-26)
 - Internally reworked the values and value_labels attributes.

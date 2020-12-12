@@ -54,6 +54,15 @@
 
 }
 
+.get_index <- function(data, filter, names = TRUE, class = NULL) {
+  if (!is.null(class)) filter <- paste0(filter, " & class == '", class, "'")
+  dic <- extract_dic(data)
+  id <- with(dic, eval(str2lang(filter)))
+  out <- which(names(data) %in% dic[[.opt$item_name]][id])
+  if (names) out <- names(data)[out]
+  out
+}
+
 .to_filter <- function(scale = NULL, subscale = NULL, subscale_2 = NULL) {
 
   filter <- NULL

@@ -12,7 +12,8 @@ check_values(
   return = TRUE,
   report = FALSE,
   include_missing = FALSE,
-  integer_as_double = TRUE
+  integer_as_double = TRUE,
+  check_type = TRUE
 )
 }
 \arguments{

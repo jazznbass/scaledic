@@ -1,4 +1,4 @@
-#' Rename items
+#' Rename long to short
 #' Set names of items as long labels and vice versa.
 #'
 #' @param data A data frame

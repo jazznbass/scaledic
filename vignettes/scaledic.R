@@ -81,29 +81,29 @@ dat <- impute_missing(dat, subscale == "Int")
 
 ## ----descriptives-------------------------------------------------------------
 dat %>% 
-  select_scale(subscale == "Int") %>%
+  select_items(subscale == "Int") %>%
   descriptives(round = 1) %>%
   kable()
 
 ## -----------------------------------------------------------------------------
 dat %>% 
-  select_scale(subscale == "Int") %>%
+  select_items(subscale == "Int") %>%
   descriptives(round = 1, label = TRUE) %>%
   kable()
 
 ## -----------------------------------------------------------------------------
 dat %>%
-  select_scale(scale == "ITRF") %>%
+  select_items(scale == "ITRF") %>%
   names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
   exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 
 ## -----------------------------------------------------------------------------
 scales <- list(
-  'APD' = get_index(dat, subscale_2 == "APD"),
-  'OPP' = get_index(dat, subscale_2 == "OPP"),
-  "SW" = get_index(dat, subscale_2 == "SW"),
-  "AD" = get_index(dat, subscale_2 == "AD")
+  'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
+  'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
+  "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
+  "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
 )
 alpha_table(dat, scales = scales) %>%
   kable()

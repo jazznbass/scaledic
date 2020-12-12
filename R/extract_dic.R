@@ -8,10 +8,11 @@
 extract_dic <- function(data) {
 
   id <- .get_dic_items(data)
+
   dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
-  dic_names <- dic_names[which(!dic_names %in% c("var"))]
+  #dic_names <- dic_names[which(!dic_names %in% c("var"))]
 
   N <- length(id)
 
@@ -20,9 +21,9 @@ extract_dic <- function(data) {
   names(out) <- dic_names
 
   for (row in 1:N) {
-    dic <- attr(data[[id[row]]], .opt$dic)
+    dic <- attr(data[[id[row]]], scaledic:::.opt$dic)
 
-    for (col in dic_names[!dic_names %in% c("values", "missing")]) {
+    for (col in dic_names[!dic_names %in% c("value_labels", "values", "missing")]) {
 
       if (is.null(dic[[col]]) || length(dic[[col]]) == 0) {
         out[row, col] <- NA
@@ -31,12 +32,26 @@ extract_dic <- function(data) {
       }
     }
 
-    x <- paste0(dic[[.dic_file$values]], ",", collapse = "")
-    x <- substring(x, 1, nchar(x) - 1)
+    # values to code
+    x <- dic[[.dic_file$values]]
+    d <- diff(x)
+    u <- unique(d)
+    if (length(u) == 1 && u[1] == 1) {
+      x <- paste0(min(x), ":", max(x))
+    } else {
+      x <- paste0(x, collapse = ",")
+    }
+
+    #x <- paste0(dic[[.dic_file$values]], collapse = ",")
+    #x <- substring(x, 1, nchar(x) - 1)
     out[row, .dic_file[["values"]]] <- x
-    x <- paste0(dic$values, " = ", names(dic$values), "; ", collapse = "")
-    x <- substring(x, 1, nchar(x) - 2)
+
+    # value labels to code
+
+    x <- paste0(dic$value_labels$value, " = ", dic$value_labels$label, collapse = "; ")
+    #x <- paste0(dic$values, " = ", names(dic$values), collapse = "; ")
     out[row, .dic_file[["value_labels"]]] <- x
+
     x <- paste0(dic[[.dic_file$missing]], ",", collapse = "")
     x <- substring(x, 1, nchar(x) - 1)
     out[row, .dic_file[["missing"]]] <- x

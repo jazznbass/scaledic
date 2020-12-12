@@ -13,7 +13,7 @@
 #' @examples
 #' dat <- apply_dic(ITRF, dic_ITRF)
 #' check_values(dat, return = FALSE)
-check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = FALSE, integer_as_double = TRUE) {
+check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = FALSE, integer_as_double = TRUE, check_type = TRUE) {
 
   if (!"data.frame" %in% class(data)) data <- data.frame(data)
 
@@ -31,6 +31,16 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
     ### strict checking integers otherwise use float
 
     if(type %in% "integer" && integer_as_double) type <- "float"
+
+    if (type %in% c("float", "double", "integer") && check_type) {
+      if ("character" %in% class(data[[i]])) {
+        cat(names(data)[i], " has datatype character instead of numeric -> coerced to numeric\n")
+        .attr <- attributes(data[[i]])
+        data[[i]] <- as.numeric(data[[i]])
+        attributes(data[[i]]) <- .attr
+        class(data[[i]]) <- c("dic", "numeric")
+      }
+    }
 
     if (type %in% "integer" || is.na(type)) {
       id_error <- which(!(data[[i]] %in% c(values, missing)) & !is.na(data[[i]]))
