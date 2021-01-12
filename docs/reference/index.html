@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-index">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
       </span>
     </div>
 
@@ -75,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -134,13 +138,12 @@
           <p class="section-desc"></p>
         </th>
       </tr>
+      
+      
+    </tbody><tbody>
+      
+      
       <tr>
-        
-        <td>
-          <p><code><a href="ITRF.html">ITRF</a></code> <code><a href="ITRF.html">ITRF</a></code> </p>
-        </td>
-        <td><p>Integrated Teacher Report Form</p></td>
-      </tr><tr>
         
         <td>
           <p><code><a href="alpha_table.html">alpha_table()</a></code> </p>
@@ -175,6 +178,13 @@ the values and type dictionary attributes.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="combine_data_frames.html">combine_data_frames()</a></code> </p>
+        </td>
+        <td><p>Combine data frames
+Comnine data frames and keep dic information.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="deploy_dic.html">deploy_dic()</a></code> </p>
         </td>
         <td><p>Deploy dictionary information</p></td>
@@ -187,13 +197,7 @@ the values and type dictionary attributes.</p></td>
       </tr><tr>
         
         <td>
-          <p><code><a href="dic_ITRF.html">dic_ITRF</a></code> </p>
-        </td>
-        <td><p>Dictionary file for the Integrated Teacher Report Form.</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="dic_attr.html">dic_attr()</a></code> <code><a href="dic_attr.html">`dic_attr<-`()</a></code> </p>
+          <p><code><a href="dic_attr.html">dic_attr()</a></code> <code><a href="dic_attr.html">`dic_attr&lt;-`()</a></code> </p>
         </td>
         <td><p>Set and get dictionary attributes</p></td>
       </tr><tr>
@@ -202,6 +206,12 @@ the values and type dictionary attributes.</p></td>
           <p><code><a href="dic_haven.html">dic_haven()</a></code> </p>
         </td>
         <td><p>Create haven labels and value labels from dic</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="ITRF.html">ITRF</a></code> <code><a href="ITRF.html">ITRF</a></code> </p>
+        </td>
+        <td><p>Integrated Teacher Report Form</p></td>
       </tr><tr>
         
         <td>
@@ -255,7 +265,7 @@ the values and type dictionary attributes.</p></td>
         <td>
           <p><code><a href="names2item.html">names2item()</a></code> <code><a href="names2item.html">names2label()</a></code> </p>
         </td>
-        <td><p>Rename items
+        <td><p>Rename long to short
 Set names of items as long labels and vice versa.</p></td>
       </tr><tr>
         
@@ -278,6 +288,13 @@ Set names of items as long labels and vice versa.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="rename_item.html">rename_item()</a></code> </p>
+        </td>
+        <td><p>Rename items
+Rename items based on dic information.</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="replace_missing.html">replace_missing()</a></code> </p>
         </td>
         <td><p>Replace Missing values</p></td>
@@ -290,10 +307,23 @@ Set names of items as long labels and vice versa.</p></td>
       </tr><tr>
         
         <td>
+          <p><code><a href="score_from_dic.html">score_from_dic()</a></code> </p>
+        </td>
+        <td><p>Automatic scale scoring from a dic file</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="score_scale.html">score_scale()</a></code> </p>
         </td>
         <td><p>Score scale
 Calculates the scale scores.</p></td>
+      </tr><tr>
+        
+        <td>
+          <p><code><a href="select_items.html">select_items()</a></code> </p>
+        </td>
+        <td><p>Select items
+Selects a data frame with variables of a specific scale</p></td>
       </tr><tr>
         
         <td>
@@ -313,7 +343,7 @@ Selects a data frame with score variables generated by score_scale.</p></td>
         <td>
           <p><code><a href="set_dic.html">set_dic()</a></code> </p>
         </td>
-        <td><p>Set dictionary informations to variable</p></td>
+        <td><p>Set dictionary information to variable</p></td>
       </tr><tr>
         
         <td>
@@ -325,11 +355,10 @@ Selects a data frame with score variables generated by score_scale.</p></td>
     </table>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -340,7 +369,7 @@ Selects a data frame with score variables generated by score_scale.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

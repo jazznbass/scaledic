@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -37,7 +41,6 @@
 
 <meta property="og:title" content="Apply dictionary — apply_dic" />
 <meta property="og:description" content="Apply dictionary" />
-<meta name="twitter:card" content="summary" />
 
 
 
@@ -55,7 +58,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -69,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
       </span>
     </div>
 
@@ -77,7 +80,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -127,15 +130,17 @@
     <p>Apply dictionary</p>
     </div>
 
-    <pre class="usage"><span class='fu'>apply_dic</span>(
-  <span class='no'>data</span>,
-  <span class='no'>dic</span>,
-  <span class='kw'>factors</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>set_dic_attr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>set_label_attr</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>replace_missing</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>rename_var</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>apply_dic</span><span class='op'>(</span>
+  <span class='va'>data</span>,
+  <span class='va'>dic</span>,
+  factors <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  set_label_attr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  replace_missing <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  score_scales <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  check_values <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  impute_values <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  rename_var <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,6 +162,10 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></td>
       <th>replace_missing</th>
       <td><p>If TRUE, missing values from the dic are replaced with NA</p></td>
     </tr>
+    <tr>
+      <th>check_values</th>
+      <td><p>If TRUE, performs the check_values function on the variables of the data frame included in the dic file.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -164,22 +173,52 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></td>
     <p>A data frame with dictionary information.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='fu'>apply_dic</span>(<span class='no'>ITRF</span>, <span class='no'>dic_ITRF</span>)</div><div class='output co'>#&gt; <span class='message'>Replaced missing values.</span></div><div class='output co'>#&gt; <span class='message'>`label` attribute set.</span></div><div class='input'><span class='fu'><a href='list_scales.html'>list_scales</a></span>(<span class='no'>dat</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 3</span><span>
-#&gt;   scale subscale subscale_2
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     
-#&gt; </span><span style='color: #555555;'>1</span><span> ITRF  Int      SW        
-#&gt; </span><span style='color: #555555;'>2</span><span> ITRF  Int      AD        
-#&gt; </span><span style='color: #555555;'>3</span><span> ITRF  Ext      OPP       
-#&gt; </span><span style='color: #555555;'>4</span><span> ITRF  Ext      APD       </div></span></pre>
+    <pre class="examples"><div class='input'><span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>apply_dic</span><span class='op'>(</span><span class='va'>ITRF</span>, <span class='va'>dic_ITRF</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>2 missing types found and replaced with 'integer'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced missing values.</span></div><div class='output co'>#&gt; <span class='message'>Values checked.</span></div><div class='output co'>#&gt; <span class='message'>Scales scored.</span></div><div class='output co'>#&gt; <span class='message'>`label` attribute set.</span></div><div class='input'><span class='fu'><a href='descriptives.html'>descriptives</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;         name valid missing mean   sd min  max range median  mad
+#&gt; 1   itrf_I_1  4247     529 0.38 0.72   0 3.00  3.00   0.00 0.00
+#&gt; 2   itrf_I_2  4757      19 0.35 0.69   0 3.00  3.00   0.00 0.00
+#&gt; 3   itrf_I_4  4758      18 0.31 0.63   0 3.00  3.00   0.00 0.00
+#&gt; 4   itrf_I_5  4755      21 0.24 0.59   0 3.00  3.00   0.00 0.00
+#&gt; 5   itrf_I_6  4754      22 0.21 0.51   0 3.00  3.00   0.00 0.00
+#&gt; 6   itrf_I_7  4751      25 0.41 0.72   0 3.00  3.00   0.00 0.00
+#&gt; 7   itrf_I_8  4753      23 0.35 0.69   0 3.00  3.00   0.00 0.00
+#&gt; 8   itrf_I_9  4761      15 0.48 0.77   0 3.00  3.00   0.00 0.00
+#&gt; 9  itrf_I_10  4761      15 0.28 0.66   0 3.00  3.00   0.00 0.00
+#&gt; 10 itrf_I_11  4757      19 0.33 0.68   0 3.00  3.00   0.00 0.00
+#&gt; 11 itrf_I_12  4755      21 0.37 0.69   0 3.00  3.00   0.00 0.00
+#&gt; 12 itrf_I_13  4754      22 0.42 0.72   0 3.00  3.00   0.00 0.00
+#&gt; 13 itrf_I_14  4757      19 0.35 0.69   0 3.00  3.00   0.00 0.00
+#&gt; 14 itrf_I_15  4755      21 0.37 0.71   0 3.00  3.00   0.00 0.00
+#&gt; 15 itrf_I_16  4755      21 0.43 0.76   0 3.00  3.00   0.00 0.00
+#&gt; 16 itrf_I_17  4757      19 0.38 0.71   0 3.00  3.00   0.00 0.00
+#&gt; 17 itrf_I_19  4761      15 0.23 0.59   0 3.00  3.00   0.00 0.00
+#&gt; 18 itrf_I_20  4753      23 0.55 0.91   0 3.00  3.00   0.00 0.00
+#&gt; 19 itrf_I_23  4741      35 0.36 0.68   0 3.00  3.00   0.00 0.00
+#&gt; 20 itrf_I_24  4747      29 0.38 0.71   0 3.00  3.00   0.00 0.00
+#&gt; 21  itrf_E_1  4757      19 0.95 1.04   0 3.00  3.00   1.00 1.48
+#&gt; 22  itrf_E_2  4754      22 0.75 0.97   0 3.00  3.00   0.00 0.00
+#&gt; 23  itrf_E_3  4616     160 0.57 0.90   0 3.00  3.00   0.00 0.00
+#&gt; 24  itrf_E_4  4702      74 0.57 0.86   0 3.00  3.00   0.00 0.00
+#&gt; 25  itrf_E_5  4729      47 0.93 0.96   0 3.00  3.00   1.00 1.48
+#&gt; 26  itrf_E_6  4751      25 0.53 0.87   0 3.00  3.00   0.00 0.00
+#&gt; 27  itrf_E_7  4755      21 0.35 0.75   0 3.00  3.00   0.00 0.00
+#&gt; 28  itrf_E_8  4757      19 0.49 0.90   0 3.00  3.00   0.00 0.00
+#&gt; 29  itrf_E_9  4756      20 0.83 0.96   0 3.00  3.00   1.00 1.48
+#&gt; 30 itrf_E_10  4756      20 0.40 0.79   0 3.00  3.00   0.00 0.00
+#&gt; 31 itrf_E_11  4754      22 0.77 0.95   0 3.00  3.00   0.00 0.00
+#&gt; 32 itrf_E_12  4753      23 0.46 0.81   0 3.00  3.00   0.00 0.00
+#&gt; 33 itrf_E_13  4751      25 0.47 0.85   0 3.00  3.00   0.00 0.00
+#&gt; 34 itrf_E_14  4723      53 0.38 0.75   0 3.00  3.00   0.00 0.00
+#&gt; 35 itrf_E_15  4749      27 0.70 0.91   0 3.00  3.00   0.00 0.00
+#&gt; 36 itrf_E_16  4761      15 0.35 0.72   0 3.00  3.00   0.00 0.00
+#&gt; 37  itrf_int  4772       4 0.35 0.42   0 2.63  2.63   0.21 0.31
+#&gt; 38  itrf_ext  4776       0 0.59 0.60   0 3.00  3.00   0.41 0.52</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
 
@@ -190,7 +229,7 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

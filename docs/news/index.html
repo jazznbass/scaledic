@@ -10,23 +10,27 @@
 
 
 <!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
 <!-- headroom.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -53,7 +57,7 @@
 
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-news">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -67,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.8.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
       </span>
     </div>
 
@@ -75,7 +79,7 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -116,20 +120,68 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Changelog <small></small></h1>
+      <h1 data-toc-skip>Changelog <small></small></h1>
       
     </div>
 
-    <div id="scaledic-0-1-8-2-2020-04-07" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-8-2-2020-04-07" class="anchor"></a>scaledic 0.1.8.2 (2020-04-07)</h1>
+    <div id="scaledic-0116-2020-01-12" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.16">
+<a href="#scaledic-0116-2020-01-12" class="anchor"></a>scaledic 0.1.16 (2020-01-12)</h1>
+<ul>
+<li>A lot of bug fixes</li>
+</ul>
+</div>
+    <div id="scaledic-0115-2020-12-12" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.15">
+<a href="#scaledic-0115-2020-12-12" class="anchor"></a>scaledic 0.1.15 (2020-12-12)</h1>
+<ul>
+<li>implemented vctrs vec_ptype2 vec_cast S3 methods for dic variables for better integration of scaledic into dyplyr</li>
+</ul>
+</div>
+    <div id="scaledic-0112-2020-09-22" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.12">
+<a href="#scaledic-0112-2020-09-22" class="anchor"></a>scaledic 0.1.12 (2020-09-22)</h1>
+<ul>
+<li>New function: <code>comnbine_data_frame()</code>. Will combine several dataframes (rows and columns) into a new data frame while keeping the dic information</li>
+</ul>
+</div>
+    <div id="scaledic-0111-2020-09-22" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.11">
+<a href="#scaledic-0111-2020-09-22" class="anchor"></a>scaledic 0.1.11 (2020-09-22)</h1>
+<ul>
+<li>
+<code><a href="../reference/apply_dic.html">apply_dic()</a></code>: impute_values before scoring when <code>impute_values = TRUE</code>.</li>
+<li>
+<code><a href="../reference/select_scale.html">select_scale()</a></code> is deprecated. Instead use <code><a href="../reference/select_items.html">select_items(data, filter)</a></code>
+</li>
+<li>
+<code><a href="../reference/get_index.html">get_index()</a></code> is deprecated. Instead use <code><a href="../reference/select_items.html">select_items(data, filter, names_only = TRUE)</a></code>.</li>
+</ul>
+</div>
+    <div id="scaledic-0110-2020-06-26" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.10">
+<a href="#scaledic-0110-2020-06-26" class="anchor"></a>scaledic 0.1.10 (2020-06-26)</h1>
+<ul>
+<li>Internally reworked the values and value_labels attributes.</li>
+</ul>
+</div>
+    <div id="scaledic-019-2020-04-16" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.9">
+<a href="#scaledic-019-2020-04-16" class="anchor"></a>scaledic 0.1.9 (2020-04-16)</h1>
+<ul>
+<li>New function: <code><a href="../reference/score_from_dic.html">score_from_dic()</a></code>. Now, a dictionary file can contain information for building scale score (<code>score_filter</code>, <code>score_function</code>, <code>item_label</code>, <code>item_name</code>. This function extracts these infromation from the dic file and returns a data frame with the new score variable(s).</li>
+</ul>
+</div>
+    <div id="scaledic-0182-2020-04-07" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.8.2">
+<a href="#scaledic-0182-2020-04-07" class="anchor"></a>scaledic 0.1.8.2 (2020-04-07)</h1>
 <ul>
 <li>New function: <code><a href="../reference/rename_by_list.html">rename_by_list()</a></code> for renaming variables in a data file based on a provided list with named strings.</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-8-0-2020-03-25" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-8-0-2020-03-25" class="anchor"></a>scaledic 0.1.8.0 (2020-03-25)</h1>
+    <div id="scaledic-0180-2020-03-25" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.8.0">
+<a href="#scaledic-0180-2020-03-25" class="anchor"></a>scaledic 0.1.8.0 (2020-03-25)</h1>
 <ul>
 <li>New function: <code><a href="../reference/descriptives.html">descriptives()</a></code> for returning a table with descriptive statistics for variables in a data.frame.</li>
 <li>
@@ -139,26 +191,26 @@
 </li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7-10" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7-10" class="anchor"></a>scaledic 0.1.7.10</h1>
+    <div id="scaledic-01710" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7.10">
+<a href="#scaledic-01710" class="anchor"></a>scaledic 0.1.7.10</h1>
 <ul>
 <li>New function: <code><a href="../reference/alpha_table.html">alpha_table()</a></code> for creating an item analyses for mutiple scales</li>
 <li>new function: <code>psych_fa()</code> for returning a loading matrix of a factor analyses (based on the psych package)</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7-9" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7-9" class="anchor"></a>scaledic 0.1.7.9</h1>
+    <div id="scaledic-0179" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7.9">
+<a href="#scaledic-0179" class="anchor"></a>scaledic 0.1.7.9</h1>
 <ul>
 <li>New format for specifiying selection of items by dic information: now uses logical operations including all dic attributes. Examples: <code><a href="../reference/select_scale.html">select_scale(data, scale == "ITRF")</a></code>, <code>get_index(data, scale == "ITRF" &amp; subscale = "Int" &amp; weight == 1)</code>. The old specification is still working but deprecated. New format is applicable in: <code><a href="../reference/get_index.html">get_index()</a></code>, <code><a href="../reference/select_scale.html">select_scale()</a></code>, <code><a href="../reference/impute_missing.html">impute_missing()</a></code>, <code>score_scales()</code>.</li>
 <li>dicfile: <code>sub_scale</code> and <code>sub_scale_2</code> renamed to <code>subscale</code> and <code>subscale_2</code>. Old dic files still work as variables are renamed to new versions on import.</li>
 <li>Internal reorganization: dic attributes <code>sub_scale</code> and <code>sub_scale_2</code> renamed to <code>subscale</code> and <code>subscale_2</code>.</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7-8" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7-8" class="anchor"></a>scaledic 0.1.7.8</h1>
+    <div id="scaledic-0178" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7.8">
+<a href="#scaledic-0178" class="anchor"></a>scaledic 0.1.7.8</h1>
 <ul>
 <li>
 <code><a href="../reference/score_scale.html">score_scale()</a></code>: New argument <code>sum</code>. If TRUE, calculated the sum and if FALSE, calculates the mean. Argument <code>label</code> can be used to set a dic label for the resulting score variable. When label is left NULL, a label will be generated automatically.</li>
@@ -166,17 +218,17 @@
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code>: Agrument <code>set_label_attr</code> is now <code>TRUE</code> by default.</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7-7" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7-7" class="anchor"></a>scaledic 0.1.7.7</h1>
+    <div id="scaledic-0177" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7.7">
+<a href="#scaledic-0177" class="anchor"></a>scaledic 0.1.7.7</h1>
 <ul>
 <li>Internal rename of dic attribute names.</li>
 <li>Variable name of <em>dic</em> file is now “name” by default. <code>label</code> is still possible but will be renamed internally.</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7-6" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7-6" class="anchor"></a>scaledic 0.1.7.6</h1>
+    <div id="scaledic-0176" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7.6">
+<a href="#scaledic-0176" class="anchor"></a>scaledic 0.1.7.6</h1>
 <ul>
 <li>New class <code>dic</code> with a <code><a href="https://rdrr.io/r/base/Extract.html">[</a></code> method. This allows to subset dataframes with dictionaries without loosing the dic information. The class is added as the fist class to each variable in a dataframe that contains dic information.</li>
 <li>
@@ -193,17 +245,17 @@
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code>: New argument <code>set_label_attr</code>. If TRUE executes <code><a href="../reference/dic_haven.html">dic_haven()</a></code>.</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-7" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-7" class="anchor"></a>scaledic 0.1.7</h1>
+    <div id="scaledic-017" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.7">
+<a href="#scaledic-017" class="anchor"></a>scaledic 0.1.7</h1>
 <ul>
 <li>
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code>: Bug with factor type solved</li>
 </ul>
 </div>
-    <div id="scaledic-0-1-6" class="section level1">
-<h1 class="page-header">
-<a href="#scaledic-0-1-6" class="anchor"></a>scaledic 0.1.6</h1>
+    <div id="scaledic-016" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.6">
+<a href="#scaledic-016" class="anchor"></a>scaledic 0.1.6</h1>
 <ul>
 <li>new function <code><a href="../reference/build_scaledic_skeleton.html">build_scaledic_skeleton()</a></code>: Creates an Excel file with a template for a dic file.</li>
 <li>
@@ -224,21 +276,10 @@
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <div id="tocnav">
-      <h2>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-        <li><a href="#scaledic-0-1-8-2-2020-04-07">0.1.8.2</a></li>
-        <li><a href="#scaledic-0-1-8-0-2020-03-25">0.1.8.0</a></li>
-        <li><a href="#scaledic-0-1-7-10">0.1.7.10</a></li>
-        <li><a href="#scaledic-0-1-7-9">0.1.7.9</a></li>
-        <li><a href="#scaledic-0-1-7-8">0.1.7.8</a></li>
-        <li><a href="#scaledic-0-1-7-7">0.1.7.7</a></li>
-        <li><a href="#scaledic-0-1-7-6">0.1.7.6</a></li>
-        <li><a href="#scaledic-0-1-7">0.1.7</a></li>
-        <li><a href="#scaledic-0-1-6">0.1.6</a></li>
-      </ul>
-    </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 
 </div>
@@ -250,7 +291,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
