@@ -9,6 +9,7 @@
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
 #' @importFrom readxl read_excel
+#' @importFrom vctrs vec_ptype2 vec_cast
 #' @import purrr
 #' @import Amelia
 #' @import dplyr

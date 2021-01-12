@@ -1,4 +1,4 @@
-#' Set dictionary informations to variable
+#' Set dictionary information to variable
 #'
 #' @param data A data frame
 #' @param vars string or vector with string of variable names

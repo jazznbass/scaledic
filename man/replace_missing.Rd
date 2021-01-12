@@ -11,7 +11,7 @@ replace_missing(data, replace = NA, report = FALSE)
 
 \item{replace}{Replace value for missing values}
 
-\item{report}{If TRUE, proportioin of missing values is printed.}
+\item{report}{If TRUE, proportion of missing values is printed.}
 }
 \value{
 A data frame with replaced missing values.

@@ -14,7 +14,8 @@ Imports:
   purrr, 
   dplyr,
   openxlsx,
-  readxl
+  readxl,
+  vctrs
 Suggests:
   knitr,
   tibble,

@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_dic.R
 \name{set_dic}
 \alias{set_dic}
-\title{Set dictionary informations to variable}
+\title{Set dictionary information to variable}
 \usage{
 set_dic(data, vars = NULL, ...)
 }
@@ -17,5 +17,5 @@ set_dic(data, vars = NULL, ...)
 A data frame
 }
 \description{
-Set dictionary informations to variable
+Set dictionary information to variable
 }
