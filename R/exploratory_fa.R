@@ -6,6 +6,11 @@
 #' @param round Number of digitis to round loadings (based on the base::round function)
 #'
 #' @return A data.frame
+#' @examples
+#' exploratory_fa(
+#'   select_items(ex_itrf, subscale %in% c('Int', 'Ext')),
+#'   nfactors = 2
+#' )
 #' @export
 
 exploratory_fa <- function(..., factor_names = NULL, sort = TRUE, cut = 0.2, round = 2) {

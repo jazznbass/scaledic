@@ -89,7 +89,7 @@ score_scale <- function(data, filter,
   dic_attr(df, .opt$class) <- "score"
   dic_attr(df, .opt$score_filter) <- filter
   dic_attr(df, .opt$score_function) <- function_name
-  dic_attr(df, .opt$scale) <- scale
+  dic_attr(df, .opt$scale) <- NA
   dic_attr(df, .opt$subscale) <- NA
   dic_attr(df, .opt$subscale_2) <- NA
   dic_attr(df, .opt$item_label) <- label

@@ -12,7 +12,6 @@ alpha_table(
   CI = TRUE,
   conf_level = 0.95,
   check_key = TRUE,
-  omega = FALSE,
   keys = NULL,
   RMSEA = FALSE,
   difficulty = FALSE,
@@ -35,14 +34,22 @@ alpha_table(
 
 \item{check_key}{Check_key for the psych::alpha function.}
 
-\item{omega}{If TRUE Omega reliability estimation is calculated.}
-
 \item{keys}{Optional key argument for the psych::alpha function.}
 
 \item{RMSEA}{If TRUE RMSEA is calculated.}
 
 \item{values}{Sets maximum and minimum valid values necessary to calculate item difficulty}
 }
+\value{
+A data frame with concise scale indices.
+}
 \description{
 Returns a list of alpha cronbachs.
+}
+\examples{
+scales <- list(
+  Int = select_items(ex_itrf, scale == "ITRF" & subscale == "Int", names_only = TRUE),
+  Ext = select_items(ex_itrf, scale == "ITRF" & subscale == "Ext", names_only = TRUE)
+)
+alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
 }

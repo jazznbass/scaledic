@@ -4,7 +4,7 @@
 \alias{lavaan_model}
 \title{Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis}
 \usage{
-lavaan_model(scales, adds = "")
+lavaan_model(scales, adds = "", orthogonal = FALSE)
 }
 \arguments{
 \item{scales}{A list with scale information}

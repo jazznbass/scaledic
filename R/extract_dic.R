@@ -7,9 +7,9 @@
 
 extract_dic <- function(data) {
 
-  id <- .get_dic_items(data)
+  id <- scaledic:::.get_dic_items(data, items_only = FALSE)
 
-  dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
+  dic_names <- lapply(data[id], function(x) names(attr(x, scaledic:::.opt$dic)))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
   #dic_names <- dic_names[which(!dic_names %in% c("var"))]
@@ -21,10 +21,10 @@ extract_dic <- function(data) {
   names(out) <- dic_names
 
   for (row in 1:N) {
-    dic <- attr(data[[id[row]]], scaledic:::.opt$dic)
+    dic <- attr(data[[id[row]]], .opt$dic)
 
     for (col in dic_names[!dic_names %in% c("value_labels", "values", "missing")]) {
-
+      #print(col)
       if (is.null(dic[[col]]) || length(dic[[col]]) == 0) {
         out[row, col] <- NA
       } else {
@@ -33,7 +33,7 @@ extract_dic <- function(data) {
     }
 
     # values to code
-    x <- dic[[.dic_file$values]]
+    x <- dic[[.opt$values]]
     d <- diff(x)
     u <- unique(d)
     if (length(u) == 1 && u[1] == 1) {
@@ -44,17 +44,17 @@ extract_dic <- function(data) {
 
     #x <- paste0(dic[[.dic_file$values]], collapse = ",")
     #x <- substring(x, 1, nchar(x) - 1)
-    out[row, .dic_file[["values"]]] <- x
+    out[row, .opt[["values"]]] <- x
 
     # value labels to code
 
     x <- paste0(dic$value_labels$value, " = ", dic$value_labels$label, collapse = "; ")
     #x <- paste0(dic$values, " = ", names(dic$values), collapse = "; ")
-    out[row, .dic_file[["value_labels"]]] <- x
+    out[row, .opt[["value_labels"]]] <- x
 
-    x <- paste0(dic[[.dic_file$missing]], ",", collapse = "")
+    x <- paste0(dic[[.opt$missing]], ",", collapse = "")
     x <- substring(x, 1, nchar(x) - 1)
-    out[row, .dic_file[["missing"]]] <- x
+    out[row, .opt[["missing"]]] <- x
   }
 
   order <- c(.opt$item_name, .opt$item_label, .opt$values, .opt$value_labels, .opt$missing, .opt$weight)

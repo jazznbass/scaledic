@@ -36,5 +36,5 @@ Apply dictionary
 }
 \examples{
 dat <- apply_dic(ITRF, dic_ITRF)
-list_scales(dat)
+descriptives(dat)
 }

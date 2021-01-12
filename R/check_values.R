@@ -11,8 +11,7 @@
 #' @return A data frame with replaced values if replaces is not NULL.
 #' @export
 #' @examples
-#' dat <- apply_dic(ITRF, dic_ITRF)
-#' check_values(dat, return = FALSE)
+#' check_values(ex_itrf, return = FALSE)
 check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = FALSE, integer_as_double = TRUE, check_type = TRUE) {
 
   if (!"data.frame" %in% class(data)) data <- data.frame(data)
@@ -74,7 +73,8 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
 
     if (!is.null(replace)) data[id_error, i] <- replace
   }
-  if (report) print(errors)
+  if (report && length(errors) > 0) print(errors)
+  if (report && length(errors) == 0) cat("No errors found.\n")
   if (return) {
     return(data)
   }

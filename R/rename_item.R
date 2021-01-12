@@ -9,27 +9,36 @@
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
 #' @return A renamed data frame
 #' @export
-rename_item <- function(data, pattern = "label", chars = NULL, char_sep = ": ", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
+rename_item <- function(data, pattern = "label", chars = NULL, char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_label = ": ") {
 
   for (col in 1:ncol(data)) {
     if (is.null(attr(data[[col]], .opt$dic))) next
     new_label <- ""
-    for(pat in pattern) {
+    for(i in 1:length(pattern)) {
+      pat <- pattern[i]
       tmp_label <- ""
+      tmp_char_sep <- char_sep
       if (pat == "label") tmp_label <- dic_attr(data[[col]], .opt$item_label)
       if (pat %in% c("reverse", "weight")) {
         tmp_label <- paste0(
           ifelse(dic_attr(data[[col]], .opt$weight) < 0, char_weight[1], char_weight[2])
         )
+        tmp_char_sep <- ""
       }
       if (pat == "scale") tmp_label <- dic_attr(data[[col]], .opt$scale)
       if (pat == "subscale") tmp_label <- dic_attr(data[[col]], .opt$subscale)
       if (pat == "subscale_2") tmp_label <- dic_attr(data[[col]], .opt$subscale_2)
       if (pat == "name") tmp_label <- dic_attr(data[[col]], .opt$item_name)
 
-      if (class(tmp_label) == "character") new_label <- paste0(new_label, tmp_label, char_sep)
+      if (length(pattern) > i){
+        if (pattern[i + 1] == "label") tmp_char_sep <- char_prefix_label
+      }
+
+      if (class(tmp_label) == "character") new_label <- paste0(new_label, tmp_label, tmp_char_sep)
+
+
     }
-    new_label <- substr(new_label, 1, nchar(new_label) - nchar(char_sep))
+    new_label <- substr(new_label, 1, nchar(new_label) - nchar(tmp_char_sep))
     if (!is.null(chars)) new_label <- substring(new_label, 1, chars)
     names(data)[col] <- new_label
   }

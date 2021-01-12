@@ -31,6 +31,15 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
@@ -120,6 +129,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -1176,10 +1186,10 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 </tbody>
 </table>
-<p>And further we analyse the factor structure. Here we use the <code>names2item()</code> function to get a more convenient description.</p>
+<p>And further we analyse the factor structure. Here we use the <code>rename_item()</code> function to get a more convenient description.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>dat <span class="op">%&gt;%</span></span>
 <span id="cb11-2"><a href="#cb11-2"></a><span class="st">  </span><span class="kw">select_items</span>(scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">names2item</span>(<span class="dt">chars =</span> <span class="dv">70</span>, <span class="dt">prefix =</span> <span class="kw">c</span>(<span class="st">&quot;reverse&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale2&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="st">  </span><span class="kw">rename_item</span>(<span class="dt">pattern =</span> <span class="kw">c</span>(<span class="st">&quot;reverse&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale_2&quot;</span>, <span class="st">&quot;label&quot;</span>), <span class="dt">chars =</span> <span class="dv">70</span>) <span class="op">%&gt;%</span></span>
 <span id="cb11-4"><a href="#cb11-4"></a><span class="st">  </span><span class="kw">exploratory_fa</span>(<span class="dt">nfactors =</span> <span class="dv">4</span>, <span class="dt">cut =</span> <span class="fl">0.4</span>) <span class="op">%&gt;%</span></span>
 <span id="cb11-5"><a href="#cb11-5"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
@@ -1258,7 +1268,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer</td>
-<td align="left">0.64</td>
+<td align="left">0.65</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1315,7 +1325,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td align="left">(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
 <td align="left"></td>
-<td align="left">0.52</td>
+<td align="left">0.53</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1337,28 +1347,28 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.78</td>
+<td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.66</td>
+<td align="left">0.67</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.66</td>
+<td align="left">0.65</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.55</td>
+<td align="left">0.54</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1408,14 +1418,14 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.64</td>
+<td align="left">0.65</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_AD: Weint oder ist weinerlich</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.59</td>
+<td align="left">0.6</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich ängstlich</td>
@@ -1499,7 +1509,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.91 (.91-.91)</td>
 <td align="left">.56</td>
 <td align="left">.53 - .78</td>
-<td align="left">0.39 - 0.95</td>
+<td align="left">0.38 - 0.95</td>
 <td align="left">0.75 - 1.04</td>
 <td align="left">.55 - .82</td>
 </tr>
@@ -1511,7 +1521,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.94 (.94-.94)</td>
 <td align="left">.63</td>
 <td align="left">.68 - .81</td>
-<td align="left">0.35 - 0.83</td>
+<td align="left">0.35 - 0.82</td>
 <td align="left">0.72 - 0.96</td>
 <td align="left">.7 - .85</td>
 </tr>
@@ -1542,40 +1552,177 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 <p>and even a confirmatory factor analysis with the use of the lavaan package.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>model &lt;-<span class="st"> </span><span class="kw">lavaan_model</span>(scales)</span>
-<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">cat</span>(<span class="st">&quot;SEM model:</span><span class="ch">\n</span><span class="st">&quot;</span>, model)</span>
-<span id="cb13-3"><a href="#cb13-3"></a><span class="co">#&gt; SEM model:</span></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt;  APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15</span></span>
-<span id="cb13-5"><a href="#cb13-5"></a><span class="co">#&gt; OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16</span></span>
-<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24</span></span>
-<span id="cb13-7"><a href="#cb13-7"></a><span class="co">#&gt; AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23</span></span>
-<span id="cb13-8"><a href="#cb13-8"></a>res &lt;-<span class="st"> </span>lavaan<span class="op">::</span><span class="kw">cfa</span>(<span class="dt">model =</span> model, <span class="dt">data =</span> dat)</span>
-<span id="cb13-9"><a href="#cb13-9"></a>res</span>
-<span id="cb13-10"><a href="#cb13-10"></a><span class="co">#&gt; lavaan 0.6-7 ended normally after 60 iterations</span></span>
-<span id="cb13-11"><a href="#cb13-11"></a><span class="co">#&gt; </span></span>
-<span id="cb13-12"><a href="#cb13-12"></a><span class="co">#&gt;   Estimator                                         ML</span></span>
-<span id="cb13-13"><a href="#cb13-13"></a><span class="co">#&gt;   Optimization method                           NLMINB</span></span>
-<span id="cb13-14"><a href="#cb13-14"></a><span class="co">#&gt;   Number of free parameters                         78</span></span>
-<span id="cb13-15"><a href="#cb13-15"></a><span class="co">#&gt;                                                       </span></span>
-<span id="cb13-16"><a href="#cb13-16"></a><span class="co">#&gt;                                                   Used       Total</span></span>
-<span id="cb13-17"><a href="#cb13-17"></a><span class="co">#&gt;   Number of observations                          4772        4776</span></span>
-<span id="cb13-18"><a href="#cb13-18"></a><span class="co">#&gt;                                                                   </span></span>
-<span id="cb13-19"><a href="#cb13-19"></a><span class="co">#&gt; Model Test User Model:</span></span>
-<span id="cb13-20"><a href="#cb13-20"></a><span class="co">#&gt;                                                        </span></span>
-<span id="cb13-21"><a href="#cb13-21"></a><span class="co">#&gt;   Test statistic                              21170.035</span></span>
-<span id="cb13-22"><a href="#cb13-22"></a><span class="co">#&gt;   Degrees of freedom                                588</span></span>
-<span id="cb13-23"><a href="#cb13-23"></a><span class="co">#&gt;   P-value (Chi-square)                            0.000</span></span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>model &lt;-<span class="st"> </span><span class="kw">lavaan_model</span>(scales, <span class="dt">orthogonal =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15
+OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16
+SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24
+AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23
+
+APD ~~ 0*OPP + 0*SW + 0*AD
+OPP ~~ 0*SW + 0*AD
+SW ~~ 0*AD</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>fit &lt;-<span class="st"> </span>lavaan<span class="op">::</span><span class="kw">cfa</span>(<span class="dt">model =</span> model, <span class="dt">data =</span> dat)</span>
+<span id="cb15-2"><a href="#cb15-2"></a>lavaan<span class="op">::</span><span class="kw">summary</span>(fit, <span class="dt">fit.measures =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>lavaan <span class="fl">0.6</span><span class="dv">-7</span> ended normally after <span class="dv">55</span> iterations</span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>  Estimator                                         ML</span>
+<span id="cb15-6"><a href="#cb15-6"></a>  Optimization method                           NLMINB</span>
+<span id="cb15-7"><a href="#cb15-7"></a>  Number of free parameters                         <span class="dv">72</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>                                                      </span>
+<span id="cb15-9"><a href="#cb15-9"></a>                                                  Used       Total</span>
+<span id="cb15-10"><a href="#cb15-10"></a>  Number of observations                          <span class="dv">4772</span>        <span class="dv">4776</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>                                                                  </span>
+<span id="cb15-12"><a href="#cb15-12"></a>Model Test User Model<span class="op">:</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="st">                                                       </span></span>
+<span id="cb15-14"><a href="#cb15-14"></a><span class="st">  </span>Test statistic                              <span class="fl">24896.410</span></span>
+<span id="cb15-15"><a href="#cb15-15"></a>  Degrees of freedom                                <span class="dv">594</span></span>
+<span id="cb15-16"><a href="#cb15-16"></a>  P<span class="op">-</span><span class="kw">value</span> (Chi<span class="op">-</span>square)                            <span class="fl">0.000</span></span>
+<span id="cb15-17"><a href="#cb15-17"></a></span>
+<span id="cb15-18"><a href="#cb15-18"></a>Model Test Baseline Model<span class="op">:</span></span>
+<span id="cb15-19"><a href="#cb15-19"></a></span>
+<span id="cb15-20"><a href="#cb15-20"></a><span class="st">  </span>Test statistic                            <span class="fl">110933.439</span></span>
+<span id="cb15-21"><a href="#cb15-21"></a>  Degrees of freedom                               <span class="dv">630</span></span>
+<span id="cb15-22"><a href="#cb15-22"></a>  P<span class="op">-</span>value                                        <span class="fl">0.000</span></span>
+<span id="cb15-23"><a href="#cb15-23"></a></span>
+<span id="cb15-24"><a href="#cb15-24"></a>User Model versus Baseline Model<span class="op">:</span></span>
+<span id="cb15-25"><a href="#cb15-25"></a></span>
+<span id="cb15-26"><a href="#cb15-26"></a><span class="st">  </span>Comparative Fit <span class="kw">Index</span> (CFI)                    <span class="fl">0.780</span></span>
+<span id="cb15-27"><a href="#cb15-27"></a>  Tucker<span class="op">-</span>Lewis <span class="kw">Index</span> (TLI)                       <span class="fl">0.766</span></span>
+<span id="cb15-28"><a href="#cb15-28"></a></span>
+<span id="cb15-29"><a href="#cb15-29"></a>Loglikelihood and Information Criteria<span class="op">:</span></span>
+<span id="cb15-30"><a href="#cb15-30"></a></span>
+<span id="cb15-31"><a href="#cb15-31"></a><span class="st">  </span>Loglikelihood user <span class="kw">model</span> (H0)            <span class="fl">-154189.079</span></span>
+<span id="cb15-32"><a href="#cb15-32"></a>  Loglikelihood unrestricted <span class="kw">model</span> (H1)             <span class="ot">NA</span></span>
+<span id="cb15-33"><a href="#cb15-33"></a>                                                      </span>
+<span id="cb15-34"><a href="#cb15-34"></a>  <span class="kw">Akaike</span> (AIC)                              <span class="fl">308522.157</span></span>
+<span id="cb15-35"><a href="#cb15-35"></a>  <span class="kw">Bayesian</span> (BIC)                            <span class="fl">308988.035</span></span>
+<span id="cb15-36"><a href="#cb15-36"></a>  Sample<span class="op">-</span>size adjusted <span class="kw">Bayesian</span> (BIC)       <span class="fl">308759.245</span></span>
+<span id="cb15-37"><a href="#cb15-37"></a></span>
+<span id="cb15-38"><a href="#cb15-38"></a>Root Mean Square Error of Approximation<span class="op">:</span></span>
+<span id="cb15-39"><a href="#cb15-39"></a></span>
+<span id="cb15-40"><a href="#cb15-40"></a><span class="st">  </span>RMSEA                                          <span class="fl">0.093</span></span>
+<span id="cb15-41"><a href="#cb15-41"></a>  <span class="dv">90</span> Percent confidence interval <span class="op">-</span><span class="st"> </span>lower         <span class="fl">0.092</span></span>
+<span id="cb15-42"><a href="#cb15-42"></a>  <span class="dv">90</span> Percent confidence interval <span class="op">-</span><span class="st"> </span>upper         <span class="fl">0.094</span></span>
+<span id="cb15-43"><a href="#cb15-43"></a>  P<span class="op">-</span>value RMSEA <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.05</span>                          <span class="fl">0.000</span></span>
+<span id="cb15-44"><a href="#cb15-44"></a></span>
+<span id="cb15-45"><a href="#cb15-45"></a>Standardized Root Mean Square Residual<span class="op">:</span></span>
+<span id="cb15-46"><a href="#cb15-46"></a></span>
+<span id="cb15-47"><a href="#cb15-47"></a><span class="st">  </span>SRMR                                           <span class="fl">0.208</span></span>
+<span id="cb15-48"><a href="#cb15-48"></a></span>
+<span id="cb15-49"><a href="#cb15-49"></a>Parameter Estimates<span class="op">:</span></span>
+<span id="cb15-50"><a href="#cb15-50"></a></span>
+<span id="cb15-51"><a href="#cb15-51"></a><span class="st">  </span>Standard errors                             Standard</span>
+<span id="cb15-52"><a href="#cb15-52"></a>  Information                                 Expected</span>
+<span id="cb15-53"><a href="#cb15-53"></a>  Information <span class="kw">saturated</span> (h1) model          Structured</span>
+<span id="cb15-54"><a href="#cb15-54"></a></span>
+<span id="cb15-55"><a href="#cb15-55"></a>Latent Variables<span class="op">:</span></span>
+<span id="cb15-56"><a href="#cb15-56"></a><span class="st">                   </span>Estimate  Std.Err  z<span class="op">-</span>value  <span class="kw">P</span>(<span class="op">&gt;</span><span class="er">|</span>z<span class="op">|</span>)</span>
+<span id="cb15-57"><a href="#cb15-57"></a>  APD =<span class="er">~</span><span class="st">                                              </span></span>
+<span id="cb15-58"><a href="#cb15-58"></a><span class="st">    </span>itrf_E_<span class="dv">1</span>          <span class="fl">1.000</span>                           </span>
+<span id="cb15-59"><a href="#cb15-59"></a>    itrf_E_<span class="dv">2</span>          <span class="fl">0.949</span>    <span class="fl">0.017</span>   <span class="fl">54.940</span>    <span class="fl">0.000</span></span>
+<span id="cb15-60"><a href="#cb15-60"></a>    itrf_E_<span class="dv">3</span>          <span class="fl">0.919</span>    <span class="fl">0.016</span>   <span class="fl">57.910</span>    <span class="fl">0.000</span></span>
+<span id="cb15-61"><a href="#cb15-61"></a>    itrf_E_<span class="dv">4</span>          <span class="fl">0.896</span>    <span class="fl">0.015</span>   <span class="fl">59.164</span>    <span class="fl">0.000</span></span>
+<span id="cb15-62"><a href="#cb15-62"></a>    itrf_E_<span class="dv">5</span>          <span class="fl">0.942</span>    <span class="fl">0.017</span>   <span class="fl">55.159</span>    <span class="fl">0.000</span></span>
+<span id="cb15-63"><a href="#cb15-63"></a>    itrf_E_<span class="dv">6</span>          <span class="fl">0.824</span>    <span class="fl">0.015</span>   <span class="fl">53.224</span>    <span class="fl">0.000</span></span>
+<span id="cb15-64"><a href="#cb15-64"></a>    itrf_E_<span class="dv">14</span>         <span class="fl">0.716</span>    <span class="fl">0.013</span>   <span class="fl">53.898</span>    <span class="fl">0.000</span></span>
+<span id="cb15-65"><a href="#cb15-65"></a>    itrf_E_<span class="dv">15</span>         <span class="fl">0.630</span>    <span class="fl">0.017</span>   <span class="fl">37.574</span>    <span class="fl">0.000</span></span>
+<span id="cb15-66"><a href="#cb15-66"></a>  OPP =<span class="er">~</span><span class="st">                                              </span></span>
+<span id="cb15-67"><a href="#cb15-67"></a><span class="st">    </span>itrf_I_<span class="dv">20</span>         <span class="fl">1.000</span>                           </span>
+<span id="cb15-68"><a href="#cb15-68"></a>    itrf_E_<span class="dv">7</span>          <span class="fl">0.853</span>    <span class="fl">0.013</span>   <span class="fl">65.022</span>    <span class="fl">0.000</span></span>
+<span id="cb15-69"><a href="#cb15-69"></a>    itrf_E_<span class="dv">8</span>          <span class="fl">1.049</span>    <span class="fl">0.015</span>   <span class="fl">68.123</span>    <span class="fl">0.000</span></span>
+<span id="cb15-70"><a href="#cb15-70"></a>    itrf_E_<span class="dv">9</span>          <span class="fl">0.987</span>    <span class="fl">0.017</span>   <span class="fl">57.412</span>    <span class="fl">0.000</span></span>
+<span id="cb15-71"><a href="#cb15-71"></a>    itrf_E_<span class="dv">10</span>         <span class="fl">0.897</span>    <span class="fl">0.014</span>   <span class="fl">64.969</span>    <span class="fl">0.000</span></span>
+<span id="cb15-72"><a href="#cb15-72"></a>    itrf_E_<span class="dv">11</span>         <span class="fl">1.089</span>    <span class="fl">0.016</span>   <span class="fl">66.220</span>    <span class="fl">0.000</span></span>
+<span id="cb15-73"><a href="#cb15-73"></a>    itrf_E_<span class="dv">12</span>         <span class="fl">0.809</span>    <span class="fl">0.015</span>   <span class="fl">55.168</span>    <span class="fl">0.000</span></span>
+<span id="cb15-74"><a href="#cb15-74"></a>    itrf_E_<span class="dv">13</span>         <span class="fl">0.985</span>    <span class="fl">0.015</span>   <span class="fl">67.564</span>    <span class="fl">0.000</span></span>
+<span id="cb15-75"><a href="#cb15-75"></a>    itrf_E_<span class="dv">16</span>         <span class="fl">0.680</span>    <span class="fl">0.013</span>   <span class="fl">51.665</span>    <span class="fl">0.000</span></span>
+<span id="cb15-76"><a href="#cb15-76"></a>  SW =<span class="er">~</span><span class="st">                                               </span></span>
+<span id="cb15-77"><a href="#cb15-77"></a><span class="st">    </span>itrf_I_<span class="dv">1</span>          <span class="fl">1.000</span>                           </span>
+<span id="cb15-78"><a href="#cb15-78"></a>    itrf_I_<span class="dv">4</span>          <span class="fl">1.033</span>    <span class="fl">0.017</span>   <span class="fl">60.379</span>    <span class="fl">0.000</span></span>
+<span id="cb15-79"><a href="#cb15-79"></a>    itrf_I_<span class="dv">5</span>          <span class="fl">0.918</span>    <span class="fl">0.016</span>   <span class="fl">57.287</span>    <span class="fl">0.000</span></span>
+<span id="cb15-80"><a href="#cb15-80"></a>    itrf_I_<span class="dv">6</span>          <span class="fl">0.768</span>    <span class="fl">0.014</span>   <span class="fl">55.478</span>    <span class="fl">0.000</span></span>
+<span id="cb15-81"><a href="#cb15-81"></a>    itrf_I_<span class="dv">13</span>         <span class="fl">0.727</span>    <span class="fl">0.020</span>   <span class="fl">36.180</span>    <span class="fl">0.000</span></span>
+<span id="cb15-82"><a href="#cb15-82"></a>    itrf_I_<span class="dv">14</span>         <span class="fl">0.680</span>    <span class="fl">0.019</span>   <span class="fl">35.345</span>    <span class="fl">0.000</span></span>
+<span id="cb15-83"><a href="#cb15-83"></a>    itrf_I_<span class="dv">16</span>         <span class="fl">0.996</span>    <span class="fl">0.021</span>   <span class="fl">47.660</span>    <span class="fl">0.000</span></span>
+<span id="cb15-84"><a href="#cb15-84"></a>    itrf_I_<span class="dv">24</span>         <span class="fl">0.723</span>    <span class="fl">0.020</span>   <span class="fl">36.701</span>    <span class="fl">0.000</span></span>
+<span id="cb15-85"><a href="#cb15-85"></a>  AD =<span class="er">~</span><span class="st">                                               </span></span>
+<span id="cb15-86"><a href="#cb15-86"></a><span class="st">    </span>itrf_I_<span class="dv">2</span>          <span class="fl">1.000</span>                           </span>
+<span id="cb15-87"><a href="#cb15-87"></a>    itrf_I_<span class="dv">7</span>          <span class="fl">1.114</span>    <span class="fl">0.027</span>   <span class="fl">41.101</span>    <span class="fl">0.000</span></span>
+<span id="cb15-88"><a href="#cb15-88"></a>    itrf_I_<span class="dv">8</span>          <span class="fl">1.023</span>    <span class="fl">0.026</span>   <span class="fl">39.362</span>    <span class="fl">0.000</span></span>
+<span id="cb15-89"><a href="#cb15-89"></a>    itrf_I_<span class="dv">9</span>          <span class="fl">1.162</span>    <span class="fl">0.029</span>   <span class="fl">40.156</span>    <span class="fl">0.000</span></span>
+<span id="cb15-90"><a href="#cb15-90"></a>    itrf_I_<span class="dv">10</span>         <span class="fl">0.822</span>    <span class="fl">0.024</span>   <span class="fl">33.916</span>    <span class="fl">0.000</span></span>
+<span id="cb15-91"><a href="#cb15-91"></a>    itrf_I_<span class="dv">11</span>         <span class="fl">0.836</span>    <span class="fl">0.025</span>   <span class="fl">33.694</span>    <span class="fl">0.000</span></span>
+<span id="cb15-92"><a href="#cb15-92"></a>    itrf_I_<span class="dv">12</span>         <span class="fl">0.910</span>    <span class="fl">0.025</span>   <span class="fl">35.925</span>    <span class="fl">0.000</span></span>
+<span id="cb15-93"><a href="#cb15-93"></a>    itrf_I_<span class="dv">15</span>         <span class="fl">1.115</span>    <span class="fl">0.027</span>   <span class="fl">41.403</span>    <span class="fl">0.000</span></span>
+<span id="cb15-94"><a href="#cb15-94"></a>    itrf_I_<span class="dv">17</span>         <span class="fl">0.962</span>    <span class="fl">0.026</span>   <span class="fl">36.530</span>    <span class="fl">0.000</span></span>
+<span id="cb15-95"><a href="#cb15-95"></a>    itrf_I_<span class="dv">19</span>         <span class="fl">0.813</span>    <span class="fl">0.022</span>   <span class="fl">37.291</span>    <span class="fl">0.000</span></span>
+<span id="cb15-96"><a href="#cb15-96"></a>    itrf_I_<span class="dv">23</span>         <span class="fl">1.132</span>    <span class="fl">0.026</span>   <span class="fl">43.419</span>    <span class="fl">0.000</span></span>
+<span id="cb15-97"><a href="#cb15-97"></a></span>
+<span id="cb15-98"><a href="#cb15-98"></a>Covariances<span class="op">:</span></span>
+<span id="cb15-99"><a href="#cb15-99"></a><span class="st">                   </span>Estimate  Std.Err  z<span class="op">-</span>value  <span class="kw">P</span>(<span class="op">&gt;</span><span class="er">|</span>z<span class="op">|</span>)</span>
+<span id="cb15-100"><a href="#cb15-100"></a>  APD <span class="op">~</span><span class="er">~</span><span class="st">                                              </span></span>
+<span id="cb15-101"><a href="#cb15-101"></a><span class="st">    </span>OPP               <span class="fl">0.000</span>                           </span>
+<span id="cb15-102"><a href="#cb15-102"></a>    SW                <span class="fl">0.000</span>                           </span>
+<span id="cb15-103"><a href="#cb15-103"></a>    AD                <span class="fl">0.000</span>                           </span>
+<span id="cb15-104"><a href="#cb15-104"></a>  OPP <span class="op">~</span><span class="er">~</span><span class="st">                                              </span></span>
+<span id="cb15-105"><a href="#cb15-105"></a><span class="st">    </span>SW                <span class="fl">0.000</span>                           </span>
+<span id="cb15-106"><a href="#cb15-106"></a>    AD                <span class="fl">0.000</span>                           </span>
+<span id="cb15-107"><a href="#cb15-107"></a>  SW <span class="op">~</span><span class="er">~</span><span class="st">                                               </span></span>
+<span id="cb15-108"><a href="#cb15-108"></a><span class="st">    </span>AD                <span class="fl">0.000</span>                           </span>
+<span id="cb15-109"><a href="#cb15-109"></a></span>
+<span id="cb15-110"><a href="#cb15-110"></a>Variances<span class="op">:</span></span>
+<span id="cb15-111"><a href="#cb15-111"></a><span class="st">                   </span>Estimate  Std.Err  z<span class="op">-</span>value  <span class="kw">P</span>(<span class="op">&gt;</span><span class="er">|</span>z<span class="op">|</span>)</span>
+<span id="cb15-112"><a href="#cb15-112"></a>   .itrf_E_<span class="dv">1</span>          <span class="fl">0.459</span>    <span class="fl">0.011</span>   <span class="fl">42.904</span>    <span class="fl">0.000</span></span>
+<span id="cb15-113"><a href="#cb15-113"></a>   .itrf_E_<span class="dv">2</span>          <span class="fl">0.385</span>    <span class="fl">0.009</span>   <span class="fl">42.466</span>    <span class="fl">0.000</span></span>
+<span id="cb15-114"><a href="#cb15-114"></a>   .itrf_E_<span class="dv">3</span>          <span class="fl">0.283</span>    <span class="fl">0.007</span>   <span class="fl">40.693</span>    <span class="fl">0.000</span></span>
+<span id="cb15-115"><a href="#cb15-115"></a>   .itrf_E_<span class="dv">4</span>          <span class="fl">0.241</span>    <span class="fl">0.006</span>   <span class="fl">39.733</span>    <span class="fl">0.000</span></span>
+<span id="cb15-116"><a href="#cb15-116"></a>   .itrf_E_<span class="dv">5</span>          <span class="fl">0.373</span>    <span class="fl">0.009</span>   <span class="fl">42.354</span>    <span class="fl">0.000</span></span>
+<span id="cb15-117"><a href="#cb15-117"></a>   .itrf_E_<span class="dv">6</span>          <span class="fl">0.331</span>    <span class="fl">0.008</span>   <span class="fl">43.260</span>    <span class="fl">0.000</span></span>
+<span id="cb15-118"><a href="#cb15-118"></a>   .itrf_E_<span class="dv">14</span>         <span class="fl">0.238</span>    <span class="fl">0.006</span>   <span class="fl">42.964</span>    <span class="fl">0.000</span></span>
+<span id="cb15-119"><a href="#cb15-119"></a>   .itrf_E_<span class="dv">15</span>         <span class="fl">0.582</span>    <span class="fl">0.012</span>   <span class="fl">47.000</span>    <span class="fl">0.000</span></span>
+<span id="cb15-120"><a href="#cb15-120"></a>   .itrf_I_<span class="dv">20</span>         <span class="fl">0.296</span>    <span class="fl">0.007</span>   <span class="fl">43.524</span>    <span class="fl">0.000</span></span>
+<span id="cb15-121"><a href="#cb15-121"></a>   .itrf_E_<span class="dv">7</span>          <span class="fl">0.185</span>    <span class="fl">0.004</span>   <span class="fl">42.668</span>    <span class="fl">0.000</span></span>
+<span id="cb15-122"><a href="#cb15-122"></a>   .itrf_E_<span class="dv">8</span>          <span class="fl">0.225</span>    <span class="fl">0.005</span>   <span class="fl">41.140</span>    <span class="fl">0.000</span></span>
+<span id="cb15-123"><a href="#cb15-123"></a>   .itrf_E_<span class="dv">9</span>          <span class="fl">0.403</span>    <span class="fl">0.009</span>   <span class="fl">45.053</span>    <span class="fl">0.000</span></span>
+<span id="cb15-124"><a href="#cb15-124"></a>   .itrf_E_<span class="dv">10</span>         <span class="fl">0.206</span>    <span class="fl">0.005</span>   <span class="fl">42.691</span>    <span class="fl">0.000</span></span>
+<span id="cb15-125"><a href="#cb15-125"></a>   .itrf_E_<span class="dv">11</span>         <span class="fl">0.278</span>    <span class="fl">0.007</span>   <span class="fl">42.132</span>    <span class="fl">0.000</span></span>
+<span id="cb15-126"><a href="#cb15-126"></a>   .itrf_E_<span class="dv">12</span>         <span class="fl">0.310</span>    <span class="fl">0.007</span>   <span class="fl">45.534</span>    <span class="fl">0.000</span></span>
+<span id="cb15-127"><a href="#cb15-127"></a>   .itrf_E_<span class="dv">13</span>         <span class="fl">0.207</span>    <span class="fl">0.005</span>   <span class="fl">41.452</span>    <span class="fl">0.000</span></span>
+<span id="cb15-128"><a href="#cb15-128"></a>   .itrf_E_<span class="dv">16</span>         <span class="fl">0.270</span>    <span class="fl">0.006</span>   <span class="fl">46.157</span>    <span class="fl">0.000</span></span>
+<span id="cb15-129"><a href="#cb15-129"></a>   .itrf_I_<span class="dv">1</span>          <span class="fl">0.225</span>    <span class="fl">0.005</span>   <span class="fl">42.813</span>    <span class="fl">0.000</span></span>
+<span id="cb15-130"><a href="#cb15-130"></a>   .itrf_I_<span class="dv">4</span>          <span class="fl">0.100</span>    <span class="fl">0.003</span>   <span class="fl">34.140</span>    <span class="fl">0.000</span></span>
+<span id="cb15-131"><a href="#cb15-131"></a>   .itrf_I_<span class="dv">5</span>          <span class="fl">0.112</span>    <span class="fl">0.003</span>   <span class="fl">38.517</span>    <span class="fl">0.000</span></span>
+<span id="cb15-132"><a href="#cb15-132"></a>   .itrf_I_<span class="dv">6</span>          <span class="fl">0.093</span>    <span class="fl">0.002</span>   <span class="fl">40.210</span>    <span class="fl">0.000</span></span>
+<span id="cb15-133"><a href="#cb15-133"></a>   .itrf_I_<span class="dv">13</span>         <span class="fl">0.369</span>    <span class="fl">0.008</span>   <span class="fl">46.922</span>    <span class="fl">0.000</span></span>
+<span id="cb15-134"><a href="#cb15-134"></a>   .itrf_I_<span class="dv">14</span>         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">47.039</span>    <span class="fl">0.000</span></span>
+<span id="cb15-135"><a href="#cb15-135"></a>   .itrf_I_<span class="dv">16</span>         <span class="fl">0.299</span>    <span class="fl">0.007</span>   <span class="fl">44.353</span>    <span class="fl">0.000</span></span>
+<span id="cb15-136"><a href="#cb15-136"></a>   .itrf_I_<span class="dv">24</span>         <span class="fl">0.351</span>    <span class="fl">0.008</span>   <span class="fl">46.846</span>    <span class="fl">0.000</span></span>
+<span id="cb15-137"><a href="#cb15-137"></a>   .itrf_I_<span class="dv">2</span>          <span class="fl">0.272</span>    <span class="fl">0.006</span>   <span class="fl">44.380</span>    <span class="fl">0.000</span></span>
+<span id="cb15-138"><a href="#cb15-138"></a>   .itrf_I_<span class="dv">7</span>          <span class="fl">0.267</span>    <span class="fl">0.006</span>   <span class="fl">43.182</span>    <span class="fl">0.000</span></span>
+<span id="cb15-139"><a href="#cb15-139"></a>   .itrf_I_<span class="dv">8</span>          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">44.178</span>    <span class="fl">0.000</span></span>
+<span id="cb15-140"><a href="#cb15-140"></a>   .itrf_I_<span class="dv">9</span>          <span class="fl">0.323</span>    <span class="fl">0.007</span>   <span class="fl">43.755</span>    <span class="fl">0.000</span></span>
+<span id="cb15-141"><a href="#cb15-141"></a>   .itrf_I_<span class="dv">10</span>         <span class="fl">0.304</span>    <span class="fl">0.007</span>   <span class="fl">46.154</span>    <span class="fl">0.000</span></span>
+<span id="cb15-142"><a href="#cb15-142"></a>   .itrf_I_<span class="dv">11</span>         <span class="fl">0.322</span>    <span class="fl">0.007</span>   <span class="fl">46.211</span>    <span class="fl">0.000</span></span>
+<span id="cb15-143"><a href="#cb15-143"></a>   .itrf_I_<span class="dv">12</span>         <span class="fl">0.307</span>    <span class="fl">0.007</span>   <span class="fl">45.569</span>    <span class="fl">0.000</span></span>
+<span id="cb15-144"><a href="#cb15-144"></a>   .itrf_I_<span class="dv">15</span>         <span class="fl">0.258</span>    <span class="fl">0.006</span>   <span class="fl">42.980</span>    <span class="fl">0.000</span></span>
+<span id="cb15-145"><a href="#cb15-145"></a>   .itrf_I_<span class="dv">17</span>         <span class="fl">0.323</span>    <span class="fl">0.007</span>   <span class="fl">45.365</span>    <span class="fl">0.000</span></span>
+<span id="cb15-146"><a href="#cb15-146"></a>   .itrf_I_<span class="dv">19</span>         <span class="fl">0.213</span>    <span class="fl">0.005</span>   <span class="fl">45.087</span>    <span class="fl">0.000</span></span>
+<span id="cb15-147"><a href="#cb15-147"></a>   .itrf_I_<span class="dv">23</span>         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">41.328</span>    <span class="fl">0.000</span></span>
+<span id="cb15-148"><a href="#cb15-148"></a>    APD               <span class="fl">0.626</span>    <span class="fl">0.021</span>   <span class="fl">30.158</span>    <span class="fl">0.000</span></span>
+<span id="cb15-149"><a href="#cb15-149"></a>    OPP               <span class="fl">0.526</span>    <span class="fl">0.016</span>   <span class="fl">32.895</span>    <span class="fl">0.000</span></span>
+<span id="cb15-150"><a href="#cb15-150"></a>    SW                <span class="fl">0.281</span>    <span class="fl">0.010</span>   <span class="fl">29.218</span>    <span class="fl">0.000</span></span>
+<span id="cb15-151"><a href="#cb15-151"></a>    AD                <span class="fl">0.199</span>    <span class="fl">0.008</span>   <span class="fl">24.050</span>    <span class="fl">0.000</span></span></code></pre></div>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
-<span id="cb14-2"><a href="#cb14-2"></a>dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>dat<span class="op">$</span>itrf_ext &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Ext&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>dat<span class="op">$</span>itrf_int &lt;-<span class="st"> </span><span class="kw">score_scale</span>(dat, scale <span class="op">==</span><span class="st"> &quot;ITRF&quot;</span> <span class="op">&amp;</span><span class="st"> </span>subscale <span class="op">==</span><span class="st"> &quot;Int&quot;</span>, <span class="dt">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>dat <span class="op">%&gt;%</span></span>
-<span id="cb15-2"><a href="#cb15-2"></a><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>dat <span class="op">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">select_scores</span>() <span class="op">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">descriptives</span>(<span class="dt">round =</span> <span class="dv">1</span>, <span class="dt">label =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">

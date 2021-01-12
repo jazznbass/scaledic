@@ -1,4 +1,8 @@
 
+# scaledic 0.1.16 (2020-01-12)
+- A lot of bug fixes
+
+
 # scaledic 0.1.15 (2020-12-12)
 - implemented vctrs vec_ptype2 vec_cast S3 methods for dic variables for better integration of scaledic into dyplyr
 

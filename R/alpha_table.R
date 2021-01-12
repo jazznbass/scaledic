@@ -9,14 +9,22 @@
 #' @param CI If TRUE confidence intervals are calculated.
 #' @param conf_level Confidence level (e.g. 0.95 for 95 percent).
 #' @param check_key Check_key for the psych::alpha function.
-#' @param omega If TRUE Omega reliability estimation is calculated.
 #' @param keys Optional key argument for the psych::alpha function.
 #' @param RMSEA If TRUE RMSEA is calculated.
 #' @param values Sets maximum and minimum valid values necessary to calculate item difficulty
+#' @return A data frame with concise scale indices.
+#' @examples
+#' scales <- list(
+#'   Int = select_items(ex_itrf, scale == "ITRF" & subscale == "Int", names_only = TRUE),
+#'   Ext = select_items(ex_itrf, scale == "ITRF" & subscale == "Ext", names_only = TRUE)
+#' )
+#' alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
+
+
 #' @export
 
 alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
-                        conf_level = 0.95, check_key = TRUE, omega = FALSE,
+                        conf_level = 0.95, check_key = TRUE,
                         keys = NULL, RMSEA = FALSE, difficulty = FALSE,
                         values = NULL, fa = TRUE) {
 
@@ -26,6 +34,9 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
   if (is.null(labels)) labels <- labels(scales)
   df <- data.frame(Scale = labels)
 
+  if (!is.null(values) && (length(values) != length(scales)))
+    values <- rep(values, length(scales))
+
   for (i in 1:length(scales)) {
     if (!is.null(keys)) key <- keys[[i]] else key <- NULL
     if (!is.null(values)) {
@@ -34,9 +45,6 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     }
 
     a <- invisible(psych::alpha(data[, scales[[i]]], check.key = check_key, keys = key))
-    if (omega) {
-      o <- invisible(psych::omega(data[, scales[[i]]], nfactors = 1, keys = key))
-    }
 
     if (fa) f <- invisible(psych::fa(data[, scales[[i]]]))
     alpha <- a$total$raw_alpha
@@ -91,7 +99,6 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     if (difficulty) df$"Difficulty"[i] <- paste0(substring(dif_min, 2), " - ", substring(dif_max, 2))
     df$"M"[i] <- paste0(mmin, " - ", mmax)
     df$"SD"[i] <- paste0(smin, " - ", smax)
-    if (omega) df$"Omega"[i] <- substring(round(o$omega.tot, round), 2)
     df$"|Loading|"[i] <- paste0(substring(lmin, 2), " - ", substring(lmax, 2))
     if (RMSEA) df$"RMSEA"[i] <- substring(round(f$RMSEA[1], 3), 2)
   }

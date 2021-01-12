@@ -5,22 +5,26 @@
 #'
 #' @return A character string with a lavaan model definition
 #' @export
-lavaan_model <- function(scales, adds = "") {
+lavaan_model <- function(scales, adds = "", orthogonal = FALSE) {
+  labels <- names(scales)
   model <- lapply(scales, function(x) paste0(x, collapse = " + "))
-  model <- paste0(names(model), " =~ ",  model, collapse = "\n")
+  model <- paste0(labels, " =~ ",  model, collapse = "\n")
   model <- paste0(model, "\n", adds, "\n")
+
+  if (orthogonal) {
+    n <- length(labels)
+    for(i in 1:(n - 1)) {
+      .add <- paste0(labels[i], " ~~ ", paste0("0*", labels [(i + 1): n], collapse = " + "), "\n")
+      model <- paste0(model, .add)
+    }
+  }
+
+  if (!orthogonal) {
+    n <- length(labels)
+    for(i in 1:(n - 1)) {
+        .add <- paste0(labels[i], " ~~ ", paste0(labels [(i + 1): n], collapse = " + "), "\n")
+      model <- paste0(model, .add)
+    }
+  }
   model
 }
-
-# confirmatory_fa <- function(data, scales, adds = "", ...) {
-#   model <- lavaan_model(scales = scales, adds = adds)
-#   out <- cfa(model = model, data = data, ...)
-#   out
-# }
-
-# res <- dat %>%
-#   scale() %>%
-#   cfa(model = model, data = .)
-#
-# summary(res, fit.measures = TRUE)
-#

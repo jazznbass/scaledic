@@ -4,6 +4,8 @@
 #' @param round Digits for round function
 #'
 #' @return A data frame with descriptive statistics
+#' @examples
+#' descriptives(ex_itrf)
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
 

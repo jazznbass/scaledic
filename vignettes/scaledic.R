@@ -94,7 +94,7 @@ dat %>%
 ## -----------------------------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
-  names2item(chars = 70, prefix = c("reverse", "subscale", "subscale2")) %>% 
+  rename_item(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
   exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 
@@ -110,10 +110,14 @@ alpha_table(dat, scales = scales) %>%
 
 
 ## -----------------------------------------------------------------------------
-model <- lavaan_model(scales)
-cat("SEM model:\n", model)
-res <- lavaan::cfa(model = model, data = dat)
-res
+model <- lavaan_model(scales, orthogonal = TRUE)
+
+## ----comment = "", echo = FALSE-----------------------------------------------
+cat(model)
+
+## ----comment = ""-------------------------------------------------------------
+fit <- lavaan::cfa(model = model, data = dat)
+lavaan::summary(fit, fit.measures = TRUE)
 
 
 ## -----------------------------------------------------------------------------

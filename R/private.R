@@ -47,9 +47,13 @@
 )
 
 
-.get_dic_items <- function(data) {
+.get_dic_items <- function(data, items_only = TRUE) {
 
-  foobar <- function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
+  if (!items_only)
+    foobar <- function(x) !is.null(attr(x, .opt$dic))
+
+  if (items_only)
+    foobar <- function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
   which(sapply(data, foobar))
 
 }

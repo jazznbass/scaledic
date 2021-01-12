@@ -9,7 +9,7 @@
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(ITRF, dic_ITRF)
-#' list_scales(dat)
+#' descriptives(dat)
 #' @export
 
 apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_missing = TRUE, score_scales = TRUE, check_values = FALSE, impute_values = FALSE, rename_var = NULL) {

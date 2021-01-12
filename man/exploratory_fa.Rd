@@ -21,3 +21,9 @@ A data.frame
 \description{
 Exploratory factor analysis based on the psych::fa function
 }
+\examples{
+exploratory_fa(
+  select_items(ex_itrf, subscale \%in\% c('Int', 'Ext')),
+  nfactors = 2
+)
+}

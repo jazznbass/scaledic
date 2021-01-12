@@ -17,3 +17,6 @@ A data frame with descriptive statistics
 \description{
 Table with descriptive statistics
 }
+\examples{
+descriptives(ex_itrf)
+}

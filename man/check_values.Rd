@@ -37,6 +37,5 @@ Checks if values in variables are within the set difined in
 the values and type dictionary attributes.
 }
 \examples{
-dat <- apply_dic(ITRF, dic_ITRF)
-check_values(dat, return = FALSE)
+check_values(ex_itrf, return = FALSE)
 }

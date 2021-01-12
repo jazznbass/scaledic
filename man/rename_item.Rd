@@ -9,9 +9,9 @@ rename_item(
   data,
   pattern = "label",
   chars = NULL,
-  char_sep = ": ",
+  char_sep = "_",
   char_weight = c("(-)", "(+)"),
-  char_prefix_end = ": "
+  char_prefix_label = ": "
 )
 }
 \arguments{
