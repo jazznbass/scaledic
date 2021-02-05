@@ -57,6 +57,14 @@ score_scale <- function(data, filter,
 
   df <- data %>% select(all_of(vars))
 
+  # Check if all variables are numeric
+  .tmp <- map(df, ~"numeric" %in% class(.))
+  .tmp <- unlist(.tmp)
+  if( !all(.tmp) ) {
+    stop("Not all variables are numeric.")
+  }
+
+
   weight <- df %>%
     map(~ dic_attr(.x, .opt$weight)) %>%
     unlist() %>%
@@ -72,6 +80,9 @@ score_scale <- function(data, filter,
     map(~ min(dic_attr(.x, .opt$values))) %>%
     unlist() %>%
     as.numeric()
+
+
+
 
   df <- apply(df, 1, function(x) {
     score <- ifelse(sign == 1, x * weight, (max_values - x + min_values) * weight)

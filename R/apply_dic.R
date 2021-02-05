@@ -104,7 +104,8 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
     for (j in set) {
       target <- .opt[[j]]
       source <- .dic_file[[j]]
-      value_dic <- as.character(dic[[source]][i])
+      #value_dic <- as.character(dic[[source]][i])
+      value_dic <- dic[[source]][i]
       dic_attr(data[[id]], target) <- value_dic
     }
 
@@ -205,6 +206,11 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
     message("'Weight' variable missing in the dictionary file. Variable inserted with default of 1.")
     dic[[.dic_file$weight]] <- NA
     dic[[.dic_file$weight]][filter_items] <- 1
+  }
+
+  if(class(dic[[.dic_file$weight]]) != "numeric") {
+    message("'weight' variable is not numeric: transformed variable to numeric.")
+    dic[[.dic_file$weight]] <- as.numeric(dic[[.dic_file$weight]])
   }
 
   # check for missing type variable
