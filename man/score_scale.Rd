@@ -13,6 +13,8 @@ score_scale(
   subscale_2 = NULL,
   bind = FALSE,
   sum = FALSE,
+  min_valid = 1,
+  max_na = NA,
   label = NULL,
   FUN = NULL,
   ...
@@ -27,6 +29,12 @@ score_scale(
 returns a data frame with the new score variables for each scale.}
 
 \item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.}
+
+\item{min_valid}{Minimal number of valid values that is required for calculating the mean.
+A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent of values have to be valid).}
+
+\item{max_na}{Maximum number of NAs that are allowed before returning NA.
+A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent NAs are allowed).}
 
 \item{label}{A character string with a label for the resulting score variable. Automatically generated if label is not set.}
 

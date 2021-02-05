@@ -25,7 +25,7 @@
 
 alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
                         conf_level = 0.95, check_key = TRUE,
-                        keys = NULL, RMSEA = FALSE, difficulty = FALSE,
+                        keys = "auto", RMSEA = FALSE, difficulty = FALSE,
                         values = NULL, fa = TRUE) {
 
   if (difficulty && is.null(values)) {
@@ -38,7 +38,18 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     values <- rep(values, length(scales))
 
   for (i in 1:length(scales)) {
-    if (!is.null(keys)) key <- keys[[i]] else key <- NULL
+    #if (!is.null(keys)) {
+    #  key <- keys[[i]] else key <- NULL
+    #}
+
+    if (keys == "auto") {
+      key <- data[, scales[[i]]] %>%
+        map(~ dic_attr(.x, .opt$weight)) %>%
+        unlist() %>%
+        as.numeric() %>%
+        sign()
+    }
+
     if (!is.null(values)) {
       min <- values[[i]][1]
       max <- values[[i]][2]

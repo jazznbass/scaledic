@@ -10,7 +10,7 @@ A collection of procedures to bring labels, scales, missing values etc. to a dat
 }
 \examples{
 # apply a dictionary file to a data frame
-dat <- apply_dic(ITRF, dic_ITRF)
+dat <- apply_dic(ex_itrf, dic_ITRF)
 # check for typos (not allowed values)
 dat <- check_values(dat, replace = NA)
 # Single imputation (EM algorith from the Amelia package)
@@ -23,8 +23,8 @@ list_scales(dat, labels = TRUE)
 # from the psch packages instead of summarise_all here.
 library(dplyr)
 dat \%>\%
-  select_scale(scale == "ITRF" & subscale == "Ext") \%>\%
-  names2item(prefix = c("subscale2", "index")) \%>\%
+  select_items(scale == "ITRF" & subscale == "Ext") \%>\%
+  rename_items(prefix = c("subscale2", "index")) \%>\%
   summarise_all(mean, na.rm = TRUE) \%>\%
   round(2) \%>\%
   t()

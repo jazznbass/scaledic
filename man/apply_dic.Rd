@@ -35,6 +35,6 @@ A data frame with dictionary information.
 Apply dictionary
 }
 \examples{
-dat <- apply_dic(ITRF, dic_ITRF)
+dat <- apply_dic(ex_itrf, dic_ITRF)
 descriptives(dat)
 }

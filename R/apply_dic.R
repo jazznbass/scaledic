@@ -8,7 +8,7 @@
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
 #' @return A data frame with dictionary information.
 #' @examples
-#' dat <- apply_dic(ITRF, dic_ITRF)
+#' dat <- apply_dic(ex_itrf, dic_ITRF)
 #' descriptives(dat)
 #' @export
 

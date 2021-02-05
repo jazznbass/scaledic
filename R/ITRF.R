@@ -3,7 +3,7 @@
 #' A dataset containing the response teacher form data (40 items).
 #'
 #' @format A data frame with 4776 rows and 40 variables
-"ITRF"
+"ex_itrf"
 
 #' Dictionary file for the Integrated Teacher Report Form.
 #'

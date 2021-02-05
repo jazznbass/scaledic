@@ -7,9 +7,9 @@
 
 extract_dic <- function(data) {
 
-  id <- scaledic:::.get_dic_items(data, items_only = FALSE)
+  id <- .get_dic_items(data, items_only = TRUE)
 
-  dic_names <- lapply(data[id], function(x) names(attr(x, scaledic:::.opt$dic)))
+  dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
   #dic_names <- dic_names[which(!dic_names %in% c("var"))]

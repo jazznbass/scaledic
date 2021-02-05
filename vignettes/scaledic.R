@@ -52,13 +52,13 @@ kable(out, caption = "Columns of a dictionary file")
 
 
 ## ----dic_example--------------------------------------------------------------
-dic_ITRF %>% 
+dic_ITRF %>%
   slice(1:3) %>%
   kable()
 
 ## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
-dat <- apply_dic(ITRF, dic_ITRF)
+dat <- apply_dic(ex_itrf, dic_ITRF)
 
 ## ----list_scales--------------------------------------------------------------
 list_scales(dat, labels = TRUE) %>%
@@ -70,23 +70,23 @@ dat <- check_values(dat, replace = NA)
 ## ----impute_missing, eval = FALSE---------------------------------------------
 #  # Imputation for items of the subscale Ext
 #  dat <- impute_missing(dat, subscale == "Ext")
-#  
+#
 #  # Imputation for items of the subscale Int
 #  dat <- impute_missing(dat, subscale == "Int")
-#  
+#
 
 ## ----include=FALSE------------------------------------------------------------
 dat <- impute_missing(dat, subscale == "Ext")
 dat <- impute_missing(dat, subscale == "Int")
 
 ## ----descriptives-------------------------------------------------------------
-dat %>% 
+dat %>%
   select_items(subscale == "Int") %>%
   descriptives(round = 1) %>%
   kable()
 
 ## -----------------------------------------------------------------------------
-dat %>% 
+dat %>%
   select_items(subscale == "Int") %>%
   descriptives(round = 1, label = TRUE) %>%
   kable()
@@ -110,7 +110,7 @@ alpha_table(dat, scales = scales) %>%
 
 
 ## -----------------------------------------------------------------------------
-model <- lavaan_model(scales, orthogonal = TRUE)
+model <- lavaan_model(scales, orthogonal = FALSE)
 
 ## ----comment = "", echo = FALSE-----------------------------------------------
 cat(model)

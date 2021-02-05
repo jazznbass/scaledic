@@ -12,7 +12,7 @@ alpha_table(
   CI = TRUE,
   conf_level = 0.95,
   check_key = TRUE,
-  keys = NULL,
+  keys = "auto",
   RMSEA = FALSE,
   difficulty = FALSE,
   values = NULL,
