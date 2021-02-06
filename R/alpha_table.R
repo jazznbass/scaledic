@@ -42,9 +42,15 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     #  key <- keys[[i]] else key <- NULL
     #}
 
+    .var <- apply(data[, scales[[i]]], 2, var, na.rm = TRUE)
+    if (any(.var == 0)) {
+      message("Variable with no variance dropped from analyses.")
+    }
+    scales[[i]] <- scales[[i]][which(apply(data[, scales[[i]]], 2, var, na.rm = TRUE) != 0)]
+
     if (keys == "auto") {
       key <- data[, scales[[i]]] %>%
-        map(~ dic_attr(.x, .opt$weight)) %>%
+        map(~ dic_attr(.x, scaledic:::.opt$weight)) %>%
         unlist() %>%
         as.numeric() %>%
         sign()
