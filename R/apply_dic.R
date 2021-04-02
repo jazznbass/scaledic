@@ -4,6 +4,7 @@
 #' @param dic A data frame comprising a dictionary or a character string with a
 #' filename (for now an Microsoft Excel file) containg a dictionary.
 #' @param factors If set TRUE, factor variables will be turned into factors.
+#' @param coerce_class If set TRUE mismatches between class and dic type are corrected.
 #' @param replace_missing If TRUE, missing values from the dic are replaced with NA
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
 #' @return A data frame with dictionary information.
@@ -12,14 +13,15 @@
 #' descriptives(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_missing = TRUE, score_scales = TRUE, check_values = FALSE, impute_values = FALSE, rename_var = NULL) {
+apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_class = TRUE, replace_missing = TRUE, score_scales = TRUE, check_values = FALSE, impute_values = FALSE, rename_var = NULL) {
 
   if ("character" %in% class(dic)) dic <- readxl::read_excel(dic)
   if ("character" %in% class(data)) data <- readxl::read_excel(data)
 
   dic <- .clean_dic_file(dic)
 
-  #rename data variables
+# rename variables by rename_var ---------------------------------------------
+
   if (!is.null(rename_var)) {
     to_from <- setNames(dic[[rename_var]], dic[[.dic_file$item_name]])
     to_from[to_from != ""]
@@ -40,42 +42,42 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
 
   var_not_df <- NULL
 
+
+# apply dic information to variables --------------------------------------
+
   for (i in 1:nrow(dic)) {
 
-    # rename columns in dataframe with item_name
+    # look up column in data frame corresponding to item_name
     id <- which(names(data) == dic[[.dic_file$item_name]][i])
     if (length(id) > 1) {
       message("Multiple ids found")
       message(paste0(names(data)[id], collapse = ", "))
     }
 
-
     if (length(id) == 0) {
       var_not_df <- c(var_not_df, dic[[.dic_file$item_name]][i])
       next
     }
 
-    #names(data)[id] <- dic[[.dic_file$item_name]][i]
 
     # extract values
-    values <-
-      paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
+    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
       parse(text = .) %>%
       eval()
 
     # extract value labels
-    value_labels <-
-      dic[i, .dic_file$value_labels] %>%
+    value_labels <- dic[i, .dic_file$value_labels] %>%
       as.character() %>%
       strsplit(";") %>%
       unlist() %>%
       strsplit("=")
 
+    .n_labels <- length(value_labels)
     .df <- data.frame(
-      value = character(length(value_labels)),
-      label = character(length(value_labels))
+      value = character(.n_labels),
+      label = character(.n_labels)
     )
-    for(j in 1:length(value_labels)) {
+    for(j in 1:.n_labels) {
       .df[j, 1] <- trimws(value_labels[[j]][1])
       .df[j, 2] <- trimws(value_labels[[j]][2])
     }
@@ -96,6 +98,26 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
       paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")") %>%
       parse(text = .) %>%
       eval()
+
+    # check variable type (class)
+    # numeric:
+    if (dic[i, .dic_file$type] %in% c("integer", "numeric", "float", "double")) {
+      if (!(class(data[[id]]) %in% c("integer", "numeric", "double"))) {
+
+        if (coerce_class) {
+          message(
+          paste0("Class should be numeric but is ", class(data[[id]]),
+                 ". Coreced to numeric: ", names(data)[id], collapse = ""))
+          class(data[[id]]) <- "numeric"
+        } else {
+          message(
+            paste0("Class should be numeric but is ", class(data[[id]]),
+                   ": ",names(data)[id], collapse = ""))
+        }
+
+
+      }
+    }
 
     ### assign attributes
     filter <- !(names(.dic_file) %in% c("values", "value_labels", "missing", "variables"))
@@ -139,7 +161,6 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
   }
 
   if (!is.null(var_not_df)) {
-    #message("Variables from dic not found in data file: ", paste0(var_not_df, collapse = ", "),"\n")
     message(length(var_not_df), " of ", nrow(dic), " variables from dic not found in data file:")
     message(paste0(var_not_df, collapse = ", "))
   }
@@ -178,8 +199,14 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, replace_
 
   # delete rows with comments (first sign of the first column is a #)
   .filter <- which(apply(dic, 1, function(x) substr(x[1], 1, 1) != "#"))
-
   dic <- dic[.filter, ]
+
+  # filter if variable "active" is available --------------------------------
+
+  if ("active" %in% names(dic)) {
+    dic <- dic[which(dic$active == 1), ]
+  }
+
 
   #rename dic names
   names(dic) <- tolower(names(dic))

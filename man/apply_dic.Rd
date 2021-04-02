@@ -9,6 +9,7 @@ apply_dic(
   dic,
   factors = TRUE,
   set_label_attr = TRUE,
+  coerce_class = TRUE,
   replace_missing = TRUE,
   score_scales = TRUE,
   check_values = FALSE,
@@ -23,6 +24,8 @@ apply_dic(
 filename (for now an Microsoft Excel file) containg a dictionary.}
 
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
+
+\item{coerce_class}{If set TRUE mismatches between class and dic type are corrected.}
 
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
 
