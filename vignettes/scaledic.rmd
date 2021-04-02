@@ -13,7 +13,6 @@ vignette: >
 library(knitr)
 library(dplyr)
 library(tibble)
-#library(MASS)
 library(scaledic)
 
 knitr::opts_chunk$set(
@@ -29,7 +28,7 @@ knitr::opts_chunk$set(
 This is a short description on how to use the scaledic package. The following code examples in this package make use of the pipe operator `%>%` (see the `magrittr` package).  
 Once you are used to the pipe operator, it makes code easier to read. Basically, it is just a shortcut. The pipe operator takes the return of the previous function and sets it as the **first** argument of the following function. An example:  
 
-```{r eval=FALSE}
+```{r pipe_ex_1, eval=FALSE}
 newdat <- select(dat, "iq", "age")
 newdat <- describe(newdat)
 newdat <- round(newdat, 2)
@@ -38,13 +37,13 @@ kable(newdat)
 
 or even worth
 
-```{r eval=FALSE}
+```{r pipe_ex_2, eval=FALSE}
 kable(round(describe(select(dat, "iq", "age")), 2))
 ```
 
 becomes:
 
-```{r eval=FALSE}
+```{r pipe_ex_3, eval=FALSE}
 dat %>%
   select("iq", "age") %>%
   describe() %>%
@@ -65,7 +64,7 @@ A dictionary file is a table with a row for each variable and a column for each 
 
 The following table shows the parameters and the naming of the columns of a dictionary file: 
 
-```{r echo = FALSE}
+```{r tab_dic_param, echo = FALSE}
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "item_name", "A short item name", "itrf_1",
@@ -106,7 +105,7 @@ The `apply_dic` function takes the name of the dataset and the dictionary file a
 
 ```{r apply_dic}
 # Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
-dat <- apply_dic(ITRF, dic_ITRF)
+dat <- apply_dic(ex_itrf, dic_ITRF)
 ```
 
 Let us get an overview of all scales in the dataset:
@@ -135,7 +134,7 @@ dat <- impute_missing(dat, subscale == "Int")
 
 ```
 
-```{r include=FALSE}
+```{r impute_missing_eval, include=FALSE}
 dat <- impute_missing(dat, subscale == "Ext")
 dat <- impute_missing(dat, subscale == "Int")
 ```
@@ -153,9 +152,9 @@ dat %>%
 
 ## See items instead of labels
 
-It is more convinient to see the original items instead of the short lables:
+It is more convenient to see the original items instead of the short labels:
 
-```{r}
+```{r desc_labels}
 dat %>% 
   select_items(subscale == "Int") %>%
   descriptives(round = 1, label = TRUE) %>%
@@ -164,7 +163,7 @@ dat %>%
 
 And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.  
 
-```{r}
+```{r exploratory_fa}
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_item(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
@@ -174,7 +173,7 @@ dat %>%
 
 and provide item analyses
 
-```{r}
+```{r item_analysis}
 scales <- list(
   'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
   'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
@@ -188,34 +187,32 @@ alpha_table(dat, scales = scales) %>%
 
 and even a confirmatory factor analysis with the use of the lavaan package.
 
-```{r}
+```{r lavaan_model}
 model <- lavaan_model(scales, orthogonal = FALSE)
 ```
 
-```{r comment = "", echo = FALSE}
+```{r cat_lavaan_model, comment = "", echo = FALSE}
 cat(model)
 ```
 
-```{r comment = ""}
+```{r lavaan_cfa, comment = ""}
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
 
 ```
 
-
-
 ## Build scale scores
 
 Now we build scores for internalizing and externalizing scales
 
-```{r}
+```{r scores}
 dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "Externalizing")
 dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
 ```
 
 and get descriptives for these scores
 
-```{r}
+```{r desc_scores}
 dat %>%
   select_scores() %>%
   descriptives(round = 1, label = TRUE) %>%
