@@ -1,4 +1,13 @@
 
+# scaledic 0.1.20
+
+New functions:
+- `set_label()`: Sets dic information. Will replace set_dic.
+
+Changes:
+- `apply_dic()`: new attribute `coerce_class`. When type of dic is numeric it checks if class of variable is numeric too. If not, it throws a message and coerces type to numeric. When `coerce_class = FALSE`, check is applied but no coercion.
+- dictionary file: New variable "active". When a column "active" exists, all tows with active != 1 are dropped.
+
 # scaledic 0.1.16 (2020-01-12)
 - A lot of bug fixes
 
