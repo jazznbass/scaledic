@@ -47,14 +47,17 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
 
     if (type %in% c("float", "real", "numeric", "")) {
       id_error <- which(
-        (data[[i]] > max(values) | data[[i]] < min(values)) & !is.na(data[[i]]) & !data[[i]] %in% missing
+        (data[[i]] > max(values) | data[[i]] < min(values)) &
+        !is.na(data[[i]]) & !data[[i]] %in% missing
       )
-
     }
 
     if (type %in% "factor") {
-      id_error <- which(!(data[[i]] %in% levels(data[[i]])) & !is.na(data[[i]]) & !data[[i]] %in% missing
-    )
+      id_error <- which(
+        !(data[[i]] %in% levels(data[[i]])) &
+        !is.na(data[[i]]) &
+        !data[[i]] %in% missing
+      )
     }
 
     if (type %in% c("character", "characters", "string")) {
@@ -71,7 +74,9 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
     if (!(length(id_error) > 0)) x <- NULL
     errors[[name[i]]] <- x
 
-    if (!is.null(replace)) data[id_error, i] <- replace
+    if (!is.null(replace) && length(id_error) > 0) {
+      data[id_error, i] <- replace
+    }
   }
   if (report && length(errors) > 0) print(errors)
   if (report && length(errors) == 0) cat("No errors found.\n")

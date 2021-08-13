@@ -8,6 +8,7 @@
 #' @export
 set_label <- function(data, vars, parameter, values) {
   for(i in seq_along(vars)) {
+    if (is.null(attr(data[[vars[i]]], .opt$dic))) x <- dic(x)
     dic_attr(data[[vars[i]]], parameter) <- values[i]
   }
   data

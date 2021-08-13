@@ -10,7 +10,7 @@ A collection of procedures to bring labels, scales, missing values etc. to a dat
 }
 \examples{
 # apply a dictionary file to a data frame
-dat <- apply_dic(ex_itrf, dic_ITRF)
+dat <- apply_dic(dat_itrf, dic_itrf)
 # check for typos (not allowed values)
 dat <- check_values(dat, replace = NA)
 # Single imputation (EM algorith from the Amelia package)

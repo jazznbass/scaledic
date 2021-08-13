@@ -33,7 +33,7 @@ descriptives <- function(data, round = 2, labels = FALSE) {
       lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
     }
     out$label <- lab#extract_dic(data)$item_label
-    out <- out %>% select(name, label, everything())
+    out <- out %>% relocate(name, label)
   }
   out
 }

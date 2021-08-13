@@ -50,7 +50,7 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
 
     if (keys == "auto") {
       key <- data[, scales[[i]]] %>%
-        map(~ dic_attr(.x, scaledic:::.opt$weight)) %>%
+        map(~ dic_attr(.x, .opt$weight)) %>%
         unlist() %>%
         as.numeric() %>%
         sign()

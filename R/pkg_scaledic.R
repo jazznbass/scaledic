@@ -8,14 +8,15 @@
 #' @author Juergen Wilbert [aut, cre]
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
-#' @importFrom readxl read_excel
+#' @importFrom readxl read_excel read_xlsx
 #' @importFrom vctrs vec_ptype2 vec_cast
 #' @import purrr
 #' @import Amelia
-#' @import dplyr
+#' @import stats
+#' @importFrom dplyr %>% relocate select full_join all_of rename as_tibble
 #' @examples
 #' # apply a dictionary file to a data frame
-#' dat <- apply_dic(ex_itrf, dic_ITRF)
+#' dat <- apply_dic(dat_itrf, dic_itrf)
 #' # check for typos (not allowed values)
 #' dat <- check_values(dat, replace = NA)
 #' # Single imputation (EM algorith from the Amelia package)

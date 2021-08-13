@@ -9,7 +9,7 @@
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
 #' @return A data frame with dictionary information.
 #' @examples
-#' dat <- apply_dic(ex_itrf, dic_ITRF)
+#' dat <- apply_dic(dat_itrf, dic_itrf)
 #' descriptives(dat)
 #' @export
 
@@ -266,7 +266,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_c
   }
 
   # weight NA to integer
-  miss_weight <- which(is.na(dic[[.dic_file$weight]]) && filter_items)
+  miss_weight <- which(is.na(dic[[.dic_file$weight]]) & filter_items)
   if (length(miss_weight) > 0) {
     message(length(miss_weight), " missing weights found and replaced with 1.")
     dic[miss_weight, .dic_file$weight] <- 1

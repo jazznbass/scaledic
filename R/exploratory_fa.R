@@ -13,17 +13,22 @@
 #' )
 #' @export
 
-exploratory_fa <- function(..., factor_names = NULL, sort = TRUE, cut = 0.2, round = 2) {
+exploratory_fa <- function(..., factor_names = NULL, sort = TRUE, cut = 0.2,
+                           round = 2) {
   args <- list(...)
+  #if (label) x <- rename_items(x)
+  #args <- list(r = x, unlist(args))
+
   out <- do.call(psych::fa, args)
+  var_exp <- out$Vaccounted
   if(sort) out <- psych::fa.sort(out)
   out <- loadings(out)
   out <- unclass(out)
   out <- round(out, round)
-  out[out < cut] <- ""
+  out[abs(out) < cut] <- ""
   out <- as.data.frame(out)
   if (!is.null(factor_names)) names(out) <- factor_names[1:ncol(names)]
-
+  out <- rbind(out, round(var_exp, round))
   out
 }
 

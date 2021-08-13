@@ -9,7 +9,7 @@
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
 #' @return A renamed data frame
 #' @export
-rename_item <- function(data, pattern = "label", chars = NULL, char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_label = ": ") {
+rename_items <- function(data, pattern = "label", chars = NULL, char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_label = ": ") {
 
   for (col in 1:ncol(data)) {
     if (is.null(attr(data[[col]], .opt$dic))) next
@@ -44,3 +44,4 @@ rename_item <- function(data, pattern = "label", chars = NULL, char_sep = "_", c
   }
   data
 }
+

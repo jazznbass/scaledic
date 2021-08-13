@@ -91,7 +91,7 @@ kable(out, caption = "Columns of a dictionary file")
 Here is extract of a dic file from the included example:
 
 ```{r dic_example}
-dic_ITRF %>% 
+dic_itrf %>% 
   slice(1:3) %>%
   kable()
 ```
@@ -104,8 +104,8 @@ The resulting dataset now is ready to be used with all further `scaledic` functi
 The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:
 
 ```{r apply_dic}
-# Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
-dat <- apply_dic(ex_itrf, dic_ITRF)
+# Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
+dat <- apply_dic(dat_itrf, dic_itrf)
 ```
 
 Let us get an overview of all scales in the dataset:
@@ -166,7 +166,7 @@ And further we analyse the factor structure. Here we use the `rename_item()` fun
 ```{r exploratory_fa}
 dat %>%
   select_items(scale == "ITRF") %>%
-  rename_item(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
+  rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
   exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 ```
