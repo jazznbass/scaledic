@@ -34,27 +34,45 @@ extract_dic <- function(data) {
 
     # values to code
     x <- dic[[.opt$values]]
-    d <- diff(x)
-    u <- unique(d)
-    if (length(u) == 1 && u[1] == 1) {
-      x <- paste0(min(x), ":", max(x))
-    } else {
-      x <- paste0(x, collapse = ",")
+
+    if (is.null(x)) {
+      x <- NA
+    } else if (!isTRUE(is.na(x))) {
+      d <- diff(x)
+      u <- unique(d)
+      if (length(u) == 1 && u[1] == 1) {
+        x <- paste0(min(x), ":", max(x))
+      } else {
+        x <- paste0(x, collapse = ",")
+      }
     }
 
-    #x <- paste0(dic[[.dic_file$values]], collapse = ",")
-    #x <- substring(x, 1, nchar(x) - 1)
     out[row, .opt[["values"]]] <- x
 
     # value labels to code
 
-    x <- paste0(dic$value_labels$value, " = ", dic$value_labels$label, collapse = "; ")
-    #x <- paste0(dic$values, " = ", names(dic$values), collapse = "; ")
+    if (is.null(dic$value_labels)) {
+      x <- NA
+    } else {
+      value_labels <- dic$value_labels[!is.na(dic$value_labels$value), ]
+      x <- NA
+      if (nrow(value_labels) > 0)
+        x <- paste0(value_labels$value, " = ", value_labels$label, collapse = "; ")
+    }
+
     out[row, .opt[["value_labels"]]] <- x
 
-    x <- paste0(dic[[.opt$missing]], ",", collapse = "")
-    x <- substring(x, 1, nchar(x) - 1)
+    # missing to code
+
+    x <- dic[[.opt$missing]]
+    if (is.null(x)) {
+      x <- NA
+    } else if (!isTRUE(is.na(x))) {
+      x <- paste0(x, collapse = ", ")
+      #x <- substring(x, 1, nchar(x) - 1)
+    }
     out[row, .opt[["missing"]]] <- x
+
   }
 
   order <- c(.opt$item_name, .opt$item_label, .opt$values, .opt$value_labels, .opt$missing, .opt$weight)
