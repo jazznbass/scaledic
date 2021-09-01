@@ -24,7 +24,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_c
 
   if (!is.null(rename_var)) {
     to_from <- setNames(dic[[rename_var]], dic[[.dic_file$item_name]])
-    to_from[to_from != ""]
+    to_from <- to_from[to_from != ""]
     .duplicates <- names(to_from) %in% names(data)
     if(any(.duplicates)){
       message("Skipped renaming column to an already existing name: ")
