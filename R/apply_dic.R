@@ -24,7 +24,7 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_c
 
   if (!is.null(rename_var)) {
     to_from <- setNames(dic[[rename_var]], dic[[.dic_file$item_name]])
-    to_from <- to_from[to_from != ""]
+    to_from <- to_from[!is.na(to_from)]
     .duplicates <- names(to_from) %in% names(data)
     if(any(.duplicates)){
       message("Skipped renaming column to an already existing name: ")
@@ -198,8 +198,8 @@ apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_c
   dic <- dic[apply(dic, 1, function(x) !all(is.na(x))),]
 
   # delete rows with comments (first sign of the first column is a #)
-  .filter <- which(apply(dic, 1, function(x) substr(x[1], 1, 1) != "#"))
-  dic <- dic[.filter, ]
+  .filter <- which(apply(dic, 1, function(x) substr(x[1], 1, 1) == "#"))
+  if (length(.filter) > 0) dic <- dic[-.filter, ]
 
   # filter if variable "active" is available --------------------------------
 
