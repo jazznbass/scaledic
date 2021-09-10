@@ -16,17 +16,17 @@ print.dic <- function(x, ...) {
 
   if (dic_attr(data, .opt$class) == "score")
     first_line <- paste0(
-      dic_attr(data, .opt$item_label), " (scale ",
-      dic_attr(data, .opt$score_function), ")\n",
-      "Scale definition: ", dic_attr(data, .opt$score_filter), "\n",
+      dic_attr(data, .opt$item_label), "\n(",
+      dic_attr(data, .opt$score_function), " of items: ",
+      dic_attr(data, .opt$score_filter), ")\n",
       collapse = ""
     )
 
-  if (length(first_line) > 0) cat(first_line, "\n\n")
+  if (length(first_line) > 0) cat(first_line)
 
   if (!is.null(dic_attr(data, .opt$values))) {
     data_type <- dic_attr(data, .opt$type)
-    cat("Data type is", data_type, "\n")
+    cat("\n\nData type is", data_type, "\n")
     if (data_type == "integer") {
       x <- dic_attr(data, .opt$values)
       d <- diff(x)
