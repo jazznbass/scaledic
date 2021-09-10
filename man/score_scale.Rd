@@ -38,7 +38,7 @@ A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent
 
 \item{label}{A character string with a label for the resulting score variable. Automatically generated if label is not set.}
 
-\item{FUN}{A function for caluclating the score (e.g., median)}
+\item{FUN}{A function for calculating the score (e.g., median)}
 
 \item{...}{Further arguments passed to the FUN function (e.g., na.rm = TRUE)}
 }
