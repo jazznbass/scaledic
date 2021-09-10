@@ -112,6 +112,22 @@
 
 }
 
+.weighted_mean <- function(x, w, min_valid, max_na) {
+
+  if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) min_valid <- trunc(min_valid * length(x))
+  if(isTRUE(sum(!is.na(x)) < min_valid)) {
+    return(NA)
+  }
+
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0)) max_na <- trunc(max_na * length(x))
+  if(isTRUE(sum(is.na(x)) > max_na)) {
+    return(NA)
+  }
+
+  weighted.mean(x, w, na.rm = TRUE)
+
+}
+
 .sum <- function(x, min_valid, max_na) {
 
   if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) min_valid <- trunc(min_valid * length(x))
