@@ -9,6 +9,18 @@
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
 
+  .filter <- sapply(data, function(x) "numeric" %in% class(x))
+
+  if (any(.filter)) {
+    tmp <- .filter[!.filter]
+    warning(
+      "Some variables are not numeric and dropped from the analyzes: ",
+      paste0(names(tmp), collapse = ", ")
+    )
+  }
+
+  data <- data[, .filter]
+
   out <- apply(data, 2, function(x)
     c(
       valid = sum(!is.na(x)),
@@ -32,7 +44,7 @@ descriptives <- function(data, round = 2, labels = FALSE) {
     for(i in 1: ncol(data)) {
       lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
     }
-    out$label <- lab#extract_dic(data)$item_label
+    out$label <- lab
     out <- out %>% relocate(name, label)
   }
   out
