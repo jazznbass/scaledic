@@ -30,7 +30,7 @@
 #' library(dplyr)
 #' dat %>%
 #'   select_items(scale == "ITRF" & subscale == "Ext") %>%
-#'   rename_items(prefix = c("subscale2", "index")) %>%
+#'   rename_items(pattern = c("name", "subscale_2")) %>%
 #'   summarise_all(mean, na.rm = TRUE) %>%
 #'   round(2) %>%
 #'   t()
