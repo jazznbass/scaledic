@@ -11,6 +11,7 @@ A data frame with 39 rows and 15 variables
 dic_itrf
 }
 \description{
-A dictionary file of the German version of the integrated Teacher Report Form (ITRF).
+A dictionary file of the German version of the integrated Teacher Report
+Form (ITRF).
 }
 \keyword{datasets}
