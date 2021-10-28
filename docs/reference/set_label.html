@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>(Deprecated) Get index — get_index • scaledic</title>
+<title>Set dictionary information to variable — set_label • scaledic</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="(Deprecated) Get index — get_index" />
-<meta property="og:description" content="(Deprecated) Get index" />
+<meta property="og:title" content="Set dictionary information to variable — set_label" />
+<meta property="og:description" content="Set dictionary information to variable" />
 
 
 
@@ -121,24 +121,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>(Deprecated) Get index</h1>
+    <h1>Set dictionary information to variable</h1>
     
-    <div class="hidden name"><code>get_index.Rd</code></div>
+    <div class="hidden name"><code>set_label.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>(Deprecated) Get index</p>
+    <p>Set dictionary information to variable</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_index</span><span class='op'>(</span>
-  <span class='va'>data</span>,
-  filter <span class='op'>=</span> <span class='cn'>NULL</span>,
-  scale <span class='op'>=</span> <span class='cn'>NULL</span>,
-  subscale <span class='op'>=</span> <span class='cn'>NULL</span>,
-  subscale_2 <span class='op'>=</span> <span class='cn'>NULL</span>,
-  names <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  class <span class='op'>=</span> <span class='cn'>NULL</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>set_label</span><span class='op'>(</span><span class='va'>data</span>, <span class='va'>vars</span>, <span class='va'>parameter</span>, <span class='va'>values</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,18 +140,22 @@
       <td><p>A data frame</p></td>
     </tr>
     <tr>
-      <th>filter</th>
-      <td><p>A logical expression for any dic attribute (e.g. scale == "ITRF" &amp; subscale == "Int")</p></td>
+      <th>vars</th>
+      <td><p>string or vector with string of variable names</p></td>
     </tr>
     <tr>
-      <th>names</th>
-      <td><p>If names is TRUE, a vector with variable names will be returned.</p></td>
+      <th>values</th>
+      <td><p>Vector of values of the same length as vars</p></td>
+    </tr>
+    <tr>
+      <th>paramter</th>
+      <td><p>Character string with dic parameter</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A vector with indices adhering to the given attribute criteria.</p>
+    <p>A data frame with dic information</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

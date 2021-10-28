@@ -8,10 +8,16 @@ build_scaledic_skeleton(filename = "dic_template.xlsx", nrows = 0)
 }
 \arguments{
 \item{filename}{Character string. Default is 'dic_template.xlsx'}
+
+\item{nrows}{Number of empty rows added to data frame.}
 }
 \value{
-Writes an Excel file with an empty template of a dic file.
+When 'filename' is not empty, it writes an Excel file with an empty template of a dic file.
+When 'filename' is empty (ie. ""), returns a data frame.
 }
 \description{
 Build a dictionary file template
+}
+\examples{
+build_scaledic_skeleton("")
 }

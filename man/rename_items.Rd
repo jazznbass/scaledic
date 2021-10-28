@@ -2,12 +2,11 @@
 % Please edit documentation in R/rename_item.R
 \name{rename_items}
 \alias{rename_items}
-\title{Rename items
-Rename items based on dic information.}
+\title{Rename items}
 \usage{
 rename_items(
   data,
-  pattern = "label",
+  pattern = "item_label",
   chars = NULL,
   char_sep = "_",
   char_weight = c("(-)", "(+)"),
@@ -18,7 +17,7 @@ rename_items(
 \item{data}{A data frame}
 
 \item{pattern}{A character string or vector of character strings defining a prefix.
-May include "label", "scale", "subscale", "subscale_2", "reverse", "weight", or "name".}
+May include the name of any dic attribute (e.g."item_label", "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label", or "name").}
 
 \item{chars}{If not NULL, only the first n chars og the long label will be applied.}
 
@@ -30,6 +29,11 @@ May include "label", "scale", "subscale", "subscale_2", "reverse", "weight", or 
 A renamed data frame
 }
 \description{
-Rename items
 Rename items based on dic information.
+}
+\examples{
+ex_itrf \%>\%
+  rename_items(pattern = c("reverse", "label")) \%>\%
+  names()
+
 }

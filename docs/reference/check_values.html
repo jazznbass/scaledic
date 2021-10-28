@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes. — check_values • scaledic</title>
+<title>Check values — check_values • scaledic</title>
 
 
 <!-- jquery -->
@@ -41,12 +39,9 @@ the values and type dictionary attributes. — check_values • scaledic</title>
 
 
 
-<meta property="og:title" content="Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes. — check_values" />
-<meta property="og:description" content="Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes." />
+<meta property="og:title" content="Check values — check_values" />
+<meta property="og:description" content="Checks if values in variables are valid according to
+the 'values' and 'type' dictionary attributes." />
 
 
 
@@ -78,7 +73,7 @@ the values and type dictionary attributes." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -127,17 +122,14 @@ the values and type dictionary attributes." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.</h1>
+    <h1>Check values</h1>
     
     <div class="hidden name"><code>check_values.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.</p>
+    <p>Checks if values in variables are valid according to
+the 'values' and 'type' dictionary attributes.</p>
     </div>
 
     <pre class="usage"><span class='fu'>check_values</span><span class='op'>(</span>
@@ -171,8 +163,16 @@ the values and type dictionary attributes.</p>
     </tr>
     <tr>
       <th>include_missing</th>
-      <td><p>If TRUE, missing values (provided in the dic file)
-will be considered as valid values.</p></td>
+      <td><p>If TRUE, missing values (provided as 'missing' in
+the dic file) will be considered as valid values.</p></td>
+    </tr>
+    <tr>
+      <th>integer_as_double</th>
+      <td><p>If TRUE, type 'integer' will be coverted to 'double'.</p></td>
+    </tr>
+    <tr>
+      <th>check_type</th>
+      <td><p>If TRUE, it will check if the class of a variable conflicts with the 'type' as defined in the dic information. When a type is numeric and the class is 'character' it will try to convert the class to a numeric class.</p></td>
     </tr>
     </table>
 

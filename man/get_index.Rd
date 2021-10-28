@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_index.R
 \name{get_index}
 \alias{get_index}
-\title{Get index}
+\title{(Deprecated) Get index}
 \usage{
 get_index(
   data,
@@ -25,5 +25,5 @@ get_index(
 A vector with indices adhering to the given attribute criteria.
 }
 \description{
-Get index
+(Deprecated) Get index
 }

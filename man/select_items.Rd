@@ -2,8 +2,7 @@
 % Please edit documentation in R/select_items.R
 \name{select_items}
 \alias{select_items}
-\title{Select items
-Selects a data frame with variables of a specific scale}
+\title{Select items}
 \usage{
 select_items(data, filter = NULL, names_only = FALSE, index_only = FALSE)
 }
@@ -20,6 +19,5 @@ select_items(data, filter = NULL, names_only = FALSE, index_only = FALSE)
 A data frame, a vector with variable names or a vector with indices
 }
 \description{
-Select items
 Selects a data frame with variables of a specific scale
 }

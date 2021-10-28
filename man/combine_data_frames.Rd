@@ -2,8 +2,7 @@
 % Please edit documentation in R/combine_data_frame.R
 \name{combine_data_frames}
 \alias{combine_data_frames}
-\title{Combine data frames
-Comnine data frames and keep dic information.}
+\title{Combine data frames}
 \usage{
 combine_data_frames(...)
 }
@@ -14,6 +13,8 @@ combine_data_frames(...)
 A combined data frame with all rows and columns from the provided dataframes.
 }
 \description{
-Combine data frames
-Comnine data frames and keep dic information.
+Combine data frames (rows and columns) and keep dic information.
+}
+\details{
+This function is useful when you want to join several dataframes that contain dic information into one dataframe. When a variable that is entailed in both dataframes has dic information, the resulting dataframe will keep the dic information of the dataframe that is first listet as an argument.
 }

@@ -2,9 +2,7 @@
 % Please edit documentation in R/check_values.R
 \name{check_values}
 \alias{check_values}
-\title{Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.}
+\title{Check values}
 \usage{
 check_values(
   data,
@@ -25,16 +23,19 @@ check_values(
 
 \item{report}{If TRUE, an overview of invalid values will be given.}
 
-\item{include_missing}{If TRUE, missing values (provided in the dic file)
-will be considered as valid values.}
+\item{include_missing}{If TRUE, missing values (provided as 'missing' in
+the dic file) will be considered as valid values.}
+
+\item{integer_as_double}{If TRUE, type 'integer' will be coverted to 'double'.}
+
+\item{check_type}{If TRUE, it will check if the class of a variable conflicts with the 'type' as defined in the dic information. When a type is numeric and the class is 'character' it will try to convert the class to a numeric class.}
 }
 \value{
 A data frame with replaced values if replaces is not NULL.
 }
 \description{
-Check values
-Checks if values in variables are within the set difined in
-the values and type dictionary attributes.
+Checks if values in variables are valid according to
+the 'values' and 'type' dictionary attributes.
 }
 \examples{
 check_values(ex_itrf, return = FALSE)

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -135,6 +135,7 @@
   <span class='va'>dic</span>,
   factors <span class='op'>=</span> <span class='cn'>TRUE</span>,
   set_label_attr <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  coerce_class <span class='op'>=</span> <span class='cn'>TRUE</span>,
   replace_missing <span class='op'>=</span> <span class='cn'>TRUE</span>,
   score_scales <span class='op'>=</span> <span class='cn'>TRUE</span>,
   check_values <span class='op'>=</span> <span class='cn'>FALSE</span>,
@@ -159,6 +160,10 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></td>
       <td><p>If set TRUE, factor variables will be turned into factors.</p></td>
     </tr>
     <tr>
+      <th>coerce_class</th>
+      <td><p>If set TRUE mismatches between class and dic type are corrected.</p></td>
+    </tr>
+    <tr>
       <th>replace_missing</th>
       <td><p>If TRUE, missing values from the dic are replaced with NA</p></td>
     </tr>
@@ -173,9 +178,9 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></td>
     <p>A data frame with dictionary information.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>apply_dic</span><span class='op'>(</span><span class='va'>ITRF</span>, <span class='va'>dic_ITRF</span><span class='op'>)</span>
+    <pre class="examples"><div class='input'><span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>apply_dic</span><span class='op'>(</span><span class='va'>dat_itrf</span>, <span class='va'>dic_itrf</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>2 missing types found and replaced with 'integer'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced missing values.</span></div><div class='output co'>#&gt; <span class='message'>Values checked.</span></div><div class='output co'>#&gt; <span class='message'>Scales scored.</span></div><div class='output co'>#&gt; <span class='message'>`label` attribute set.</span></div><div class='input'><span class='fu'><a href='descriptives.html'>descriptives</a></span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;         name valid missing mean   sd min  max range median  mad
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Some variables are not numeric and dropped from the analyzes: </span></div><div class='output co'>#&gt;         name valid missing mean   sd min  max range median  mad
 #&gt; 1   itrf_I_1  4247     529 0.38 0.72   0 3.00  3.00   0.00 0.00
 #&gt; 2   itrf_I_2  4757      19 0.35 0.69   0 3.00  3.00   0.00 0.00
 #&gt; 3   itrf_I_4  4758      18 0.31 0.63   0 3.00  3.00   0.00 0.00

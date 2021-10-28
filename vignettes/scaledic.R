@@ -45,19 +45,19 @@ out <- tribble(
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
   "source", "Reference", "Casale et al. (2017)",
-  "note", "Further notes", "Item has low descrimination"
+  "note", "Further notes", "Item has low discrimination"
 )
 kable(out, caption = "Columns of a dictionary file")
 
 
 ## ----dic_example--------------------------------------------------------------
-dic_ITRF %>% 
+dic_itrf %>% 
   slice(1:3) %>%
   kable()
 
 ## ----apply_dic----------------------------------------------------------------
-# Here we use the example dataset "ITRF" and the example dic file "dic_ITRF"
-dat <- apply_dic(ex_itrf, dic_ITRF)
+# Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
+dat <- apply_dic(dat_itrf, dic_itrf)
 
 ## ----list_scales--------------------------------------------------------------
 list_scales(dat, labels = TRUE) %>%
@@ -93,7 +93,7 @@ dat %>%
 ## ----exploratory_fa-----------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
-  rename_item(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
+  rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
   exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 

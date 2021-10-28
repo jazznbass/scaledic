@@ -9,10 +9,10 @@ rename_by_list(data, file = NULL, to_from = NULL, to = NULL, from = NULL)
 \arguments{
 \item{data}{A data frame with variables to be renamed}
 
-\item{file}{A filename of an Excel file containing at least to columns (variables) for renaming. Or a data frame with two columns.}
+\item{file}{A filename of an Excel file containing at least two columns (variables) for renaming. Or a data frame with two columns.}
 
 \item{to_from}{When a filename or a data.frame is provided, a named charcter with the names of the target  and source variable names (e.g., c("to" = "from")).
-When no filename is provided, to_from must a vector with named variable names c("to1" = "from1", "to2" = "from2")).}
+When no filename is provided, to_from must be a vector with named variable names c("to1" = "from1", "to2" = "from2")).}
 
 \item{to}{When a filename or a data.frame is provided, the name of the column with the target variable names. When no filename is provided, to must a vector with target variable names.}
 

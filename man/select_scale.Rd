@@ -2,8 +2,7 @@
 % Please edit documentation in R/select_scale.R
 \name{select_scale}
 \alias{select_scale}
-\title{Select a scale
-Selects a data frame with variables of a specific scale}
+\title{(Deprecated) Select a scale}
 \usage{
 select_scale(
   data,
@@ -22,6 +21,5 @@ select_scale(
 A data frame
 }
 \description{
-Select a scale
 Selects a data frame with variables of a specific scale
 }

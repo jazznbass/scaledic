@@ -82,7 +82,7 @@ out <- tribble(
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
   "source", "Reference", "Casale et al. (2017)",
-  "note", "Further notes", "Item has low descrimination"
+  "note", "Further notes", "Item has low discrimination"
 )
 kable(out, caption = "Columns of a dictionary file")
 

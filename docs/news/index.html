@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -124,6 +124,23 @@
       
     </div>
 
+    <div id="scaledic-0120" class="section level1">
+<h1 class="page-header" data-toc-text="0.1.20">
+<a href="#scaledic-0120" class="anchor"></a>scaledic 0.1.20</h1>
+<p>New functions:</p>
+<ul>
+<li>
+<code>set_label()</code>: Sets dic information. Will replace set_dic.</li>
+</ul>
+<p>Changes:</p>
+<ul>
+<li>
+<code><a href="../reference/apply_dic.html">apply_dic()</a></code>: new attribute <code>coerce_class</code>. When type of dic is numeric it checks if class of variable is numeric too. If not, it throws a message and coerces type to numeric. When <code>coerce_class = FALSE</code>, check is applied but no coercion.</li>
+<li>dictionary file: New variable “active”. When a column “active” exists, all tows with active != 1 are dropped.</li>
+<li>
+<code><a href="../reference/exploratory_fa.html">exploratory_fa()</a></code>: explained variance added to output</li>
+</ul>
+</div>
     <div id="scaledic-0116-2020-01-12" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.16">
 <a href="#scaledic-0116-2020-01-12" class="anchor"></a>scaledic 0.1.16 (2020-01-12)</h1>

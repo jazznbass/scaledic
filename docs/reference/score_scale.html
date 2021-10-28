@@ -75,7 +75,7 @@ Calculates the scale scores." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -143,6 +143,8 @@ Calculates the scale scores.</p>
   subscale_2 <span class='op'>=</span> <span class='cn'>NULL</span>,
   bind <span class='op'>=</span> <span class='cn'>FALSE</span>,
   sum <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  min_valid <span class='op'>=</span> <span class='fl'>1</span>,
+  max_na <span class='op'>=</span> <span class='cn'>NA</span>,
   label <span class='op'>=</span> <span class='cn'>NULL</span>,
   FUN <span class='op'>=</span> <span class='cn'>NULL</span>,
   <span class='va'>...</span>
@@ -169,12 +171,22 @@ returns a data frame with the new score variables for each scale.</p></td>
       <td><p>If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.</p></td>
     </tr>
     <tr>
+      <th>min_valid</th>
+      <td><p>Minimal number of valid values that is required for calculating the mean.
+A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent of values have to be valid).</p></td>
+    </tr>
+    <tr>
+      <th>max_na</th>
+      <td><p>Maximum number of NAs that are allowed before returning NA.
+A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent NAs are allowed).</p></td>
+    </tr>
+    <tr>
       <th>label</th>
       <td><p>A character string with a label for the resulting score variable. Automatically generated if label is not set.</p></td>
     </tr>
     <tr>
       <th>FUN</th>
-      <td><p>A function for caluclating the score (e.g., median)</p></td>
+      <td><p>A function for calculating the score (e.g., median)</p></td>
     </tr>
     <tr>
       <th>...</th>

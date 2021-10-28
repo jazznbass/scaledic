@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Combine data frames
-Comnine data frames and keep dic information. — combine_data_frames • scaledic</title>
+<title>Combine data frames — combine_data_frames • scaledic</title>
 
 
 <!-- jquery -->
@@ -40,10 +39,8 @@ Comnine data frames and keep dic information. — combine_data_frames • scaled
 
 
 
-<meta property="og:title" content="Combine data frames
-Comnine data frames and keep dic information. — combine_data_frames" />
-<meta property="og:description" content="Combine data frames
-Comnine data frames and keep dic information." />
+<meta property="og:title" content="Combine data frames — combine_data_frames" />
+<meta property="og:description" content="Combine data frames (rows and columns) and keep dic information." />
 
 
 
@@ -75,7 +72,7 @@ Comnine data frames and keep dic information." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -124,15 +121,13 @@ Comnine data frames and keep dic information." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Combine data frames
-Comnine data frames and keep dic information.</h1>
+    <h1>Combine data frames</h1>
     
     <div class="hidden name"><code>combine_data_frames.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Combine data frames
-Comnine data frames and keep dic information.</p>
+    <p>Combine data frames (rows and columns) and keep dic information.</p>
     </div>
 
     <pre class="usage"><span class='fu'>combine_data_frames</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
@@ -149,6 +144,9 @@ Comnine data frames and keep dic information.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A combined data frame with all rows and columns from the provided dataframes.</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This function is useful when you want to join several dataframes that contain dic information into one dataframe. When a variable that is entailed in both dataframes has dic information, the resulting dataframe will keep the dic information of the dataframe that is first listet as an argument.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

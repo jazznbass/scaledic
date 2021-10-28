@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -138,7 +138,7 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># apply a dictionary file to a data frame</span>
-<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span><span class='op'>(</span><span class='va'>ITRF</span>, <span class='va'>dic_ITRF</span><span class='op'>)</span>
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='apply_dic.html'>apply_dic</a></span><span class='op'>(</span><span class='va'>dat_itrf</span>, <span class='va'>dic_itrf</span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'>2 missing types found and replaced with 'integer'.</span></div><div class='output co'>#&gt; <span class='message'>Replaced missing values.</span></div><div class='output co'>#&gt; <span class='message'>Values checked.</span></div><div class='output co'>#&gt; <span class='message'>Scales scored.</span></div><div class='output co'>#&gt; <span class='message'>`label` attribute set.</span></div><div class='input'><span class='co'># check for typos (not allowed values)</span>
 <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='check_values.html'>check_values</a></span><span class='op'>(</span><span class='va'>dat</span>, replace <span class='op'>=</span> <span class='cn'>NA</span><span class='op'>)</span>
 <span class='co'># Single imputation (EM algorith from the Amelia package)</span>
@@ -155,27 +155,44 @@
 #&gt;   1  2  3
 #&gt; </div><div class='input'><span class='co'># Show a table with all scales and scale labels included in the data frame</span>
 <span class='fu'><a href='list_scales.html'>list_scales</a></span><span class='op'>(</span><span class='va'>dat</span>, labels <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 4 x 6</span><span>
+</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 4 × 6</span>
 #&gt;   scale subscale subscale_2 scale_label      subscale_label subscale_2_label    
-#&gt;   </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>      </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>            </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>          </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>               
-#&gt; </span><span style='color: #555555;'>1</span><span> ITRF  Int      SW         Integrated teac~ Internalizing  Socially Withdrawn  
-#&gt; </span><span style='color: #555555;'>2</span><span> ITRF  Int      AD         Integrated teac~ Internalizing  Anxious/Depressed   
-#&gt; </span><span style='color: #555555;'>3</span><span> ITRF  Ext      OPP        Integrated teac~ Externalizing  Oppositional/Disrup~
-#&gt; </span><span style='color: #555555;'>4</span><span> ITRF  Ext      APD        Integrated teac~ Externalizing  Academic Productivi~</div><div class='input'><span class='co'># Example with pipeline syntax. Would be much easier to use the "describe" function</span>
+#&gt;   <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span> <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>    <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>      <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>            <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>          <span style='color: #949494; font-style: italic;'>&lt;chr&gt;</span>               
+#&gt; <span style='color: #BCBCBC;'>1</span> ITRF  Int      SW         Integrated teac… Internalizing  Socially Withdrawn  
+#&gt; <span style='color: #BCBCBC;'>2</span> ITRF  Int      AD         Integrated teac… Internalizing  Anxious/Depressed   
+#&gt; <span style='color: #BCBCBC;'>3</span> ITRF  Ext      OPP        Integrated teac… Externalizing  Oppositional/Disrup…
+#&gt; <span style='color: #BCBCBC;'>4</span> ITRF  Ext      APD        Integrated teac… Externalizing  Academic Productivi…</div><div class='input'><span class='co'># Example with pipeline syntax. Would be much easier to use the "describe" function</span>
 <span class='co'># from the psch packages instead of summarise_all here.</span>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://dplyr.tidyverse.org'>dplyr</a></span><span class='op'>)</span>
 </div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>Attaching package: 'dplyr'</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:stats':</span>
+#&gt; <span class='message'>Attaching package: ‘dplyr’</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:stats’:</span>
 #&gt; <span class='message'></span>
-#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from 'package:base':</span>
+#&gt; <span class='message'>    filter, lag</span></div><div class='output co'>#&gt; <span class='message'>The following objects are masked from ‘package:base’:</span>
 #&gt; <span class='message'></span>
 #&gt; <span class='message'>    intersect, setdiff, setequal, union</span></div><div class='input'><span class='va'>dat</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='select_scale.html'>select_scale</a></span><span class='op'>(</span><span class='va'>scale</span> <span class='op'>==</span> <span class='st'>"ITRF"</span> <span class='op'>&amp;</span> <span class='va'>subscale</span> <span class='op'>==</span> <span class='st'>"Ext"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
-  <span class='fu'><a href='names2item.html'>names2item</a></span><span class='op'>(</span>prefix <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"subscale2"</span>, <span class='st'>"index"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='select_items.html'>select_items</a></span><span class='op'>(</span><span class='va'>scale</span> <span class='op'>==</span> <span class='st'>"ITRF"</span> <span class='op'>&amp;</span> <span class='va'>subscale</span> <span class='op'>==</span> <span class='st'>"Ext"</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
+  <span class='fu'><a href='rename_items.html'>rename_items</a></span><span class='op'>(</span>pattern <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"name"</span>, <span class='st'>"subscale_2"</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://dplyr.tidyverse.org/reference/summarise_all.html'>summarise_all</a></span><span class='op'>(</span><span class='va'>mean</span>, na.rm <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='fl'>2</span><span class='op'>)</span> <span class='op'>%&gt;%</span>
   <span class='fu'><a href='https://rdrr.io/r/base/t.html'>t</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='warning'>Warning: select_scale() is deprecated. Please use function select_items instead. E.g.: select_items(data, scale == 'itrf' &amp; subscale == 'Int')</span></div><div class='output co'>#&gt; <span class='error'>Error in out[[var]]: attempt to select less than one element in get1index</span></div></span></pre>
+</div><div class='output co'>#&gt;               [,1]
+#&gt; itrf_I_20_OPP 0.55
+#&gt; itrf_E_1_APD  0.95
+#&gt; itrf_E_2_APD  0.76
+#&gt; itrf_E_3_APD  0.58
+#&gt; itrf_E_4_APD  0.58
+#&gt; itrf_E_5_APD  0.93
+#&gt; itrf_E_6_APD  0.53
+#&gt; itrf_E_7_OPP  0.35
+#&gt; itrf_E_8_OPP  0.49
+#&gt; itrf_E_9_OPP  0.83
+#&gt; itrf_E_10_OPP 0.40
+#&gt; itrf_E_11_OPP 0.77
+#&gt; itrf_E_12_OPP 0.46
+#&gt; itrf_E_13_OPP 0.47
+#&gt; itrf_E_14_APD 0.38
+#&gt; itrf_E_15_APD 0.70
+#&gt; itrf_E_16_OPP 0.35</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

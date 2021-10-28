@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.16</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
       </span>
     </div>
 
@@ -75,13 +75,13 @@
 
       
 
-      </header><script src="build_dic_file_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="build_dic_file_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Building a dictionary file</h1>
                         <h4 class="author">Jürgen Wilbert</h4>
             
-            <h4 class="date">2021-01-12</h4>
+            <h4 class="date">2021-09-17</h4>
       
       
       <div class="hidden name"><code>build_dic_file.Rmd</code></div>
@@ -95,7 +95,7 @@
 <a href="#what-is-dictionary-file" class="anchor"></a>What is dictionary file</h2>
 <p>When you do questionnaire based research (and you are working in R) you usually create a <em>data.frame</em> with a column (variable) for every item of that questionnaire and a row for every person who participated. You can only store limited additional information on each item of that questionnaire within a <code>data.frame</code> (or a <code>tibble</code>). What you can do is to a) give a variable name, and b) define a variable as a factor with corresponding levels.</p>
 <p>But basically thats it. You can not, at least not conveniently, include a longer label for each item, the name of a scale this item belogs to, information on reverse coding etc.</p>
-<p>I call the collection of these additional information on items an <em>item dictionary</em>. A dictionary contains a short label, a longer description, scale affiliation, and more for each item. It is a table with one row per item and a column for each additonal information on those items.<br>
+<p>I call the collection of these additional information on items an <em>item dictionary</em>. A dictionary contains a short label, a longer description, scale affiliation, and more for each item. It is a table with one row per item and a column for each additional information on those items.<br>
 The following table shows the information included in a dictionary file:</p>
 <table class="table">
 <caption>Columns of a dictionary file</caption>
@@ -111,7 +111,7 @@ The following table shows the information included in a dictionary file:</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">label</td>
+<td align="left">item_name</td>
 <td align="left">A short item label</td>
 <td align="left">itrf_1</td>
 </tr>
@@ -146,7 +146,7 @@ The following table shows the information included in a dictionary file:</p>
 <td align="left">Anxious/Depressed</td>
 </tr>
 <tr class="even">
-<td align="left">item</td>
+<td align="left">item_label</td>
 <td align="left">Full text of the item</td>
 <td align="left">Complains of headaches or stomach aches</td>
 </tr>
@@ -192,116 +192,32 @@ The following table shows the information included in a dictionary file:</p>
 </tr>
 </tbody>
 </table>
-<p>Here is extract of a dic file from the included example:</p>
-<table class="table">
-<colgroup>
-<col width="22%">
-<col width="1%">
-<col width="1%">
-<col width="2%">
-<col width="2%">
-<col width="7%">
-<col width="3%">
-<col width="4%">
-<col width="10%">
-<col width="1%">
-<col width="1%">
-<col width="20%">
-<col width="1%">
-<col width="1%">
-<col width="7%">
-<col width="1%">
-<col width="3%">
-<col width="3%">
-<col width="1%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">item_name</th>
-<th align="right">index</th>
-<th align="left">scale</th>
-<th align="left">subscale</th>
-<th align="left">subscale_2</th>
-<th align="left">scale_label</th>
-<th align="left">subscale_label</th>
-<th align="left">subscale_2_label</th>
-<th align="left">item_label</th>
-<th align="right">weight</th>
-<th align="left">values</th>
-<th align="left">value_labels</th>
-<th align="right">missing</th>
-<th align="left">type</th>
-<th align="left">source</th>
-<th align="left">note</th>
-<th align="left">score_filter</th>
-<th align="left">score_function</th>
-<th align="left">class</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left"># when the first column of a row begins with a #, this column is considered to be a comment line.</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="right">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_1</td>
-<td align="right">1</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Socially Withdrawn</td>
-<td align="left">Verbringt zu viel Zeit alleine</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">item</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_2</td>
-<td align="right">2</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Anxious/Depressed</td>
-<td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">item</td>
-</tr>
-</tbody>
-</table>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">n</span> <span class="op">&lt;-</span> <span class="fl">20</span>
+<span class="va">n_var</span> <span class="op">&lt;-</span> <span class="fl">10</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="va">n</span> <span class="op">*</span> <span class="va">n_var</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>, ncol <span class="op">=</span> <span class="va">n_var</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span>
+
+<span class="va">dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
+  item_name <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span>,
+  item_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Item"</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span><span class="op">)</span>,
+  scale <span class="op">=</span> <span class="st">"letters"</span>,
+  scale_label <span class="op">=</span> <span class="st">"Series of letters"</span>,
+  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1:5"</span>, <span class="st">"1,5"</span><span class="op">)</span>,
+  value_labels <span class="op">=</span> <span class="st">"1 = low; 2; 3; 4; 5 = high"</span>,
+  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span>,<span class="co">#, "integer", "integer", "float", "factor"),</span>
+  weight <span class="op">=</span> <span class="fl">1</span>,
+  missing <span class="op">=</span> <span class="st">"-999"</span>
+<span class="op">)</span>
+
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">dic</span><span class="op">)</span>
+<span class="co">#&gt; The following variables were missing in the dictionary file: subscale, subscale_2, subscale_label, subscale_2_label, source</span>
+<span class="co">#&gt; Replaced missing values.</span>
+<span class="co">#&gt; `label` attribute set.</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
+
+<span class="va">dat</span><span class="op">$</span><span class="va">mean_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"letters"</span>, label <span class="op">=</span> <span class="st">"Average letter value"</span><span class="op">)</span></code></pre></div>
 </div>
   </div>
 

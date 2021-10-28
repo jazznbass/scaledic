@@ -3,8 +3,7 @@
 \name{names2item}
 \alias{names2item}
 \alias{names2label}
-\title{Rename long to short
-Set names of items as long labels and vice versa.}
+\title{(Deprecated) Rename long to short}
 \usage{
 names2item(
   data,
@@ -35,7 +34,6 @@ May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "
 A renamed data frame
 }
 \description{
-Rename long to short
 Set names of items as long labels and vice versa.
 }
 \details{
