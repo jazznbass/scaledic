@@ -1,15 +1,4 @@
----
-title: "Introduction to scaledic"
-output: 
-  rmarkdown::html_vignette:
-  df_print: kable
-vignette: >
-  %\VignetteIndexEntry{Introduction to scaledic}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
----
-
-```{r setup, include = FALSE}
+## ----setup, include = FALSE---------------------------------------------------
 library(knitr)
 library(dplyr)
 library(tibble)
@@ -21,26 +10,8 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
-```
 
-# Note
-
-The following code examples in this package make use of the pipe operator `%>%` (see <https://r4ds.had.co.nz/pipes.html> for more details).  
-
-# How to use scaledic
-
-You need two things:
-
-1. a dataset,
-2. a dictionary file.
-
-## A dictionary file
-
-A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.  
-
-The following table shows the parameters and the naming of the columns of a dictionary file: 
-
-```{r tab_dic_param, echo = FALSE}
+## ----tab_dic_param, echo = FALSE----------------------------------------------
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "item_name", "A short item name", "itrf_1",
@@ -62,93 +33,54 @@ out <- tribble(
 )
 kable(out, caption = "Columns of a dictionary file")
 
-```
 
-Here is extract of a dic file from the included example:
-
-```{r dic_example}
+## ----dic_example--------------------------------------------------------------
 dic_itrf %>% 
   slice(2:4) %>%
   kable()
-```
 
-## Apply a dictionary file
-
-When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.  
-The resulting dataset now is ready to be used with all further `scaledic` functions.  
-
-The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:
-
-```{r apply_dic}
+## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
 dat <- apply_dic(dat_itrf, dic_itrf)
-```
 
-Let us get an overview of all scales in the dataset:
-
-```{r list_scales}
+## ----list_scales--------------------------------------------------------------
 list_scales(dat, labels = TRUE) %>%
   kable()
-```
 
-## Clean raw data
-
-Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:
-
-```{r check_values}
+## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
-```
 
-Now we impute missing values:
+## ----impute_missing, eval = FALSE---------------------------------------------
+#  # Imputation for items of the subscale Ext
+#  dat <- impute_missing(dat, subscale == "Ext")
+#  
+#  # Imputation for items of the subscale Int
+#  dat <- impute_missing(dat, subscale == "Int")
+#  
 
-```{r impute_missing, eval = FALSE}
-# Imputation for items of the subscale Ext
-dat <- impute_missing(dat, subscale == "Ext")
-
-# Imputation for items of the subscale Int
-dat <- impute_missing(dat, subscale == "Int")
-
-```
-
-```{r impute_missing_eval, include=FALSE}
+## ----impute_missing_eval, include=FALSE---------------------------------------
 dat <- impute_missing(dat, subscale == "Ext")
 dat <- impute_missing(dat, subscale == "Int")
-```
 
-## Select scales for analyszing
-
-Let us see descriptive statistics for the Internalizing sub scale:
- 
-```{r descriptives}
+## ----descriptives-------------------------------------------------------------
 dat %>% 
   select_items(subscale == "Int") %>%
   descriptives(round = 1) %>%
   kable()
-```
 
-## See items instead of labels
-
-It is more convenient to see the original items instead of the short labels:
-
-```{r desc_labels}
+## ----desc_labels--------------------------------------------------------------
 dat %>% 
   select_items(subscale == "Int") %>%
   descriptives(round = 1, label = TRUE) %>%
   kable()
-```
 
-And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.  
-
-```{r exploratory_fa}
+## ----exploratory_fa-----------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
   exploratory_fa(nfactors = 4, cut = 0.4)
-```
 
-and provide item analyses
-
-```{r item_analysis}
+## ----item_analysis------------------------------------------------------------
 scales <- list(
   'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
   'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
@@ -158,40 +90,25 @@ scales <- list(
 alpha_table(dat, scales = scales) %>%
   kable()
 
-```
 
-and even a confirmatory factor analysis with the use of the lavaan package.
-
-```{r lavaan_model}
+## ----lavaan_model-------------------------------------------------------------
 model <- lavaan_model(scales, orthogonal = FALSE)
-```
 
-```{r cat_lavaan_model, comment = "", echo = FALSE}
+## ----cat_lavaan_model, comment = "", echo = FALSE-----------------------------
 cat(model)
-```
 
-```{r lavaan_cfa, comment = ""}
+## ----lavaan_cfa, comment = ""-------------------------------------------------
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
 
-```
 
-## Build scale scores
-
-Now we build scores for internalizing and externalizing scales
-
-```{r scores}
+## ----scores-------------------------------------------------------------------
 dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "Externalizing")
 dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
-```
 
-and get descriptives for these scores
-
-```{r desc_scores}
+## ----desc_scores--------------------------------------------------------------
 dat %>%
   select_scores() %>%
   descriptives(round = 1, label = TRUE) %>%
   kable()
-```
-
 
