@@ -1,4 +1,5 @@
-#' Rename long to short
+#' (Deprecated) Rename long to short
+#'
 #' Set names of items as long labels and vice versa.
 #'
 #' @param data A data frame
@@ -14,6 +15,8 @@
 #' @return A renamed data frame
 #' @export
 names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
+
+  warning("Deprecated. Please use 'rename_items()'")
 
   for (i in 1:ncol(data)) {
     if (is.null(attr(data[[i]], .opt$dic))) next
@@ -44,6 +47,7 @@ names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_wei
 
 #' @rdname names2item
 names2label <- function(data) {
+  warning("Deprecated. Please use 'rename_items()'")
   for (i in 1:ncol(data)) {
     label <- dic_attr(data[[i]], .opt$item_label)
     if (!is.null(label)) names(data)[i] <- label

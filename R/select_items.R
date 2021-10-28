@@ -1,4 +1,5 @@
 #' Select items
+#'
 #' Selects a data frame with variables of a specific scale
 #'
 #' @param data A data frame with dic information
@@ -7,7 +8,10 @@
 #' @param index_only If TRUE, variable indices are returned instead of a data frame
 #' @return A data frame, a vector with variable names or a vector with indices
 #' @export
-select_items <- function(data, filter = NULL, names_only = FALSE, index_only = FALSE) {
+select_items <- function(data,
+                         filter = NULL,
+                         names_only = FALSE,
+                         index_only = FALSE) {
 
   filter <- deparse(substitute(filter))
 

@@ -1,4 +1,4 @@
-#' Get index
+#' (Deprecated) Get index
 #'
 #' @param data A data frame
 #' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")

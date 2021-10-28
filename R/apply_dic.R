@@ -7,13 +7,24 @@
 #' @param coerce_class If set TRUE mismatches between class and dic type are corrected.
 #' @param replace_missing If TRUE, missing values from the dic are replaced with NA
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
+#' @param score_scales If TRUE and the dic files contains score scale
+#' definitions these are applied
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)
 #' descriptives(dat)
 #' @export
 
-apply_dic <- function(data, dic, factors = TRUE, set_label_attr = TRUE, coerce_class = TRUE, replace_missing = TRUE, score_scales = TRUE, check_values = FALSE, impute_values = FALSE, rename_var = NULL) {
+apply_dic <- function(data,
+                      dic,
+                      factors = TRUE,
+                      set_label_attr = TRUE,
+                      coerce_class = TRUE,
+                      replace_missing = TRUE,
+                      score_scales = TRUE,
+                      check_values = FALSE,
+                      impute_values = FALSE,
+                      rename_var = NULL) {
 
   if ("character" %in% class(dic)) dic <- readxl::read_excel(dic)
   if ("character" %in% class(data)) data <- readxl::read_excel(data)

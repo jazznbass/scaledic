@@ -1,11 +1,17 @@
 #' Build a dictionary file template
 #'
 #' @param filename Character string. Default is 'dic_template.xlsx'
+#' @param nrows Number of empty rows added to data frame.
 #'
-#' @return Writes an Excel file with an empty template of a dic file.
+#' @return When 'filename' is not empty, it writes an Excel file with an empty template of a dic file.
+#' When 'filename' is empty (ie. ""), returns a data frame.
+#'
+#' @examples
+#' build_scaledic_skeleton("")
 #' @export
 
 build_scaledic_skeleton <- function(filename = "dic_template.xlsx", nrows = 0) {
+
   out <- matrix(NA, ncol = length(.dic_file) - 1, nrow = nrows)
   out <- as.data.frame(out)
   names(out) <- unlist(.dic_file[-1])

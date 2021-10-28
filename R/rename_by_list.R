@@ -1,9 +1,9 @@
 #' Rename varibles based on a list
 #'
 #' @param data A data frame with variables to be renamed
-#' @param file A filename of an Excel file containing at least to columns (variables) for renaming. Or a data frame with two columns.
+#' @param file A filename of an Excel file containing at least two columns (variables) for renaming. Or a data frame with two columns.
 #' @param to_from When a filename or a data.frame is provided, a named charcter with the names of the target  and source variable names (e.g., c("to" = "from")).
-#' When no filename is provided, to_from must a vector with named variable names c("to1" = "from1", "to2" = "from2")).
+#' When no filename is provided, to_from must be a vector with named variable names c("to1" = "from1", "to2" = "from2")).
 #' @param to When a filename or a data.frame is provided, the name of the column with the target variable names. When no filename is provided, to must a vector with target variable names.
 #' @param from When a filename or a data.frame is provided, the name of the column with the source variable names. When no filename is provided, from must a vector with source variable names.
 #'

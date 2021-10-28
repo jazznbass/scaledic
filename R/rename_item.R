@@ -1,15 +1,26 @@
 #' Rename items
+#'
 #' Rename items based on dic information.
 #'
 #' @param data A data frame
 #' @param pattern A character string or vector of character strings defining a prefix.
-#' May include "label", "scale", "subscale", "subscale_2", "reverse", "weight", or "name".
+#' May include the name of any dic attribute (e.g."item_label", "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label", or "name").
 #' @param chars If not NULL, only the first n chars og the long label will be applied.
 #' @param char_sep Character with seperator between prefix information.
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
 #' @return A renamed data frame
+#' @examples
+#' ex_itrf %>%
+#'   rename_items(pattern = c("reverse", "label")) %>%
+#'   names()
+#'
 #' @export
-rename_items <- function(data, pattern = "label", chars = NULL, char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_label = ": ") {
+rename_items <- function(data,
+                         pattern = "item_label",
+                         chars = NULL,
+                         char_sep = "_",
+                         char_weight = c("(-)", "(+)"),
+                         char_prefix_label = ": ") {
 
   for (col in 1:ncol(data)) {
     if (is.null(attr(data[[col]], .opt$dic))) next
@@ -18,23 +29,45 @@ rename_items <- function(data, pattern = "label", chars = NULL, char_sep = "_", 
       pat <- pattern[i]
       tmp_label <- ""
       tmp_char_sep <- char_sep
-      if (pat == "label") tmp_label <- dic_attr(data[[col]], .opt$item_label)
-      if (pat %in% c("reverse", "weight")) {
+
+      if (pat == c("reverse")) {
         tmp_label <- paste0(
-          ifelse(dic_attr(data[[col]], .opt$weight) < 0, char_weight[1], char_weight[2])
+          ifelse(
+            dic_attr(data[[col]], .opt$weight) < 0,
+            char_weight[1],
+            char_weight[2])
         )
         tmp_char_sep <- ""
       }
-      if (pat == "scale") tmp_label <- dic_attr(data[[col]], .opt$scale)
-      if (pat == "subscale") tmp_label <- dic_attr(data[[col]], .opt$subscale)
-      if (pat == "subscale_2") tmp_label <- dic_attr(data[[col]], .opt$subscale_2)
-      if (pat == "name") tmp_label <- dic_attr(data[[col]], .opt$item_name)
+      if (pat == "values")
+        tmp_label <- paste0("(",
+          paste0(dic_attr(data[[col]], .opt$values), collapse = ", "),
+          ")"
+        )
+
+      if (pat == "value_labels")
+        tmp_label <- paste0("(",
+          paste0(
+            dic_attr(data[[col]], .opt$value_labels)$value, " = ",
+            dic_attr(data[[col]], .opt$value_labels)$label,
+            collapse = "; "
+          ), ")"
+        )
+
+
+      if (pat == "label") pat <- .opt$item_label
+      if (pat == "name") pat <- .opt$item_name
+
+      new_pat <- !(pat %in% c("reverse", "values", "value_labels"))
+      if (new_pat) tmp_label <- dic_attr(data[[col]], pat)
 
       if (length(pattern) > i){
-        if (pattern[i + 1] == "label") tmp_char_sep <- char_prefix_label
+        if (pattern[i + 1] %in% c("label", "item_label"))
+          tmp_char_sep <- char_prefix_label
       }
 
-      if (class(tmp_label) == "character") new_label <- paste0(new_label, tmp_label, tmp_char_sep)
+      #if (class(tmp_label) == "character")
+      new_label <- paste0(new_label, tmp_label, tmp_char_sep)
 
 
     }

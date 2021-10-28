@@ -1,18 +1,29 @@
 #' Check values
-#' Checks if values in variables are within the set difined in
-#' the values and type dictionary attributes.
+#'
+#' Checks if values in variables are valid according to
+#' the 'values' and 'type' dictionary attributes.
 #'
 #' @param data A data frame
 #' @param replace Value which relaces unvalid values (e.g., NA).
 #' @param return If TRUE, a data frame is returned with replaced values.
 #' @param report If TRUE, an overview of invalid values will be given.
-#' @param include_missing If TRUE, missing values (provided in the dic file)
-#' will be considered as valid values.
+#' @param include_missing If TRUE, missing values (provided as 'missing' in
+#' the dic file) will be considered as valid values.
+#' @param integer_as_double If TRUE, type 'integer' will be coverted to 'double'.
+#' @param check_type If TRUE, it will check if the class of a variable conflicts with the 'type' as defined in the dic information. When a type is numeric and the class is 'character' it will try to convert the class to a numeric class.
 #' @return A data frame with replaced values if replaces is not NULL.
 #' @export
 #' @examples
 #' check_values(ex_itrf, return = FALSE)
-check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, include_missing = FALSE, integer_as_double = TRUE, check_type = TRUE) {
+check_values <- function(
+  data,
+  replace = NULL,
+  return = TRUE,
+  report = FALSE,
+  include_missing = FALSE,
+  integer_as_double = TRUE,
+  check_type = TRUE
+) {
 
   if (!"data.frame" %in% class(data)) data <- data.frame(data)
 
@@ -23,7 +34,6 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
   for (i in id) {
     values <- dic_attr(data[[i]], .opt$values)
     missing <- dic_attr(data[[i]], .opt$missing)
-    #if (include_missing) values <- c(values, missing)
     if (!include_missing) missing <- NULL
     type <- dic_attr(data[[i]], .opt$type)
 
@@ -33,7 +43,10 @@ check_values <- function(data, replace = NULL, return = TRUE, report = FALSE, in
 
     if (type %in% c("float", "double", "integer") && check_type) {
       if ("character" %in% class(data[[i]])) {
-        cat(names(data)[i], " has datatype character instead of numeric -> coerced to numeric\n")
+        cat(
+          names(data)[i],
+          " has datatype character instead of numeric -> coerced to numeric\n"
+        )
         .attr <- attributes(data[[i]])
         data[[i]] <- as.numeric(data[[i]])
         attributes(data[[i]]) <- .attr
