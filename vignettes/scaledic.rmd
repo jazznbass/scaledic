@@ -2,7 +2,7 @@
 title: "Introduction to scaledic"
 output: 
   rmarkdown::html_vignette:
-    df_print: kable
+  df_print: kable
 vignette: >
   %\VignetteIndexEntry{Introduction to scaledic}
   %\VignetteEngine{knitr::rmarkdown}
@@ -25,31 +25,7 @@ knitr::opts_chunk$set(
 
 # Note
 
-This is a short description on how to use the scaledic package. The following code examples in this package make use of the pipe operator `%>%` (see the `magrittr` package).  
-Once you are used to the pipe operator, it makes code easier to read. Basically, it is just a shortcut. The pipe operator takes the return of the previous function and sets it as the **first** argument of the following function. An example:  
-
-```{r pipe_ex_1, eval=FALSE}
-newdat <- select(dat, "iq", "age")
-newdat <- describe(newdat)
-newdat <- round(newdat, 2)
-kable(newdat)
-```
-
-or even worth
-
-```{r pipe_ex_2, eval=FALSE}
-kable(round(describe(select(dat, "iq", "age")), 2))
-```
-
-becomes:
-
-```{r pipe_ex_3, eval=FALSE}
-dat %>%
-  select("iq", "age") %>%
-  describe() %>%
-  round(2) %>%
-  kable()
-```
+The following code examples in this package make use of the pipe operator `%>%` (see <https://r4ds.had.co.nz/pipes.html> for more details).  
 
 # How to use scaledic
 
@@ -167,8 +143,7 @@ And further we analyse the factor structure. Here we use the `rename_item()` fun
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4) %>%
-  kable()
+  exploratory_fa(nfactors = 4, cut = 0.4)
 ```
 
 and provide item analyses

@@ -75,13 +75,13 @@
 
       
 
-      </header><script src="build_dic_file_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
+      </header><script src="build_dic_file_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Building a dictionary file</h1>
                         <h4 class="author">Jürgen Wilbert</h4>
             
-            <h4 class="date">2021-09-17</h4>
+            <h4 class="date">2021-10-28</h4>
       
       
       <div class="hidden name"><code>build_dic_file.Rmd</code></div>
@@ -199,25 +199,89 @@ The following table shows the information included in a dictionary file:</p>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span>
 
+<span class="va">dat</span><span class="op">$</span><span class="va">text</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"m"</span>, <span class="st">"f"</span>, <span class="st">"ka"</span><span class="op">)</span>, <span class="va">n</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+
 <span class="va">dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>
-  item_name <span class="op">=</span> <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span>,
-  item_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Item"</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span><span class="op">)</span>,
-  scale <span class="op">=</span> <span class="st">"letters"</span>,
-  scale_label <span class="op">=</span> <span class="st">"Series of letters"</span>,
-  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1:5"</span>, <span class="st">"1,5"</span><span class="op">)</span>,
-  value_labels <span class="op">=</span> <span class="st">"1 = low; 2; 3; 4; 5 = high"</span>,
-  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"integer"</span><span class="op">)</span>,<span class="co">#, "integer", "integer", "float", "factor"),</span>
+  item_name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>,
+  item_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html">paste</a></span><span class="op">(</span><span class="st">"Item"</span>, <span class="va">LETTERS</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="va">n_var</span><span class="op">]</span><span class="op">)</span>, <span class="st">"gender"</span><span class="op">)</span>,
+  scale <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"letters"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"Misc"</span><span class="op">)</span>,
+  scale_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"Letter Values"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"Miscellaneous"</span><span class="op">)</span>,
+  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1:5"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"'male', 'female'"</span><span class="op">)</span>,
+  value_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>
+    <span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"1 = low; 2; 3; 4; 5 = high"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"m = male; f = female; ka = keine Angabe"</span><span class="op">)</span>,
+  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"integer"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"factor"</span><span class="op">)</span>,
   weight <span class="op">=</span> <span class="fl">1</span>,
-  missing <span class="op">=</span> <span class="st">"-999"</span>
+  missing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html">rep</a></span><span class="op">(</span><span class="st">"-999"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"'keine Angabe'"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">dic</span><span class="op">)</span>
 <span class="co">#&gt; The following variables were missing in the dictionary file: subscale, subscale_2, subscale_label, subscale_2_label, source</span>
+<span class="co">#&gt; Warning in apply_dic(dat, dic): NAs introduced by coercion</span>
+
+<span class="co">#&gt; Warning in apply_dic(dat, dic): NAs introduced by coercion</span>
+
+<span class="co">#&gt; Warning in apply_dic(dat, dic): NAs introduced by coercion</span>
 <span class="co">#&gt; Replaced missing values.</span>
 <span class="co">#&gt; `label` attribute set.</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
+<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, report <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
+<span class="co">#&gt; No errors found.</span>
+<span class="fu"><a href="../reference/replace_missing.html">replace_missing</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span>
+<span class="co">#&gt;    A B C D E F G H I J   text</span>
+<span class="co">#&gt; 1  3 4 5 3 4 4 1 2 1 2   &lt;NA&gt;</span>
+<span class="co">#&gt; 2  5 3 3 5 3 5 2 3 1 3   &lt;NA&gt;</span>
+<span class="co">#&gt; 3  5 2 1 5 3 2 4 3 5 5   &lt;NA&gt;</span>
+<span class="co">#&gt; 4  5 2 5 4 3 1 4 5 3 3 female</span>
+<span class="co">#&gt; 5  4 5 1 3 5 1 4 4 5 4   male</span>
+<span class="co">#&gt; 6  2 3 3 4 1 5 5 3 3 1   &lt;NA&gt;</span>
+<span class="co">#&gt; 7  1 5 1 1 4 2 2 4 4 2   &lt;NA&gt;</span>
+<span class="co">#&gt; 8  2 1 4 5 5 5 4 2 3 5   male</span>
+<span class="co">#&gt; 9  1 2 2 2 2 2 4 5 4 4   male</span>
+<span class="co">#&gt; 10 2 2 3 5 1 3 3 5 1 2   &lt;NA&gt;</span>
+<span class="co">#&gt; 11 1 5 5 3 3 3 5 4 4 2   &lt;NA&gt;</span>
+<span class="co">#&gt; 12 2 3 2 1 4 2 1 5 5 4 female</span>
+<span class="co">#&gt; 13 4 3 1 5 1 4 5 5 5 2 female</span>
+<span class="co">#&gt; 14 3 5 2 3 3 2 5 4 4 2   male</span>
+<span class="co">#&gt; 15 4 1 4 2 4 3 1 1 1 1 female</span>
+<span class="co">#&gt; 16 3 5 5 1 5 1 5 3 5 1 female</span>
+<span class="co">#&gt; 17 3 1 1 1 5 4 1 4 5 1   &lt;NA&gt;</span>
+<span class="co">#&gt; 18 2 5 2 3 3 3 3 5 5 1   male</span>
+<span class="co">#&gt; 19 4 5 1 3 4 3 5 3 3 4   &lt;NA&gt;</span>
+<span class="co">#&gt; 20 3 3 1 2 2 2 3 4 2 3   &lt;NA&gt;</span>
 
-<span class="va">dat</span><span class="op">$</span><span class="va">mean_letters</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"letters"</span>, label <span class="op">=</span> <span class="st">"Average letter value"</span><span class="op">)</span></code></pre></div>
+<span class="va">dat</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
+<span class="co">#&gt;    A</span>
+<span class="co">#&gt; 1  3</span>
+<span class="co">#&gt; 2  5</span>
+<span class="co">#&gt; 3  5</span>
+<span class="co">#&gt; 4  5</span>
+<span class="co">#&gt; 5  4</span>
+<span class="co">#&gt; 6  2</span>
+<span class="co">#&gt; 7  1</span>
+<span class="co">#&gt; 8  2</span>
+<span class="co">#&gt; 9  1</span>
+<span class="co">#&gt; 10 2</span>
+<span class="co">#&gt; 11 1</span>
+<span class="co">#&gt; 12 2</span>
+<span class="co">#&gt; 13 4</span>
+<span class="co">#&gt; 14 3</span>
+<span class="co">#&gt; 15 4</span>
+<span class="co">#&gt; 16 3</span>
+<span class="co">#&gt; 17 3</span>
+<span class="co">#&gt; 18 2</span>
+<span class="co">#&gt; 19 4</span>
+<span class="co">#&gt; 20 3</span>
+<span class="va">dat</span><span class="op">[[</span><span class="fl">11</span><span class="op">]</span><span class="op">]</span>
+<span class="co">#&gt; gender (Miscellaneous)</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; Data type is factor </span>
+<span class="co">#&gt;  value label       </span>
+<span class="co">#&gt;  m     male        </span>
+<span class="co">#&gt;  f     female      </span>
+<span class="co">#&gt;  ka    keine Angabe</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt;  [1] &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   female male   &lt;NA&gt;   &lt;NA&gt;   male   male   &lt;NA&gt;  </span>
+<span class="co">#&gt; [11] &lt;NA&gt;   female female male   female female &lt;NA&gt;   male   &lt;NA&gt;   &lt;NA&gt;  </span>
+<span class="co">#&gt; Levels: male female keine Angabe</span></code></pre></div>
 </div>
   </div>
 

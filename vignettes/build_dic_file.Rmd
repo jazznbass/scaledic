@@ -79,9 +79,9 @@ dic <- data.frame(
 dat <- apply_dic(dat, dic)
 dat <- check_values(dat, report = TRUE)
 replace_missing(dat)
-dat$mean_letters <- score_scale(dat, scale == "letters", label = "Average letter value")
-dat$text
 
+dat[1]
+dat[[11]]
 
 ```
 

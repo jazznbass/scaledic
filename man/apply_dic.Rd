@@ -29,6 +29,9 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
 
+\item{score_scales}{If TRUE and the dic files contains score scale
+definitions these are applied}
+
 \item{check_values}{If TRUE, performs the check_values function on the variables of the data frame included in the dic file.}
 }
 \value{
