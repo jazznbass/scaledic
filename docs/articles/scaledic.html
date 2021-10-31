@@ -941,175 +941,313 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <code class="sourceCode R"><span class="va">dat</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span>, <span class="st">"label"</span><span class="op">)</span>, chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span>
-<span class="co">#&gt;                                                                         MR1</span>
-<span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                  0.85</span>
-<span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                            0.83</span>
-<span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                          0.8</span>
-<span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern           0.8</span>
-<span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                            0.78</span>
-<span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                            0.78</span>
-<span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                      0.77</span>
-<span class="co">#&gt; (+)Ext_OPP: Stört andere                                               0.65</span>
-<span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                 0.64</span>
-<span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span>
-<span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span>
-<span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span>
-<span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span>
-<span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span>
-<span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span>
-<span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span>
-<span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span>
-<span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span>
-<span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span>
-<span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span>
-<span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span>
-<span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span>
-<span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span>
-<span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span>
-<span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span>
-<span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span>
-<span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span>
-<span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span>
-<span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span>
-<span class="co">#&gt; SS loadings                                                            6.01</span>
-<span class="co">#&gt; Proportion Var                                                         0.17</span>
-<span class="co">#&gt; Cumulative Var                                                         0.17</span>
-<span class="co">#&gt; Proportion Explained                                                   0.31</span>
-<span class="co">#&gt; Cumulative Proportion                                                  0.31</span>
-<span class="co">#&gt;                                                                         MR3</span>
-<span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span>
-<span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span>
-<span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span>
-<span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span>
-<span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span>
-<span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span>
-<span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                        0.82</span>
-<span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor           0.8</span>
-<span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig        0.76</span>
-<span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                         0.73</span>
-<span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                     0.73</span>
-<span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit 0.73</span>
-<span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig    0.72</span>
-<span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                         0.52</span>
-<span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span>
-<span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span>
-<span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span>
-<span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span>
-<span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span>
-<span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span>
-<span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span>
-<span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span>
-<span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span>
-<span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span>
-<span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span>
-<span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span>
-<span class="co">#&gt; SS loadings                                                            4.79</span>
-<span class="co">#&gt; Proportion Var                                                         0.13</span>
-<span class="co">#&gt; Cumulative Var                                                          0.3</span>
-<span class="co">#&gt; Proportion Explained                                                   0.24</span>
-<span class="co">#&gt; Cumulative Proportion                                                  0.55</span>
-<span class="co">#&gt;                                                                         MR2</span>
-<span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span>
-<span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span>
-<span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span>
-<span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span>
-<span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span>
-<span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span>
-<span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span>
-<span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span>
-<span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span>
-<span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span>
-<span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span>
-<span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span>
-<span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span>
-<span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span>
-<span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                             0.86</span>
-<span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits 0.79</span>
-<span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                    0.78</span>
-<span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                              0.66</span>
-<span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                     0.66</span>
-<span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                           0.55</span>
-<span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                       0.5</span>
-<span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                    0.47</span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span>
-<span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span>
-<span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span>
-<span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span>
-<span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span>
-<span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span>
-<span class="co">#&gt; SS loadings                                                            4.54</span>
-<span class="co">#&gt; Proportion Var                                                         0.13</span>
-<span class="co">#&gt; Cumulative Var                                                         0.43</span>
-<span class="co">#&gt; Proportion Explained                                                   0.23</span>
-<span class="co">#&gt; Cumulative Proportion                                                  0.78</span>
-<span class="co">#&gt;                                                                         MR4</span>
-<span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span>
-<span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span>
-<span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span>
-<span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span>
-<span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span>
-<span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span>
-<span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span>
-<span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span>
-<span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span>
-<span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span>
-<span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span>
-<span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span>
-<span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span>
-<span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span>
-<span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span>
-<span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span>
-<span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span>
-<span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span>
-<span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span>
-<span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span>
-<span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span>
-<span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span>
-<span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen       0.73</span>
-<span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                   0.72</span>
-<span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                 0.7</span>
-<span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                   0.65</span>
-<span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                   0.65</span>
-<span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                   0.59</span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                      0.47</span>
-<span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                              0.47</span>
-<span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                  0.44</span>
-<span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                  0.4</span>
-<span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                          0.4</span>
-<span class="co">#&gt; SS loadings                                                            4.34</span>
-<span class="co">#&gt; Proportion Var                                                         0.12</span>
-<span class="co">#&gt; Cumulative Var                                                         0.55</span>
-<span class="co">#&gt; Proportion Explained                                                   0.22</span>
-<span class="co">#&gt; Cumulative Proportion                                                     1</span></code></pre></div>
+  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">%&gt;%</span>
+  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<table class="table">
+<colgroup>
+<col width="78%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+</colgroup>
+<thead><tr class="header">
+<th align="left"></th>
+<th align="left">MR1</th>
+<th align="left">MR3</th>
+<th align="left">MR2</th>
+<th align="left">MR4</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">(+)Ext_OPP: Verliert die Beherrschung</td>
+<td align="left">0.84</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_OPP: Macht unangebrachte Bemerkungen</td>
+<td align="left">0.83</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_OPP: Streitet und zankt mit Lehrkräften</td>
+<td align="left">0.8</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern</td>
+<td align="left">0.8</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_OPP: Kommandiert rum</td>
+<td align="left">0.78</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_OPP: Verwendet unangemessene Sprache</td>
+<td align="left">0.78</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
+<td align="left">0.77</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_OPP: Stört andere</td>
+<td align="left">0.65</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer</td>
+<td align="left">0.64</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_APD: Erledigt Hausaufgaben unvollständig</td>
+<td align="left"></td>
+<td align="left">0.82</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor</td>
+<td align="left"></td>
+<td align="left">0.8</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig</td>
+<td align="left"></td>
+<td align="left">0.76</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
+<td align="left"></td>
+<td align="left">0.73</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
+<td align="left"></td>
+<td align="left">0.73</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
+<td align="left"></td>
+<td align="left">0.73</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig</td>
+<td align="left"></td>
+<td align="left">0.72</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
+<td align="left"></td>
+<td align="left">0.53</td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_SW: Vermeidet soziale Interaktionen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.86</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.79</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.79</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.66</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.66</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.55</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_SW: Behauptet sich nicht gegenüber anderen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.5</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_SW: Lässt sich langsam auf neue Personen ein</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.47</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.73</td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_AD: Macht sich ständig Sorgen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.71</td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Beschwert sich über Krankheit oder Schmerzen</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.7</td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_AD: Beklagt sich oder jammert</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.65</td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Macht sich Sorgen über unwichtige Details</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.65</td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_AD: Weint oder ist weinerlich</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.59</td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Verhält sich ängstlich</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.47</td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_AD: Wirkt unglücklich oder traurig</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.47</td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Macht sich selbst schlecht</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.44</td>
+</tr>
+<tr class="odd">
+<td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">0.4</td>
+</tr>
+<tr class="even">
+<td align="left">(+)Int_AD: Verhält sich nervös</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">SS loadings</td>
+<td align="left">6</td>
+<td align="left">4.79</td>
+<td align="left">4.53</td>
+<td align="left">4.34</td>
+</tr>
+<tr class="even">
+<td align="left">Proportion Var</td>
+<td align="left">0.17</td>
+<td align="left">0.13</td>
+<td align="left">0.13</td>
+<td align="left">0.12</td>
+</tr>
+<tr class="odd">
+<td align="left">Cumulative Var</td>
+<td align="left">0.17</td>
+<td align="left">0.3</td>
+<td align="left">0.43</td>
+<td align="left">0.55</td>
+</tr>
+<tr class="even">
+<td align="left">Proportion Explained</td>
+<td align="left">0.31</td>
+<td align="left">0.24</td>
+<td align="left">0.23</td>
+<td align="left">0.22</td>
+</tr>
+<tr class="odd">
+<td align="left">Cumulative Proportion</td>
+<td align="left">0.31</td>
+<td align="left">0.55</td>
+<td align="left">0.78</td>
+<td align="left">1</td>
+</tr>
+</tbody>
+</table>
 <p>and provide item analyses</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">scales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
@@ -1153,8 +1291,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.91 (.9-.91)</td>
 <td align="left">.91 (.91-.91)</td>
 <td align="left">.56</td>
-<td align="left">.53 - .78</td>
-<td align="left">0.38 - 0.95</td>
+<td align="left">.53 - .77</td>
+<td align="left">0.39 - 0.95</td>
 <td align="left">0.75 - 1.04</td>
 <td align="left">.55 - .82</td>
 </tr>
@@ -1209,7 +1347,7 @@ OPP ~~ SW + AD
 SW ~~ AD</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> model, <span class="at">data =</span> dat)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lavaan <span class="fl">0.6</span><span class="dv">-9</span> ended normally after <span class="dv">60</span> iterations</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lavaan <span class="fl">0.6</span><span class="dv">-9</span> ended normally after <span class="dv">59</span> iterations</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  Estimator                                         ML</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  Optimization method                           NLMINB</span>
@@ -1220,13 +1358,13 @@ SW ~~ AD</code></pre>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                                                                  </span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>Model Test User Model<span class="sc">:</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                                                       </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21169.581</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21224.049</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                                <span class="dv">588</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span><span class="fu">value</span> (Chi<span class="sc">-</span>square)                            <span class="fl">0.000</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>Model Test Baseline Model<span class="sc">:</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110891.329</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110929.966</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                               <span class="dv">630</span></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value                                        <span class="fl">0.000</span></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -1237,12 +1375,12 @@ SW ~~ AD</code></pre>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>Loglikelihood and Information Criteria<span class="sc">:</span></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152399.033</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152355.966</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  Loglikelihood unrestricted <span class="fu">model</span> (H1)             <span class="cn">NA</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                                                      </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304954.067</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305458.768</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305210.912</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304867.931</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305372.632</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305124.776</span></span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Root Mean Square Error of Approximation<span class="sc">:</span></span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1265,99 +1403,99 @@ SW ~~ AD</code></pre>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>  APD <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    itrf_E_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.958</span>    <span class="fl">0.017</span>   <span class="fl">55.316</span>    <span class="fl">0.000</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.913</span>    <span class="fl">0.016</span>   <span class="fl">57.243</span>    <span class="fl">0.000</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.897</span>    <span class="fl">0.015</span>   <span class="fl">58.978</span>    <span class="fl">0.000</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.952</span>    <span class="fl">0.017</span>   <span class="fl">55.616</span>    <span class="fl">0.000</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.825</span>    <span class="fl">0.016</span>   <span class="fl">53.150</span>    <span class="fl">0.000</span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.717</span>    <span class="fl">0.013</span>   <span class="fl">53.840</span>    <span class="fl">0.000</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.633</span>    <span class="fl">0.017</span>   <span class="fl">37.677</span>    <span class="fl">0.000</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.956</span>    <span class="fl">0.017</span>   <span class="fl">55.370</span>    <span class="fl">0.000</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.913</span>    <span class="fl">0.016</span>   <span class="fl">57.625</span>    <span class="fl">0.000</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.892</span>    <span class="fl">0.015</span>   <span class="fl">58.931</span>    <span class="fl">0.000</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.948</span>    <span class="fl">0.017</span>   <span class="fl">55.598</span>    <span class="fl">0.000</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.823</span>    <span class="fl">0.015</span>   <span class="fl">53.203</span>    <span class="fl">0.000</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.718</span>    <span class="fl">0.013</span>   <span class="fl">53.905</span>    <span class="fl">0.000</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.632</span>    <span class="fl">0.017</span>   <span class="fl">37.722</span>    <span class="fl">0.000</span></span>
 <span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>  OPP <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    itrf_I_20         <span class="fl">1.000</span>                           </span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.849</span>    <span class="fl">0.013</span>   <span class="fl">65.147</span>    <span class="fl">0.000</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.043</span>    <span class="fl">0.015</span>   <span class="fl">68.214</span>    <span class="fl">0.000</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.994</span>    <span class="fl">0.017</span>   <span class="fl">58.307</span>    <span class="fl">0.000</span></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.893</span>    <span class="fl">0.014</span>   <span class="fl">65.082</span>    <span class="fl">0.000</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.088</span>    <span class="fl">0.016</span>   <span class="fl">66.755</span>    <span class="fl">0.000</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.802</span>    <span class="fl">0.015</span>   <span class="fl">54.907</span>    <span class="fl">0.000</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.980</span>    <span class="fl">0.014</span>   <span class="fl">67.598</span>    <span class="fl">0.000</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.680</span>    <span class="fl">0.013</span>   <span class="fl">52.042</span>    <span class="fl">0.000</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.848</span>    <span class="fl">0.013</span>   <span class="fl">65.222</span>    <span class="fl">0.000</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.041</span>    <span class="fl">0.015</span>   <span class="fl">68.240</span>    <span class="fl">0.000</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.991</span>    <span class="fl">0.017</span>   <span class="fl">58.223</span>    <span class="fl">0.000</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.891</span>    <span class="fl">0.014</span>   <span class="fl">65.103</span>    <span class="fl">0.000</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.086</span>    <span class="fl">0.016</span>   <span class="fl">66.737</span>    <span class="fl">0.000</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.801</span>    <span class="fl">0.015</span>   <span class="fl">54.945</span>    <span class="fl">0.000</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.978</span>    <span class="fl">0.014</span>   <span class="fl">67.720</span>    <span class="fl">0.000</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.679</span>    <span class="fl">0.013</span>   <span class="fl">52.093</span>    <span class="fl">0.000</span></span>
 <span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>  SW <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    itrf_I_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.020</span>    <span class="fl">0.017</span>   <span class="fl">60.308</span>    <span class="fl">0.000</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.904</span>    <span class="fl">0.016</span>   <span class="fl">56.987</span>    <span class="fl">0.000</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.758</span>    <span class="fl">0.014</span>   <span class="fl">55.272</span>    <span class="fl">0.000</span></span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.745</span>    <span class="fl">0.020</span>   <span class="fl">37.426</span>    <span class="fl">0.000</span></span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.687</span>    <span class="fl">0.019</span>   <span class="fl">35.992</span>    <span class="fl">0.000</span></span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.003</span>    <span class="fl">0.021</span>   <span class="fl">48.533</span>    <span class="fl">0.000</span></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.735</span>    <span class="fl">0.019</span>   <span class="fl">37.694</span>    <span class="fl">0.000</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.025</span>    <span class="fl">0.017</span>   <span class="fl">60.133</span>    <span class="fl">0.000</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.909</span>    <span class="fl">0.016</span>   <span class="fl">56.843</span>    <span class="fl">0.000</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.761</span>    <span class="fl">0.014</span>   <span class="fl">55.091</span>    <span class="fl">0.000</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.748</span>    <span class="fl">0.020</span>   <span class="fl">37.352</span>    <span class="fl">0.000</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.693</span>    <span class="fl">0.019</span>   <span class="fl">36.123</span>    <span class="fl">0.000</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.006</span>    <span class="fl">0.021</span>   <span class="fl">48.325</span>    <span class="fl">0.000</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.739</span>    <span class="fl">0.020</span>   <span class="fl">37.680</span>    <span class="fl">0.000</span></span>
 <span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>  AD <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    itrf_I_2          <span class="fl">1.000</span>                           </span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.122</span>    <span class="fl">0.028</span>   <span class="fl">40.042</span>    <span class="fl">0.000</span></span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.016</span>    <span class="fl">0.027</span>   <span class="fl">37.899</span>    <span class="fl">0.000</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.231</span>    <span class="fl">0.030</span>   <span class="fl">40.720</span>    <span class="fl">0.000</span></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.862</span>    <span class="fl">0.025</span>   <span class="fl">34.331</span>    <span class="fl">0.000</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.879</span>    <span class="fl">0.026</span>   <span class="fl">34.169</span>    <span class="fl">0.000</span></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.950</span>    <span class="fl">0.026</span>   <span class="fl">36.158</span>    <span class="fl">0.000</span></span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.135</span>    <span class="fl">0.028</span>   <span class="fl">40.632</span>    <span class="fl">0.000</span></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.005</span>    <span class="fl">0.027</span>   <span class="fl">36.773</span>    <span class="fl">0.000</span></span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.823</span>    <span class="fl">0.023</span>   <span class="fl">36.547</span>    <span class="fl">0.000</span></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.139</span>    <span class="fl">0.027</span>   <span class="fl">42.154</span>    <span class="fl">0.000</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.120</span>    <span class="fl">0.028</span>   <span class="fl">40.042</span>    <span class="fl">0.000</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.018</span>    <span class="fl">0.027</span>   <span class="fl">37.950</span>    <span class="fl">0.000</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.230</span>    <span class="fl">0.030</span>   <span class="fl">40.717</span>    <span class="fl">0.000</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.860</span>    <span class="fl">0.025</span>   <span class="fl">34.333</span>    <span class="fl">0.000</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.877</span>    <span class="fl">0.026</span>   <span class="fl">34.132</span>    <span class="fl">0.000</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.950</span>    <span class="fl">0.026</span>   <span class="fl">36.162</span>    <span class="fl">0.000</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.135</span>    <span class="fl">0.028</span>   <span class="fl">40.688</span>    <span class="fl">0.000</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.005</span>    <span class="fl">0.027</span>   <span class="fl">36.807</span>    <span class="fl">0.000</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.821</span>    <span class="fl">0.022</span>   <span class="fl">36.510</span>    <span class="fl">0.000</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.134</span>    <span class="fl">0.027</span>   <span class="fl">42.103</span>    <span class="fl">0.000</span></span>
 <span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Covariances<span class="sc">:</span></span>
 <span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>  APD <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.286</span>    <span class="fl">0.011</span>   <span class="fl">26.276</span>    <span class="fl">0.000</span></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.149</span>    <span class="fl">0.007</span>   <span class="fl">19.851</span>    <span class="fl">0.000</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.694</span>    <span class="fl">0.000</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.286</span>    <span class="fl">0.011</span>   <span class="fl">26.245</span>    <span class="fl">0.000</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.147</span>    <span class="fl">0.007</span>   <span class="fl">19.768</span>    <span class="fl">0.000</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.718</span>    <span class="fl">0.000</span></span>
 <span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>  OPP <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.990</span>    <span class="fl">0.000</span></span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.006</span>   <span class="fl">22.331</span>    <span class="fl">0.000</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.955</span>    <span class="fl">0.000</span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.137</span>    <span class="fl">0.006</span>   <span class="fl">22.385</span>    <span class="fl">0.000</span></span>
 <span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  SW <span class="sc">~</span><span class="er">~</span>                                               </span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.133</span>    <span class="fl">0.005</span>   <span class="fl">25.872</span>    <span class="fl">0.000</span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.132</span>    <span class="fl">0.005</span>   <span class="fl">25.835</span>    <span class="fl">0.000</span></span>
 <span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>Variances<span class="sc">:</span></span>
 <span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.461</span>    <span class="fl">0.011</span>   <span class="fl">43.167</span>    <span class="fl">0.000</span></span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.379</span>    <span class="fl">0.009</span>   <span class="fl">42.491</span>    <span class="fl">0.000</span></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.294</span>    <span class="fl">0.007</span>   <span class="fl">41.400</span>    <span class="fl">0.000</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.244</span>    <span class="fl">0.006</span>   <span class="fl">40.180</span>    <span class="fl">0.000</span></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.365</span>    <span class="fl">0.009</span>   <span class="fl">42.336</span>    <span class="fl">0.000</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.332</span>    <span class="fl">0.008</span>   <span class="fl">43.477</span>    <span class="fl">0.000</span></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.238</span>    <span class="fl">0.006</span>   <span class="fl">43.186</span>    <span class="fl">0.000</span></span>
-<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.580</span>    <span class="fl">0.012</span>   <span class="fl">47.051</span>    <span class="fl">0.000</span></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">43.569</span>    <span class="fl">0.000</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.187</span>    <span class="fl">0.004</span>   <span class="fl">42.880</span>    <span class="fl">0.000</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.005</span>   <span class="fl">41.455</span>    <span class="fl">0.000</span></span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.394</span>    <span class="fl">0.009</span>   <span class="fl">44.982</span>    <span class="fl">0.000</span></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.906</span>    <span class="fl">0.000</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.275</span>    <span class="fl">0.007</span>   <span class="fl">42.185</span>    <span class="fl">0.000</span></span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.693</span>    <span class="fl">0.000</span></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.210</span>    <span class="fl">0.005</span>   <span class="fl">41.776</span>    <span class="fl">0.000</span></span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.268</span>    <span class="fl">0.006</span>   <span class="fl">46.183</span>    <span class="fl">0.000</span></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.224</span>    <span class="fl">0.005</span>   <span class="fl">42.865</span>    <span class="fl">0.000</span></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.105</span>    <span class="fl">0.003</span>   <span class="fl">35.410</span>    <span class="fl">0.000</span></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.426</span>    <span class="fl">0.000</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.096</span>    <span class="fl">0.002</span>   <span class="fl">40.826</span>    <span class="fl">0.000</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.360</span>    <span class="fl">0.008</span>   <span class="fl">46.799</span>    <span class="fl">0.000</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.340</span>    <span class="fl">0.007</span>   <span class="fl">47.004</span>    <span class="fl">0.000</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">44.230</span>    <span class="fl">0.000</span></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">46.758</span>    <span class="fl">0.000</span></span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">45.019</span>    <span class="fl">0.000</span></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">43.885</span>    <span class="fl">0.000</span></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.286</span>    <span class="fl">0.006</span>   <span class="fl">44.956</span>    <span class="fl">0.000</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.303</span>    <span class="fl">0.007</span>   <span class="fl">43.463</span>    <span class="fl">0.000</span></span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.298</span>    <span class="fl">0.006</span>   <span class="fl">46.168</span>    <span class="fl">0.000</span></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.211</span>    <span class="fl">0.000</span></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.301</span>    <span class="fl">0.007</span>   <span class="fl">45.615</span>    <span class="fl">0.000</span></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.520</span>    <span class="fl">0.000</span></span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.400</span>    <span class="fl">0.000</span></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.216</span>    <span class="fl">0.005</span>   <span class="fl">45.481</span>    <span class="fl">0.000</span></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.386</span>    <span class="fl">0.000</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.623</span>    <span class="fl">0.021</span>   <span class="fl">30.102</span>    <span class="fl">0.000</span></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.529</span>    <span class="fl">0.016</span>   <span class="fl">33.035</span>    <span class="fl">0.000</span></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.284</span>    <span class="fl">0.010</span>   <span class="fl">29.382</span>    <span class="fl">0.000</span></span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.469</span>    <span class="fl">0.000</span></span></code></pre></div>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.460</span>    <span class="fl">0.011</span>   <span class="fl">43.145</span>    <span class="fl">0.000</span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.379</span>    <span class="fl">0.009</span>   <span class="fl">42.506</span>    <span class="fl">0.000</span></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.287</span>    <span class="fl">0.007</span>   <span class="fl">41.214</span>    <span class="fl">0.000</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.245</span>    <span class="fl">0.006</span>   <span class="fl">40.291</span>    <span class="fl">0.000</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.366</span>    <span class="fl">0.009</span>   <span class="fl">42.389</span>    <span class="fl">0.000</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.331</span>    <span class="fl">0.008</span>   <span class="fl">43.486</span>    <span class="fl">0.000</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.239</span>    <span class="fl">0.006</span>   <span class="fl">43.191</span>    <span class="fl">0.000</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.580</span>    <span class="fl">0.012</span>   <span class="fl">47.050</span>    <span class="fl">0.000</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">43.544</span>    <span class="fl">0.000</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.187</span>    <span class="fl">0.004</span>   <span class="fl">42.868</span>    <span class="fl">0.000</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.006</span>   <span class="fl">41.470</span>    <span class="fl">0.000</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.396</span>    <span class="fl">0.009</span>   <span class="fl">45.007</span>    <span class="fl">0.000</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.916</span>    <span class="fl">0.000</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.277</span>    <span class="fl">0.007</span>   <span class="fl">42.216</span>    <span class="fl">0.000</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.314</span>    <span class="fl">0.007</span>   <span class="fl">45.690</span>    <span class="fl">0.000</span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.209</span>    <span class="fl">0.005</span>   <span class="fl">41.741</span>    <span class="fl">0.000</span></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.267</span>    <span class="fl">0.006</span>   <span class="fl">46.177</span>    <span class="fl">0.000</span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.225</span>    <span class="fl">0.005</span>   <span class="fl">42.954</span>    <span class="fl">0.000</span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.104</span>    <span class="fl">0.003</span>   <span class="fl">35.314</span>    <span class="fl">0.000</span></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.382</span>    <span class="fl">0.000</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.096</span>    <span class="fl">0.002</span>   <span class="fl">40.833</span>    <span class="fl">0.000</span></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.360</span>    <span class="fl">0.008</span>   <span class="fl">46.805</span>    <span class="fl">0.000</span></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.338</span>    <span class="fl">0.007</span>   <span class="fl">46.982</span>    <span class="fl">0.000</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">44.266</span>    <span class="fl">0.000</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">46.755</span>    <span class="fl">0.000</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">45.006</span>    <span class="fl">0.000</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">43.889</span>    <span class="fl">0.000</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.286</span>    <span class="fl">0.006</span>   <span class="fl">44.936</span>    <span class="fl">0.000</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.304</span>    <span class="fl">0.007</span>   <span class="fl">43.471</span>    <span class="fl">0.000</span></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.298</span>    <span class="fl">0.006</span>   <span class="fl">46.167</span>    <span class="fl">0.000</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.220</span>    <span class="fl">0.000</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.301</span>    <span class="fl">0.007</span>   <span class="fl">45.614</span>    <span class="fl">0.000</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.490</span>    <span class="fl">0.000</span></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.388</span>    <span class="fl">0.000</span></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">45.494</span>    <span class="fl">0.000</span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.439</span>    <span class="fl">0.000</span></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.625</span>    <span class="fl">0.021</span>   <span class="fl">30.147</span>    <span class="fl">0.000</span></span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.530</span>    <span class="fl">0.016</span>   <span class="fl">33.067</span>    <span class="fl">0.000</span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.282</span>    <span class="fl">0.010</span>   <span class="fl">29.265</span>    <span class="fl">0.000</span></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.485</span>    <span class="fl">0.000</span></span></code></pre></div>
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2 class="hasAnchor">
