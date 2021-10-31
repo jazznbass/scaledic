@@ -2,7 +2,7 @@
 #'
 #' @param data A data frame
 #' @param round Digits for round function
-#'
+#' @param labels If TRUE, item_labels are included in the table.
 #' @return A data frame with descriptive statistics
 #' @examples
 #' descriptives(ex_itrf)

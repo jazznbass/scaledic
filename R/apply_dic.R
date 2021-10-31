@@ -9,6 +9,9 @@
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
 #' @param score_scales If TRUE and the dic files contains score scale
 #' definitions these are applied
+#' @param impute_values If TRUE and score scale informtion are available, missing values are imputed.
+#' @param set_label_attribute If TRUE, a separate label attribute (see the haven package) is set.
+#' @param rename_var A character string providing a variable name. This variable contains variable names of the data files to be renames to the corresponding item_name from the dic file.
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)

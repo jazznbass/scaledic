@@ -33,6 +33,12 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 definitions these are applied}
 
 \item{check_values}{If TRUE, performs the check_values function on the variables of the data frame included in the dic file.}
+
+\item{impute_values}{If TRUE and score scale informtion are available, missing values are imputed.}
+
+\item{rename_var}{A character string providing a variable name. This variable contains variable names of the data files to be renames to the corresponding item_name from the dic file.}
+
+\item{set_label_attribute}{If TRUE, a separate label attribute (see the haven package) is set.}
 }
 \value{
 A data frame with dictionary information.

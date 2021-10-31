@@ -11,7 +11,9 @@
 #' @param check_key Check_key for the psych::alpha function.
 #' @param keys Optional key argument for the psych::alpha function.
 #' @param RMSEA If TRUE RMSEA is calculated.
-#' @param values Sets maximum and minimum valid values necessary to calculate item difficulty
+#' @param difficulty If TRUE calculates difficulties.
+#' @param values Sets maximum and minimum valid values necessary to calculate item difficulty.
+#' @param fa If TRUE, calculates a factor analysis, extracts one factor and reports loadings.
 #' @return A data frame with concise scale indices.
 #' @examples
 #' scales <- list(
