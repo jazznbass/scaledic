@@ -36,7 +36,7 @@ You need two things:
 
 ## A dictionary file
 
-A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.  
+A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.  
 
 The following table shows the parameters and the naming of the columns of a dictionary file: 
 

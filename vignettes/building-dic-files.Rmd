@@ -1,7 +1,5 @@
 ---
 title: "Building a dictionary file"
-author: "Jürgen Wilbert"
-date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Building a dictionary file}
@@ -9,50 +7,78 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-```{r setup, include = FALSE}
-library(knitr)
-library(dplyr)
-library(tibble)
-library(psych)
-library(scaledic)
+```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
 ```
 
+```{r setup, include = FALSE}
+library(knitr)
+library(dplyr)
+library(tibble)
+library(scaledic)
+```
+
 ## What is dictionary file
 
 When you do questionnaire based research (and you are working in R) you usually create a *data.frame* with a column (variable) for every item of that questionnaire and a row for every person who participated. You can only store limited additional information on each item of that questionnaire within a `data.frame` (or a `tibble`). What you can do is to a) give a variable name, and b) define a variable as a factor with corresponding levels.
 
-But basically thats it. You can not, at least not conveniently, include a longer label for each item, the name of a scale this item belogs to, information on reverse coding etc.
+But basically that's it. You can not, at least not conveniently, include a longer label for each item, the name of a scale this item belongs to, information on reverse coding etc.
 
 I call the collection of these additional information on items an *item dictionary*. A dictionary contains a short label, a longer description, scale affiliation, and more for each item. It is a table with one row per item and a column for each additional information on those items.   
-The following table shows the information included in a dictionary file: 
 
-```{r tab_dic_param, echo = FALSE}
-out <- tribble(
-  ~Parameter, ~Meaning, ~Example,
-  "item_name", "A short item label", "itrf_1",
-  "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "subscale", "Abrevation of the sub scale", "int",
-  "subscale_2", "Abrevation of the second order sub scale", "AD",
-  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "subscale_label", "Name of the sub scale", "internalizing problems",
-  "subscale_2_label", "Name of the second order sub scale", "Anxious/Depressed",
-  "item_label", "Full text of the item", "Complains of headaches or stomach aches",
-  "index", "An index number", "1",
-  "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
-  "value_labels", "Labels for each response value", "0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic",
-  "missing", "Missing values", "-888, -999",
-  "type", "Data type (factor, integer, float, real, character)", "integer",
-  "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-  "source", "Reference", "Volpe et al. (2019)",
-  "note", "Further notes", "Item has low descrimination"
+Here is a minimal example with a dictionary file including item_name and item_label:
+
+```{r minimal dic file}
+
+dic <- data.frame(
+  item_name = c("mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs", "am", 
+"gear", "carb"),
+  item_label = c("Miles per Galon", "Cylinders", "Displacement", "Horsepower", "Rear axle ration", "Weight", "1/4 miles time", "Engine", "Transmission", "Gears", "Carburetors")
 )
-kable(out, caption = "Columns of a dictionary file")
+
+dat <- apply_dic(mtcars, dic)
+
+dat %>% 
+  rename_items() %>% 
+  descriptives() %>% kable()
 
 ```
+
+```{r example}
+
+n <- 6
+set.seed(1234)
+dat <- data.frame(
+  gen = sample(sample(c("m", "f", "d"), n, replace = TRUE)),
+  age = sample(18:55, n, replace = TRUE),
+  hon_1 = sample(1:5, n, replace = TRUE),
+  hon_2 = sample(1:5, n, replace = TRUE),
+  hon_3 = sample(1:5, n, replace = TRUE)
+)
+
+dic <- data.frame(
+  item_name = c("gen", "age", "hon_1", "hon_2", "hon_3"),
+  item_label = c("What is your gender?", "What is your age?", "Do you lie?", "Are you honest?", "Is honesty important to you?"),
+  scale = c("demo", "demo", "hon", "hon", "hon"),
+  scale_label = c("Demographic", "Demographic", "Honesty", "Honesty", "Honesty"),
+  values = c("", "18:99", "1:5", "1:5", "1:5"),
+  value_labels = c("m = male; f = female; ka = keine Angabe", NA,
+                   rep("1 = low; 2; 3; 4; 5 = high", 3)),
+  type = c("factor", "float", "integer", "integer", "integer"),
+  weight = 1,
+  missing = c(rep("-99", 5))
+)
+
+dat <- apply_dic(dat, dic)
+dat$gen
+
+check_values(dat)
+
+```
+
 
 ```{r}
 n <- 20
@@ -84,5 +110,6 @@ dat[1]
 dat[[11]]
 
 ```
+
 
 
