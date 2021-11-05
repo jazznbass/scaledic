@@ -37,7 +37,7 @@ check_values <- function(
     if (!include_missing) missing <- NULL
     type <- dic_attr(data[[i]], .opt$type)
 
-    ### strict checking integers otherwise use float
+    # checking type
 
     if(type %in% "integer" && integer_as_double) type <- "float"
 
@@ -54,11 +54,15 @@ check_values <- function(
       }
     }
 
-    if (type %in% "integer" || is.na(type)) {
+    # check values and missing
+
+    id_error <- NULL
+
+    if (type %in% "integer") {
       id_error <- which(!(data[[i]] %in% c(values, missing)) & !is.na(data[[i]]))
     }
 
-    if (type %in% c("float", "real", "numeric", "")) {
+    if (type %in% c("float", "real", "numeric", "") && !is.null(values)) {
       id_error <- which(
         (data[[i]] > max(values) | data[[i]] < min(values)) &
         !is.na(data[[i]]) & !data[[i]] %in% missing
@@ -71,10 +75,6 @@ check_values <- function(
         !is.na(data[[i]]) &
         !data[[i]] %in% missing
       )
-    }
-
-    if (type %in% c("character", "characters", "string")) {
-      id_error <- NULL
     }
 
     x <- data[[i]][id_error]

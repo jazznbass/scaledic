@@ -10,7 +10,7 @@
 #' @param score_scales If TRUE and the dic files contains score scale
 #' definitions these are applied
 #' @param impute_values If TRUE and score scale informtion are available, missing values are imputed.
-#' @param set_label_attribute If TRUE, a separate label attribute (see the haven package) is set.
+#' @param set_label_attr If TRUE, a separate label attribute (see the haven package) is set.
 #' @param rename_var A character string providing a variable name. This variable contains variable names of the data files to be renames to the corresponding item_name from the dic file.
 #' @return A data frame with dictionary information.
 #' @examples
@@ -73,39 +73,35 @@ apply_dic <- function(data,
       next
     }
 
-
     # extract values
-    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
-      parse(text = .) %>%
-      eval()
+    values <- .extract_values(dic[i, .dic_file$values])
 
     # extract value labels
-    value_labels <- dic[i, .dic_file$value_labels] %>%
-      as.character() %>%
-      strsplit(";") %>%
-      unlist() %>%
-      strsplit("=")
+    if (!is.null(dic[i, .dic_file$value_labels])) {
 
-    .n_labels <- length(value_labels)
-    .df <- data.frame(
-      value = character(.n_labels),
-      label = character(.n_labels)
-    )
-    for(j in 1:.n_labels) {
-      .df[j, 1] <- trimws(value_labels[[j]][1])
-      .df[j, 2] <- trimws(value_labels[[j]][2])
-    }
-    if (.dic_file$type %in% c("integer", "numeric", "float", "double"))
-      .df[["value"]] <- as.numeric(.df[["value"]])
+      value_labels <-
+        .extract_value_labels(
+          dic[i, .dic_file$value_labels],
+          dic[i, .dic_file$type]
+        )
 
-    dic_attr(data[[id]], .opt$value_labels) <- .df
+      dic_attr(data[[id]], .opt$value_labels) <- value_labels
 
-    for (x in value_labels) {
-      value <- as.numeric(x[1])
-      names(values)[which(values == value)] <- trimws(x[2])
+      if (is.null(dic_attr(data[[id]], .opt$values)))
+        values <- value_labels$value
+
+      for (x in 1:nrow(value_labels)) {
+        value <- value_labels[x, "value"]
+        names(values)[which(values == value)] <- value_labels[x, "label"]
+      }
+
+
     }
 
     dic_attr(data[[id]], .opt$values) <- values
+
+
+
 
     # extract missing
     dic_attr(data[[id]], .opt$missing) <-
@@ -155,17 +151,16 @@ apply_dic <- function(data,
 
     ### set factors
     if (factors && dic_attr(data[[id]], .opt$type) == "factor") {
-      values <- dic_attr(data[[id]], .opt$values)
-      .factor <- factor(
-        data[[id]],
-        levels = values,
-        labels = names(values)
-      )
-      .factor <- factor(
-        data[[id]],
-        levels = dic_attr(data[[id]], .opt$value_labels)$value,
-        labels = dic_attr(data[[id]], .opt$value_labels)$label
-      )
+
+      if (!is.null(dic_attr(data[[id]], .opt$value_labels))) {
+        .factor <- factor(
+          data[[id]],
+          levels = dic_attr(data[[id]], .opt$value_labels)$value,
+          labels = dic_attr(data[[id]], .opt$value_labels)$label
+        )
+      } else {
+        .factor <- factor(data[[id]])
+      }
       attr(.factor, .opt$dic) <- attr(data[[id]], .opt$dic)
       data[[id]] <- .factor
     }
@@ -268,15 +263,15 @@ apply_dic <- function(data,
   }
 
   # checking other missing variables in dictionary file
-  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
 
+  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
   .filter <- !miss %in% c(.dic_file$score_function, .dic_file$score_filter)
   miss <- miss[.filter]
   if (length(miss) > 0) {
-    miss %>%
-      paste(collapse = ", ") %>%
-      message("The following variables were missing in the dictionary file: ", .)
-    dic[, miss] <- NA
+    #miss %>%
+    #  paste(collapse = ", ") %>%
+    #  message("The following variables were missing in the dictionary file: ", .)
+    #dic[, miss] <- NA
   }
 
   # weight NA to integer
@@ -305,3 +300,34 @@ apply_dic <- function(data,
 
   dic
 }
+
+
+.extract_values <- function(values) {
+  paste0("c(", as.character(values), ")") %>%
+    parse(text = .) %>%
+    eval()
+}
+
+.extract_value_labels <- function(value_labels, type) {
+
+  value_labels <- value_labels %>%
+    as.character() %>%
+    strsplit(";") %>%
+    unlist() %>%
+    strsplit("=")
+
+  .n_labels <- length(value_labels)
+  out <- data.frame(
+    value = character(.n_labels),
+    label = character(.n_labels)
+  )
+  for(j in 1:.n_labels) {
+    out[j, 1] <- trimws(value_labels[[j]][1])
+    out[j, 2] <- trimws(value_labels[[j]][2])
+  }
+  if (type %in% c("integer", "numeric", "float", "double"))
+    out[["value"]] <- as.numeric(out[["value"]])
+
+  out
+}
+
