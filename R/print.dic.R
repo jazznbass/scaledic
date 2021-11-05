@@ -27,6 +27,8 @@ print.dic <- function(x, ...) {
   if (!is.null(dic_attr(data, .opt$values))) {
     data_type <- dic_attr(data, .opt$type)
     cat("\n\nData type is", data_type, "\n")
+
+    #if (!is.null(dic_attr(data, .opt$values))) {
     if (data_type == "integer") {
       x <- dic_attr(data, .opt$values)
       d <- diff(x)
@@ -45,9 +47,10 @@ print.dic <- function(x, ...) {
       )
       cat("Valid values:", .string, "\n")
     }
+    #}
   }
 
-  if (!is.null(dic_attr(data, .opt$value_labels))) {
+  if (!all(is.na(dic_attr(data, .opt$value_labels)))) {
     print(dic_attr(data, .opt$value_labels), row.names = FALSE, right = FALSE)
   }
 
