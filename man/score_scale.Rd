@@ -25,6 +25,12 @@ score_scale(
 
 \item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 
+\item{scale}{(deprecated) Character string.}
+
+\item{subscale}{(deprecated) Character string.}
+
+\item{subscale_2}{(deprecated) Character string.}
+
 \item{bind}{If set TRUE, returns the complete data frame. If set false,
 returns a data frame with the new score variables for each scale.}
 

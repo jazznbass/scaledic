@@ -10,6 +10,10 @@ score_from_dic(data, dic, check_values = TRUE, impute_values = FALSE)
 \item{data}{A data frame with dic information}
 
 \item{dic}{A dic file with scoring information}
+
+\item{check_values}{If TRUE, values are checked replced with NA if faulty.}
+
+\item{impute_values}{If TRUE, missing values are imputed with the impute_values function.}
 }
 \value{
 A data frame with added scale scores

@@ -4,7 +4,7 @@
 #' @param data A data frame
 #' @param ... dic parameters
 #'
-#' @return
+#' @return An object (variable) of class dic.
 #' @export
 new_dic <- function(fun, data = NULL, ...) {
   fun <- deparse(substitute(fun))

@@ -3,7 +3,10 @@
 #' @param data A data frame
 #' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
 #' @param names If names is TRUE, a vector with variable names will be returned.
-#'
+#' @param class Character string defining class attribute for selection.
+#' @param scale (deprecated) Character string.
+#' @param subscale (deprecated) Character string.
+#' @param subscale_2 (deprecated) Character string.
 #' @return A vector with indices adhering to the given attribute criteria.
 #' @export
 

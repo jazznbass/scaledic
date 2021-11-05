@@ -14,7 +14,7 @@ new_dic(fun, data = NULL, ...)
 \item{...}{dic parameters}
 }
 \value{
-
+An object (variable) of class dic.
 }
 \description{
 Compute a new scaledic variable

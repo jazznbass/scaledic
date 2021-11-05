@@ -10,6 +10,8 @@ lavaan_model(scales, adds = "", orthogonal = FALSE)
 \item{scales}{A list with scale information}
 
 \item{adds}{Additional model definitions}
+
+\item{orthogonal}{If FALSE adds code allowing for intercorrelated latent variables.}
 }
 \value{
 A character string with a lavaan model definition

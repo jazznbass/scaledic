@@ -4,7 +4,9 @@
 #' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
 #' @param force_to_scale If TRUE, imputed values will be rounded and forced to the scale.
 #' That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.
-#'
+#' @param scale (deprecated) Character string.
+#' @param subscale (deprecated) Character string.
+#' @param subscale_2 (deprecated) Character string.
 #' @return A data frame with imputed data.
 #' @export
 impute_missing <- function(data, filter = NULL, scale = NULL, subscale = NULL,

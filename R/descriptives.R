@@ -9,6 +9,9 @@
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
 
+  # To pass R check
+  name <- label <- NULL
+
   .filter <- sapply(data, function(x) "numeric" %in% class(x))
 
   if (any(.filter)) {
