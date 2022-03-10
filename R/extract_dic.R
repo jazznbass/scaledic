@@ -7,7 +7,7 @@
 
 extract_dic <- function(data) {
 
-  id <- .get_dic_items(data, items_only = TRUE)
+  id <- scaledic:::.get_dic_items(data, items_only = TRUE)
 
   dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
   dic_names <- unlist(dic_names)
@@ -75,7 +75,11 @@ extract_dic <- function(data) {
 
   }
 
-  order <- c(.opt$item_name, .opt$item_label, .opt$values, .opt$value_labels, .opt$missing, .opt$weight)
+  order <- c(.opt$item_name, .opt$item_label, .opt$values, .opt$value_labels,
+             .opt$missing, .opt$weight)
+
+  order <- order[order %in% names(out)]
+
   out <- out[, c(order, names(out)[which(!names(out) %in% order)])]
   #out <- out[order(out[[.opt$item_name]]),]
   out
