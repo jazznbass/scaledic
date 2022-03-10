@@ -8,6 +8,7 @@
 #' @param chars If not NULL, only the first n chars og the long label will be applied.
 #' @param char_sep Character with seperator between prefix information.
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
+#' @param char_prefix_label A character to be printed before the item label.
 #' @return A renamed data frame
 #' @examples
 #' ex_itrf %>%

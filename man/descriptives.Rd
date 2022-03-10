@@ -10,6 +10,8 @@ descriptives(data, round = 2, labels = FALSE)
 \item{data}{A data frame}
 
 \item{round}{Digits for round function}
+
+\item{labels}{If TRUE, item_labels are included in the table.}
 }
 \value{
 A data frame with descriptive statistics

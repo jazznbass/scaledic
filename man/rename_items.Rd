@@ -24,6 +24,8 @@ May include the name of any dic attribute (e.g."item_label", "scale", "subscale"
 \item{char_sep}{Character with seperator between prefix information.}
 
 \item{char_weight}{Character vector of length two with signs for negative and positive weights.}
+
+\item{char_prefix_label}{A character to be printed before the item label.}
 }
 \value{
 A renamed data frame

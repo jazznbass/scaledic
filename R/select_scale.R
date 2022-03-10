@@ -4,6 +4,9 @@
 #'
 #' @param data A data frame with dic information
 #' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
+#' @param scale (deprecated) Character string.
+#' @param subscale (deprecated) Character string.
+#' @param subscale_2 (deprecated) Character string.
 #' @return A data frame
 #' @export
 select_scale <- function(data,

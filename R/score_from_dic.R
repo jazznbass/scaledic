@@ -2,6 +2,8 @@
 #'
 #' @param data A data frame with dic information
 #' @param dic A dic file with scoring information
+#' @param check_values If TRUE, values are checked replced with NA if faulty.
+#' @param impute_values If TRUE, missing values are imputed with the impute_values function.
 #'
 #' @return A data frame with added scale scores
 #' @export

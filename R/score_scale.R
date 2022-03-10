@@ -3,6 +3,9 @@
 #'
 #' @param data A data frame
 #' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
+#' @param scale (deprecated) Character string.
+#' @param subscale (deprecated) Character string.
+#' @param subscale_2 (deprecated) Character string.
 #' @param bind If set TRUE, returns the complete data frame. If set false,
 #'  returns a data frame with the new score variables for each scale.
 #' @param sum If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.

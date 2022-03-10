@@ -10,6 +10,8 @@
 \item{x}{A scdf object}
 
 \item{i}{A case name from x}
+
+\item{...}{further arguments passed to the `[` function.}
 }
 \value{
 A dic variable

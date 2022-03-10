@@ -25,6 +25,8 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
 
+\item{set_label_attr}{If TRUE, a separate label attribute (see the haven package) is set.}
+
 \item{coerce_class}{If set TRUE mismatches between class and dic type are corrected.}
 
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
@@ -33,6 +35,10 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 definitions these are applied}
 
 \item{check_values}{If TRUE, performs the check_values function on the variables of the data frame included in the dic file.}
+
+\item{impute_values}{If TRUE and score scale informtion are available, missing values are imputed.}
+
+\item{rename_var}{A character string providing a variable name. This variable contains variable names of the data files to be renames to the corresponding item_name from the dic file.}
 }
 \value{
 A data frame with dictionary information.

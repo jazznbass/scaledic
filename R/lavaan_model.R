@@ -2,6 +2,7 @@
 #'
 #' @param scales A list with scale information
 #' @param adds Additional model definitions
+#' @param orthogonal If FALSE adds code allowing for intercorrelated latent variables.
 #'
 #' @return A character string with a lavaan model definition
 #' @export

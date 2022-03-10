@@ -2,6 +2,7 @@
 #'
 #' @param x A scdf object
 #' @param i A case name from x
+#' @param ... further arguments passed to the `[` function.
 #'
 #' @return A dic variable
 #' @export

@@ -16,6 +16,12 @@ select_scale(
 \item{data}{A data frame with dic information}
 
 \item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
+
+\item{scale}{(deprecated) Character string.}
+
+\item{subscale}{(deprecated) Character string.}
+
+\item{subscale_2}{(deprecated) Character string.}
 }
 \value{
 A data frame

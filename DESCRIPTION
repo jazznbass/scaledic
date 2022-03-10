@@ -21,13 +21,15 @@ Imports:
   openxlsx,
   readxl,
   stats,
-  vctrs
+  vctrs,
+  magrittr
 Suggests:
   knitr,
   tibble,
   psych,
   MASS,
-  rmarkdown
+  rmarkdown,
+  lavaan
 License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true

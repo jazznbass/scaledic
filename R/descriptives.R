@@ -2,12 +2,15 @@
 #'
 #' @param data A data frame
 #' @param round Digits for round function
-#'
+#' @param labels If TRUE, item_labels are included in the table.
 #' @return A data frame with descriptive statistics
 #' @examples
 #' descriptives(ex_itrf)
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
+
+  # To pass R check
+  name <- label <- NULL
 
   .filter <- sapply(data, function(x) "numeric" %in% class(x))
 
