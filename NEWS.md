@@ -1,4 +1,8 @@
 
+# scaledic 0.1.27
+
+- `heaven_dic()`: Will now set value labels, item_names, type, and the dic class correctly,
+
 # scaledic 0.1.20
 
 New functions:
@@ -6,7 +10,7 @@ New functions:
 
 Changes:
 - `apply_dic()`: new attribute `coerce_class`. When type of dic is numeric it checks if class of variable is numeric too. If not, it throws a message and coerces type to numeric. When `coerce_class = FALSE`, check is applied but no coercion.
-- dictionary file: New variable "active". When a column "active" exists, all tows with active != 1 are dropped.
+- dictionary file: New variable "active". When a column "active" exists, all rows with active != 1 are dropped.
 - `exploratory_fa()`: explained variance added to output
 
 # scaledic 0.1.16 (2020-01-12)

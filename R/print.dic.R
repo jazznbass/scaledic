@@ -29,7 +29,7 @@ print.dic <- function(x, ...) {
     cat("\n\nData type is", data_type, "\n")
 
     #if (!is.null(dic_attr(data, .opt$values))) {
-    if (data_type == "integer") {
+    if (identical(data_type, "integer")) {
       x <- dic_attr(data, .opt$values)
       d <- diff(x)
       u <- unique(d)
@@ -40,7 +40,7 @@ print.dic <- function(x, ...) {
       }
       cat("Valid values: ", x, "\n")
     }
-    if (data_type == "float") {
+    if (identical(data_type, "float")) {
       .string <- paste0(
         "From ", min(dic_attr(data, .opt$values)),
         " to ", max(dic_attr(data, .opt$values)), collapse = ""
