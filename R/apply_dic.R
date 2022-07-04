@@ -299,6 +299,12 @@ apply_dic <- function(data,
     stop(paste0("Item names duplicated in dic-file: ", paste0(id, collapse = ", ")))
   }
 
+  # Check for \r\n in value labels
+  if (any(grepl("\r\n", "; ", x = dic[[.dic_file$value_labels]]))) {
+    message("Found linebreaks in value_labels and replaced them with ';'")
+    dic[[.dic_file$value_labels]] <- gsub("\r\n", "; ", x =  dic[[.dic_file$value_labels]])
+  }
+
 
   dic
 }

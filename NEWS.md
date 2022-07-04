@@ -3,7 +3,8 @@
 Bugs:  
 - `haven_dic()`: labels with length > 0 are not set (a warning is thrown).
 
-
+Changes:
+- `apply_dic()`: replaces linebreaks in value_labels with ";"
 
 # scaledic 0.1.20
 
