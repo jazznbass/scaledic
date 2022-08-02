@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,18 +33,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.25</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.27</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../articles/scaledic.html">Get started</a>
 </li>
@@ -50,7 +46,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Articles
      
     <span class="caret"></span>
@@ -75,7 +71,7 @@
 
       
 
-      </header><script src="scaledic_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Introduction to scaledic</h1>
@@ -88,24 +84,29 @@
 
     
     
-<div id="note" class="section level1">
-<h1 class="hasAnchor">
-<a href="#note" class="anchor"></a>Note</h1>
-<p>The following code examples in this package make use of the pipe operator <code><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></code> (see <a href="https://r4ds.had.co.nz/pipes.html" class="uri">https://r4ds.had.co.nz/pipes.html</a> for more details).</p>
+<div class="section level2">
+<h2 id="note">Note<a class="anchor" aria-label="anchor" href="#note"></a>
+</h2>
+<p>The following code examples in this package make use of the pipe
+operator <code>%&gt;%</code> (see <a href="https://r4ds.had.co.nz/pipes.html" class="external-link uri">https://r4ds.had.co.nz/pipes.html</a> for more details).</p>
 </div>
-<div id="how-to-use-scaledic" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-to-use-scaledic" class="anchor"></a>How to use scaledic</h1>
+<div class="section level2">
+<h2 id="how-to-use-scaledic">How to use scaledic<a class="anchor" aria-label="anchor" href="#how-to-use-scaledic"></a>
+</h2>
 <p>You need two things:</p>
 <ol style="list-style-type: decimal">
 <li>a dataset,</li>
 <li>a dictionary file.</li>
 </ol>
-<div id="a-dictionary-file" class="section level2">
-<h2 class="hasAnchor">
-<a href="#a-dictionary-file" class="anchor"></a>A dictionary file</h2>
-<p>A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.</p>
-<p>The following table shows the parameters and the naming of the columns of a dictionary file:</p>
+<div class="section level3">
+<h3 id="a-dictionary-file">A dictionary file<a class="anchor" aria-label="anchor" href="#a-dictionary-file"></a>
+</h3>
+<p>A dictionary file is a table with a row for each variable and a
+column for each parameter of those variables. Most conviniently, you
+prepare a dictionary file in a spreadsheet program for later use with
+datasets.</p>
+<p>The following table shows the parameters and the naming of the
+columns of a dictionary file:</p>
 <table class="table">
 <caption>Columns of a dictionary file</caption>
 <colgroup>
@@ -157,7 +158,8 @@
 <tr class="even">
 <td align="left">item_label</td>
 <td align="left">Full text of the item</td>
-<td align="left">Vermeidet die Teilnahme an Diskussionen im Unterricht</td>
+<td align="left">Vermeidet die Teilnahme an Diskussionen im
+Unterricht</td>
 </tr>
 <tr class="odd">
 <td align="left">index</td>
@@ -167,7 +169,8 @@
 <tr class="even">
 <td align="left">values</td>
 <td align="left">Valid response values in an R manner</td>
-<td align="left">1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)</td>
+<td align="left">1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2,
+3)</td>
 </tr>
 <tr class="odd">
 <td align="left">value_labels</td>
@@ -187,7 +190,8 @@
 <tr class="even">
 <td align="left">weight</td>
 <td align="left">Reversion of item and its weight</td>
-<td align="left">1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)</td>
+<td align="left">1 (positive), -1 (reverse), 1.5 (positive, weights 1.5
+times)</td>
 </tr>
 <tr class="odd">
 <td align="left">source</td>
@@ -203,9 +207,9 @@
 </table>
 <p>Here is extract of a dic file from the included example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dic_itrf</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dic_itrf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -262,7 +266,8 @@
 <td align="left">Verbringt zu viel Zeit alleine</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
 <td align="left">Volpe et al. et al. (unpublished)</td>
@@ -283,7 +288,8 @@
 <td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
 <td align="left">Volpe et al. et al. (unpublished)</td>
@@ -304,7 +310,8 @@
 <td align="left">Vermeidet soziale Interaktionen</td>
 <td align="right">1</td>
 <td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
 <td align="right">-99</td>
 <td align="left">integer</td>
 <td align="left">Volpe et al. et al. (unpublished)</td>
@@ -316,19 +323,24 @@
 </tbody>
 </table>
 </div>
-<div id="apply-a-dictionary-file" class="section level2">
-<h2 class="hasAnchor">
-<a href="#apply-a-dictionary-file" class="anchor"></a>Apply a dictionary file</h2>
-<p>When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.<br>
-The resulting dataset now is ready to be used with all further <code>scaledic</code> functions.</p>
-<p>The <code>apply_dic</code> function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:</p>
+<div class="section level3">
+<h3 id="apply-a-dictionary-file">Apply a dictionary file<a class="anchor" aria-label="anchor" href="#apply-a-dictionary-file"></a>
+</h3>
+<p>When you combine a dataset with a dictionary file, each variable in
+the dataset which corresponds to a variable described in the dictionary
+will be complemented with the given dictionary information.<br>
+The resulting dataset now is ready to be used with all further
+<code>scaledic</code> functions.</p>
+<p>The <code>apply_dic</code> function takes the name of the dataset and
+the dictionary file and combines them. Thereby replacing missing values
+with NAs:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="5%">
@@ -382,29 +394,31 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 </div>
-<div id="clean-raw-data" class="section level2">
-<h2 class="hasAnchor">
-<a href="#clean-raw-data" class="anchor"></a>Clean raw data</h2>
-<p>Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:</p>
+<div class="section level3">
+<h3 id="clean-raw-data">Clean raw data<a class="anchor" aria-label="anchor" href="#clean-raw-data"></a>
+</h3>
+<p>Firstly, we check for invalid values in the dataset (e.g., typos) and
+replace these with NA:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p>Now we impute missing values:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># Imputation for items of the subscale Ext</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span><span class="op">)</span>
-
-<span class="co"># Imputation for items of the subscale Int</span>
-<span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Imputation for items of the subscale Ext</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Imputation for items of the subscale Int</span></span>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div id="select-scales-for-analyszing" class="section level2">
-<h2 class="hasAnchor">
-<a href="#select-scales-for-analyszing" class="anchor"></a>Select scales for analyszing</h2>
-<p>Let us see descriptive statistics for the Internalizing sub scale:</p>
+<div class="section level3">
+<h3 id="select-scales-for-analyszing">Select scales for analyszing<a class="anchor" aria-label="anchor" href="#select-scales-for-analyszing"></a>
+</h3>
+<p>Let us see descriptive statistics for the Internalizing sub
+scale:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">name</th>
@@ -650,15 +664,16 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tbody>
 </table>
 </div>
-<div id="see-items-instead-of-labels" class="section level2">
-<h2 class="hasAnchor">
-<a href="#see-items-instead-of-labels" class="anchor"></a>See items instead of labels</h2>
-<p>It is more convenient to see the original items instead of the short labels:</p>
+<div class="section level3">
+<h3 id="see-items-instead-of-labels">See items instead of labels<a class="anchor" aria-label="anchor" href="#see-items-instead-of-labels"></a>
+</h3>
+<p>It is more convenient to see the original items instead of the short
+labels:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="7%">
@@ -741,7 +756,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 <tr class="odd">
 <td align="left">itrf_I_6</td>
-<td align="left">Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
+<td align="left">Geht nicht auf Kontaktversuche der Mitschülerinnen und
+Mitschüler ein</td>
 <td align="right">4772</td>
 <td align="right">4</td>
 <td align="right">0.2</td>
@@ -767,7 +783,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 <tr class="odd">
 <td align="left">itrf_I_8</td>
-<td align="left">Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
+<td align="left">Beschwert sich über Kopfschmerzen oder
+Bauchschmerzen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
 <td align="right">0.3</td>
@@ -936,13 +953,15 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 </tbody>
 </table>
-<p>And further we analyse the factor structure. Here we use the <code>rename_item()</code> function to get a more convenient description.</p>
+<p>And further we analyse the factor structure. Here we use the
+<code>rename_item()</code> function to get a more convenient
+description.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span>, <span class="st">"label"</span><span class="op">)</span>, chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span>, <span class="st">"label"</span><span class="op">)</span>, chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="78%">
@@ -961,7 +980,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tbody>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Verliert die Beherrschung</td>
-<td align="left">0.84</td>
+<td align="left">0.85</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -981,7 +1000,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern</td>
+<td align="left">(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und
+Mitschülern</td>
 <td align="left">0.8</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1016,7 +1036,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre anderer</td>
+<td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre
+anderer</td>
 <td align="left">0.64</td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1030,14 +1051,16 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor</td>
+<td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht
+selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.8</td>
+<td align="left">0.81</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">(+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig</td>
+<td align="left">(+)Ext_APD: Stellt Unterrichtsaufgaben nicht
+rechtzeitig fertig</td>
 <td align="left"></td>
 <td align="left">0.76</td>
 <td align="left"></td>
@@ -1046,7 +1069,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <tr class="odd">
 <td align="left">(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.74</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1058,14 +1081,16 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
+<td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt
+werden, nicht mit</td>
 <td align="left"></td>
 <td align="left">0.73</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig</td>
+<td align="left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht
+selbstständig</td>
 <td align="left"></td>
 <td align="left">0.72</td>
 <td align="left"></td>
@@ -1086,7 +1111,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">(+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits</td>
+<td align="left">(+)Int_SW: Geht nicht auf Kontaktversuche der
+Mitschülerinnen und Mits</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left">0.79</td>
@@ -1110,7 +1136,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.66</td>
+<td align="left">0.65</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1128,14 +1154,16 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left">(+)Int_SW: Lässt sich langsam auf neue Personen ein</td>
+<td align="left">(+)Int_SW: Lässt sich langsam auf neue Personen
+ein</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.47</td>
+<td align="left">0.48</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
+<td align="left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder
+Bauchschmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1149,7 +1177,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">0.71</td>
 </tr>
 <tr class="even">
-<td align="left">(+)Int_AD: Beschwert sich über Krankheit oder Schmerzen</td>
+<td align="left">(+)Int_AD: Beschwert sich über Krankheit oder
+Schmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1163,7 +1192,8 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">0.65</td>
 </tr>
 <tr class="even">
-<td align="left">(+)Int_AD: Macht sich Sorgen über unwichtige Details</td>
+<td align="left">(+)Int_AD: Macht sich Sorgen über unwichtige
+Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1250,14 +1280,14 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </table>
 <p>and provide item analyses</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">scales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>
-  <span class="st">'APD'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  <span class="st">'OPP'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  <span class="st">"SW"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,
-  <span class="st">"AD"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="op">)</span>
-<span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">scales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  <span class="st">'APD'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="st">'OPP'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="st">"SW"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
+<span>  <span class="st">"AD"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="4%">
@@ -1291,7 +1321,7 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 <td align="left">.91 (.9-.91)</td>
 <td align="left">.91 (.91-.91)</td>
 <td align="left">.56</td>
-<td align="left">.53 - .77</td>
+<td align="left">.53 - .78</td>
 <td align="left">0.39 - 0.95</td>
 <td align="left">0.75 - 1.04</td>
 <td align="left">.55 - .82</td>
@@ -1334,37 +1364,38 @@ The resulting dataset now is ready to be used with all further <code>scaledic</c
 </tr>
 </tbody>
 </table>
-<p>and even a confirmatory factor analysis with the use of the lavaan package.</p>
+<p>and even a confirmatory factor analysis with the use of the lavaan
+package.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lavaan_model.html">lavaan_model</a></span><span class="op">(</span><span class="va">scales</span>, orthogonal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
-<pre><code>APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15
-OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16
-SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24
-AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23
-
-APD ~~ OPP + SW + AD
-OPP ~~ SW + AD
-SW ~~ AD</code></pre>
+<code class="sourceCode R"><span><span class="va">model</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lavaan_model.html">lavaan_model</a></span><span class="op">(</span><span class="va">scales</span>, orthogonal <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="va">APD</span> <span class="op">=</span><span class="op">~</span> <span class="va">itrf_E_1</span> <span class="op">+</span> <span class="va">itrf_E_2</span> <span class="op">+</span> <span class="va">itrf_E_3</span> <span class="op">+</span> <span class="va">itrf_E_4</span> <span class="op">+</span> <span class="va">itrf_E_5</span> <span class="op">+</span> <span class="va">itrf_E_6</span> <span class="op">+</span> <span class="va">itrf_E_14</span> <span class="op">+</span> <span class="va">itrf_E_15</span></span>
+<span><span class="va">OPP</span> <span class="op">=</span><span class="op">~</span> <span class="va">itrf_I_20</span> <span class="op">+</span> <span class="va">itrf_E_7</span> <span class="op">+</span> <span class="va">itrf_E_8</span> <span class="op">+</span> <span class="va">itrf_E_9</span> <span class="op">+</span> <span class="va">itrf_E_10</span> <span class="op">+</span> <span class="va">itrf_E_11</span> <span class="op">+</span> <span class="va">itrf_E_12</span> <span class="op">+</span> <span class="va">itrf_E_13</span> <span class="op">+</span> <span class="va">itrf_E_16</span></span>
+<span><span class="va">SW</span> <span class="op">=</span><span class="op">~</span> <span class="va">itrf_I_1</span> <span class="op">+</span> <span class="va">itrf_I_4</span> <span class="op">+</span> <span class="va">itrf_I_5</span> <span class="op">+</span> <span class="va">itrf_I_6</span> <span class="op">+</span> <span class="va">itrf_I_13</span> <span class="op">+</span> <span class="va">itrf_I_14</span> <span class="op">+</span> <span class="va">itrf_I_16</span> <span class="op">+</span> <span class="va">itrf_I_24</span></span>
+<span><span class="va">AD</span> <span class="op">=</span><span class="op">~</span> <span class="va">itrf_I_2</span> <span class="op">+</span> <span class="va">itrf_I_7</span> <span class="op">+</span> <span class="va">itrf_I_8</span> <span class="op">+</span> <span class="va">itrf_I_9</span> <span class="op">+</span> <span class="va">itrf_I_10</span> <span class="op">+</span> <span class="va">itrf_I_11</span> <span class="op">+</span> <span class="va">itrf_I_12</span> <span class="op">+</span> <span class="va">itrf_I_15</span> <span class="op">+</span> <span class="va">itrf_I_17</span> <span class="op">+</span> <span class="va">itrf_I_19</span> <span class="op">+</span> <span class="va">itrf_I_23</span></span>
+<span></span>
+<span><span class="va">APD</span> <span class="op">~</span><span class="op">~</span> <span class="va">OPP</span> <span class="op">+</span> <span class="va">SW</span> <span class="op">+</span> <span class="va">AD</span></span>
+<span><span class="va">OPP</span> <span class="op">~</span><span class="op">~</span> <span class="va">SW</span> <span class="op">+</span> <span class="va">AD</span></span>
+<span><span class="va">SW</span> <span class="op">~</span><span class="op">~</span> <span class="va">AD</span></span></code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> model, <span class="at">data =</span> dat)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lavaan <span class="fl">0.6</span><span class="dv">-9</span> ended normally after <span class="dv">59</span> iterations</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lavaan <span class="fl">0.6</span><span class="dv">-12</span> ended normally after <span class="dv">62</span> iterations</span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  Estimator                                         ML</span>
 <span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  Optimization method                           NLMINB</span>
 <span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  Number of model parameters                        <span class="dv">78</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>                                                      </span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                                  Used       Total</span>
 <span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  Number of observations                          <span class="dv">4772</span>        <span class="dv">4776</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>                                                                  </span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>Model Test User Model<span class="sc">:</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                                                       </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21224.049</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21196.000</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                                <span class="dv">588</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span><span class="fu">value</span> (Chi<span class="sc">-</span>square)                            <span class="fl">0.000</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>Model Test Baseline Model<span class="sc">:</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110929.966</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110900.627</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                               <span class="dv">630</span></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value                                        <span class="fl">0.000</span></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
@@ -1375,12 +1406,12 @@ SW ~~ AD</code></pre>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>Loglikelihood and Information Criteria<span class="sc">:</span></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152355.966</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152403.498</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  Loglikelihood unrestricted <span class="fu">model</span> (H1)             <span class="cn">NA</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                                                      </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304867.931</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305372.632</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305124.776</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304962.996</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305467.697</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305219.841</span></span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Root Mean Square Error of Approximation<span class="sc">:</span></span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1403,114 +1434,127 @@ SW ~~ AD</code></pre>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>  APD <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    itrf_E_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.956</span>    <span class="fl">0.017</span>   <span class="fl">55.370</span>    <span class="fl">0.000</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.913</span>    <span class="fl">0.016</span>   <span class="fl">57.625</span>    <span class="fl">0.000</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.892</span>    <span class="fl">0.015</span>   <span class="fl">58.931</span>    <span class="fl">0.000</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.948</span>    <span class="fl">0.017</span>   <span class="fl">55.598</span>    <span class="fl">0.000</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.823</span>    <span class="fl">0.015</span>   <span class="fl">53.203</span>    <span class="fl">0.000</span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.718</span>    <span class="fl">0.013</span>   <span class="fl">53.905</span>    <span class="fl">0.000</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.632</span>    <span class="fl">0.017</span>   <span class="fl">37.722</span>    <span class="fl">0.000</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.957</span>    <span class="fl">0.017</span>   <span class="fl">55.326</span>    <span class="fl">0.000</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.913</span>    <span class="fl">0.016</span>   <span class="fl">57.349</span>    <span class="fl">0.000</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.897</span>    <span class="fl">0.015</span>   <span class="fl">59.110</span>    <span class="fl">0.000</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.950</span>    <span class="fl">0.017</span>   <span class="fl">55.521</span>    <span class="fl">0.000</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.825</span>    <span class="fl">0.015</span>   <span class="fl">53.223</span>    <span class="fl">0.000</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.718</span>    <span class="fl">0.013</span>   <span class="fl">53.898</span>    <span class="fl">0.000</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.633</span>    <span class="fl">0.017</span>   <span class="fl">37.750</span>    <span class="fl">0.000</span></span>
 <span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>  OPP <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    itrf_I_20         <span class="fl">1.000</span>                           </span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.848</span>    <span class="fl">0.013</span>   <span class="fl">65.222</span>    <span class="fl">0.000</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.041</span>    <span class="fl">0.015</span>   <span class="fl">68.240</span>    <span class="fl">0.000</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.991</span>    <span class="fl">0.017</span>   <span class="fl">58.223</span>    <span class="fl">0.000</span></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.891</span>    <span class="fl">0.014</span>   <span class="fl">65.103</span>    <span class="fl">0.000</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.086</span>    <span class="fl">0.016</span>   <span class="fl">66.737</span>    <span class="fl">0.000</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.801</span>    <span class="fl">0.015</span>   <span class="fl">54.945</span>    <span class="fl">0.000</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.978</span>    <span class="fl">0.014</span>   <span class="fl">67.720</span>    <span class="fl">0.000</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.679</span>    <span class="fl">0.013</span>   <span class="fl">52.093</span>    <span class="fl">0.000</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.848</span>    <span class="fl">0.013</span>   <span class="fl">65.173</span>    <span class="fl">0.000</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.043</span>    <span class="fl">0.015</span>   <span class="fl">68.282</span>    <span class="fl">0.000</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.995</span>    <span class="fl">0.017</span>   <span class="fl">58.341</span>    <span class="fl">0.000</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.894</span>    <span class="fl">0.014</span>   <span class="fl">65.185</span>    <span class="fl">0.000</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.088</span>    <span class="fl">0.016</span>   <span class="fl">66.699</span>    <span class="fl">0.000</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.801</span>    <span class="fl">0.015</span>   <span class="fl">54.870</span>    <span class="fl">0.000</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.979</span>    <span class="fl">0.014</span>   <span class="fl">67.686</span>    <span class="fl">0.000</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.680</span>    <span class="fl">0.013</span>   <span class="fl">51.996</span>    <span class="fl">0.000</span></span>
 <span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>  SW <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    itrf_I_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.025</span>    <span class="fl">0.017</span>   <span class="fl">60.133</span>    <span class="fl">0.000</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.909</span>    <span class="fl">0.016</span>   <span class="fl">56.843</span>    <span class="fl">0.000</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.761</span>    <span class="fl">0.014</span>   <span class="fl">55.091</span>    <span class="fl">0.000</span></span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.748</span>    <span class="fl">0.020</span>   <span class="fl">37.352</span>    <span class="fl">0.000</span></span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.693</span>    <span class="fl">0.019</span>   <span class="fl">36.123</span>    <span class="fl">0.000</span></span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.006</span>    <span class="fl">0.021</span>   <span class="fl">48.325</span>    <span class="fl">0.000</span></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.739</span>    <span class="fl">0.020</span>   <span class="fl">37.680</span>    <span class="fl">0.000</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.025</span>    <span class="fl">0.017</span>   <span class="fl">59.981</span>    <span class="fl">0.000</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.909</span>    <span class="fl">0.016</span>   <span class="fl">56.719</span>    <span class="fl">0.000</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.762</span>    <span class="fl">0.014</span>   <span class="fl">55.072</span>    <span class="fl">0.000</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.749</span>    <span class="fl">0.020</span>   <span class="fl">37.359</span>    <span class="fl">0.000</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.693</span>    <span class="fl">0.019</span>   <span class="fl">36.068</span>    <span class="fl">0.000</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.007</span>    <span class="fl">0.021</span>   <span class="fl">48.255</span>    <span class="fl">0.000</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.742</span>    <span class="fl">0.020</span>   <span class="fl">37.757</span>    <span class="fl">0.000</span></span>
 <span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>  AD <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    itrf_I_2          <span class="fl">1.000</span>                           </span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.120</span>    <span class="fl">0.028</span>   <span class="fl">40.042</span>    <span class="fl">0.000</span></span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.018</span>    <span class="fl">0.027</span>   <span class="fl">37.950</span>    <span class="fl">0.000</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.230</span>    <span class="fl">0.030</span>   <span class="fl">40.717</span>    <span class="fl">0.000</span></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.860</span>    <span class="fl">0.025</span>   <span class="fl">34.333</span>    <span class="fl">0.000</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.877</span>    <span class="fl">0.026</span>   <span class="fl">34.132</span>    <span class="fl">0.000</span></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.950</span>    <span class="fl">0.026</span>   <span class="fl">36.162</span>    <span class="fl">0.000</span></span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.135</span>    <span class="fl">0.028</span>   <span class="fl">40.688</span>    <span class="fl">0.000</span></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.005</span>    <span class="fl">0.027</span>   <span class="fl">36.807</span>    <span class="fl">0.000</span></span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.821</span>    <span class="fl">0.022</span>   <span class="fl">36.510</span>    <span class="fl">0.000</span></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.134</span>    <span class="fl">0.027</span>   <span class="fl">42.103</span>    <span class="fl">0.000</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.121</span>    <span class="fl">0.028</span>   <span class="fl">40.077</span>    <span class="fl">0.000</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.016</span>    <span class="fl">0.027</span>   <span class="fl">37.935</span>    <span class="fl">0.000</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.230</span>    <span class="fl">0.030</span>   <span class="fl">40.753</span>    <span class="fl">0.000</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.859</span>    <span class="fl">0.025</span>   <span class="fl">34.303</span>    <span class="fl">0.000</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.875</span>    <span class="fl">0.026</span>   <span class="fl">34.101</span>    <span class="fl">0.000</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.949</span>    <span class="fl">0.026</span>   <span class="fl">36.159</span>    <span class="fl">0.000</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.135</span>    <span class="fl">0.028</span>   <span class="fl">40.697</span>    <span class="fl">0.000</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.002</span>    <span class="fl">0.027</span>   <span class="fl">36.765</span>    <span class="fl">0.000</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.820</span>    <span class="fl">0.022</span>   <span class="fl">36.530</span>    <span class="fl">0.000</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.135</span>    <span class="fl">0.027</span>   <span class="fl">42.146</span>    <span class="fl">0.000</span></span>
 <span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Covariances<span class="sc">:</span></span>
 <span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>  APD <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.286</span>    <span class="fl">0.011</span>   <span class="fl">26.245</span>    <span class="fl">0.000</span></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.147</span>    <span class="fl">0.007</span>   <span class="fl">19.768</span>    <span class="fl">0.000</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.718</span>    <span class="fl">0.000</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.285</span>    <span class="fl">0.011</span>   <span class="fl">26.208</span>    <span class="fl">0.000</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.147</span>    <span class="fl">0.007</span>   <span class="fl">19.709</span>    <span class="fl">0.000</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.647</span>    <span class="fl">0.000</span></span>
 <span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>  OPP <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.955</span>    <span class="fl">0.000</span></span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.137</span>    <span class="fl">0.006</span>   <span class="fl">22.385</span>    <span class="fl">0.000</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.074</span>    <span class="fl">0.006</span>   <span class="fl">11.824</span>    <span class="fl">0.000</span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.137</span>    <span class="fl">0.006</span>   <span class="fl">22.380</span>    <span class="fl">0.000</span></span>
 <span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  SW <span class="sc">~</span><span class="er">~</span>                                               </span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.132</span>    <span class="fl">0.005</span>   <span class="fl">25.835</span>    <span class="fl">0.000</span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.131</span>    <span class="fl">0.005</span>   <span class="fl">25.785</span>    <span class="fl">0.000</span></span>
 <span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>Variances<span class="sc">:</span></span>
 <span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.460</span>    <span class="fl">0.011</span>   <span class="fl">43.145</span>    <span class="fl">0.000</span></span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.379</span>    <span class="fl">0.009</span>   <span class="fl">42.506</span>    <span class="fl">0.000</span></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.287</span>    <span class="fl">0.007</span>   <span class="fl">41.214</span>    <span class="fl">0.000</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.245</span>    <span class="fl">0.006</span>   <span class="fl">40.291</span>    <span class="fl">0.000</span></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.366</span>    <span class="fl">0.009</span>   <span class="fl">42.389</span>    <span class="fl">0.000</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.331</span>    <span class="fl">0.008</span>   <span class="fl">43.486</span>    <span class="fl">0.000</span></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.239</span>    <span class="fl">0.006</span>   <span class="fl">43.191</span>    <span class="fl">0.000</span></span>
-<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.580</span>    <span class="fl">0.012</span>   <span class="fl">47.050</span>    <span class="fl">0.000</span></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">43.544</span>    <span class="fl">0.000</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.187</span>    <span class="fl">0.004</span>   <span class="fl">42.868</span>    <span class="fl">0.000</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.006</span>   <span class="fl">41.470</span>    <span class="fl">0.000</span></span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.396</span>    <span class="fl">0.009</span>   <span class="fl">45.007</span>    <span class="fl">0.000</span></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.916</span>    <span class="fl">0.000</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.277</span>    <span class="fl">0.007</span>   <span class="fl">42.216</span>    <span class="fl">0.000</span></span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.314</span>    <span class="fl">0.007</span>   <span class="fl">45.690</span>    <span class="fl">0.000</span></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.209</span>    <span class="fl">0.005</span>   <span class="fl">41.741</span>    <span class="fl">0.000</span></span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.267</span>    <span class="fl">0.006</span>   <span class="fl">46.177</span>    <span class="fl">0.000</span></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.225</span>    <span class="fl">0.005</span>   <span class="fl">42.954</span>    <span class="fl">0.000</span></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.104</span>    <span class="fl">0.003</span>   <span class="fl">35.314</span>    <span class="fl">0.000</span></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.382</span>    <span class="fl">0.000</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.096</span>    <span class="fl">0.002</span>   <span class="fl">40.833</span>    <span class="fl">0.000</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.360</span>    <span class="fl">0.008</span>   <span class="fl">46.805</span>    <span class="fl">0.000</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.338</span>    <span class="fl">0.007</span>   <span class="fl">46.982</span>    <span class="fl">0.000</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">44.266</span>    <span class="fl">0.000</span></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">46.755</span>    <span class="fl">0.000</span></span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">45.006</span>    <span class="fl">0.000</span></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">43.889</span>    <span class="fl">0.000</span></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.286</span>    <span class="fl">0.006</span>   <span class="fl">44.936</span>    <span class="fl">0.000</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.304</span>    <span class="fl">0.007</span>   <span class="fl">43.471</span>    <span class="fl">0.000</span></span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.298</span>    <span class="fl">0.006</span>   <span class="fl">46.167</span>    <span class="fl">0.000</span></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.220</span>    <span class="fl">0.000</span></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.301</span>    <span class="fl">0.007</span>   <span class="fl">45.614</span>    <span class="fl">0.000</span></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.490</span>    <span class="fl">0.000</span></span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.388</span>    <span class="fl">0.000</span></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">45.494</span>    <span class="fl">0.000</span></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.439</span>    <span class="fl">0.000</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.625</span>    <span class="fl">0.021</span>   <span class="fl">30.147</span>    <span class="fl">0.000</span></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.530</span>    <span class="fl">0.016</span>   <span class="fl">33.067</span>    <span class="fl">0.000</span></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.282</span>    <span class="fl">0.010</span>   <span class="fl">29.265</span>    <span class="fl">0.000</span></span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.485</span>    <span class="fl">0.000</span></span></code></pre></div>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.462</span>    <span class="fl">0.011</span>   <span class="fl">43.183</span>    <span class="fl">0.000</span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.378</span>    <span class="fl">0.009</span>   <span class="fl">42.508</span>    <span class="fl">0.000</span></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">41.359</span>    <span class="fl">0.000</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.242</span>    <span class="fl">0.006</span>   <span class="fl">40.108</span>    <span class="fl">0.000</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.367</span>    <span class="fl">0.009</span>   <span class="fl">42.408</span>    <span class="fl">0.000</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.331</span>    <span class="fl">0.008</span>   <span class="fl">43.465</span>    <span class="fl">0.000</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.238</span>    <span class="fl">0.006</span>   <span class="fl">43.180</span>    <span class="fl">0.000</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.580</span>    <span class="fl">0.012</span>   <span class="fl">47.047</span>    <span class="fl">0.000</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">43.548</span>    <span class="fl">0.000</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.187</span>    <span class="fl">0.004</span>   <span class="fl">42.887</span>    <span class="fl">0.000</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.006</span>   <span class="fl">41.446</span>    <span class="fl">0.000</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.395</span>    <span class="fl">0.009</span>   <span class="fl">44.980</span>    <span class="fl">0.000</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.882</span>    <span class="fl">0.000</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.278</span>    <span class="fl">0.007</span>   <span class="fl">42.233</span>    <span class="fl">0.000</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.704</span>    <span class="fl">0.000</span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.210</span>    <span class="fl">0.005</span>   <span class="fl">41.756</span>    <span class="fl">0.000</span></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.269</span>    <span class="fl">0.006</span>   <span class="fl">46.193</span>    <span class="fl">0.000</span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.226</span>    <span class="fl">0.005</span>   <span class="fl">42.972</span>    <span class="fl">0.000</span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.104</span>    <span class="fl">0.003</span>   <span class="fl">35.366</span>    <span class="fl">0.000</span></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.397</span>    <span class="fl">0.000</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.096</span>    <span class="fl">0.002</span>   <span class="fl">40.772</span>    <span class="fl">0.000</span></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.359</span>    <span class="fl">0.008</span>   <span class="fl">46.796</span>    <span class="fl">0.000</span></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.339</span>    <span class="fl">0.007</span>   <span class="fl">46.983</span>    <span class="fl">0.000</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">44.262</span>    <span class="fl">0.000</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.343</span>    <span class="fl">0.007</span>   <span class="fl">46.735</span>    <span class="fl">0.000</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">44.999</span>    <span class="fl">0.000</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">43.874</span>    <span class="fl">0.000</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.286</span>    <span class="fl">0.006</span>   <span class="fl">44.945</span>    <span class="fl">0.000</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.303</span>    <span class="fl">0.007</span>   <span class="fl">43.454</span>    <span class="fl">0.000</span></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.298</span>    <span class="fl">0.006</span>   <span class="fl">46.176</span>    <span class="fl">0.000</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.229</span>    <span class="fl">0.000</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.301</span>    <span class="fl">0.007</span>   <span class="fl">45.617</span>    <span class="fl">0.000</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.491</span>    <span class="fl">0.000</span></span>
+<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.405</span>    <span class="fl">0.000</span></span>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.216</span>    <span class="fl">0.005</span>   <span class="fl">45.489</span>    <span class="fl">0.000</span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.413</span>    <span class="fl">0.000</span></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.625</span>    <span class="fl">0.021</span>   <span class="fl">30.104</span>    <span class="fl">0.000</span></span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.529</span>    <span class="fl">0.016</span>   <span class="fl">33.063</span>    <span class="fl">0.000</span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.281</span>    <span class="fl">0.010</span>   <span class="fl">29.219</span>    <span class="fl">0.000</span></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.497</span>    <span class="fl">0.000</span></span></code></pre></div>
 </div>
-<div id="build-scale-scores" class="section level2">
-<h2 class="hasAnchor">
-<a href="#build-scale-scores" class="anchor"></a>Build scale scores</h2>
+<div class="section level3">
+<h3 id="build-scale-scores">Build scale scores<a class="anchor" aria-label="anchor" href="#build-scale-scores"></a>
+</h3>
 <p>Now we build scores for internalizing and externalizing scales</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span><span class="op">$</span><span class="va">itrf_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span>, label <span class="op">=</span> <span class="st">"Externalizing"</span><span class="op">)</span>
-<span class="va">dat</span><span class="op">$</span><span class="va">itrf_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span>, label <span class="op">=</span> <span class="st">"Internalizing"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">itrf_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span>, label <span class="op">=</span> <span class="st">"Externalizing"</span><span class="op">)</span></span>
+<span><span class="va">dat</span><span class="op">$</span><span class="va">itrf_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/score_scale.html">score_scale</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span>, label <span class="op">=</span> <span class="st">"Internalizing"</span><span class="op">)</span></span></code></pre></div>
 <p>and get descriptives for these scores</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dat</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/select_scores.html">select_scores</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/select_scores.html">select_scores</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
+<colgroup>
+<col width="12%">
+<col width="19%">
+<col width="8%">
+<col width="11%">
+<col width="7%">
+<col width="5%">
+<col width="5%">
+<col width="5%">
+<col width="8%">
+<col width="9%">
+<col width="5%">
+</colgroup>
 <thead><tr class="header">
 <th align="left">name</th>
 <th align="left">label</th>
@@ -1568,11 +1612,13 @@ SW ~~ AD</code></pre>
 
 
       <footer><div class="copyright">
-  <p>Developed by Juergen Wilbert.</p>
+  <p></p>
+<p>Developed by Juergen Wilbert.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>
@@ -1580,6 +1626,8 @@ SW ~~ AD</code></pre>
 
   
 
+
+  
 
   </body>
 </html>
