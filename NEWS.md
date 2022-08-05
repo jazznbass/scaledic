@@ -1,4 +1,4 @@
-# scaledic 0.1.30
+# scaledic 0.1.27
 
 Bugs:  
 - `haven_dic()`: labels with length > 0 are not set (a warning is thrown).
