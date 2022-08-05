@@ -1,3 +1,5 @@
+# scaledic 0.2
+
 # scaledic 0.1.27
 
 Bugs:  
