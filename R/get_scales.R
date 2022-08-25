@@ -26,6 +26,8 @@ get_scales <- function(data, ...) {
         names_only = TRUE
       )
     )
+    if (length(out[[names(scales)[i]]]) == 0)
+      warning("No items found for '", names(scales)[i], "'.")
   }
   out
 }
