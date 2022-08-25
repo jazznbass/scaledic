@@ -77,7 +77,7 @@ dat %>%
 ## ----exploratory_fa-----------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
-  rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
+  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
   exploratory_fa(nfactors = 4, cut = 0.4) %>%
   kable()
 

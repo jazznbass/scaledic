@@ -1,11 +1,11 @@
 # scaledic 0.2
 
-New functions:
-- `rename_items_glue()`: Will replace rename_items. Much more versatile syntax applying the tidyvers glue function:
+Reworked:
+- `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 
 ``` .r
 ex_itrf %>% select(1:5) %>%
-  rename_item_glue("{reverse}{item_name}: {item_label}")
+  rename_item("{reverse}{item_name}: {item_label}")
 ```
 
 # scaledic 0.1.27
