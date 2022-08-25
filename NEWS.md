@@ -1,5 +1,26 @@
 # scaledic 0.2
 
+New functions:
+- `get_scales()`: A wrapper around `select_items()` to extract maultiple scale definitions:
+
+```.r
+scales <- get_scales(ex_itrf,
+  'APD' = subscale_2 == "APD",
+  'OPP' = subscale_2 == "OPP",
+  "SW" = subscale_2 == "SW",
+  "AD" = subscale_2 == "AD"
+)
+
+# is identical to:
+
+scales <- list(
+  'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
+  'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
+  "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
+  "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
+)
+```
+
 Reworked:
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 

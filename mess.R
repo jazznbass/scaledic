@@ -44,3 +44,37 @@ dat_18$h500class_level <- dic(dat_18$h500class_level, item_label = "class level"
 dat_18 <- dat_18 %>%
   arrange(hh_id, srno) %>%
   relocate(hh_id, srno)
+
+
+
+###
+
+
+scales <- get_scales(ex_itrf,
+  'APD' = subscale_2 == "APD",
+  'OPP' = subscale_2 == "OPP",
+  "SW" = subscale_2 == "SW",
+  "AD" = subscale_2 == "AD"
+)
+
+scale_names <- names(scales)
+
+names(scales) <- rep("filter", length(scales))
+
+scales <- c(data = list(dat), scales[i], names_only = TRUE)
+
+
+do.call("select_items", scales)
+
+
+filter <- deparse(substitute(filter))
+
+id <- .get_index(data = data, filter = filter, class = "item", names = FALSE)
+if (names_only) return(names(data)[id])
+
+do.call("scaledic:::-get_index",
+        list(data data = scales
+        )
+
+scales
+
