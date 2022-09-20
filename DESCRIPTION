@@ -21,7 +21,8 @@ Imports:
   openxlsx,
   readxl,
   stats,
-  vctrs
+  vctrs,
+  stringr
 Suggests:
   knitr,
   tibble,
@@ -32,4 +33,4 @@ License: GPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 VignetteBuilder: knitr
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1

@@ -3,6 +3,7 @@ library(knitr)
 library(dplyr)
 library(tibble)
 library(scaledic)
+library(stringr)
 
 knitr::opts_chunk$set(
   message = FALSE,
@@ -35,17 +36,14 @@ kable(out, caption = "Columns of a dictionary file")
 
 
 ## ----dic_example--------------------------------------------------------------
-dic_itrf %>% 
-  slice(2:4) %>%
-  kable()
+dic_itrf %>% slice(2:4) 
 
 ## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
 dat <- apply_dic(dat_itrf, dic_itrf)
 
 ## ----list_scales--------------------------------------------------------------
-list_scales(dat, labels = TRUE) %>%
-  kable()
+list_scales(dat, labels = TRUE)
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -65,21 +63,18 @@ dat <- impute_missing(dat, subscale == "Int")
 ## ----descriptives-------------------------------------------------------------
 dat %>% 
   select_items(subscale == "Int") %>%
-  descriptives(round = 1) %>%
-  kable()
+  descriptives(round = 1)
 
 ## ----desc_labels--------------------------------------------------------------
 dat %>% 
   select_items(subscale == "Int") %>%
-  descriptives(round = 1, label = TRUE) %>%
-  kable()
+  descriptives(round = 1, label = TRUE) 
 
 ## ----exploratory_fa-----------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
-  rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4) %>%
-  kable()
+  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
+  exploratory_fa(nfactors = 4, cut = 0.4) 
 
 ## ----item_analysis------------------------------------------------------------
 scales <- list(
@@ -88,8 +83,7 @@ scales <- list(
   "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
   "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
 )
-alpha_table(dat, scales = scales) %>%
-  kable()
+alpha_table(dat, scales = scales)
 
 
 ## ----lavaan_model-------------------------------------------------------------
@@ -110,6 +104,6 @@ dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "I
 ## ----desc_scores--------------------------------------------------------------
 dat %>%
   select_scores() %>%
-  descriptives(round = 1, label = TRUE) %>%
-  kable()
+  rename_items() %>%
+  descriptives(round = 1)
 

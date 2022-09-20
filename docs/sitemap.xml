@@ -85,6 +85,9 @@
     <loc>/reference/get_label.html</loc>
   </url>
   <url>
+    <loc>/reference/get_scales.html</loc>
+  </url>
+  <url>
     <loc>/reference/haven_dic.html</loc>
   </url>
   <url>
@@ -119,6 +122,9 @@
   </url>
   <url>
     <loc>/reference/rename_items.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rename_items_deprecated.html</loc>
   </url>
   <url>
     <loc>/reference/replace_missing.html</loc>
