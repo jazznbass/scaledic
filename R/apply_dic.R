@@ -205,6 +205,15 @@ apply_dic <- function(data,
 
 .clean_dic_file <- function(dic) {
 
+  #rename dic names
+  names(dic) <- tolower(names(dic))
+  names(dic)[which(names(dic) %in% c("label", "name"))] <- "item_name"
+  names(dic)[which(names(dic) %in% "item")] <- "item_label"
+  names(dic)[which(names(dic) %in% "sub_scale_2")] <- "subscale_2"
+  names(dic)[which(names(dic) %in% "sub_scale")] <- "subscale"
+  names(dic)[which(names(dic) %in% "sub_scale_label")] <- "subscale_label"
+  names(dic)[which(names(dic) %in% "sub_scale_2_label")] <- "subscale_2_label"
+
   # delete empty rows
   dic <- dic[apply(dic, 1, function(x) !all(is.na(x))),]
 
@@ -218,15 +227,12 @@ apply_dic <- function(data,
     dic <- dic[which(dic$active == 1), ]
   }
 
+  #remove whitspaces
 
-  #rename dic names
-  names(dic) <- tolower(names(dic))
-  names(dic)[which(names(dic) %in% c("label", "name"))] <- "item_name"
-  names(dic)[which(names(dic) %in% "item")] <- "item_label"
-  names(dic)[which(names(dic) %in% "sub_scale_2")] <- "subscale_2"
-  names(dic)[which(names(dic) %in% "sub_scale")] <- "subscale"
-  names(dic)[which(names(dic) %in% "sub_scale_label")] <- "subscale_label"
-  names(dic)[which(names(dic) %in% "sub_scale_2_label")] <- "subscale_2_label"
+  dic[[.dic_file$value_labels]] <- trimws(dic[[.dic_file$value_labels]])
+  dic[[.dic_file$value_labels]][which(dic[[.dic_file$value_labels]] == "")] <- NA
+
+  dic[[.dic_file$item_name]] <- trimws(dic[[.dic_file$item_name]])
 
   # check for missing class variable
   if (is.null(dic[[.dic_file$class]])) dic[[.dic_file$class]] <- "item"
@@ -235,7 +241,6 @@ apply_dic <- function(data,
     .filter <- which(!is.na(dic[[.dic_file$score_filter]]))
     dic[.filter, .dic_file$class] <- "scale"
   }
-
 
   filter_items <- dic[[.dic_file$class]] == "item"
 
