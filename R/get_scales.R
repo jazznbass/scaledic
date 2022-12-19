@@ -15,17 +15,21 @@
 #'   'AD' = subscale_2 == "AD"
 #' )
 #' @export
-get_scales <- function(data, ...) {
+get_scales <- function(data, ..., .variable = "item_name") {
   scales <- as.list(substitute(...()))
   out <- list()
   for(i in seq_along(scales)) {
-    out[[names(scales)[i]]] <- do.call(
+    res <- do.call(
       "select_items",
       c(data = list(data),
-        filter = scales[[i]],
-        names_only = TRUE
+        filter = scales[[i]]
+        #names_only = TRUE
       )
     )
+    out[[names(scales)[i]]] <- res %>%
+      map(~ dic_attr(.x, .opt[[.variable]])) %>%
+      unlist()
+
     if (length(out[[names(scales)[i]]]) == 0)
       warning("No items found for '", names(scales)[i], "'.")
   }
