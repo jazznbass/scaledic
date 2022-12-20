@@ -144,3 +144,7 @@
 
 }
 
+.nice_num <- function(x, digits = 2) {
+  fmt <- paste0("%.", digits, "f")
+  sub("^(-?)0.", "\\1.", sprintf(fmt, x))
+}

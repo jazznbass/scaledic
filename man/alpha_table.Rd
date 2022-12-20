@@ -22,9 +22,11 @@ alpha_table(
 \arguments{
 \item{data}{A data Frame}
 
-\item{scales}{A list containing vectors with variable names. Each list element defines one scale. Named list elements are used as labels.}
+\item{scales}{A list containing vectors with variable names. Each list
+element defines one scale. Named list elements are used as labels.}
 
-\item{labels}{Label names for scales (defaults to named list elements in 'scales').}
+\item{labels}{Label names for scales (defaults to named list elements in
+'scales').}
 
 \item{round}{Rounds values to given decimal position.}
 
@@ -40,9 +42,11 @@ alpha_table(
 
 \item{difficulty}{If TRUE, the difficulty of the item is calculated.}
 
-\item{values}{Sets maximum and minimum valid values necessary to calculate item difficulty}
+\item{values}{Sets maximum and minimum valid values necessary to calculate
+item difficulty}
 
-\item{fa}{If TRUE, a one factor exploratory factor analyses is calculated and loadings are reported.}
+\item{fa}{If TRUE, a one factor exploratory factor analyses is calculated and
+loadings are reported.}
 }
 \value{
 A data frame with concise scale indices.
