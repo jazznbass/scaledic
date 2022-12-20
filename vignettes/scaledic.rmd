@@ -68,7 +68,7 @@ kable(out, caption = "Columns of a dictionary file")
 Here is extract of a dic file from the included example:
 
 ```{r dic_example}
-dic_itrf %>% slice(2:4) 
+dic_itrf %>% slice(2:4) %>% kable()
 ```
 
 ## Apply a dictionary file

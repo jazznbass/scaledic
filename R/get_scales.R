@@ -2,6 +2,7 @@
 #'
 #' @param data A data.frame with dic inforation.
 #' @param ... selection definitions.
+#' @param .variable character with name of the dic information to be returned. Default is "item_name".
 #' @return A (named) list with string vectors of item names
 #' @details This function is basically a wrapper around the `
 #' select_items(data = data, filter = ..., names_only = TRUE)` function.
@@ -14,6 +15,7 @@
 #'   "SW" = subscale_2 == "SW",
 #'   'AD' = subscale_2 == "AD"
 #' )
+#'
 #' @export
 get_scales <- function(data, ..., .variable = "item_name") {
   scales <- as.list(substitute(...()))

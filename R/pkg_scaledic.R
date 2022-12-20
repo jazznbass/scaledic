@@ -29,11 +29,11 @@
 #' # Example with pipeline syntax. Would be much easier to use the "describe" function
 #' # from the psch packages instead of summarise_all here.
 #' library(dplyr)
-#' dat %>%
-#'   select_items(scale == "ITRF" & subscale == "Ext") %>%
-#'   rename_items(pattern = c("name", "subscale_2")) %>%
-#'   summarise_all(mean, na.rm = TRUE) %>%
-#'   round(2) %>%
+#' dat  |>
+#'   select_items(scale == "ITRF" & subscale == "Ext")  |>
+#'   rename_items(pattern = "{subscale_2}:{name}")  |>
+#'   summarise_all(mean, na.rm = TRUE)  |>
+#'   round(2)  |>
 #'   t()
 NULL
 

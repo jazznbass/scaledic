@@ -36,7 +36,7 @@ kable(out, caption = "Columns of a dictionary file")
 
 
 ## ----dic_example--------------------------------------------------------------
-dic_itrf %>% slice(2:4) 
+dic_itrf %>% slice(2:4) %>% kable()
 
 ## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
@@ -77,11 +77,11 @@ dat %>%
   exploratory_fa(nfactors = 4, cut = 0.4) 
 
 ## ----item_analysis------------------------------------------------------------
-scales <- list(
-  'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
-  'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
-  "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
-  "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
+scales <- ex_itrf %>% get_scales(
+  'APD' = subscale_2 == "APD",
+  'OPP' = subscale_2 == "OPP",
+  "SW" = subscale_2 == "SW",
+  "AD" = subscale_2 == "AD"
 )
 alpha_table(dat, scales = scales)
 

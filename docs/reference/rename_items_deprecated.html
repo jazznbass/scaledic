@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -102,10 +102,48 @@ May include the name of any dic attribute (e.g."item_label", "scale", "subscale"
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ex_itrf</span> <span class="op">%&gt;%</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"label"</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ex_itrf</span>  <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"label"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in ex_itrf %&gt;% rename_items(pattern = c("reverse", "label")) %&gt;%     names():</span> could not find function "%&gt;%"</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>The pattern definition is deprecated. Please use glue::glue style syntax to defnine pattern. E.g. '{name}: {label}'</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "(+): Verbringt zu viel Zeit alleine"                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "(+): Beschwert sich über Krankheit oder Schmerzen"                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "(+): Vermeidet soziale Interaktionen"                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "(+): Spielt bevorzugt alleine"                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "(+): Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "(+): Macht sich Sorgen über unwichtige Details"                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "(+): Beschwert sich über Kopfschmerzen oder Bauchschmerzen"                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "(+): Wirkt unglücklich oder traurig"                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "(+): Klammert sich an Erwachsene"                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "(+): Verhält sich nervös"                                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "(+): Verhält sich ängstlich"                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "(+): Behauptet sich nicht gegenüber anderen"                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "(+): Verhält sich übermäßig schüchtern"                                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "(+): Beklagt sich oder jammert"                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "(+): Beteiligt sich nicht an Gruppenaktionen"                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "(+): Macht sich selbst schlecht"                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "(+): Weint oder ist weinerlich"                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "(+): Ist schnell verärgert"                                                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "(+): Macht sich ständig Sorgen"                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "(+): Lässt sich langsam auf neue Personen ein"                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "(+): Stellt Unterrichtsaufgaben nicht rechtzeitig fertig"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "(+): Beginnt mit der Aufgabenbearbeitung nicht selbstständig"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "(+): Erledigt Hausaufgaben unvollständig"                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "(+): Zeigt Unterrichtsaufgaben nicht selbstständig vor"                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "(+): Kontrolliert seine eigene Arbeit nicht"                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "(+): Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. für die Hausaufgaben, Elternbriefe)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "(+): Streitet und zankt mit Lehrkräften"                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "(+): Verliert die Beherrschung"                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "(+): Stört andere"                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "(+): Verwendet unangemessene Sprache"                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "(+): Hat Konflikte mit Mitschülerinnen und Mitschülern"                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "(+): Kommandiert rum"                                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "(+): Macht unangebrachte Bemerkungen"                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "(+): Kommt unvorbereitet zum Unterricht"                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "(+): Beteiligt sich nicht am Unterricht"                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "(+): Respektiert nicht die Privatsphäre anderer"                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] ": ITRF Internalizing"                                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [38] ": ITRF Externalizing"                                                                                     </span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
@@ -121,7 +159,7 @@ May include the name of any dic attribute (e.g."item_label", "scale", "subscale"
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

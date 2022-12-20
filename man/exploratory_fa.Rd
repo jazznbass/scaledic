@@ -9,6 +9,8 @@ exploratory_fa(..., factor_names = NULL, sort = TRUE, cut = 0.2, round = 2)
 \arguments{
 \item{...}{Arguments passed to the psych::fa function.}
 
+\item{factor_names}{A character vector with names for the resulting factors. If not provided, default names are chosen.}
+
 \item{sort}{If TRUE, loadings are sorted.}
 
 \item{cut}{Loadings below cut will be ommited in the resulting data frame.}

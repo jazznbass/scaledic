@@ -4,17 +4,19 @@
 \alias{dic}
 \title{Dictionary class constructor}
 \usage{
-dic(x, class = "item", ...)
+dic(x, class = "item", type = "integer", ...)
 }
 \arguments{
-\item{x}{A variable}
+\item{x}{A variable.}
 
-\item{class}{default is "item"}
+\item{class}{default is "item".}
 
-\item{...}{further dic parameters}
+\item{type}{defaults to "integer".}
+
+\item{...}{further dic parameters.}
 }
 \value{
-An item of class dic
+An item of class dic.
 }
 \description{
 Dictionary class constructor

@@ -4,11 +4,14 @@
 #' @param dic A data frame comprising a dictionary or a character string with a
 #' filename (for now an Microsoft Excel file) containg a dictionary.
 #' @param factors If set TRUE, factor variables will be turned into factors.
+#' @param set_label_attr If TRUE, label attributes from the haven package are set. These labels are shown in the Rstudio View pannel.
 #' @param coerce_class If set TRUE mismatches between class and dic type are corrected.
 #' @param replace_missing If TRUE, missing values from the dic are replaced with NA
 #' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
+#' @param impute_values If TRUE and score_scales is TRUE, missing values are automatically imputed based on scale information provided in the dic file.
 #' @param score_scales If TRUE and the dic files contains score scale
 #' definitions these are applied
+#' @param rename_var When a character is provided, corresponding column from the dic file is used to rename variables from rename_var to item_name.
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)
@@ -26,8 +29,8 @@ apply_dic <- function(data,
                       impute_values = FALSE,
                       rename_var = NULL) {
 
-  if ("character" %in% class(dic)) dic <- readxl::read_excel(dic)
-  if ("character" %in% class(data)) data <- readxl::read_excel(data)
+  if (inherits(dic, "character")) dic <- readxl::read_excel(dic)
+  if (inherits(data, "character")) data <- readxl::read_excel(data)
 
   dic <- .clean_dic_file(dic)
 
@@ -113,7 +116,7 @@ apply_dic <- function(data,
     # check variable type (class)
     # numeric:
     if (dic[i, .dic_file$type] %in% c("integer", "numeric", "float", "double")) {
-      if (!(class(data[[id]]) %in% c("integer", "numeric", "double"))) {
+      if (!inherits(data[[id]], c("integer", "numeric", "double"))) {
 
         if (coerce_class) {
           message(
@@ -131,7 +134,9 @@ apply_dic <- function(data,
     }
 
     ### assign attributes
-    filter <- !(names(.dic_file) %in% c("values", "value_labels", "missing", "variables"))
+    filter <- !(names(.dic_file) %in% c(
+      "values", "value_labels", "missing", "variables")
+    )
     set <- names(.dic_file)[filter]
 
     for (j in set) {

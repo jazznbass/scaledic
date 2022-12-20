@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -89,6 +89,10 @@ filename (for now an Microsoft Excel file) containg a dictionary.</p></dd>
 <dd><p>If set TRUE, factor variables will be turned into factors.</p></dd>
 
 
+<dt>set_label_attr</dt>
+<dd><p>If TRUE, label attributes from the haven package are set. These labels are shown in the Rstudio View pannel.</p></dd>
+
+
 <dt>coerce_class</dt>
 <dd><p>If set TRUE mismatches between class and dic type are corrected.</p></dd>
 
@@ -104,6 +108,14 @@ definitions these are applied</p></dd>
 
 <dt>check_values</dt>
 <dd><p>If TRUE, performs the check_values function on the variables of the data frame included in the dic file.</p></dd>
+
+
+<dt>impute_values</dt>
+<dd><p>If TRUE and score_scales is TRUE, missing values are automatically imputed based on scale information provided in the dic file.</p></dd>
+
+
+<dt>rename_var</dt>
+<dd><p>When a character is provided, corresponding column from the dic file is used to rename variables from rename_var to item_name.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -176,7 +188,7 @@ definitions these are applied</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

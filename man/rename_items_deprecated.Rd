@@ -32,8 +32,8 @@ A renamed data frame
 Rename items based on dic information.
 }
 \examples{
-ex_itrf \%>\%
-  rename_items(pattern = c("reverse", "label")) \%>\%
+ex_itrf  |>
+  rename_items(pattern = c("reverse", "label")) |>
   names()
 
 }

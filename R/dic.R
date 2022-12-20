@@ -1,10 +1,11 @@
 #' Dictionary class constructor
 #'
-#' @param x A variable
-#' @param class default is "item"
-#' @param ... further dic parameters
+#' @param x A variable.
+#' @param class default is "item".
+#' @param type defaults to "integer".
+#' @param ... further dic parameters.
 #'
-#' @return An item of class dic
+#' @return An item of class dic.
 #' @export
 #'
 #' @examples

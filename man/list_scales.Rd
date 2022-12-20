@@ -15,6 +15,8 @@ list_scales(
 \arguments{
 \item{data}{The target data frame}
 
+\item{levels}{Character vector with names of dic attributes used to extract scale information.}
+
 \item{labels}{If TRUE, scale labels instead of abreviations are shown.}
 
 \item{n_items}{If TRUE, number of items for each scale, subscale, and sub_subscale is shown}

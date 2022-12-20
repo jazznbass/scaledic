@@ -1,13 +1,18 @@
 #' List scales
 #'
 #' @param data The target data frame
+#' @param levels Character vector with names of dic attributes used to extract scale information.
 #' @param labels If TRUE, scale labels instead of abreviations are shown.
 #' @param n_items If TRUE, number of items for each scale, subscale, and sub_subscale is shown
 #' @param char_na Charcter for NA is.
 #'
 #' @return A data.frame with scales on different levels
 #' @export
-list_scales <- function(data, levels = c("scale", "subscale", "subscale_2"), labels = FALSE, n_items = FALSE, char_na = "") {
+list_scales <- function(data,
+                        levels = c("scale", "subscale", "subscale_2"),
+                        labels = FALSE,
+                        n_items = FALSE,
+                        char_na = "") {
 
   if (labels) levels <- c(levels, paste0(levels, "_label"))
   filter <- .get_dic_items(data)

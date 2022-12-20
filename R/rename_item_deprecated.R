@@ -10,8 +10,8 @@
 #' @param char_weight Character vector of length two with signs for negative and positive weights.
 #' @return A renamed data frame
 #' @examples
-#' ex_itrf %>%
-#'   rename_items(pattern = c("reverse", "label")) %>%
+#' ex_itrf  |>
+#'   rename_items(pattern = c("reverse", "label")) |>
 #'   names()
 #'
 #' @export

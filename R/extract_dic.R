@@ -7,7 +7,7 @@
 
 extract_dic <- function(data) {
 
-  id <- scaledic:::.get_dic_items(data, items_only = TRUE)
+  id <- .get_dic_items(data, items_only = TRUE)
 
   dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
   dic_names <- unlist(dic_names)
@@ -23,8 +23,8 @@ extract_dic <- function(data) {
   for (row in 1:N) {
     dic <- attr(data[[id[row]]], .opt$dic)
 
-    for (col in dic_names[!dic_names %in% c("value_labels", "values", "missing")]) {
-      #print(col)
+    .var <- !dic_names %in% c("value_labels", "values", "missing")
+    for (col in dic_names[.var]) {
       if (is.null(dic[[col]]) || length(dic[[col]]) == 0) {
         out[row, col] <- NA
       } else {
@@ -57,7 +57,9 @@ extract_dic <- function(data) {
       value_labels <- dic$value_labels[!is.na(dic$value_labels$value), ]
       x <- NA
       if (nrow(value_labels) > 0)
-        x <- paste0(value_labels$value, " = ", value_labels$label, collapse = "; ")
+        x <- paste0(
+          value_labels$value, " = ", value_labels$label, collapse = "; "
+        )
     }
 
     out[row, .opt[["value_labels"]]] <- x

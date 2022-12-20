@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -78,12 +78,8 @@
 <dd><p>A character string with the syntax of the glue function (see example).</p></dd>
 
 
-<dt>max_chars</dt>
+<dt>max_chars, chars</dt>
 <dd><p>If not NULL, only the first n chars og the long label will be applied.</p></dd>
-
-
-<dt>char_reverse</dt>
-<dd><p>Character vector of length two with signs for negative and positive weights.</p></dd>
 
 </dl></div>
     <div id="value">
@@ -95,7 +91,49 @@
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">ex_itrf</span>  <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu">rename_items</span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"{reverse}{name}: {label}"</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] "+itrf_I_1: Verbringt zu viel Zeit alleine"                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2] "+itrf_I_2: Beschwert sich über Krankheit oder Schmerzen"                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3] "+itrf_I_4: Vermeidet soziale Interaktionen"                                                                     </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4] "+itrf_I_5: Spielt bevorzugt alleine"                                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5] "+itrf_I_6: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein"                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6] "+itrf_I_7: Macht sich Sorgen über unwichtige Details"                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7] "+itrf_I_8: Beschwert sich über Kopfschmerzen oder Bauchschmerzen"                                               </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8] "+itrf_I_9: Wirkt unglücklich oder traurig"                                                                      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9] "+itrf_I_10: Klammert sich an Erwachsene"                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10] "+itrf_I_11: Verhält sich nervös"                                                                                </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11] "+itrf_I_12: Verhält sich ängstlich"                                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12] "+itrf_I_13: Behauptet sich nicht gegenüber anderen"                                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13] "+itrf_I_14: Verhält sich übermäßig schüchtern"                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14] "+itrf_I_15: Beklagt sich oder jammert"                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15] "+itrf_I_16: Beteiligt sich nicht an Gruppenaktionen"                                                            </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16] "+itrf_I_17: Macht sich selbst schlecht"                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17] "+itrf_I_19: Weint oder ist weinerlich"                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18] "+itrf_I_20: Ist schnell verärgert"                                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19] "+itrf_I_23: Macht sich ständig Sorgen"                                                                          </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20] "+itrf_I_24: Lässt sich langsam auf neue Personen ein"                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [21] "+itrf_E_1: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig"                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [22] "+itrf_E_2: Beginnt mit der Aufgabenbearbeitung nicht selbstständig"                                             </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [23] "+itrf_E_3: Erledigt Hausaufgaben unvollständig"                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [24] "+itrf_E_4: Zeigt Unterrichtsaufgaben nicht selbstständig vor"                                                   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [25] "+itrf_E_5: Kontrolliert seine eigene Arbeit nicht"                                                              </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [26] "+itrf_E_6: Nimmt Materialien, die zu Hause benötigt werden, nicht mit (z.B. für die Hausaufgaben, Elternbriefe)"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [27] "+itrf_E_7: Streitet und zankt mit Lehrkräften"                                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [28] "+itrf_E_8: Verliert die Beherrschung"                                                                           </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [29] "+itrf_E_9: Stört andere"                                                                                        </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [30] "+itrf_E_10: Verwendet unangemessene Sprache"                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [31] "+itrf_E_11: Hat Konflikte mit Mitschülerinnen und Mitschülern"                                                  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [32] "+itrf_E_12: Kommandiert rum"                                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [33] "+itrf_E_13: Macht unangebrachte Bemerkungen"                                                                    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [34] "+itrf_E_14: Kommt unvorbereitet zum Unterricht"                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [35] "+itrf_E_15: Beteiligt sich nicht am Unterricht"                                                                 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [36] "+itrf_E_16: Respektiert nicht die Privatsphäre anderer"                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [37] "ITRF Internalizing: ITRF Internalizing"                                                                         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [38] "ITRF Externalizing: ITRF Externalizing"                                                                         </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
     </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -109,7 +147,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

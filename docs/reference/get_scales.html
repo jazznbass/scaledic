@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.999</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_scales</span><span class="op">(</span><span class="va">data</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">get_scales</span><span class="op">(</span><span class="va">data</span>, <span class="va">...</span>, .variable <span class="op">=</span> <span class="st">"item_name"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -71,6 +71,10 @@
 
 <dt>...</dt>
 <dd><p>selection definitions.</p></dd>
+
+
+<dt>.variable</dt>
+<dd><p>character with name of the dic information to be returned. Default is "item_name".</p></dd>
 
 </dl></div>
     <div id="value">
@@ -87,6 +91,41 @@ It takes mutiple filter expressions for a single data frame and returns the item
 This is mostly helpfull for functions that take multiple scale definitions like `alpha_table()`</p>
     </div>
 
+    <div id="ref-examples">
+    <h2>Examples</h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">get_scales</span><span class="op">(</span><span class="va">ex_itrf</span>,</span></span>
+<span class="r-in"><span>  <span class="st">'APD'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">'OPP'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">"SW"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>,</span></span>
+<span class="r-in"><span>  <span class="st">'AD'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span></span></span>
+<span class="r-in"><span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $APD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    itrf_E_1    itrf_E_2    itrf_E_3    itrf_E_4    itrf_E_5    itrf_E_6 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  "itrf_E_1"  "itrf_E_2"  "itrf_E_3"  "itrf_E_4"  "itrf_E_5"  "itrf_E_6" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   itrf_E_14   itrf_E_15 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "itrf_E_14" "itrf_E_15" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $OPP</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   itrf_I_20    itrf_E_7    itrf_E_8    itrf_E_9   itrf_E_10   itrf_E_11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "itrf_I_20"  "itrf_E_7"  "itrf_E_8"  "itrf_E_9" "itrf_E_10" "itrf_E_11" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   itrf_E_12   itrf_E_13   itrf_E_16 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "itrf_E_12" "itrf_E_13" "itrf_E_16" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $SW</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    itrf_I_1    itrf_I_4    itrf_I_5    itrf_I_6   itrf_I_13   itrf_I_14 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  "itrf_I_1"  "itrf_I_4"  "itrf_I_5"  "itrf_I_6" "itrf_I_13" "itrf_I_14" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   itrf_I_16   itrf_I_24 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "itrf_I_16" "itrf_I_24" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $AD</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    itrf_I_2    itrf_I_7    itrf_I_8    itrf_I_9   itrf_I_10   itrf_I_11 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  "itrf_I_2"  "itrf_I_7"  "itrf_I_8"  "itrf_I_9" "itrf_I_10" "itrf_I_11" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   itrf_I_12   itrf_I_15   itrf_I_17   itrf_I_19   itrf_I_23 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> "itrf_I_12" "itrf_I_15" "itrf_I_17" "itrf_I_19" "itrf_I_23" </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+</code></pre></div>
+    </div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top"><h2 data-toc-skip>Contents</h2>
@@ -99,7 +138,7 @@ This is mostly helpfull for functions that take multiple scale definitions like 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer></div>

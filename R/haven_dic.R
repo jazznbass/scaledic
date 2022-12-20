@@ -1,7 +1,7 @@
 #' haven labels to dic files
 #'
 #' @param data A data frame containing variables with haven labels
-#'
+#' @param remove_haven_class If TRUE, haven labels are removed.
 #' @return A data frame with dic information
 #' @export
 haven_dic <- function(data, remove_haven_class = FALSE) {
