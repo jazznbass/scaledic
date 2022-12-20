@@ -2,11 +2,14 @@
 #'
 #' @param data A data frame with dic information
 #' @param dic A dic file with scoring information
+#' @param impute_values If TRUE, missing values are imputed before scoring.
 #'
 #' @return A data frame with added scale scores
 #' @export
 
-score_from_dic <- function(data, dic, check_values = TRUE, impute_values = FALSE) {
+score_from_dic <- function(data,
+                           dic,
+                           impute_values = FALSE) {
 
   dic <- dic[!is.na(dic[[.opt$score_filter]]), ]
 

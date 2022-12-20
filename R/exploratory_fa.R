@@ -1,6 +1,7 @@
 #' Exploratory factor analysis based on the psych::fa function
 #'
 #' @param ... Arguments passed to the psych::fa function.
+#' @param factor_names A character vector with names for the resulting factors. If not provided, default names are chosen.
 #' @param sort If TRUE, loadings are sorted.
 #' @param cut Loadings below cut will be ommited in the resulting data frame.
 #' @param round Number of digitis to round loadings (based on the base::round function)

@@ -13,9 +13,6 @@ new_dic(fun, data = NULL, ...)
 
 \item{...}{dic parameters}
 }
-\value{
-
-}
 \description{
 Compute a new scaledic variable
 }

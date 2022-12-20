@@ -2,6 +2,7 @@
 #'
 #' @param scales A list with scale information
 #' @param adds Additional model definitions
+#' @param orthogonal IF TRUE, covariance parameters are set for orthogonal latent factors.
 #'
 #' @return A character string with a lavaan model definition
 #' @export

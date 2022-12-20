@@ -25,6 +25,8 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 
 \item{factors}{If set TRUE, factor variables will be turned into factors.}
 
+\item{set_label_attr}{If TRUE, label attributes from the haven package are set. These labels are shown in the Rstudio View pannel.}
+
 \item{coerce_class}{If set TRUE mismatches between class and dic type are corrected.}
 
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with NA}
@@ -33,6 +35,10 @@ filename (for now an Microsoft Excel file) containg a dictionary.}
 definitions these are applied}
 
 \item{check_values}{If TRUE, performs the check_values function on the variables of the data frame included in the dic file.}
+
+\item{impute_values}{If TRUE and score_scales is TRUE, missing values are automatically imputed based on scale information provided in the dic file.}
+
+\item{rename_var}{When a character is provided, corresponding column from the dic file is used to rename variables from rename_var to item_name.}
 }
 \value{
 A data frame with dictionary information.

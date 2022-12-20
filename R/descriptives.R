@@ -2,6 +2,7 @@
 #'
 #' @param data A data frame
 #' @param round Digits for round function
+#' @param labels If TRUE, item labels are added.
 #'
 #' @return A data frame with descriptive statistics
 #' @examples

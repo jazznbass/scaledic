@@ -2,7 +2,7 @@
 title: "Introduction to scaledic"
 output: 
   rmarkdown::html_vignette:
-  df_print: kable
+    df_print: kable
 vignette: >
   %\VignetteIndexEntry{Introduction to scaledic}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,6 +14,7 @@ library(knitr)
 library(dplyr)
 library(tibble)
 library(scaledic)
+library(stringr)
 
 knitr::opts_chunk$set(
   message = FALSE,
@@ -67,9 +68,7 @@ kable(out, caption = "Columns of a dictionary file")
 Here is extract of a dic file from the included example:
 
 ```{r dic_example}
-dic_itrf %>% 
-  slice(2:4) %>%
-  kable()
+dic_itrf %>% slice(2:4) %>% kable()
 ```
 
 ## Apply a dictionary file
@@ -87,8 +86,7 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 Let us get an overview of all scales in the dataset:
 
 ```{r list_scales}
-list_scales(dat, labels = TRUE) %>%
-  kable()
+list_scales(dat, labels = TRUE)
 ```
 
 ## Clean raw data
@@ -122,8 +120,7 @@ Let us see descriptive statistics for the Internalizing sub scale:
 ```{r descriptives}
 dat %>% 
   select_items(subscale == "Int") %>%
-  descriptives(round = 1) %>%
-  kable()
+  descriptives(round = 1)
 ```
 
 ## See items instead of labels
@@ -133,8 +130,7 @@ It is more convenient to see the original items instead of the short labels:
 ```{r desc_labels}
 dat %>% 
   select_items(subscale == "Int") %>%
-  descriptives(round = 1, label = TRUE) %>%
-  kable()
+  descriptives(round = 1, label = TRUE) 
 ```
 
 And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.  
@@ -142,22 +138,20 @@ And further we analyse the factor structure. Here we use the `rename_item()` fun
 ```{r exploratory_fa}
 dat %>%
   select_items(scale == "ITRF") %>%
-  rename_items(pattern = c("reverse", "subscale", "subscale_2", "label"), chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4) %>%
-  kable()
+  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
+  exploratory_fa(nfactors = 4, cut = 0.4) 
 ```
 
 and provide item analyses
 
 ```{r item_analysis}
-scales <- list(
-  'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
-  'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
-  "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
-  "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
+scales <- ex_itrf %>% get_scales(
+  'APD' = subscale_2 == "APD",
+  'OPP' = subscale_2 == "OPP",
+  "SW" = subscale_2 == "SW",
+  "AD" = subscale_2 == "AD"
 )
-alpha_table(dat, scales = scales) %>%
-  kable()
+alpha_table(dat, scales = scales)
 
 ```
 
@@ -191,8 +185,8 @@ and get descriptives for these scores
 ```{r desc_scores}
 dat %>%
   select_scores() %>%
-  descriptives(round = 1, label = TRUE) %>%
-  kable()
+  rename_items() %>%
+  descriptives(round = 1)
 ```
 
 

@@ -10,6 +10,8 @@ lavaan_model(scales, adds = "", orthogonal = FALSE)
 \item{scales}{A list with scale information}
 
 \item{adds}{Additional model definitions}
+
+\item{orthogonal}{IF TRUE, covariance parameters are set for orthogonal latent factors.}
 }
 \value{
 A character string with a lavaan model definition

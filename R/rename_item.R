@@ -3,78 +3,62 @@
 #' Rename items based on dic information.
 #'
 #' @param data A data frame
-#' @param pattern A character string or vector of character strings defining a prefix.
-#' May include the name of any dic attribute (e.g."item_label", "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label", or "name").
-#' @param chars If not NULL, only the first n chars og the long label will be applied.
-#' @param char_sep Character with seperator between prefix information.
-#' @param char_weight Character vector of length two with signs for negative and positive weights.
+#' @param pattern A character string with the syntax of the glue function (see example).
+#' @param max_chars,chars If not NULL, only the first n chars og the long label will be applied.
 #' @return A renamed data frame
 #' @examples
-#' ex_itrf %>%
-#'   rename_items(pattern = c("reverse", "label")) %>%
+#' ex_itrf  |>
+#'   rename_items(pattern = "{reverse}{name}: {label}")  |>
 #'   names()
 #'
 #' @export
 rename_items <- function(data,
-                         pattern = "item_label",
-                         chars = NULL,
-                         char_sep = "_",
-                         char_weight = c("(-)", "(+)"),
-                         char_prefix_label = ": ") {
+                         pattern = "{item_label}",
+                         max_chars = NULL,
+                         chars = max_chars) {
+
+  # compatibility check with older version pre glue
+  if (length(pattern) > 1 ||
+      (length(pattern) == 1 && length(grep("\\{", pattern)) == 0)) {
+    warning(
+      "The pattern definition is deprecated. ",
+      "Please use glue::glue style syntax to defnine pattern. ",
+      "E.g. '{name}: {label}'"
+    )
+    return(
+      rename_items_deprecated(
+        data, pattern, chars = max_chars, char_weight = c("(-)", "(+)")
+      )
+    )
+  }
+
+  # end
 
   for (col in 1:ncol(data)) {
     if (is.null(attr(data[[col]], .opt$dic))) next
-    new_label <- ""
-    for(i in 1:length(pattern)) {
-      pat <- pattern[i]
-      tmp_label <- ""
-      tmp_char_sep <- char_sep
-
-      if (pat == c("reverse")) {
-        tmp_label <- paste0(
-          ifelse(
-            dic_attr(data[[col]], .opt$weight) < 0,
-            char_weight[1],
-            char_weight[2])
-        )
-        tmp_char_sep <- ""
-      }
-      if (pat == "values")
-        tmp_label <- paste0("(",
-          paste0(dic_attr(data[[col]], .opt$values), collapse = ", "),
-          ")"
-        )
-
-      if (pat == "value_labels")
-        tmp_label <- paste0("(",
-          paste0(
-            dic_attr(data[[col]], .opt$value_labels)$value, " = ",
-            dic_attr(data[[col]], .opt$value_labels)$label,
-            collapse = "; "
-          ), ")"
-        )
-
-
-      if (pat == "label") pat <- .opt$item_label
-      if (pat == "name") pat <- .opt$item_name
-
-      new_pat <- !(pat %in% c("reverse", "values", "value_labels"))
-      if (new_pat) tmp_label <- dic_attr(data[[col]], pat)
-
-      if (length(pattern) > i){
-        if (pattern[i + 1] %in% c("label", "item_label"))
-          tmp_char_sep <- char_prefix_label
-      }
-
-      #if (class(tmp_label) == "character")
-      new_label <- paste0(new_label, tmp_label, tmp_char_sep)
-
-
+    new_label <- .glue_dic(attr(data[[col]], .opt$dic), pattern = pattern)
+    if (length(new_label) != 0) {
+      if (!is.null(max_chars)) new_label <- substring(new_label, 1, max_chars)
+      names(data)[col] <- new_label
     }
-    new_label <- substr(new_label, 1, nchar(new_label) - nchar(tmp_char_sep))
-    if (!is.null(chars)) new_label <- substring(new_label, 1, chars)
-    names(data)[col] <- new_label
   }
   data
+}
+
+.glue_dic <- function(dic_env, pattern, char_reverse = c("-", "+")) {
+
+  dic_env$reverse <- ifelse(dic_env$weight < 0, "-", "+")
+  if(inherits(dic_env$reverse, "logical")) dic_env$reverse <- ""
+  dic_env$label <- dic_env$item_label
+  dic_env$name <- dic_env$item_name
+  dic_env$values <- paste0(dic_env$values, collapse = ",")
+  dic_env$value_labels <- paste0(
+    dic_env$value_labels$value,
+    " = ",
+    dic_env$value_labels$label,
+    collapse = "; "
+  )
+
+  stringr::str_glue(pattern, .envir = list2env(dic_env))
 }
 

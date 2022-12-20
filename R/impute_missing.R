@@ -7,18 +7,21 @@
 #'
 #' @return A data frame with imputed data.
 #' @export
-impute_missing <- function(data, filter = NULL, scale = NULL, subscale = NULL,
-                           subscale_2 = NULL, force_to_scale = TRUE) {
+impute_missing <- function(data,
+                           filter = NULL,
+                           scale = NULL,
+                           subscale = NULL,
+                           subscale_2 = NULL,
+                           force_to_scale = TRUE) {
 
   filter <- deparse(substitute(filter))
   if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
-    filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
+    filter <- .to_filter(
+      scale = scale, subscale = subscale, subscale_2 = subscale_2
+    )
   }
 
-
-  data <- .impute_missing(data, filter, force_to_scale)
-
-  data
+  .impute_missing(data, filter, force_to_scale)
 }
 
 .impute_missing <- function(data, filter, force_to_scale = TRUE) {
@@ -29,7 +32,7 @@ impute_missing <- function(data, filter = NULL, scale = NULL, subscale = NULL,
     return(data)
   }
   cl <- class(data)
-  data[, id] <- amelia(as.data.frame(data[, id]), boot.type = "none", m = 1)$imputations[[1]]
+  data[, id] <- Amelia::amelia(as.data.frame(data[, id]), boot.type = "none", m = 1)$imputations[[1]]
   class(data) <- cl
 
   if (force_to_scale) {

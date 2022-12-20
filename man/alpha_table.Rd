@@ -38,7 +38,11 @@ alpha_table(
 
 \item{RMSEA}{If TRUE RMSEA is calculated.}
 
+\item{difficulty}{If TRUE, the difficulty of the item is calculated.}
+
 \item{values}{Sets maximum and minimum valid values necessary to calculate item difficulty}
+
+\item{fa}{If TRUE, a one factor exploratory factor analyses is calculated and loadings are reported.}
 }
 \value{
 A data frame with concise scale indices.

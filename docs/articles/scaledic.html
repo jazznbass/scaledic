@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.1.27</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2</span>
       </span>
     </div>
 
@@ -207,9 +207,7 @@ times)</td>
 </table>
 <p>Here is extract of a dic file from the included example:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dic_itrf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dic_itrf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">2</span><span class="op">:</span><span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="2%">
@@ -339,60 +337,15 @@ with NAs:</p>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="5%">
-<col width="8%">
-<col width="10%">
-<col width="28%">
-<col width="13%">
-<col width="34%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">scale</th>
-<th align="left">subscale</th>
-<th align="left">subscale_2</th>
-<th align="left">scale_label</th>
-<th align="left">subscale_label</th>
-<th align="left">subscale_2_label</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Socially Withdrawn</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Anxious/Depressed</td>
-</tr>
-<tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">OPP</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Externalizing</td>
-<td align="left">Oppositional/Disruptive</td>
-</tr>
-<tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">APD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Externalizing</td>
-<td align="left">Academic Productivity/Disorganization</td>
-</tr>
-</tbody>
-</table>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 4 × 6</span></span></span>
+<span><span class="co">#&gt;   scale subscale subscale_2 scale_label                    subscale_la…¹ subsc…²</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                          <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> ITRF  Int      SW         Integrated teacher report form Internalizing Social…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> ITRF  Int      AD         Integrated teacher report form Internalizing Anxiou…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> ITRF  Ext      OPP        Integrated teacher report form Externalizing Opposi…</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> ITRF  Ext      APD        Integrated teacher report form Externalizing Academ…</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable names ¹​subscale_label, ²​subscale_2_label</span></span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="clean-raw-data">Clean raw data<a class="anchor" aria-label="anchor" href="#clean-raw-data"></a>
@@ -417,252 +370,27 @@ scale:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="right">valid</th>
-<th align="right">missing</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">range</th>
-<th align="right">median</th>
-<th align="right">mad</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">itrf_I_1</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_2</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_4</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_5</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_6</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.5</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_7</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_8</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_9</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.5</td>
-<td align="right">0.8</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_10</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_11</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_12</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_13</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_14</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_15</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_16</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.8</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_17</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_19</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_23</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_24</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;         name valid missing mean  sd min max range median mad</span></span>
+<span><span class="co">#&gt; 1   itrf_I_1  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 2   itrf_I_2  4772       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 3   itrf_I_4  4772       4  0.3 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 4   itrf_I_5  4772       4  0.2 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 5   itrf_I_6  4772       4  0.2 0.5   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 6   itrf_I_7  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 7   itrf_I_8  4772       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 8   itrf_I_9  4772       4  0.5 0.8   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 9  itrf_I_10  4772       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 10 itrf_I_11  4772       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 11 itrf_I_12  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 12 itrf_I_13  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 13 itrf_I_14  4772       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 14 itrf_I_15  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 15 itrf_I_16  4772       4  0.4 0.8   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 16 itrf_I_17  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 17 itrf_I_19  4772       4  0.2 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 18 itrf_I_23  4772       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 19 itrf_I_24  4772       4  0.4 0.7   0   3     3      0   0</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="see-items-instead-of-labels">See items instead of labels<a class="anchor" aria-label="anchor" href="#see-items-instead-of-labels"></a>
@@ -672,698 +400,262 @@ labels:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="7%">
-<col width="54%">
-<col width="4%">
-<col width="6%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="3%">
-<col width="4%">
-<col width="5%">
-<col width="3%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="right">valid</th>
-<th align="right">missing</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">range</th>
-<th align="right">median</th>
-<th align="right">mad</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">itrf_I_1</td>
-<td align="left">Verbringt zu viel Zeit alleine</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_2</td>
-<td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_4</td>
-<td align="left">Vermeidet soziale Interaktionen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_5</td>
-<td align="left">Spielt bevorzugt alleine</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_6</td>
-<td align="left">Geht nicht auf Kontaktversuche der Mitschülerinnen und
-Mitschüler ein</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.5</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_7</td>
-<td align="left">Macht sich Sorgen über unwichtige Details</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_8</td>
-<td align="left">Beschwert sich über Kopfschmerzen oder
-Bauchschmerzen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_9</td>
-<td align="left">Wirkt unglücklich oder traurig</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.5</td>
-<td align="right">0.8</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_10</td>
-<td align="left">Klammert sich an Erwachsene</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_11</td>
-<td align="left">Verhält sich nervös</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_12</td>
-<td align="left">Verhält sich ängstlich</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_13</td>
-<td align="left">Behauptet sich nicht gegenüber anderen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_14</td>
-<td align="left">Verhält sich übermäßig schüchtern</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_15</td>
-<td align="left">Beklagt sich oder jammert</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_16</td>
-<td align="left">Beteiligt sich nicht an Gruppenaktionen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.8</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_17</td>
-<td align="left">Macht sich selbst schlecht</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_19</td>
-<td align="left">Weint oder ist weinerlich</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.2</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_23</td>
-<td align="left">Macht sich ständig Sorgen</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_24</td>
-<td align="left">Lässt sich langsam auf neue Personen ein</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.4</td>
-<td align="right">0.7</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
+<span><span class="co">#&gt;         name</span></span>
+<span><span class="co">#&gt; 1   itrf_I_1</span></span>
+<span><span class="co">#&gt; 2   itrf_I_2</span></span>
+<span><span class="co">#&gt; 3   itrf_I_4</span></span>
+<span><span class="co">#&gt; 4   itrf_I_5</span></span>
+<span><span class="co">#&gt; 5   itrf_I_6</span></span>
+<span><span class="co">#&gt; 6   itrf_I_7</span></span>
+<span><span class="co">#&gt; 7   itrf_I_8</span></span>
+<span><span class="co">#&gt; 8   itrf_I_9</span></span>
+<span><span class="co">#&gt; 9  itrf_I_10</span></span>
+<span><span class="co">#&gt; 10 itrf_I_11</span></span>
+<span><span class="co">#&gt; 11 itrf_I_12</span></span>
+<span><span class="co">#&gt; 12 itrf_I_13</span></span>
+<span><span class="co">#&gt; 13 itrf_I_14</span></span>
+<span><span class="co">#&gt; 14 itrf_I_15</span></span>
+<span><span class="co">#&gt; 15 itrf_I_16</span></span>
+<span><span class="co">#&gt; 16 itrf_I_17</span></span>
+<span><span class="co">#&gt; 17 itrf_I_19</span></span>
+<span><span class="co">#&gt; 18 itrf_I_23</span></span>
+<span><span class="co">#&gt; 19 itrf_I_24</span></span>
+<span><span class="co">#&gt;                                                                    label valid</span></span>
+<span><span class="co">#&gt; 1                                         Verbringt zu viel Zeit alleine  4772</span></span>
+<span><span class="co">#&gt; 2                           Beschwert sich über Krankheit oder Schmerzen  4772</span></span>
+<span><span class="co">#&gt; 3                                        Vermeidet soziale Interaktionen  4772</span></span>
+<span><span class="co">#&gt; 4                                               Spielt bevorzugt alleine  4772</span></span>
+<span><span class="co">#&gt; 5  Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein  4772</span></span>
+<span><span class="co">#&gt; 6                              Macht sich Sorgen über unwichtige Details  4772</span></span>
+<span><span class="co">#&gt; 7                  Beschwert sich über Kopfschmerzen oder Bauchschmerzen  4772</span></span>
+<span><span class="co">#&gt; 8                                         Wirkt unglücklich oder traurig  4772</span></span>
+<span><span class="co">#&gt; 9                                            Klammert sich an Erwachsene  4772</span></span>
+<span><span class="co">#&gt; 10                                                   Verhält sich nervös  4772</span></span>
+<span><span class="co">#&gt; 11                                                Verhält sich ängstlich  4772</span></span>
+<span><span class="co">#&gt; 12                                Behauptet sich nicht gegenüber anderen  4772</span></span>
+<span><span class="co">#&gt; 13                                     Verhält sich übermäßig schüchtern  4772</span></span>
+<span><span class="co">#&gt; 14                                             Beklagt sich oder jammert  4772</span></span>
+<span><span class="co">#&gt; 15                               Beteiligt sich nicht an Gruppenaktionen  4772</span></span>
+<span><span class="co">#&gt; 16                                            Macht sich selbst schlecht  4772</span></span>
+<span><span class="co">#&gt; 17                                             Weint oder ist weinerlich  4772</span></span>
+<span><span class="co">#&gt; 18                                             Macht sich ständig Sorgen  4772</span></span>
+<span><span class="co">#&gt; 19                              Lässt sich langsam auf neue Personen ein  4772</span></span>
+<span><span class="co">#&gt;    missing mean  sd min max range median mad</span></span>
+<span><span class="co">#&gt; 1        4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 2        4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 3        4  0.3 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 4        4  0.2 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 5        4  0.2 0.5   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 6        4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 7        4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 8        4  0.5 0.8   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 9        4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 10       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 11       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 12       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 13       4  0.3 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 14       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 15       4  0.4 0.8   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 16       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 17       4  0.2 0.6   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 18       4  0.4 0.7   0   3     3      0   0</span></span>
+<span><span class="co">#&gt; 19       4  0.4 0.7   0   3     3      0   0</span></span></code></pre></div>
 <p>And further we analyse the factor structure. Here we use the
 <code>rename_item()</code> function to get a more convenient
 description.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"reverse"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span>, <span class="st">"label"</span><span class="op">)</span>, chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="78%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
-</colgroup>
-<thead><tr class="header">
-<th align="left"></th>
-<th align="left">MR1</th>
-<th align="left">MR3</th>
-<th align="left">MR2</th>
-<th align="left">MR4</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">(+)Ext_OPP: Verliert die Beherrschung</td>
-<td align="left">0.85</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_OPP: Macht unangebrachte Bemerkungen</td>
-<td align="left">0.83</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_OPP: Streitet und zankt mit Lehrkräften</td>
-<td align="left">0.8</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und
-Mitschülern</td>
-<td align="left">0.8</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_OPP: Kommandiert rum</td>
-<td align="left">0.78</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_OPP: Verwendet unangemessene Sprache</td>
-<td align="left">0.78</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
-<td align="left">0.77</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_OPP: Stört andere</td>
-<td align="left">0.65</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre
-anderer</td>
-<td align="left">0.64</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_APD: Erledigt Hausaufgaben unvollständig</td>
-<td align="left"></td>
-<td align="left">0.82</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht
-selbstständig vor</td>
-<td align="left"></td>
-<td align="left">0.8</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_APD: Stellt Unterrichtsaufgaben nicht
-rechtzeitig fertig</td>
-<td align="left"></td>
-<td align="left">0.76</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
-<td align="left"></td>
-<td align="left">0.73</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
-<td align="left"></td>
-<td align="left">0.73</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt
-werden, nicht mit</td>
-<td align="left"></td>
-<td align="left">0.73</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht
-selbstständig</td>
-<td align="left"></td>
-<td align="left">0.72</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
-<td align="left"></td>
-<td align="left">0.53</td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_SW: Vermeidet soziale Interaktionen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.86</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_SW: Geht nicht auf Kontaktversuche der
-Mitschülerinnen und Mits</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.79</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.79</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.66</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.66</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.54</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_SW: Behauptet sich nicht gegenüber anderen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.5</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_SW: Lässt sich langsam auf neue Personen
-ein</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.47</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder
-Bauchschmerzen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.73</td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_AD: Macht sich ständig Sorgen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.71</td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Beschwert sich über Krankheit oder
-Schmerzen</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.7</td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_AD: Beklagt sich oder jammert</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.65</td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Macht sich Sorgen über unwichtige
-Details</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.65</td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_AD: Weint oder ist weinerlich</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.59</td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Verhält sich ängstlich</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.47</td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_AD: Wirkt unglücklich oder traurig</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.47</td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Macht sich selbst schlecht</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.44</td>
-</tr>
-<tr class="odd">
-<td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.4</td>
-</tr>
-<tr class="even">
-<td align="left">(+)Int_AD: Verhält sich nervös</td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"></td>
-<td align="left">0.4</td>
-</tr>
-<tr class="odd">
-<td align="left">SS loadings</td>
-<td align="left">6</td>
-<td align="left">4.79</td>
-<td align="left">4.53</td>
-<td align="left">4.35</td>
-</tr>
-<tr class="even">
-<td align="left">Proportion Var</td>
-<td align="left">0.17</td>
-<td align="left">0.13</td>
-<td align="left">0.13</td>
-<td align="left">0.12</td>
-</tr>
-<tr class="odd">
-<td align="left">Cumulative Var</td>
-<td align="left">0.17</td>
-<td align="left">0.3</td>
-<td align="left">0.43</td>
-<td align="left">0.55</td>
-</tr>
-<tr class="even">
-<td align="left">Proportion Explained</td>
-<td align="left">0.31</td>
-<td align="left">0.24</td>
-<td align="left">0.23</td>
-<td align="left">0.22</td>
-</tr>
-<tr class="odd">
-<td align="left">Cumulative Proportion</td>
-<td align="left">0.31</td>
-<td align="left">0.55</td>
-<td align="left">0.78</td>
-<td align="left">1</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"({reverse}){subscale}_{subscale_2}: {label}"</span>, max_chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> </span>
+<span><span class="co">#&gt;                                                                         MR1</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                  0.85</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                            0.83</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                          0.8</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern           0.8</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                            0.78</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                            0.78</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                      0.77</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Stört andere                                               0.65</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                 0.64</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span></span>
+<span><span class="co">#&gt; SS loadings                                                            6.01</span></span>
+<span><span class="co">#&gt; Proportion Var                                                         0.17</span></span>
+<span><span class="co">#&gt; Cumulative Var                                                         0.17</span></span>
+<span><span class="co">#&gt; Proportion Explained                                                   0.31</span></span>
+<span><span class="co">#&gt; Cumulative Proportion                                                  0.31</span></span>
+<span><span class="co">#&gt;                                                                         MR3</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                        0.82</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor           0.8</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig        0.76</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                         0.73</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                     0.73</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit 0.72</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig    0.72</span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                         0.53</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span></span>
+<span><span class="co">#&gt; SS loadings                                                            4.79</span></span>
+<span><span class="co">#&gt; Proportion Var                                                         0.13</span></span>
+<span><span class="co">#&gt; Cumulative Var                                                          0.3</span></span>
+<span><span class="co">#&gt; Proportion Explained                                                   0.24</span></span>
+<span><span class="co">#&gt; Cumulative Proportion                                                  0.55</span></span>
+<span><span class="co">#&gt;                                                                         MR2</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                             0.86</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits 0.79</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                    0.78</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                              0.67</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                     0.66</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                           0.54</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                       0.5</span></span>
+<span><span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                    0.47</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen           </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                    </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                       </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                          </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                                  </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                      </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                     </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                             </span></span>
+<span><span class="co">#&gt; SS loadings                                                            4.53</span></span>
+<span><span class="co">#&gt; Proportion Var                                                         0.13</span></span>
+<span><span class="co">#&gt; Cumulative Var                                                         0.43</span></span>
+<span><span class="co">#&gt; Proportion Explained                                                   0.23</span></span>
+<span><span class="co">#&gt; Cumulative Proportion                                                  0.78</span></span>
+<span><span class="co">#&gt;                                                                         MR4</span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verliert die Beherrschung                                      </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Macht unangebrachte Bemerkungen                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Streitet und zankt mit Lehrkräften                             </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Hat Konflikte mit Mitschülerinnen und Mitschülern              </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Kommandiert rum                                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Verwendet unangemessene Sprache                                </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Ist schnell verärgert                                          </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Stört andere                                                   </span></span>
+<span><span class="co">#&gt; (+)Ext_OPP: Respektiert nicht die Privatsphäre anderer                     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Erledigt Hausaufgaben unvollständig                            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Zeigt Unterrichtsaufgaben nicht selbstständig vor              </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Stellt Unterrichtsaufgaben nicht rechtzeitig fertig            </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kommt unvorbereitet zum Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Kontrolliert seine eigene Arbeit nicht                         </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit     </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig        </span></span>
+<span><span class="co">#&gt; (+)Ext_APD: Beteiligt sich nicht am Unterricht                             </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Vermeidet soziale Interaktionen                                 </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Geht nicht auf Kontaktversuche der Mitschülerinnen und Mits     </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Spielt bevorzugt alleine                                        </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verbringt zu viel Zeit alleine                                  </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Beteiligt sich nicht an Gruppenaktionen                         </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Verhält sich übermäßig schüchtern                               </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Behauptet sich nicht gegenüber anderen                          </span></span>
+<span><span class="co">#&gt; (+)Int_SW: Lässt sich langsam auf neue Personen ein                        </span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen       0.73</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich ständig Sorgen                                   0.71</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beschwert sich über Krankheit oder Schmerzen                 0.7</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Beklagt sich oder jammert                                   0.65</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich Sorgen über unwichtige Details                   0.64</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Weint oder ist weinerlich                                   0.59</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich ängstlich                                      0.47</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Wirkt unglücklich oder traurig                              0.47</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Macht sich selbst schlecht                                  0.44</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Klammert sich an Erwachsene                                  0.4</span></span>
+<span><span class="co">#&gt; (+)Int_AD: Verhält sich nervös                                          0.4</span></span>
+<span><span class="co">#&gt; SS loadings                                                            4.34</span></span>
+<span><span class="co">#&gt; Proportion Var                                                         0.12</span></span>
+<span><span class="co">#&gt; Cumulative Var                                                         0.55</span></span>
+<span><span class="co">#&gt; Proportion Explained                                                   0.22</span></span>
+<span><span class="co">#&gt; Cumulative Proportion                                                     1</span></span></code></pre></div>
 <p>and provide item analyses</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">scales</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
-<span>  <span class="st">'APD'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="st">'OPP'</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="st">"SW"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span>
-<span>  <span class="st">"AD"</span> <span class="op">=</span> <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span>, names_only <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">scales</span> <span class="op">&lt;-</span> <span class="va">ex_itrf</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/get_scales.html">get_scales</a></span><span class="op">(</span></span>
+<span>  <span class="st">'APD'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>,</span>
+<span>  <span class="st">'OPP'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>,</span>
+<span>  <span class="st">"SW"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>,</span>
+<span>  <span class="st">"AD"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="4%">
-<col width="4%">
-<col width="6%">
-<col width="11%">
-<col width="14%">
-<col width="9%">
-<col width="12%">
-<col width="9%">
-<col width="9%">
-<col width="16%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">Scale</th>
-<th align="right">n</th>
-<th align="right">n items</th>
-<th align="left">Alpha(CI95%)</th>
-<th align="left">Std.Alpha(CI95%)</th>
-<th align="left">Homogeneity</th>
-<th align="left">Discrimination</th>
-<th align="left">M</th>
-<th align="left">SD</th>
-<th align="left">|Loading|</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">APD</td>
-<td align="right">4776</td>
-<td align="right">8</td>
-<td align="left">.91 (.9-.91)</td>
-<td align="left">.91 (.91-.91)</td>
-<td align="left">.56</td>
-<td align="left">.53 - .78</td>
-<td align="left">0.39 - 0.95</td>
-<td align="left">0.75 - 1.04</td>
-<td align="left">.55 - .82</td>
-</tr>
-<tr class="even">
-<td align="left">OPP</td>
-<td align="right">4776</td>
-<td align="right">9</td>
-<td align="left">.94 (.93-.94)</td>
-<td align="left">.94 (.94-.94)</td>
-<td align="left">.63</td>
-<td align="left">.68 - .81</td>
-<td align="left">0.35 - 0.83</td>
-<td align="left">0.72 - 0.96</td>
-<td align="left">.7 - .85</td>
-</tr>
-<tr class="odd">
-<td align="left">SW</td>
-<td align="right">4772</td>
-<td align="right">8</td>
-<td align="left">.88 (.87-.88)</td>
-<td align="left">.88 (.88-.89)</td>
-<td align="left">.48</td>
-<td align="left">.53 - .78</td>
-<td align="left">0.21 - 0.43</td>
-<td align="left">0.51 - 0.76</td>
-<td align="left">.56 - .86</td>
-</tr>
-<tr class="even">
-<td align="left">AD</td>
-<td align="right">4772</td>
-<td align="right">11</td>
-<td align="left">.88 (.88-.89)</td>
-<td align="left">.88 (.88-.89)</td>
-<td align="left">.41</td>
-<td align="left">.52 - .69</td>
-<td align="left">0.23 - 0.48</td>
-<td align="left">0.59 - 0.77</td>
-<td align="left">.55 - .74</td>
-</tr>
-</tbody>
-</table>
+<span><span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   Scale    n n items  Alpha(CI95%) Std.Alpha(CI95%) Homogeneity Discrimination</span></span>
+<span><span class="co">#&gt; 1   APD 4776       8  .91 (.9-.91)    .91 (.91-.91)         .56      .53 - .78</span></span>
+<span><span class="co">#&gt; 2   OPP 4776       9 .94 (.93-.94)    .94 (.94-.94)         .63      .68 - .81</span></span>
+<span><span class="co">#&gt; 3    SW 4772       8 .88 (.87-.88)    .88 (.88-.89)         .48      .53 - .78</span></span>
+<span><span class="co">#&gt; 4    AD 4772      11 .88 (.88-.89)    .88 (.88-.89)         .41      .52 - .69</span></span>
+<span><span class="co">#&gt;             M          SD |Loading|</span></span>
+<span><span class="co">#&gt; 1 0.38 - 0.95 0.75 - 1.04 .55 - .82</span></span>
+<span><span class="co">#&gt; 2 0.35 - 0.83 0.72 - 0.96  .7 - .85</span></span>
+<span><span class="co">#&gt; 3 0.21 - 0.43 0.51 - 0.76 .56 - .86</span></span>
+<span><span class="co">#&gt; 4 0.23 - 0.48 0.59 - 0.77 .55 - .74</span></span></code></pre></div>
 <p>and even a confirmatory factor analysis with the use of the lavaan
 package.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
@@ -1389,29 +681,29 @@ package.</p>
 <span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>Model Test User Model<span class="sc">:</span></span>
 <span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                                                       </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21179.220</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21227.211</span></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                                <span class="dv">588</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span><span class="fu">value</span> (Chi<span class="sc">-</span>square)                            <span class="fl">0.000</span></span>
 <span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>Model Test Baseline Model<span class="sc">:</span></span>
 <span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110798.211</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110895.486</span></span>
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                               <span class="dv">630</span></span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value                                        <span class="fl">0.000</span></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>User Model versus Baseline Model<span class="sc">:</span></span>
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  Comparative Fit <span class="fu">Index</span> (CFI)                    <span class="fl">0.813</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  Tucker<span class="sc">-</span>Lewis <span class="fu">Index</span> (TLI)                       <span class="fl">0.800</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  Tucker<span class="sc">-</span>Lewis <span class="fu">Index</span> (TLI)                       <span class="fl">0.799</span></span>
 <span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>Loglikelihood and Information Criteria<span class="sc">:</span></span>
 <span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152403.989</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152362.617</span></span>
 <span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  Loglikelihood unrestricted <span class="fu">model</span> (H1)             <span class="cn">NA</span></span>
 <span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                                                      </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304963.978</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305468.679</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305220.824</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304881.234</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305385.934</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (BIC)       <span class="fl">305138.079</span></span>
 <span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Root Mean Square Error of Approximation<span class="sc">:</span></span>
 <span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -1422,7 +714,7 @@ package.</p>
 <span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>Standardized Root Mean Square Residual<span class="sc">:</span></span>
 <span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  SRMR                                           <span class="fl">0.080</span></span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>  SRMR                                           <span class="fl">0.081</span></span>
 <span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>Parameter Estimates<span class="sc">:</span></span>
 <span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a></span>
@@ -1434,99 +726,99 @@ package.</p>
 <span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>  APD <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    itrf_E_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.954</span>    <span class="fl">0.017</span>   <span class="fl">55.276</span>    <span class="fl">0.000</span></span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.914</span>    <span class="fl">0.016</span>   <span class="fl">57.376</span>    <span class="fl">0.000</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.895</span>    <span class="fl">0.015</span>   <span class="fl">59.064</span>    <span class="fl">0.000</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.951</span>    <span class="fl">0.017</span>   <span class="fl">55.678</span>    <span class="fl">0.000</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.824</span>    <span class="fl">0.015</span>   <span class="fl">53.168</span>    <span class="fl">0.000</span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.717</span>    <span class="fl">0.013</span>   <span class="fl">53.899</span>    <span class="fl">0.000</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.635</span>    <span class="fl">0.017</span>   <span class="fl">37.878</span>    <span class="fl">0.000</span></span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.958</span>    <span class="fl">0.017</span>   <span class="fl">55.344</span>    <span class="fl">0.000</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.915</span>    <span class="fl">0.016</span>   <span class="fl">57.435</span>    <span class="fl">0.000</span></span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.895</span>    <span class="fl">0.015</span>   <span class="fl">58.944</span>    <span class="fl">0.000</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.948</span>    <span class="fl">0.017</span>   <span class="fl">55.403</span>    <span class="fl">0.000</span></span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.823</span>    <span class="fl">0.016</span>   <span class="fl">53.035</span>    <span class="fl">0.000</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.717</span>    <span class="fl">0.013</span>   <span class="fl">53.781</span>    <span class="fl">0.000</span></span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.634</span>    <span class="fl">0.017</span>   <span class="fl">37.790</span>    <span class="fl">0.000</span></span>
 <span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>  OPP <span class="ot">=</span><span class="er">~</span>                                              </span>
 <span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    itrf_I_20         <span class="fl">1.000</span>                           </span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.848</span>    <span class="fl">0.013</span>   <span class="fl">65.074</span>    <span class="fl">0.000</span></span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.044</span>    <span class="fl">0.015</span>   <span class="fl">68.245</span>    <span class="fl">0.000</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.995</span>    <span class="fl">0.017</span>   <span class="fl">58.309</span>    <span class="fl">0.000</span></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.893</span>    <span class="fl">0.014</span>   <span class="fl">65.079</span>    <span class="fl">0.000</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.089</span>    <span class="fl">0.016</span>   <span class="fl">66.748</span>    <span class="fl">0.000</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.802</span>    <span class="fl">0.015</span>   <span class="fl">54.858</span>    <span class="fl">0.000</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.977</span>    <span class="fl">0.014</span>   <span class="fl">67.500</span>    <span class="fl">0.000</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.680</span>    <span class="fl">0.013</span>   <span class="fl">52.005</span>    <span class="fl">0.000</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.848</span>    <span class="fl">0.013</span>   <span class="fl">65.106</span>    <span class="fl">0.000</span></span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.044</span>    <span class="fl">0.015</span>   <span class="fl">68.320</span>    <span class="fl">0.000</span></span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.993</span>    <span class="fl">0.017</span>   <span class="fl">58.248</span>    <span class="fl">0.000</span></span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.893</span>    <span class="fl">0.014</span>   <span class="fl">65.200</span>    <span class="fl">0.000</span></span>
+<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.090</span>    <span class="fl">0.016</span>   <span class="fl">66.828</span>    <span class="fl">0.000</span></span>
+<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.804</span>    <span class="fl">0.015</span>   <span class="fl">55.008</span>    <span class="fl">0.000</span></span>
+<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.978</span>    <span class="fl">0.014</span>   <span class="fl">67.647</span>    <span class="fl">0.000</span></span>
+<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.680</span>    <span class="fl">0.013</span>   <span class="fl">52.013</span>    <span class="fl">0.000</span></span>
 <span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>  SW <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>    itrf_I_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.028</span>    <span class="fl">0.017</span>   <span class="fl">59.750</span>    <span class="fl">0.000</span></span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.911</span>    <span class="fl">0.016</span>   <span class="fl">56.550</span>    <span class="fl">0.000</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.763</span>    <span class="fl">0.014</span>   <span class="fl">54.796</span>    <span class="fl">0.000</span></span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.750</span>    <span class="fl">0.020</span>   <span class="fl">37.258</span>    <span class="fl">0.000</span></span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.695</span>    <span class="fl">0.019</span>   <span class="fl">36.050</span>    <span class="fl">0.000</span></span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.013</span>    <span class="fl">0.021</span>   <span class="fl">48.329</span>    <span class="fl">0.000</span></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.742</span>    <span class="fl">0.020</span>   <span class="fl">37.622</span>    <span class="fl">0.000</span></span>
+<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.021</span>    <span class="fl">0.017</span>   <span class="fl">60.510</span>    <span class="fl">0.000</span></span>
+<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.904</span>    <span class="fl">0.016</span>   <span class="fl">57.138</span>    <span class="fl">0.000</span></span>
+<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.758</span>    <span class="fl">0.014</span>   <span class="fl">55.375</span>    <span class="fl">0.000</span></span>
+<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.745</span>    <span class="fl">0.020</span>   <span class="fl">37.421</span>    <span class="fl">0.000</span></span>
+<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.690</span>    <span class="fl">0.019</span>   <span class="fl">36.186</span>    <span class="fl">0.000</span></span>
+<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.003</span>    <span class="fl">0.021</span>   <span class="fl">48.572</span>    <span class="fl">0.000</span></span>
+<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.734</span>    <span class="fl">0.019</span>   <span class="fl">37.646</span>    <span class="fl">0.000</span></span>
 <span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>  AD <span class="ot">=</span><span class="er">~</span>                                               </span>
 <span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>    itrf_I_2          <span class="fl">1.000</span>                           </span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.121</span>    <span class="fl">0.028</span>   <span class="fl">40.050</span>    <span class="fl">0.000</span></span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.016</span>    <span class="fl">0.027</span>   <span class="fl">37.930</span>    <span class="fl">0.000</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.230</span>    <span class="fl">0.030</span>   <span class="fl">40.758</span>    <span class="fl">0.000</span></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.860</span>    <span class="fl">0.025</span>   <span class="fl">34.332</span>    <span class="fl">0.000</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.878</span>    <span class="fl">0.026</span>   <span class="fl">34.157</span>    <span class="fl">0.000</span></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.950</span>    <span class="fl">0.026</span>   <span class="fl">36.206</span>    <span class="fl">0.000</span></span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.134</span>    <span class="fl">0.028</span>   <span class="fl">40.670</span>    <span class="fl">0.000</span></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.003</span>    <span class="fl">0.027</span>   <span class="fl">36.778</span>    <span class="fl">0.000</span></span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.819</span>    <span class="fl">0.022</span>   <span class="fl">36.476</span>    <span class="fl">0.000</span></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.134</span>    <span class="fl">0.027</span>   <span class="fl">42.104</span>    <span class="fl">0.000</span></span>
+<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.120</span>    <span class="fl">0.028</span>   <span class="fl">39.990</span>    <span class="fl">0.000</span></span>
+<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.017</span>    <span class="fl">0.027</span>   <span class="fl">37.923</span>    <span class="fl">0.000</span></span>
+<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.229</span>    <span class="fl">0.030</span>   <span class="fl">40.668</span>    <span class="fl">0.000</span></span>
+<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.861</span>    <span class="fl">0.025</span>   <span class="fl">34.325</span>    <span class="fl">0.000</span></span>
+<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.876</span>    <span class="fl">0.026</span>   <span class="fl">34.085</span>    <span class="fl">0.000</span></span>
+<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.949</span>    <span class="fl">0.026</span>   <span class="fl">36.138</span>    <span class="fl">0.000</span></span>
+<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.135</span>    <span class="fl">0.028</span>   <span class="fl">40.648</span>    <span class="fl">0.000</span></span>
+<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.004</span>    <span class="fl">0.027</span>   <span class="fl">36.757</span>    <span class="fl">0.000</span></span>
+<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.820</span>    <span class="fl">0.022</span>   <span class="fl">36.462</span>    <span class="fl">0.000</span></span>
+<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.137</span>    <span class="fl">0.027</span>   <span class="fl">42.126</span>    <span class="fl">0.000</span></span>
 <span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a>Covariances<span class="sc">:</span></span>
 <span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
 <span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>  APD <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.285</span>    <span class="fl">0.011</span>   <span class="fl">26.229</span>    <span class="fl">0.000</span></span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.147</span>    <span class="fl">0.007</span>   <span class="fl">19.778</span>    <span class="fl">0.000</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.677</span>    <span class="fl">0.000</span></span>
+<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.284</span>    <span class="fl">0.011</span>   <span class="fl">26.176</span>    <span class="fl">0.000</span></span>
+<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.147</span>    <span class="fl">0.007</span>   <span class="fl">19.740</span>    <span class="fl">0.000</span></span>
+<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.691</span>    <span class="fl">0.000</span></span>
 <span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>  OPP <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.953</span>    <span class="fl">0.000</span></span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.137</span>    <span class="fl">0.006</span>   <span class="fl">22.392</span>    <span class="fl">0.000</span></span>
+<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.923</span>    <span class="fl">0.000</span></span>
+<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.006</span>   <span class="fl">22.376</span>    <span class="fl">0.000</span></span>
 <span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>  SW <span class="sc">~</span><span class="er">~</span>                                               </span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.131</span>    <span class="fl">0.005</span>   <span class="fl">25.777</span>    <span class="fl">0.000</span></span>
+<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.132</span>    <span class="fl">0.005</span>   <span class="fl">25.863</span>    <span class="fl">0.000</span></span>
 <span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a>Variances<span class="sc">:</span></span>
 <span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.460</span>    <span class="fl">0.011</span>   <span class="fl">43.144</span>    <span class="fl">0.000</span></span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.379</span>    <span class="fl">0.009</span>   <span class="fl">42.544</span>    <span class="fl">0.000</span></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">41.362</span>    <span class="fl">0.000</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.243</span>    <span class="fl">0.006</span>   <span class="fl">40.174</span>    <span class="fl">0.000</span></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.365</span>    <span class="fl">0.009</span>   <span class="fl">42.338</span>    <span class="fl">0.000</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.333</span>    <span class="fl">0.008</span>   <span class="fl">43.493</span>    <span class="fl">0.000</span></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.238</span>    <span class="fl">0.006</span>   <span class="fl">43.187</span>    <span class="fl">0.000</span></span>
-<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.578</span>    <span class="fl">0.012</span>   <span class="fl">47.029</span>    <span class="fl">0.000</span></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">43.562</span>    <span class="fl">0.000</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.187</span>    <span class="fl">0.004</span>   <span class="fl">42.899</span>    <span class="fl">0.000</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.006</span>   <span class="fl">41.425</span>    <span class="fl">0.000</span></span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.395</span>    <span class="fl">0.009</span>   <span class="fl">44.975</span>    <span class="fl">0.000</span></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.897</span>    <span class="fl">0.000</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.276</span>    <span class="fl">0.007</span>   <span class="fl">42.176</span>    <span class="fl">0.000</span></span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.698</span>    <span class="fl">0.000</span></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.210</span>    <span class="fl">0.005</span>   <span class="fl">41.813</span>    <span class="fl">0.000</span></span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.268</span>    <span class="fl">0.006</span>   <span class="fl">46.185</span>    <span class="fl">0.000</span></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.227</span>    <span class="fl">0.005</span>   <span class="fl">43.005</span>    <span class="fl">0.000</span></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.105</span>    <span class="fl">0.003</span>   <span class="fl">35.385</span>    <span class="fl">0.000</span></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.372</span>    <span class="fl">0.000</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.097</span>    <span class="fl">0.002</span>   <span class="fl">40.840</span>    <span class="fl">0.000</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.360</span>    <span class="fl">0.008</span>   <span class="fl">46.797</span>    <span class="fl">0.000</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.338</span>    <span class="fl">0.007</span>   <span class="fl">46.973</span>    <span class="fl">0.000</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.291</span>    <span class="fl">0.007</span>   <span class="fl">44.184</span>    <span class="fl">0.000</span></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.343</span>    <span class="fl">0.007</span>   <span class="fl">46.741</span>    <span class="fl">0.000</span></span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">44.997</span>    <span class="fl">0.000</span></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.274</span>    <span class="fl">0.006</span>   <span class="fl">43.885</span>    <span class="fl">0.000</span></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.285</span>    <span class="fl">0.006</span>   <span class="fl">44.944</span>    <span class="fl">0.000</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.303</span>    <span class="fl">0.007</span>   <span class="fl">43.445</span>    <span class="fl">0.000</span></span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.298</span>    <span class="fl">0.006</span>   <span class="fl">46.166</span>    <span class="fl">0.000</span></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.212</span>    <span class="fl">0.000</span></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.300</span>    <span class="fl">0.007</span>   <span class="fl">45.598</span>    <span class="fl">0.000</span></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.502</span>    <span class="fl">0.000</span></span>
+<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.461</span>    <span class="fl">0.011</span>   <span class="fl">43.163</span>    <span class="fl">0.000</span></span>
+<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.378</span>    <span class="fl">0.009</span>   <span class="fl">42.464</span>    <span class="fl">0.000</span></span>
+<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.290</span>    <span class="fl">0.007</span>   <span class="fl">41.262</span>    <span class="fl">0.000</span></span>
+<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.243</span>    <span class="fl">0.006</span>   <span class="fl">40.187</span>    <span class="fl">0.000</span></span>
+<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.368</span>    <span class="fl">0.009</span>   <span class="fl">42.434</span>    <span class="fl">0.000</span></span>
+<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.333</span>    <span class="fl">0.008</span>   <span class="fl">43.514</span>    <span class="fl">0.000</span></span>
+<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.239</span>    <span class="fl">0.006</span>   <span class="fl">43.201</span>    <span class="fl">0.000</span></span>
+<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.579</span>    <span class="fl">0.012</span>   <span class="fl">47.034</span>    <span class="fl">0.000</span></span>
+<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">43.554</span>    <span class="fl">0.000</span></span>
+<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.188</span>    <span class="fl">0.004</span>   <span class="fl">42.918</span>    <span class="fl">0.000</span></span>
+<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.005</span>   <span class="fl">41.430</span>    <span class="fl">0.000</span></span>
+<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.396</span>    <span class="fl">0.009</span>   <span class="fl">45.005</span>    <span class="fl">0.000</span></span>
+<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.207</span>    <span class="fl">0.005</span>   <span class="fl">42.880</span>    <span class="fl">0.000</span></span>
+<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.276</span>    <span class="fl">0.007</span>   <span class="fl">42.178</span>    <span class="fl">0.000</span></span>
+<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.314</span>    <span class="fl">0.007</span>   <span class="fl">45.681</span>    <span class="fl">0.000</span></span>
+<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.210</span>    <span class="fl">0.005</span>   <span class="fl">41.781</span>    <span class="fl">0.000</span></span>
+<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.268</span>    <span class="fl">0.006</span>   <span class="fl">46.192</span>    <span class="fl">0.000</span></span>
+<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.222</span>    <span class="fl">0.005</span>   <span class="fl">42.823</span>    <span class="fl">0.000</span></span>
+<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.104</span>    <span class="fl">0.003</span>   <span class="fl">35.370</span>    <span class="fl">0.000</span></span>
+<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.428</span>    <span class="fl">0.000</span></span>
+<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.097</span>    <span class="fl">0.002</span>   <span class="fl">40.854</span>    <span class="fl">0.000</span></span>
+<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.361</span>    <span class="fl">0.008</span>   <span class="fl">46.808</span>    <span class="fl">0.000</span></span>
+<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.339</span>    <span class="fl">0.007</span>   <span class="fl">46.985</span>    <span class="fl">0.000</span></span>
+<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">44.252</span>    <span class="fl">0.000</span></span>
+<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">46.774</span>    <span class="fl">0.000</span></span>
+<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.281</span>    <span class="fl">0.006</span>   <span class="fl">45.009</span>    <span class="fl">0.000</span></span>
+<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.274</span>    <span class="fl">0.006</span>   <span class="fl">43.902</span>    <span class="fl">0.000</span></span>
+<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.285</span>    <span class="fl">0.006</span>   <span class="fl">44.936</span>    <span class="fl">0.000</span></span>
+<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.304</span>    <span class="fl">0.007</span>   <span class="fl">43.483</span>    <span class="fl">0.000</span></span>
+<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.297</span>    <span class="fl">0.006</span>   <span class="fl">46.162</span>    <span class="fl">0.000</span></span>
+<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.227</span>    <span class="fl">0.000</span></span>
+<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.300</span>    <span class="fl">0.007</span>   <span class="fl">45.614</span>    <span class="fl">0.000</span></span>
+<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.496</span>    <span class="fl">0.000</span></span>
 <span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.397</span>    <span class="fl">0.000</span></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">45.505</span>    <span class="fl">0.000</span></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.441</span>    <span class="fl">0.000</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.625</span>    <span class="fl">0.021</span>   <span class="fl">30.142</span>    <span class="fl">0.000</span></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.529</span>    <span class="fl">0.016</span>   <span class="fl">33.033</span>    <span class="fl">0.000</span></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.280</span>    <span class="fl">0.010</span>   <span class="fl">29.134</span>    <span class="fl">0.000</span></span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.495</span>    <span class="fl">0.000</span></span></code></pre></div>
+<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">45.502</span>    <span class="fl">0.000</span></span>
+<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.392</span>    <span class="fl">0.000</span></span>
+<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.623</span>    <span class="fl">0.021</span>   <span class="fl">30.097</span>    <span class="fl">0.000</span></span>
+<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.529</span>    <span class="fl">0.016</span>   <span class="fl">33.061</span>    <span class="fl">0.000</span></span>
+<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.284</span>    <span class="fl">0.010</span>   <span class="fl">29.458</span>    <span class="fl">0.000</span></span>
+<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.191</span>    <span class="fl">0.008</span>   <span class="fl">23.469</span>    <span class="fl">0.000</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="build-scale-scores">Build scale scores<a class="anchor" aria-label="anchor" href="#build-scale-scores"></a>
@@ -1539,64 +831,11 @@ package.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/select_scores.html">select_scores</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span>, label <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<table class="table">
-<colgroup>
-<col width="12%">
-<col width="19%">
-<col width="8%">
-<col width="11%">
-<col width="7%">
-<col width="5%">
-<col width="5%">
-<col width="5%">
-<col width="8%">
-<col width="9%">
-<col width="5%">
-</colgroup>
-<thead><tr class="header">
-<th align="left">name</th>
-<th align="left">label</th>
-<th align="right">valid</th>
-<th align="right">missing</th>
-<th align="right">mean</th>
-<th align="right">sd</th>
-<th align="right">min</th>
-<th align="right">max</th>
-<th align="right">range</th>
-<th align="right">median</th>
-<th align="right">mad</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">itrf_int</td>
-<td align="left">Internalizing</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.4</td>
-<td align="right">0</td>
-<td align="right">2.6</td>
-<td align="right">2.6</td>
-<td align="right">0.2</td>
-<td align="right">0.3</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_ext</td>
-<td align="left">Externalizing</td>
-<td align="right">4776</td>
-<td align="right">0</td>
-<td align="right">0.6</td>
-<td align="right">0.6</td>
-<td align="right">0</td>
-<td align="right">3.0</td>
-<td align="right">3.0</td>
-<td align="right">0.4</td>
-<td align="right">0.5</td>
-</tr>
-</tbody>
-</table>
+<span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span><span class="co">#&gt;            name valid missing mean  sd min max range median mad</span></span>
+<span><span class="co">#&gt; 1 Internalizing  4772       4  0.3 0.4   0 2.6   2.6    0.2 0.3</span></span>
+<span><span class="co">#&gt; 2 Externalizing  4776       0  0.6 0.6   0 3.0   3.0    0.4 0.5</span></span></code></pre></div>
 </div>
 </div>
   </div>
@@ -1618,7 +857,7 @@ package.</p>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
       </footer>
