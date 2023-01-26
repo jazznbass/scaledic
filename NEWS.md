@@ -2,7 +2,7 @@
 
 ## New functions
 
-- `lookup_norms()`: Turns raw scores to normscores with the help of a normtable.
+- `lookup_norms()`: Turns raw scores to normscores with the help of a normtable. Added to example normtables for the ex_itrf example.
 
 ```.r
 normtable <- data.frame(
