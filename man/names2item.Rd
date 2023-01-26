@@ -24,11 +24,11 @@ names2label(data)
 \item{prefix}{A character string or vector of character strings defining a prefix.
 May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "najme".}
 
-\item{char_sep}{Character with seperator between prefix information.}
+\item{char_sep}{Character with separator between prefix information.}
 
 \item{char_weight}{Character vector of length two with signs for negative and positive weights.}
 
-\item{char_prefix_end}{Character with seperator between prefi and item.}
+\item{char_prefix_end}{Character with separator between prefix and item.}
 }
 \value{
 A renamed data frame

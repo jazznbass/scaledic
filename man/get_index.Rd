@@ -19,7 +19,11 @@ get_index(
 
 \item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
 
+\item{scale, subscale, subscale_2}{deprecated}
+
 \item{names}{If names is TRUE, a vector with variable names will be returned.}
+
+\item{class}{deprecated}
 }
 \value{
 A vector with indices adhering to the given attribute criteria.

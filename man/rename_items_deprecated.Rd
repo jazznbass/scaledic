@@ -16,14 +16,20 @@ rename_items_deprecated(
 \arguments{
 \item{data}{A data frame}
 
-\item{pattern}{A character string or vector of character strings defining a prefix.
-May include the name of any dic attribute (e.g."item_label", "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label", or "name").}
+\item{pattern}{A character string or vector of character strings defining a
+prefix. May include the name of any dic attribute (e.g."item_label",
+"scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label",
+or "name").}
 
-\item{chars}{If not NULL, only the first n chars og the long label will be applied.}
+\item{chars}{If not NULL, only the first n chars og the long label will be
+applied.}
 
-\item{char_sep}{Character with seperator between prefix information.}
+\item{char_sep}{Character with separator between prefix information.}
 
-\item{char_weight}{Character vector of length two with signs for negative and positive weights.}
+\item{char_weight}{Character vector of length two with signs for negative and
+positive weights.}
+
+\item{char_prefix_label}{deprecated}
 }
 \value{
 A renamed data frame

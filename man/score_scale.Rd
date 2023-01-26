@@ -2,8 +2,7 @@
 % Please edit documentation in R/score_scale.R
 \name{score_scale}
 \alias{score_scale}
-\title{Score scale
-Calculates the scale scores.}
+\title{Score scale Calculates the scale scores.}
 \usage{
 score_scale(
   data,
@@ -23,20 +22,28 @@ score_scale(
 \arguments{
 \item{data}{A data frame}
 
-\item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
+\item{filter}{A logical expression for any dic attribute (e.g. scale ==
+"ITRF" & subscale == "Int")}
+
+\item{scale, subscale, subscale_2}{deprecated}
 
 \item{bind}{If set TRUE, returns the complete data frame. If set false,
 returns a data frame with the new score variables for each scale.}
 
-\item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.}
+\item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for building
+the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When
+argument FUN is set, `sum` is ignored.}
 
-\item{min_valid}{Minimal number of valid values that is required for calculating the mean.
-A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent of values have to be valid).}
+\item{min_valid}{Minimal number of valid values that is required for
+calculating the mean. A value between 0 and 1 indicates a proportion of
+values (e.g., 0.5 = 50 percent of values have to be valid).}
 
-\item{max_na}{Maximum number of NAs that are allowed before returning NA.
-A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent NAs are allowed).}
+\item{max_na}{Maximum number of NAs that are allowed before returning NA. A
+value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
+percent NAs are allowed).}
 
-\item{label}{A character string with a label for the resulting score variable. Automatically generated if label is not set.}
+\item{label}{A character string with a label for the resulting score
+variable. Automatically generated if label is not set.}
 
 \item{FUN}{A function for calculating the score (e.g., median)}
 
@@ -46,6 +53,5 @@ A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent
 A data frame
 }
 \description{
-Score scale
-Calculates the scale scores.
+Score scale Calculates the scale scores.
 }
