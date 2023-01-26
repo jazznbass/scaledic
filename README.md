@@ -1,4 +1,4 @@
-# scaledic - A dictionary for scales <img src="man/figures/hexscaledic.png" align="right" height="135"/>
+# scaledic - A dictionary for scales <img src="man/figures/hex-135.png" align="right"/>
 
 Have you ever thought it might be helpful to have additional information about a variable in a data frame, giving you a longer description, the scale it belongs to, whether it has reverse coding, valid values, value labels? And wouldn't it be nice to be able to check for typos, impute missing values, create scale scores, switch between long and short labels in a graph, etc. with just a few simple commands in R?
 
