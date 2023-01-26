@@ -3,8 +3,10 @@
 #' Rename items based on dic information.
 #'
 #' @param data A data frame
-#' @param pattern A character string with the syntax of the glue function (see example).
-#' @param max_chars,chars If not NULL, only the first n chars og the long label will be applied.
+#' @param pattern A character string with the syntax of the glue function (see
+#'   example).
+#' @param max_chars,chars If not NULL, only the first n chars og the long label
+#'   will be applied.
 #' @return A renamed data frame
 #' @examples
 #' ex_itrf  |>

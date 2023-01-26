@@ -2,9 +2,9 @@
 #'
 #' @param data The target data frame
 #' @param levels Character vector with names of dic attributes used to extract scale information.
-#' @param labels If TRUE, scale labels instead of abreviations are shown.
+#' @param labels If TRUE, scale labels instead of abbreviations are shown.
 #' @param n_items If TRUE, number of items for each scale, subscale, and sub_subscale is shown
-#' @param char_na Charcter for NA is.
+#' @param char_na Character for NA is.
 #'
 #' @return A data.frame with scales on different levels
 #' @export
