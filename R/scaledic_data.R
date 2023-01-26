@@ -24,3 +24,15 @@
 #' @format A data frame with 4776 rows and 40 variables
 #' @docType data
 "dat_itrf"
+
+#' Example dataset with a norm table
+#'
+#' @format A data frame with 48 rows and 5 variables
+#' @docType data
+"ex_normtable_int"
+
+#' Example dataset with a norm table
+#'
+#' @format A data frame with 52 rows and 5 variables
+#' @docType data
+"ex_normtable_ext"
