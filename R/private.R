@@ -161,3 +161,14 @@
   fmt <- paste0("%.", digits, "f")
   sub("^(-?)0.", "\\1.", sprintf(fmt, x))
 }
+
+.read_by_suffix <- function(filename, sheet = NULL) {
+  ext <- tools::file_ext(filename)
+  if (ext == "xlsx") return(readxl::read_xlsx(filename))
+  if (ext == "xls") return(readxl::read_xls(filename))
+  if (ext == "csv") return(read.csv(filename))
+  stop("File extension not recognised. ",
+       "Please provide separately read data frame."
+  )
+}
+

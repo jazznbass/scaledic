@@ -29,8 +29,8 @@ apply_dic <- function(data,
                       impute_values = FALSE,
                       rename_var = NULL) {
 
-  if (inherits(dic, "character")) dic <- readxl::read_excel(dic)
-  if (inherits(data, "character")) data <- readxl::read_excel(data)
+  if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
+  if (inherits(data, "character")) data <- .read_by_suffix(data)
 
   dic <- .clean_dic_file(dic)
 
