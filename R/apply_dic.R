@@ -29,8 +29,8 @@ apply_dic <- function(data,
                       impute_values = FALSE,
                       rename_var = NULL) {
 
-  if (inherits(dic, "character")) dic <- readxl::read_excel(dic)
-  if (inherits(data, "character")) data <- readxl::read_excel(data)
+  if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
+  if (inherits(data, "character")) data <- .read_by_suffix(data)
 
   dic <- .clean_dic_file(dic)
 
@@ -232,7 +232,7 @@ apply_dic <- function(data,
     dic <- dic[which(dic$active == 1), ]
   }
 
-  #remove whitspaces
+  #remove white spaces
 
   dic[[.dic_file$value_labels]] <- trimws(dic[[.dic_file$value_labels]])
   dic[[.dic_file$value_labels]][which(dic[[.dic_file$value_labels]] == "")] <- NA
@@ -251,19 +251,21 @@ apply_dic <- function(data,
 
   # check for missing weight variable
   if (is.null(dic[[.dic_file$weight]])) {
-    message("'Weight' variable missing in the dictionary file. Variable inserted with default of 1.")
+    message("'Weight' variable missing in the dictionary file. ",
+            "Variable inserted with default of 1.")
     dic[[.dic_file$weight]] <- NA
     dic[[.dic_file$weight]][filter_items] <- 1
   }
 
-  if(class(dic[[.dic_file$weight]]) != "numeric") {
+  if(!inherits(class(dic[[.dic_file$weight]]), "numeric")) {
     message("'weight' variable is not numeric: transformed variable to numeric.")
     dic[[.dic_file$weight]] <- as.numeric(dic[[.dic_file$weight]])
   }
 
   # check for missing type variable
   if (is.null(dic[[.dic_file$type]])) {
-    message("'type' variable missing in the dictionary file. Variable inserted with default of 'integer'.")
+    message("'type' variable missing in the dictionary file. ",
+            "Variable inserted with default of 'integer'.")
     dic[[.dic_file$type]] <- "integer"
   }
 

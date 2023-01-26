@@ -53,7 +53,8 @@
     foobar <- function(x) !is.null(attr(x, .opt$dic))
 
   if (items_only)
-    foobar <- function(x) !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
+    foobar <- function(x)
+      !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
   which(sapply(data, foobar))
 
 }
@@ -72,10 +73,16 @@
   filter <- NULL
 
   if (!is.null(scale))
-    filter <- paste0("scale %in% c(", paste0("'", scale,"'", collapse = ", "), ")", collapse = "")
+    filter <- paste0(
+      "scale %in% c(", paste0("'", scale,"'", collapse = ", "), ")",
+      collapse = ""
+    )
 
   if (!is.null(subscale)) {
-    tmp <- paste0("subscale %in% c(", paste0("'", subscale,"'", collapse = ", "), ")", collapse = "")
+    tmp <- paste0(
+      "subscale %in% c(", paste0("'", subscale,"'", collapse = ", "), ")",
+      collapse = ""
+    )
     if (is.null(filter)) {
       filter <- tmp
     } else {
@@ -84,7 +91,10 @@
   }
 
   if (!is.null(subscale_2)) {
-    tmp <- paste0("subscale_2 %in% c(", paste0("'", subscale_2,"'", collapse = ", "), ")", collapse = "")
+    tmp <- paste0(
+      "subscale_2 %in% c(", paste0("'", subscale_2,"'", collapse = ", "), ")",
+      collapse = ""
+    )
     if (is.null(filter)) {
       filter <- tmp
     } else {
@@ -103,7 +113,8 @@
     return(NA)
   }
 
-  if (isTRUE(max_na < 1) && isTRUE(max_na > 0)) max_na <- trunc(max_na * length(x))
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
+    max_na <- trunc(max_na * length(x))
   if(isTRUE(sum(is.na(x)) > max_na)) {
     return(NA)
   }
@@ -119,7 +130,8 @@
     return(NA)
   }
 
-  if (isTRUE(max_na < 1) && isTRUE(max_na > 0)) max_na <- trunc(max_na * length(x))
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
+    max_na <- trunc(max_na * length(x))
   if(isTRUE(sum(is.na(x)) > max_na)) {
     return(NA)
   }
@@ -135,12 +147,28 @@
     return(NA)
   }
 
-  if (isTRUE(max_na < 1) && isTRUE(max_na > 0)) max_na <- trunc(max_na * length(x))
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
+    max_na <- trunc(max_na * length(x))
   if(isTRUE(sum(is.na(x)) > max_na)) {
     return(NA)
   }
 
   sum(x, na.rm = TRUE)
 
+}
+
+.nice_num <- function(x, digits = 2) {
+  fmt <- paste0("%.", digits, "f")
+  sub("^(-?)0.", "\\1.", sprintf(fmt, x))
+}
+
+.read_by_suffix <- function(filename, sheet = NULL) {
+  ext <- tools::file_ext(filename)
+  if (ext == "xlsx") return(readxl::read_xlsx(filename))
+  if (ext == "xls") return(readxl::read_xls(filename))
+  if (ext == "csv") return(utils::read.csv(filename))
+  stop("File extension not recognised. ",
+       "Please provide separately read data frame."
+  )
 }
 

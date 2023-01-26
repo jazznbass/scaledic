@@ -16,10 +16,14 @@ impute_missing(
 \arguments{
 \item{data}{A data frame}
 
-\item{filter}{A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")}
+\item{filter}{A logical expression for any dic attribute (e.g. scale ==
+"ITRF" & subscale == "Int")}
 
-\item{force_to_scale}{If TRUE, imputed values will be rounded and forced to the scale.
-That is, a value below the scale's minimum or maximum will be set to the scale's minimum and maximum.}
+\item{scale, subscale, subscale_2}{deprecated}
+
+\item{force_to_scale}{If TRUE, imputed values will be rounded and forced to
+the scale. That is, a value below the scale's minimum or maximum will be
+set to the scale's minimum and maximum.}
 }
 \value{
 A data frame with imputed data.

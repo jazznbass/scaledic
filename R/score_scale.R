@@ -1,17 +1,23 @@
-#' Score scale
-#' Calculates the scale scores.
+#' Score scale Calculates the scale scores.
 #'
 #' @param data A data frame
-#' @param filter A logical expression for any dic attribute (e.g. scale == "ITRF" & subscale == "Int")
+#' @param filter A logical expression for any dic attribute (e.g. scale ==
+#'   "ITRF" & subscale == "Int")
 #' @param bind If set TRUE, returns the complete data frame. If set false,
-#'  returns a data frame with the new score variables for each scale.
-#' @param sum If TRUE, function mean(x, na.rm = TRUE) is applied for buiding the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When argument FUN is set, `sum` is ignored.
-#' @param min_valid Minimal number of valid values that is required for calculating the mean.
-#' A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent of values have to be valid).
-#' @param max_na Maximum number of NAs that are allowed before returning NA.
-#' A value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50 percent NAs are allowed).
-#' @param label A character string with a label for the resulting score variable. Automatically generated if label is not set.
+#'   returns a data frame with the new score variables for each scale.
+#' @param sum If TRUE, function mean(x, na.rm = TRUE) is applied for building
+#'   the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When
+#'   argument FUN is set, `sum` is ignored.
+#' @param min_valid Minimal number of valid values that is required for
+#'   calculating the mean. A value between 0 and 1 indicates a proportion of
+#'   values (e.g., 0.5 = 50 percent of values have to be valid).
+#' @param max_na Maximum number of NAs that are allowed before returning NA. A
+#'   value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
+#'   percent NAs are allowed).
+#' @param label A character string with a label for the resulting score
+#'   variable. Automatically generated if label is not set.
 #' @param FUN A function for calculating the score (e.g., median)
+#' @param scale,subscale,subscale_2 deprecated
 #' @param ... Further arguments passed to the FUN function (e.g., na.rm = TRUE)
 #' @return A data frame
 #' @export

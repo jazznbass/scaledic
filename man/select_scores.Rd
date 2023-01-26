@@ -9,9 +9,11 @@ select_scores(data, names_only = FALSE, index_only = FALSE)
 \arguments{
 \item{data}{A data frame}
 
-\item{names_only}{If TRUE, variable names are returned instead of a data frame}
+\item{names_only}{If TRUE, variable names are returned instead of a data
+frame}
 
-\item{index_only}{If TRUE, variable indices are returned instead of a data frame}
+\item{index_only}{If TRUE, variable indices are returned instead of a data
+frame}
 }
 \value{
 A data frame, a vector with variable names or a vector with indices

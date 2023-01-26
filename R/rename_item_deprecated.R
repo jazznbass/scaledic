@@ -3,11 +3,16 @@
 #' Rename items based on dic information.
 #'
 #' @param data A data frame
-#' @param pattern A character string or vector of character strings defining a prefix.
-#' May include the name of any dic attribute (e.g."item_label", "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label", or "name").
-#' @param chars If not NULL, only the first n chars og the long label will be applied.
-#' @param char_sep Character with seperator between prefix information.
-#' @param char_weight Character vector of length two with signs for negative and positive weights.
+#' @param pattern A character string or vector of character strings defining a
+#'   prefix. May include the name of any dic attribute (e.g."item_label",
+#'   "scale", "subscale", "subscale_2") or some shortcuts: "reverse", "label",
+#'   or "name").
+#' @param chars If not NULL, only the first n chars og the long label will be
+#'   applied.
+#' @param char_sep Character with separator between prefix information.
+#' @param char_weight Character vector of length two with signs for negative and
+#'   positive weights.
+#' @param char_prefix_label deprecated
 #' @return A renamed data frame
 #' @examples
 #' ex_itrf  |>

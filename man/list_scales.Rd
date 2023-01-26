@@ -17,11 +17,11 @@ list_scales(
 
 \item{levels}{Character vector with names of dic attributes used to extract scale information.}
 
-\item{labels}{If TRUE, scale labels instead of abreviations are shown.}
+\item{labels}{If TRUE, scale labels instead of abbreviations are shown.}
 
 \item{n_items}{If TRUE, number of items for each scale, subscale, and sub_subscale is shown}
 
-\item{char_na}{Charcter for NA is.}
+\item{char_na}{Character for NA is.}
 }
 \value{
 A data.frame with scales on different levels

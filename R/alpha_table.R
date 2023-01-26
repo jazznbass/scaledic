@@ -3,8 +3,10 @@
 #' Returns a list of alpha cronbachs.
 #'
 #' @param data A data Frame
-#' @param scales A list containing vectors with variable names. Each list element defines one scale. Named list elements are used as labels.
-#' @param labels Label names for scales (defaults to named list elements in 'scales').
+#' @param scales A list containing vectors with variable names. Each list
+#'   element defines one scale. Named list elements are used as labels.
+#' @param labels Label names for scales (defaults to named list elements in
+#'   'scales').
 #' @param round Rounds values to given decimal position.
 #' @param CI If TRUE confidence intervals are calculated.
 #' @param conf_level Confidence level (e.g. 0.95 for 95 percent).
@@ -12,8 +14,10 @@
 #' @param keys Optional key argument for the psych::alpha function.
 #' @param RMSEA If TRUE RMSEA is calculated.
 #' @param difficulty If TRUE, the difficulty of the item is calculated.
-#' @param values Sets maximum and minimum valid values necessary to calculate item difficulty
-#' @param fa If TRUE, a one factor exploratory factor analyses is calculated and loadings are reported.
+#' @param values Sets maximum and minimum valid values necessary to calculate
+#'   item difficulty
+#' @param fa If TRUE, a one factor exploratory factor analyses is calculated and
+#'   loadings are reported.
 #' @return A data frame with concise scale indices.
 #' @examples
 #' scales <- list(
@@ -48,7 +52,8 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
     if (any(.var == 0)) {
       message("Variable with no variance dropped from analyses.")
     }
-    scales[[i]] <- scales[[i]][which(apply(data[, scales[[i]]], 2, var, na.rm = TRUE) != 0)]
+    .which <- apply(data[, scales[[i]]], 2, var, na.rm = TRUE) != 0
+    scales[[i]] <- scales[[i]][which(.which)]
 
     if (keys == "auto") {
       key <- data[, scales[[i]]] %>%
@@ -63,7 +68,9 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
       max <- values[[i]][2]
     }
 
-    a <- invisible(psych::alpha(data[, scales[[i]]], check.key = check_key, keys = key))
+    a <- invisible(
+      psych::alpha(data[, scales[[i]]], check.key = check_key, keys = key)
+    )
 
     if (fa) f <- invisible(psych::fa(data[, scales[[i]]]))
     alpha <- a$total$raw_alpha
@@ -71,26 +78,34 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
 
     df$"n items"[i] <- a$nvar
 
-    if (!CI) df$Alpha[i] <- substring(round(alpha, round), 2)
+    if (!CI) df$Alpha[i] <- .nice_num(alpha, 2)
 
     if (CI) {
-      a.CI <- .alpha_CI(alpha, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level)
-      df$Alpha[i] <- paste0(substring(round(alpha, round), 2), " (", substring(round(a.CI[1], round), 2), "-", substring(round(a.CI[2], round), 2), ")")
+      a.CI <- .alpha_CI(
+        alpha, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
+      )
+      df$Alpha[i] <- paste0(
+        .nice_num(alpha, round), " (",
+        .nice_num(a.CI[1], 2), "-",
+        .nice_num(a.CI[2], 2), ")"
+      )
     }
 
     alpha.std <- a$total$std.alpha
     if (!CI) {
-      df$"Std.Alpha"[i] <- substring(round(alpha.std, round), 2)
+      df$"Std.Alpha"[i] <- .nice_num(alpha.std, 2)
     }
 
     if (CI) {
-      a.std.CI <- .alpha_CI(alpha.std, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level)
+      a.std.CI <- .alpha_CI(
+        alpha.std, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
+      )
       df$"Std.Alpha"[i] <- paste0(
-          substring(round(alpha.std, round), 2),
+        .nice_num(alpha.std, 2),
           " (",
-          substring(round(a.std.CI[1], round), 2),
+        .nice_num(a.std.CI[1], 2),
           "-",
-          substring(round(a.std.CI[2], round), 2),
+        .nice_num(a.std.CI[2], 2),
           ")"
       )
     }
@@ -113,18 +128,28 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
       dif_min <- round((mmin - min) / (max - min), round)
       dif_max <- round((mmax - min) / (max - min), round)
     }
-    df$"Homogeneity"[i] <- substring(round(a$total$average_r, round), 2)
-    df$"Discrimination"[i] <- paste0(substring(dmin, 2), " - ", substring(dmax, 2))
-    if (difficulty) df$"Difficulty"[i] <- paste0(substring(dif_min, 2), " - ", substring(dif_max, 2))
+    df$"Homogeneity"[i] <- .nice_num(a$total$average_r, 2)
+    df$"Discrimination"[i] <- paste0(
+      .nice_num(dmin, 2), " - ", .nice_num(dmax, 2)
+    )
+    if (difficulty) {
+      df$"Difficulty"[i] <- paste0(
+        .nice_num(dif_min, 2), " - ", .nice_num(dif_max, 2)
+      )
+    }
     df$"M"[i] <- paste0(mmin, " - ", mmax)
     df$"SD"[i] <- paste0(smin, " - ", smax)
-    df$"|Loading|"[i] <- paste0(substring(lmin, 2), " - ", substring(lmax, 2))
-    if (RMSEA) df$"RMSEA"[i] <- substring(round(f$RMSEA[1], 3), 2)
+    df$"|Loading|"[i] <- paste0(.nice_num(lmin, 2), " - ", .nice_num(lmax, 2))
+    if (RMSEA) df$"RMSEA"[i] <- .nice_num(f$RMSEA[1], 3)
   }
 
   if (CI) {
-    names(df)[which(names(df) == "Alpha")] <- paste0("Alpha(CI", conf_level * 100, "%)")
-    names(df)[which(names(df) == "Std.Alpha")] <- paste0("Std.Alpha(CI", conf_level * 100, "%)")
+    names(df)[which(names(df) == "Alpha")] <- paste0(
+      "Alpha(CI", conf_level * 100, "%)"
+    )
+    names(df)[which(names(df) == "Std.Alpha")] <- paste0(
+      "Std.Alpha(CI", conf_level * 100, "%)"
+    )
   }
 
   df
