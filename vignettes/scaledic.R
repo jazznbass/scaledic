@@ -43,7 +43,7 @@ dic_itrf %>% slice(2:4) %>% kable()
 dat <- apply_dic(dat_itrf, dic_itrf)
 
 ## ----list_scales--------------------------------------------------------------
-list_scales(dat, labels = TRUE)
+list_scales(dat, labels = TRUE) %>% kable()
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -68,13 +68,15 @@ dat %>%
 ## ----desc_labels--------------------------------------------------------------
 dat %>% 
   select_items(subscale == "Int") %>%
-  descriptives(round = 1, label = TRUE) 
+  rename_items() %>%
+  descriptives(round = 1)  %>% 
+  kable()
 
 ## ----exploratory_fa-----------------------------------------------------------
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4) 
+  exploratory_fa(nfactors = 4, cut = 0.4)  %>% kable()
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf %>% get_scales(
@@ -83,7 +85,7 @@ scales <- ex_itrf %>% get_scales(
   "SW" = subscale_2 == "SW",
   "AD" = subscale_2 == "AD"
 )
-alpha_table(dat, scales = scales)
+alpha_table(dat, scales = scales) %>% kable()
 
 
 ## ----lavaan_model-------------------------------------------------------------
@@ -106,4 +108,22 @@ dat %>%
   select_scores() %>%
   rename_items() %>%
   descriptives(round = 1)
+
+## -----------------------------------------------------------------------------
+ex_normtable_int %>% kable()
+
+## -----------------------------------------------------------------------------
+dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
+dat$raw_ext <- score_scale(dat, subscale == "Ext", sum = TRUE, max_na = 0)
+
+## -----------------------------------------------------------------------------
+dat$T_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int)
+dat$T_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext)
+
+## -----------------------------------------------------------------------------
+dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
+dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
+
+## -----------------------------------------------------------------------------
+dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] %>% kable()
 

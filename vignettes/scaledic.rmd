@@ -191,4 +191,42 @@ dat %>%
   descriptives(round = 1)
 ```
 
+## Lookup norm values from a normtable
+
+Many scales come with norm tables to transform raw-scores into T-scores, percentile ranks etc.
+
+The `lookup_norms` function helps with this conversion.
+
+Firstly, you need a data frame (or Excel table etc) which includes raw-scores and corresponding norm-scores.
+
+Here is an example of such a table:
+
+```{r}
+ex_normtable_int %>% kable()
+```
+
+Then we need raw-scores from a scale. If they do not exist, you may use the `score_scales` function to add sum scores. Therefore, set the sum argument to `TRUE`. By setting `max_na = 0`, we do not allow missing values in any scale item:
+
+```{r}
+dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
+dat$raw_ext <- score_scale(dat, subscale == "Ext", sum = TRUE, max_na = 0)
+```
+
+By default, `lookup_norms` looks for T values:
+
+```{r}
+dat$T_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int)
+dat$T_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext)
+```
+
+But this can easily be changed to percentile ranks, if included:
+
+```{r}
+dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
+dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
+```
+
+```{r}
+dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] %>% kable()
+```
 
