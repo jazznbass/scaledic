@@ -232,7 +232,7 @@ apply_dic <- function(data,
     dic <- dic[which(dic$active == 1), ]
   }
 
-  #remove whitspaces
+  #remove white spaces
 
   dic[[.dic_file$value_labels]] <- trimws(dic[[.dic_file$value_labels]])
   dic[[.dic_file$value_labels]][which(dic[[.dic_file$value_labels]] == "")] <- NA
@@ -251,19 +251,21 @@ apply_dic <- function(data,
 
   # check for missing weight variable
   if (is.null(dic[[.dic_file$weight]])) {
-    message("'Weight' variable missing in the dictionary file. Variable inserted with default of 1.")
+    message("'Weight' variable missing in the dictionary file. ",
+            "Variable inserted with default of 1.")
     dic[[.dic_file$weight]] <- NA
     dic[[.dic_file$weight]][filter_items] <- 1
   }
 
-  if(class(dic[[.dic_file$weight]]) != "numeric") {
+  if(!inherits(class(dic[[.dic_file$weight]]), "numeric")) {
     message("'weight' variable is not numeric: transformed variable to numeric.")
     dic[[.dic_file$weight]] <- as.numeric(dic[[.dic_file$weight]])
   }
 
   # check for missing type variable
   if (is.null(dic[[.dic_file$type]])) {
-    message("'type' variable missing in the dictionary file. Variable inserted with default of 'integer'.")
+    message("'type' variable missing in the dictionary file. ",
+            "Variable inserted with default of 'integer'.")
     dic[[.dic_file$type]] <- "integer"
   }
 
