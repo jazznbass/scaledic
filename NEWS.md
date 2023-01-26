@@ -1,7 +1,24 @@
-# scaledic 0.2
+# scaledic 0.2.x
 
-New functions:
-- `get_scales()`: A wrapper around `select_items()` to extract maultiple scale definitions:
+## New functions
+
+- `lookup_norms()`: Turns raw scores to normscores with the help of a normtable.
+
+```.r
+normtable <- data.frame(
+  group = c(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8),
+  raw = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
+  T = c(40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 37, 39, 41, 43, 45, 47,
+        49, 51, 53, 55, 57)
+)
+
+rawscores <- c(5,5,3,1)
+group <- c("6", "8", "6", "8")
+lookup_norms(rawscores, group, normtable)
+
+```
+
+- `get_scales()`: A wrapper around `select_items()` to extract multiple scale definitions:
 
 ```.r
 scales <- get_scales(ex_itrf,
@@ -21,7 +38,8 @@ scales <- list(
 )
 ```
 
-Reworked:
+## Reworkek
+
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 
 ``` .r
