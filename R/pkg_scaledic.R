@@ -15,6 +15,7 @@
 #' @import stats
 #' @importFrom dplyr %>% relocate select full_join all_of rename as_tibble
 #' @importFrom stringr str_glue
+#' @importFrom tools file_ext
 #' @examples
 #' # apply a dictionary file to a data frame
 #' dat <- apply_dic(dat_itrf, dic_itrf)
