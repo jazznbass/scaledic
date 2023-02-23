@@ -26,3 +26,4 @@ A data frame
 \description{
 Selects a data frame with variables of a specific scale
 }
+\keyword{internal}

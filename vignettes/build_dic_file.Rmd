@@ -70,7 +70,9 @@ dic <- data.frame(
   scale_label = c(rep("Letter Values", n_var), "Miscellaneous"),
   values = c(rep("1:5", n_var), "'male', 'female'"),
   value_labels = c(
-    rep("1 = low; 2; 3; 4; 5 = high", n_var), "m = male; f = female; ka = keine Angabe"),
+    rep("1 = low; 2; 3; 4; 5 = high", n_var), 
+    "m = male; f = female; ka = keine Angabe"
+  ),
   type = c(rep("integer", n_var), "factor"),
   weight = 1,
   missing = c(rep("-999", n_var), "'keine Angabe'")

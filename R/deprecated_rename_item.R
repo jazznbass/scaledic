@@ -14,6 +14,7 @@
 #'   positive weights.
 #' @param char_prefix_label deprecated
 #' @return A renamed data frame
+#' @keywords internal
 #' @examples
 #' ex_itrf  |>
 #'   rename_items(pattern = c("reverse", "label")) |>

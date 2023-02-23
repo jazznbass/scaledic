@@ -7,6 +7,7 @@
 #'   "ITRF" & subscale == "Int")
 #' @param scale,subscale,subscale_2 deprecated
 #' @return A data frame
+#' @keywords internal
 #' @export
 select_scale <- function(data,
                          filter = NULL,

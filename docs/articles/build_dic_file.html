@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">scaledic</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">0.2.2</span>
       </span>
     </div>
 
@@ -78,7 +78,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2023-01-26</h4>
+            <h4 data-toc-skip class="date">2023-02-23</h4>
       
       
       <div class="hidden name"><code>build_dic_file.Rmd</code></div>
@@ -222,7 +222,9 @@ times)</td>
 <span>  scale_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"Letter Values"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"Miscellaneous"</span><span class="op">)</span>,</span>
 <span>  values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"1:5"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"'male', 'female'"</span><span class="op">)</span>,</span>
 <span>  value_labels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"1 = low; 2; 3; 4; 5 = high"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"m = male; f = female; ka = keine Angabe"</span><span class="op">)</span>,</span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"1 = low; 2; 3; 4; 5 = high"</span>, <span class="va">n_var</span><span class="op">)</span>, </span>
+<span>    <span class="st">"m = male; f = female; ka = keine Angabe"</span></span>
+<span>  <span class="op">)</span>,</span>
 <span>  type <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"integer"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"factor"</span><span class="op">)</span>,</span>
 <span>  weight <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  missing <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/rep.html" class="external-link">rep</a></span><span class="op">(</span><span class="st">"-999"</span>, <span class="va">n_var</span><span class="op">)</span>, <span class="st">"'keine Angabe'"</span><span class="op">)</span></span>
@@ -242,49 +244,49 @@ times)</td>
 <span><span class="co">#&gt; No errors found.</span></span>
 <span><span class="fu"><a href="../reference/replace_missing.html">replace_missing</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span>
 <span><span class="co">#&gt;    A B C D E F G H I J   text</span></span>
-<span><span class="co">#&gt; 1  2 5 2 5 1 3 3 4 1 2 female</span></span>
-<span><span class="co">#&gt; 2  1 3 3 2 2 3 5 2 3 4   male</span></span>
-<span><span class="co">#&gt; 3  1 1 4 4 3 1 5 4 1 2   male</span></span>
-<span><span class="co">#&gt; 4  1 3 4 4 4 1 5 5 4 1 female</span></span>
-<span><span class="co">#&gt; 5  2 2 2 1 2 3 4 5 2 4 female</span></span>
-<span><span class="co">#&gt; 6  2 5 5 1 2 3 3 5 1 2   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 7  1 3 1 2 2 1 1 3 4 4   male</span></span>
-<span><span class="co">#&gt; 8  5 3 5 3 1 2 3 2 2 2   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 9  4 2 4 2 4 5 5 1 5 4 female</span></span>
-<span><span class="co">#&gt; 10 5 5 2 5 2 2 4 3 2 3   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 11 4 4 4 4 2 1 1 5 1 4 female</span></span>
-<span><span class="co">#&gt; 12 2 5 4 4 3 1 3 1 5 1   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 13 1 4 3 3 3 3 1 3 3 3   male</span></span>
-<span><span class="co">#&gt; 14 5 4 2 4 3 3 2 3 3 1   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 15 1 1 2 1 3 2 1 5 4 1 female</span></span>
-<span><span class="co">#&gt; 16 4 1 2 3 5 2 2 2 5 1   male</span></span>
-<span><span class="co">#&gt; 17 5 5 2 3 4 1 2 5 3 1   &lt;NA&gt;</span></span>
-<span><span class="co">#&gt; 18 3 3 1 1 2 5 3 1 1 2   male</span></span>
-<span><span class="co">#&gt; 19 5 5 2 2 3 2 4 4 1 2   male</span></span>
-<span><span class="co">#&gt; 20 2 3 5 4 1 2 4 1 4 1   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 1  2 1 3 1 1 4 2 2 2 3   male</span></span>
+<span><span class="co">#&gt; 2  3 3 5 3 4 1 4 3 1 4 female</span></span>
+<span><span class="co">#&gt; 3  1 1 4 5 3 5 4 3 1 1   male</span></span>
+<span><span class="co">#&gt; 4  3 1 3 4 3 2 3 4 5 1   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 5  1 3 4 3 3 5 5 2 1 2   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 6  3 1 1 3 3 5 2 4 1 1   male</span></span>
+<span><span class="co">#&gt; 7  4 1 1 2 4 5 2 4 1 4 female</span></span>
+<span><span class="co">#&gt; 8  4 5 3 4 4 4 1 1 2 2   male</span></span>
+<span><span class="co">#&gt; 9  1 4 1 4 5 1 2 2 1 4 female</span></span>
+<span><span class="co">#&gt; 10 2 1 1 2 5 3 4 1 5 2   male</span></span>
+<span><span class="co">#&gt; 11 4 3 1 5 4 2 1 3 2 4   male</span></span>
+<span><span class="co">#&gt; 12 2 4 3 3 4 4 4 2 4 5   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 13 3 1 3 1 3 5 4 4 2 1   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 14 1 4 4 1 3 1 2 4 3 4   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 15 5 3 2 1 4 1 4 2 3 2   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 16 2 1 4 5 5 2 3 2 4 2   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 17 4 4 5 1 3 1 4 1 1 3 female</span></span>
+<span><span class="co">#&gt; 18 3 3 2 5 3 3 2 5 4 1   male</span></span>
+<span><span class="co">#&gt; 19 4 3 1 3 1 2 5 1 2 5   &lt;NA&gt;</span></span>
+<span><span class="co">#&gt; 20 1 2 1 2 3 1 1 3 2 5   &lt;NA&gt;</span></span>
 <span></span>
 <span><span class="va">dat</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="co">#&gt;    A</span></span>
 <span><span class="co">#&gt; 1  2</span></span>
-<span><span class="co">#&gt; 2  1</span></span>
+<span><span class="co">#&gt; 2  3</span></span>
 <span><span class="co">#&gt; 3  1</span></span>
-<span><span class="co">#&gt; 4  1</span></span>
-<span><span class="co">#&gt; 5  2</span></span>
-<span><span class="co">#&gt; 6  2</span></span>
-<span><span class="co">#&gt; 7  1</span></span>
-<span><span class="co">#&gt; 8  5</span></span>
-<span><span class="co">#&gt; 9  4</span></span>
-<span><span class="co">#&gt; 10 5</span></span>
+<span><span class="co">#&gt; 4  3</span></span>
+<span><span class="co">#&gt; 5  1</span></span>
+<span><span class="co">#&gt; 6  3</span></span>
+<span><span class="co">#&gt; 7  4</span></span>
+<span><span class="co">#&gt; 8  4</span></span>
+<span><span class="co">#&gt; 9  1</span></span>
+<span><span class="co">#&gt; 10 2</span></span>
 <span><span class="co">#&gt; 11 4</span></span>
 <span><span class="co">#&gt; 12 2</span></span>
-<span><span class="co">#&gt; 13 1</span></span>
-<span><span class="co">#&gt; 14 5</span></span>
-<span><span class="co">#&gt; 15 1</span></span>
-<span><span class="co">#&gt; 16 4</span></span>
-<span><span class="co">#&gt; 17 5</span></span>
+<span><span class="co">#&gt; 13 3</span></span>
+<span><span class="co">#&gt; 14 1</span></span>
+<span><span class="co">#&gt; 15 5</span></span>
+<span><span class="co">#&gt; 16 2</span></span>
+<span><span class="co">#&gt; 17 4</span></span>
 <span><span class="co">#&gt; 18 3</span></span>
-<span><span class="co">#&gt; 19 5</span></span>
-<span><span class="co">#&gt; 20 2</span></span>
+<span><span class="co">#&gt; 19 4</span></span>
+<span><span class="co">#&gt; 20 1</span></span>
 <span><span class="va">dat</span><span class="op">[[</span><span class="fl">11</span><span class="op">]</span><span class="op">]</span></span>
 <span><span class="co">#&gt; gender (Miscellaneous)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -294,8 +296,8 @@ times)</td>
 <span><span class="co">#&gt;  f     female      </span></span>
 <span><span class="co">#&gt;  ka    keine Angabe</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;  [1] female male   male   female female &lt;NA&gt;   male   &lt;NA&gt;   female &lt;NA&gt;  </span></span>
-<span><span class="co">#&gt; [11] female &lt;NA&gt;   male   &lt;NA&gt;   female male   &lt;NA&gt;   male   male   &lt;NA&gt;  </span></span>
+<span><span class="co">#&gt;  [1] male   female male   &lt;NA&gt;   &lt;NA&gt;   male   female male   female male  </span></span>
+<span><span class="co">#&gt; [11] male   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   female male   &lt;NA&gt;   &lt;NA&gt;  </span></span>
 <span><span class="co">#&gt; Levels: male female keine Angabe</span></span></code></pre></div>
 </div>
   </div>

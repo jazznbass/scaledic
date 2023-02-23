@@ -31,3 +31,4 @@ A vector with indices adhering to the given attribute criteria.
 \description{
 (Deprecated) Get index
 }
+\keyword{internal}

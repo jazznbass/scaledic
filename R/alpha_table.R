@@ -1,6 +1,6 @@
 #' Table with alpha values
 #'
-#' Returns a list of alpha cronbachs.
+#' Returns a data.frame with item analyses for the provided scales.
 #'
 #' @param data A data Frame
 #' @param scales A list containing vectors with variable names. Each list
@@ -20,19 +20,27 @@
 #'   loadings are reported.
 #' @return A data frame with concise scale indices.
 #' @examples
-#' scales <- list(
-#'   Int = select_items(ex_itrf, scale == "ITRF" & subscale == "Int", names_only = TRUE),
-#'   Ext = select_items(ex_itrf, scale == "ITRF" & subscale == "Ext", names_only = TRUE)
+#' scales <- get_scales(ex_itrf,
+#'   Int = scale == "ITRF" & subscale == "Int",
+#'   Ext = scale == "ITRF" & subscale == "Ext"
 #' )
 #' alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
-
-
 #' @export
+alpha_table <- function(data,
+                        scales,
+                        labels = NULL,
+                        round = 2,
+                        CI = TRUE,
+                        conf_level = 0.95,
+                        check_key = TRUE,
+                        keys = "auto",
+                        RMSEA = FALSE,
+                        difficulty = FALSE,
+                        values = NULL,
+                        fa = TRUE) {
 
-alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
-                        conf_level = 0.95, check_key = TRUE,
-                        keys = "auto", RMSEA = FALSE, difficulty = FALSE,
-                        values = NULL, fa = TRUE) {
+
+  keys <- match.arg(keys)
 
   if (difficulty && is.null(values)) {
     stop("Can not calculate item difficulty without min and max scale values.")
@@ -50,10 +58,13 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
 
     .var <- apply(data[, scales[[i]]], 2, var, na.rm = TRUE)
     if (any(.var == 0)) {
-      message("Variable with no variance dropped from analyses.")
+      message(
+        "Variable with no variance dropped from analyses: ",
+        paste0(names(data[, scales[[i]]])[which(.var == 0)], collapse = ", ")
+      )
     }
-    .which <- apply(data[, scales[[i]]], 2, var, na.rm = TRUE) != 0
-    scales[[i]] <- scales[[i]][which(.which)]
+    .id <- which(.var != 0)
+    scales[[i]] <- scales[[i]][.id]
 
     if (keys == "auto") {
       key <- data[, scales[[i]]] %>%
@@ -84,10 +95,9 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
       a.CI <- .alpha_CI(
         alpha, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
       )
-      df$Alpha[i] <- paste0(
-        .nice_num(alpha, round), " (",
-        .nice_num(a.CI[1], 2), "-",
-        .nice_num(a.CI[2], 2), ")"
+      df$Alpha[i] <- glue(
+        "{.nice_num(alpha, round)} [{.nice_num(a.CI[1], 2)}, ",
+        "{.nice_num(a.CI[2], 2)}]"
       )
     }
 
@@ -100,13 +110,9 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
       a.std.CI <- .alpha_CI(
         alpha.std, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
       )
-      df$"Std.Alpha"[i] <- paste0(
-        .nice_num(alpha.std, 2),
-          " (",
-        .nice_num(a.std.CI[1], 2),
-          "-",
-        .nice_num(a.std.CI[2], 2),
-          ")"
+      df$"Std.Alpha"[i] <- glue(
+        "{.nice_num(alpha.std, 2)} [{.nice_num(a.std.CI[1], 2)}, ",
+        "{.nice_num(a.std.CI[2], 2)}]"
       )
     }
 
@@ -129,29 +135,28 @@ alpha_table <- function(data, scales, labels = NULL, round = 2, CI = TRUE,
       dif_max <- round((mmax - min) / (max - min), round)
     }
     df$"Homogeneity"[i] <- .nice_num(a$total$average_r, 2)
-    df$"Discrimination"[i] <- paste0(
-      .nice_num(dmin, 2), " - ", .nice_num(dmax, 2)
+    df$"Discriminations"[i] <- glue(
+      "[{.nice_num(dmin, 2)}, {.nice_num(dmax, 2)}]"
     )
     if (difficulty) {
-      df$"Difficulty"[i] <- paste0(
-        .nice_num(dif_min, 2), " - ", .nice_num(dif_max, 2)
+      df$"Difficulties"[i] <- glue(
+        "[{.nice_num(dif_min, 2)}, {.nice_num(dif_max, 2)}]"
       )
     }
-    df$"M"[i] <- paste0(mmin, " - ", mmax)
-    df$"SD"[i] <- paste0(smin, " - ", smax)
-    df$"|Loading|"[i] <- paste0(.nice_num(lmin, 2), " - ", .nice_num(lmax, 2))
+    df$"Means"[i] <- glue("[{mmin}, {mmax}]")
+    df$"SDs"[i] <- glue("[{smin}, {smax}]")
+    df$"|Loadings|"[i] <- glue("[{.nice_num(lmin, 2)}, {.nice_num(lmax, 2)}]")
     if (RMSEA) df$"RMSEA"[i] <- .nice_num(f$RMSEA[1], 3)
-  }
+ }
 
   if (CI) {
-    names(df)[which(names(df) == "Alpha")] <- paste0(
-      "Alpha(CI", conf_level * 100, "%)"
-    )
-    names(df)[which(names(df) == "Std.Alpha")] <- paste0(
-      "Std.Alpha(CI", conf_level * 100, "%)"
+    df <- rename(df,
+      !!glue("Alpha CI{conf_level*100}%") := "Alpha",
+      !!glue("Std.Alph CI{conf_level * 100}%") := "Std.Alpha"
     )
   }
-
+  cat("Note. values in brackets depict upper and lower bound of",
+      "confidence intervals or [min,max] intervals.")
   df
 }
 
