@@ -6,6 +6,7 @@
 #' @param names If names is TRUE, a vector with variable names will be returned.
 #' @param class deprecated
 #' @return A vector with indices adhering to the given attribute criteria.
+#' @keywords internal
 #' @export
 
 get_index <- function(data, filter = NULL, scale = NULL, subscale = NULL,

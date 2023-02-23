@@ -61,6 +61,6 @@ rename_items <- function(data,
     collapse = "; "
   )
 
-  stringr::str_glue(pattern, .envir = list2env(dic_env))
+  glue(pattern, .envir = list2env(dic_env))
 }
 

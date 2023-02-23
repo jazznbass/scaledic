@@ -13,6 +13,7 @@
 #' names2label renames to the short label.
 #'
 #' @return A renamed data frame
+#' @keywords internal
 #' @export
 names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
 

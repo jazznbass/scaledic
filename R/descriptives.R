@@ -12,11 +12,11 @@ descriptives <- function(data, round = 2, labels = FALSE) {
 
   .filter <- sapply(data, function(x) "numeric" %in% class(x))
 
-  if (any(.filter)) {
-    tmp <- .filter[!.filter]
+  if (any(!.filter)) {
+    print(.filter)
     warning(
-      "Some variables are not numeric and dropped from the analyzes: ",
-      paste0(names(tmp), collapse = ", ")
+      "Some variables are not numeric and dropped from the analysis: ",
+      paste0(names(.filter)[!.filter], collapse = ", ")
     )
   }
 
@@ -46,7 +46,7 @@ descriptives <- function(data, round = 2, labels = FALSE) {
       lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
     }
     out$label <- lab
-    out <- out %>% relocate(name, label)
+    out <- out %>% relocate("name", "label")
   }
   out
 }

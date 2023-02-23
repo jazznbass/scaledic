@@ -52,12 +52,12 @@ loadings are reported.}
 A data frame with concise scale indices.
 }
 \description{
-Returns a list of alpha cronbachs.
+Returns a data.frame with item analyses for the provided scales.
 }
 \examples{
-scales <- list(
-  Int = select_items(ex_itrf, scale == "ITRF" & subscale == "Int", names_only = TRUE),
-  Ext = select_items(ex_itrf, scale == "ITRF" & subscale == "Ext", names_only = TRUE)
+scales <- get_scales(ex_itrf,
+  Int = scale == "ITRF" & subscale == "Int",
+  Ext = scale == "ITRF" & subscale == "Ext"
 )
 alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
 }

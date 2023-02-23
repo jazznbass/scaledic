@@ -1,17 +1,25 @@
 #' Apply dictionary
 #'
+#' Joins a data frame with a dictionary file.
+#'
 #' @param data Data frame
 #' @param dic A data frame comprising a dictionary or a character string with a
-#' filename (for now an Microsoft Excel file) containg a dictionary.
+#'   filename (for now an Microsoft Excel file) containing a dictionary.
 #' @param factors If set TRUE, factor variables will be turned into factors.
-#' @param set_label_attr If TRUE, label attributes from the haven package are set. These labels are shown in the Rstudio View pannel.
-#' @param coerce_class If set TRUE mismatches between class and dic type are corrected.
-#' @param replace_missing If TRUE, missing values from the dic are replaced with NA
-#' @param check_values If TRUE, performs the check_values function on the variables of the data frame included in the dic file.
-#' @param impute_values If TRUE and score_scales is TRUE, missing values are automatically imputed based on scale information provided in the dic file.
+#' @param set_label_attr If TRUE, label attributes from the haven package are
+#'   set. These labels are shown in the Rstudio View panel.
+#' @param coerce_class If set TRUE mismatches between class and dic type are
+#'   corrected.
+#' @param replace_missing If TRUE, missing values from the dic are replaced with
+#'   NA
+#' @param check_values If TRUE, performs the check_values function on the
+#'   variables of the data frame included in the dic file.
+#' @param impute_values If TRUE and score_scales is TRUE, missing values are
+#'   automatically imputed based on scale information provided in the dic file.
 #' @param score_scales If TRUE and the dic files contains score scale
-#' definitions these are applied
-#' @param rename_var When a character is provided, corresponding column from the dic file is used to rename variables from rename_var to item_name.
+#'   definitions these are applied
+#' @param rename_var When a character is provided, corresponding column from the
+#'   dic file is used to rename variables from rename_var to item_name.
 #' @return A data frame with dictionary information.
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)
@@ -115,21 +123,21 @@ apply_dic <- function(data,
 
     # check variable type (class)
     # numeric:
-    if (dic[i, .dic_file$type] %in% c("integer", "numeric", "float", "double")) {
-      if (!inherits(data[[id]], c("integer", "numeric", "double"))) {
+    if (dic[i, .dic_file$type] %in% c("integer","numeric","float","double")) {
+      if (!inherits(data[[id]], c("integer","numeric","double"))) {
 
         if (coerce_class) {
           message(
-          paste0("Class should be numeric but is ", class(data[[id]]),
-                 ". Coreced to numeric: ", names(data)[id], collapse = ""))
+            "Class should be numeric but is ", class(data[[id]]),
+            ". Coreced to numeric: ", names(data)[id]
+          )
           class(data[[id]]) <- "numeric"
         } else {
           message(
-            paste0("Class should be numeric but is ", class(data[[id]]),
-                   ": ",names(data)[id], collapse = ""))
+           "Class should be numeric but is ", class(data[[id]]),
+           ": ",names(data)[id]
+          )
         }
-
-
       }
     }
 
@@ -177,7 +185,10 @@ apply_dic <- function(data,
   }
 
   if (!is.null(var_not_df)) {
-    message(length(var_not_df), " of ", nrow(dic), " variables from dic not found in data file:")
+    message(
+      length(var_not_df), " of ", nrow(dic),
+      " variables from dic not found in data file:"
+    )
     message(paste0(var_not_df, collapse = ", "))
   }
 
@@ -233,9 +244,9 @@ apply_dic <- function(data,
   }
 
   #remove white spaces
-
-  dic[[.dic_file$value_labels]] <- trimws(dic[[.dic_file$value_labels]])
-  dic[[.dic_file$value_labels]][which(dic[[.dic_file$value_labels]] == "")] <- NA
+  .column <- .dic_file$value_labels
+  dic[[.column]] <- trimws(dic[[.column]])
+  dic[[.column]][which(dic[[.column]] == "")] <- NA
 
   dic[[.dic_file$item_name]] <- trimws(dic[[.dic_file$item_name]])
 
@@ -272,7 +283,9 @@ apply_dic <- function(data,
   # type NA to integer
   miss_type <- which(is.na(dic[[.dic_file$type]]))
   if (length(miss_type) > 0) {
-    message(length(miss_type), " missing types found and replaced with 'integer'.")
+    message(
+      length(miss_type), " missing types found and replaced with 'integer'."
+    )
     dic[miss_type, .dic_file$type] <- "integer"
   }
 
@@ -283,8 +296,10 @@ apply_dic <- function(data,
   miss <- miss[.filter]
   if (length(miss) > 0) {
     miss %>%
-      paste(collapse = ", ") %>%
-      message("The following variables were missing in the dictionary file: ", .)
+      paste(collapse = ", ")  %>%
+      message(
+        "The following variables were missing in the dictionary file: ", .
+      )
     dic[, miss] <- NA
   }
 
