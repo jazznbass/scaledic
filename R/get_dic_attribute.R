@@ -1,7 +1,7 @@
 #' Get a dictionary attribute of one or more variables.
 #'
 #' @param data A data frame with dic information
-#' @param attributes Name of label attribute
+#' @param attribute Name of label attribute
 #' @param duplicates If FALSE, duplicated attributes will be removed from
 #'   returned vector.
 #' @return Vector of attributes. If an attribute is not present, NA is returned.

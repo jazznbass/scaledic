@@ -8,3 +8,5 @@ docs
 repository_scaledic.png
 scaledic_data.RData.R
 ^mess$
+^_pkgdown\.yml$
+^pkgdown$
