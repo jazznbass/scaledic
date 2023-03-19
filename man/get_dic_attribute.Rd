@@ -9,10 +9,10 @@ get_dic_attribute(data, attribute, duplicates = TRUE)
 \arguments{
 \item{data}{A data frame with dic information}
 
+\item{attribute}{Name of label attribute}
+
 \item{duplicates}{If FALSE, duplicated attributes will be removed from
 returned vector.}
-
-\item{attributes}{Name of label attribute}
 }
 \value{
 Vector of attributes. If an attribute is not present, NA is returned.
