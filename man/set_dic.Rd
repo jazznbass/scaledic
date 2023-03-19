@@ -9,7 +9,7 @@ set_dic(data, vars = NULL, ...)
 \arguments{
 \item{data}{A data frame}
 
-\item{vars}{string or vector with string of variable names}
+\item{vars}{Character vector with variable names}
 
 \item{...}{More dic parameters}
 }

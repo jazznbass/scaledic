@@ -1,6 +1,7 @@
 #' Create haven labels and value labels from dic
 #'
 #' @param data A data frame containing dic information
+#' @param overwrite Logical. If `TRUE`, overwrites existing haven labels.
 #'
 #' @return A data frame with haven labels and value labels
 #' @export

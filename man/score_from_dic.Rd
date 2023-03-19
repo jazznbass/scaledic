@@ -19,3 +19,4 @@ A data frame with added scale scores
 \description{
 Automatic scale scoring from a dic file
 }
+\keyword{internal}

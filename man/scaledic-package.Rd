@@ -30,6 +30,6 @@ dat  |>
   t()
 }
 \author{
-Juergen Wilbert [aut, cre]
+Juergen Wilbert \link{aut, cre}
 }
 \keyword{package}

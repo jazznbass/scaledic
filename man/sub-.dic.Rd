@@ -7,9 +7,9 @@
 \method{[}{dic}(x, i = length(x), ...)
 }
 \arguments{
-\item{x}{A scdf object}
+\item{x}{An  object}
 
-\item{i}{A case name from x}
+\item{i}{Elements to be selected}
 
 \item{...}{further arguments passed to the subset function.}
 }
@@ -19,3 +19,4 @@ A dic variable
 \description{
 Subset a dic variable
 }
+\keyword{internal}

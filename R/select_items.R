@@ -3,13 +3,13 @@
 #' Selects a data frame with variables of a specific scale
 #'
 #' @param data A data frame with dic information
-#' @param filter A logical expression for any dic attribute (e.g. scale ==
-#'   "ITRF" & subscale == "Int")
+#' @param filter A logical expression for any dic attribute (e.g. `scale ==
+#'   "ITRF" & subscale == "Int"`)
 #' @param names_only If TRUE, variable names are returned instead of a data
 #'   frame
 #' @param index_only If TRUE, variable indices are returned instead of a data
 #'   frame
-#' @return A data frame, a vector with variable names or a vector with indices
+#' @return A data frame, a vector with variable names, or a vector with indices.
 #' @export
 select_items <- function(data,
                          filter = NULL,

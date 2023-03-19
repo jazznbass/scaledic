@@ -15,10 +15,10 @@ rename_items(
 \item{data}{A data frame}
 
 \item{pattern}{A character string with the syntax of the glue function (see
-example).}
+\code{\link[=glue]{glue()}}).}
 
-\item{max_chars, chars}{If not NULL, only the first n chars og the long label
-will be applied.}
+\item{max_chars, chars}{If not NULL, only the first n chars of the resulting
+label will be applied.}
 }
 \value{
 A renamed data frame

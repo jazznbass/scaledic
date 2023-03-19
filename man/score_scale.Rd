@@ -32,7 +32,7 @@ returns a data frame with the new score variables for each scale.}
 
 \item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for building
 the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When
-argument FUN is set, `sum` is ignored.}
+argument FUN is set, \code{sum} is ignored.}
 
 \item{min_valid}{Minimal number of valid values that is required for
 calculating the mean. A value between 0 and 1 indicates a proportion of

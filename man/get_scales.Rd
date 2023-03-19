@@ -11,7 +11,8 @@ get_scales(data, ..., .variable = "item_name")
 
 \item{...}{selection definitions.}
 
-\item{.variable}{character with name of the dic information to be returned. Default is "item_name".}
+\item{.variable}{character with name of the dic information to be returned.
+Default is "item_name".}
 }
 \value{
 A (named) list with string vectors of item names
@@ -20,10 +21,10 @@ A (named) list with string vectors of item names
 Extracts a list of item names based on dic information
 }
 \details{
-This function is basically a wrapper around the `
-select_items(data = data, filter = ..., names_only = TRUE)` function.
-It takes multiple filter expressions for a single data frame and returns the item names.
-This is mostly helpful for functions that take multiple scale definitions like `alpha_table()`
+This function is basically a wrapper around the \code{select_items(data = data, filter = ..., names_only = TRUE)} function. It takes multiple filter
+expressions for a single data frame and returns the item names. This is
+mostly helpful for functions that take multiple scale definitions like
+\code{alpha_table()}
 }
 \examples{
 get_scales(ex_itrf,

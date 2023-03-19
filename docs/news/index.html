@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,13 +80,18 @@
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SW"</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"SW"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AD"</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"AD"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<ul><li>
+<code><a href="../reference/get_dic_attribute.html">get_dic_attribute()</a></code>. Returns a list with dic attributes for a dataframe.</li>
+</ul><div class="sourceCode" id="cb3"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">"Int"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_dic_attribute</span>(<span class="st">"item_label"</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reworkek-0-2">Reworkek<a class="anchor" aria-label="anchor" href="#reworkek-0-2"></a></h3>
 <ul><li>
 <code><a href="../reference/rename_items.html">rename_items()</a></code>: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)</li>
-</ul><div class="sourceCode" id="cb3"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_item</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
+</ul><div class="sourceCode" id="cb4"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_item</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
 </div>
 </div>
     <div class="section level2">
@@ -140,7 +145,7 @@
 <li>
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code>: If a charcter string is passed to the <code>dic</code> argument instead of a data frame, the function will take this as a filename and tries to load the file.</li>
 <li>
-<code><a href="../reference/backup_dic.html">get_dic()</a></code> renamed to <code><a href="../reference/backup_dic.html">backup_dic()</a></code>
+<code>get_dic()</code> renamed to <code>backup_dic()</code>
 </li>
 </ul></div>
     <div class="section level2">

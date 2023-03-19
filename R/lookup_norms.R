@@ -1,15 +1,15 @@
-#' Lookup normtable values
+#' Look up norm table values
 #'
-#' Transforms raw values to norm values based on a normtable.
+#' Transforms raw values to norm values based on a norm table.
 #'
-#' @param rawscores A vector with rawscores.
-#' @param group A vector with group affiliation.
-#' @param normtable An excel file name or a dataframe containing a normtable.
+#' @param rawscores A vector with raw scores.
+#' @param group A vector with group affiliations.
+#' @param normtable An excel file name or a data frame containing a norm table.
 #' @param from Label of the raw score variable in file.
 #' @param to Label of the norm score variable in file.
 #' @param group_label Label of the group variable in file.
 #'
-#' @return A vector with norm values
+#' @return A vector with norm values.
 #' @export
 #'
 #' @examples
@@ -43,13 +43,16 @@ lookup_norms <- function(rawscores,
     stop(from, " was not found in normtable.")
   if (!to %in% names(normtable))
     stop(to, " was not found in normtable.")
-  if (!from %in% names(normtable))
-    stop(from, " was not found in normtable.")
   if (!group_label %in% names(normtable))
     stop(group_label, " was not found in normtable.")
 
-  if (length(group) < length(rawscores))
-    group <- rep(group, length = length(rawscores))
+  if (length(group) < length(rawscores)) {
+    if (length(group) == 1) {
+      group <- rep(group, length = length(rawscores))
+    } else {
+      stop("Length of 'group' is smaller than length of 'rawscore'.")
+    }
+  }
 
   lookup <- function(x, y) {
 

@@ -4,8 +4,13 @@
 #'
 #' @param ... data frames with dic information
 #'
-#' @return A combined data frame with all rows and columns from the provided dataframes.
-#' @details This function is useful when you want to join several dataframes that contain dic information into one dataframe. When a variable that is entailed in both dataframes has dic information, the resulting dataframe will keep the dic information of the dataframe that is first listet as an argument.
+#' @return A combined data frame with all rows and columns from the provided
+#'   data frames.
+#' @details This function is useful when you want to join several data frames
+#'   that contain dic information into one data frame. When a variable that is
+#'   entailed in both data frames has dic information, the resulting data frame
+#'   will keep the dic information of the data frame that is first listed as an
+#'   argument.
 #' @export
 
 combine_data_frames <- function(...) {
@@ -34,10 +39,8 @@ combine_data_frames <- function(...) {
     data
   }
 
-  out <- dfs[[1]]
   for(i in 2:length(dfs)) {
-
-    out <- add(out, dfs[[i]])
+    dfs[[1]] <- add(dfs[[1]], dfs[[i]])
   }
-  out
+  dfs[[1]]
 }

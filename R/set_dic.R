@@ -1,7 +1,7 @@
 #' Set dictionary information to variables
 #'
 #' @param data A data frame
-#' @param vars string or vector with string of variable names
+#' @param vars Character vector with variable names
 #' @param ... More dic parameters
 #'
 #' @return A data frame

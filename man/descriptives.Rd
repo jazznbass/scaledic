@@ -11,7 +11,7 @@ descriptives(data, round = 2, labels = FALSE)
 
 \item{round}{Digits for round function}
 
-\item{labels}{If TRUE, item labels are added.}
+\item{labels}{Deprecated. Use \code{\link[=rename_items]{rename_items()}} instead.}
 }
 \value{
 A data frame with descriptive statistics

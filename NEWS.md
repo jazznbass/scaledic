@@ -38,6 +38,15 @@ scales <- list(
 )
 ```
 
+- `get_dic_attribute()`. Returns a list with dic attributes for a dataframe.
+
+```.r
+ex_itrf %>% 
+  select_items(subscale == "Int") %>% 
+  get_dic_attribute("item_label")
+
+```
+
 ## Reworkek
 
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)

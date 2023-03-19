@@ -12,7 +12,8 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
 
     if (!is.null(item_label)) {
       if (remove_haven_class) {
-        class(data[[i]]) <- class(data[[i]])[which(!class(data[[i]]) %in% c("haven_labelled", "vctrs_vctr"))]
+        .id <- which(!class(data[[i]]) %in% c("haven_labelled", "vctrs_vctr"))
+        class(data[[i]]) <- class(data[[i]])[.id]
       }
       if(is.null(attr(data[[i]], .opt$dic))) {
         data[[i]] <- dic(data[[i]])
@@ -38,6 +39,27 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
 
     if (is.null(dic_attr(data[[i]], .opt$class)))
       dic_attr(data[[i]], .opt$class) <- "item"
+  }
+  data
+}
+
+#' Create haven labels and value labels from dic
+#'
+#' @param data A data frame containing `dic` information
+#' @param overwrite Logical. If `TRUE`, overwrites existing haven labels.
+#'
+#' @return A data frame with haven labels and value labels
+#' @examples
+#' ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
+#' ex_itrf_copy <- dic_haven(ex_itrf)
+#' identical(ex_itrf, ex_itrf_copy)
+#' @export
+dic_haven <- function(data, overwrite = TRUE) {
+  for(i in .get_dic_items(data, items_only = FALSE)) {
+    if (overwrite || is.null(attr(data[[i]], "label")))
+      attr(data[[i]], "label") <- dic_attr(data[[i]], .opt$item_label)
+    if (overwrite || is.null(attr(data[[i]], "labels")))
+      attr(data[[i]], "labels") <- dic_attr(data[[i]], .opt$values)
   }
   data
 }

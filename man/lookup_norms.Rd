@@ -2,7 +2,7 @@
 % Please edit documentation in R/lookup_norms.R
 \name{lookup_norms}
 \alias{lookup_norms}
-\title{Lookup normtable values}
+\title{Look up norm table values}
 \usage{
 lookup_norms(
   rawscores,
@@ -14,11 +14,11 @@ lookup_norms(
 )
 }
 \arguments{
-\item{rawscores}{A vector with rawscores.}
+\item{rawscores}{A vector with raw scores.}
 
-\item{group}{A vector with group affiliation.}
+\item{group}{A vector with group affiliations.}
 
-\item{normtable}{An excel file name or a dataframe containing a normtable.}
+\item{normtable}{An excel file name or a data frame containing a norm table.}
 
 \item{from}{Label of the raw score variable in file.}
 
@@ -27,10 +27,10 @@ lookup_norms(
 \item{group_label}{Label of the group variable in file.}
 }
 \value{
-A vector with norm values
+A vector with norm values.
 }
 \description{
-Transforms raw values to norm values based on a normtable.
+Transforms raw values to norm values based on a norm table.
 }
 \examples{
 normtable <- data.frame(

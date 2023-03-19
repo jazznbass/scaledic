@@ -5,6 +5,7 @@
 #' @param impute_values If TRUE, missing values are imputed before scoring.
 #'
 #' @return A data frame with added scale scores
+#' @keywords internal
 #' @export
 
 score_from_dic <- function(data,
@@ -27,7 +28,9 @@ score_from_dic <- function(data,
       data <- .impute_missing(data, filter)
     }
 
-    data[[new_var]] <- .score_scale(data, filter = filter, label = label, FUN = NULL, sum = sum, bind = FALSE)
+    data[[new_var]] <- .score_scale(
+      data, filter = filter, label = label, FUN = NULL, sum = sum, bind = FALSE
+    )
 
   }
 

@@ -1,6 +1,6 @@
 
 #' @export
-#' @keywords internals
+#' @keywords internal
 vec_ptype2.dic.dic <- function(x, y, ...) {
   x
 }
