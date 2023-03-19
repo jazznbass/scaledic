@@ -5,7 +5,7 @@
 #' @name scaledic-package
 #' @aliases scaledic-package scaledic
 #' @docType package
-#' @author Juergen Wilbert [aut, cre]
+#' @author Juergen Wilbert \[aut, cre\]
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
 #' @importFrom readxl read_excel read_xlsx
