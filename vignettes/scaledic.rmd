@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 
 # Note
 
-The following code examples in this package make use of the pipe operator `%>%` (see <https://r4ds.had.co.nz/pipes.html> for more details).  
+The following code examples make use of the pipe operator `%>%` (see <https://r4ds.had.co.nz/pipes.html> for more details).  
 
 # How to use scaledic
 
@@ -37,7 +37,7 @@ You need two things:
 
 ## A dictionary file
 
-A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conviniently, you prepare a dictionary file in a spreadsheet program for later use with datasets.  
+A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.  
 
 The following table shows the parameters and the naming of the columns of a dictionary file: 
 
@@ -52,7 +52,6 @@ out <- tribble(
   "subscale_label", "Name of the sub scale", "internalizing problems",
   "subscale_2_label", "Name of the second order sub scale", "shyness",
   "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
-  "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
   "missing", "Missing values", "-888, -999",
@@ -65,7 +64,7 @@ kable(out, caption = "Columns of a dictionary file")
 
 ```
 
-Here is extract of a dic file from the included example:
+Here is an extract of an example *dic-file*:
 
 ```{r dic_example}
 dic_itrf %>% slice(2:4) %>% kable()
@@ -73,10 +72,10 @@ dic_itrf %>% slice(2:4) %>% kable()
 
 ## Apply a dictionary file
 
-When you combine a dataset with a dictionary file, each variable in the dataset which corresponds to a variable described in the dictionary will be complemented with the given dictionary information.  
-The resulting dataset now is ready to be used with all further `scaledic` functions.  
+When you combine a dataset with a dictionary file, each variable in the dataset that corresponds to a variable described in the dictionary is completed with the given dictionary information.  
+The resulting dataset is now ready for use with all other `scaledic` functions.  
 
-The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Thereby replacing missing values with NAs:
+The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Missing values are replaced with NAs:
 
 ```{r apply_dic}
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
@@ -115,7 +114,7 @@ dat <- impute_missing(dat, subscale == "Int")
 
 ## Select scales for analyszing
 
-Let us see descriptive statistics for the Internalizing sub scale:
+Let us see descriptive statistics for the *internalizing* sub scale:
  
 ```{r descriptives}
 dat %>% 
@@ -141,7 +140,7 @@ And further we analyse the factor structure. Here we use the `rename_item()` fun
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4)  %>% kable()
+  exploratory_fa(nfactors = 4, cut = 0.4) %>% kable()
 ```
 
 and provide item analyses

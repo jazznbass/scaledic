@@ -4,6 +4,7 @@
 #' @param ... Further parameters for the print function
 #'
 #' @return Dic infos of x
+#' @keywords internal
 #' @export
 print.dic <- function(x, ...) {
   data <- x

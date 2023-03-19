@@ -1,10 +1,11 @@
 #' Subset a dic variable
 #'
-#' @param x A scdf object
-#' @param i A case name from x
+#' @param x An  object
+#' @param i Elements to be selected
 #' @param ... further arguments passed to the subset function.
 #'
 #' @return A dic variable
+#' @keywords internal
 #' @export
 `[.dic`<- function(x, i = length(x), ...) {
   arg <- list(...)

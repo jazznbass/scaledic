@@ -3,8 +3,9 @@
 #' @param filename Character string. Default is 'dic_template.xlsx'
 #' @param nrows Number of empty rows added to data frame.
 #'
-#' @return When 'filename' is not empty, it writes an Excel file with an empty template of a dic file.
-#' When 'filename' is empty (ie. ""), returns a data frame.
+#' @return When 'filename' is not empty, it writes an Excel file with an empty
+#'   template of a dic file. When 'filename' is empty (ie. ""), returns a data
+#'   frame.
 #'
 #' @examples
 #' build_scaledic_skeleton("")
