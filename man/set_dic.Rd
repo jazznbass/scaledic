@@ -4,17 +4,19 @@
 \alias{set_dic}
 \title{Set dictionary information to variables}
 \usage{
-set_dic(data, vars = NULL, ...)
+set_dic(data, .vars = NULL, ...)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame or a vector.}
 
-\item{vars}{Character vector with variable names}
+\item{.vars}{Character vector with variable names. If data is a data frame,
+address these variables. If left \code{NULL} and data is a data frame, all
+variables from the data frame are addressed.}
 
-\item{...}{More dic parameters}
+\item{...}{dic attributes of the form \code{attribute = value}.}
 }
 \value{
-A data frame
+A data frame or a vector with added dic attributes.
 }
 \description{
 Set dictionary information to variables

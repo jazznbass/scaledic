@@ -83,42 +83,29 @@ apply_dic <- function(data,
 
 
     # extract values
-    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
-      parse(text = .) %>%
+    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")")  |>
+      str2lang()  |>
       eval()
 
     # extract value labels
-    value_labels <- dic[i, .dic_file$value_labels] %>%
-      as.character() %>%
-      strsplit(";") %>%
-      unlist() %>%
-      strsplit("=")
-
-    .n_labels <- length(value_labels)
-    .df <- data.frame(
-      value = character(.n_labels),
-      label = character(.n_labels)
+    value_labels <- .extract_value_labels(
+      dic[i, .dic_file$value_labels],
+      dic[i, .dic_file$type]
     )
-    for(j in 1:.n_labels) {
-      .df[j, 1] <- trimws(value_labels[[j]][1])
-      .df[j, 2] <- trimws(value_labels[[j]][2])
-    }
-    if (.dic_file$type %in% c("integer", "numeric", "float", "double"))
-      .df[["value"]] <- as.numeric(.df[["value"]])
 
-    dic_attr(data[[id]], .opt$value_labels) <- .df
 
-    for (x in value_labels) {
-      value <- as.numeric(x[1])
-      names(values)[which(values == value)] <- trimws(x[2])
+    for (.i in 1:nrow(value_labels)) {
+      value <- value_labels[.i, 1]
+      names(values)[which(values == value)] <- trimws(value_labels[.i, 2])
     }
 
-    dic_attr(data[[id]], .opt$values) <- values
+    dic_attr(data[[id]], "value_labels") <- value_labels
+    dic_attr(data[[id]], "values") <- values
 
     # extract missing
     dic_attr(data[[id]], .opt$missing) <-
-      paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")") %>%
-      parse(text = .) %>%
+      paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")")  |>
+      str2lang() |>
       eval()
 
     # check variable type (class)

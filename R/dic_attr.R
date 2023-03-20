@@ -7,8 +7,8 @@
 #' @return Attribute value
 #' @export
 dic_attr <- function(x, var) {
-  out <- attr(x, .opt$dic)
-  out[[var]]
+  out <- attr(x, opt("dic"))
+  out[[opt(var)]]
 }
 
 #' @rdname dic_attr

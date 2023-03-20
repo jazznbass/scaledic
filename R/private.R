@@ -23,6 +23,11 @@
   "score_function" = "score_function"
 )
 
+opt <- function(x) {
+  .opt[[x]]
+}
+
+
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
   "item_name" = "item_name",

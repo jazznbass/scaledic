@@ -52,14 +52,14 @@ dic <- data.frame(
   ),
   type = c(rep("integer", n_var), "factor"),
   weight = 1,
-  missing = c(rep("-999", n_var), "'keine Angabe'")
+  missing = c(rep("-999", n_var), "")
 )
 
-dat <- apply_dic(dat, dic)
-dat <- check_values(dat, report = TRUE)
-replace_missing(dat)
+dat2 <- apply_dic(dat, dic)
+dat2 <- check_values(dat2, report = TRUE)
+replace_missing(dat2)
 
-dat[1]
-dat[[11]]
+dat2[1]
+dat2[[11]]
 
 

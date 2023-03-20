@@ -1,4 +1,4 @@
-# scaledic 0.2.x
+# scaledic 0.2.3
 
 ## New functions
 
