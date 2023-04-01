@@ -4,18 +4,36 @@
 \alias{set_dic}
 \title{Set dictionary information to variables}
 \usage{
-set_dic(data, vars = NULL, ...)
+set_dic(data, .vars = NULL, ...)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame or a vector.}
 
-\item{vars}{string or vector with string of variable names}
+\item{.vars}{Character vector with variable names. If data is a data frame,
+address these variables. If left \code{NULL} and data is a data frame, all
+variables from the data frame are addressed.}
 
-\item{...}{More dic parameters}
+\item{...}{dic attributes of the form \code{attribute = value}.}
 }
 \value{
-A data frame
+A data frame or a vector with added dic attributes.
 }
 \description{
 Set dictionary information to variables
+}
+\details{
+Standard attributes are: \code{"item_name"}, \code{"item_label"}, \code{"scale"},
+\code{"subscale"}, \code{"subscale_2"}, \code{"scale_label"}, \code{"subscale_label"},
+\code{"subscale_2_label"}, \code{"weight"}, \code{"source"}, \code{"type"}, \code{"values"},
+\code{"value_labels"}, \code{"missing"}.
+}
+\examples{
+hap_1 <- sample(1:5, 30, replace = TRUE)
+set_dic(hap_1,
+   item_label = "How do you feel today?",
+   scale = "hap",
+   scale_label = "Happiness",
+   values = 1:3,
+   value_labels = "1 = not happy; 2 = in between; 3 = happy"
+)
 }

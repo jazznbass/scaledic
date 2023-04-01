@@ -2,7 +2,7 @@
 #'
 #' @param data A data frame
 #' @param round Digits for round function
-#' @param labels If TRUE, item labels are added.
+#' @param labels Deprecated. Use [rename_items()] instead.
 #'
 #' @return A data frame with descriptive statistics
 #' @examples
@@ -41,12 +41,13 @@ descriptives <- function(data, round = 2, labels = FALSE) {
   out <- cbind(name = rownames(out), out)
   rownames(out) <- NULL
   if (labels) {
-    lab <- c()
-    for(i in 1: ncol(data)) {
-      lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
-    }
-    out$label <- lab
-    out <- out %>% relocate("name", "label")
+    warnings("Deprecated. Use rename_items().")
+    #lab <- c()
+    #for(i in 1: ncol(data)) {
+    #  lab <- c(lab, dic_attr(data[[i]], .opt$item_label))
+    #}
+    #out$label <- lab
+    #out <- out %>% relocate("name", "label")
   }
   out
 }

@@ -5,7 +5,8 @@
 #' @param data Data frame
 #' @param dic A data frame comprising a dictionary or a character string with a
 #'   filename (for now an Microsoft Excel file) containing a dictionary.
-#' @param factors If set TRUE, factor variables will be turned into factors.
+#' @param factors If set TRUE, variables defined as type `factor` in the dic
+#'   file will be turned into factors.
 #' @param set_label_attr If TRUE, label attributes from the haven package are
 #'   set. These labels are shown in the Rstudio View panel.
 #' @param coerce_class If set TRUE mismatches between class and dic type are
@@ -58,17 +59,34 @@ apply_dic <- function(data,
     }
   }
 
+# extract scoring information from dic file -----
+
   .filter <- dic[[.dic_file$class]] == "scale"
   dic_scores <- dic[.filter, ]
   dic <- dic[!.filter, ]
 
-  var_not_df <- NULL
-
+  if (nrow(dic_scores) > 0) {
+    ord <- c("item_name", "scale", "subscale", "scale_label", "subscale_label",
+      "item_label", "type", "score_filter", "score_function", "class")
+    filter <- unlist(lapply(dic_scores, function(x) !all(is.na(x))))
+    filter <- sort(names(dic_scores)[filter])
+    dic_scores <- dic_scores[, filter]
+    attr(data, opt("dic")) <- list(scales = dic_scores)
+    #for (i in 1:nrow(dic_scores)) {
+    #  new_name <- dic_scores[[opt("item_name")]][i]
+    #  data[[new_name]] <- NA
+    #  dic_attributes <- as.list(dic_scores[i, ])
+    #  dic_attributes[[.dic_file$class]]<- "score"
+    #  attr(data[[new_name]], "dic") <- dic_attributes
+    #  class(data[[new_name]]) <- c(opt("dic"), "numeric")
+    #}
+  }
 
 # apply dic information to variables --------------------------------------
 
-  for (i in 1:nrow(dic)) {
+  var_not_df <- NULL
 
+  for (i in 1:nrow(dic)) {
     # look up column in data frame corresponding to item_name
     id <- which(names(data) == dic[[.dic_file$item_name]][i])
     if (length(id) > 1) {
@@ -81,44 +99,29 @@ apply_dic <- function(data,
       next
     }
 
-
     # extract values
-    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")") %>%
-      parse(text = .) %>%
+    values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")")  |>
+      str2lang()  |>
       eval()
 
     # extract value labels
-    value_labels <- dic[i, .dic_file$value_labels] %>%
-      as.character() %>%
-      strsplit(";") %>%
-      unlist() %>%
-      strsplit("=")
-
-    .n_labels <- length(value_labels)
-    .df <- data.frame(
-      value = character(.n_labels),
-      label = character(.n_labels)
+    value_labels <- .extract_value_labels(
+      dic[i, .dic_file$value_labels],
+      dic[i, .dic_file$type]
     )
-    for(j in 1:.n_labels) {
-      .df[j, 1] <- trimws(value_labels[[j]][1])
-      .df[j, 2] <- trimws(value_labels[[j]][2])
-    }
-    if (.dic_file$type %in% c("integer", "numeric", "float", "double"))
-      .df[["value"]] <- as.numeric(.df[["value"]])
 
-    dic_attr(data[[id]], .opt$value_labels) <- .df
-
-    for (x in value_labels) {
-      value <- as.numeric(x[1])
-      names(values)[which(values == value)] <- trimws(x[2])
+    for (.i in 1:nrow(value_labels)) {
+      value <- value_labels[.i, 1]
+      names(values)[which(values == value)] <- trimws(value_labels[.i, 2])
     }
 
-    dic_attr(data[[id]], .opt$values) <- values
+    dic_attr(data[[id]], "value_labels") <- value_labels
+    dic_attr(data[[id]], "values") <- values
 
     # extract missing
     dic_attr(data[[id]], .opt$missing) <-
-      paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")") %>%
-      parse(text = .) %>%
+      paste0("c(", as.character(dic[[.dic_file$missing]][i]), ")")  |>
+      str2lang() |>
       eval()
 
     # check variable type (class)
@@ -129,7 +132,7 @@ apply_dic <- function(data,
         if (coerce_class) {
           message(
             "Class should be numeric but is ", class(data[[id]]),
-            ". Coreced to numeric: ", names(data)[id]
+            ". Corrected to numeric: ", names(data)[id]
           )
           class(data[[id]]) <- "numeric"
         } else {
@@ -164,25 +167,35 @@ apply_dic <- function(data,
 
 
     ### set factors
-    if (factors && dic_attr(data[[id]], .opt$type) == "factor") {
-      values <- dic_attr(data[[id]], .opt$values)
+    if (factors && dic_attr(data[[id]], "type") == "factor") {
+      #values <- dic_attr(data[[id]], .opt$values)
+      #.factor <- factor(
+      #  data[[id]],
+      #  levels = values,
+      #  labels = names(values)
+      #)
+
+      value_labels <- dic_attr(data[[id]], "value_labels")
+
+      if (!all(unique(data[[id]]) %in% value_labels$value)) {
+        message(names(data)[id], " has values not defined as value_labels. ",
+        "These are automatically set to NA.")
+      }
+
       .factor <- factor(
         data[[id]],
-        levels = values,
-        labels = names(values)
+        levels = value_labels$value,
+        labels = value_labels$label
       )
-      .factor <- factor(
-        data[[id]],
-        levels = dic_attr(data[[id]], .opt$value_labels)$value,
-        labels = dic_attr(data[[id]], .opt$value_labels)$label
-      )
-      attr(.factor, .opt$dic) <- attr(data[[id]], .opt$dic)
+      attr(.factor, .opt$dic) <- attr(data[[id]], opt("dic"))
       data[[id]] <- .factor
     }
 
     #dic_attr(data[[id]], .opt$class) <- "item"
     class(data[[id]]) <- c("dic", class(data[[id]]))
   }
+
+  # var not found messages ------
 
   if (!is.null(var_not_df)) {
     message(
@@ -192,25 +205,30 @@ apply_dic <- function(data,
     message(paste0(var_not_df, collapse = ", "))
   }
 
+  # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
     message("Replaced missing values.")
   }
 
+  # check values ----
   if (check_values) {
     message("Values checked.")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
+  # score scales ----
   if (score_scales && nrow(dic_scores > 0)) {
     message("Values checked.")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
     if (impute_values) message("Scales imputed.")
     message("Scales scored.")
-    data <- score_from_dic(data, dic_scores, impute_values = impute_values)
+    data <- score_from_dic(data, impute_values = impute_values)
   }
+
+  # return ----
 
   if (set_label_attr) {
     message("`label` attribute set.")
@@ -268,7 +286,7 @@ apply_dic <- function(data,
     dic[[.dic_file$weight]][filter_items] <- 1
   }
 
-  if(!inherits(class(dic[[.dic_file$weight]]), "numeric")) {
+  if(!inherits(dic[[.dic_file$weight]], "numeric")) {
     message("'weight' variable is not numeric: transformed variable to numeric.")
     dic[[.dic_file$weight]] <- as.numeric(dic[[.dic_file$weight]])
   }
@@ -316,14 +334,19 @@ apply_dic <- function(data,
     if (is.na(dic[[.dic_file$item_label]][i])) missing_label <- c(missing_label, i)
   }
   if (!is.null(missing_label)) {
-    message("Missing item_label found at variabel no. ", paste0(missing_label, collapse = ", "), " in dic file.")
+    message(
+      "Missing item_label found at variabel no. ",
+      paste0(missing_label, collapse = ", "), " in dic file."
+    )
   }
 
   # check for duplicated item_names in dic
   .duplicates <- duplicated(dic[[.dic_file$item_name]])
   if (any(.duplicates)) {
     id <- dic[[.dic_file$item_name]][which(.duplicates)]
-    stop(paste0("Item names duplicated in dic-file: ", paste0(id, collapse = ", ")))
+    stop(
+      paste0("Item names duplicated in dic-file: ", paste0(id, collapse = ", "))
+    )
   }
 
   # Check for \r\n in value labels

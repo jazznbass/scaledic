@@ -9,8 +9,7 @@ select_items(data, filter = NULL, names_only = FALSE, index_only = FALSE)
 \arguments{
 \item{data}{A data frame with dic information}
 
-\item{filter}{A logical expression for any dic attribute (e.g. scale ==
-"ITRF" & subscale == "Int")}
+\item{filter}{A logical expression for any dic attribute (e.g. \code{scale == "ITRF" & subscale == "Int"})}
 
 \item{names_only}{If TRUE, variable names are returned instead of a data
 frame}
@@ -19,7 +18,7 @@ frame}
 frame}
 }
 \value{
-A data frame, a vector with variable names or a vector with indices
+A data frame, a vector with variable names, or a vector with indices.
 }
 \description{
 Selects a data frame with variables of a specific scale

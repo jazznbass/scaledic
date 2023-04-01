@@ -16,11 +16,10 @@ out <- tribble(
   "scale", "Abreviation of the scale the item belongs to", "irtf",
   "subscale", "Abrevation of the sub scale", "int",
   "subscale_2", "Abrevation of the second order sub scale", "AD",
+  "item_label", "Full text of the item", "Complains of headaches or stomach aches",
   "scale_label", "Name of the scale", "Integrated Teacher Report Form",
   "subscale_label", "Name of the sub scale", "internalizing problems",
   "subscale_2_label", "Name of the second order sub scale", "Anxious/Depressed",
-  "item_label", "Full text of the item", "Complains of headaches or stomach aches",
-  "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic",
   "missing", "Missing values", "-888, -999",
@@ -46,21 +45,21 @@ dic <- data.frame(
   item_label = c(paste("Item", LETTERS[1:n_var]), "gender"),
   scale = c(rep("letters", n_var), "Misc"),
   scale_label = c(rep("Letter Values", n_var), "Miscellaneous"),
-  values = c(rep("1:5", n_var), "'male', 'female'"),
+  values = c(rep("1:5", n_var), "'m', 'f', 'ka'"),
   value_labels = c(
     rep("1 = low; 2; 3; 4; 5 = high", n_var), 
     "m = male; f = female; ka = keine Angabe"
   ),
   type = c(rep("integer", n_var), "factor"),
   weight = 1,
-  missing = c(rep("-999", n_var), "'keine Angabe'")
+  missing = c(rep("-999", n_var), "")
 )
 
-dat <- apply_dic(dat, dic)
-dat <- check_values(dat, report = TRUE)
-replace_missing(dat)
+dat2 <- apply_dic(dat, dic)
+dat2 <- check_values(dat2, report = TRUE)
+replace_missing(dat2)
 
-dat[1]
-dat[[11]]
+dat2[1]
+dat2[[11]]
 
 

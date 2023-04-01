@@ -23,7 +23,6 @@ out <- tribble(
   "subscale_label", "Name of the sub scale", "internalizing problems",
   "subscale_2_label", "Name of the second order sub scale", "shyness",
   "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
-  "index", "An index number", "1",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
   "missing", "Missing values", "-888, -999",
@@ -76,7 +75,7 @@ dat %>%
 dat %>%
   select_items(scale == "ITRF") %>%
   rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
-  exploratory_fa(nfactors = 4, cut = 0.4)  %>% kable()
+  exploratory_fa(nfactors = 4, cut = 0.4) %>% kable()
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf %>% get_scales(

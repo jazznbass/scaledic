@@ -10,11 +10,16 @@ combine_data_frames(...)
 \item{...}{data frames with dic information}
 }
 \value{
-A combined data frame with all rows and columns from the provided dataframes.
+A combined data frame with all rows and columns from the provided
+data frames.
 }
 \description{
 Combine data frames (rows and columns) and keep dic information.
 }
 \details{
-This function is useful when you want to join several dataframes that contain dic information into one dataframe. When a variable that is entailed in both dataframes has dic information, the resulting dataframe will keep the dic information of the dataframe that is first listet as an argument.
+This function is useful when you want to join several data frames
+that contain dic information into one data frame. When a variable that is
+entailed in both data frames has dic information, the resulting data frame
+will keep the dic information of the data frame that is first listed as an
+argument.
 }

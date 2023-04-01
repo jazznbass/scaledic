@@ -85,6 +85,9 @@
     <loc>/reference/get_dic.html</loc>
   </url>
   <url>
+    <loc>/reference/get_dic_attribute.html</loc>
+  </url>
+  <url>
     <loc>/reference/get_index.html</loc>
   </url>
   <url>
@@ -122,6 +125,9 @@
   </url>
   <url>
     <loc>/reference/psych_fa.html</loc>
+  </url>
+  <url>
+    <loc>/reference/remove_dic.html</loc>
   </url>
   <url>
     <loc>/reference/rename_by_list.html</loc>

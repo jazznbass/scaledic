@@ -67,10 +67,8 @@ alpha_table <- function(data,
     scales[[i]] <- scales[[i]][.id]
 
     if (keys == "auto") {
-      key <- data[, scales[[i]]] %>%
-        map(~ dic_attr(.x, .opt$weight)) %>%
-        unlist() %>%
-        as.numeric() %>%
+      key <- data[, scales[[i]]] |>
+        map_dbl(~ dic_attr(.x, "weight")) |>
         sign()
     }
 
@@ -150,18 +148,19 @@ alpha_table <- function(data,
  }
 
   if (CI) {
-    df <- rename(df,
-      !!glue("Alpha CI{conf_level*100}%") := "Alpha",
-      !!glue("Std.Alph CI{conf_level * 100}%") := "Std.Alpha"
+    names(df)[which(names(df) == "Alpha")] <- glue("Alpha CI{conf_level*100}%")
+    names(df)[which(names(df) == "Std.Alpha")] <- glue(
+      "Std.Alph CI{conf_level * 100}%"
     )
   }
-  cat("Note. values in brackets depict upper and lower bound of",
+  message("Note. values in brackets depict upper and lower bound of ",
       "confidence intervals or [min,max] intervals.")
   df
 }
 
 .alpha_CI <- function(alpha, n, items, ci) {
-  out <- 1 - (1 - alpha) * qf(c(1 - (1 - ci) / 2, (1 - ci) / 2), n - 1, (n - 1) * (items - 1))
+  f <- qf(c(1 - (1 - ci) / 2, (1 - ci) / 2), n - 1, (n - 1) * (items - 1))
+  out <- 1 - (1 - alpha) * f
   out
 }
 

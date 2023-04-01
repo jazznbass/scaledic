@@ -23,6 +23,11 @@
   "score_function" = "score_function"
 )
 
+opt <- function(x) {
+  .opt[[x]]
+}
+
+
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
   "item_name" = "item_name",
@@ -49,13 +54,13 @@
 
 .get_dic_items <- function(data, items_only = TRUE) {
 
-  if (!items_only)
-    foobar <- function(x) !is.null(attr(x, .opt$dic))
+  fn <- if (items_only) {
+    function(x) !is.null(attr(x, opt("dic"))) && dic_attr(x, "class") == "item"
+  } else {
+    function(x) !is.null(attr(x, opt("dic")))
+  }
 
-  if (items_only)
-    foobar <- function(x)
-      !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
-  which(sapply(data, foobar))
+  which(sapply(data, fn))
 
 }
 
