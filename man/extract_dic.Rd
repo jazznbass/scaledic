@@ -2,16 +2,20 @@
 % Please edit documentation in R/extract_dic.R
 \name{extract_dic}
 \alias{extract_dic}
-\title{Extract a dictionary from data file}
+\title{Extract a dictionary from a data file with dic information}
 \usage{
 extract_dic(data)
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame with dic information.}
 }
 \value{
-A data frame in a dictionary format
+A data frame in a dictionary format.
 }
 \description{
-Extract a dictionary from data file
+Extract a dictionary from a data file with dic information
+}
+\examples{
+extract_dic(ex_itrf)
+
 }

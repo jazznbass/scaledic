@@ -45,7 +45,7 @@ dic <- data.frame(
   item_label = c(paste("Item", LETTERS[1:n_var]), "gender"),
   scale = c(rep("letters", n_var), "Misc"),
   scale_label = c(rep("Letter Values", n_var), "Miscellaneous"),
-  values = c(rep("1:5", n_var), "'male', 'female'"),
+  values = c(rep("1:5", n_var), "'m', 'f', 'ka'"),
   value_labels = c(
     rep("1 = low; 2; 3; 4; 5 = high", n_var), 
     "m = male; f = female; ka = keine Angabe"

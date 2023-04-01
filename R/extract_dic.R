@@ -1,8 +1,11 @@
-#' Extract a dictionary from data file
+#' Extract a dictionary from a data file with dic information
 #'
-#' @param data A data frame
+#' @param data A data frame with dic information.
 #'
-#' @return A data frame in a dictionary format
+#' @return A data frame in a dictionary format.
+#' @examples
+#' extract_dic(ex_itrf)
+#'
 #' @export
 
 extract_dic <- function(data) {
@@ -21,7 +24,7 @@ extract_dic <- function(data) {
   names(out) <- dic_names
 
   for (row in 1:N) {
-    dic <- attr(data[[id[row]]], .opt$dic)
+    dic <- attr(data[[id[row]]], opt("dic"))
 
     .var <- !dic_names %in% c("value_labels", "values", "missing")
     for (col in dic_names[.var]) {
@@ -33,7 +36,7 @@ extract_dic <- function(data) {
     }
 
     # values to code
-    x <- dic[[.opt$values]]
+    x <- dic[[opt("values")]]
 
     if (is.null(x)) {
       x <- NA
@@ -47,7 +50,7 @@ extract_dic <- function(data) {
       }
     }
 
-    out[row, .opt[["values"]]] <- x
+    out[row, opt("values")] <- x
 
     # value labels to code
 
@@ -62,7 +65,7 @@ extract_dic <- function(data) {
         )
     }
 
-    out[row, .opt[["value_labels"]]] <- x
+    out[row, opt("value_labels")] <- x
 
     # missing to code
 
@@ -73,7 +76,7 @@ extract_dic <- function(data) {
       x <- paste0(x, collapse = ", ")
       #x <- substring(x, 1, nchar(x) - 1)
     }
-    out[row, .opt[["missing"]]] <- x
+    out[row, opt("missing")] <- x
 
   }
 
@@ -83,6 +86,12 @@ extract_dic <- function(data) {
   order <- order[order %in% names(out)]
 
   out <- out[, c(order, names(out)[which(!names(out) %in% order)])]
-  #out <- out[order(out[[.opt$item_name]]),]
+
+  if (!is.null(attributes(data)$dic$scales)) {
+    new_rows <- attributes(data)$dic$scales
+    new_ids <- (nrow(out) + 1):(nrow(out) + nrow(new_rows))
+    out[new_ids, names(new_rows)] <- new_rows
+  }
+
   out
 }

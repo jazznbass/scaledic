@@ -6,17 +6,18 @@
 \usage{
 lookup_norms(
   rawscores,
-  group,
+  group = NULL,
   normtable,
   from = "raw",
   to = "T",
-  group_label = "group"
+  group_label = names(group)
 )
 }
 \arguments{
 \item{rawscores}{A vector with raw scores.}
 
-\item{group}{A vector with group affiliations.}
+\item{group}{A vector with group affiliations or a list with vectors for
+multiple group categorizations.}
 
 \item{normtable}{An excel file name or a data frame containing a norm table.}
 
@@ -24,7 +25,8 @@ lookup_norms(
 
 \item{to}{Label of the norm score variable in file.}
 
-\item{group_label}{Label of the group variable in file.}
+\item{group_label}{Label of the group variable in file or a list with group
+labels for multiple group categorizations.}
 }
 \value{
 A vector with norm values.
@@ -34,15 +36,20 @@ Transforms raw values to norm values based on a norm table.
 }
 \examples{
 normtable <- data.frame(
-  group = c(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8),
-  raw = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-  T = c(40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 37, 39, 41, 43, 45, 47,
-        49, 51, 53, 55, 57)
+  age = rep(c(6, 8, 6, 8), each = 11),
+  gender = rep(c("m", "w"), each = 22),
+  raw =  rep(0:10, 4),
+  T = rep(c(40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60,
+            37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57), 2) + rep(c(0,5), each = 22)
 )
 rawscores <- c(5,5,3,1)
-group <- c("6", "8", "6", "8")
-lookup_norms(rawscores, group, normtable)
+group_age <- c("6", "8", "6", "8")
+group_gender <- c("m", "m", "w", "w")
 
-## When no group values are provided, raw scores are ambiguous:
+lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), normtable)
+
+## When group values are not specified exactly, raw scores can be ambiguous:
+lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
+
 lookup_norms(rawscores, normtable = normtable)
 }

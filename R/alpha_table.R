@@ -67,10 +67,8 @@ alpha_table <- function(data,
     scales[[i]] <- scales[[i]][.id]
 
     if (keys == "auto") {
-      key <- data[, scales[[i]]] %>%
-        map(~ dic_attr(.x, .opt$weight)) %>%
-        unlist() %>%
-        as.numeric() %>%
+      key <- data[, scales[[i]]] |>
+        map_dbl(~ dic_attr(.x, "weight")) |>
         sign()
     }
 
@@ -155,7 +153,7 @@ alpha_table <- function(data,
       "Std.Alph CI{conf_level * 100}%"
     )
   }
-  message("Note. values in brackets depict upper and lower bound of",
+  message("Note. values in brackets depict upper and lower bound of ",
       "confidence intervals or [min,max] intervals.")
   df
 }

@@ -23,7 +23,8 @@ apply_dic(
 \item{dic}{A data frame comprising a dictionary or a character string with a
 filename (for now an Microsoft Excel file) containing a dictionary.}
 
-\item{factors}{If set TRUE, factor variables will be turned into factors.}
+\item{factors}{If set TRUE, variables defined as type \code{factor} in the dic
+file will be turned into factors.}
 
 \item{set_label_attr}{If TRUE, label attributes from the haven package are
 set. These labels are shown in the Rstudio View panel.}

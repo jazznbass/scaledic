@@ -17,3 +17,4 @@ A data frame with added dic information from dic_list
 \description{
 Deploy dictionary information
 }
+\keyword{internal}

@@ -1,6 +1,8 @@
-# scaledic 0.2.3
+# scaledic 0.2.x
 
 ## New functions
+
+- `remove_dic()`: Returns an object that does not inherit from "dic". In the case a data.frame, the "dic" class will be removed from all variables. If argument `remove_attributes` is set `TRUE`, all dic attributes will be removed as well.
 
 - `lookup_norms()`: Turns raw scores to normscores with the help of a normtable. Added to example normtables for the ex_itrf example.
 
@@ -18,9 +20,10 @@ lookup_norms(rawscores, group, normtable)
 
 ```
 
-- `get_scales()`: A wrapper around `select_items()` to extract multiple scale definitions:
+- `get_scales()`: A wrapper around `select_items()` to extract multiple scale definitions by providing logical expressions or a name:
 
 ```.r
+# providing individual logical expressions
 scales <- get_scales(ex_itrf,
   'APD' = subscale_2 == "APD",
   'OPP' = subscale_2 == "OPP",
@@ -28,13 +31,16 @@ scales <- get_scales(ex_itrf,
   "AD" = subscale_2 == "AD"
 )
 
-# is identical to:
+# providing a name of a dic attribute
+scales <- get_scales(ex_itrf, subscale_2)
+
+# are identical to:
 
 scales <- list(
-  'APD' = select_items(dat, subscale_2 == "APD", names_only = TRUE),
-  'OPP' = select_items(dat, subscale_2 == "OPP", names_only = TRUE),
-  "SW" = select_items(dat, subscale_2 == "SW", names_only = TRUE),
-  "AD" = select_items(dat, subscale_2 == "AD", names_only = TRUE)
+  'APD' = select_items(ex_itrf, subscale_2 == "APD", names_only = TRUE),
+  'OPP' = select_items(ex_itrf, subscale_2 == "OPP", names_only = TRUE),
+  "SW" = select_items(ex_itrf, subscale_2 == "SW", names_only = TRUE),
+  "AD" = select_items(ex_itrf, subscale_2 == "AD", names_only = TRUE)
 )
 ```
 

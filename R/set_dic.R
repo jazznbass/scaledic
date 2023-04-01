@@ -37,30 +37,77 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .set_dic <- function(data, parameters, .item_name = "") {
 
+  msg <- c()
+
   dic <- attr(data, opt("dic"))
   dic <- c(parameters, dic)
   dic <- dic[unique(names(dic))]
 
   if (!"class" %in% names(dic)) dic[["class"]] <- "item"
-  if (!"item_name" %in% names(dic)) dic[["item_name"]] <- .item_name
-  if (!"item_label" %in% names(dic)) dic[["item_label"]] <- dic[["item_name"]]
-  if (!"type" %in% names(dic)) dic[["type"]] <- "integer"#class(data)
-  if (!"weight" %in% names(dic)) dic[["weight"]] <- 1
+  if (!"item_name" %in% names(dic)) {
+    msg <- c(
+      msg, paste0("Attribute 'item_name' missing and set to '", .item_name, "'.")
+    )
+    dic[["item_name"]] <- .item_name
+  }
+  if (!"item_label" %in% names(dic)) {
+    msg <- c(
+      msg,
+      paste0(
+        "Attribute 'item_label' missing and set to '", dic[["item_name"]], "'."
+      )
+    )
+    dic[["item_label"]] <- dic[["item_name"]]
+  }
+  if (!"type" %in% names(dic)) {
+    msg <- c(msg, "Attribute 'type' missing and set to 'integer'.")
+    dic[["type"]] <- "integer"#class(data)
+  }
+  if (!"weight" %in% names(dic)) {
+    msg <- c(msg, "Attribute 'weight' missing and set to 1.")
+    dic[["weight"]] <- 1
+  }
 
   if ("value_labels" %in% names(dic)) {
     value_labels <- .extract_value_labels(dic[["value_labels"]], dic[["type"]])
     for (i in 1:nrow(value_labels)) {
       value <- as.numeric(value_labels[i, 1])
-      names(dic[["values"]])[which(dic[["values"]] == value)] <- trimws(value_labels[i, 2])
+      .id <- which(dic[["values"]] == value)
+      names(dic[["values"]])[.id] <- trimws(value_labels[i, 2])
     }
     dic[["value_labels"]] <- value_labels
   }
 
+  # define factors
+
+  if (dic[["type"]] == "factor") {
+    if (!all(unique(data) %in% dic[["value_labels"]]$value)) {
+      msg <- c(msg, "Vector has values not defined as value_labels. These are automatically set to NA.")
+    }
+
+    data <- factor(
+      data,
+      levels = dic[["values"]],
+      labels = dic[["value_labels"]]$label
+    )
+
+    #data <- factor(
+    #  data,
+    #  levels = dic[["value_labels"]]$value,
+    #  labels = dic[["value_labels"]]$label
+    #)
+  }
+
+  # set dic attributes
 
   attr(data, opt("dic")) <- dic
   attr(data, "label") <- dic_attr(data, "item_label")
 
   if (!"dic" %in% class(data)) class(data) <- c("dic", class(data))
+
+  if (length(msg) > 0) {
+    message(paste0(1:length(msg), ": ", msg, "\n"))
+  }
 
   data
 }
@@ -87,4 +134,22 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   out
 
+}
+
+.set_factor <- function(data) {
+  if (dic_attr(data, "type") == "factor") {
+    values <- dic_attr(data, "values")
+    .factor <- factor(
+      data,
+      levels = values,
+      labels = names(values)
+    )
+    out <- factor(
+      data,
+      levels = dic_attr(data, "value_labels")$value,
+      labels = dic_attr(data, "value_labels")$label
+    )
+    attr(out, opt("dic")) <- attr(data, opt("dic"))
+    out
+  }
 }

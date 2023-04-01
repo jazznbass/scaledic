@@ -4,7 +4,7 @@
 \alias{score_from_dic}
 \title{Automatic scale scoring from a dic file}
 \usage{
-score_from_dic(data, dic, impute_values = FALSE)
+score_from_dic(data, dic = NULL, impute_values = FALSE)
 }
 \arguments{
 \item{data}{A data frame with dic information}
@@ -14,7 +14,7 @@ score_from_dic(data, dic, impute_values = FALSE)
 \item{impute_values}{If TRUE, missing values are imputed before scoring.}
 }
 \value{
-A data frame with added scale scores
+A data frame with added scale scores.
 }
 \description{
 Automatic scale scoring from a dic file

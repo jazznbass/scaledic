@@ -10,8 +10,10 @@ backup_dic(data)
 \item{data}{A data frame containing dic infromation.}
 }
 \value{
-A list with dic information. This can later be writen back to a data frame with the deploy_dic() function.
+A list with dic information. This can later be writen back to a data
+frame with the deploy_dic() function.
 }
 \description{
 Backup dictionary information
 }
+\keyword{internal}

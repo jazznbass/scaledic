@@ -5,6 +5,7 @@
 #'
 #' @return A data frame with added dic information from dic_list
 #' @export
+#' @keywords internal
 
 deploy_dic <- function(data, dic_list) {
   for(item in names(dic_list)) {
@@ -19,8 +20,10 @@ deploy_dic <- function(data, dic_list) {
 #'
 #' @param data A data frame containing dic infromation.
 #'
-#' @return A list with dic information. This can later be writen back to a data frame with the deploy_dic() function.
+#' @return A list with dic information. This can later be writen back to a data
+#'   frame with the deploy_dic() function.
 #' @export
+#' @keywords internal
 
 backup_dic <- function(data) {
   id <- .get_dic_items(data)

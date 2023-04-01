@@ -54,13 +54,13 @@ opt <- function(x) {
 
 .get_dic_items <- function(data, items_only = TRUE) {
 
-  if (!items_only)
-    foobar <- function(x) !is.null(attr(x, .opt$dic))
+  fn <- if (items_only) {
+    function(x) !is.null(attr(x, opt("dic"))) && dic_attr(x, "class") == "item"
+  } else {
+    function(x) !is.null(attr(x, opt("dic")))
+  }
 
-  if (items_only)
-    foobar <- function(x)
-      !is.null(attr(x, .opt$dic)) && dic_attr(x, .opt$class) == "item"
-  which(sapply(data, foobar))
+  which(sapply(data, fn))
 
 }
 

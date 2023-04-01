@@ -4,18 +4,16 @@
 \alias{get_scales}
 \title{Extracts a list of item names based on dic information}
 \usage{
-get_scales(data, ..., .variable = "item_name")
+get_scales(data, ...)
 }
 \arguments{
 \item{data}{A data.frame with dic information.}
 
-\item{...}{selection definitions.}
-
-\item{.variable}{character with name of the dic information to be returned.
-Default is "item_name".}
+\item{...}{A logical expression defining a selection definition or a name
+defining a dic attribute for automatic scale definition.}
 }
 \value{
-A (named) list with string vectors of item names
+A (named) list with character vectors of item names.
 }
 \description{
 Extracts a list of item names based on dic information
@@ -24,9 +22,12 @@ Extracts a list of item names based on dic information
 This function is basically a wrapper around the \code{select_items(data = data, filter = ..., names_only = TRUE)} function. It takes multiple filter
 expressions for a single data frame and returns the item names. This is
 mostly helpful for functions that take multiple scale definitions like
-\code{alpha_table()}
+\code{alpha_table()}. If you provide a name instead of a logical expression,
+that name must be a dic attribute. A list of scales will be created based
+on all values of that attribute.
 }
 \examples{
+## define individual scales
 get_scales(ex_itrf,
   'APD' = subscale_2 == "APD",
   'OPP' = subscale_2 == "OPP",
@@ -34,4 +35,6 @@ get_scales(ex_itrf,
   'AD' = subscale_2 == "AD"
 )
 
+## generate scale list based on all instances of an attribute
+get_scales(ex_itrf, subscale_2)
 }
