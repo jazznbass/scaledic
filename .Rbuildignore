@@ -1,12 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-mess.R
-itrf.xlsx
-dic_itrf.xlsx
-docs
-repository_scaledic.png
-scaledic_data.RData.R
+^mess.R$
+^docs$
 ^mess$
 ^_pkgdown\.yml$
 ^pkgdown$
+^data-raw$
