@@ -1,4 +1,4 @@
-#' Score scale Calculates the scale scores.
+#' Score scale calculates scale scores.
 #'
 #' @param data A data frame
 #' @param filter A logical expression for any dic attribute (e.g. scale ==
@@ -33,13 +33,28 @@ score_scale <- function(data, filter,
     filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
   }
 
-  .score_scale(data = data, filter = filter, sum = sum, min_valid = min_valid, max_na = max_na, label = label, FUN = FUN, bind = bind, ...)
+  .score_scale(
+    data = data,
+    filter = filter,
+    sum = sum,
+    min_valid = min_valid,
+    max_na = max_na,
+    label = label,
+    FUN = FUN,
+    bind = bind,
+    ...)
 
 }
 
-.score_scale <- function(data, filter,
-                        sum,  min_valid = 1, max_na = NA, label,
-                        FUN, bind = bind, ...) {
+.score_scale <- function(data,
+                         filter,
+                         sum,
+                         min_valid = 1,
+                         max_na = NA,
+                         label,
+                         FUN,
+                         bind = bind,
+                         ...) {
 
   args <- list(...)
 
@@ -124,7 +139,6 @@ score_scale <- function(data, filter,
 
   if (function_name == "mean")
     dic_attr(df, .opt$values) <- paste0(mean(min_values), ":", mean(max_values))
-
 
   dic_attr(df, .opt$scale) <- NA
   dic_attr(df, .opt$subscale) <- NA
