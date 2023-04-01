@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,7 +80,8 @@ filename (for now an Microsoft Excel file) containing a dictionary.</p></dd>
 
 
 <dt>factors</dt>
-<dd><p>If set TRUE, factor variables will be turned into factors.</p></dd>
+<dd><p>If set TRUE, variables defined as type <code>factor</code> in the dic
+file will be turned into factors.</p></dd>
 
 
 <dt>set_label_attr</dt>
@@ -128,7 +129,6 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">apply_dic</span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 'weight' variable is not numeric: transformed variable to numeric.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2 missing types found and replaced with 'integer'.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced missing values.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Values checked.</span>

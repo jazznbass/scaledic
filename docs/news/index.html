@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -51,8 +51,8 @@
 <h2 class="pkg-version" data-toc-text="0.2" id="scaledic-02x">scaledic 0.2.x<a class="anchor" aria-label="anchor" href="#scaledic-02x"></a></h2>
 <div class="section level3">
 <h3 id="new-functions-0-2">New functions<a class="anchor" aria-label="anchor" href="#new-functions-0-2"></a></h3>
-<ul><li>
-<code><a href="../reference/lookup_norms.html">lookup_norms()</a></code>: Turns raw scores to normscores with the help of a normtable. Added to example normtables for the ex_itrf example.</li>
+<ul><li><p><code><a href="../reference/remove_dic.html">remove_dic()</a></code>: Returns an object that does not inherit from “dic”. In the case a data.frame, the “dic” class will be removed from all variables. If argument <code>remove_attributes</code> is set <code>TRUE</code>, all dic attributes will be removed as well.</p></li>
+<li><p><code><a href="../reference/lookup_norms.html">lookup_norms()</a></code>: Turns raw scores to normscores with the help of a normtable. Added to example normtables for the ex_itrf example.</p></li>
 </ul><div class="sourceCode" id="cb1"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>normtable <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">group =</span> <span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="dv">8</span>),</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">raw =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>),</span>
@@ -64,22 +64,26 @@
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"6"</span>, <span class="st">"8"</span>, <span class="st">"6"</span>, <span class="st">"8"</span>)</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lookup_norms</span>(rawscores, group, normtable)</span></code></pre></div>
 <ul><li>
-<code><a href="../reference/get_scales.html">get_scales()</a></code>: A wrapper around <code><a href="../reference/select_items.html">select_items()</a></code> to extract multiple scale definitions:</li>
-</ul><div class="sourceCode" id="cb2"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">get_scales</span>(ex_itrf,</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">'APD'</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"APD"</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'OPP'</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"OPP"</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SW"</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"SW"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AD"</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"AD"</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># is identical to:</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">'APD'</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"APD"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  <span class="st">'OPP'</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"OPP"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SW"</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"SW"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AD"</span> <span class="ot">=</span> <span class="fu">select_items</span>(dat, subscale_2 <span class="sc">==</span> <span class="st">"AD"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<code><a href="../reference/get_scales.html">get_scales()</a></code>: A wrapper around <code><a href="../reference/select_items.html">select_items()</a></code> to extract multiple scale definitions by providing logical expressions or a name:</li>
+</ul><div class="sourceCode" id="cb2"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># providing individual logical expressions</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">get_scales</span>(ex_itrf,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">'APD'</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"APD"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">'OPP'</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"OPP"</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SW"</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"SW"</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AD"</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">"AD"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># providing a name of a dic attribute</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">get_scales</span>(ex_itrf, subscale_2)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="co"># are identical to:</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="st">'APD'</span> <span class="ot">=</span> <span class="fu">select_items</span>(ex_itrf, subscale_2 <span class="sc">==</span> <span class="st">"APD"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  <span class="st">'OPP'</span> <span class="ot">=</span> <span class="fu">select_items</span>(ex_itrf, subscale_2 <span class="sc">==</span> <span class="st">"OPP"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">"SW"</span> <span class="ot">=</span> <span class="fu">select_items</span>(ex_itrf, subscale_2 <span class="sc">==</span> <span class="st">"SW"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">"AD"</span> <span class="ot">=</span> <span class="fu">select_items</span>(ex_itrf, subscale_2 <span class="sc">==</span> <span class="st">"AD"</span>, <span class="at">names_only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <ul><li>
 <code><a href="../reference/get_dic_attribute.html">get_dic_attribute()</a></code>. Returns a list with dic attributes for a dataframe.</li>
 </ul><div class="sourceCode" id="cb3"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> </span>
