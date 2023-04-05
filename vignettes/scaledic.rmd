@@ -24,56 +24,50 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Note
+## What is a dictionary file?
 
-The following code examples make use of the pipe operator `%>%` (see <https://r4ds.had.co.nz/pipes.html> for more details).  
+When you conduct research based on questionnaires or psychometric tests (and you are working in R), you typically create a *data.frame* with one column (variable) for each item on that questionnaire and one row for each person who participated. You can only store a limited amount of additional information about each item in that questionnaire within a data.frame (or tibble). You can give a variable a name and define a variable as a factor with appropriate levels. But basically, that is it. You cannot, at least not conveniently, include a longer label for each item, the name of a scale this item belongs to, information about reverse coding, etc.
 
-# How to use scaledic
-
-You need two things:
-
-1. a dataset,
-2. a dictionary file.
+I call the collection of this additional information about items an *item dictionary*. A dictionary contains a short label, a longer description, scale affiliation, and more for each item.
 
 ## A dictionary file
 
-A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.  
+A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.
 
-The following table shows the parameters and the naming of the columns of a dictionary file: 
+Here is an extract of an example *dic-file*:
+
+```{r dic_example, echo=FALSE}
+dic_itrf  |>  
+  select(item_name, item_label, scale, scale_label, subscale, subscale_label, values, value_labels, missing, type) |> 
+  slice(2:4)  |> 
+  kable()
+```
+
+A dictionary file can contain any additional attributes you like. That is, you can add a column with any name to store relevant information (e.g. a translation of the item name). But some predefined attributes exist with a specific meaning. The following table shows these attributes:
 
 ```{r tab_dic_param, echo = FALSE}
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "item_name", "A short item name", "itrf_1",
-  "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "subscale", "Abrevation of the sub scale", "int",
-  "subscale_2", "Abrevation of the second order sub scale", "shy",
-  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "subscale_label", "Name of the sub scale", "internalizing problems",
-  "subscale_2_label", "Name of the second order sub scale", "shyness",
   "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
+  "scale", "Abreviation of the scale the item belongs to", "irtf",
+  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
+  "subscale", "Abrevation of the sub scale", "int",
+  "subscale_label", "Name of the sub scale", "internalizing problems",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
   "missing", "Missing values", "-888, -999",
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-  "source", "Reference", "Casale et al. (2017)",
-  "note", "Further notes", "Item has low discrimination"
 )
 kable(out, caption = "Columns of a dictionary file")
 
 ```
 
-Here is an extract of an example *dic-file*:
-
-```{r dic_example}
-dic_itrf %>% slice(2:4) %>% kable()
-```
-
 ## Apply a dictionary file
 
-When you combine a dataset with a dictionary file, each variable in the dataset that corresponds to a variable described in the dictionary is completed with the given dictionary information.  
-The resulting dataset is now ready for use with all other `scaledic` functions.  
+When you combine a dataset with a dictionary file, each variable in the dataset that corresponds to a variable described in the dictionary is completed with the given dictionary information.\
+The resulting dataset is now ready for use with all other `scaledic` functions.
 
 The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Missing values are replaced with NAs:
 
@@ -115,7 +109,7 @@ dat <- impute_missing(dat, subscale == "Int")
 ## Select scales for analyszing
 
 Let us see descriptive statistics for the *internalizing* sub scale:
- 
+
 ```{r descriptives}
 dat %>% 
   select_items(subscale == "Int") %>%
@@ -134,7 +128,7 @@ dat %>%
   kable()
 ```
 
-And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.  
+And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.
 
 ```{r exploratory_fa}
 dat %>%
@@ -156,6 +150,7 @@ alpha_table(dat, scales = scales) %>% kable()
 
 ```
 
+<!--
 and even a confirmatory factor analysis with the use of the lavaan package.
 
 ```{r lavaan_model}
@@ -171,6 +166,7 @@ fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
 
 ```
+-->
 
 ## Build scale scores
 
@@ -201,7 +197,7 @@ Firstly, you need a data frame (or Excel table etc) which includes raw-scores an
 Here is an example of such a table:
 
 ```{r}
-ex_normtable_int %>% kable()
+ex_normtable_int %>% slice(1:10) %>% kable()
 ```
 
 Then we need raw-scores from a scale. If they do not exist, you may use the `score_scales` function to add sum scores. Therefore, set the sum argument to `TRUE`. By setting `max_na = 0`, we do not allow missing values in any scale item:
@@ -228,4 +224,3 @@ dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
 ```{r}
 dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] %>% kable()
 ```
-
