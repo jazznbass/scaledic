@@ -38,10 +38,13 @@ apply_dic <- function(data,
                       impute_values = FALSE,
                       rename_var = NULL) {
 
+  msg <- c()
+
   if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
   if (inherits(data, "character")) data <- .read_by_suffix(data)
 
-  dic <- .clean_dic_file(dic)
+  dic <- .clean_dic_file(dic, msg)
+  msg <- attr(dic, "msg")
 
 # rename variables by rename_var ---------------------------------------------
 
@@ -50,8 +53,12 @@ apply_dic <- function(data,
     to_from <- to_from[!is.na(to_from)]
     .duplicates <- names(to_from) %in% names(data)
     if(any(.duplicates)){
-      message("Skipped renaming column to an already existing name: ")
-      message(paste0(names(to_from)[.duplicates], collapse = ", "))
+      msg <- c(msg, paste0(
+        "Skipped renaming column to an already existing name: ",
+        paste0(names(to_from)[.duplicates], collapse = ", ")
+      ))
+      #message("Skipped renaming column to an already existing name: ")
+      #message(paste0(names(to_from)[.duplicates], collapse = ", "))
       to_from <- to_from[!.duplicates]
     }
     for(i in 1:length(to_from)) {
@@ -82,7 +89,7 @@ apply_dic <- function(data,
     #}
   }
 
-# apply dic information to variables --------------------------------------
+# loop: apply dic information to each variable --------------------------------------
 
   var_not_df <- NULL
 
@@ -90,14 +97,44 @@ apply_dic <- function(data,
     # look up column in data frame corresponding to item_name
     id <- which(names(data) == dic[[.dic_file$item_name]][i])
     if (length(id) > 1) {
-      message("Multiple ids found")
-      message(paste0(names(data)[id], collapse = ", "))
+      msg <- c(msg, paste0(
+        "Multiple ids found",
+        paste0(names(data)[id], collapse = ", ")
+      ))
     }
 
     if (length(id) == 0) {
       var_not_df <- c(var_not_df, dic[[.dic_file$item_name]][i])
       next
     }
+
+    # type (class)
+    if (is.na(dic[i, .dic_file$type])) {
+      dic[i, .dic_file$type] <- "integer" # default estimation
+      if (inherits(data[[id]], "numeric")) dic[i, .dic_file$type] <- "float"
+      if (inherits(data[[id]], "character")) dic[i, .dic_file$type] <- "character"
+      if (inherits(data[[id]], "factor")) dic[i, .dic_file$type] <- "factor"
+    }
+
+    # numeric:
+    if (dic[i, .dic_file$type] %in% c("integer","numeric","float","double")) {
+      if (!inherits(data[[id]], c("integer","numeric","double"))) {
+
+        if (coerce_class) {
+          msg <- c(msg, paste0(
+            "Class should be numeric but is ", class(data[[id]]),
+            ". Corrected to numeric: ", names(data)[id]
+          ))
+          class(data[[id]]) <- "numeric"
+        } else {
+          msg <- c(msg, paste0(
+            "Class should be numeric but is ", class(data[[id]]),
+            ": ",names(data)[id]
+          ))
+        }
+      }
+    }
+
 
     # extract values
     values <- paste0("c(", as.character(dic[i, .dic_file$values]), ")")  |>
@@ -124,25 +161,6 @@ apply_dic <- function(data,
       str2lang() |>
       eval()
 
-    # check variable type (class)
-    # numeric:
-    if (dic[i, .dic_file$type] %in% c("integer","numeric","float","double")) {
-      if (!inherits(data[[id]], c("integer","numeric","double"))) {
-
-        if (coerce_class) {
-          message(
-            "Class should be numeric but is ", class(data[[id]]),
-            ". Corrected to numeric: ", names(data)[id]
-          )
-          class(data[[id]]) <- "numeric"
-        } else {
-          message(
-           "Class should be numeric but is ", class(data[[id]]),
-           ": ",names(data)[id]
-          )
-        }
-      }
-    }
 
     ### assign attributes
     filter <- !(names(.dic_file) %in% c(
@@ -176,10 +194,21 @@ apply_dic <- function(data,
       #)
 
       value_labels <- dic_attr(data[[id]], "value_labels")
+      var_levels <- unique(data[[id]])
 
-      if (!all(unique(data[[id]]) %in% value_labels$value)) {
-        message(names(data)[id], " has values not defined as value_labels. ",
-        "These are automatically set to NA.")
+      if (!all(var_levels %in% value_labels$value)) {
+
+        msg <- c(msg, paste0(
+          "'", names(data)[id], "' has values not defined as value_labels. ",
+          "These are automatically added to value_labels."
+        ))
+        .tmp <- var_levels[!var_levels %in% value_labels$value]
+        value_labels <- rbind(
+          value_labels,
+          data.frame(value = .tmp, label = .tmp)
+        )
+        value_labels <- value_labels[!is.na(value_labels$value),]
+        dic_attr(data[[id]], "value_labels") <- value_labels
       }
 
       .factor <- factor(
@@ -198,32 +227,33 @@ apply_dic <- function(data,
   # var not found messages ------
 
   if (!is.null(var_not_df)) {
-    message(
+    msg <- c(msg, paste0(
       length(var_not_df), " of ", nrow(dic),
-      " variables from dic not found in data file:"
-    )
-    message(paste0(var_not_df, collapse = ", "))
+      " variables from dic not found in data file:",
+      paste0(var_not_df, collapse = ", ")
+    ))
   }
 
   # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
-    message("Replaced missing values.")
+    msg <- c(msg, "Replaced missing values.")
   }
 
   # check values ----
   if (check_values) {
-    message("Values checked.")
+    msg <- c(msg, "Values checked.")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
   # score scales ----
   if (score_scales && nrow(dic_scores > 0)) {
-    message("Values checked.")
+    msg <- c(msg, "Values checked.")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
-    if (impute_values) message("Scales imputed.")
+    if (impute_values) msg <- c(msg, "Scales imputed")#message("Scales imputed.")
+    msg <- c(msg, "Scales scored.")
     message("Scales scored.")
     data <- score_from_dic(data, impute_values = impute_values)
   }
@@ -231,13 +261,16 @@ apply_dic <- function(data,
   # return ----
 
   if (set_label_attr) {
-    message("`label` attribute set.")
+    #msg <- c(msg, "`label` attribute set.")
     data <- dic_haven(data)
   }
+
+  if (length(msg) > 0) message("\n", paste0(1:length(msg), ": ", msg, collapse = "\n"))
+
   data
 }
 
-.clean_dic_file <- function(dic) {
+.clean_dic_file <- function(dic, msg) {
 
   #rename dic names
   names(dic) <- tolower(names(dic))
@@ -262,10 +295,13 @@ apply_dic <- function(data,
   }
 
   #remove white spaces
-  .column <- .dic_file$value_labels
-  dic[[.column]] <- trimws(dic[[.column]])
-  dic[[.column]][which(dic[[.column]] == "")] <- NA
 
+  .column <- .dic_file$value_labels
+
+  if (!is.null(dic[[.column]])) {
+    dic[[.column]] <- trimws(dic[[.column]])
+    dic[[.column]][which(dic[[.column]] == "")] <- NA
+  }
   dic[[.dic_file$item_name]] <- trimws(dic[[.dic_file$item_name]])
 
   # check for missing class variable
@@ -280,51 +316,58 @@ apply_dic <- function(data,
 
   # check for missing weight variable
   if (is.null(dic[[.dic_file$weight]])) {
-    message("'Weight' variable missing in the dictionary file. ",
-            "Variable inserted with default of 1.")
+    msg <- c(msg, paste0(
+      "'Weight' variable missing in the dictionary file. ",
+      "Variable inserted with default of 1."
+    ))
     dic[[.dic_file$weight]] <- NA
     dic[[.dic_file$weight]][filter_items] <- 1
   }
 
   if(!inherits(dic[[.dic_file$weight]], "numeric")) {
-    message("'weight' variable is not numeric: transformed variable to numeric.")
+    msg <- c(msg, "'weight' variable is not numeric: transformed variable to numeric.")
     dic[[.dic_file$weight]] <- as.numeric(dic[[.dic_file$weight]])
   }
 
   # check for missing type variable
   if (is.null(dic[[.dic_file$type]])) {
-    message("'type' variable missing in the dictionary file. ",
-            "Variable inserted with default of 'integer'.")
-    dic[[.dic_file$type]] <- "integer"
+    msg <- c(msg, paste0(
+      "'type' variable missing in the dictionary file. ",
+      "Data type is estimated."
+    ))
+    dic[[.dic_file$type]] <- NA
   }
 
   # type NA to integer
   miss_type <- which(is.na(dic[[.dic_file$type]]))
   if (length(miss_type) > 0) {
-    message(
-      length(miss_type), " missing types found and replaced with 'integer'."
-    )
-    dic[miss_type, .dic_file$type] <- "integer"
+    msg <- c(msg, paste0(
+      length(miss_type), " missing types found and replaced with estimation."
+    ))
   }
+
+  if (is.null(dic[[.dic_file$values]])) dic[[.dic_file$values]] <- NA
+  if (is.null(dic[[.dic_file$value_labels]])) dic[[.dic_file$value_labels]] <- NA
 
   # checking other missing variables in dictionary file
-  miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
-
-  .filter <- !miss %in% c(.dic_file$score_function, .dic_file$score_filter)
-  miss <- miss[.filter]
-  if (length(miss) > 0) {
-    miss %>%
-      paste(collapse = ", ")  %>%
-      message(
-        "The following variables were missing in the dictionary file: ", .
-      )
-    dic[, miss] <- NA
-  }
+  # miss <- unlist(.dic_file)[which(!(unlist(.dic_file) %in% names(dic)))]
+  #
+  # .filter <- !miss %in% c(.dic_file$score_function, .dic_file$score_filter)
+  # miss <- miss[.filter]
+  # if (length(miss) > 0) {
+  #   msg <- c(msg, paste0(
+  #     "The following variables were missing in the dictionary file: ",
+  #     paste(miss, collapse = ", ")
+  #   ))
+  #   dic[, miss] <- NA
+  # }
 
   # weight NA to integer
   miss_weight <- which(is.na(dic[[.dic_file$weight]]) & filter_items)
   if (length(miss_weight) > 0) {
-    message(length(miss_weight), " missing weights found and replaced with 1.")
+    msg <- c(msg, paste0(
+      length(miss_weight), " missing weights found and replaced with 1."
+    ))
     dic[miss_weight, .dic_file$weight] <- 1
   }
 
@@ -334,10 +377,10 @@ apply_dic <- function(data,
     if (is.na(dic[[.dic_file$item_label]][i])) missing_label <- c(missing_label, i)
   }
   if (!is.null(missing_label)) {
-    message(
+    msg <- c(msg, paste0(
       "Missing item_label found at variabel no. ",
       paste0(missing_label, collapse = ", "), " in dic file."
-    )
+    ))
   }
 
   # check for duplicated item_names in dic
@@ -351,10 +394,10 @@ apply_dic <- function(data,
 
   # Check for \r\n in value labels
   if (any(grepl("\r\n", "; ", x = dic[[.dic_file$value_labels]]))) {
-    message("Found linebreaks in value_labels and replaced them with ';'")
+    msg <- c(msg, "Found linebreaks in value_labels and replaced them with ';'")
     dic[[.dic_file$value_labels]] <- gsub("\r\n", "; ", x =  dic[[.dic_file$value_labels]])
   }
 
-
+  attr(dic, "msg") <- msg
   dic
 }
