@@ -1,3 +1,72 @@
+#' Dictionary class low level constructor
+#'
+#' @param x A variable
+#' @param class default is "item"
+#' @param type defaults to "integer"
+#' @param ... further dic arguments (e.g. `source = "James (1891)")
+#' @param .list An alternative way to provide class arguments as a list
+#'   (overwrites previous arguments)
+#' @return An item of class dic.
+#' @export
+#'
+#' @examples
+#' x <- new_dic(1:100, item_label = "The label of this item")
+new_dic <- function(x,
+                item_name = NULL,
+                item_label = NULL,
+                scale = NULL,
+                scale_label = NULL,
+                values = NULL,
+                value_labels = NULL,
+                missing = NULL,
+                weight = 1,
+                type = "integer",
+                class = "item",
+                ...,
+                .list = NULL) {
+
+
+  if (!is.null(value_labels)) {
+    value_labels <- .extract_value_labels(value_labels, type)
+    for (i in 1:nrow(value_labels)) {
+      .id <- which(values == as.numeric(value_labels[i, 1]))
+      names(values)[.id] <- trimws(value_labels[i, 2])
+    }
+  }
+
+  dic_list <- list(
+    item_name = item_name,
+    item_label = item_label,
+    scale = scale,
+    scale_label = scale_label,
+    values = values,
+    value_labels = value_labels,
+    missing = missing,
+    weight = weight,
+    ...,
+    type = type,
+    class = class
+  )
+
+  dic_list <- c(.list, dic_list)
+  dic_list <- dic_list[unique(names(dic_list))]
+
+  if (is.null(dic_list$item_name)) {
+    dic_list$item_name <- as.character(match.call()[2])
+  }
+
+  if (is.null(dic_list$item_label)) {
+    dic_list$item_label <- dic_list$item_name
+  }
+
+  class(x) <- c("dic", class(x))
+  attr(x, opt("dic")) <- dic_list
+
+  attr(x, "label") <- dic_attr(x, "item_label")
+  attr(x, "labels") <- dic_attr(x, "values")
+  x
+}
+
 #' Set dictionary information to variables
 #'
 #' @param data A data frame or a vector.
@@ -45,18 +114,16 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (!"class" %in% names(dic)) dic[["class"]] <- "item"
   if (!"item_name" %in% names(dic)) {
-    msg <- c(
-      msg, paste0("Attribute 'item_name' missing and set to '", .item_name, "'.")
-    )
+    msg <- c(msg, paste0(
+      "Attribute 'item_name' missing and set to '", .item_name, "'."
+    ))
+    dic[["item_name"]] <- .item_name
     dic[["item_name"]] <- .item_name
   }
   if (!"item_label" %in% names(dic)) {
-    msg <- c(
-      msg,
-      paste0(
+    msg <- c(msg, paste0(
         "Attribute 'item_label' missing and set to '", dic[["item_name"]], "'."
-      )
-    )
+    ))
     dic[["item_label"]] <- dic[["item_name"]]
   }
   if (!"type" %in% names(dic)) {
@@ -82,7 +149,10 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (dic[["type"]] == "factor") {
     if (!all(unique(data) %in% dic[["value_labels"]]$value)) {
-      msg <- c(msg, "Vector has values not defined as value_labels. These are automatically set to NA.")
+      msg <- c(msg, paste0(
+        "Vector has values not defined as value_labels. ",
+        "These are automatically set to NA."
+      ))
     }
 
     data <- factor(
@@ -103,7 +173,7 @@ set_dic <- function(data, .vars = NULL, ...) {
   attr(data, opt("dic")) <- dic
   attr(data, "label") <- dic_attr(data, "item_label")
 
-  if (!"dic" %in% class(data)) class(data) <- c("dic", class(data))
+  if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
 
   if (length(msg) > 0) {
     message(paste0(1:length(msg), ": ", msg, "\n"))
@@ -153,3 +223,4 @@ set_dic <- function(data, .vars = NULL, ...) {
     out
   }
 }
+
