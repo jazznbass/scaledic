@@ -1,23 +1,32 @@
 # scaledic 0.2.x
 
+# scaledic 0.2.5
+
 ## New functions
 
-- `remove_dic()`: Returns an object that does not inherit from "dic". In the case a data.frame, the "dic" class will be removed from all variables. If argument `remove_attributes` is set `TRUE`, all dic attributes will be removed as well.
+- `remove_dic()`: Returns an object that does not inherit from "dic". In case of a data.frame, the "dic" class will be removed from all variables. If argument `remove_attributes` is set `TRUE`, all dic attributes will be removed as well.
 
 - `lookup_norms()`: Turns raw scores to normscores with the help of a normtable. Added to example normtables for the ex_itrf example.
 
 ```.r
 normtable <- data.frame(
-  group = c(6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8),
-  raw = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
-  T = c(40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 37, 39, 41, 43, 45, 47,
-        49, 51, 53, 55, 57)
+  age = rep(c(6, 8, 6, 8), each = 11),
+  gender = rep(c("m", "w"), each = 22),
+  raw =  rep(0:10, 4),
+  T = rep(c(40, 42, 44, 46, 48, 50, 52, 54, 56, 58, 60, 
+            37, 39, 41, 43, 45, 47, 49, 51, 53, 55, 57), 2) + rep(c(0,5), each = 22)
 )
 
 rawscores <- c(5,5,3,1)
-group <- c("6", "8", "6", "8")
-lookup_norms(rawscores, group, normtable)
+group_age <- c("6", "8", "6", "8")
+group_gender <- c("m", "m", "w", "w")
 
+lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), normtable)
+
+## When group values are not specified exactly, raw scores can be ambiguous:
+lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
+
+lookup_norms(rawscores, normtable = normtable)
 ```
 
 - `get_scales()`: A wrapper around `select_items()` to extract multiple scale definitions by providing logical expressions or a name:
@@ -53,7 +62,7 @@ ex_itrf %>%
 
 ```
 
-## Reworkek
+## Reworked
 
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 
