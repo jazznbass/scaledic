@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -250,53 +250,41 @@ NAs:</p>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, labels <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span><span class="op">)</span>, <span class="st">"_label"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="5%">
-<col width="8%">
 <col width="10%">
-<col width="28%">
-<col width="13%">
-<col width="34%">
+<col width="32%">
+<col width="15%">
+<col width="40%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">scale</th>
-<th align="left">subscale</th>
-<th align="left">subscale_2</th>
+<th align="left"></th>
 <th align="left">scale_label</th>
 <th align="left">subscale_label</th>
 <th align="left">subscale_2_label</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
+<td align="left">itrf_I_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Socially Withdrawn</td>
 </tr>
 <tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
+<td align="left">itrf_I_2</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Anxious/Depressed</td>
 </tr>
 <tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">OPP</td>
+<td align="left">itrf_I_20</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Oppositional/Disruptive</td>
 </tr>
 <tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">APD</td>
+<td align="left">itrf_E_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Academic Productivity/Disorganization</td>
@@ -786,28 +774,28 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.78</td>
+<td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.66</td>
+<td align="left">0.67</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.66</td>
+<td align="left">0.65</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.55</td>
+<td align="left">0.54</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -822,7 +810,7 @@ Mitschülerinnen und Mits</td>
 ein</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.48</td>
+<td align="left">0.47</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -868,7 +856,7 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.59</td>
+<td align="left">0.6</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich ängstlich</td>
@@ -889,14 +877,14 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.44</td>
+<td align="left">0.45</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.4</td>
+<td align="left">0.41</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich nervös</td>
@@ -908,9 +896,9 @@ Details</td>
 <tr class="odd">
 <td align="left">SS loadings</td>
 <td align="left">6</td>
-<td align="left">4.79</td>
-<td align="left">4.54</td>
-<td align="left">4.35</td>
+<td align="left">4.8</td>
+<td align="left">4.52</td>
+<td align="left">4.36</td>
 </tr>
 <tr class="even">
 <td align="left">Proportion Var</td>
@@ -985,7 +973,7 @@ Details</td>
 <td align="left">.91 [.91, .91]</td>
 <td align="left">.56</td>
 <td align="left">[.53, .78]</td>
-<td align="left">[0.39, 0.95]</td>
+<td align="left">[0.38, 0.95]</td>
 <td align="left">[0.75, 1.04]</td>
 <td align="left">[.55, .82]</td>
 </tr>
@@ -996,10 +984,10 @@ Details</td>
 <td align="left">.94 [.93, .94]</td>
 <td align="left">.94 [.94, .94]</td>
 <td align="left">.63</td>
-<td align="left">[.67, .81]</td>
+<td align="left">[.68, .81]</td>
 <td align="left">[0.35, 0.83]</td>
 <td align="left">[0.72, 0.96]</td>
-<td align="left">[.69, .85]</td>
+<td align="left">[.70, .85]</td>
 </tr>
 <tr class="odd">
 <td align="left">SW</td>
@@ -1007,7 +995,7 @@ Details</td>
 <td align="right">8</td>
 <td align="left">.88 [.87, .88]</td>
 <td align="left">.88 [.88, .89]</td>
-<td align="left">.49</td>
+<td align="left">.48</td>
 <td align="left">[.53, .78]</td>
 <td align="left">[0.21, 0.43]</td>
 <td align="left">[0.51, 0.76]</td>
@@ -1051,7 +1039,7 @@ SW ~~ AD
 ```r
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
-lavaan 0.6.15 ended normally after 61 iterations
+lavaan 0.6.15 ended normally after 59 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1062,29 +1050,29 @@ lavaan 0.6.15 ended normally after 61 iterations
 
 Model Test User Model:
                                                        
-  Test statistic                              21141.596
+  Test statistic                              21180.848
   Degrees of freedom                                588
   P-value (Chi-square)                            0.000
 
 Model Test Baseline Model:
 
-  Test statistic                            110888.348
+  Test statistic                            110830.468
   Degrees of freedom                               630
   P-value                                        0.000
 
 User Model versus Baseline Model:
 
-  Comparative Fit Index (CFI)                    0.814
+  Comparative Fit Index (CFI)                    0.813
   Tucker-Lewis Index (TLI)                       0.800
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)            -152340.334
+  Loglikelihood user model (H0)            -152366.953
   Loglikelihood unrestricted model (H1)             NA
                                                       
-  Akaike (AIC)                              304836.668
-  Bayesian (BIC)                            305341.368
-  Sample-size adjusted Bayesian (SABIC)     305093.513
+  Akaike (AIC)                              304889.906
+  Bayesian (BIC)                            305394.607
+  Sample-size adjusted Bayesian (SABIC)     305146.751
 
 Root Mean Square Error of Approximation:
 
@@ -1108,99 +1096,99 @@ Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD =~                                              
     itrf_E_1          1.000                           
-    itrf_E_2          0.958    0.017   55.218    0.000
-    itrf_E_3          0.916    0.016   57.459    0.000
-    itrf_E_4          0.899    0.015   59.012    0.000
-    itrf_E_5          0.952    0.017   55.543    0.000
-    itrf_E_6          0.825    0.016   53.042    0.000
-    itrf_E_14         0.717    0.013   53.738    0.000
-    itrf_E_15         0.635    0.017   37.733    0.000
+    itrf_E_2          0.956    0.017   55.300    0.000
+    itrf_E_3          0.914    0.016   57.418    0.000
+    itrf_E_4          0.896    0.015   58.986    0.000
+    itrf_E_5          0.950    0.017   55.585    0.000
+    itrf_E_6          0.822    0.016   52.988    0.000
+    itrf_E_14         0.718    0.013   53.905    0.000
+    itrf_E_15         0.634    0.017   37.790    0.000
   OPP =~                                              
     itrf_I_20         1.000                           
-    itrf_E_7          0.849    0.013   64.954    0.000
-    itrf_E_8          1.044    0.015   68.100    0.000
-    itrf_E_9          0.995    0.017   58.167    0.000
-    itrf_E_10         0.895    0.014   65.054    0.000
-    itrf_E_11         1.091    0.016   66.680    0.000
-    itrf_E_12         0.803    0.015   54.829    0.000
-    itrf_E_13         0.982    0.015   67.589    0.000
-    itrf_E_16         0.679    0.013   51.859    0.000
+    itrf_E_7          0.848    0.013   65.006    0.000
+    itrf_E_8          1.044    0.015   68.183    0.000
+    itrf_E_9          0.992    0.017   58.138    0.000
+    itrf_E_10         0.893    0.014   65.058    0.000
+    itrf_E_11         1.089    0.016   66.661    0.000
+    itrf_E_12         0.801    0.015   54.837    0.000
+    itrf_E_13         0.979    0.014   67.534    0.000
+    itrf_E_16         0.680    0.013   51.987    0.000
   SW =~                                               
     itrf_I_1          1.000                           
-    itrf_I_4          1.017    0.017   60.661    0.000
-    itrf_I_5          0.899    0.016   57.142    0.000
-    itrf_I_6          0.754    0.014   55.525    0.000
-    itrf_I_13         0.740    0.020   37.439    0.000
-    itrf_I_14         0.685    0.019   36.136    0.000
-    itrf_I_16         0.999    0.021   48.670    0.000
-    itrf_I_24         0.736    0.019   37.964    0.000
+    itrf_I_4          1.021    0.017   60.251    0.000
+    itrf_I_5          0.904    0.016   56.892    0.000
+    itrf_I_6          0.759    0.014   55.262    0.000
+    itrf_I_13         0.744    0.020   37.356    0.000
+    itrf_I_14         0.689    0.019   36.051    0.000
+    itrf_I_16         1.004    0.021   48.465    0.000
+    itrf_I_24         0.734    0.020   37.606    0.000
   AD =~                                               
     itrf_I_2          1.000                           
-    itrf_I_7          1.120    0.028   40.089    0.000
-    itrf_I_8          1.017    0.027   38.023    0.000
-    itrf_I_9          1.229    0.030   40.786    0.000
-    itrf_I_10         0.859    0.025   34.351    0.000
-    itrf_I_11         0.875    0.026   34.135    0.000
-    itrf_I_12         0.948    0.026   36.169    0.000
-    itrf_I_15         1.134    0.028   40.750    0.000
-    itrf_I_17         1.001    0.027   36.779    0.000
-    itrf_I_19         0.819    0.022   36.574    0.000
-    itrf_I_23         1.134    0.027   42.209    0.000
+    itrf_I_7          1.119    0.028   40.089    0.000
+    itrf_I_8          1.015    0.027   37.994    0.000
+    itrf_I_9          1.228    0.030   40.781    0.000
+    itrf_I_10         0.860    0.025   34.390    0.000
+    itrf_I_11         0.875    0.026   34.136    0.000
+    itrf_I_12         0.947    0.026   36.159    0.000
+    itrf_I_15         1.134    0.028   40.759    0.000
+    itrf_I_17         1.004    0.027   36.865    0.000
+    itrf_I_19         0.820    0.022   36.570    0.000
+    itrf_I_23         1.134    0.027   42.178    0.000
 
 Covariances:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD ~~                                              
-    OPP               0.284    0.011   26.231    0.000
-    SW                0.148    0.007   19.792    0.000
-    AD                0.136    0.007   20.681    0.000
+    OPP               0.285    0.011   26.228    0.000
+    SW                0.147    0.007   19.700    0.000
+    AD                0.136    0.007   20.705    0.000
   OPP ~~                                              
-    SW                0.076    0.006   12.050    0.000
-    AD                0.137    0.006   22.393    0.000
+    SW                0.075    0.006   11.911    0.000
+    AD                0.137    0.006   22.417    0.000
   SW ~~                                               
-    AD                0.133    0.005   25.909    0.000
+    AD                0.132    0.005   25.801    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .itrf_E_1          0.462    0.011   43.209    0.000
-   .itrf_E_2          0.379    0.009   42.532    0.000
-   .itrf_E_3          0.288    0.007   41.244    0.000
-   .itrf_E_4          0.242    0.006   40.126    0.000
-   .itrf_E_5          0.365    0.009   42.364    0.000
-   .itrf_E_6          0.332    0.008   43.517    0.000
-   .itrf_E_14         0.238    0.006   43.225    0.000
-   .itrf_E_15         0.579    0.012   47.047    0.000
-   .itrf_I_20         0.293    0.007   43.581    0.000
-   .itrf_E_7          0.188    0.004   42.919    0.000
-   .itrf_E_8          0.228    0.006   41.459    0.000
-   .itrf_E_9          0.396    0.009   44.996    0.000
-   .itrf_E_10         0.207    0.005   42.879    0.000
-   .itrf_E_11         0.276    0.007   42.172    0.000
+   .itrf_E_1          0.461    0.011   43.167    0.000
+   .itrf_E_2          0.378    0.009   42.506    0.000
+   .itrf_E_3          0.291    0.007   41.298    0.000
+   .itrf_E_4          0.244    0.006   40.185    0.000
+   .itrf_E_5          0.365    0.009   42.360    0.000
+   .itrf_E_6          0.334    0.008   43.548    0.000
+   .itrf_E_14         0.238    0.006   43.164    0.000
+   .itrf_E_15         0.579    0.012   47.038    0.000
+   .itrf_I_20         0.293    0.007   43.566    0.000
+   .itrf_E_7          0.188    0.004   42.907    0.000
+   .itrf_E_8          0.228    0.006   41.430    0.000
+   .itrf_E_9          0.396    0.009   45.005    0.000
+   .itrf_E_10         0.207    0.005   42.886    0.000
+   .itrf_E_11         0.276    0.007   42.193    0.000
    .itrf_E_12         0.315    0.007   45.695    0.000
-   .itrf_E_13         0.209    0.005   41.728    0.000
-   .itrf_E_16         0.268    0.006   46.202    0.000
-   .itrf_I_1          0.223    0.005   42.802    0.000
-   .itrf_I_4          0.104    0.003   35.343    0.000
-   .itrf_I_5          0.118    0.003   39.532    0.000
-   .itrf_I_6          0.096    0.002   40.827    0.000
-   .itrf_I_13         0.360    0.008   46.814    0.000
-   .itrf_I_14         0.339    0.007   46.999    0.000
-   .itrf_I_16         0.292    0.007   44.249    0.000
-   .itrf_I_24         0.343    0.007   46.735    0.000
-   .itrf_I_2          0.280    0.006   44.989    0.000
-   .itrf_I_7          0.274    0.006   43.896    0.000
-   .itrf_I_8          0.285    0.006   44.927    0.000
-   .itrf_I_9          0.304    0.007   43.467    0.000
-   .itrf_I_10         0.298    0.006   46.173    0.000
-   .itrf_I_11         0.316    0.007   46.230    0.000
-   .itrf_I_12         0.302    0.007   45.628    0.000
-   .itrf_I_15         0.260    0.006   43.490    0.000
-   .itrf_I_17         0.315    0.007   45.415    0.000
-   .itrf_I_19         0.216    0.005   45.489    0.000
-   .itrf_I_23         0.216    0.005   42.407    0.000
-    APD               0.622    0.021   30.064    0.000
-    OPP               0.527    0.016   32.998    0.000
-    SW                0.287    0.010   29.510    0.000
-    AD                0.191    0.008   23.530    0.000
+   .itrf_E_13         0.210    0.005   41.769    0.000
+   .itrf_E_16         0.268    0.006   46.182    0.000
+   .itrf_I_1          0.225    0.005   42.896    0.000
+   .itrf_I_4          0.104    0.003   35.348    0.000
+   .itrf_I_5          0.117    0.003   39.440    0.000
+   .itrf_I_6          0.096    0.002   40.780    0.000
+   .itrf_I_13         0.360    0.008   46.806    0.000
+   .itrf_I_14         0.339    0.007   46.994    0.000
+   .itrf_I_16         0.292    0.007   44.237    0.000
+   .itrf_I_24         0.344    0.007   46.768    0.000
+   .itrf_I_2          0.280    0.006   44.991    0.000
+   .itrf_I_7          0.273    0.006   43.893    0.000
+   .itrf_I_8          0.285    0.006   44.937    0.000
+   .itrf_I_9          0.303    0.007   43.466    0.000
+   .itrf_I_10         0.297    0.006   46.161    0.000
+   .itrf_I_11         0.316    0.007   46.229    0.000
+   .itrf_I_12         0.301    0.007   45.630    0.000
+   .itrf_I_15         0.260    0.006   43.481    0.000
+   .itrf_I_17         0.314    0.007   45.383    0.000
+   .itrf_I_19         0.216    0.005   45.488    0.000
+   .itrf_I_23         0.217    0.005   42.429    0.000
+    APD               0.624    0.021   30.106    0.000
+    OPP               0.529    0.016   33.017    0.000
+    SW                0.284    0.010   29.337    0.000
+    AD                0.191    0.008   23.525    0.000
 ```
 -->
 </div>

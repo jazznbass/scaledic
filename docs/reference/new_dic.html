@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.7</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,8 +58,6 @@
 <span>  <span class="va">x</span>,</span>
 <span>  item_name <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  item_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  scale <span class="op">=</span> <span class="cn">NULL</span>,</span>
-<span>  scale_label <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  values <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  value_labels <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  missing <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -67,7 +65,9 @@
 <span>  type <span class="op">=</span> <span class="cn">NULL</span>,</span>
 <span>  class <span class="op">=</span> <span class="st">"item"</span>,</span>
 <span>  <span class="va">...</span>,</span>
-<span>  .list <span class="op">=</span> <span class="cn">NULL</span></span>
+<span>  .list <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  .coerce_class <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  .message_attr <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -75,6 +75,27 @@
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
     <dl><dt>x</dt>
 <dd><p>A variable</p></dd>
+
+
+<dt>item_name</dt>
+<dd><p>Character</p></dd>
+
+
+<dt>item_label</dt>
+<dd><p>Character</p></dd>
+
+
+<dt>values</dt>
+<dd><p>Numeric or character vector with values. The vector can be
+named</p></dd>
+
+
+<dt>missing</dt>
+<dd><p>Numeric or character vector with values</p></dd>
+
+
+<dt>weight</dt>
+<dd><p>numeric</p></dd>
 
 
 <dt>type</dt>
@@ -92,6 +113,19 @@
 <dt>.list</dt>
 <dd><p>An alternative way to provide class arguments as a list
 (overwrites previous arguments)</p></dd>
+
+
+<dt>.coerce_class</dt>
+<dd><p>Logical. If TRUE, tries to coerce classes of 'x' if
+class does not match the <code>type</code> argument</p></dd>
+
+
+<dt>.message_attr</dt>
+<dd><p>Logical. For internal use</p></dd>
+
+
+<dt>value_lables</dt>
+<dd><p>Character of the form <code>value = label; value2 = label2</code></p></dd>
 
 </dl></div>
     <div class="section level2">

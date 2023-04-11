@@ -1,4 +1,22 @@
-# scaledic 0.2.x
+# scaledic 0.3.0
+
+## New function
+
+- `new_dic()`: Constructor dic objects. Mainly used for apply_dic function.
+- `factor_by_label()`: turns a dic object into a factor based on the value_labels.
+
+```r
+> dat_dic <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+> table(factor_by_label(dat_dic$rel_1), dat_dic$gender)
+                     
+                      m f d
+  Never               0 1 1
+  Once a year or less 1 2 1
+  A few times a year  1 1 3
+  A few times a month 0 2 0
+  Once a week         1 1 0
+  More than once/week 4 1 0
+```
 
 # scaledic 0.2.5
 
