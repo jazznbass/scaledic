@@ -2,23 +2,20 @@
 #'
 #' @param data The target data frame
 #' @param levels Character vector with names of dic attributes used to extract scale information.
-#' @param labels If TRUE, scale labels instead of abbreviations are shown.
-#' @param n_items If TRUE, number of items for each scale, subscale, and sub_subscale is shown
-#' @param char_na Character for NA is.
+#' @param n_items If TRUE, number of items for each scale is shown
+#' @param char_na Character for NAs.
 #'
 #' @return A data.frame with scales on different levels
 #' @export
 list_scales <- function(data,
                         levels = c("scale", "subscale", "subscale_2"),
-                        labels = FALSE,
                         n_items = FALSE,
                         char_na = "") {
 
-  if (labels) levels <- c(levels, paste0(levels, "_label"))
   filter <- .get_dic_items(data)
-  out <- select(data, filter)
+  out <- data[, filter]
   out <- sapply(out, function(x)
-    cbind(sapply(levels, function(y) dic_attr(x, .opt[[y]])))
+    cbind(sapply(levels, function(y) dic_attr(x, y)))
   )
   out <- as.matrix(out)
   if (length(levels) > 1) out <- t(out)
@@ -47,10 +44,7 @@ list_scales <- function(data,
     }
   }
 
-  out <- out %>%
-    unique() %>%
-    as_tibble()
-
+  out <- unique(out)
   out <- out[, colSums(is.na(out)) != nrow(out)]
   out[] <- lapply(out, as.character)
   out[is.na(out)] <- char_na
