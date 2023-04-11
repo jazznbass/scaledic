@@ -91,7 +91,15 @@ check_values <- function(
       data[id_error, i] <- replace
     }
   }
-  if (report && length(errors) > 0) print(errors)
+
+  if (report && length(errors) > 0) {
+    cat("Found the following invalid values:\n\n")
+    for(i in seq_along(errors)) {
+      cat("'", names(errors)[[i]], "'\n", sep = "")
+      print(c("Row:" = "Value:", errors[[i]]), quote = FALSE)
+      cat("\n")
+    }
+  }
   if (report && length(errors) == 0) cat("No errors found.\n")
   if (return) {
     return(data)

@@ -6,24 +6,14 @@
 #' @param force_to_scale If TRUE, imputed values will be rounded and forced to
 #'   the scale. That is, a value below the scale's minimum or maximum will be
 #'   set to the scale's minimum and maximum.
-#' @param scale,subscale,subscale_2 deprecated
 #'
 #' @return A data frame with imputed data.
 #' @export
 impute_missing <- function(data,
                            filter = NULL,
-                           scale = NULL,
-                           subscale = NULL,
-                           subscale_2 = NULL,
                            force_to_scale = TRUE) {
 
   filter <- deparse(substitute(filter))
-  if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
-    filter <- .to_filter(
-      scale = scale, subscale = subscale, subscale_2 = subscale_2
-    )
-  }
-
   .impute_missing(data, filter, force_to_scale)
 }
 

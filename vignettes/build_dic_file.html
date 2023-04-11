@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jürgen Wilbert" />
 
-<meta name="date" content="2023-03-24" />
+<meta name="date" content="2023-04-11" />
 
 <title>Building a dictionary file</title>
 
@@ -340,214 +340,1983 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">Building a dictionary file</h1>
 <h4 class="author">Jürgen Wilbert</h4>
-<h4 class="date">2023-03-24</h4>
+<h4 class="date">2023-04-11</h4>
 
 
 
-<div id="what-is-a-dictionary-file" class="section level2">
-<h2>What is a dictionary file?</h2>
-<p>When you do questionnaire-based research (and you are working in R),
-you typically create a <em>data.frame</em> with one column (variable)
-for each item on that questionnaire and one row for each person who
-participated. You can only store a limited amount of additional
-information about each item in that questionnaire within a data.frame
-(or tibble). What you can do is a) give a variable name, and b) define a
-variable as a factor with corresponding levels.</p>
-<p>But basically that is it. You cannot, at least not conveniently,
-include a longer label for each item, the name of a scale this item
-belongs to, information about reverse coding, etc.</p>
-<p>I call the collection of this additional information about items an
-<em>item dictionary</em>. A dictionary contains a short label, a longer
-description, scale affiliation, and more for each item. It is a table
-with one row per item and one column for each additional information
-about those items.<br />
-The following table shows the information contained in a dictionary
-file:</p>
+<p>In the following examples I will lay out the construction of a
+dictionary file.</p>
+<p>First, we need an example data.frame to work with (i.e. the
+<code>ex_scaledic_data</code> example dataset):</p>
 <table>
-<caption>Columns of a dictionary file</caption>
+<caption>ex_scaledic_data</caption>
 <colgroup>
-<col width="10%" />
-<col width="32%" />
-<col width="56%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">Parameter</th>
-<th align="left">Meaning</th>
-<th align="left">Example</th>
+<th align="right">rel_1</th>
+<th align="right">rel_2</th>
+<th align="right">rel_3</th>
+<th align="right">rel_4</th>
+<th align="right">rel_5</th>
+<th align="right">sui_1</th>
+<th align="right">sui_2</th>
+<th align="right">sui_3</th>
+<th align="right">sui_4</th>
+<th align="right">sui_5</th>
+<th align="left">gender</th>
+<th align="right">age</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">item_name</td>
-<td align="left">A short item label</td>
-<td align="left">itrf_1</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">f</td>
+<td align="right">7</td>
 </tr>
 <tr class="even">
-<td align="left">scale</td>
-<td align="left">Abreviation of the scale the item belongs to</td>
-<td align="left">irtf</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">7</td>
 </tr>
 <tr class="odd">
-<td align="left">subscale</td>
-<td align="left">Abrevation of the sub scale</td>
-<td align="left">int</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">-999</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">d</td>
+<td align="right">9</td>
 </tr>
 <tr class="even">
-<td align="left">subscale_2</td>
-<td align="left">Abrevation of the second order sub scale</td>
-<td align="left">AD</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">8</td>
 </tr>
 <tr class="odd">
-<td align="left">item_label</td>
-<td align="left">Full text of the item</td>
-<td align="left">Complains of headaches or stomach aches</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">6</td>
 </tr>
 <tr class="even">
-<td align="left">scale_label</td>
-<td align="left">Name of the scale</td>
-<td align="left">Integrated Teacher Report Form</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">d</td>
+<td align="right">6</td>
 </tr>
 <tr class="odd">
-<td align="left">subscale_label</td>
-<td align="left">Name of the sub scale</td>
-<td align="left">internalizing problems</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">f</td>
+<td align="right">10</td>
 </tr>
 <tr class="even">
-<td align="left">subscale_2_label</td>
-<td align="left">Name of the second order sub scale</td>
-<td align="left">Anxious/Depressed</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">8</td>
 </tr>
 <tr class="odd">
-<td align="left">values</td>
-<td align="left">Valid response values in an R manner</td>
-<td align="left">1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2,
-3)</td>
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">-999</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">7</td>
 </tr>
 <tr class="even">
-<td align="left">value_labels</td>
-<td align="left">Labels for each response value</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
-problematic; 3 = strongly problematic</td>
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">9</td>
 </tr>
 <tr class="odd">
-<td align="left">missing</td>
-<td align="left">Missing values</td>
-<td align="left">-888, -999</td>
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">m</td>
+<td align="right">7</td>
 </tr>
 <tr class="even">
-<td align="left">type</td>
-<td align="left">Data type (factor, integer, float, real,
-character)</td>
-<td align="left">integer</td>
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">10</td>
 </tr>
 <tr class="odd">
-<td align="left">weight</td>
-<td align="left">Reversion of item and its weight</td>
-<td align="left">1 (positive), -1 (reverse), 1.5 (positive, weights 1.5
-times)</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">8</td>
 </tr>
 <tr class="even">
-<td align="left">source</td>
-<td align="left">Reference</td>
-<td align="left">Volpe et al. (2019)</td>
+<td align="right">6</td>
+<td align="right">66</td>
+<td align="right">-999</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">6</td>
 </tr>
 <tr class="odd">
-<td align="left">note</td>
-<td align="left">Further notes</td>
-<td align="left">Item has low descrimination</td>
+<td align="right">2</td>
+<td align="right">-999</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">d</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">66</td>
+<td align="right">11</td>
+<td align="right">0</td>
+<td align="left">f</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">11</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">-999</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">m</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">55</td>
+<td align="left">m</td>
+<td align="right">10</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">20</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>n_var <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, n <span class="sc">*</span> n_var, <span class="at">replace =</span> <span class="cn">TRUE</span>), <span class="at">ncol =</span> n_var)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dat)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dat) <span class="ot">&lt;-</span> LETTERS[<span class="dv">1</span><span class="sc">:</span>n_var]</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>text <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;m&quot;</span>, <span class="st">&quot;f&quot;</span>, <span class="st">&quot;ka&quot;</span>), n, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dic <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_name =</span> <span class="fu">names</span>(dat),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">item_label =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;Item&quot;</span>, LETTERS[<span class="dv">1</span><span class="sc">:</span>n_var]), <span class="st">&quot;gender&quot;</span>),</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;letters&quot;</span>, n_var), <span class="st">&quot;Misc&quot;</span>),</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale_label =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;Letter Values&quot;</span>, n_var), <span class="st">&quot;Miscellaneous&quot;</span>),</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">values =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;1:5&quot;</span>, n_var), <span class="st">&quot;&#39;m&#39;, &#39;f&#39;, &#39;ka&#39;&quot;</span>),</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">value_labels =</span> <span class="fu">c</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">rep</span>(<span class="st">&quot;1 = low; 2; 3; 4; 5 = high&quot;</span>, n_var), </span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;m = male; f = female; ka = keine Angabe&quot;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;integer&quot;</span>, n_var), <span class="st">&quot;factor&quot;</span>),</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">weight =</span> <span class="dv">1</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">missing =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;-999&quot;</span>, n_var), <span class="st">&quot;&quot;</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat, dic)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; &#39;weight&#39; variable is not numeric: transformed variable to numeric.</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; The following variables were missing in the dictionary file: subscale, subscale_2, subscale_label, subscale_2_label, source</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Replaced missing values.</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `label` attribute set.</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>dat2 <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat2, <span class="at">report =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; No errors found.</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="fu">replace_missing</span>(dat2)</span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    A B C D E F G H I J         text</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  4 4 2 2 2 1 2 3 5 1         male</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  4 2 3 1 1 5 5 1 3 3 keine Angabe</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  4 2 5 4 3 5 5 4 3 1       female</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  4 1 1 5 2 1 1 1 2 2       female</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1 3 2 4 5 4 4 1 1 5 keine Angabe</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2 1 1 1 1 5 5 1 5 3       female</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  2 5 2 5 4 4 3 3 5 5         male</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  3 1 2 4 5 3 2 4 2 5 keine Angabe</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  5 5 4 5 4 5 5 2 4 5 keine Angabe</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 4 5 3 4 5 3 3 1 2 2         male</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 1 3 4 2 5 1 1 3 5 3       female</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 3 4 5 1 5 4 3 5 5 5       female</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 2 5 3 2 1 1 3 2 3 4 keine Angabe</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 3 2 4 1 5 5 1 1 3 5         male</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 3 3 3 1 2 4 1 4 5 3 keine Angabe</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 3 4 4 5 5 3 5 4 3 2         male</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 5 3 1 5 3 4 1 5 2 5       female</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 5 5 5 5 4 2 2 5 3 3         male</span></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 1 1 2 1 2 4 3 3 2 2 keine Angabe</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20 3 3 5 3 1 1 2 2 3 2       female</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>dat2[<span class="dv">1</span>]</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;    A</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 1  4</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 2  4</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 3  4</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 4  4</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 5  1</span></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 6  2</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 7  2</span></span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 8  3</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 9  5</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 10 4</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 11 1</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 12 3</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 13 2</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 14 3</span></span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 15 3</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 16 3</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 17 5</span></span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 18 5</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 19 1</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; 20 3</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>dat2[[<span class="dv">11</span>]]</span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; gender (Miscellaneous)</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Data type is factor </span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  value label       </span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  m     male        </span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  f     female      </span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  ka    keine Angabe</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1] male         keine Angabe female       female       keine Angabe</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [6] female       male         keine Angabe keine Angabe male        </span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [11] female       female       keine Angabe male         keine Angabe</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [16] male         female       male         keine Angabe female      </span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Levels: male female keine Angabe</span></span></code></pre></div>
+<p>Second, we need a dictionary file that is also a
+<strong>data.frame</strong>. Each row of a dictionary file addresses a
+variable (also called <em>item</em> in this context) and each column
+holds a specific attribute. These attributes can be divided in two
+classes. Firstly, <em>predefined</em> attributes with a specific name
+and <em>additional</em> attributed that can have any name. The
+<em>predefined</em> attributes are identified by their specific names.
+Theses are: <code>item_name</code>, <code>item_label</code>,
+<code>values</code>, <code>value_labels</code>, <code>missing</code>,
+<code>weight</code>, and <code>type</code><a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p><em>Additional</em> attributes can have any name and are mainly used
+for selecting items or displaying additional information of an item
+(e.g., the scale and subscale an item belongs to; the reference and the
+author of an item; the translation of an item).</p>
+<div id="building-a-dictionary-step-by-step" class="section level2">
+<h2>Building a dictionary step by step</h2>
+<p>We start the example with a very simple dictionary file containing
+only item labels and the corresponding item names (i.e, the
+corresponding variable names in our data frame)<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. The dictionary file
+has two columns, <code>item_name</code> and <code>item_label</code>:</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="8%" />
+<col width="91%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+</tr>
+</tbody>
+</table>
+<p>We combine the <em>data</em> file and the <em>dic</em> file with the
+<code>apply_dic()</code> function:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="st">&#39;type&#39;</span> attribute missing and replaced with an <span class="fu">estimation</span> (12x)</span></code></pre></div>
+<p>We get the message that the dic file does not contain information of
+the data<em>type</em> (e.g. <code>integer</code>, <code>factor</code>,
+<code>character</code>). The <code>type</code> attribute is used in
+various <em>scaledic</em> functions. For example when the data is
+checked for invalid values, missing values are imputed or scales are
+scored. A variable can be one of the following types:
+<code>integer</code> for numbers without decimals, <code>float</code>
+for numbers with decimals, <code>character</code> for variables with
+text, and <code>factor</code> for variables with text or numbers that
+are levels of a factor. <em>Scaledic</em> will estimate the data type
+from the given data when the <code>type</code> attribute is not provided
+in the dic file.</p>
+<p>Let us add <code>type</code> information to the dic file:</p>
+<table style="width:100%;">
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="8%" />
+<col width="85%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="left">factor</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="left">integer</td>
+</tr>
+</tbody>
+</table>
+<p>Most item values are of type <code>integer</code> (the item has only
+whole numbers) with the exception of <code>gender</code> which is of
+type <code>factor</code> (i.e. it has a nominal scale with several
+levels).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span></code></pre></div>
+<p>Now we can add <code>weight</code> information to the dic file. The
+<code>weight</code> attribute tells various <em>scaledic</em> functions
+a) whether the item is inverted or not, and b) how the values of an item
+are weighted. If a weight value is unsigned (e.g. <code>1</code>), the
+item is not inverted. If a weight value has a negative sign
+(e.g. <code>-1</code>), the item is inverted. If the (absolute) value is
+not <code>1</code>, the item will be weighted when calculating the item
+scores (e.g. <code>1.5</code> will give an item a weight of 1.5).</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="7%" />
+<col width="80%" />
+<col width="5%" />
+<col width="6%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="right">weight</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="right">1</td>
+<td align="left">factor</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, all <code>weights</code> are <code>1</code> and no
+item is inverted.</p>
+<p>Again, we join dic and data file:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span></code></pre></div>
+<p>Now we add the <code>values</code> attribute to the dic file.
+<code>values</code> defines the valid values that a variable can take.
+Explicitly defining the <code>values</code> makes it possible to
+automatically identify invalid values in a data frame (e.g. typos).
+<code>values</code> are also necessary to reverse score an inverted
+item. For coding the <code>values</code>, you provide the possible
+values separated with a comma (e.g., <code>1, 2, 3, 4</code> for the
+integers 1 to 4). It is also possible to use a colon to define a range
+of integers (e.g., <code>5:11</code> indicated all integers starting
+with 5 and ending with 11). For variables of type <code>factor</code> or
+<code>character</code> you may want to provide text values. in that
+case, put these values within quotes (e.g., <code>&#39;m&#39;, &#39;f&#39;, &#39;d&#39;</code>
+indicates three valid text entries).</p>
+<p>Here is the dic file with added <code>values</code>:</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="6%" />
+<col width="72%" />
+<col width="9%" />
+<col width="4%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">values</th>
+<th align="right">weight</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="left">1:6</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="left">1:6</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="left">1:5</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="left">1:5</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="left">1:5</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="left">0:4</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="left">0:4</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="left">0:4</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="left">0:4</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="left">0:4</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="left">‘m’, ‘f’, ‘d’</td>
+<td align="right">1</td>
+<td align="left">factor</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="left">5:11</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span></code></pre></div>
+<p>Invalid values can be replaced automatically with the
+<code>check_values()</code> function.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat_dic, <span class="at">report =</span> <span class="cn">TRUE</span>, <span class="at">replace =</span> <span class="cn">NA</span>) </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Found the following invalid values<span class="sc">:</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rel_2&#39;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">14</span>             <span class="dv">15</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>             <span class="dv">66</span>           <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rel_3&#39;</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">14</span> </span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>           <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rel_4&#39;</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>              <span class="dv">3</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>           <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;rel_5&#39;</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">19</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>           <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;sui_2&#39;</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>              <span class="dv">9</span>             <span class="dv">18</span> </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>           <span class="sc">-</span><span class="dv">999</span>             <span class="dv">11</span> </span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;sui_3&#39;</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">17</span> </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>             <span class="dv">66</span> </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;sui_4&#39;</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">17</span> </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>             <span class="dv">11</span> </span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;sui_5&#39;</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>          Row<span class="sc">:</span>             <span class="dv">20</span> </span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>Invalid value<span class="sc">:</span>             <span class="dv">55</span> </span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;data frame with replaced invalid values&quot;</span>)</span></code></pre></div>
+<table>
+<caption>data frame with replaced invalid values</caption>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">rel_1</th>
+<th align="right">rel_2</th>
+<th align="right">rel_3</th>
+<th align="right">rel_4</th>
+<th align="right">rel_5</th>
+<th align="right">sui_1</th>
+<th align="right">sui_2</th>
+<th align="right">sui_3</th>
+<th align="right">sui_4</th>
+<th align="right">sui_5</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">f</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">7</td>
+</tr>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">d</td>
+<td align="right">9</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">6</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">d</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">f</td>
+<td align="right">10</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">m</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">d</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">f</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">m</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="left">m</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+<p>Next, we add <code>value_labels</code>. Value labels give longer
+labels for all or some of the values. Value labels are coded in the form
+<code>value = label</code> with a semicolon separating each entry.
+<code>m = male; f = female; d = diverse</code> codes three value label
+(quotes are not necessary).</p>
+<p>Here is the dic file with added <code>value_labels</code>:</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="3%" />
+<col width="38%" />
+<col width="5%" />
+<col width="47%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">values</th>
+<th align="left">value_labels</th>
+<th align="right">weight</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="left">1:6</td>
+<td align="left">1 = Never; 2 = Once a year or less; 3 = A few times a
+year; 4 = A few times a month; 5 = Once a week; 6 = More than
+once/week</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="left">1:6</td>
+<td align="left">1 = Rarely or never; 2 = A few times a month; 3 = Once
+a week; 4 = Two or more times/week; 5 = Daily; 6 = More than once a
+day</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="left">‘m’, ‘f’, ‘d’</td>
+<td align="left">m = male; f = female; d = diverse</td>
+<td align="right">1</td>
+<td align="left">factor</td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="left">5:11</td>
+<td align="left"></td>
+<td align="right">1</td>
+<td align="left">integer</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file) <span class="sc">%&gt;%</span> <span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<p>Now lets see the coding for some of the variables:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dat_dic<span class="sc">$</span>rel_1</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># How often do you attend church or other religious meetings? </span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valid values: 1:6</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 1 = Never</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2 = Once a year or less</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 3 = A few times a year</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 = A few times a month</span></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 = Once a week</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 6 = More than once/week</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span></code></pre></div>
+<p>Valid values are all integers from 1 to 6 and each value has a
+label.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat_dic<span class="sc">$</span>sui_1</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Did you feel tense in the last week? </span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valid values: 0:4</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels:</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 = not at all</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 = extremely</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span></span></code></pre></div>
+<p>Here, valid values are <code>0, 1, 2, 3, 4</code> (short
+<code>0:4</code>) but only the poles (<code>0</code> and <code>4</code>)
+have labels.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat_dic<span class="sc">$</span>gender</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># gender </span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is factor</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels:</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># m = male</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># f = female</span></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># d = diverse</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] f d d f f d f f f f m m m m d d f m m m</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> m f d</span></code></pre></div>
+<p><code>gender</code> is of type factor. The valid values
+<code>&#39;m&#39;, &#39;f&#39;, &#39;d&#39;</code> have been turned into three factor levels
+with the corresponding labels.</p>
+<blockquote>
+<p>Caution: The labels provided in the <code>value_labels</code>
+attribute are not automtically turned into the levels of a factor. This
+is because R internally would turn the values (here
+<code>&#39;m&#39;, &#39;f&#39;, &#39;d&#39;</code>) into integers (here
+<code>1, 2, 3</code>)</p>
+</blockquote>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat_dic<span class="sc">$</span>age</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># age </span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valid values: 5:11</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">7</span>  <span class="dv">7</span>  <span class="dv">9</span>  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">6</span> <span class="dv">10</span>  <span class="dv">8</span>  <span class="dv">7</span>  <span class="dv">9</span>  <span class="dv">7</span> <span class="dv">10</span>  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">8</span>  <span class="dv">9</span>  <span class="dv">8</span> <span class="dv">10</span></span></code></pre></div>
+<p><code>age</code> can take integers from 5 to 11 (<code>5:11</code>).
+Value labels have not been provided.</p>
+<p>It is a common practice to code missing values with a specific number
+(rather than just leaving an empty entry on a datasheet). In the example
+dataset used here, <code>-999</code> is used as a missing value. To
+account for this, we add the <code>missing</code> attribute to the
+<em>dic</em> file containing the missing number (e.g.,
+<code>-999</code>). Multiple missing values are separated by commas
+(e.g. <code>-99, -77</code>).</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="3%" />
+<col width="37%" />
+<col width="5%" />
+<col width="45%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">values</th>
+<th align="left">value_labels</th>
+<th align="right">weight</th>
+<th align="left">type</th>
+<th align="left">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="left">1:6</td>
+<td align="left">1 = Never; 2 = Once a year or less; 3 = A few times a
+year; 4 = A few times a month; 5 = Once a week; 6 = More than
+once/week</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="left">1:6</td>
+<td align="left">1 = Rarely or never; 2 = A few times a month; 3 = Once
+a week; 4 = Two or more times/week; 5 = Daily; 6 = More than once a
+day</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="left">‘m’, ‘f’, ‘d’</td>
+<td align="left">m = male; f = female; d = diverse</td>
+<td align="right">1</td>
+<td align="left">factor</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="left">5:11</td>
+<td align="left"></td>
+<td align="right">1</td>
+<td align="left">integer</td>
+<td align="left">-999</td>
+</tr>
+</tbody>
+</table>
+<p>The values within the <code>missing</code> attributes are
+automatically replaced with NA when joining a data with a dic file:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
+<p>To turn off this behavior, set the argument
+<code>replace_missing = FALSE</code>. Default, values are not checked
+for invalid entries. To do this, either set
+<code>check_values = TRUE</code> or apply the
+<code>check_values()</code> function.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file, <span class="at">check_values =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Invalid values replaced with <span class="cn">NA</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Extract from the data frame with replaced missing values and checked values&quot;</span>)</span></code></pre></div>
+<table>
+<caption>Extract from the data frame with replaced missing values and
+checked values</caption>
+<colgroup>
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="9%" />
+<col width="5%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">rel_1</th>
+<th align="right">rel_2</th>
+<th align="right">rel_3</th>
+<th align="right">rel_4</th>
+<th align="right">rel_5</th>
+<th align="right">sui_1</th>
+<th align="right">sui_2</th>
+<th align="right">sui_3</th>
+<th align="right">sui_4</th>
+<th align="right">sui_5</th>
+<th align="left">gender</th>
+<th align="right">age</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="left">m</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">10</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">6</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">7</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">d</td>
+<td align="right">8</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="left">f</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">9</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">NA</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">m</td>
+<td align="right">8</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">NA</td>
+<td align="left">m</td>
+<td align="right">10</td>
+</tr>
+</tbody>
+</table>
+<p>In the last step of this tutorial we will add information about the
+scales that the items belong to. Therefore, we add a new attribute
+called <code>scale</code> to the dic file and another attribute
+<code>scale_label</code> for a longer description (we could have named
+these attributes in any other way as they are not <em>predefined</em>
+attributes):</p>
+<table>
+<caption>Dictionary file</caption>
+<colgroup>
+<col width="3%" />
+<col width="34%" />
+<col width="1%" />
+<col width="5%" />
+<col width="4%" />
+<col width="42%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">scale</th>
+<th align="left">scale_label</th>
+<th align="left">values</th>
+<th align="left">value_labels</th>
+<th align="left">type</th>
+<th align="right">weight</th>
+<th align="left">missing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">rel_1</td>
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="left">rel</td>
+<td align="left">Religious beliefs</td>
+<td align="left">1:6</td>
+<td align="left">1 = Never; 2 = Once a year or less; 3 = A few times a
+year; 4 = A few times a month; 5 = Once a week; 6 = More than
+once/week</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">rel_2</td>
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="left">rel</td>
+<td align="left">Religious beliefs</td>
+<td align="left">1:6</td>
+<td align="left">1 = Rarely or never; 2 = A few times a month; 3 = Once
+a week; 4 = Two or more times/week; 5 = Daily; 6 = More than once a
+day</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_3</td>
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="left">rel</td>
+<td align="left">Religious beliefs</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">rel_4</td>
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="left">rel</td>
+<td align="left">Religious beliefs</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">rel_5</td>
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="left">rel</td>
+<td align="left">Religious beliefs</td>
+<td align="left">1:5</td>
+<td align="left">1 = Definitely not true; 2 = Tends not to be true; 3 =
+Unsure; 4 = Tends to be true; 5 = Definitely true of me</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_1</td>
+<td align="left">Did you feel tense in the last week?</td>
+<td align="left">sui</td>
+<td align="left">Suicide tendency</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_2</td>
+<td align="left">Did you feel blue in the last week?</td>
+<td align="left">sui</td>
+<td align="left">Suicide tendency</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_3</td>
+<td align="left">Did you feel irritated in the last week?</td>
+<td align="left">sui</td>
+<td align="left">Suicide tendency</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">sui_4</td>
+<td align="left">Did you feel inferior in the last week?</td>
+<td align="left">sui</td>
+<td align="left">Suicide tendency</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="even">
+<td align="left">sui_5</td>
+<td align="left">Did you have problems falling asleep in the last
+week?</td>
+<td align="left">sui</td>
+<td align="left">Suicide tendency</td>
+<td align="left">0:4</td>
+<td align="left">0 = not at all; 4 = extremely</td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+<tr class="odd">
+<td align="left">gender</td>
+<td align="left">gender</td>
+<td align="left">misc</td>
+<td align="left">Miscellaneous</td>
+<td align="left">‘m’, ‘f’, ‘d’</td>
+<td align="left">m = male; f = female; d = diverse</td>
+<td align="left">factor</td>
+<td align="right">1</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">age</td>
+<td align="left">age</td>
+<td align="left">misc</td>
+<td align="left">Miscellaneous</td>
+<td align="left">5:11</td>
+<td align="left"></td>
+<td align="left">integer</td>
+<td align="right">1</td>
+<td align="left">-999</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file, <span class="at">check_values =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Invalid values replaced with <span class="cn">NA</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
+<p>When can use the scale attribute to select items:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>   name valid missing mean   sd min max range median  mad</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> rel_1    <span class="dv">20</span>       <span class="dv">0</span> <span class="fl">3.65</span> <span class="fl">1.76</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> rel_2    <span class="dv">18</span>       <span class="dv">2</span> <span class="fl">3.44</span> <span class="fl">1.89</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>    <span class="fl">3.5</span> <span class="fl">2.22</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> rel_3    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.37</span> <span class="fl">1.54</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">4.0</span> <span class="fl">1.48</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> rel_4    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.21</span> <span class="fl">1.55</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> rel_5    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">2.37</span> <span class="fl">1.26</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span></code></pre></div>
+<p>and the <code>rename_items()</code> function to get the item
+labels:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="67%" />
+<col width="3%" />
+<col width="5%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
+<col width="4%" />
+<col width="3%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">name</th>
+<th align="right">valid</th>
+<th align="right">missing</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">range</th>
+<th align="right">median</th>
+<th align="right">mad</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">How often do you attend church or other religious
+meetings?</td>
+<td align="right">20</td>
+<td align="right">0</td>
+<td align="right">3.65</td>
+<td align="right">1.76</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">3.0</td>
+<td align="right">1.48</td>
+</tr>
+<tr class="even">
+<td align="left">How often do you spend time in private religious
+activities, such as prayer, meditation or Bible study?</td>
+<td align="right">18</td>
+<td align="right">2</td>
+<td align="right">3.44</td>
+<td align="right">1.89</td>
+<td align="right">1</td>
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">3.5</td>
+<td align="right">2.22</td>
+</tr>
+<tr class="odd">
+<td align="left">In my life, I experience the presence of the Divine
+(i.e., God)</td>
+<td align="right">19</td>
+<td align="right">1</td>
+<td align="right">3.37</td>
+<td align="right">1.54</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">4.0</td>
+<td align="right">1.48</td>
+</tr>
+<tr class="even">
+<td align="left">My religious beliefs are what really lie behind my
+whole approach to life</td>
+<td align="right">19</td>
+<td align="right">1</td>
+<td align="right">3.21</td>
+<td align="right">1.55</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">3.0</td>
+<td align="right">1.48</td>
+</tr>
+<tr class="odd">
+<td align="left">I try hard to carry my religion over into all other
+dealings in life</td>
+<td align="right">19</td>
+<td align="right">1</td>
+<td align="right">2.37</td>
+<td align="right">1.26</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">3.0</td>
+<td align="right">1.48</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Actually there are three more predefined attributes
+<code>class</code>, <code>scale_function</code>, and
+<code>scale_filter</code> that are not explained in this tutorial.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>The easiest way to create a dictionary file is to use a
+spreadsheet program and to import the file.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 

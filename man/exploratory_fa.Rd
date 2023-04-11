@@ -9,13 +9,15 @@ exploratory_fa(..., factor_names = NULL, sort = TRUE, cut = 0.2, round = 2)
 \arguments{
 \item{...}{Arguments passed to the psych::fa function.}
 
-\item{factor_names}{A character vector with names for the resulting factors. If not provided, default names are chosen.}
+\item{factor_names}{A character vector with names for the resulting factors.
+If not provided, default names are chosen.}
 
 \item{sort}{If TRUE, loadings are sorted.}
 
-\item{cut}{Loadings below cut will be ommited in the resulting data frame.}
+\item{cut}{Loadings below cut will be omitted in the resulting data frame.}
 
-\item{round}{Number of digitis to round loadings (based on the base::round function)}
+\item{round}{Number of digits to round loadings (based on the base::round
+function)}
 }
 \value{
 A data.frame
@@ -24,8 +26,7 @@ A data.frame
 Exploratory factor analysis based on the psych::fa function
 }
 \examples{
-exploratory_fa(
-  select_items(ex_itrf, subscale \%in\% c('Int', 'Ext')),
-  nfactors = 2
-)
+ex_itrf  |>
+  select_items(subscale \%in\% c('Int', 'Ext'))  |>
+  exploratory_fa(nfactors = 2)
 }

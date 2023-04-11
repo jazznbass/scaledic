@@ -6,60 +6,96 @@ library(psych)
 library(scaledic)
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = ""
 )
 
-## ----tab_dic_param, echo = FALSE----------------------------------------------
-out <- tribble(
-  ~Parameter, ~Meaning, ~Example,
-  "item_name", "A short item label", "itrf_1",
-  "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "subscale", "Abrevation of the sub scale", "int",
-  "subscale_2", "Abrevation of the second order sub scale", "AD",
-  "item_label", "Full text of the item", "Complains of headaches or stomach aches",
-  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "subscale_label", "Name of the sub scale", "internalizing problems",
-  "subscale_2_label", "Name of the second order sub scale", "Anxious/Depressed",
-  "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
-  "value_labels", "Labels for each response value", "0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic",
-  "missing", "Missing values", "-888, -999",
-  "type", "Data type (factor, integer, float, real, character)", "integer",
-  "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-  "source", "Reference", "Volpe et al. (2019)",
-  "note", "Further notes", "Item has low descrimination"
-)
-kable(out, caption = "Columns of a dictionary file")
+## ----echo=FALSE---------------------------------------------------------------
+ex_scaledic_data %>% kable(caption = "ex_scaledic_data")
 
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic[, 1:2]
+dic_file %>% kable(caption = "Dictionary file")
 
 ## -----------------------------------------------------------------------------
-n <- 20
-n_var <- 10
-dat <- matrix(sample(1:5, n * n_var, replace = TRUE), ncol = n_var)
-dat <- as.data.frame(dat)
-names(dat) <- LETTERS[1:n_var]
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 
-dat$text <- sample(c("m", "f", "ka"), n, replace = TRUE)
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic %>% select(1,2, type)
+dic_file %>% kable(caption = "Dictionary file")
 
-dic <- data.frame(
-  item_name = names(dat),
-  item_label = c(paste("Item", LETTERS[1:n_var]), "gender"),
-  scale = c(rep("letters", n_var), "Misc"),
-  scale_label = c(rep("Letter Values", n_var), "Miscellaneous"),
-  values = c(rep("1:5", n_var), "'m', 'f', 'ka'"),
-  value_labels = c(
-    rep("1 = low; 2; 3; 4; 5 = high", n_var), 
-    "m = male; f = female; ka = keine Angabe"
-  ),
-  type = c(rep("integer", n_var), "factor"),
-  weight = 1,
-  missing = c(rep("-999", n_var), "")
-)
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 
-dat2 <- apply_dic(dat, dic)
-dat2 <- check_values(dat2, report = TRUE)
-replace_missing(dat2)
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic %>% select(1,2, weight, type)
+dic_file %>% kable(caption = "Dictionary file")
 
-dat2[1]
-dat2[[11]]
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic %>% select(1,2, "values", "weight", "type")
+dic_file %>% kable(caption = "Dictionary file")
+
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+
+## -----------------------------------------------------------------------------
+dat_dic <- check_values(dat_dic, report = TRUE, replace = NA) 
+
+## -----------------------------------------------------------------------------
+dat_dic %>% kable(caption = "data frame with replaced invalid values")
+
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic %>% select(1,2, "values", "value_labels", "weight", "type")
+dic_file %>% kable(caption = "Dictionary file")
+
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file) %>% check_values(replace = NA)
+
+## -----------------------------------------------------------------------------
+dat_dic$rel_1
+
+## -----------------------------------------------------------------------------
+dat_dic$sui_1
+
+## -----------------------------------------------------------------------------
+dat_dic$gender
+
+## -----------------------------------------------------------------------------
+dat_dic$age
+
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic %>% select(1,2, values, value_labels, weight, type, missing)
+dic_file %>% kable(caption = "Dictionary file")
+
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+
+## -----------------------------------------------------------------------------
+dat_dic %>%
+  slice(9:20) %>% 
+  kable(caption = "Extract from the data frame with replaced missing values and checked values")
+
+## ----echo=FALSE---------------------------------------------------------------
+dic_file <- ex_scaledic_dic
+dic_file %>% kable(caption = "Dictionary file")
+
+## -----------------------------------------------------------------------------
+dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+
+## -----------------------------------------------------------------------------
+dat_dic %>% 
+  select_items(scale == "rel") %>% 
+  descriptives()
+
+## -----------------------------------------------------------------------------
+dat_dic %>% 
+  select_items(scale == "rel") %>% 
+  rename_items() %>%
+  descriptives() %>%
+  kable()
 

@@ -17,73 +17,187 @@ library(psych)
 library(scaledic)
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = ""
 )
 ```
 
-## What is a dictionary file?
+In the following examples I will lay out the construction of a dictionary file.
 
-When you do questionnaire-based research (and you are working in R), you typically create a *data.frame* with one column (variable) for each item on that questionnaire and one row for each person who participated. You can only store a limited amount of additional information about each item in that questionnaire within a data.frame (or tibble). What you can do is a) give a variable name, and b) define a variable as a factor with corresponding levels.
+First, we need an example data.frame to work with (i.e. the `ex_scaledic_data` example dataset):
 
-But basically that is it. You cannot, at least not conveniently, include a longer label for each item, the name of a scale this item belongs to, information about reverse coding, etc.
+```{r echo=FALSE}
+ex_scaledic_data %>% kable(caption = "ex_scaledic_data")
+```
 
-I call the collection of this additional information about items an *item dictionary*. A dictionary contains a short label, a longer description, scale affiliation, and more for each item. It is a table with one row per item and one column for each additional information about those items.   
-The following table shows the information contained in a dictionary file: 
+Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`[^1].
 
-```{r tab_dic_param, echo = FALSE}
-out <- tribble(
-  ~Parameter, ~Meaning, ~Example,
-  "item_name", "A short item label", "itrf_1",
-  "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "subscale", "Abrevation of the sub scale", "int",
-  "subscale_2", "Abrevation of the second order sub scale", "AD",
-  "item_label", "Full text of the item", "Complains of headaches or stomach aches",
-  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "subscale_label", "Name of the sub scale", "internalizing problems",
-  "subscale_2_label", "Name of the second order sub scale", "Anxious/Depressed",
-  "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
-  "value_labels", "Labels for each response value", "0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic",
-  "missing", "Missing values", "-888, -999",
-  "type", "Data type (factor, integer, float, real, character)", "integer",
-  "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-  "source", "Reference", "Volpe et al. (2019)",
-  "note", "Further notes", "Item has low descrimination"
-)
-kable(out, caption = "Columns of a dictionary file")
+[^1]: Actually there are three more predefined attributes `class`, `scale_function`, and `scale_filter` that are not explained in this tutorial.
 
+*Additional* attributes can have any name and are mainly used for selecting items or displaying additional information of an item (e.g., the scale and subscale an item belongs to; the reference and the author of an item; the translation of an item).
+
+## Building a dictionary step by step
+
+We start the example with a very simple dictionary file containing only item labels and the corresponding item names (i.e, the corresponding variable names in our data frame)[^2]. The dictionary file has two columns, `item_name` and `item_label`:
+
+[^2]: The easiest way to create a dictionary file is to use a spreadsheet program and to import the file.
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic[, 1:2]
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+We combine the *data* file and the *dic* file with the `apply_dic()` function:
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+```
+
+We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `float` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
+*Scaledic* will estimate the data type from the given data when the `type` attribute is not provided in the dic file. 
+
+Let us add `type` information to the dic file:
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic %>% select(1,2, type)
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+Most item values are of type `integer` (the item has only whole numbers) with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+```
+
+Now we can add `weight` information to the dic file. The `weight` attribute tells various *scaledic* functions a) whether the item is inverted or not, and b) how the values of an item are weighted. If a weight value is unsigned (e.g. `1`), the item is not inverted. If a weight value has a negative sign (e.g. `-1`), the item is inverted. If the (absolute) value is not `1`, the item will be weighted when calculating the item scores (e.g. `1.5` will give an item a weight of 1.5).
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic %>% select(1,2, weight, type)
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+In this example, all `weights` are `1` and no item is inverted. 
+
+Again, we join dic and data file:
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+```
+
+Now we add the `values` attribute to the dic file. `values` defines the valid values that a variable can take. Explicitly defining the `values` makes it possible to automatically identify invalid values in a data frame (e.g. typos). `values` are also necessary to reverse score an inverted item. For coding the `values`, you provide the possible values separated with a comma (e.g., `1, 2, 3, 4` for the integers 1 to 4). It is also possible to use a colon to define a range of integers (e.g., `5:11` indicated all integers starting with 5 and ending with 11). For variables of type `factor` or `character` you may want to provide text values. in that case, put these values within quotes (e.g., `'m', 'f', 'd'` indicates three valid text entries).
+
+Here is the dic file with added `values`:
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic %>% select(1,2, "values", "weight", "type")
+dic_file %>% kable(caption = "Dictionary file")
 ```
 
 ```{r}
-n <- 20
-n_var <- 10
-dat <- matrix(sample(1:5, n * n_var, replace = TRUE), ncol = n_var)
-dat <- as.data.frame(dat)
-names(dat) <- LETTERS[1:n_var]
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+```
 
-dat$text <- sample(c("m", "f", "ka"), n, replace = TRUE)
+Invalid values can be replaced automatically with the `check_values()` function.
 
-dic <- data.frame(
-  item_name = names(dat),
-  item_label = c(paste("Item", LETTERS[1:n_var]), "gender"),
-  scale = c(rep("letters", n_var), "Misc"),
-  scale_label = c(rep("Letter Values", n_var), "Miscellaneous"),
-  values = c(rep("1:5", n_var), "'m', 'f', 'ka'"),
-  value_labels = c(
-    rep("1 = low; 2; 3; 4; 5 = high", n_var), 
-    "m = male; f = female; ka = keine Angabe"
-  ),
-  type = c(rep("integer", n_var), "factor"),
-  weight = 1,
-  missing = c(rep("-999", n_var), "")
-)
-
-dat2 <- apply_dic(dat, dic)
-dat2 <- check_values(dat2, report = TRUE)
-replace_missing(dat2)
-
-dat2[1]
-dat2[[11]]
-
+```{r}
+dat_dic <- check_values(dat_dic, report = TRUE, replace = NA) 
 ```
 
 
+```{r}
+dat_dic %>% kable(caption = "data frame with replaced invalid values")
+```
+
+Next, we add `value_labels`. Value labels give longer labels for all or some of the values. Value labels are coded in the form `value = label` with a semicolon separating each entry. `m = male; f = female; d = diverse` codes three value label (quotes are not necessary).
+
+Here is the dic file with added `value_labels`:
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic %>% select(1,2, "values", "value_labels", "weight", "type")
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file) %>% check_values(replace = NA)
+```
+
+Now lets see the coding for some of the variables:
+
+```{r}
+dat_dic$rel_1
+```
+
+Valid values are all integers from 1 to 6 and each value has a label.
+
+```{r}
+dat_dic$sui_1
+```
+
+Here, valid values are `0, 1, 2, 3, 4` (short `0:4`) but only the poles (`0` and `4`) have labels.
+
+```{r}
+dat_dic$gender
+```
+
+`gender` is of type factor. The valid values `'m', 'f', 'd'` have been turned into three factor levels with the corresponding labels. 
+
+> Caution: The labels provided in the `value_labels` attribute are not automtically turned into the levels of a factor. This is because R internally would turn the values (here `'m', 'f', 'd'`) into integers (here `1, 2, 3`)
+
+```{r}
+dat_dic$age
+```
+
+`age` can take integers from 5 to 11 (`5:11`). Value labels have not been provided.
+
+It is a common practice to code missing values with a specific number (rather than just leaving an empty entry on a datasheet). In the example dataset used here, `-999` is used as a missing value. To account for this, we add the `missing` attribute to the *dic* file containing the missing number (e.g., `-999`). Multiple missing values are separated by commas (e.g. `-99, -77`).
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic %>% select(1,2, values, value_labels, weight, type, missing)
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+The values within the `missing` attributes are automatically replaced with NA when joining a data with a dic file: 
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+```
+
+To turn off this behavior, set the argument `replace_missing = FALSE`. Default, values are not checked for invalid entries. To do this, either set `check_values = TRUE` or apply the `check_values()` function.
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+```
+
+```{r}
+dat_dic %>%
+  slice(9:20) %>% 
+  kable(caption = "Extract from the data frame with replaced missing values and checked values")
+```
+
+In the last step of this tutorial we will add information about the scales that the items belong to. Therefore, we add a new attribute called `scale` to the dic file and another attribute `scale_label` for a longer description (we could have named these attributes in any other way as they are not *predefined* attributes):
+
+```{r echo=FALSE}
+dic_file <- ex_scaledic_dic
+dic_file %>% kable(caption = "Dictionary file")
+```
+
+```{r}
+dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+```
+
+When can use the scale attribute to select items:
+
+```{r}
+dat_dic %>% 
+  select_items(scale == "rel") %>% 
+  descriptives()
+```
+
+and the `rename_items()` function to get the item labels:
+
+```{r}
+dat_dic %>% 
+  select_items(scale == "rel") %>% 
+  rename_items() %>%
+  descriptives() %>%
+  kable()
+```

@@ -4,22 +4,13 @@
 \alias{impute_missing}
 \title{Impute missing values}
 \usage{
-impute_missing(
-  data,
-  filter = NULL,
-  scale = NULL,
-  subscale = NULL,
-  subscale_2 = NULL,
-  force_to_scale = TRUE
-)
+impute_missing(data, filter = NULL, force_to_scale = TRUE)
 }
 \arguments{
 \item{data}{A data frame}
 
 \item{filter}{A logical expression for any dic attribute (e.g. scale ==
 "ITRF" & subscale == "Int")}
-
-\item{scale, subscale, subscale_2}{deprecated}
 
 \item{force_to_scale}{If TRUE, imputed values will be rounded and forced to
 the scale. That is, a value below the scale's minimum or maximum will be

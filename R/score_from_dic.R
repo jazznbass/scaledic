@@ -36,7 +36,14 @@ score_from_dic <- function(data,
     }
 
     data[[new_var]] <- .score_scale(
-      data, filter = filter, label = label, FUN = NULL, sum = sum, bind = FALSE
+      data,
+      filter = filter,
+      label = label,
+      fun = NULL,
+      min_valid = 1,
+      max_na = NA,
+      sum = sum,
+      var_weight = "weight"
     )
 
   }

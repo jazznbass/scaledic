@@ -340,32 +340,109 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div id="note" class="section level1">
-<h1>Note</h1>
-<p>The following code examples make use of the pipe operator
-<code>%&gt;%</code> (see <a href="https://r4ds.had.co.nz/pipes.html" class="uri">https://r4ds.had.co.nz/pipes.html</a> for more details).</p>
+<div id="what-is-a-dictionary-file" class="section level2">
+<h2>What is a dictionary file?</h2>
+<p>When you conduct research based on questionnaires or psychometric
+tests (and you are working in R), you typically create a
+<em>data.frame</em> with one column (variable) for each item on that
+questionnaire and one row for each person who participated. You can only
+store a limited amount of additional information about each item in that
+questionnaire within a data.frame (or tibble). You can give a variable a
+name and define a variable as a factor with appropriate levels. But
+basically, that is it. You cannot, at least not conveniently, include a
+longer label for each item, the name of a scale this item belongs to,
+information about reverse coding, etc.</p>
+<p>I call the collection of this additional information about items an
+<em>item dictionary</em>. A dictionary contains a short label, a longer
+description, scale affiliation, and more for each item.</p>
 </div>
-<div id="how-to-use-scaledic" class="section level1">
-<h1>How to use scaledic</h1>
-<p>You need two things:</p>
-<ol style="list-style-type: decimal">
-<li>a dataset,</li>
-<li>a dictionary file.</li>
-</ol>
 <div id="a-dictionary-file" class="section level2">
 <h2>A dictionary file</h2>
 <p>A dictionary file is a table with a row for each variable and a
-column for each parameter of those variables. Most conveniently, you
+column for each atttribute of those variables. Most conveniently, you
 prepare a dictionary file in a spreadsheet program for later use with
 data sets.</p>
-<p>The following table shows the parameters and the naming of the
-columns of a dictionary file:</p>
+<p>Here is an extract of an example <em>dic-file</em>:</p>
 <table>
-<caption>Columns of a dictionary file</caption>
 <colgroup>
+<col width="4%" />
+<col width="19%" />
+<col width="2%" />
 <col width="13%" />
-<col width="36%" />
-<col width="50%" />
+<col width="3%" />
+<col width="6%" />
+<col width="3%" />
+<col width="39%" />
+<col width="3%" />
+<col width="3%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">item_name</th>
+<th align="left">item_label</th>
+<th align="left">scale</th>
+<th align="left">scale_label</th>
+<th align="left">subscale</th>
+<th align="left">subscale_label</th>
+<th align="left">values</th>
+<th align="left">value_labels</th>
+<th align="right">missing</th>
+<th align="left">type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">itrf_I_1</td>
+<td align="left">Verbringt zu viel Zeit alleine</td>
+<td align="left">ITRF</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Int</td>
+<td align="left">Internalizing</td>
+<td align="left">0:3</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
+<td align="right">-99</td>
+<td align="left">integer</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_2</td>
+<td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
+<td align="left">ITRF</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Int</td>
+<td align="left">Internalizing</td>
+<td align="left">0:3</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
+<td align="right">-99</td>
+<td align="left">integer</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_4</td>
+<td align="left">Vermeidet soziale Interaktionen</td>
+<td align="left">ITRF</td>
+<td align="left">Integrated teacher report form</td>
+<td align="left">Int</td>
+<td align="left">Internalizing</td>
+<td align="left">0:3</td>
+<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
+problematic; 3 = strongly problematic</td>
+<td align="right">-99</td>
+<td align="left">integer</td>
+</tr>
+</tbody>
+</table>
+<p>A dictionary file can contain any additional attributes you like.
+That is, you can add a column with any name to store relevant
+information (e.g. scale and scale label an item belongs to, a
+translation of the item name). But some predefined attributes exist with
+a specific meaning. The following table shows these attributes:</p>
+<table>
+<caption>Basic columns of a dictionary file</caption>
+<colgroup>
+<col width="11%" />
+<col width="35%" />
+<col width="53%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -379,36 +456,6 @@ columns of a dictionary file:</p>
 <td align="left">item_name</td>
 <td align="left">A short item name</td>
 <td align="left">itrf_1</td>
-</tr>
-<tr class="even">
-<td align="left">scale</td>
-<td align="left">Abreviation of the scale the item belongs to</td>
-<td align="left">irtf</td>
-</tr>
-<tr class="odd">
-<td align="left">subscale</td>
-<td align="left">Abrevation of the sub scale</td>
-<td align="left">int</td>
-</tr>
-<tr class="even">
-<td align="left">subscale_2</td>
-<td align="left">Abrevation of the second order sub scale</td>
-<td align="left">shy</td>
-</tr>
-<tr class="odd">
-<td align="left">scale_label</td>
-<td align="left">Name of the scale</td>
-<td align="left">Integrated Teacher Report Form</td>
-</tr>
-<tr class="even">
-<td align="left">subscale_label</td>
-<td align="left">Name of the sub scale</td>
-<td align="left">internalizing problems</td>
-</tr>
-<tr class="odd">
-<td align="left">subscale_2_label</td>
-<td align="left">Name of the second order sub scale</td>
-<td align="left">shyness</td>
 </tr>
 <tr class="even">
 <td align="left">item_label</td>
@@ -443,132 +490,6 @@ Unterricht</td>
 <td align="left">1 (positive), -1 (reverse), 1.5 (positive, weights 1.5
 times)</td>
 </tr>
-<tr class="even">
-<td align="left">source</td>
-<td align="left">Reference</td>
-<td align="left">Casale et al. (2017)</td>
-</tr>
-<tr class="odd">
-<td align="left">note</td>
-<td align="left">Further notes</td>
-<td align="left">Item has low discrimination</td>
-</tr>
-</tbody>
-</table>
-<p>Here is an extract of an example <em>dic-file</em>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dic_itrf <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
-<table>
-<colgroup>
-<col width="2%" />
-<col width="1%" />
-<col width="1%" />
-<col width="2%" />
-<col width="3%" />
-<col width="9%" />
-<col width="4%" />
-<col width="5%" />
-<col width="13%" />
-<col width="2%" />
-<col width="2%" />
-<col width="25%" />
-<col width="2%" />
-<col width="2%" />
-<col width="9%" />
-<col width="1%" />
-<col width="3%" />
-<col width="4%" />
-<col width="1%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">item_name</th>
-<th align="right">index</th>
-<th align="left">scale</th>
-<th align="left">subscale</th>
-<th align="left">subscale_2</th>
-<th align="left">scale_label</th>
-<th align="left">subscale_label</th>
-<th align="left">subscale_2_label</th>
-<th align="left">item_label</th>
-<th align="right">weight</th>
-<th align="left">values</th>
-<th align="left">value_labels</th>
-<th align="right">missing</th>
-<th align="left">type</th>
-<th align="left">source</th>
-<th align="left">note</th>
-<th align="left">score_filter</th>
-<th align="left">score_function</th>
-<th align="left">class</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">itrf_I_1</td>
-<td align="right">1</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Socially Withdrawn</td>
-<td align="left">Verbringt zu viel Zeit alleine</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
-problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">item</td>
-</tr>
-<tr class="even">
-<td align="left">itrf_I_2</td>
-<td align="right">2</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Anxious/Depressed</td>
-<td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
-problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">item</td>
-</tr>
-<tr class="odd">
-<td align="left">itrf_I_4</td>
-<td align="right">4</td>
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
-<td align="left">Integrated teacher report form</td>
-<td align="left">Internalizing</td>
-<td align="left">Socially Withdrawn</td>
-<td align="left">Vermeidet soziale Interaktionen</td>
-<td align="right">1</td>
-<td align="left">0:3</td>
-<td align="left">0 = not problematic; 1 = slightly problematic; 2 =
-problematic; 3 = strongly problematic</td>
-<td align="right">-99</td>
-<td align="left">integer</td>
-<td align="left">Volpe et al. et al. (unpublished)</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">item</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -582,24 +503,20 @@ The resulting dataset is now ready for use with all other
 <p>The <code>apply_dic</code> function takes the name of the dataset and
 the dictionary file and combines them. Missing values are replaced with
 NAs:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we use the example dataset &quot;dat_itrf&quot; and the example dic file &quot;dic_itrf&quot;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat_itrf, dic_itrf)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we use the example dataset &quot;dat_itrf&quot; and the example dic file &quot;dic_itrf&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat_itrf, dic_itrf)</span></code></pre></div>
 <p>Let us get an overview of all scales in the dataset:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_scales</span>(dat, <span class="at">labels =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_scales</span>(dat, <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale_2&quot;</span>), <span class="st">&quot;_label&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
-<col width="5%" />
-<col width="8%" />
 <col width="10%" />
-<col width="28%" />
-<col width="13%" />
-<col width="34%" />
+<col width="32%" />
+<col width="15%" />
+<col width="40%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left">scale</th>
-<th align="left">subscale</th>
-<th align="left">subscale_2</th>
+<th align="left"></th>
 <th align="left">scale_label</th>
 <th align="left">subscale_label</th>
 <th align="left">subscale_2_label</th>
@@ -607,33 +524,25 @@ NAs:</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">SW</td>
+<td align="left">itrf_I_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Socially Withdrawn</td>
 </tr>
 <tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Int</td>
-<td align="left">AD</td>
+<td align="left">itrf_I_2</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Anxious/Depressed</td>
 </tr>
 <tr class="odd">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">OPP</td>
+<td align="left">itrf_I_20</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Oppositional/Disruptive</td>
 </tr>
 <tr class="even">
-<td align="left">ITRF</td>
-<td align="left">Ext</td>
-<td align="left">APD</td>
+<td align="left">itrf_E_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Academic Productivity/Disorganization</td>
@@ -645,21 +554,21 @@ NAs:</p>
 <h2>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and
 replace these with NA:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat, <span class="at">replace =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat, <span class="at">replace =</span> <span class="cn">NA</span>)</span></code></pre></div>
 <p>Now we impute missing values:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Ext</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">impute_missing</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Int</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">impute_missing</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Ext</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">impute_missing</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Int</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">impute_missing</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>)</span></code></pre></div>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2>Select scales for analyszing</h2>
 <p>Let us see descriptive statistics for the <em>internalizing</em> sub
 scale:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="kable-table">
 <table>
 <thead>
@@ -913,11 +822,11 @@ scale:</p>
 <h2>See items instead of labels</h2>
 <p>It is more convenient to see the original items instead of the short
 labels:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)  <span class="sc">%&gt;%</span> </span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)  <span class="sc">%&gt;%</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="59%" />
@@ -1181,10 +1090,10 @@ Bauchschmerzen</td>
 <p>And further we analyse the factor structure. Here we use the
 <code>rename_item()</code> function to get a more convenient
 description.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="at">pattern =</span> <span class="st">&quot;({reverse}){subscale}_{subscale_2}: {label}&quot;</span>, <span class="at">max_chars =</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exploratory_fa</span>(<span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">cut =</span> <span class="fl">0.4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="at">pattern =</span> <span class="st">&quot;({reverse}){subscale}_{subscale_2}: {label}&quot;</span>, <span class="at">max_chars =</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">exploratory_fa</span>(<span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">cut =</span> <span class="fl">0.4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="78%" />
@@ -1248,7 +1157,7 @@ Mitschülern</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
-<td align="left">0.76</td>
+<td align="left">0.77</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1279,7 +1188,7 @@ anderer</td>
 <td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht
 selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.81</td>
+<td align="left">0.8</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1309,7 +1218,7 @@ rechtzeitig fertig</td>
 <td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt
 werden, nicht mit</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.72</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1340,14 +1249,14 @@ selbstständig</td>
 Mitschülerinnen und Mits</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.79</td>
+<td align="left">0.78</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.79</td>
+<td align="left">0.78</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1368,7 +1277,7 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.54</td>
+<td align="left">0.55</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1383,7 +1292,7 @@ Mitschülerinnen und Mits</td>
 ein</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.47</td>
+<td align="left">0.48</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1399,7 +1308,7 @@ Bauchschmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.72</td>
+<td align="left">0.71</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Beschwert sich über Krankheit oder
@@ -1422,14 +1331,14 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.65</td>
+<td align="left">0.64</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_AD: Weint oder ist weinerlich</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.6</td>
+<td align="left">0.59</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich ängstlich</td>
@@ -1450,7 +1359,7 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.45</td>
+<td align="left">0.44</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
@@ -1468,10 +1377,10 @@ Details</td>
 </tr>
 <tr class="odd">
 <td align="left">SS loadings</td>
-<td align="left">5.99</td>
-<td align="left">4.8</td>
-<td align="left">4.52</td>
-<td align="left">4.36</td>
+<td align="left">6</td>
+<td align="left">4.79</td>
+<td align="left">4.54</td>
+<td align="left">4.34</td>
 </tr>
 <tr class="even">
 <td align="left">Proportion Var</td>
@@ -1489,14 +1398,14 @@ Details</td>
 </tr>
 <tr class="even">
 <td align="left">Proportion Explained</td>
-<td align="left">0.3</td>
+<td align="left">0.31</td>
 <td align="left">0.24</td>
 <td align="left">0.23</td>
 <td align="left">0.22</td>
 </tr>
 <tr class="odd">
 <td align="left">Cumulative Proportion</td>
-<td align="left">0.3</td>
+<td align="left">0.31</td>
 <td align="left">0.55</td>
 <td align="left">0.78</td>
 <td align="left">1</td>
@@ -1504,14 +1413,13 @@ Details</td>
 </tbody>
 </table>
 <p>and provide item analyses</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> ex_itrf <span class="sc">%&gt;%</span> <span class="fu">get_scales</span>(</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;APD&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;APD&quot;</span>,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;OPP&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;OPP&quot;</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SW&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;SW&quot;</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AD&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;AD&quot;</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">alpha_table</span>(dat, <span class="at">scales =</span> scales) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Note. values in brackets depict upper and lower bound of confidence intervals or [min,max] intervals.</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>scales <span class="ot">&lt;-</span> ex_itrf <span class="sc">%&gt;%</span> <span class="fu">get_scales</span>(</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;APD&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;APD&quot;</span>,</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&#39;OPP&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;OPP&quot;</span>,</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;SW&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;SW&quot;</span>,</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;AD&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;AD&quot;</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="fu">alpha_table</span>(dat, <span class="at">scales =</span> scales) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="4%" />
@@ -1544,11 +1452,11 @@ Details</td>
 <td align="left">APD</td>
 <td align="right">4776</td>
 <td align="right">8</td>
-<td align="left">.91 [.91, .91]</td>
+<td align="left">.91 [.90, .91]</td>
 <td align="left">.91 [.91, .91]</td>
 <td align="left">.56</td>
 <td align="left">[.53, .78]</td>
-<td align="left">[0.39, 0.95]</td>
+<td align="left">[0.38, 0.95]</td>
 <td align="left">[0.75, 1.04]</td>
 <td align="left">[.55, .82]</td>
 </tr>
@@ -1562,7 +1470,7 @@ Details</td>
 <td align="left">[.68, .81]</td>
 <td align="left">[0.35, 0.83]</td>
 <td align="left">[0.72, 0.96]</td>
-<td align="left">[.69, .85]</td>
+<td align="left">[.70, .85]</td>
 </tr>
 <tr class="odd">
 <td align="left">SW</td>
@@ -1570,7 +1478,7 @@ Details</td>
 <td align="right">8</td>
 <td align="left">.88 [.87, .88]</td>
 <td align="left">.88 [.88, .89]</td>
-<td align="left">.48</td>
+<td align="left">.49</td>
 <td align="left">[.53, .78]</td>
 <td align="left">[0.21, 0.43]</td>
 <td align="left">[0.51, 0.76]</td>
@@ -1590,180 +1498,193 @@ Details</td>
 </tr>
 </tbody>
 </table>
-<p>and even a confirmatory factor analysis with the use of the lavaan
-package.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lavaan_model</span>(scales, <span class="at">orthogonal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15
+<!--
+and even a confirmatory factor analysis with the use of the lavaan package.
+
+
+```r
+model <- lavaan_model(scales, orthogonal = FALSE)
+```
+
+
+```
+APD =~ itrf_E_1 + itrf_E_2 + itrf_E_3 + itrf_E_4 + itrf_E_5 + itrf_E_6 + itrf_E_14 + itrf_E_15
 OPP =~ itrf_I_20 + itrf_E_7 + itrf_E_8 + itrf_E_9 + itrf_E_10 + itrf_E_11 + itrf_E_12 + itrf_E_13 + itrf_E_16
 SW =~ itrf_I_1 + itrf_I_4 + itrf_I_5 + itrf_I_6 + itrf_I_13 + itrf_I_14 + itrf_I_16 + itrf_I_24
 AD =~ itrf_I_2 + itrf_I_7 + itrf_I_8 + itrf_I_9 + itrf_I_10 + itrf_I_11 + itrf_I_12 + itrf_I_15 + itrf_I_17 + itrf_I_19 + itrf_I_23
 
 APD ~~ OPP + SW + AD
 OPP ~~ SW + AD
-SW ~~ AD</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> lavaan<span class="sc">::</span><span class="fu">cfa</span>(<span class="at">model =</span> model, <span class="at">data =</span> dat)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>lavaan<span class="sc">::</span><span class="fu">summary</span>(fit, <span class="at">fit.measures =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>lavaan <span class="dv">0</span>.<span class="fl">6.14</span> ended normally after <span class="dv">59</span> iterations</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  Estimator                                         ML</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  Optimization method                           NLMINB</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  Number of model parameters                        <span class="dv">78</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                                  Used       Total</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>  Number of observations                          <span class="dv">4772</span>        <span class="dv">4776</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>Model Test User Model<span class="sc">:</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>                                                       </span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>  Test statistic                              <span class="fl">21228.342</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                                <span class="dv">588</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span><span class="fu">value</span> (Chi<span class="sc">-</span>square)                            <span class="fl">0.000</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>Model Test Baseline Model<span class="sc">:</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  Test statistic                            <span class="fl">110955.812</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  Degrees of freedom                               <span class="dv">630</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value                                        <span class="fl">0.000</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>User Model versus Baseline Model<span class="sc">:</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  Comparative Fit <span class="fu">Index</span> (CFI)                    <span class="fl">0.813</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>  Tucker<span class="sc">-</span>Lewis <span class="fu">Index</span> (TLI)                       <span class="fl">0.800</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>Loglikelihood and Information Criteria<span class="sc">:</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a>  Loglikelihood user <span class="fu">model</span> (H0)            <span class="sc">-</span><span class="fl">152359.924</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>  Loglikelihood unrestricted <span class="fu">model</span> (H1)             <span class="cn">NA</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                                                      </span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Akaike</span> (AIC)                              <span class="fl">304875.848</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Bayesian</span> (BIC)                            <span class="fl">305380.548</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a>  Sample<span class="sc">-</span>size adjusted <span class="fu">Bayesian</span> (SABIC)     <span class="fl">305132.693</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a>Root Mean Square Error of Approximation<span class="sc">:</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>  RMSEA                                          <span class="fl">0.086</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span> Percent confidence interval <span class="sc">-</span> lower         <span class="fl">0.085</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>  <span class="dv">90</span> Percent confidence interval <span class="sc">-</span> upper         <span class="fl">0.087</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value H_0<span class="sc">:</span> RMSEA <span class="sc">&lt;=</span> <span class="fl">0.050</span>                    <span class="fl">0.000</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>  P<span class="sc">-</span>value H_0<span class="sc">:</span> RMSEA <span class="sc">&gt;=</span> <span class="fl">0.080</span>                    <span class="fl">1.000</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>Standardized Root Mean Square Residual<span class="sc">:</span></span>
-<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>  SRMR                                           <span class="fl">0.080</span></span>
-<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>Parameter Estimates<span class="sc">:</span></span>
-<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>  Standard errors                             Standard</span>
-<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a>  Information                                 Expected</span>
-<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>  Information <span class="fu">saturated</span> (h1) model          Structured</span>
-<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>Latent Variables<span class="sc">:</span></span>
-<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>  APD <span class="ot">=</span><span class="er">~</span>                                              </span>
-<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>    itrf_E_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    itrf_E_2          <span class="fl">0.957</span>    <span class="fl">0.017</span>   <span class="fl">55.298</span>    <span class="fl">0.000</span></span>
-<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>    itrf_E_3          <span class="fl">0.915</span>    <span class="fl">0.016</span>   <span class="fl">57.472</span>    <span class="fl">0.000</span></span>
-<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    itrf_E_4          <span class="fl">0.898</span>    <span class="fl">0.015</span>   <span class="fl">59.004</span>    <span class="fl">0.000</span></span>
-<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    itrf_E_5          <span class="fl">0.951</span>    <span class="fl">0.017</span>   <span class="fl">55.553</span>    <span class="fl">0.000</span></span>
-<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    itrf_E_6          <span class="fl">0.824</span>    <span class="fl">0.016</span>   <span class="fl">53.103</span>    <span class="fl">0.000</span></span>
-<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>    itrf_E_14         <span class="fl">0.718</span>    <span class="fl">0.013</span>   <span class="fl">53.904</span>    <span class="fl">0.000</span></span>
-<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a>    itrf_E_15         <span class="fl">0.635</span>    <span class="fl">0.017</span>   <span class="fl">37.830</span>    <span class="fl">0.000</span></span>
-<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>  OPP <span class="ot">=</span><span class="er">~</span>                                              </span>
-<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    itrf_I_20         <span class="fl">1.000</span>                           </span>
-<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    itrf_E_7          <span class="fl">0.849</span>    <span class="fl">0.013</span>   <span class="fl">65.033</span>    <span class="fl">0.000</span></span>
-<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    itrf_E_8          <span class="fl">1.044</span>    <span class="fl">0.015</span>   <span class="fl">68.195</span>    <span class="fl">0.000</span></span>
-<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    itrf_E_9          <span class="fl">0.993</span>    <span class="fl">0.017</span>   <span class="fl">58.137</span>    <span class="fl">0.000</span></span>
-<span id="cb12-72"><a href="#cb12-72" aria-hidden="true" tabindex="-1"></a>    itrf_E_10         <span class="fl">0.893</span>    <span class="fl">0.014</span>   <span class="fl">65.019</span>    <span class="fl">0.000</span></span>
-<span id="cb12-73"><a href="#cb12-73" aria-hidden="true" tabindex="-1"></a>    itrf_E_11         <span class="fl">1.088</span>    <span class="fl">0.016</span>   <span class="fl">66.675</span>    <span class="fl">0.000</span></span>
-<span id="cb12-74"><a href="#cb12-74" aria-hidden="true" tabindex="-1"></a>    itrf_E_12         <span class="fl">0.802</span>    <span class="fl">0.015</span>   <span class="fl">54.862</span>    <span class="fl">0.000</span></span>
-<span id="cb12-75"><a href="#cb12-75" aria-hidden="true" tabindex="-1"></a>    itrf_E_13         <span class="fl">0.979</span>    <span class="fl">0.014</span>   <span class="fl">67.566</span>    <span class="fl">0.000</span></span>
-<span id="cb12-76"><a href="#cb12-76" aria-hidden="true" tabindex="-1"></a>    itrf_E_16         <span class="fl">0.679</span>    <span class="fl">0.013</span>   <span class="fl">51.889</span>    <span class="fl">0.000</span></span>
-<span id="cb12-77"><a href="#cb12-77" aria-hidden="true" tabindex="-1"></a>  SW <span class="ot">=</span><span class="er">~</span>                                               </span>
-<span id="cb12-78"><a href="#cb12-78" aria-hidden="true" tabindex="-1"></a>    itrf_I_1          <span class="fl">1.000</span>                           </span>
-<span id="cb12-79"><a href="#cb12-79" aria-hidden="true" tabindex="-1"></a>    itrf_I_4          <span class="fl">1.022</span>    <span class="fl">0.017</span>   <span class="fl">60.011</span>    <span class="fl">0.000</span></span>
-<span id="cb12-80"><a href="#cb12-80" aria-hidden="true" tabindex="-1"></a>    itrf_I_5          <span class="fl">0.907</span>    <span class="fl">0.016</span>   <span class="fl">56.821</span>    <span class="fl">0.000</span></span>
-<span id="cb12-81"><a href="#cb12-81" aria-hidden="true" tabindex="-1"></a>    itrf_I_6          <span class="fl">0.759</span>    <span class="fl">0.014</span>   <span class="fl">55.003</span>    <span class="fl">0.000</span></span>
-<span id="cb12-82"><a href="#cb12-82" aria-hidden="true" tabindex="-1"></a>    itrf_I_13         <span class="fl">0.745</span>    <span class="fl">0.020</span>   <span class="fl">37.270</span>    <span class="fl">0.000</span></span>
-<span id="cb12-83"><a href="#cb12-83" aria-hidden="true" tabindex="-1"></a>    itrf_I_14         <span class="fl">0.690</span>    <span class="fl">0.019</span>   <span class="fl">36.034</span>    <span class="fl">0.000</span></span>
-<span id="cb12-84"><a href="#cb12-84" aria-hidden="true" tabindex="-1"></a>    itrf_I_16         <span class="fl">1.005</span>    <span class="fl">0.021</span>   <span class="fl">48.350</span>    <span class="fl">0.000</span></span>
-<span id="cb12-85"><a href="#cb12-85" aria-hidden="true" tabindex="-1"></a>    itrf_I_24         <span class="fl">0.739</span>    <span class="fl">0.020</span>   <span class="fl">37.721</span>    <span class="fl">0.000</span></span>
-<span id="cb12-86"><a href="#cb12-86" aria-hidden="true" tabindex="-1"></a>  AD <span class="ot">=</span><span class="er">~</span>                                               </span>
-<span id="cb12-87"><a href="#cb12-87" aria-hidden="true" tabindex="-1"></a>    itrf_I_2          <span class="fl">1.000</span>                           </span>
-<span id="cb12-88"><a href="#cb12-88" aria-hidden="true" tabindex="-1"></a>    itrf_I_7          <span class="fl">1.119</span>    <span class="fl">0.028</span>   <span class="fl">40.136</span>    <span class="fl">0.000</span></span>
-<span id="cb12-89"><a href="#cb12-89" aria-hidden="true" tabindex="-1"></a>    itrf_I_8          <span class="fl">1.017</span>    <span class="fl">0.027</span>   <span class="fl">38.081</span>    <span class="fl">0.000</span></span>
-<span id="cb12-90"><a href="#cb12-90" aria-hidden="true" tabindex="-1"></a>    itrf_I_9          <span class="fl">1.227</span>    <span class="fl">0.030</span>   <span class="fl">40.789</span>    <span class="fl">0.000</span></span>
-<span id="cb12-91"><a href="#cb12-91" aria-hidden="true" tabindex="-1"></a>    itrf_I_10         <span class="fl">0.859</span>    <span class="fl">0.025</span>   <span class="fl">34.387</span>    <span class="fl">0.000</span></span>
-<span id="cb12-92"><a href="#cb12-92" aria-hidden="true" tabindex="-1"></a>    itrf_I_11         <span class="fl">0.874</span>    <span class="fl">0.026</span>   <span class="fl">34.150</span>    <span class="fl">0.000</span></span>
-<span id="cb12-93"><a href="#cb12-93" aria-hidden="true" tabindex="-1"></a>    itrf_I_12         <span class="fl">0.947</span>    <span class="fl">0.026</span>   <span class="fl">36.202</span>    <span class="fl">0.000</span></span>
-<span id="cb12-94"><a href="#cb12-94" aria-hidden="true" tabindex="-1"></a>    itrf_I_15         <span class="fl">1.133</span>    <span class="fl">0.028</span>   <span class="fl">40.765</span>    <span class="fl">0.000</span></span>
-<span id="cb12-95"><a href="#cb12-95" aria-hidden="true" tabindex="-1"></a>    itrf_I_17         <span class="fl">1.006</span>    <span class="fl">0.027</span>   <span class="fl">36.910</span>    <span class="fl">0.000</span></span>
-<span id="cb12-96"><a href="#cb12-96" aria-hidden="true" tabindex="-1"></a>    itrf_I_19         <span class="fl">0.820</span>    <span class="fl">0.022</span>   <span class="fl">36.607</span>    <span class="fl">0.000</span></span>
-<span id="cb12-97"><a href="#cb12-97" aria-hidden="true" tabindex="-1"></a>    itrf_I_23         <span class="fl">1.133</span>    <span class="fl">0.027</span>   <span class="fl">42.222</span>    <span class="fl">0.000</span></span>
-<span id="cb12-98"><a href="#cb12-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-99"><a href="#cb12-99" aria-hidden="true" tabindex="-1"></a>Covariances<span class="sc">:</span></span>
-<span id="cb12-100"><a href="#cb12-100" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-101"><a href="#cb12-101" aria-hidden="true" tabindex="-1"></a>  APD <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-102"><a href="#cb12-102" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.285</span>    <span class="fl">0.011</span>   <span class="fl">26.210</span>    <span class="fl">0.000</span></span>
-<span id="cb12-103"><a href="#cb12-103" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.148</span>    <span class="fl">0.007</span>   <span class="fl">19.769</span>    <span class="fl">0.000</span></span>
-<span id="cb12-104"><a href="#cb12-104" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.136</span>    <span class="fl">0.007</span>   <span class="fl">20.727</span>    <span class="fl">0.000</span></span>
-<span id="cb12-105"><a href="#cb12-105" aria-hidden="true" tabindex="-1"></a>  OPP <span class="sc">~</span><span class="er">~</span>                                              </span>
-<span id="cb12-106"><a href="#cb12-106" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.075</span>    <span class="fl">0.006</span>   <span class="fl">11.944</span>    <span class="fl">0.000</span></span>
-<span id="cb12-107"><a href="#cb12-107" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.137</span>    <span class="fl">0.006</span>   <span class="fl">22.387</span>    <span class="fl">0.000</span></span>
-<span id="cb12-108"><a href="#cb12-108" aria-hidden="true" tabindex="-1"></a>  SW <span class="sc">~</span><span class="er">~</span>                                               </span>
-<span id="cb12-109"><a href="#cb12-109" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.132</span>    <span class="fl">0.005</span>   <span class="fl">25.853</span>    <span class="fl">0.000</span></span>
-<span id="cb12-110"><a href="#cb12-110" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-111"><a href="#cb12-111" aria-hidden="true" tabindex="-1"></a>Variances<span class="sc">:</span></span>
-<span id="cb12-112"><a href="#cb12-112" aria-hidden="true" tabindex="-1"></a>                   Estimate  Std.Err  z<span class="sc">-</span>value  <span class="fu">P</span>(<span class="sc">&gt;</span><span class="er">|</span>z<span class="sc">|</span>)</span>
-<span id="cb12-113"><a href="#cb12-113" aria-hidden="true" tabindex="-1"></a>   .itrf_E_1          <span class="fl">0.462</span>    <span class="fl">0.011</span>   <span class="fl">43.201</span>    <span class="fl">0.000</span></span>
-<span id="cb12-114"><a href="#cb12-114" aria-hidden="true" tabindex="-1"></a>   .itrf_E_2          <span class="fl">0.378</span>    <span class="fl">0.009</span>   <span class="fl">42.515</span>    <span class="fl">0.000</span></span>
-<span id="cb12-115"><a href="#cb12-115" aria-hidden="true" tabindex="-1"></a>   .itrf_E_3          <span class="fl">0.289</span>    <span class="fl">0.007</span>   <span class="fl">41.269</span>    <span class="fl">0.000</span></span>
-<span id="cb12-116"><a href="#cb12-116" aria-hidden="true" tabindex="-1"></a>   .itrf_E_4          <span class="fl">0.243</span>    <span class="fl">0.006</span>   <span class="fl">40.174</span>    <span class="fl">0.000</span></span>
-<span id="cb12-117"><a href="#cb12-117" aria-hidden="true" tabindex="-1"></a>   .itrf_E_5          <span class="fl">0.365</span>    <span class="fl">0.009</span>   <span class="fl">42.384</span>    <span class="fl">0.000</span></span>
-<span id="cb12-118"><a href="#cb12-118" aria-hidden="true" tabindex="-1"></a>   .itrf_E_6          <span class="fl">0.332</span>    <span class="fl">0.008</span>   <span class="fl">43.510</span>    <span class="fl">0.000</span></span>
-<span id="cb12-119"><a href="#cb12-119" aria-hidden="true" tabindex="-1"></a>   .itrf_E_14         <span class="fl">0.237</span>    <span class="fl">0.005</span>   <span class="fl">43.172</span>    <span class="fl">0.000</span></span>
-<span id="cb12-120"><a href="#cb12-120" aria-hidden="true" tabindex="-1"></a>   .itrf_E_15         <span class="fl">0.579</span>    <span class="fl">0.012</span>   <span class="fl">47.038</span>    <span class="fl">0.000</span></span>
-<span id="cb12-121"><a href="#cb12-121" aria-hidden="true" tabindex="-1"></a>   .itrf_I_20         <span class="fl">0.293</span>    <span class="fl">0.007</span>   <span class="fl">43.569</span>    <span class="fl">0.000</span></span>
-<span id="cb12-122"><a href="#cb12-122" aria-hidden="true" tabindex="-1"></a>   .itrf_E_7          <span class="fl">0.188</span>    <span class="fl">0.004</span>   <span class="fl">42.896</span>    <span class="fl">0.000</span></span>
-<span id="cb12-123"><a href="#cb12-123" aria-hidden="true" tabindex="-1"></a>   .itrf_E_8          <span class="fl">0.228</span>    <span class="fl">0.005</span>   <span class="fl">41.424</span>    <span class="fl">0.000</span></span>
-<span id="cb12-124"><a href="#cb12-124" aria-hidden="true" tabindex="-1"></a>   .itrf_E_9          <span class="fl">0.396</span>    <span class="fl">0.009</span>   <span class="fl">45.006</span>    <span class="fl">0.000</span></span>
-<span id="cb12-125"><a href="#cb12-125" aria-hidden="true" tabindex="-1"></a>   .itrf_E_10         <span class="fl">0.208</span>    <span class="fl">0.005</span>   <span class="fl">42.902</span>    <span class="fl">0.000</span></span>
-<span id="cb12-126"><a href="#cb12-126" aria-hidden="true" tabindex="-1"></a>   .itrf_E_11         <span class="fl">0.276</span>    <span class="fl">0.007</span>   <span class="fl">42.187</span>    <span class="fl">0.000</span></span>
-<span id="cb12-127"><a href="#cb12-127" aria-hidden="true" tabindex="-1"></a>   .itrf_E_12         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.690</span>    <span class="fl">0.000</span></span>
-<span id="cb12-128"><a href="#cb12-128" aria-hidden="true" tabindex="-1"></a>   .itrf_E_13         <span class="fl">0.210</span>    <span class="fl">0.005</span>   <span class="fl">41.754</span>    <span class="fl">0.000</span></span>
-<span id="cb12-129"><a href="#cb12-129" aria-hidden="true" tabindex="-1"></a>   .itrf_E_16         <span class="fl">0.269</span>    <span class="fl">0.006</span>   <span class="fl">46.198</span>    <span class="fl">0.000</span></span>
-<span id="cb12-130"><a href="#cb12-130" aria-hidden="true" tabindex="-1"></a>   .itrf_I_1          <span class="fl">0.227</span>    <span class="fl">0.005</span>   <span class="fl">42.954</span>    <span class="fl">0.000</span></span>
-<span id="cb12-131"><a href="#cb12-131" aria-hidden="true" tabindex="-1"></a>   .itrf_I_4          <span class="fl">0.105</span>    <span class="fl">0.003</span>   <span class="fl">35.390</span>    <span class="fl">0.000</span></span>
-<span id="cb12-132"><a href="#cb12-132" aria-hidden="true" tabindex="-1"></a>   .itrf_I_5          <span class="fl">0.117</span>    <span class="fl">0.003</span>   <span class="fl">39.336</span>    <span class="fl">0.000</span></span>
-<span id="cb12-133"><a href="#cb12-133" aria-hidden="true" tabindex="-1"></a>   .itrf_I_6          <span class="fl">0.097</span>    <span class="fl">0.002</span>   <span class="fl">40.847</span>    <span class="fl">0.000</span></span>
-<span id="cb12-134"><a href="#cb12-134" aria-hidden="true" tabindex="-1"></a>   .itrf_I_13         <span class="fl">0.361</span>    <span class="fl">0.008</span>   <span class="fl">46.810</span>    <span class="fl">0.000</span></span>
-<span id="cb12-135"><a href="#cb12-135" aria-hidden="true" tabindex="-1"></a>   .itrf_I_14         <span class="fl">0.339</span>    <span class="fl">0.007</span>   <span class="fl">46.988</span>    <span class="fl">0.000</span></span>
-<span id="cb12-136"><a href="#cb12-136" aria-hidden="true" tabindex="-1"></a>   .itrf_I_16         <span class="fl">0.292</span>    <span class="fl">0.007</span>   <span class="fl">44.235</span>    <span class="fl">0.000</span></span>
-<span id="cb12-137"><a href="#cb12-137" aria-hidden="true" tabindex="-1"></a>   .itrf_I_24         <span class="fl">0.344</span>    <span class="fl">0.007</span>   <span class="fl">46.741</span>    <span class="fl">0.000</span></span>
-<span id="cb12-138"><a href="#cb12-138" aria-hidden="true" tabindex="-1"></a>   .itrf_I_2          <span class="fl">0.280</span>    <span class="fl">0.006</span>   <span class="fl">44.988</span>    <span class="fl">0.000</span></span>
-<span id="cb12-139"><a href="#cb12-139" aria-hidden="true" tabindex="-1"></a>   .itrf_I_7          <span class="fl">0.273</span>    <span class="fl">0.006</span>   <span class="fl">43.889</span>    <span class="fl">0.000</span></span>
-<span id="cb12-140"><a href="#cb12-140" aria-hidden="true" tabindex="-1"></a>   .itrf_I_8          <span class="fl">0.284</span>    <span class="fl">0.006</span>   <span class="fl">44.915</span>    <span class="fl">0.000</span></span>
-<span id="cb12-141"><a href="#cb12-141" aria-hidden="true" tabindex="-1"></a>   .itrf_I_9          <span class="fl">0.304</span>    <span class="fl">0.007</span>   <span class="fl">43.487</span>    <span class="fl">0.000</span></span>
-<span id="cb12-142"><a href="#cb12-142" aria-hidden="true" tabindex="-1"></a>   .itrf_I_10         <span class="fl">0.297</span>    <span class="fl">0.006</span>   <span class="fl">46.171</span>    <span class="fl">0.000</span></span>
-<span id="cb12-143"><a href="#cb12-143" aria-hidden="true" tabindex="-1"></a>   .itrf_I_11         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">46.234</span>    <span class="fl">0.000</span></span>
-<span id="cb12-144"><a href="#cb12-144" aria-hidden="true" tabindex="-1"></a>   .itrf_I_12         <span class="fl">0.301</span>    <span class="fl">0.007</span>   <span class="fl">45.626</span>    <span class="fl">0.000</span></span>
-<span id="cb12-145"><a href="#cb12-145" aria-hidden="true" tabindex="-1"></a>   .itrf_I_15         <span class="fl">0.260</span>    <span class="fl">0.006</span>   <span class="fl">43.502</span>    <span class="fl">0.000</span></span>
-<span id="cb12-146"><a href="#cb12-146" aria-hidden="true" tabindex="-1"></a>   .itrf_I_17         <span class="fl">0.315</span>    <span class="fl">0.007</span>   <span class="fl">45.379</span>    <span class="fl">0.000</span></span>
-<span id="cb12-147"><a href="#cb12-147" aria-hidden="true" tabindex="-1"></a>   .itrf_I_19         <span class="fl">0.216</span>    <span class="fl">0.005</span>   <span class="fl">45.488</span>    <span class="fl">0.000</span></span>
-<span id="cb12-148"><a href="#cb12-148" aria-hidden="true" tabindex="-1"></a>   .itrf_I_23         <span class="fl">0.217</span>    <span class="fl">0.005</span>   <span class="fl">42.426</span>    <span class="fl">0.000</span></span>
-<span id="cb12-149"><a href="#cb12-149" aria-hidden="true" tabindex="-1"></a>    APD               <span class="fl">0.623</span>    <span class="fl">0.021</span>   <span class="fl">30.085</span>    <span class="fl">0.000</span></span>
-<span id="cb12-150"><a href="#cb12-150" aria-hidden="true" tabindex="-1"></a>    OPP               <span class="fl">0.529</span>    <span class="fl">0.016</span>   <span class="fl">33.015</span>    <span class="fl">0.000</span></span>
-<span id="cb12-151"><a href="#cb12-151" aria-hidden="true" tabindex="-1"></a>    SW                <span class="fl">0.283</span>    <span class="fl">0.010</span>   <span class="fl">29.242</span>    <span class="fl">0.000</span></span>
-<span id="cb12-152"><a href="#cb12-152" aria-hidden="true" tabindex="-1"></a>    AD                <span class="fl">0.192</span>    <span class="fl">0.008</span>   <span class="fl">23.545</span>    <span class="fl">0.000</span></span></code></pre></div>
+SW ~~ AD
+```
+
+
+```r
+fit <- lavaan::cfa(model = model, data = dat)
+lavaan::summary(fit, fit.measures = TRUE)
+lavaan 0.6.15 ended normally after 60 iterations
+
+  Estimator                                         ML
+  Optimization method                           NLMINB
+  Number of model parameters                        78
+
+                                                  Used       Total
+  Number of observations                          4772        4776
+
+Model Test User Model:
+                                                       
+  Test statistic                              21157.213
+  Degrees of freedom                                588
+  P-value (Chi-square)                            0.000
+
+Model Test Baseline Model:
+
+  Test statistic                            110813.909
+  Degrees of freedom                               630
+  P-value                                        0.000
+
+User Model versus Baseline Model:
+
+  Comparative Fit Index (CFI)                    0.813
+  Tucker-Lewis Index (TLI)                       0.800
+
+Loglikelihood and Information Criteria:
+
+  Loglikelihood user model (H0)            -152353.385
+  Loglikelihood unrestricted model (H1)             NA
+                                                      
+  Akaike (AIC)                              304862.771
+  Bayesian (BIC)                            305367.471
+  Sample-size adjusted Bayesian (SABIC)     305119.616
+
+Root Mean Square Error of Approximation:
+
+  RMSEA                                          0.086
+  90 Percent confidence interval - lower         0.085
+  90 Percent confidence interval - upper         0.087
+  P-value H_0: RMSEA <= 0.050                    0.000
+  P-value H_0: RMSEA >= 0.080                    1.000
+
+Standardized Root Mean Square Residual:
+
+  SRMR                                           0.081
+
+Parameter Estimates:
+
+  Standard errors                             Standard
+  Information                                 Expected
+  Information saturated (h1) model          Structured
+
+Latent Variables:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  APD =~                                              
+    itrf_E_1          1.000                           
+    itrf_E_2          0.957    0.017   55.408    0.000
+    itrf_E_3          0.913    0.016   57.463    0.000
+    itrf_E_4          0.895    0.015   59.021    0.000
+    itrf_E_5          0.948    0.017   55.537    0.000
+    itrf_E_6          0.822    0.015   53.093    0.000
+    itrf_E_14         0.716    0.013   53.853    0.000
+    itrf_E_15         0.634    0.017   37.798    0.000
+  OPP =~                                              
+    itrf_I_20         1.000                           
+    itrf_E_7          0.848    0.013   65.060    0.000
+    itrf_E_8          1.043    0.015   68.170    0.000
+    itrf_E_9          0.993    0.017   58.226    0.000
+    itrf_E_10         0.892    0.014   65.032    0.000
+    itrf_E_11         1.089    0.016   66.709    0.000
+    itrf_E_12         0.802    0.015   54.874    0.000
+    itrf_E_13         0.980    0.014   67.693    0.000
+    itrf_E_16         0.680    0.013   52.002    0.000
+  SW =~                                               
+    itrf_I_1          1.000                           
+    itrf_I_4          1.021    0.017   60.143    0.000
+    itrf_I_5          0.906    0.016   56.920    0.000
+    itrf_I_6          0.758    0.014   55.134    0.000
+    itrf_I_13         0.747    0.020   37.442    0.000
+    itrf_I_14         0.691    0.019   36.141    0.000
+    itrf_I_16         1.006    0.021   48.506    0.000
+    itrf_I_24         0.741    0.020   37.882    0.000
+  AD =~                                               
+    itrf_I_2          1.000                           
+    itrf_I_7          1.119    0.028   40.010    0.000
+    itrf_I_8          1.016    0.027   37.956    0.000
+    itrf_I_9          1.228    0.030   40.703    0.000
+    itrf_I_10         0.860    0.025   34.320    0.000
+    itrf_I_11         0.877    0.026   34.139    0.000
+    itrf_I_12         0.948    0.026   36.159    0.000
+    itrf_I_15         1.134    0.028   40.672    0.000
+    itrf_I_17         1.004    0.027   36.802    0.000
+    itrf_I_19         0.820    0.022   36.520    0.000
+    itrf_I_23         1.136    0.027   42.147    0.000
+
+Covariances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+  APD ~~                                              
+    OPP               0.285    0.011   26.212    0.000
+    SW                0.148    0.007   19.808    0.000
+    AD                0.136    0.007   20.720    0.000
+  OPP ~~                                              
+    SW                0.075    0.006   11.930    0.000
+    AD                0.136    0.006   22.348    0.000
+  SW ~~                                               
+    AD                0.132    0.005   25.838    0.000
+
+Variances:
+                   Estimate  Std.Err  z-value  P(>|z|)
+   .itrf_E_1          0.460    0.011   43.145    0.000
+   .itrf_E_2          0.377    0.009   42.471    0.000
+   .itrf_E_3          0.290    0.007   41.297    0.000
+   .itrf_E_4          0.244    0.006   40.196    0.000
+   .itrf_E_5          0.367    0.009   42.405    0.000
+   .itrf_E_6          0.333    0.008   43.519    0.000
+   .itrf_E_14         0.238    0.006   43.201    0.000
+   .itrf_E_15         0.580    0.012   47.038    0.000
+   .itrf_I_20         0.293    0.007   43.569    0.000
+   .itrf_E_7          0.187    0.004   42.902    0.000
+   .itrf_E_8          0.228    0.006   41.460    0.000
+   .itrf_E_9          0.395    0.009   44.994    0.000
+   .itrf_E_10         0.208    0.005   42.914    0.000
+   .itrf_E_11         0.276    0.007   42.191    0.000
+   .itrf_E_12         0.315    0.007   45.695    0.000
+   .itrf_E_13         0.208    0.005   41.711    0.000
+   .itrf_E_16         0.267    0.006   46.186    0.000
+   .itrf_I_1          0.224    0.005   42.879    0.000
+   .itrf_I_4          0.105    0.003   35.491    0.000
+   .itrf_I_5          0.117    0.003   39.392    0.000
+   .itrf_I_6          0.097    0.002   40.855    0.000
+   .itrf_I_13         0.359    0.008   46.788    0.000
+   .itrf_I_14         0.338    0.007   46.976    0.000
+   .itrf_I_16         0.291    0.007   44.211    0.000
+   .itrf_I_24         0.343    0.007   46.720    0.000
+   .itrf_I_2          0.281    0.006   44.999    0.000
+   .itrf_I_7          0.274    0.006   43.908    0.000
+   .itrf_I_8          0.285    0.006   44.932    0.000
+   .itrf_I_9          0.304    0.007   43.480    0.000
+   .itrf_I_10         0.298    0.006   46.169    0.000
+   .itrf_I_11         0.315    0.007   46.217    0.000
+   .itrf_I_12         0.300    0.007   45.614    0.000
+   .itrf_I_15         0.260    0.006   43.501    0.000
+   .itrf_I_17         0.315    0.007   45.389    0.000
+   .itrf_I_19         0.216    0.005   45.490    0.000
+   .itrf_I_23         0.217    0.005   42.404    0.000
+    APD               0.625    0.021   30.137    0.000
+    OPP               0.529    0.016   33.026    0.000
+    SW                0.283    0.010   29.340    0.000
+    AD                0.191    0.008   23.493    0.000
+```
+-->
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
 <p>Now we build scores for internalizing and externalizing scales</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
 <p>and get descriptives for these scores</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_scores</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_scores</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="kable-table">
 <table style="width:100%;">
 <colgroup>
@@ -1830,7 +1751,7 @@ conversion.</p>
 <p>Firstly, you need a data frame (or Excel table etc) which includes
 raw-scores and corresponding norm-scores.</p>
 <p>Here is an example of such a table:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ex_normtable_int <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ex_normtable_int <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1912,272 +1833,6 @@ raw-scores and corresponding norm-scores.</p>
 <td align="right">75</td>
 <td align="right">57</td>
 </tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">10</td>
-<td align="right">54</td>
-<td align="right">77</td>
-<td align="right">58</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">11</td>
-<td align="right">55</td>
-<td align="right">79</td>
-<td align="right">58</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">12</td>
-<td align="right">57</td>
-<td align="right">81</td>
-<td align="right">59</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">13</td>
-<td align="right">58</td>
-<td align="right">83</td>
-<td align="right">59</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">14</td>
-<td align="right">59</td>
-<td align="right">85</td>
-<td align="right">60</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">15</td>
-<td align="right">60</td>
-<td align="right">87</td>
-<td align="right">61</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">16</td>
-<td align="right">61</td>
-<td align="right">88</td>
-<td align="right">62</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">17</td>
-<td align="right">63</td>
-<td align="right">89</td>
-<td align="right">62</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">18</td>
-<td align="right">64</td>
-<td align="right">90</td>
-<td align="right">63</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">19</td>
-<td align="right">65</td>
-<td align="right">91</td>
-<td align="right">64</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">20</td>
-<td align="right">66</td>
-<td align="right">92</td>
-<td align="right">64</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">21</td>
-<td align="right">68</td>
-<td align="right">93</td>
-<td align="right">65</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">22</td>
-<td align="right">69</td>
-<td align="right">94</td>
-<td align="right">65</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">23</td>
-<td align="right">70</td>
-<td align="right">94</td>
-<td align="right">66</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">24</td>
-<td align="right">71</td>
-<td align="right">95</td>
-<td align="right">66</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">25</td>
-<td align="right">72</td>
-<td align="right">95</td>
-<td align="right">67</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">26</td>
-<td align="right">74</td>
-<td align="right">96</td>
-<td align="right">67</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">27</td>
-<td align="right">75</td>
-<td align="right">97</td>
-<td align="right">68</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">28</td>
-<td align="right">76</td>
-<td align="right">97</td>
-<td align="right">69</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">29</td>
-<td align="right">77</td>
-<td align="right">97</td>
-<td align="right">69</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">30</td>
-<td align="right">79</td>
-<td align="right">98</td>
-<td align="right">70</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">31</td>
-<td align="right">80</td>
-<td align="right">98</td>
-<td align="right">71</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">32</td>
-<td align="right">81</td>
-<td align="right">98</td>
-<td align="right">72</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">33</td>
-<td align="right">82</td>
-<td align="right">99</td>
-<td align="right">72</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">34</td>
-<td align="right">83</td>
-<td align="right">99</td>
-<td align="right">73</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">35</td>
-<td align="right">85</td>
-<td align="right">99</td>
-<td align="right">74</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">36</td>
-<td align="right">86</td>
-<td align="right">99</td>
-<td align="right">74</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">37</td>
-<td align="right">87</td>
-<td align="right">99</td>
-<td align="right">75</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">38</td>
-<td align="right">88</td>
-<td align="right">99</td>
-<td align="right">76</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">39</td>
-<td align="right">90</td>
-<td align="right">100</td>
-<td align="right">76</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">40</td>
-<td align="right">91</td>
-<td align="right">100</td>
-<td align="right">78</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">41</td>
-<td align="right">92</td>
-<td align="right">100</td>
-<td align="right">78</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">42</td>
-<td align="right">93</td>
-<td align="right">100</td>
-<td align="right">79</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">43</td>
-<td align="right">94</td>
-<td align="right">100</td>
-<td align="right">80</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">44</td>
-<td align="right">96</td>
-<td align="right">100</td>
-<td align="right">81</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">45</td>
-<td align="right">97</td>
-<td align="right">100</td>
-<td align="right">83</td>
-</tr>
-<tr class="odd">
-<td align="left">all</td>
-<td align="right">46</td>
-<td align="right">98</td>
-<td align="right">100</td>
-<td align="right">85</td>
-</tr>
-<tr class="even">
-<td align="left">all</td>
-<td align="right">50</td>
-<td align="right">103</td>
-<td align="right">100</td>
-<td align="right">Inf</td>
-</tr>
 </tbody>
 </table>
 <p>Then we need raw-scores from a scale. If they do not exist, you may
@@ -2185,15 +1840,15 @@ use the <code>score_scales</code> function to add sum scores. Therefore,
 set the sum argument to <code>TRUE</code>. By setting
 <code>max_na = 0</code>, we do not allow missing values in any scale
 item:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>raw_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>raw_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>raw_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>raw_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>By default, <code>lookup_norms</code> looks for T values:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>T_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>T_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>T_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>T_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext)</span></code></pre></div>
 <p>But this can easily be changed to percentile ranks, if included:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>PR_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>PR_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dat[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">&quot;T_int&quot;</span>, <span class="st">&quot;T_ext&quot;</span>, <span class="st">&quot;PR_int&quot;</span>, <span class="st">&quot;PR_ext&quot;</span>)] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>PR_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>PR_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>dat[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">&quot;T_int&quot;</span>, <span class="st">&quot;T_ext&quot;</span>, <span class="st">&quot;PR_int&quot;</span>, <span class="st">&quot;PR_ext&quot;</span>)] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -2254,9 +1909,9 @@ item:</p>
 </tr>
 <tr class="odd">
 <td align="right">53</td>
-<td align="right">61</td>
+<td align="right">60</td>
 <td align="right">75</td>
-<td align="right">86</td>
+<td align="right">85</td>
 </tr>
 <tr class="even">
 <td align="right">47</td>
@@ -2266,7 +1921,6 @@ item:</p>
 </tr>
 </tbody>
 </table>
-</div>
 </div>
 
 
