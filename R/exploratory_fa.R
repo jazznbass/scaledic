@@ -10,8 +10,8 @@
 #'
 #' @return A data.frame
 #' @examples
-#' ex_itrf %>%
-#'   select_items(subscale %in% c('Int', 'Ext')) %>%
+#' ex_itrf  |>
+#'   select_items(subscale %in% c('Int', 'Ext'))  |>
 #'   exploratory_fa(nfactors = 2)
 #' @export
 
@@ -21,8 +21,6 @@ exploratory_fa <- function(...,
                            cut = 0.2,
                            round = 2) {
   args <- list(...)
-  #if (label) x <- rename_items(x)
-  #args <- list(r = x, unlist(args))
 
   out <- do.call(psych::fa, args)
   var_exp <- out$Vaccounted
