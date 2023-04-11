@@ -1,7 +1,7 @@
 Package: scaledic
 Type: Package
 Title: Functions and data frame extension for scale based operations
-Version: 0.2.7
+Version: 0.3.0
 Date: 2023-4-11
 Authors@R:
   person("Juergen", "Wilbert", 
