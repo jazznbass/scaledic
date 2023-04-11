@@ -22,10 +22,8 @@ A data frame or a vector with added dic attributes.
 Set dictionary information to variables
 }
 \details{
-Standard attributes are: \code{"item_name"}, \code{"item_label"}, \code{"scale"},
-\code{"subscale"}, \code{"subscale_2"}, \code{"scale_label"}, \code{"subscale_label"},
-\code{"subscale_2_label"}, \code{"weight"}, \code{"source"}, \code{"type"}, \code{"values"},
-\code{"value_labels"}, \code{"missing"}.
+Standard attributes are: \code{"item_name"}, \code{"item_label"}, \code{"weight"},
+\code{"type"}, \code{"values"}, \code{"value_labels"}, \code{"missing"}.
 }
 \examples{
 hap_1 <- sample(1:5, 30, replace = TRUE)

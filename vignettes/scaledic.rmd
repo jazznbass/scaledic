@@ -32,7 +32,7 @@ I call the collection of this additional information about items an *item dictio
 
 ## A dictionary file
 
-A dictionary file is a table with a row for each variable and a column for each parameter of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.
+A dictionary file is a table with a row for each variable and a column for each atttribute of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.
 
 Here is an extract of an example *dic-file*:
 
@@ -43,24 +43,24 @@ dic_itrf  |>
   kable()
 ```
 
-A dictionary file can contain any additional attributes you like. That is, you can add a column with any name to store relevant information (e.g. a translation of the item name). But some predefined attributes exist with a specific meaning. The following table shows these attributes:
+A dictionary file can contain any additional attributes you like. That is, you can add a column with any name to store relevant information (e.g. scale and scale label an item belongs to, a translation of the item name). But some predefined attributes exist with a specific meaning. The following table shows these attributes:
 
 ```{r tab_dic_param, echo = FALSE}
 out <- tribble(
   ~Parameter, ~Meaning, ~Example,
   "item_name", "A short item name", "itrf_1",
   "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
-  "scale", "Abreviation of the scale the item belongs to", "irtf",
-  "scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  "subscale", "Abrevation of the sub scale", "int",
-  "subscale_label", "Name of the sub scale", "internalizing problems",
+  #"scale", "Abreviation of the scale the item belongs to", "irtf",
+  #"scale_label", "Name of the scale", "Integrated Teacher Report Form",
+  #"subscale", "Abrevation of the sub scale", "int",
+  #"subscale_label", "Name of the sub scale", "internalizing problems",
   "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
   "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
   "missing", "Missing values", "-888, -999",
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
 )
-kable(out, caption = "Columns of a dictionary file")
+kable(out, caption = "Basic columns of a dictionary file")
 
 ```
 
@@ -79,7 +79,7 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 Let us get an overview of all scales in the dataset:
 
 ```{r list_scales}
-list_scales(dat, labels = TRUE) %>% kable()
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) %>% kable()
 ```
 
 ## Clean raw data

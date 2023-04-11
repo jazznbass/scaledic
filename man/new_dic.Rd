@@ -8,20 +8,31 @@ new_dic(
   x,
   item_name = NULL,
   item_label = NULL,
-  scale = NULL,
-  scale_label = NULL,
   values = NULL,
   value_labels = NULL,
   missing = NULL,
   weight = 1,
-  type = "integer",
+  type = NULL,
   class = "item",
   ...,
-  .list = NULL
+  .list = NULL,
+  .coerce_class = TRUE,
+  .message_attr = FALSE
 )
 }
 \arguments{
 \item{x}{A variable}
+
+\item{item_name}{Character}
+
+\item{item_label}{Character}
+
+\item{values}{Numeric or character vector with values. The vector can be
+named}
+
+\item{missing}{Numeric or character vector with values}
+
+\item{weight}{numeric}
 
 \item{type}{defaults to "integer"}
 
@@ -31,6 +42,13 @@ new_dic(
 
 \item{.list}{An alternative way to provide class arguments as a list
 (overwrites previous arguments)}
+
+\item{.coerce_class}{Logical. If TRUE, tries to coerce classes of 'x' if
+class does not match the \code{type} argument}
+
+\item{.message_attr}{Logical. For internal use}
+
+\item{value_lables}{Character of the form \verb{value = label; value2 = label2}}
 }
 \value{
 An item of class dic.

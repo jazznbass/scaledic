@@ -7,32 +7,22 @@
 score_scale(
   data,
   filter,
-  scale = NULL,
-  subscale = NULL,
-  subscale_2 = NULL,
-  bind = FALSE,
   sum = FALSE,
   min_valid = 1,
   max_na = NA,
   label = NULL,
-  FUN = NULL,
-  ...
+  fun = NULL,
+  var_weight = NULL
 )
 }
 \arguments{
 \item{data}{A data frame}
 
-\item{filter}{A logical expression for any dic attribute (e.g. scale ==
-"ITRF" & subscale == "Int")}
+\item{filter}{A logical expression for any \emph{dic} attribute (e.g. \code{scale == "ITRF" & subscale == "Int"})}
 
-\item{scale, subscale, subscale_2}{deprecated}
-
-\item{bind}{If set TRUE, returns the complete data frame. If set false,
-returns a data frame with the new score variables for each scale.}
-
-\item{sum}{If TRUE, function mean(x, na.rm = TRUE) is applied for building
-the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When
-argument FUN is set, \code{sum} is ignored.}
+\item{sum}{If \code{FALSE}, a weighted mean function is applied for building the
+scores. If \code{TRUE}, a weighted sum function is applied. When argument fun is
+set, \code{sum} is ignored.}
 
 \item{min_valid}{Minimal number of valid values that is required for
 calculating the mean. A value between 0 and 1 indicates a proportion of
@@ -45,13 +35,30 @@ percent NAs are allowed).}
 \item{label}{A character string with a label for the resulting score
 variable. Automatically generated if label is not set.}
 
-\item{FUN}{A function for calculating the score (e.g., median)}
+\item{fun}{A function for calculating the score (e.g., \code{weighted.median}).
+See details.}
 
-\item{...}{Further arguments passed to the FUN function (e.g., na.rm = TRUE)}
+\item{var_weight}{Name of the \emph{dic} attribute that is applied to derive
+weights. Defaults to \code{weight}.}
 }
 \value{
 A data frame
 }
 \description{
 Score scale calculates scale scores.
+}
+\details{
+If you provide your own function, the first argument of that
+function must take the vector of values and the second argument the
+weights.
+}
+\examples{
+dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+# apply the default weighted mean function
+score_scale(dat, scale == "rel", label = "Religious beliefs")
+# apply the weighted sum function
+score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
+# provide an external function (here the weighted median function from the spatstat package)
+score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
+
 }

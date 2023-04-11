@@ -26,7 +26,7 @@ A data.frame
 Exploratory factor analysis based on the psych::fa function
 }
 \examples{
-ex_itrf \%>\%
-  select_items(subscale \%in\% c('Int', 'Ext')) \%>\%
+ex_itrf  |>
+  select_items(subscale \%in\% c('Int', 'Ext'))  |>
   exploratory_fa(nfactors = 2)
 }

@@ -4,7 +4,7 @@
 \alias{print.dic}
 \title{Print dic infos}
 \usage{
-\method{print}{dic}(x, ...)
+\method{print}{dic}(x, ..., prefix = "# ")
 }
 \arguments{
 \item{x}{A variable with dic infos}

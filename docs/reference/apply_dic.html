@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,11 +129,11 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">apply_dic</span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2 missing types found and replaced with 'integer'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced missing values.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Values checked.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scales scored.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `label` attribute set.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Invalid values replaced with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Missing values replaced with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 4: Scales scored</span>
 <span class="r-in"><span><span class="fu"><a href="descriptives.html">descriptives</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         name valid missing mean   sd min  max range median  mad</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1   itrf_I_1  4247     529 0.38 0.72   0 3.00  3.00   0.00 0.00</span>

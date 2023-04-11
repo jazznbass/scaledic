@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.2.6</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,11 +62,11 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># apply a dictionary file to a data frame</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2 missing types found and replaced with 'integer'.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Replaced missing values.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Values checked.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Scales scored.</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> `label` attribute set.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Invalid values replaced with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Missing values replaced with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 4: Scales scored</span>
 <span class="r-in"><span><span class="co"># check for typos (not allowed values)</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># Single imputation (EM algorith from the Amelia package)</span></span></span>
@@ -127,9 +127,9 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_11 0.77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_12 0.46</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_13 0.47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_14 0.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_14 0.39</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_15 0.70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_16 0.36</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_16 0.35</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
