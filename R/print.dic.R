@@ -6,57 +6,64 @@
 #' @return Dic infos of x
 #' @keywords internal
 #' @export
-print.dic <- function(x, ...) {
+print.dic <- function(x, ..., prefix = "# ") {
   data <- x
-  first_line <- paste0(dic_attr(data, .opt$item_label))
-  if (!is.null(dic_attr(data, .opt$scale_label)))
+  first_line <- paste0(prefix, dic_attr(data, "item_label"))
+  if (!is.null(dic_attr(data, "scale_label")) && !identical(dic_attr(data, "scale_label"), NA))
     first_line <- paste0(
-      first_line, " (", dic_attr(data, .opt$scale_label), ")",
+      first_line, " (", dic_attr(data, "scale_label"), ")",
       collapse = ""
     )
 
-  if (dic_attr(data, .opt$class) == "score")
+  if (dic_attr(data, "class") == "score") {
     first_line <- paste0(
-      dic_attr(data, .opt$item_label), "\n(",
-      dic_attr(data, .opt$score_function), " of items: ",
-      dic_attr(data, .opt$score_filter), ")\n",
+      dic_attr(data, "item_label"), "\n(",
+      dic_attr(data, "score_function"), " of items: ",
+      dic_attr(data, "score_filter"), ")",
       collapse = ""
     )
+  }
 
-  if (length(first_line) > 0) cat(first_line)
+  if (length(first_line) > 0) cat(first_line, "\n")
 
-  if (!is.null(dic_attr(data, .opt$values))) {
-    data_type <- dic_attr(data, .opt$type)
-    cat("\n\nData type is", data_type, "\n")
+  data_type <- dic_attr(data, "type")
+  cat(prefix, "Data type is ", data_type, "\n", sep = "")
+
+
+  values <- dic_attr(data, "values")
+
+  if (has_info(values)) {
+
     if (data_type == "integer") {
-      x <- dic_attr(data, .opt$values)
-      d <- diff(x)
+      d <- diff(values)
       u <- unique(d)
       if (length(u) == 1 && u[1] == 1) {
-        x <- paste0(min(x), ":", max(x))
+        x <- paste0(min(values), ":", max(values))
       } else {
-        x <- paste0(x, collapse = ",")
+        x <- paste0(values, collapse = ",")
       }
-      cat("Valid values: ", x, "\n")
+      cat(prefix, "Valid values: ", x, "\n", sep = "")
     }
-    if (data_type == "float") {
-      .string <- paste0(
-        "From ", min(dic_attr(data, .opt$values)),
-        " to ", max(dic_attr(data, .opt$values)), collapse = ""
+    if (data_type %in% c("float", "numeric")) {
+      cat(
+        prefix, "Valid values: ", "From ", min(values), " to ", max(values),
+        "\n", sep = ""
       )
-      cat("Valid values:", .string, "\n")
     }
+
+    if (!is.null(names(values))) {
+      id <- which(!is.na(names(values)) & values != "")
+      cat(prefix, "Value labels:\n", sep = "")
+      cat(paste0(prefix, values[id], " = ", names(values[id]), collapse = "\n"))
+    }
+
   }
 
-  if (!is.null(dic_attr(data, .opt$value_labels))) {
-    print(dic_attr(data, .opt$value_labels), row.names = FALSE, right = FALSE)
-  }
-
-  class(data) <- class(data)[!class(data) %in% .opt$dic]
-  attr(data, .opt$dic) <- NULL
+  class(data) <- class(data)[!class(data) %in% opt("dic")]
+  attr(data, opt("dic")) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL
   if (length(first_line) > 0) cat("\n")
-  print(data)
+  print(data, ...)
 
 }
