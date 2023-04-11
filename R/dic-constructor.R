@@ -1,69 +1,143 @@
 #' Dictionary class low level constructor
 #'
 #' @param x A variable
-#' @param class default is "item"
+#' @param item_name Character
+#' @param item_label Character
+#' @param values Numeric or character vector with values. The vector can be
+#'   named
+#' @param value_lables Character of the form `value = label; value2 = label2`
+#' @param missing Numeric or character vector with values
+#' @param weight numeric
 #' @param type defaults to "integer"
+#' @param class default is "item"
 #' @param ... further dic arguments (e.g. `source = "James (1891)")
 #' @param .list An alternative way to provide class arguments as a list
 #'   (overwrites previous arguments)
+#' @param .coerce_class Logical. If TRUE, tries to coerce classes of 'x' if
+#'   class does not match the `type` argument
+#' @param .message_attr Logical. For internal use
 #' @return An item of class dic.
 #' @export
 #'
 #' @examples
 #' x <- new_dic(1:100, item_label = "The label of this item")
 new_dic <- function(x,
-                item_name = NULL,
-                item_label = NULL,
-                scale = NULL,
-                scale_label = NULL,
-                values = NULL,
-                value_labels = NULL,
-                missing = NULL,
-                weight = 1,
-                type = "integer",
-                class = "item",
-                ...,
-                .list = NULL) {
+                    item_name = NULL,
+                    item_label = NULL,
+                    values = NULL,
+                    value_labels = NULL,
+                    missing = NULL,
+                    weight = 1,
+                    type = NULL,
+                    class = "item",
+                    ...,
+                    .list = NULL,
+                    .coerce_class = TRUE,
+                    .message_attr = FALSE) {
 
 
-  if (!is.null(value_labels)) {
-    value_labels <- .extract_value_labels(value_labels, type)
-    for (i in 1:nrow(value_labels)) {
-      .id <- which(values == as.numeric(value_labels[i, 1]))
-      names(values)[.id] <- trimws(value_labels[i, 2])
+  msg <- c()
+
+  if (!has_info(item_name)) {
+    item_name <- as.character(match.call()[2])
+  }
+
+  if (!has_info(item_label)) {
+    item_label <- item_name
+  }
+
+  if (!has_info(type)) {
+    type <- "integer"
+    if (is.numeric(x)) type <- "numeric"
+    if (is.character(x)) type <- "character"
+    if (is.factor(x)) type <- "factor"
+  }
+
+  if (has_info(values)) {
+    if (length(values) == 1 && inherits(values, "character")) {
+      values <- .extract_values(values)
     }
+  }
+
+  if (has_info(value_labels)) {
+    value_labels <- .extract_value_labels(value_labels, type)
+  }
+
+  if (has_info(value_labels)) {
+    .id <- sapply(value_labels[[1]], function(x)
+      which(as.character(x) == as.character(values)
+    ))
+    names(values)[.id] <- trimws(value_labels[[2]])
+  }
+
+
+  if (identical(type, "integer") && !is.integer(x) && !is.numeric(x)) {
+    if (.coerce_class) {
+      msg <- c(msg, paste0(
+        "Class should be integer but is ", paste0(class(x), collapse = ", "),
+        ". Coerced to integer"
+      ))
+      x[] <- as.integer(x)
+    } else {
+      msg <- c(msg, paste0(
+        "Class should be integer but is ", paste0(class(x), collapse = ", ")
+      ))
+    }
+  }
+
+  if (type %in% c("float", "double") && !is.double(x) && !is.numeric(x)) {
+    if (.coerce_class) {
+      msg <- c(msg, paste0(
+        "Class should be double but is ", paste0(class(x), collapse = ", "),
+        ". Coerced to integer"
+      ))
+      x[] <- as.double(x)
+    } else {
+      msg <- c(msg, paste0(
+        "Class should be double but is ", paste0(class(x), collapse = ", ")
+      ))
+    }
+  }
+
+  if (type == "numeric" && !is.numeric(x)) {
+      if (.coerce_class) {
+        msg <- c(msg, paste0(
+          "Class should be numeric but is ", paste0(class(x), collapse = ", "),
+          ". Coerced to numeric"
+        ))
+        x[] <- as.double(x)
+      } else {
+        msg <- c(msg, paste0(
+          "Class should be numeric but is ", paste0(class(x), collapse = ", ")
+        ))
+      }
   }
 
   dic_list <- list(
     item_name = item_name,
     item_label = item_label,
-    scale = scale,
-    scale_label = scale_label,
     values = values,
     value_labels = value_labels,
     missing = missing,
     weight = weight,
-    ...,
     type = type,
-    class = class
+    class = class,
+    ...
   )
 
   dic_list <- c(.list, dic_list)
   dic_list <- dic_list[unique(names(dic_list))]
 
-  if (is.null(dic_list$item_name)) {
-    dic_list$item_name <- as.character(match.call()[2])
-  }
-
-  if (is.null(dic_list$item_label)) {
-    dic_list$item_label <- dic_list$item_name
-  }
-
-  class(x) <- c("dic", class(x))
   attr(x, opt("dic")) <- dic_list
-
   attr(x, "label") <- dic_attr(x, "item_label")
   attr(x, "labels") <- dic_attr(x, "values")
+
+  if (type == "factor") x <- .set_factor(x)
+
+  class(x) <- c("dic", class(x))
+
+  if (.message_attr) attr(x, "messages") <- msg else return_messages(msg)
+
   x
 }
 
@@ -74,10 +148,8 @@ new_dic <- function(x,
 #'   address these variables. If left `NULL` and data is a data frame, all
 #'   variables from the data frame are addressed.
 #' @param ... dic attributes of the form `attribute = value`.
-#' @details Standard attributes are: `"item_name"`, `"item_label"`, `"scale"`,
-#'   `"subscale"`, `"subscale_2"`, `"scale_label"`, `"subscale_label"`,
-#'   `"subscale_2_label"`, `"weight"`, `"source"`, `"type"`, `"values"`,
-#'   `"value_labels"`, `"missing"`.
+#' @details Standard attributes are: `"item_name"`, `"item_label"`, `"weight"`,
+#'   `"type"`, `"values"`, `"value_labels"`, `"missing"`.
 #' @return A data frame or a vector with added dic attributes.
 #' @examples
 #' hap_1 <- sample(1:5, 30, replace = TRUE)
@@ -160,12 +232,6 @@ set_dic <- function(data, .vars = NULL, ...) {
       levels = dic[["values"]],
       labels = dic[["value_labels"]]$label
     )
-
-    #data <- factor(
-    #  data,
-    #  levels = dic[["value_labels"]]$value,
-    #  labels = dic[["value_labels"]]$label
-    #)
   }
 
   # set dic attributes
@@ -184,6 +250,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .extract_value_labels <- function(value_labels, type) {
 
+  if (is.na(value_labels) || value_labels == "") return(NA)
   value_labels <- value_labels %>%
     as.character() %>%
     strsplit(";") %>%
@@ -206,21 +273,50 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 }
 
-.set_factor <- function(data) {
-  if (dic_attr(data, "type") == "factor") {
-    values <- dic_attr(data, "values")
-    .factor <- factor(
-      data,
-      levels = values,
-      labels = names(values)
-    )
-    out <- factor(
-      data,
-      levels = dic_attr(data, "value_labels")$value,
-      labels = dic_attr(data, "value_labels")$label
-    )
-    attr(out, opt("dic")) <- attr(data, opt("dic"))
-    out
+.extract_values <- function(x, sep = ";", quotes = FALSE) {
+  paste0("c(", x, ")") |> str2lang() |> eval()
+  #x <- strsplit(x, sep)[[1]]
+  #x <- lapply(x, function(.) trimws(strsplit(. , "=")[[1]]))
+  #for(i in seq_along(x)) {
+  #  names(x)[i] <- if (quotes) trimws(x[[i]][2], whitespace = "['\"]") else x[[i]][2]
+  #  x[[i]] <- x[[i]][1]
+  #  suppressWarnings(
+  #    if (!is.na(as.double(x[[i]]))) x[[i]] <- as.double(x[[i]])
+  #  )
+  #}
+  #setNames(unlist(x), names(x))
+}
+
+.set_factor <- function(x) {
+  value_labels <- dic_attr(x, "value_labels")
+
+  # default
+  levels <- unique(x)
+  labels <- unique(x)
+
+  # sensible values exist
+  if (has_info(dic_attr(x, "values"))) {
+    levels <- unname(dic_attr(x, "values"))
+    labels <- unname(dic_attr(x, "values"))
   }
+
+  # sensible value_labels exist
+  #if (!identical(value_labels, NA) && !identical(value_labels, "")) {
+  #  levels <- value_labels$value
+  #  labels <- value_labels$label
+  #}
+
+  out <- factor(
+    x,
+    levels = levels,
+    labels = labels
+  )
+  attr(out, opt("dic")) <- attr(x, opt("dic"))
+  out
+}
+
+has_info <- function(x) {
+  if (is.null(x) || identical(x, NA) || identical(x, "")) return(FALSE)
+  TRUE
 }
 
