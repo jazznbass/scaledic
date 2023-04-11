@@ -1,13 +1,11 @@
 #' Score scale calculates scale scores.
 #'
 #' @param data A data frame
-#' @param filter A logical expression for any dic attribute (e.g. scale ==
-#'   "ITRF" & subscale == "Int")
-#' @param bind If set TRUE, returns the complete data frame. If set false,
-#'   returns a data frame with the new score variables for each scale.
-#' @param sum If TRUE, function mean(x, na.rm = TRUE) is applied for building
-#'   the scores. If FALSE, function sum(x, na.rm = TRUE) is applied. When
-#'   argument FUN is set, `sum` is ignored.
+#' @param filter A logical expression for any *dic* attribute (e.g. `scale ==
+#'   "ITRF" & subscale == "Int"`)
+#' @param sum If `FALSE`, a weighted mean function is applied for building the
+#'   scores. If `TRUE`, a weighted sum function is applied. When argument fun is
+#'   set, `sum` is ignored.
 #' @param min_valid Minimal number of valid values that is required for
 #'   calculating the mean. A value between 0 and 1 indicates a proportion of
 #'   values (e.g., 0.5 = 50 percent of values have to be valid).
@@ -16,22 +14,37 @@
 #'   percent NAs are allowed).
 #' @param label A character string with a label for the resulting score
 #'   variable. Automatically generated if label is not set.
-#' @param FUN A function for calculating the score (e.g., median)
-#' @param scale,subscale,subscale_2 deprecated
-#' @param ... Further arguments passed to the FUN function (e.g., na.rm = TRUE)
+#' @param fun A function for calculating the score (e.g., `weighted.median`).
+#'   See details.
+#' @param var_weight Name of the *dic* attribute that is applied to derive
+#'   weights. Defaults to `weight`.
+#' @details If you provide your own function, the first argument of that
+#'   function must take the vector of values and the second argument the
+#'   weights.
 #' @return A data frame
+#' @examples
+#' dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+#' # apply the default weighted mean function
+#' score_scale(dat, scale == "rel", label = "Religious beliefs")
+#' # apply the weighted sum function
+#' score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
+#' # provide an external function (here the weighted median function from the spatstat package)
+#' score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
+#'
 #' @export
 
-score_scale <- function(data, filter,
-                        scale = NULL, subscale = NULL, subscale_2 = NULL,
-                        bind = FALSE,  sum = FALSE, min_valid = 1, max_na = NA,
+score_scale <- function(data,
+                        filter,
+                        sum = FALSE,
+                        min_valid = 1,
+                        max_na = NA,
                         label = NULL,
-                        FUN = NULL, ...) {
+                        fun = NULL,
+                        var_weight = NULL) {
 
   filter <- deparse(substitute(filter))
-  if (!is.null(scale) || !is.null(subscale) || !is.null(subscale_2)) {
-    filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
-  }
+
+  if (is.null(var_weight)) var_weight <- opt("weight")
 
   .score_scale(
     data = data,
@@ -40,114 +53,104 @@ score_scale <- function(data, filter,
     min_valid = min_valid,
     max_na = max_na,
     label = label,
-    FUN = FUN,
-    bind = bind,
-    ...)
+    fun = fun,
+    var_weight = var_weight,
+    function_name = deparse(match.call()$fun)
+  )
 
 }
 
 .score_scale <- function(data,
                          filter,
                          sum,
-                         min_valid = 1,
-                         max_na = NA,
+                         min_valid,
+                         max_na,
                          label,
-                         FUN,
-                         bind = bind,
-                         ...) {
+                         fun,
+                         var_weight,
+                         function_name) {
 
-  args <- list(...)
+  msg <- c()
 
-  function_name <- "score"
   values <- NA
-  if(is.null(FUN)) {
+  if(is.null(fun)) {
     if (sum) {
-      FUN <- .sum
-      args <- list(min_valid = min_valid, max_na = max_na)
-      function_name <- "sum"
+      fun <- .weighted_sum
+      function_name <- "weighted sum"
     }
     if (!sum) {
-      FUN <- .weighted_mean
-      args <- list(min_valid = min_valid, max_na = max_na)
-      function_name <- "mean"
+      fun <- .weighted_mean
+      function_name <- "weighted mean"
     }
   }
 
-  vars <- .get_index(data = data, filter, class = "item")
+  df <- data[, .get_index(data = data, filter, class = "item")]
 
-  df <- data %>% select(all_of(vars))
+  if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) {
+    min_valid <- trunc(min_valid * nrow(df))
+  }
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0)) {
+    max_na <- trunc(max_na * nrow(df))
+  }
 
   # Check if all variables are numeric
-  .tmp <- map(df, ~any(c("numeric", "integer") %in% class(.))) %>% unlist()
-
-  if (!all(.tmp)) {
+  if (!all(sapply(df, is.numeric))) {
     stop("Not all variables are numeric.")
   }
 
-  weight <- df %>%
-    map(~ dic_attr(.x, .opt$weight)) %>%
-    unlist() %>%
-    as.numeric()
+  .get_weight <- function(x) {
+    weight <- dic_attr(x, var_weight)
+    if (is.null(weight)) {
+      weight <- 1
+      msg <<- c(msg, "Weight information missing. Set weight to 1.")
+    }
+    as.numeric(weight)
+  }
+
+  weight <- sapply(df, .get_weight)
   sign <- sign(weight)
   weight <- abs(weight)
 
-  max_values <- df %>%
-    map(~ max(dic_attr(.x, .opt$values))) %>%
-    unlist() %>%
-    as.numeric()
-  min_values <- df %>%
-    map(~ min(dic_attr(.x, .opt$values))) %>%
-    unlist() %>%
-    as.numeric()
+  max_values <- sapply(df, function(.x) max(dic_attr(.x, "values")))
+  min_values <- sapply(df, function(.x) min(dic_attr(.x, "values")))
 
-  df <- apply(df, 1, function(x) {
+ if (any(is.na(max_values)) && any(sign == -1)) {
+  stop(
+    "A negative weight is provided but max and min values of at least one item ",
+    "are missing.\nNeed max and min values as dic attributes to reverse items."
+  )
+ }
 
+  new_score <- apply(df, 1, function(x) {
+    if(isTRUE(sum(!is.na(x)) < min_valid) || isTRUE(sum(is.na(x)) > max_na)) {
+      return(NA)
+    }
     score <- ifelse(sign == 1, x, max_values - x + min_values)
-
-    if (function_name == "sum") {
-      score <- score * weight
-      score <- do.call(FUN, c(list(score), args))
-    }
-
-    if (function_name == "mean") {
-      score <- do.call(FUN, c(list(score, weight), args))
-    }
-
-    score
+    do.call(fun, list(score, weight))
   })
 
-  class(df) <- c("dic", class(df))
-
-
-  if (!isFALSE(bind)) {
-    df <- as.data.frame(df)
-    names(df) <- bind
-    df <- cbind(data, df)
-  }
+  class(new_score) <- c("dic", class(new_score))
 
   ### set dictionary attributes
   if (is.null(label)) label <- "score"
+  attr(new_score, opt("dic")) <- list()
+  dic_attr(new_score, "class") <- "score"
+  dic_attr(new_score, "score_filter") <- filter
+  dic_attr(new_score, "score_function") <- function_name
+  dic_attr(new_score, "type") <- "numeric"
 
-  attr(df, .opt$dic) <- list()
-  dic_attr(df, .opt$class) <- "score"
-  dic_attr(df, .opt$score_filter) <- filter
-  dic_attr(df, .opt$score_function) <- function_name
-  dic_attr(df, .opt$type) <- "numeric"
+  dic_attr(new_score, "values") <- c(
+    min = do.call(fun, list(min_values, weight)),
+    max = do.call(fun, list(max_values, weight))
+  )
 
-  if (function_name == "sum")
-    dic_attr(df, .opt$values) <- paste0(sum(min_values * weight), ":", sum(max_values * weight))
+  dic_attr(new_score, "item_label") <- label
+  dic_attr(new_score, "item_name") <- label
+  attr(new_score, "label") <- label
 
-  if (function_name == "mean")
-    dic_attr(df, .opt$values) <- paste0(mean(min_values), ":", mean(max_values))
+  return_messages(msg)
 
-  dic_attr(df, .opt$scale) <- NA
-  dic_attr(df, .opt$subscale) <- NA
-  dic_attr(df, .opt$subscale_2) <- NA
-  dic_attr(df, .opt$item_label) <- label
-  dic_attr(df, .opt$item_name) <- label
-  ###
-  attr(df, "label") <- label
-  df
+  new_score
 }
 
 
