@@ -12,10 +12,9 @@ extract_dic <- function(data) {
 
   id <- .get_dic_items(data, items_only = TRUE)
 
-  dic_names <- lapply(data[id], function(x) names(attr(x, .opt$dic)))
+  dic_names <- lapply(data[id], function(x) names(attr(x, opt("dic"))))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
-  #dic_names <- dic_names[which(!dic_names %in% c("var"))]
 
   N <- length(id)
 
@@ -23,65 +22,72 @@ extract_dic <- function(data) {
   out <- as.data.frame(out)
   names(out) <- dic_names
 
-  for (row in 1:N) {
-    dic <- attr(data[[id[row]]], opt("dic"))
+  for (i_row in 1:N) {
 
+    dic <- attr(data[[id[i_row]]], opt("dic"))
     .var <- !dic_names %in% c("value_labels", "values", "missing")
-    for (col in dic_names[.var]) {
-      if (is.null(dic[[col]]) || length(dic[[col]]) == 0) {
-        out[row, col] <- NA
+    for (var_col in dic_names[.var]) {
+      if (is.null(dic[[var_col]]) || length(dic[[var_col]]) == 0) {
+        out[i_row, var_col] <- NA
       } else {
-        out[row, col] <- dic[[col]]
+        out[i_row, var_col] <- dic[[var_col]]
       }
     }
 
     # values to code
-    x <- dic[[opt("values")]]
+    values <- dic[[opt("values")]]
 
-    if (is.null(x)) {
-      x <- NA
-    } else if (!isTRUE(is.na(x))) {
-      d <- diff(x)
-      u <- unique(d)
+    #value_labels <- dic[[opt("value_labels")]]
+
+    if (!has_info(values)) {
+      values <- NA
+    } else if (dic[[opt("type")]] %in% opt("numerics")) {
+      u <- unique(diff(values))
       if (length(u) == 1 && u[1] == 1) {
-        x <- paste0(min(x), ":", max(x))
-      } else {
-        x <- paste0(x, collapse = ",")
+        values <- paste0(min(values), ":", max(values))
       }
-    }
-
-    out[row, opt("values")] <- x
-
-    # value labels to code
-
-    if (is.null(dic$value_labels)) {
-      x <- NA
+    } else if (dic[[opt("type")]] %in% c("factor", "character")) {
+      values <- paste0("'", values,"'", collapse = ", ")
     } else {
-      value_labels <- dic$value_labels[!is.na(dic$value_labels$value), ]
-      x <- NA
-      if (nrow(value_labels) > 0)
-        x <- paste0(
-          value_labels$value, " = ", value_labels$label, collapse = "; "
-        )
+      values <- paste0(values, collapse = ", ")
     }
 
-    out[row, opt("value_labels")] <- x
+    out[i_row, opt("values")] <- values
+
+    values <- dic[[opt("values")]]
+
+    if (has_info(names(values))) {
+      .filter <- which(!is.na(names(values)))
+      value_labels <- names(values)[.filter]
+      if (length(.filter) > 0)
+        value_labels <- paste0(
+          unname(values[.filter]), " = ", names(values)[.filter], collapse = "; "
+        )
+    } else {
+      value_labels <- NA
+    }
+
+    out[i_row, opt("value_labels")] <- value_labels
 
     # missing to code
 
-    x <- dic[[.opt$missing]]
-    if (is.null(x)) {
-      x <- NA
-    } else if (!isTRUE(is.na(x))) {
-      x <- paste0(x, collapse = ", ")
-      #x <- substring(x, 1, nchar(x) - 1)
+    missing <- dic[[opt("missing")]]
+    if (has_info(missing)) {
+      missing <- paste0(missing, collapse = ", ")
+    } else {
+      missing <- NA
     }
-    out[row, opt("missing")] <- x
+
+    out[i_row, opt("missing")] <- missing
 
   }
 
-  order <- c(.opt$item_name, .opt$item_label, .opt$values, .opt$value_labels,
-             .opt$missing, .opt$weight)
+  order <- c(
+    opt("item_name"), opt("item_label"), opt("values"), opt("value_labels"),
+    opt("missing"), opt("weight")
+  )
+
+
 
   order <- order[order %in% names(out)]
 
