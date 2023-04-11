@@ -4,23 +4,15 @@
   "dic" = "dic",
   "item_name" = "item_name",
   "item_label" = "item_label",
-  "scale" = "scale",
-  "subscale" = "subscale",
-  "subscale_2" = "subscale_2",
-  "scale_label" = "scale_label",
-  "subscale_label" = "subscale_label",
-  "subscale_2_label" = "subscale_2_label",
-  #"index" = "index",
   "weight" = "weight",
-  "source" = "source",
-  #"note" = "note",
   "type" = "type",
   "values" = "values",
   "value_labels" = "value_labels",
   "missing" = "missing",
   "class" = "class",
   "score_filter" = "score_filter",
-  "score_function" = "score_function"
+  "score_function" = "score_function",
+  "numerics" = c("numeric", "integer", "double", "float")
 )
 
 opt <- function(x) {
@@ -31,24 +23,15 @@ opt <- function(x) {
 # Names of the dic file variables. Order determines order when using extract_dic
 .dic_file <- list(
   "item_name" = "item_name",
-  "scale" = "scale",
-  "subscale" = "subscale",
-  "subscale_2" = "subscale_2",
-  #"index" = "index",
-  "scale_label" = "scale_label",
-  "subscale_label" = "subscale_label",
-  "subscale_2_label" = "subscale_2_label",
   "item_label" = "item_label",
   "weight" = "weight",
   "values" = "values",
   "value_labels" = "value_labels",
   "missing" = "missing",
   "type" = "type",
-  "source" = "source",
   "class" = "class",
   "score_filter" = "score_filter",
   "score_function" = "score_function"
-  #"note" = "note"
 )
 
 
@@ -128,38 +111,12 @@ opt <- function(x) {
 
 }
 
-.weighted_mean <- function(x, w, min_valid, max_na) {
-
-  if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) min_valid <- trunc(min_valid * length(x))
-  if(isTRUE(sum(!is.na(x)) < min_valid)) {
-    return(NA)
-  }
-
-  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
-    max_na <- trunc(max_na * length(x))
-  if(isTRUE(sum(is.na(x)) > max_na)) {
-    return(NA)
-  }
-
-  weighted.mean(x, w, na.rm = TRUE)
-
+.weighted_mean <- function(x, weights) {
+  weighted.mean(x, weights, na.rm = TRUE)
 }
 
-.sum <- function(x, min_valid, max_na) {
-
-  if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) min_valid <- trunc(min_valid * length(x))
-  if(isTRUE(sum(!is.na(x)) < min_valid)) {
-    return(NA)
-  }
-
-  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
-    max_na <- trunc(max_na * length(x))
-  if(isTRUE(sum(is.na(x)) > max_na)) {
-    return(NA)
-  }
-
-  sum(x, na.rm = TRUE)
-
+.weighted_sum <- function(x, weights) {
+  sum(x * weights, na.rm = TRUE)
 }
 
 .nice_num <- function(x, digits = 2) {
@@ -175,4 +132,15 @@ opt <- function(x) {
   stop("File extension not recognised. ",
        "Please provide separately read data frame."
   )
+}
+
+return_messages <- function(msg, warning = FALSE) {
+  if (length(msg) == 0) return(FALSE)
+  msg <- table(msg)
+  for(i in seq_along(msg)){
+    if (msg[i] > 1) names(msg)[i] <- paste0(names(msg)[i], " (", msg[i], "x)")
+  }
+  msg <- paste0(1:length(msg), ": ", names(msg), collapse = "\n")
+  msg <- paste0("\n", msg, "\n")
+  if (warning) warning(msg, call. = FALSE) else message(msg)
 }
