@@ -13,7 +13,7 @@ dat <- cbind(
 dat <- as.data.frame(dat)
 names(dat) <- paste(rep(scales, each = n_scale), rep(1:n_scale, length(scales)), sep = "_")
 dat$gender <- sample(c("m", "f", "d"), n, replace = TRUE)
-dat$age <- sample(6:10, n, replace = TRUE)
+dat$age <- sample(c(6:10, (6:10) + 0.5, 12, 13), n, replace = TRUE)
 
 for (i in 1:5) dat[sample(nrow(dat), 1), sample(ncol(dat), 1)] <- sample(c(11, 55,66), 1)
 for (i in 1:5) dat[sample(nrow(dat), 1), sample(ncol(dat), 1)] <- -999
@@ -42,9 +42,9 @@ ex_scaledic_dic <- data.frame(
   item_label = c(item_names, "gender", "age"),
   scale = c(rep(c("rel", "sui"), each = 5), rep("misc",2)),
   scale_label = c(rep(c("Religious beliefs", "Suicide tendency"), each = 5), rep("Miscellaneous",2)),
-  values = c(rep("1:6", 2), rep("1:5", 3), rep("0:4", 5), "'m', 'f', 'd'", "5:11"),
-  value_labels = c(value_labels, "m = male; f = female; d = diverse", ""),
-  type = c(rep("integer", n_var), "factor", "integer"),
+  values = c(rep("1:6", 2), rep("1:5", 3), rep("0:4", 5), "'m', 'f', 'd'", "5, 11"),
+  value_labels = c(value_labels, "m = male; f = female; d = diverse", "5 = min; 11 = max"),
+  type = c(rep("integer", n_var), "factor", "float"),
   weight = 1,
   missing = c(rep("-999", n_var), "", "-999")
 )
