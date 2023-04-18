@@ -26,15 +26,15 @@ knitr::opts_chunk$set(
 
 ## What is a dictionary file?
 
-When you conduct research based on questionnaires or psychometric tests (and you are working in R), you typically create a *data.frame* with one column (variable) for each item on that questionnaire and one row for each person who participated. You can only store a limited amount of additional information about each item in that questionnaire within a data.frame (or tibble). You can give a variable a name and define a variable as a factor with appropriate levels. But basically, that is it. You cannot, at least not conveniently, include a longer label for each item, the name of a scale this item belongs to, information about reverse coding, etc.
+When you conduct research based on questionnaires or psychometric tests (and you are working in R), you typically create a *data.frame* with one column (variable) for each item on that questionnaire and one row for each person who participated. You can only store a limited amount of additional information about each item in that questionnaire within a data.frame (or tibble). You can give a variable a name and define a variable as a factor with appropriate levels. But basically, that is it. You cannot, at least not conveniently, include a longer label for each item, the name of a scale to which that item belongs to, information about reverse coding, etc.
 
 I call the collection of this additional information about items an *item dictionary*. A dictionary contains a short label, a longer description, scale affiliation, and more for each item.
 
 ## A dictionary file
 
-A dictionary file is a table with a row for each variable and a column for each atttribute of those variables. Most conveniently, you prepare a dictionary file in a spreadsheet program for later use with data sets.
+A dictionary file is a table with one row for each variable and one column for each attribute of those variables. The most convenient way to create a dictionary file is in a spreadsheet program for later use with data sets.
 
-Here is an extract of an example *dic-file*:
+Here is an extract from an example *dic-file*:
 
 ```{r dic_example, echo=FALSE}
 dic_itrf  |>  
@@ -43,7 +43,7 @@ dic_itrf  |>
   kable()
 ```
 
-A dictionary file can contain any additional attributes you like. That is, you can add a column with any name to store relevant information (e.g. scale and scale label an item belongs to, a translation of the item name). But some predefined attributes exist with a specific meaning. The following table shows these attributes:
+A dictionary file can contain any additional attributes. This means that you can add a column with any name to store relevant information (e.g. the scale and scale label to which an item belongs, a translation of the item name). However, there are some predefined attributes with a specific meaning. The table below shows these attributes:
 
 ```{r tab_dic_param, echo = FALSE}
 out <- tribble(
@@ -69,14 +69,14 @@ kable(out, caption = "Basic columns of a dictionary file")
 When you combine a dataset with a dictionary file, each variable in the dataset that corresponds to a variable described in the dictionary is completed with the given dictionary information.\
 The resulting dataset is now ready for use with all other `scaledic` functions.
 
-The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Missing values are replaced with NAs:
+The `apply_dic` function takes the name of the dataset and the dictionary file and combines them. Missing values are replaced by NAs:
 
 ```{r apply_dic}
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
 dat <- apply_dic(dat_itrf, dic_itrf)
 ```
 
-Let us get an overview of all scales in the dataset:
+Let us take a look at all the scales in the dataset:
 
 ```{r list_scales}
 list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) %>% kable()
@@ -84,7 +84,7 @@ list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) %>% kab
 
 ## Clean raw data
 
-Firstly, we check for invalid values in the dataset (e.g., typos) and replace these with NA:
+Firstly, we check for invalid values in the dataset (e.g., typos) and replace them with NA:
 
 ```{r check_values}
 dat <- check_values(dat, replace = NA)
@@ -108,7 +108,7 @@ dat <- impute_missing(dat, subscale == "Int")
 
 ## Select scales for analyszing
 
-Let us see descriptive statistics for the *internalizing* sub scale:
+Let us look at the descriptive statistics for the *internalising* subscale:
 
 ```{r descriptives}
 dat %>% 
@@ -118,7 +118,7 @@ dat %>%
 
 ## See items instead of labels
 
-It is more convenient to see the original items instead of the short labels:
+It is more convenient to see the original items rather than the short labels:
 
 ```{r desc_labels}
 dat %>% 
@@ -128,7 +128,7 @@ dat %>%
   kable()
 ```
 
-And further we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.
+And then we analyse the factor structure. Here we use the `rename_item()` function to get a more convenient description.
 
 ```{r exploratory_fa}
 dat %>%
@@ -170,14 +170,14 @@ lavaan::summary(fit, fit.measures = TRUE)
 
 ## Build scale scores
 
-Now we build scores for internalizing and externalizing scales
+Now we will create scores for the internalizing and externalizing scales.
 
 ```{r scores}
 dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "Externalizing")
 dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
 ```
 
-and get descriptives for these scores
+and get descriptives for those scores
 
 ```{r desc_scores}
 dat %>%
@@ -186,9 +186,9 @@ dat %>%
   descriptives(round = 1)
 ```
 
-## Lookup norm values from a normtable
+## Look up norms from a norm table
 
-Many scales come with norm tables to transform raw-scores into T-scores, percentile ranks etc.
+Many scales come with norm tables to convert raw scores to t-scores, percentile ranks, etc.
 
 The `lookup_norms` function helps with this conversion.
 
@@ -200,7 +200,7 @@ Here is an example of such a table:
 ex_normtable_int %>% slice(1:10) %>% kable()
 ```
 
-Then we need raw-scores from a scale. If they do not exist, you may use the `score_scales` function to add sum scores. Therefore, set the sum argument to `TRUE`. By setting `max_na = 0`, we do not allow missing values in any scale item:
+Then we need raw-scores from a scale. If they do not exist, you may use the `score_scales` function to add sum scores. Therefore set the sum argument to `TRUE`. By setting `max_na = 0`, we do not allow missing values in any scale item:
 
 ```{r}
 dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
