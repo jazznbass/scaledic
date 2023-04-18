@@ -45,7 +45,10 @@ extract_dic <- function(data) {
       u <- unique(diff(values))
       if (length(u) == 1 && u[1] == 1) {
         values <- paste0(min(values), ":", max(values))
+      } else {
+        values <- paste0(values, collapse = ", ")
       }
+
     } else if (dic[[opt("type")]] %in% c("factor", "character")) {
       values <- paste0("'", values,"'", collapse = ", ")
     } else {
