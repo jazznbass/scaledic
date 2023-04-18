@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="scaledic">
-<title>Building a dictionary file • scaledic</title>
+<title>Tutorial: How to build a dictionary file • scaledic</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Building a dictionary file">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial: How to build a dictionary file">
 <meta property="og:description" content="scaledic">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -51,7 +51,7 @@
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/build_dic_file.html">Building a dictionary file</a>
+    <a class="dropdown-item" href="../articles/build_dic_file.html">Tutorial: How to build a dictionary file</a>
   </div>
 </li>
 <li class="nav-item">
@@ -74,7 +74,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-      <img src="../logo.png" class="logo" alt=""><h1>Building a dictionary file</h1>
+      <img src="../logo.png" class="logo" alt=""><h1>Tutorial: How to build a dictionary file</h1>
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
@@ -90,7 +90,7 @@ Wilbert</h4>
 dictionary file.</p>
 <p>First, we need an example data.frame to work with (i.e. the
 <code>ex_scaledic_data</code> example dataset):</p>
-<table class="table">
+<table style="width:100%;" class="table">
 <caption>ex_scaledic_data</caption>
 <colgroup>
 <col width="8%">
@@ -104,7 +104,7 @@ dictionary file.</p>
 <col width="8%">
 <col width="8%">
 <col width="9%">
-<col width="5%">
+<col width="9%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">rel_1</th>
@@ -133,7 +133,7 @@ dictionary file.</p>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">f</td>
-<td align="right">7</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -147,259 +147,259 @@ dictionary file.</p>
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="left">d</td>
-<td align="right">7</td>
+<td align="right">6.5</td>
 </tr>
 <tr class="odd">
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">-999</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="left">d</td>
-<td align="right">9</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="left">f</td>
-<td align="right">8</td>
-</tr>
-<tr class="odd">
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="left">f</td>
-<td align="right">6</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="left">d</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="left">f</td>
-<td align="right">10</td>
-</tr>
-<tr class="even">
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="left">f</td>
-<td align="right">8</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">6</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">-999</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="left">f</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">6</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="left">f</td>
-<td align="right">9</td>
-</tr>
-<tr class="odd">
-<td align="right">6</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">4</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">4</td>
-<td align="left">m</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="left">m</td>
-<td align="right">10</td>
-</tr>
-<tr class="odd">
-<td align="right">3</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="left">m</td>
-<td align="right">8</td>
-</tr>
-<tr class="even">
-<td align="right">6</td>
-<td align="right">66</td>
-<td align="right">-999</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="right">0</td>
-<td align="left">m</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td align="right">2</td>
-<td align="right">-999</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">2</td>
-<td align="right">2</td>
-<td align="right">0</td>
-<td align="left">d</td>
-<td align="right">7</td>
-</tr>
-<tr class="even">
-<td align="right">3</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">4</td>
-<td align="right">2</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">2</td>
-<td align="left">d</td>
-<td align="right">8</td>
-</tr>
-<tr class="odd">
-<td align="right">4</td>
-<td align="right">4</td>
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">1</td>
-<td align="right">3</td>
 <td align="right">1</td>
 <td align="right">66</td>
-<td align="right">11</td>
-<td align="right">0</td>
-<td align="left">f</td>
-<td align="right">8</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">d</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
-<td align="right">5</td>
-<td align="right">5</td>
-<td align="right">4</td>
 <td align="right">2</td>
-<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
 <td align="right">1</td>
-<td align="right">11</td>
-<td align="right">2</td>
 <td align="right">0</td>
+<td align="right">2</td>
 <td align="right">1</td>
-<td align="left">m</td>
-<td align="right">9</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">13.0</td>
 </tr>
 <tr class="odd">
-<td align="right">6</td>
+<td align="right">5</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">2</td>
-<td align="right">-999</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">3</td>
-<td align="left">m</td>
-<td align="right">8</td>
-</tr>
-<tr class="even">
-<td align="right">2</td>
-<td align="right">3</td>
-<td align="right">5</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">1</td>
 <td align="right">3</td>
-<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">8.0</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
 <td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="left">d</td>
+<td align="right">6.0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="left">f</td>
+<td align="right">6.0</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">f</td>
+<td align="right">10.0</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">6</td>
+<td align="right">2</td>
+<td align="right">11</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">-999</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">8.5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">6</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">3</td>
 <td align="right">55</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="left">f</td>
+<td align="right">8.5</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">66</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">4</td>
 <td align="left">m</td>
-<td align="right">10</td>
+<td align="right">7.5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">-999.0</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">7.0</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">1</td>
+<td align="right">-999</td>
+<td align="right">1</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="left">m</td>
+<td align="right">7.5</td>
+</tr>
+<tr class="odd">
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">5</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="left">d</td>
+<td align="right">8.5</td>
+</tr>
+<tr class="even">
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">1</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="right">2</td>
+<td align="left">d</td>
+<td align="right">13.0</td>
+</tr>
+<tr class="odd">
+<td align="right">4</td>
+<td align="right">4</td>
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">66</td>
+<td align="right">0</td>
+<td align="left">-999</td>
+<td align="right">10.5</td>
+</tr>
+<tr class="even">
+<td align="right">5</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">-999</td>
+<td align="right">4</td>
+<td align="right">1</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">0</td>
+<td align="right">1</td>
+<td align="left">m</td>
+<td align="right">10.0</td>
+</tr>
+<tr class="odd">
+<td align="right">6</td>
+<td align="right">5</td>
+<td align="right">4</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="left">m</td>
+<td align="right">8.0</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">5</td>
+<td align="right">2</td>
+<td align="right">3</td>
+<td align="right">1</td>
+<td align="right">3</td>
+<td align="right">2</td>
+<td align="right">4</td>
+<td align="right">3</td>
+<td align="left">m</td>
+<td align="right">6.0</td>
 </tr>
 </tbody>
 </table>
@@ -503,7 +503,7 @@ week?</td>
 the data<em>type</em> (e.g. <code>integer</code>, <code>factor</code>,
 <code>character</code>). The <code>type</code> attribute is used in
 various <em>scaledic</em> functions. For example when the data is
-checked for invalid values, missing values are imputed or scales are
+checked for invalid values, missing values are imputed, or scales are
 scored. A variable can be one of the following types:
 <code>integer</code> for numbers without decimals, <code>float</code>
 for numbers with decimals, <code>character</code> for variables with
@@ -589,7 +589,7 @@ week?</td>
 <tr class="even">
 <td align="left">age</td>
 <td align="left">age</td>
-<td align="left">integer</td>
+<td align="left">float</td>
 </tr>
 </tbody>
 </table>
@@ -698,7 +698,7 @@ week?</td>
 <td align="left">age</td>
 <td align="left">age</td>
 <td align="right">1</td>
-<td align="left">integer</td>
+<td align="left">float</td>
 </tr>
 </tbody>
 </table>
@@ -716,7 +716,10 @@ item. For coding the <code>values</code>, you provide the possible
 values separated with a comma (e.g., <code>1, 2, 3, 4</code> for the
 integers 1 to 4). It is also possible to use a colon to define a range
 of integers (e.g., <code>5:11</code> indicated all integers starting
-with 5 and ending with 11). For variables of type <code>factor</code> or
+with 5 and ending with 11). For type <code>float</code>, values
+represent the maximum and the minimum of valid values
+(e.g. <code>5, 11</code> for all values within 5 and 11 including
+decimal numbers). For variables of type <code>factor</code> or
 <code>character</code> you may want to provide text values. in that
 case, put these values within quotes (e.g., <code>'m', 'f', 'd'</code>
 indicates three valid text entries).</p>
@@ -824,9 +827,9 @@ week?</td>
 <tr class="even">
 <td align="left">age</td>
 <td align="left">age</td>
-<td align="left">5:11</td>
+<td align="left">5, 11</td>
 <td align="right">1</td>
-<td align="left">integer</td>
+<td align="left">float</td>
 </tr>
 </tbody>
 </table>
@@ -838,36 +841,36 @@ week?</td>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>Found the following invalid values<span class="sc">:</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="st">'rel_2'</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">14</span>     <span class="dv">15</span> </span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">66</span>   <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">3</span> </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">66</span> </span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="st">'rel_3'</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">14</span> </span>
 <span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>   <span class="sc">-</span><span class="dv">999</span> </span>
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="st">'rel_4'</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">3</span> </span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>   <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">9</span>     <span class="dv">18</span> </span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">11</span>   <span class="sc">-</span><span class="dv">999</span> </span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="st">'rel_5'</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">19</span> </span>
-<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>   <span class="sc">-</span><span class="dv">999</span> </span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">11</span> </span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">66</span> </span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_2'</span></span>
-<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">9</span>     <span class="dv">18</span> </span>
-<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>   <span class="sc">-</span><span class="dv">999</span>     <span class="dv">11</span> </span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_1'</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">10</span> </span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">55</span> </span>
 <span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_3'</span></span>
-<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">17</span> </span>
-<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">66</span> </span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_2'</span></span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">9</span> </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>   <span class="sc">-</span><span class="dv">999</span> </span>
 <span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_4'</span></span>
 <span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">17</span> </span>
-<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">11</span> </span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">66</span> </span>
 <span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">'sui_5'</span></span>
-<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>     <span class="dv">20</span> </span>
-<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">55</span> </span></code></pre></div>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a><span class="st">'age'</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">4</span>     <span class="dv">12</span>     <span class="dv">16</span> </span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">13</span>   <span class="sc">-</span><span class="dv">999</span>     <span class="dv">13</span> </span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"data frame with replaced invalid values"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -884,7 +887,7 @@ week?</td>
 <col width="8%">
 <col width="8%">
 <col width="9%">
-<col width="5%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">rel_1</th>
@@ -913,7 +916,7 @@ week?</td>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">f</td>
-<td align="right">7</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -927,13 +930,13 @@ week?</td>
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="left">d</td>
-<td align="right">7</td>
+<td align="right">6.5</td>
 </tr>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">2</td>
-<td align="right">2</td>
 <td align="right">NA</td>
+<td align="right">2</td>
+<td align="right">3</td>
 <td align="right">4</td>
 <td align="right">3</td>
 <td align="right">2</td>
@@ -941,7 +944,7 @@ week?</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="left">d</td>
-<td align="right">9</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
@@ -955,7 +958,7 @@ week?</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="left">f</td>
-<td align="right">8</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
@@ -969,7 +972,7 @@ week?</td>
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="left">f</td>
-<td align="right">6</td>
+<td align="right">8.0</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -983,7 +986,7 @@ week?</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="left">d</td>
-<td align="right">6</td>
+<td align="right">6.0</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
@@ -997,7 +1000,7 @@ week?</td>
 <td align="right">4</td>
 <td align="right">2</td>
 <td align="left">f</td>
-<td align="right">10</td>
+<td align="right">6.0</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
@@ -1011,13 +1014,13 @@ week?</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="left">f</td>
-<td align="right">8</td>
+<td align="right">10.0</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
 <td align="right">6</td>
 <td align="right">2</td>
-<td align="right">5</td>
+<td align="right">NA</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">NA</td>
@@ -1025,7 +1028,7 @@ week?</td>
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">f</td>
-<td align="right">7</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -1033,27 +1036,27 @@ week?</td>
 <td align="right">4</td>
 <td align="right">5</td>
 <td align="right">3</td>
-<td align="right">3</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">1</td>
 <td align="left">f</td>
-<td align="right">9</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td align="right">2</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">0</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">4</td>
 <td align="left">m</td>
-<td align="right">7</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -1067,7 +1070,7 @@ week?</td>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">10</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
@@ -1081,11 +1084,11 @@ week?</td>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">8</td>
+<td align="right">7.0</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">NA</td>
+<td align="right">1</td>
 <td align="right">NA</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -1095,11 +1098,11 @@ week?</td>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">6</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
-<td align="right">NA</td>
+<td align="right">2</td>
 <td align="right">1</td>
 <td align="right">5</td>
 <td align="right">3</td>
@@ -1109,7 +1112,7 @@ week?</td>
 <td align="right">2</td>
 <td align="right">0</td>
 <td align="left">d</td>
-<td align="right">7</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -1123,7 +1126,7 @@ week?</td>
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">d</td>
-<td align="right">8</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
@@ -1133,39 +1136,39 @@ week?</td>
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">NA</td>
 <td align="right">0</td>
-<td align="left">f</td>
-<td align="right">8</td>
+<td align="left">NA</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
 <td align="right">5</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">2</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">1</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="left">m</td>
-<td align="right">9</td>
+<td align="right">10.0</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
 <td align="right">5</td>
 <td align="right">4</td>
 <td align="right">2</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="left">m</td>
-<td align="right">8</td>
+<td align="right">8.0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
@@ -1177,9 +1180,9 @@ week?</td>
 <td align="right">3</td>
 <td align="right">2</td>
 <td align="right">4</td>
-<td align="right">NA</td>
+<td align="right">3</td>
 <td align="left">m</td>
-<td align="right">10</td>
+<td align="right">6.0</td>
 </tr>
 </tbody>
 </table>
@@ -1312,10 +1315,10 @@ week?</td>
 <tr class="even">
 <td align="left">age</td>
 <td align="left">age</td>
-<td align="left">5:11</td>
-<td align="left"></td>
+<td align="left">5, 11</td>
+<td align="left">5 = min; 11 = max</td>
 <td align="right">1</td>
-<td align="left">integer</td>
+<td align="left">float</td>
 </tr>
 </tbody>
 </table>
@@ -1343,7 +1346,7 @@ label.</p>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels:</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 0 = not at all</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 4 = extremely</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">2</span> <span class="dv">4</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">0</span> <span class="dv">0</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">0</span> <span class="dv">1</span></span></code></pre></div>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="cn">NA</span>  <span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">2</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">1</span></span></code></pre></div>
 <p>Here, valid values are <code>0, 1, 2, 3, 4</code> (short
 <code>0:4</code>) but only the poles (<code>0</code> and <code>4</code>)
 have labels.</p>
@@ -1354,8 +1357,9 @@ have labels.</p>
 <span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co"># m = male</span></span>
 <span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="co"># f = female</span></span>
 <span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># d = diverse</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] f d d f f d f f f f m m m m d d f m m m</span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> m f d</span></code></pre></div>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">16</span>] d    <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> m    m    m   </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>Levels<span class="sc">:</span> m f d</span></code></pre></div>
 <p><code>gender</code> is of type factor. The valid values
 <code>'m', 'f', 'd'</code> have been turned into three factor levels
 with the corresponding labels.</p>
@@ -1368,12 +1372,15 @@ is because R internally would turn the values (here
 </blockquote>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>dat_dic<span class="sc">$</span>age</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># age </span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valid values: 5:11</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">7</span>  <span class="dv">7</span>  <span class="dv">9</span>  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">6</span> <span class="dv">10</span>  <span class="dv">8</span>  <span class="dv">7</span>  <span class="dv">9</span>  <span class="dv">7</span> <span class="dv">10</span>  <span class="dv">8</span>  <span class="dv">6</span>  <span class="dv">7</span>  <span class="dv">8</span>  <span class="dv">8</span>  <span class="dv">9</span>  <span class="dv">8</span> <span class="dv">10</span></span></code></pre></div>
-<p><code>age</code> can take integers from 5 to 11 (<code>5:11</code>).
-Value labels have not been provided.</p>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data type is float</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Valid values: From 5 to 11</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Value labels:</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 5 = min</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 11 = max</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a> [<span class="dv">1</span>] <span class="fl">10.5</span>  <span class="fl">6.5</span> <span class="fl">10.5</span>   <span class="cn">NA</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span> <span class="fl">10.0</span>  <span class="fl">8.5</span>  <span class="fl">8.5</span>  <span class="fl">7.5</span>   <span class="cn">NA</span>  <span class="fl">7.0</span>  <span class="fl">7.5</span>  <span class="fl">8.5</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>[<span class="dv">16</span>]   <span class="cn">NA</span> <span class="fl">10.5</span> <span class="fl">10.0</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span></span></code></pre></div>
+<p><code>age</code> can take all numbers from 5 to 11 (minimum is 5 and
+maximum is 11).</p>
 <p>It is a common practice to code missing values with a specific number
 (rather than just leaving an empty entry on a datasheet). In the example
 dataset used here, <code>-999</code> is used as a missing value. To
@@ -1517,10 +1524,10 @@ week?</td>
 <tr class="even">
 <td align="left">age</td>
 <td align="left">age</td>
-<td align="left">5:11</td>
-<td align="left"></td>
+<td align="left">5, 11</td>
+<td align="left">5 = min; 11 = max</td>
 <td align="right">1</td>
-<td align="left">integer</td>
+<td align="left">float</td>
 <td align="left">-999</td>
 </tr>
 </tbody>
@@ -1558,7 +1565,7 @@ checked values</caption>
 <col width="8%">
 <col width="8%">
 <col width="9%">
-<col width="5%">
+<col width="6%">
 </colgroup>
 <thead><tr class="header">
 <th align="right">rel_1</th>
@@ -1579,7 +1586,7 @@ checked values</caption>
 <td align="right">2</td>
 <td align="right">6</td>
 <td align="right">2</td>
-<td align="right">5</td>
+<td align="right">NA</td>
 <td align="right">1</td>
 <td align="right">1</td>
 <td align="right">NA</td>
@@ -1587,7 +1594,7 @@ checked values</caption>
 <td align="right">2</td>
 <td align="right">1</td>
 <td align="left">f</td>
-<td align="right">7</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -1595,27 +1602,27 @@ checked values</caption>
 <td align="right">4</td>
 <td align="right">5</td>
 <td align="right">3</td>
-<td align="right">3</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">1</td>
 <td align="left">f</td>
-<td align="right">9</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td align="right">2</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">0</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">4</td>
 <td align="left">m</td>
-<td align="right">7</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
@@ -1629,7 +1636,7 @@ checked values</caption>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">10</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
@@ -1643,11 +1650,11 @@ checked values</caption>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">8</td>
+<td align="right">7.0</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">NA</td>
+<td align="right">1</td>
 <td align="right">NA</td>
 <td align="right">1</td>
 <td align="right">1</td>
@@ -1657,11 +1664,11 @@ checked values</caption>
 <td align="right">3</td>
 <td align="right">0</td>
 <td align="left">m</td>
-<td align="right">6</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="odd">
 <td align="right">2</td>
-<td align="right">NA</td>
+<td align="right">2</td>
 <td align="right">1</td>
 <td align="right">5</td>
 <td align="right">3</td>
@@ -1671,7 +1678,7 @@ checked values</caption>
 <td align="right">2</td>
 <td align="right">0</td>
 <td align="left">d</td>
-<td align="right">7</td>
+<td align="right">8.5</td>
 </tr>
 <tr class="even">
 <td align="right">3</td>
@@ -1685,7 +1692,7 @@ checked values</caption>
 <td align="right">1</td>
 <td align="right">2</td>
 <td align="left">d</td>
-<td align="right">8</td>
+<td align="right">NA</td>
 </tr>
 <tr class="odd">
 <td align="right">4</td>
@@ -1695,39 +1702,39 @@ checked values</caption>
 <td align="right">1</td>
 <td align="right">3</td>
 <td align="right">1</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">NA</td>
 <td align="right">0</td>
-<td align="left">f</td>
-<td align="right">8</td>
+<td align="left">NA</td>
+<td align="right">10.5</td>
 </tr>
 <tr class="even">
 <td align="right">5</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">2</td>
+<td align="right">NA</td>
 <td align="right">4</td>
 <td align="right">1</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">2</td>
 <td align="right">0</td>
 <td align="right">1</td>
 <td align="left">m</td>
-<td align="right">9</td>
+<td align="right">10.0</td>
 </tr>
 <tr class="odd">
 <td align="right">6</td>
 <td align="right">5</td>
 <td align="right">4</td>
 <td align="right">2</td>
-<td align="right">NA</td>
+<td align="right">4</td>
 <td align="right">0</td>
 <td align="right">0</td>
 <td align="right">2</td>
 <td align="right">3</td>
 <td align="right">3</td>
 <td align="left">m</td>
-<td align="right">8</td>
+<td align="right">8.0</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
@@ -1739,9 +1746,9 @@ checked values</caption>
 <td align="right">3</td>
 <td align="right">2</td>
 <td align="right">4</td>
-<td align="right">NA</td>
+<td align="right">3</td>
 <td align="left">m</td>
-<td align="right">10</td>
+<td align="right">6.0</td>
 </tr>
 </tbody>
 </table>
@@ -1915,9 +1922,9 @@ week?</td>
 <td align="left">age</td>
 <td align="left">misc</td>
 <td align="left">Miscellaneous</td>
-<td align="left">5:11</td>
-<td align="left"></td>
-<td align="left">integer</td>
+<td align="left">5, 11</td>
+<td align="left">5 = min; 11 = max</td>
+<td align="left">float</td>
 <td align="right">1</td>
 <td align="left">-999</td>
 </tr>
@@ -1932,11 +1939,11 @@ week?</td>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">"rel"</span>) <span class="sc">%&gt;%</span> </span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>   name valid missing mean   sd min max range median  mad</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> rel_1    <span class="dv">20</span>       <span class="dv">0</span> <span class="fl">3.65</span> <span class="fl">1.76</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> rel_2    <span class="dv">18</span>       <span class="dv">2</span> <span class="fl">3.44</span> <span class="fl">1.89</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>    <span class="fl">3.5</span> <span class="fl">2.22</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> rel_3    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.37</span> <span class="fl">1.54</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">4.0</span> <span class="fl">1.48</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> rel_4    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.21</span> <span class="fl">1.55</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> rel_5    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">2.37</span> <span class="fl">1.26</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>    <span class="fl">3.0</span> <span class="fl">1.48</span></span></code></pre></div>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> rel_1    <span class="dv">20</span>       <span class="dv">0</span> <span class="fl">3.65</span> <span class="fl">1.76</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>      <span class="dv">3</span> <span class="fl">1.48</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> rel_2    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.32</span> <span class="fl">1.92</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>      <span class="dv">3</span> <span class="fl">2.97</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> rel_3    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">3.37</span> <span class="fl">1.54</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>      <span class="dv">4</span> <span class="fl">1.48</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> rel_4    <span class="dv">18</span>       <span class="dv">2</span> <span class="fl">3.17</span> <span class="fl">1.50</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>      <span class="dv">3</span> <span class="fl">1.48</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span> rel_5    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">2.47</span> <span class="fl">1.31</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>      <span class="dv">3</span> <span class="fl">1.48</span></span></code></pre></div>
 <p>and the <code><a href="../reference/rename_items.html">rename_items()</a></code> function to get the item
 labels:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
@@ -1981,21 +1988,21 @@ meetings?</td>
 <td align="right">1</td>
 <td align="right">6</td>
 <td align="right">5</td>
-<td align="right">3.0</td>
+<td align="right">3</td>
 <td align="right">1.48</td>
 </tr>
 <tr class="even">
 <td align="left">How often do you spend time in private religious
 activities, such as prayer, meditation or Bible study?</td>
-<td align="right">18</td>
-<td align="right">2</td>
-<td align="right">3.44</td>
-<td align="right">1.89</td>
+<td align="right">19</td>
+<td align="right">1</td>
+<td align="right">3.32</td>
+<td align="right">1.92</td>
 <td align="right">1</td>
 <td align="right">6</td>
 <td align="right">5</td>
-<td align="right">3.5</td>
-<td align="right">2.22</td>
+<td align="right">3</td>
+<td align="right">2.97</td>
 </tr>
 <tr class="odd">
 <td align="left">In my life, I experience the presence of the Divine
@@ -2007,20 +2014,20 @@ activities, such as prayer, meditation or Bible study?</td>
 <td align="right">1</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">4.0</td>
+<td align="right">4</td>
 <td align="right">1.48</td>
 </tr>
 <tr class="even">
 <td align="left">My religious beliefs are what really lie behind my
 whole approach to life</td>
-<td align="right">19</td>
-<td align="right">1</td>
-<td align="right">3.21</td>
-<td align="right">1.55</td>
+<td align="right">18</td>
+<td align="right">2</td>
+<td align="right">3.17</td>
+<td align="right">1.50</td>
 <td align="right">1</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">3.0</td>
+<td align="right">3</td>
 <td align="right">1.48</td>
 </tr>
 <tr class="odd">
@@ -2028,12 +2035,12 @@ whole approach to life</td>
 dealings in life</td>
 <td align="right">19</td>
 <td align="right">1</td>
-<td align="right">2.37</td>
-<td align="right">1.26</td>
+<td align="right">2.47</td>
+<td align="right">1.31</td>
 <td align="right">1</td>
 <td align="right">5</td>
 <td align="right">4</td>
-<td align="right">3.0</td>
+<td align="right">3</td>
 <td align="right">1.48</td>
 </tr>
 </tbody>
