@@ -1,5 +1,5 @@
 ---
-title: "Building a dictionary file"
+title: "Tutorial: How to build a dictionary file"
 author: "Jürgen Wilbert"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
@@ -52,7 +52,7 @@ We combine the *data* file and the *dic* file with the `apply_dic()` function:
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `float` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
+We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed, or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `float` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
 *Scaledic* will estimate the data type from the given data when the `type` attribute is not provided in the dic file. 
 
 Let us add `type` information to the dic file:
@@ -83,7 +83,7 @@ Again, we join dic and data file:
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-Now we add the `values` attribute to the dic file. `values` defines the valid values that a variable can take. Explicitly defining the `values` makes it possible to automatically identify invalid values in a data frame (e.g. typos). `values` are also necessary to reverse score an inverted item. For coding the `values`, you provide the possible values separated with a comma (e.g., `1, 2, 3, 4` for the integers 1 to 4). It is also possible to use a colon to define a range of integers (e.g., `5:11` indicated all integers starting with 5 and ending with 11). For variables of type `factor` or `character` you may want to provide text values. in that case, put these values within quotes (e.g., `'m', 'f', 'd'` indicates three valid text entries).
+Now we add the `values` attribute to the dic file. `values` defines the valid values that a variable can take. Explicitly defining the `values` makes it possible to automatically identify invalid values in a data frame (e.g. typos). `values` are also necessary to reverse score an inverted item. For coding the `values`, you provide the possible values separated with a comma (e.g., `1, 2, 3, 4` for the integers 1 to 4). It is also possible to use a colon to define a range of integers (e.g., `5:11` indicated all integers starting with 5 and ending with 11). For type `float`, values represent the maximum and the minimum of valid values (e.g. `5, 11` for all values within 5 and 11 including decimal numbers). For variables of type `factor` or `character` you may want to provide text values. in that case, put these values within quotes (e.g., `'m', 'f', 'd'` indicates three valid text entries).
 
 Here is the dic file with added `values`:
 
@@ -146,7 +146,7 @@ dat_dic$gender
 dat_dic$age
 ```
 
-`age` can take integers from 5 to 11 (`5:11`). Value labels have not been provided.
+`age` can take all numbers from 5 to 11 (minimum is 5 and maximum is 11).
 
 It is a common practice to code missing values with a specific number (rather than just leaving an empty entry on a datasheet). In the example dataset used here, `-999` is used as a missing value. To account for this, we add the `missing` attribute to the *dic* file containing the missing number (e.g., `-999`). Multiple missing values are separated by commas (e.g. `-99, -77`).
 

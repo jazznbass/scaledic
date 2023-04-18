@@ -350,19 +350,19 @@ store a limited amount of additional information about each item in that
 questionnaire within a data.frame (or tibble). You can give a variable a
 name and define a variable as a factor with appropriate levels. But
 basically, that is it. You cannot, at least not conveniently, include a
-longer label for each item, the name of a scale this item belongs to,
-information about reverse coding, etc.</p>
+longer label for each item, the name of a scale to which that item
+belongs to, information about reverse coding, etc.</p>
 <p>I call the collection of this additional information about items an
 <em>item dictionary</em>. A dictionary contains a short label, a longer
 description, scale affiliation, and more for each item.</p>
 </div>
 <div id="a-dictionary-file" class="section level2">
 <h2>A dictionary file</h2>
-<p>A dictionary file is a table with a row for each variable and a
-column for each atttribute of those variables. Most conveniently, you
-prepare a dictionary file in a spreadsheet program for later use with
+<p>A dictionary file is a table with one row for each variable and one
+column for each attribute of those variables. The most convenient way to
+create a dictionary file is in a spreadsheet program for later use with
 data sets.</p>
-<p>Here is an extract of an example <em>dic-file</em>:</p>
+<p>Here is an extract from an example <em>dic-file</em>:</p>
 <table>
 <colgroup>
 <col width="4%" />
@@ -432,11 +432,11 @@ problematic; 3 = strongly problematic</td>
 </tr>
 </tbody>
 </table>
-<p>A dictionary file can contain any additional attributes you like.
-That is, you can add a column with any name to store relevant
-information (e.g. scale and scale label an item belongs to, a
-translation of the item name). But some predefined attributes exist with
-a specific meaning. The following table shows these attributes:</p>
+<p>A dictionary file can contain any additional attributes. This means
+that you can add a column with any name to store relevant information
+(e.g. the scale and scale label to which an item belongs, a translation
+of the item name). However, there are some predefined attributes with a
+specific meaning. The table below shows these attributes:</p>
 <table>
 <caption>Basic columns of a dictionary file</caption>
 <colgroup>
@@ -501,11 +501,11 @@ is completed with the given dictionary information.<br />
 The resulting dataset is now ready for use with all other
 <code>scaledic</code> functions.</p>
 <p>The <code>apply_dic</code> function takes the name of the dataset and
-the dictionary file and combines them. Missing values are replaced with
+the dictionary file and combines them. Missing values are replaced by
 NAs:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we use the example dataset &quot;dat_itrf&quot; and the example dic file &quot;dic_itrf&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat_itrf, dic_itrf)</span></code></pre></div>
-<p>Let us get an overview of all scales in the dataset:</p>
+<p>Let us take a look at all the scales in the dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">list_scales</span>(dat, <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale_2&quot;</span>), <span class="st">&quot;_label&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
@@ -553,7 +553,7 @@ NAs:</p>
 <div id="clean-raw-data" class="section level2">
 <h2>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and
-replace these with NA:</p>
+replace them with NA:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat, <span class="at">replace =</span> <span class="cn">NA</span>)</span></code></pre></div>
 <p>Now we impute missing values:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Ext</span></span>
@@ -564,8 +564,8 @@ replace these with NA:</p>
 </div>
 <div id="select-scales-for-analyszing" class="section level2">
 <h2>Select scales for analyszing</h2>
-<p>Let us see descriptive statistics for the <em>internalizing</em> sub
-scale:</p>
+<p>Let us look at the descriptive statistics for the
+<em>internalising</em> subscale:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
@@ -602,7 +602,7 @@ scale:</p>
 <td align="left">itrf_I_2</td>
 <td align="right">4772</td>
 <td align="right">4</td>
-<td align="right">0.3</td>
+<td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
@@ -820,7 +820,7 @@ scale:</p>
 </div>
 <div id="see-items-instead-of-labels" class="section level2">
 <h2>See items instead of labels</h2>
-<p>It is more convenient to see the original items instead of the short
+<p>It is more convenient to see the original items rather than the short
 labels:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
@@ -871,7 +871,7 @@ labels:</p>
 <td align="left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td align="right">4772</td>
 <td align="right">4</td>
-<td align="right">0.3</td>
+<td align="right">0.4</td>
 <td align="right">0.7</td>
 <td align="right">0</td>
 <td align="right">3</td>
@@ -1087,7 +1087,7 @@ Bauchschmerzen</td>
 </tr>
 </tbody>
 </table>
-<p>And further we analyse the factor structure. Here we use the
+<p>And then we analyse the factor structure. Here we use the
 <code>rename_item()</code> function to get a more convenient
 description.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
@@ -1157,7 +1157,7 @@ Mitschülern</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
-<td align="left">0.77</td>
+<td align="left">0.76</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1188,7 +1188,7 @@ anderer</td>
 <td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht
 selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.8</td>
+<td align="left">0.81</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1249,14 +1249,14 @@ selbstständig</td>
 Mitschülerinnen und Mits</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.78</td>
+<td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.78</td>
+<td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1277,7 +1277,7 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.55</td>
+<td align="left">0.54</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1292,7 +1292,7 @@ Mitschülerinnen und Mits</td>
 ein</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.48</td>
+<td align="left">0.47</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1308,7 +1308,7 @@ Bauchschmerzen</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.71</td>
+<td align="left">0.72</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Beschwert sich über Krankheit oder
@@ -1338,7 +1338,7 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.59</td>
+<td align="left">0.6</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich ängstlich</td>
@@ -1366,7 +1366,7 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.4</td>
+<td align="left">0.41</td>
 </tr>
 <tr class="even">
 <td align="left">(+)Int_AD: Verhält sich nervös</td>
@@ -1379,8 +1379,8 @@ Details</td>
 <td align="left">SS loadings</td>
 <td align="left">6</td>
 <td align="left">4.79</td>
-<td align="left">4.54</td>
-<td align="left">4.34</td>
+<td align="left">4.52</td>
+<td align="left">4.35</td>
 </tr>
 <tr class="even">
 <td align="left">Proportion Var</td>
@@ -1456,7 +1456,7 @@ Details</td>
 <td align="left">.91 [.91, .91]</td>
 <td align="left">.56</td>
 <td align="left">[.53, .78]</td>
-<td align="left">[0.38, 0.95]</td>
+<td align="left">[0.39, 0.95]</td>
 <td align="left">[0.75, 1.04]</td>
 <td align="left">[.55, .82]</td>
 </tr>
@@ -1470,7 +1470,7 @@ Details</td>
 <td align="left">[.68, .81]</td>
 <td align="left">[0.35, 0.83]</td>
 <td align="left">[0.72, 0.96]</td>
-<td align="left">[.70, .85]</td>
+<td align="left">[.69, .85]</td>
 </tr>
 <tr class="odd">
 <td align="left">SW</td>
@@ -1478,7 +1478,7 @@ Details</td>
 <td align="right">8</td>
 <td align="left">.88 [.87, .88]</td>
 <td align="left">.88 [.88, .89]</td>
-<td align="left">.49</td>
+<td align="left">.48</td>
 <td align="left">[.53, .78]</td>
 <td align="left">[0.21, 0.43]</td>
 <td align="left">[0.51, 0.76]</td>
@@ -1522,7 +1522,7 @@ SW ~~ AD
 ```r
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
-lavaan 0.6.15 ended normally after 60 iterations
+lavaan 0.6.15 ended normally after 59 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1533,13 +1533,13 @@ lavaan 0.6.15 ended normally after 60 iterations
 
 Model Test User Model:
                                                        
-  Test statistic                              21157.213
+  Test statistic                              21153.347
   Degrees of freedom                                588
   P-value (Chi-square)                            0.000
 
 Model Test Baseline Model:
 
-  Test statistic                            110813.909
+  Test statistic                            110855.069
   Degrees of freedom                               630
   P-value                                        0.000
 
@@ -1550,12 +1550,12 @@ User Model versus Baseline Model:
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)            -152353.385
+  Loglikelihood user model (H0)            -152366.944
   Loglikelihood unrestricted model (H1)             NA
                                                       
-  Akaike (AIC)                              304862.771
-  Bayesian (BIC)                            305367.471
-  Sample-size adjusted Bayesian (SABIC)     305119.616
+  Akaike (AIC)                              304889.887
+  Bayesian (BIC)                            305394.588
+  Sample-size adjusted Bayesian (SABIC)     305146.732
 
 Root Mean Square Error of Approximation:
 
@@ -1579,108 +1579,109 @@ Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD =~                                              
     itrf_E_1          1.000                           
-    itrf_E_2          0.957    0.017   55.408    0.000
-    itrf_E_3          0.913    0.016   57.463    0.000
-    itrf_E_4          0.895    0.015   59.021    0.000
-    itrf_E_5          0.948    0.017   55.537    0.000
-    itrf_E_6          0.822    0.015   53.093    0.000
-    itrf_E_14         0.716    0.013   53.853    0.000
-    itrf_E_15         0.634    0.017   37.798    0.000
+    itrf_E_2          0.959    0.017   55.569    0.000
+    itrf_E_3          0.910    0.016   57.484    0.000
+    itrf_E_4          0.893    0.015   59.095    0.000
+    itrf_E_5          0.949    0.017   55.707    0.000
+    itrf_E_6          0.821    0.015   53.089    0.000
+    itrf_E_14         0.714    0.013   53.793    0.000
+    itrf_E_15         0.634    0.017   37.840    0.000
   OPP =~                                              
     itrf_I_20         1.000                           
-    itrf_E_7          0.848    0.013   65.060    0.000
-    itrf_E_8          1.043    0.015   68.170    0.000
-    itrf_E_9          0.993    0.017   58.226    0.000
-    itrf_E_10         0.892    0.014   65.032    0.000
-    itrf_E_11         1.089    0.016   66.709    0.000
-    itrf_E_12         0.802    0.015   54.874    0.000
-    itrf_E_13         0.980    0.014   67.693    0.000
-    itrf_E_16         0.680    0.013   52.002    0.000
+    itrf_E_7          0.849    0.013   65.164    0.000
+    itrf_E_8          1.043    0.015   68.271    0.000
+    itrf_E_9          0.995    0.017   58.329    0.000
+    itrf_E_10         0.894    0.014   65.165    0.000
+    itrf_E_11         1.090    0.016   66.801    0.000
+    itrf_E_12         0.801    0.015   54.832    0.000
+    itrf_E_13         0.981    0.014   67.703    0.000
+    itrf_E_16         0.678    0.013   51.927    0.000
   SW =~                                               
     itrf_I_1          1.000                           
-    itrf_I_4          1.021    0.017   60.143    0.000
-    itrf_I_5          0.906    0.016   56.920    0.000
-    itrf_I_6          0.758    0.014   55.134    0.000
-    itrf_I_13         0.747    0.020   37.442    0.000
-    itrf_I_14         0.691    0.019   36.141    0.000
-    itrf_I_16         1.006    0.021   48.506    0.000
-    itrf_I_24         0.741    0.020   37.882    0.000
+    itrf_I_4          1.025    0.017   60.016    0.000
+    itrf_I_5          0.908    0.016   56.748    0.000
+    itrf_I_6          0.762    0.014   55.162    0.000
+    itrf_I_13         0.746    0.020   37.252    0.000
+    itrf_I_14         0.690    0.019   35.945    0.000
+    itrf_I_16         1.009    0.021   48.417    0.000
+    itrf_I_24         0.740    0.020   37.721    0.000
   AD =~                                               
     itrf_I_2          1.000                           
-    itrf_I_7          1.119    0.028   40.010    0.000
-    itrf_I_8          1.016    0.027   37.956    0.000
-    itrf_I_9          1.228    0.030   40.703    0.000
-    itrf_I_10         0.860    0.025   34.320    0.000
-    itrf_I_11         0.877    0.026   34.139    0.000
-    itrf_I_12         0.948    0.026   36.159    0.000
-    itrf_I_15         1.134    0.028   40.672    0.000
-    itrf_I_17         1.004    0.027   36.802    0.000
-    itrf_I_19         0.820    0.022   36.520    0.000
-    itrf_I_23         1.136    0.027   42.147    0.000
+    itrf_I_7          1.119    0.028   40.095    0.000
+    itrf_I_8          1.017    0.027   38.032    0.000
+    itrf_I_9          1.230    0.030   40.821    0.000
+    itrf_I_10         0.859    0.025   34.364    0.000
+    itrf_I_11         0.876    0.026   34.202    0.000
+    itrf_I_12         0.947    0.026   36.158    0.000
+    itrf_I_15         1.133    0.028   40.752    0.000
+    itrf_I_17         1.001    0.027   36.773    0.000
+    itrf_I_19         0.819    0.022   36.562    0.000
+    itrf_I_23         1.134    0.027   42.208    0.000
 
 Covariances:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD ~~                                              
     OPP               0.285    0.011   26.212    0.000
-    SW                0.148    0.007   19.808    0.000
-    AD                0.136    0.007   20.720    0.000
+    SW                0.147    0.007   19.743    0.000
+    AD                0.137    0.007   20.746    0.000
   OPP ~~                                              
-    SW                0.075    0.006   11.930    0.000
-    AD                0.136    0.006   22.348    0.000
+    SW                0.074    0.006   11.894    0.000
+    AD                0.137    0.006   22.378    0.000
   SW ~~                                               
-    AD                0.132    0.005   25.838    0.000
+    AD                0.131    0.005   25.781    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .itrf_E_1          0.460    0.011   43.145    0.000
-   .itrf_E_2          0.377    0.009   42.471    0.000
-   .itrf_E_3          0.290    0.007   41.297    0.000
-   .itrf_E_4          0.244    0.006   40.196    0.000
-   .itrf_E_5          0.367    0.009   42.405    0.000
-   .itrf_E_6          0.333    0.008   43.519    0.000
-   .itrf_E_14         0.238    0.006   43.201    0.000
-   .itrf_E_15         0.580    0.012   47.038    0.000
-   .itrf_I_20         0.293    0.007   43.569    0.000
-   .itrf_E_7          0.187    0.004   42.902    0.000
-   .itrf_E_8          0.228    0.006   41.460    0.000
-   .itrf_E_9          0.395    0.009   44.994    0.000
-   .itrf_E_10         0.208    0.005   42.914    0.000
-   .itrf_E_11         0.276    0.007   42.191    0.000
-   .itrf_E_12         0.315    0.007   45.695    0.000
-   .itrf_E_13         0.208    0.005   41.711    0.000
-   .itrf_E_16         0.267    0.006   46.186    0.000
-   .itrf_I_1          0.224    0.005   42.879    0.000
-   .itrf_I_4          0.105    0.003   35.491    0.000
-   .itrf_I_5          0.117    0.003   39.392    0.000
-   .itrf_I_6          0.097    0.002   40.855    0.000
-   .itrf_I_13         0.359    0.008   46.788    0.000
-   .itrf_I_14         0.338    0.007   46.976    0.000
-   .itrf_I_16         0.291    0.007   44.211    0.000
-   .itrf_I_24         0.343    0.007   46.720    0.000
-   .itrf_I_2          0.281    0.006   44.999    0.000
-   .itrf_I_7          0.274    0.006   43.908    0.000
-   .itrf_I_8          0.285    0.006   44.932    0.000
-   .itrf_I_9          0.304    0.007   43.480    0.000
+   .itrf_E_1          0.460    0.011   43.126    0.000
+   .itrf_E_2          0.377    0.009   42.423    0.000
+   .itrf_E_3          0.290    0.007   41.331    0.000
+   .itrf_E_4          0.243    0.006   40.199    0.000
+   .itrf_E_5          0.365    0.009   42.352    0.000
+   .itrf_E_6          0.334    0.008   43.545    0.000
+   .itrf_E_14         0.240    0.006   43.254    0.000
+   .itrf_E_15         0.579    0.012   47.036    0.000
+   .itrf_I_20         0.292    0.007   43.560    0.000
+   .itrf_E_7          0.187    0.004   42.890    0.000
+   .itrf_E_8          0.228    0.005   41.449    0.000
+   .itrf_E_9          0.395    0.009   44.984    0.000
+   .itrf_E_10         0.207    0.005   42.889    0.000
+   .itrf_E_11         0.276    0.007   42.184    0.000
+   .itrf_E_12         0.315    0.007   45.713    0.000
+   .itrf_E_13         0.210    0.005   41.746    0.000
+   .itrf_E_16         0.268    0.006   46.205    0.000
+   .itrf_I_1          0.225    0.005   42.948    0.000
+   .itrf_I_4          0.105    0.003   35.405    0.000
+   .itrf_I_5          0.117    0.003   39.414    0.000
+   .itrf_I_6          0.096    0.002   40.737    0.000
+   .itrf_I_13         0.360    0.008   46.813    0.000
+   .itrf_I_14         0.340    0.007   47.001    0.000
+   .itrf_I_16         0.291    0.007   44.214    0.000
+   .itrf_I_24         0.343    0.007   46.741    0.000
+   .itrf_I_2          0.280    0.006   44.988    0.000
+   .itrf_I_7          0.274    0.006   43.894    0.000
+   .itrf_I_8          0.285    0.006   44.924    0.000
+   .itrf_I_9          0.303    0.007   43.445    0.000
    .itrf_I_10         0.298    0.006   46.169    0.000
-   .itrf_I_11         0.315    0.007   46.217    0.000
-   .itrf_I_12         0.300    0.007   45.614    0.000
-   .itrf_I_15         0.260    0.006   43.501    0.000
-   .itrf_I_17         0.315    0.007   45.389    0.000
-   .itrf_I_19         0.216    0.005   45.490    0.000
-   .itrf_I_23         0.217    0.005   42.404    0.000
-    APD               0.625    0.021   30.137    0.000
-    OPP               0.529    0.016   33.026    0.000
-    SW                0.283    0.010   29.340    0.000
-    AD                0.191    0.008   23.493    0.000
+   .itrf_I_11         0.315    0.007   46.213    0.000
+   .itrf_I_12         0.301    0.007   45.631    0.000
+   .itrf_I_15         0.260    0.006   43.490    0.000
+   .itrf_I_17         0.316    0.007   45.418    0.000
+   .itrf_I_19         0.216    0.005   45.493    0.000
+   .itrf_I_23         0.216    0.005   42.410    0.000
+    APD               0.626    0.021   30.174    0.000
+    OPP               0.529    0.016   33.053    0.000
+    SW                0.282    0.010   29.249    0.000
+    AD                0.192    0.008   23.532    0.000
 ```
 -->
 </div>
 <div id="build-scale-scores" class="section level2">
 <h2>Build scale scores</h2>
-<p>Now we build scores for internalizing and externalizing scales</p>
+<p>Now we will create scores for the internalizing and externalizing
+scales.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>dat<span class="sc">$</span>itrf_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
-<p>and get descriptives for these scores</p>
+<p>and get descriptives for those scores</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_scores</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
@@ -1742,10 +1743,10 @@ Variances:
 </table>
 </div>
 </div>
-<div id="lookup-norm-values-from-a-normtable" class="section level2">
-<h2>Lookup norm values from a normtable</h2>
-<p>Many scales come with norm tables to transform raw-scores into
-T-scores, percentile ranks etc.</p>
+<div id="look-up-norms-from-a-norm-table" class="section level2">
+<h2>Look up norms from a norm table</h2>
+<p>Many scales come with norm tables to convert raw scores to t-scores,
+percentile ranks, etc.</p>
 <p>The <code>lookup_norms</code> function helps with this
 conversion.</p>
 <p>Firstly, you need a data frame (or Excel table etc) which includes
@@ -1836,7 +1837,7 @@ raw-scores and corresponding norm-scores.</p>
 </tbody>
 </table>
 <p>Then we need raw-scores from a scale. If they do not exist, you may
-use the <code>score_scales</code> function to add sum scores. Therefore,
+use the <code>score_scales</code> function to add sum scores. Therefore
 set the sum argument to <code>TRUE</code>. By setting
 <code>max_na = 0</code>, we do not allow missing values in any scale
 item:</p>
