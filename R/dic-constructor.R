@@ -316,7 +316,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 }
 
 has_info <- function(x) {
-  if (is.null(x) || identical(x, NA) || identical(x, "")) return(FALSE)
+  if (is.null(x) || isTRUE(is.na(x)) || identical(unname(x), "")) return(FALSE)
   TRUE
 }
 
