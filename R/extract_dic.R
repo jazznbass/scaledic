@@ -39,6 +39,8 @@ extract_dic <- function(data) {
 
     #value_labels <- dic[[opt("value_labels")]]
 
+    dic[[opt("type")]] <- tolower(dic[[opt("type")]])
+
     if (!has_info(values)) {
       values <- NA
     } else if (dic[[opt("type")]] %in% opt("numerics")) {
@@ -62,10 +64,13 @@ extract_dic <- function(data) {
     if (has_info(names(values))) {
       .filter <- which(!is.na(names(values)))
       value_labels <- names(values)[.filter]
-      if (length(.filter) > 0)
+      if (length(.filter) > 0) {
         value_labels <- paste0(
           unname(values[.filter]), " = ", names(values)[.filter], collapse = "; "
         )
+      } else {
+        value_labels <- NA
+      }
     } else {
       value_labels <- NA
     }

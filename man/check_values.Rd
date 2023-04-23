@@ -10,7 +10,7 @@ check_values(
   return = TRUE,
   report = FALSE,
   include_missing = FALSE,
-  integer_as_double = TRUE,
+  integer_as_float = FALSE,
   check_type = TRUE
 )
 }
@@ -23,19 +23,24 @@ check_values(
 
 \item{report}{If TRUE, an overview of invalid values will be given.}
 
-\item{include_missing}{If TRUE, missing values (provided as 'missing' in
-the dic file) will be considered as valid values.}
+\item{include_missing}{If TRUE, missing values (provided as 'missing' in the
+dic file) will be considered as valid values.}
 
-\item{integer_as_double}{If TRUE, type 'integer' will be coverted to 'double'.}
+\item{integer_as_float}{If TRUE, type 'integer' will be handled as 'float'.
+That is, only values outside the minimum and the maximum of the provided
+valid values will be considered invalid.}
 
-\item{check_type}{If TRUE, it will check if the class of a variable conflicts with the 'type' as defined in the dic information. When a type is numeric and the class is 'character' it will try to convert the class to a numeric class.}
+\item{check_type}{If TRUE, it will check if the class of a variable conflicts
+with the 'type' as defined in the dic information. When a type is numeric
+and the class is 'character' it will try to convert the class to a numeric
+class.}
 }
 \value{
 A data frame with replaced values if replaces is not NULL.
 }
 \description{
-Checks if values in variables are valid according to
-the 'values' and 'type' dictionary attributes.
+Checks if values in variables are valid according to the 'values' and 'type'
+dictionary attributes.
 }
 \examples{
 check_values(ex_itrf, return = FALSE)

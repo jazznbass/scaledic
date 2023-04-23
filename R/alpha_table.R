@@ -68,7 +68,7 @@ alpha_table <- function(data,
 
     if (keys == "auto") {
       key <- data[, scales[[i]]] |>
-        map_dbl(~ dic_attr(.x, "weight")) |>
+        map_dbl(~ as.numeric(dic_attr(.x, "weight"))) |>
         sign()
     }
 
