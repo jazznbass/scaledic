@@ -1,16 +1,21 @@
 #' Check values
 #'
-#' Checks if values in variables are valid according to
-#' the 'values' and 'type' dictionary attributes.
+#' Checks if values in variables are valid according to the 'values' and 'type'
+#' dictionary attributes.
 #'
 #' @param data A data frame
 #' @param replace Value which relaces unvalid values (e.g., NA).
 #' @param return If TRUE, a data frame is returned with replaced values.
 #' @param report If TRUE, an overview of invalid values will be given.
-#' @param include_missing If TRUE, missing values (provided as 'missing' in
-#' the dic file) will be considered as valid values.
-#' @param integer_as_double If TRUE, type 'integer' will be coverted to 'double'.
-#' @param check_type If TRUE, it will check if the class of a variable conflicts with the 'type' as defined in the dic information. When a type is numeric and the class is 'character' it will try to convert the class to a numeric class.
+#' @param include_missing If TRUE, missing values (provided as 'missing' in the
+#'   dic file) will be considered as valid values.
+#' @param integer_as_float If TRUE, type 'integer' will be handled as 'float'.
+#'   That is, only values outside the minimum and the maximum of the provided
+#'   valid values will be considered invalid.
+#' @param check_type If TRUE, it will check if the class of a variable conflicts
+#'   with the 'type' as defined in the dic information. When a type is numeric
+#'   and the class is 'character' it will try to convert the class to a numeric
+#'   class.
 #' @return A data frame with replaced values if replaces is not NULL.
 #' @export
 #' @examples
@@ -21,9 +26,8 @@ check_values <- function(
   return = TRUE,
   report = FALSE,
   include_missing = FALSE,
-  integer_as_double = TRUE,
-  check_type = TRUE
-) {
+  integer_as_float = FALSE,
+  check_type = TRUE) {
 
   if (!"data.frame" %in% class(data)) data <- data.frame(data)
 
@@ -32,16 +36,16 @@ check_values <- function(
   errors <- list()
 
   for (i in id) {
-    values <- dic_attr(data[[i]], .opt$values)
-    missing <- dic_attr(data[[i]], .opt$missing)
+    values <- dic_attr(data[[i]], "values")
+    missing <- dic_attr(data[[i]], "missing")
     if (!include_missing) missing <- NULL
-    type <- dic_attr(data[[i]], .opt$type)
+    type <- dic_attr(data[[i]], "type")
 
     ### strict checking integers otherwise use float
 
-    if(type %in% "integer" && integer_as_double) type <- "float"
+    if(type %in% "integer" && integer_as_float) type <- "float"
 
-    if (type %in% c("float", "double", "integer") && check_type) {
+    if (type %in% opt("numerics") && check_type) {
       if ("character" %in% class(data[[i]])) {
         cat(
           names(data)[i],
@@ -79,7 +83,7 @@ check_values <- function(
 
     x <- data[[i]][id_error]
 
-    attr(x, .opt$dic) <- NULL
+    attr(x, opt("dic")) <- NULL
     attr(x, "label") <- NULL
     attr(x, "labels") <- NULL
     class(x) <- class(x)[class(x) != "dic"]
