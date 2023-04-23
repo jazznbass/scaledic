@@ -1,3 +1,7 @@
+# scaledic 0.3.1
+
+- solved bug. extract_dic did not work when type name was in capitals (e.g. "Integer")
+
 # scaledic 0.3.0
 
 ## New function
