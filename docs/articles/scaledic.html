@@ -33,7 +33,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -736,7 +736,7 @@ rechtzeitig fertig</td>
 <td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt
 werden, nicht mit</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.72</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -788,14 +788,14 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Beteiligt sich nicht an Gruppenaktionen</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.65</td>
+<td align="left">0.66</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.54</td>
+<td align="left">0.55</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -891,13 +891,13 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left"></td>
+<td align="left">0.4</td>
 </tr>
 <tr class="odd">
 <td align="left">SS loadings</td>
 <td align="left">6</td>
-<td align="left">4.8</td>
-<td align="left">4.51</td>
+<td align="left">4.79</td>
+<td align="left">4.53</td>
 <td align="left">4.35</td>
 </tr>
 <tr class="even">
@@ -973,7 +973,7 @@ Details</td>
 <td align="left">.91 [.91, .91]</td>
 <td align="left">.56</td>
 <td align="left">[.53, .78]</td>
-<td align="left">[0.39, 0.95]</td>
+<td align="left">[0.38, 0.95]</td>
 <td align="left">[0.75, 1.04]</td>
 <td align="left">[.55, .82]</td>
 </tr>
@@ -1039,7 +1039,7 @@ SW ~~ AD
 ```r
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
-lavaan 0.6.15 ended normally after 60 iterations
+lavaan 0.6.15 ended normally after 65 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1050,13 +1050,13 @@ lavaan 0.6.15 ended normally after 60 iterations
 
 Model Test User Model:
                                                        
-  Test statistic                              21196.292
+  Test statistic                              21195.902
   Degrees of freedom                                588
   P-value (Chi-square)                            0.000
 
 Model Test Baseline Model:
 
-  Test statistic                            110790.155
+  Test statistic                            110956.265
   Degrees of freedom                               630
   P-value                                        0.000
 
@@ -1067,12 +1067,12 @@ User Model versus Baseline Model:
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)            -152396.550
+  Loglikelihood user model (H0)            -152369.705
   Loglikelihood unrestricted model (H1)             NA
                                                       
-  Akaike (AIC)                              304949.100
-  Bayesian (BIC)                            305453.800
-  Sample-size adjusted Bayesian (SABIC)     305205.945
+  Akaike (AIC)                              304895.409
+  Bayesian (BIC)                            305400.110
+  Sample-size adjusted Bayesian (SABIC)     305152.254
 
 Root Mean Square Error of Approximation:
 
@@ -1084,7 +1084,7 @@ Root Mean Square Error of Approximation:
 
 Standardized Root Mean Square Residual:
 
-  SRMR                                           0.080
+  SRMR                                           0.081
 
 Parameter Estimates:
 
@@ -1096,99 +1096,99 @@ Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD =~                                              
     itrf_E_1          1.000                           
-    itrf_E_2          0.957    0.017   55.521    0.000
-    itrf_E_3          0.912    0.016   57.518    0.000
-    itrf_E_4          0.894    0.015   59.218    0.000
-    itrf_E_5          0.949    0.017   55.660    0.000
-    itrf_E_6          0.821    0.015   53.146    0.000
-    itrf_E_14         0.714    0.013   53.817    0.000
-    itrf_E_15         0.635    0.017   37.906    0.000
+    itrf_E_2          0.956    0.017   55.153    0.000
+    itrf_E_3          0.920    0.016   57.492    0.000
+    itrf_E_4          0.899    0.015   59.055    0.000
+    itrf_E_5          0.952    0.017   55.552    0.000
+    itrf_E_6          0.825    0.016   53.063    0.000
+    itrf_E_14         0.717    0.013   53.748    0.000
+    itrf_E_15         0.632    0.017   37.580    0.000
   OPP =~                                              
     itrf_I_20         1.000                           
-    itrf_E_7          0.847    0.013   64.992    0.000
-    itrf_E_8          1.042    0.015   68.158    0.000
-    itrf_E_9          0.995    0.017   58.335    0.000
-    itrf_E_10         0.892    0.014   65.044    0.000
-    itrf_E_11         1.090    0.016   66.750    0.000
-    itrf_E_12         0.801    0.015   54.876    0.000
-    itrf_E_13         0.980    0.014   67.617    0.000
-    itrf_E_16         0.680    0.013   51.990    0.000
+    itrf_E_7          0.850    0.013   65.253    0.000
+    itrf_E_8          1.044    0.015   68.310    0.000
+    itrf_E_9          0.994    0.017   58.298    0.000
+    itrf_E_10         0.894    0.014   65.224    0.000
+    itrf_E_11         1.089    0.016   66.810    0.000
+    itrf_E_12         0.802    0.015   54.962    0.000
+    itrf_E_13         0.981    0.014   67.751    0.000
+    itrf_E_16         0.681    0.013   52.048    0.000
   SW =~                                               
     itrf_I_1          1.000                           
-    itrf_I_4          1.033    0.017   59.274    0.000
-    itrf_I_5          0.916    0.016   56.146    0.000
-    itrf_I_6          0.769    0.014   54.571    0.000
-    itrf_I_13         0.754    0.020   37.137    0.000
-    itrf_I_14         0.699    0.019   35.927    0.000
-    itrf_I_16         1.016    0.021   47.940    0.000
-    itrf_I_24         0.745    0.020   37.474    0.000
+    itrf_I_4          1.024    0.017   60.017    0.000
+    itrf_I_5          0.908    0.016   56.741    0.000
+    itrf_I_6          0.762    0.014   55.081    0.000
+    itrf_I_13         0.746    0.020   37.260    0.000
+    itrf_I_14         0.692    0.019   36.104    0.000
+    itrf_I_16         1.006    0.021   48.287    0.000
+    itrf_I_24         0.739    0.020   37.626    0.000
   AD =~                                               
     itrf_I_2          1.000                           
-    itrf_I_7          1.120    0.028   40.016    0.000
-    itrf_I_8          1.018    0.027   37.948    0.000
-    itrf_I_9          1.230    0.030   40.726    0.000
-    itrf_I_10         0.860    0.025   34.312    0.000
-    itrf_I_11         0.875    0.026   34.085    0.000
-    itrf_I_12         0.949    0.026   36.156    0.000
-    itrf_I_15         1.136    0.028   40.697    0.000
-    itrf_I_17         1.003    0.027   36.768    0.000
-    itrf_I_19         0.820    0.022   36.505    0.000
-    itrf_I_23         1.136    0.027   42.136    0.000
+    itrf_I_7          1.122    0.028   40.091    0.000
+    itrf_I_8          1.017    0.027   37.963    0.000
+    itrf_I_9          1.230    0.030   40.738    0.000
+    itrf_I_10         0.859    0.025   34.279    0.000
+    itrf_I_11         0.876    0.026   34.131    0.000
+    itrf_I_12         0.949    0.026   36.181    0.000
+    itrf_I_15         1.135    0.028   40.697    0.000
+    itrf_I_17         1.002    0.027   36.743    0.000
+    itrf_I_19         0.820    0.022   36.513    0.000
+    itrf_I_23         1.135    0.027   42.151    0.000
 
 Covariances:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD ~~                                              
-    OPP               0.286    0.011   26.242    0.000
-    SW                0.146    0.007   19.724    0.000
-    AD                0.137    0.007   20.762    0.000
+    OPP               0.285    0.011   26.251    0.000
+    SW                0.146    0.007   19.607    0.000
+    AD                0.136    0.007   20.676    0.000
   OPP ~~                                              
-    SW                0.074    0.006   11.925    0.000
-    AD                0.136    0.006   22.379    0.000
+    SW                0.074    0.006   11.845    0.000
+    AD                0.136    0.006   22.375    0.000
   SW ~~                                               
-    AD                0.130    0.005   25.749    0.000
+    AD                0.131    0.005   25.779    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .itrf_E_1          0.460    0.011   43.146    0.000
-   .itrf_E_2          0.377    0.009   42.462    0.000
-   .itrf_E_3          0.291    0.007   41.325    0.000
-   .itrf_E_4          0.241    0.006   40.121    0.000
-   .itrf_E_5          0.366    0.009   42.391    0.000
-   .itrf_E_6          0.333    0.008   43.534    0.000
-   .itrf_E_14         0.239    0.006   43.256    0.000
-   .itrf_E_15         0.579    0.012   47.032    0.000
-   .itrf_I_20         0.293    0.007   43.556    0.000
-   .itrf_E_7          0.188    0.004   42.929    0.000
-   .itrf_E_8          0.228    0.006   41.468    0.000
-   .itrf_E_9          0.394    0.009   44.967    0.000
-   .itrf_E_10         0.208    0.005   42.908    0.000
-   .itrf_E_11         0.276    0.007   42.172    0.000
-   .itrf_E_12         0.314    0.007   45.692    0.000
-   .itrf_E_13         0.210    0.005   41.750    0.000
-   .itrf_E_16         0.268    0.006   46.185    0.000
-   .itrf_I_1          0.229    0.005   43.114    0.000
-   .itrf_I_4          0.105    0.003   35.384    0.000
-   .itrf_I_5          0.117    0.003   39.361    0.000
-   .itrf_I_6          0.096    0.002   40.719    0.000
-   .itrf_I_13         0.360    0.008   46.791    0.000
-   .itrf_I_14         0.339    0.007   46.970    0.000
-   .itrf_I_16         0.292    0.007   44.223    0.000
-   .itrf_I_24         0.343    0.007   46.739    0.000
-   .itrf_I_2          0.281    0.006   45.007    0.000
-   .itrf_I_7          0.274    0.006   43.901    0.000
-   .itrf_I_8          0.286    0.006   44.934    0.000
-   .itrf_I_9          0.303    0.007   43.461    0.000
-   .itrf_I_10         0.298    0.006   46.171    0.000
-   .itrf_I_11         0.316    0.007   46.232    0.000
-   .itrf_I_12         0.300    0.007   45.615    0.000
-   .itrf_I_15         0.260    0.006   43.480    0.000
-   .itrf_I_17         0.315    0.007   45.400    0.000
-   .itrf_I_19         0.216    0.005   45.495    0.000
-   .itrf_I_23         0.217    0.005   42.406    0.000
-    APD               0.626    0.021   30.168    0.000
-    OPP               0.528    0.016   33.036    0.000
-    SW                0.277    0.010   28.929    0.000
-    AD                0.191    0.008   23.482    0.000
+   .itrf_E_1          0.463    0.011   43.222    0.000
+   .itrf_E_2          0.379    0.009   42.565    0.000
+   .itrf_E_3          0.290    0.007   41.221    0.000
+   .itrf_E_4          0.241    0.006   40.089    0.000
+   .itrf_E_5          0.365    0.009   42.360    0.000
+   .itrf_E_6          0.332    0.008   43.510    0.000
+   .itrf_E_14         0.238    0.006   43.222    0.000
+   .itrf_E_15         0.582    0.012   47.068    0.000
+   .itrf_I_20         0.292    0.007   43.568    0.000
+   .itrf_E_7          0.187    0.004   42.874    0.000
+   .itrf_E_8          0.228    0.005   41.455    0.000
+   .itrf_E_9          0.396    0.009   45.003    0.000
+   .itrf_E_10         0.207    0.005   42.886    0.000
+   .itrf_E_11         0.276    0.007   42.203    0.000
+   .itrf_E_12         0.314    0.007   45.697    0.000
+   .itrf_E_13         0.209    0.005   41.747    0.000
+   .itrf_E_16         0.268    0.006   46.194    0.000
+   .itrf_I_1          0.226    0.005   42.953    0.000
+   .itrf_I_4          0.104    0.003   35.351    0.000
+   .itrf_I_5          0.117    0.003   39.394    0.000
+   .itrf_I_6          0.096    0.002   40.777    0.000
+   .itrf_I_13         0.360    0.008   46.810    0.000
+   .itrf_I_14         0.338    0.007   46.977    0.000
+   .itrf_I_16         0.293    0.007   44.252    0.000
+   .itrf_I_24         0.344    0.007   46.754    0.000
+   .itrf_I_2          0.281    0.006   45.001    0.000
+   .itrf_I_7          0.273    0.006   43.866    0.000
+   .itrf_I_8          0.285    0.006   44.934    0.000
+   .itrf_I_9          0.304    0.007   43.464    0.000
+   .itrf_I_10         0.298    0.006   46.183    0.000
+   .itrf_I_11         0.315    0.007   46.222    0.000
+   .itrf_I_12         0.300    0.007   45.610    0.000
+   .itrf_I_15         0.260    0.006   43.491    0.000
+   .itrf_I_17         0.315    0.007   45.414    0.000
+   .itrf_I_19         0.216    0.005   45.496    0.000
+   .itrf_I_23         0.217    0.005   42.408    0.000
+    APD               0.622    0.021   30.054    0.000
+    OPP               0.529    0.016   33.061    0.000
+    SW                0.282    0.010   29.237    0.000
+    AD                0.191    0.008   23.495    0.000
 ```
 -->
 </div>
@@ -1379,9 +1379,9 @@ item:</p>
 </tr>
 <tr class="odd">
 <td align="right">53</td>
-<td align="right">61</td>
+<td align="right">62</td>
 <td align="right">75</td>
-<td align="right">86</td>
+<td align="right">87</td>
 </tr>
 <tr class="even">
 <td align="right">47</td>
