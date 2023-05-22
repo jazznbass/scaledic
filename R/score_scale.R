@@ -40,11 +40,13 @@ score_scale <- function(data,
                         max_na = NA,
                         label = NULL,
                         fun = NULL,
-                        var_weight = NULL) {
+                        var_weight = NULL,
+                        var_recoding = NULL) {
 
   filter <- deparse(substitute(filter))
 
   if (is.null(var_weight)) var_weight <- opt("weight")
+  if (is.null(var_recoding)) var_recoding <- opt("scores")
 
   .score_scale(
     data = data,
@@ -55,6 +57,7 @@ score_scale <- function(data,
     label = label,
     fun = fun,
     var_weight = var_weight,
+    var_recoding = var_recoding,
     function_name = deparse(match.call()$fun)
   )
 
@@ -68,6 +71,7 @@ score_scale <- function(data,
                          label,
                          fun,
                          var_weight,
+                         var_recoding,
                          function_name) {
 
   msg <- c()
@@ -86,6 +90,39 @@ score_scale <- function(data,
 
   df <- data[, .get_index(data = data, filter, class = "item")]
 
+  # recode items
+
+  tmp <- .recode_dic_items(df, var_recoding)
+  df <- tmp$df
+  msg <- c(msg, tmp$msg)
+
+  # for(i in 1:ncol(df)) {
+  #   recoding <- dic_attr(df[[i]], var_recoding)
+  #   if (is.null(recoding)) next
+  #   msg <- c(msg, "Found recoding information and recoded values.")
+  #   recoding <- gsub(" ", "", recoding) |>
+  #     strsplit(",") |>
+  #     unlist() |>
+  #     lapply(function(x) strsplit(trimws(x), "=") |> unlist())
+  #   .new <- df[[i]]
+  #   for (j in 1:length(recoding)) {
+  #     from <- recoding[[j]][1]
+  #     to <- recoding[[j]][2]
+  #     if (dic_attr(df[[i]], "type") %in% opt("numerics")) {
+  #       from <- as.numeric(from)
+  #       to <- as.numeric(to)
+  #     }
+  #     .filter <- which(df[[i]] == from)
+  #     .new[.filter] <- to
+  #   }
+  #
+  #   df[[i]] <- .new
+  #
+  #   .values <- lapply(recoding, function(x) as.numeric(unname(x[[2]]))) |> unlist()
+  #   dic_attr(df[[i]], "values") <- .values
+  #
+  # }
+
   if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) {
     min_valid <- trunc(min_valid * nrow(df))
   }
@@ -102,7 +139,7 @@ score_scale <- function(data,
     weight <- dic_attr(x, var_weight)
     if (is.null(weight)) {
       weight <- 1
-      msg <<- c(msg, "Weight information missing. Set weight to 1.")
+      msg <- c(msg, "Weight information missing. Set weight to 1.")
     }
     as.numeric(weight)
   }
@@ -114,12 +151,12 @@ score_scale <- function(data,
   max_values <- sapply(df, function(.x) max(dic_attr(.x, "values")))
   min_values <- sapply(df, function(.x) min(dic_attr(.x, "values")))
 
- if (any(is.na(max_values)) && any(sign == -1)) {
-  stop(
-    "A negative weight is provided but max and min values of at least one item ",
-    "are missing.\nNeed max and min values as dic attributes to reverse items."
-  )
- }
+  if (any(is.na(max_values)) && any(sign == -1)) {
+    stop(
+      "A negative weight is provided but max and min values of at least one item ",
+      "are missing.\nNeed max and min values as dic attributes to reverse items."
+    )
+  }
 
   new_score <- apply(df, 1, function(x) {
     if(isTRUE(sum(!is.na(x)) < min_valid) || isTRUE(sum(is.na(x)) > max_na)) {
