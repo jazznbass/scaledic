@@ -78,6 +78,7 @@ new_dic <- function(x,
         ". Coerced to integer"
       ))
       x[] <- as.integer(x)
+      class(x) <- "integer"
     } else {
       msg <- c(msg, paste0(
         "Class should be integer but is ", paste0(class(x), collapse = ", ")
@@ -92,6 +93,7 @@ new_dic <- function(x,
         ". Coerced to integer"
       ))
       x[] <- as.double(x)
+      class(x) <- "numeric"
     } else {
       msg <- c(msg, paste0(
         "Class should be double but is ", paste0(class(x), collapse = ", ")
@@ -106,6 +108,7 @@ new_dic <- function(x,
           ". Coerced to numeric"
         ))
         x[] <- as.double(x)
+        class(x) <- "numeric"
       } else {
         msg <- c(msg, paste0(
           "Class should be numeric but is ", paste0(class(x), collapse = ", ")
