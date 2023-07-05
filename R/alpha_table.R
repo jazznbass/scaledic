@@ -89,9 +89,13 @@ alpha_table <- function(data,
     }
 
     if (keys == "auto") {
-      key <- data_scale |>
-        map_dbl(~ as.numeric(dic_attr(.x, "weight"))) |>
-        sign()
+      if (requireNamespace("help", quietly = TRUE)) {
+        key <- data_scale |>
+          map_dbl(~ as.numeric(scaledic::dic_attr(.x, "weight"))) |>
+          sign()
+      } else {
+        message("Scaledic is not installed, keys can not be extracted automatically.")
+      }
     }
 
     if (!is.null(values)) {
