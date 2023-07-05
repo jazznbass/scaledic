@@ -12,6 +12,7 @@
   "class" = "class",
   "score_filter" = "score_filter",
   "score_function" = "score_function",
+  "scores" = "scores",
   "numerics" = c("numeric", "integer", "double", "float")
 )
 
@@ -144,3 +145,4 @@ return_messages <- function(msg, warning = FALSE) {
   msg <- paste0("\n", msg, "\n")
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
+

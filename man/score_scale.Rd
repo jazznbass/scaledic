@@ -12,7 +12,8 @@ score_scale(
   max_na = NA,
   label = NULL,
   fun = NULL,
-  var_weight = NULL
+  var_weight = NULL,
+  var_recoding = NULL
 )
 }
 \arguments{

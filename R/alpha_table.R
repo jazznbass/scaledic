@@ -55,19 +55,41 @@ alpha_table <- function(data,
     #if (!is.null(keys)) {
     #  key <- keys[[i]] else key <- NULL
     #}
+    data_scale <- data[, scales[[i]]]
+    .id <- apply(data_scale, 1, function(x) all(is.na(x))) |> which()
+    if (length(.id) > 0) {
+      message(
+        "Removed ", length(id), " rows because all items were missing."
+      )
+     data_scale <- data_scale[-.id, ]
+    }
 
-    .var <- apply(data[, scales[[i]]], 2, var, na.rm = TRUE)
-    if (any(.var == 0)) {
+    .var <- apply(data_scale, 2, var, na.rm = TRUE)
+
+    if (any(.var == 0, na.rm = TRUE)) {
+      filter_names <- names(data_scale)[which(.var == 0)]
       message(
         "Variable with no variance dropped from analyses: ",
-        paste0(names(data[, scales[[i]]])[which(.var == 0)], collapse = ", ")
+        paste0(filter_names, collapse = ", ")
       )
+      .id <- which(!scales[[i]] %in% filter_names)
+      scales[[i]] <- scales[[i]][.id]
+      data_scale <- data_scale[, scales[[i]]]
     }
-    .id <- which(.var != 0)
-    scales[[i]] <- scales[[i]][.id]
+
+    if (any(is.na(.var), na.rm = TRUE)) {
+      filter_names <- names(data_scale)[which(is.na(.var))]
+      message(
+        "Variable with NA variance dropped from analyses: ",
+        paste0(filter_names, collapse = ", ")
+      )
+      .id <- which(!scales[[i]] %in% filter_names)
+      scales[[i]] <- scales[[i]][.id]
+      data_scale <- data_scale[, scales[[i]]]
+    }
 
     if (keys == "auto") {
-      key <- data[, scales[[i]]] |>
+      key <- data_scale |>
         map_dbl(~ as.numeric(dic_attr(.x, "weight"))) |>
         sign()
     }
@@ -78,10 +100,10 @@ alpha_table <- function(data,
     }
 
     a <- invisible(
-      psych::alpha(data[, scales[[i]]], check.key = check_key, keys = key)
+      psych::alpha(data_scale, check.key = check_key, keys = key,use = "pairwise")
     )
 
-    if (fa) f <- invisible(psych::fa(data[, scales[[i]]]))
+    if (fa) f <- invisible(psych::fa(data_scale))
     alpha <- a$total$raw_alpha
     df$"n"[i] <- min(a$item.stats$n, na.rm = TRUE)
 
@@ -91,7 +113,7 @@ alpha_table <- function(data,
 
     if (CI) {
       a.CI <- .alpha_CI(
-        alpha, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
+        alpha, nrow(data_scale), length(scales[[i]]), conf_level
       )
       df$Alpha[i] <- glue(
         "{.nice_num(alpha, round)} [{.nice_num(a.CI[1], 2)}, ",
@@ -106,7 +128,7 @@ alpha_table <- function(data,
 
     if (CI) {
       a.std.CI <- .alpha_CI(
-        alpha.std, nrow(data[, scales[[i]]]), length(scales[[i]]), conf_level
+        alpha.std, nrow(data_scale), length(scales[[i]]), conf_level
       )
       df$"Std.Alpha"[i] <- glue(
         "{.nice_num(alpha.std, 2)} [{.nice_num(a.std.CI[1], 2)}, ",
