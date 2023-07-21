@@ -54,12 +54,17 @@ rename_items <- function(data,
   dic_env$label <- dic_env$item_label
   dic_env$name <- dic_env$item_name
   dic_env$values <- paste0(dic_env$values, collapse = ",")
-  dic_env$value_labels <- paste0(
-    dic_env$value_labels$value,
-    " = ",
-    dic_env$value_labels$label,
-    collapse = "; "
-  )
+
+  #if (!is.null(dic_env$value_labels)) {
+  #  dic_env$value_labels <- paste0(
+  #    dic_env$value_labels$value,
+  #    " = ",
+  #    dic_env$value_labels$label,
+  #    collapse = "; "
+  #  )
+  #} else {
+  #  dic_env$value_labels <- NA
+  #}
 
   glue(pattern, .envir = list2env(dic_env))
 }
