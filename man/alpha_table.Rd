@@ -12,7 +12,8 @@ alpha_table(
   CI = TRUE,
   conf_level = 0.95,
   check_key = TRUE,
-  keys = "auto",
+  keys = NULL,
+  keys_from_weights = TRUE,
   RMSEA = FALSE,
   difficulty = FALSE,
   values = NULL,
@@ -37,6 +38,9 @@ element defines one scale. Named list elements are used as labels.}
 \item{check_key}{Check_key for the psych::alpha function.}
 
 \item{keys}{Optional key argument for the psych::alpha function.}
+
+\item{keys_from_weights}{If TRUE, tries to define keys from scaledics
+"weights" parameter.}
 
 \item{RMSEA}{If TRUE RMSEA is calculated.}
 
