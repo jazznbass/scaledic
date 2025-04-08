@@ -43,7 +43,8 @@ score_from_dic <- function(data,
       min_valid = 1,
       max_na = NA,
       sum = sum,
-      var_weight = "weight"
+      var_weight = "weight",
+      var_recoding = NULL
     )
 
   }

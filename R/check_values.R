@@ -54,7 +54,7 @@ check_values <- function(
         .attr <- attributes(data[[i]])
         data[[i]] <- as.numeric(data[[i]])
         attributes(data[[i]]) <- .attr
-        class(data[[i]]) <- c("dic", "numeric")
+        class(data[[i]]) <- c("numeric")
       }
     }
 
@@ -86,7 +86,7 @@ check_values <- function(
     attr(x, opt("dic")) <- NULL
     attr(x, "label") <- NULL
     attr(x, "labels") <- NULL
-    class(x) <- class(x)[class(x) != "dic"]
+
     names(x) <- id_error
     if (!(length(id_error) > 0)) x <- NULL
     errors[[name[i]]] <- x

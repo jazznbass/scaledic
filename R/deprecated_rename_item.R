@@ -73,7 +73,6 @@ rename_items_deprecated <- function(data,
           tmp_char_sep <- char_prefix_label
       }
 
-      #if (class(tmp_label) == "character")
       new_label <- paste0(new_label, tmp_label, tmp_char_sep)
 
 

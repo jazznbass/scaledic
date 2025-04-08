@@ -6,7 +6,7 @@
 #' @return Dic infos of x
 #' @keywords internal
 #' @export
-print.dic <- function(x, ..., prefix = "# ") {
+dic <- function(x, ..., prefix = "# ") {
   data <- x
   first_line <- paste0(prefix, dic_attr(data, "item_label"))
   if (!is.null(dic_attr(data, "scale_label")) && !identical(dic_attr(data, "scale_label"), NA))
@@ -59,7 +59,6 @@ print.dic <- function(x, ..., prefix = "# ") {
 
   }
 
-  class(data) <- class(data)[!class(data) %in% opt("dic")]
   attr(data, opt("dic")) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL

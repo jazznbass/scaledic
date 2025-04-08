@@ -7,14 +7,11 @@
 #' @return A dic variable
 #' @keywords internal
 #' @export
-`[.dic`<- function(x, i = length(x), ...) {
+select_var <- function(x, i = length(x), ...) {
   arg <- list(...)
-  cl <- class(x)
   dic <- attr(x, .opt$dic)
   lab <- attr(x, "label")
-  class(x) <- cl[!cl %in% "dic"]
   out <- do.call("[", c(list(x), list(i), arg))
-  class(out) <- cl
   attr(out, .opt$dic) <- dic
   attr(out, "label") <- lab
   out

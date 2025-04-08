@@ -4,7 +4,6 @@
 #'
 #' @name scaledic-package
 #' @aliases scaledic-package scaledic
-#' @docType package
 #' @author Juergen Wilbert \[aut, cre\]
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
@@ -36,7 +35,7 @@
 #'   summarise_all(mean, na.rm = TRUE)  |>
 #'   round(2)  |>
 #'   t()
-NULL
+"_PACKAGE"
 
 
 

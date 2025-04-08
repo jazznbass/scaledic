@@ -137,8 +137,6 @@ new_dic <- function(x,
 
   if (type == "factor") x <- .set_factor(x)
 
-  class(x) <- c("dic", class(x))
-
   if (.message_attr) attr(x, "messages") <- msg else return_messages(msg)
 
   x
@@ -203,7 +201,7 @@ set_dic <- function(data, .vars = NULL, ...) {
   }
   if (!"type" %in% names(dic)) {
     msg <- c(msg, "Attribute 'type' missing and set to 'integer'.")
-    dic[["type"]] <- "integer"#class(data)
+    dic[["type"]] <- "integer"
   }
   if (!"weight" %in% names(dic)) {
     msg <- c(msg, "Attribute 'weight' missing and set to 1.")
@@ -241,8 +239,6 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   attr(data, opt("dic")) <- dic
   attr(data, "label") <- dic_attr(data, "item_label")
-
-  if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
 
   if (length(msg) > 0) {
     message(paste0(1:length(msg), ": ", msg, "\n"))
