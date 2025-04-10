@@ -71,7 +71,7 @@ score_scale <- function(data,
                          label,
                          fun,
                          var_weight,
-                         var_recoding,
+                         var_recoding = "score",
                          function_name) {
 
   msg <- c()

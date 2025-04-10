@@ -10,13 +10,17 @@
 #' @return A recoded data frame
 #'
 #' @export
-recode_dic_items <- function(df, var_recoding = "scores", prefix = "(recoded)") {
+recode_dic_items <- function(df,
+                             var_recoding = "scores",
+                             prefix = "(recoded)") {
   out <- .recode_dic_items(df, var_recoding, prefix = prefix)
   return_messages(out$msg)
   out$df
 }
 
-.recode_dic_items <- function(df, var_recoding = "scores", prefix = "[recoded]") {
+.recode_dic_items <- function(df,
+                              var_recoding = "scores",
+                              prefix = "[recoded]") {
   msg <- c()
   for(i in 1:ncol(df)) {
     recoding <- dic_attr(df[[i]], var_recoding)
