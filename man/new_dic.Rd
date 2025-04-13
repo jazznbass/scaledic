@@ -38,7 +38,7 @@ named}
 
 \item{class}{default is "item"}
 
-\item{...}{further dic arguments (e.g. `source = "James (1891)")}
+\item{...}{further dic arguments (e.g. \code{source = "James (1891)"})}
 
 \item{.list}{An alternative way to provide class arguments as a list
 (overwrites previous arguments)}

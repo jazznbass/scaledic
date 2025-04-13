@@ -36,7 +36,7 @@ opt <- function(x) {
 )
 
 
-.get_dic_items <- function(data, items_only = TRUE) {
+which_dic <- function(data, items_only = TRUE) {
 
   fn <- if (items_only) {
     function(x) !is.null(attr(x, opt("dic"))) && dic_attr(x, "class") == "item"
@@ -145,4 +145,16 @@ return_messages <- function(msg, warning = FALSE) {
   msg <- paste0("\n", msg, "\n")
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
+
+string_to_list <- function(x) {
+  out <- gsub(" ", "", x) |>
+    strsplit(",") |>
+    unlist() |>
+    lapply(function(x) strsplit(trimws(x), "=") |>
+    unlist())
+  default <- which(sapply(out, \(x) x[[1]]) == ".default")
+  if (length(default) > 0) names(out)[default] <- "default"
+  out
+}
+
 

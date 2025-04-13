@@ -29,9 +29,9 @@ check_values <- function(
   integer_as_float = FALSE,
   check_type = TRUE) {
 
-  if (!"data.frame" %in% class(data)) data <- data.frame(data)
+  if (!inherits(data, "data.frame")) data <- data.frame(data)
 
-  id <- .get_dic_items(data)
+  id <- which_dic(data)
   name <- names(data)
   errors <- list()
 

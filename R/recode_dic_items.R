@@ -3,6 +3,12 @@
 #' This function takes a data frame and recodes specified variables based on the
 #' dictionary.
 #'
+#' This function is useful, when you want to recode the 'raw' values from a
+#' vector in a data.frame based on recoding information provided in a
+#' dictionary file. For example, you code the answers in a data frame that were
+#' given to a task. And you have additional information in a dic-file that tells
+#' you, which answer is correct (1) vs. false (0).
+#'
 #' @param df a data frame that contains variables to be recoded
 #' @param var_recoding the name of a variable within the dictionary information
 #' @param prefix Prefix is added to the item label of a recoded item
@@ -10,28 +16,50 @@
 #' @return A recoded data frame
 #'
 #' @export
-recode_dic_items <- function(df, var_recoding = "scores", prefix = "(recoded)") {
-  out <- .recode_dic_items(df, var_recoding, prefix = prefix)
+recode_dic_items <- function(df,
+                             var_recoding = "scores",
+                             prefix = "(recoded)") {
+
+  if (inherits(df, "data.frame")) {
+    out <- .recode_dic_items(df, var_recoding, prefix = prefix)
+  }
+
+  if (inherits(df, "dic")) {
+    out <- .recode_dic_items(data.frame(dat = df), var_recoding, prefix = prefix)
+    out$df <- out[["df"]][["dat"]]
+  }
+
+
   return_messages(out$msg)
   out$df
 }
 
-.recode_dic_items <- function(df, var_recoding = "scores", prefix = "[recoded]") {
+.recode_dic_items <- function(df,
+                              var_recoding = "scores",
+                              prefix = "[recoded]") {
   msg <- c()
+
   for(i in 1:ncol(df)) {
     recoding <- dic_attr(df[[i]], var_recoding)
+    if (is.null(recoding) || is.na(recoding) || identical(recoding, "")) next
     values_new <- dic_attr(df[[i]], "values")
     value_labels_new <- dic_attr(df[[i]], "value_labels")
-    if (is.null(recoding)) next
+
     msg <- c(msg, "Found recoding information and recoded values.")
-    recoding <- gsub(" ", "", recoding) |>
-      strsplit(",") |>
-      unlist() |>
-      lapply(function(x) strsplit(trimws(x), "=") |> unlist())
-    .new <- df[[i]]
+    recoding <- string_to_list(recoding)
+
+    if (!is.null(recoding[["default"]])) {
+      .new <- rep(recoding[["default"]][[2]], length(df[[i]]))
+      class(.new) <- class(df[[i]])
+      attr(.new, opt("dic")) <- dic_attr(df[[i]])
+    } else {
+      .new <- df[[i]]
+    }
+
     for (j in 1:length(recoding)) {
       from <- recoding[[j]][1]
       to <- recoding[[j]][2]
+
       if (dic_attr(df[[i]], "type") %in% opt("numerics")) {
         from <- as.numeric(from)
         to <- as.numeric(to)
@@ -45,11 +73,11 @@ recode_dic_items <- function(df, var_recoding = "scores", prefix = "(recoded)") 
     }
 
     df[[i]] <- .new
-    #browser()
-    #.values <- lapply(recoding, function(x) as.numeric(unname(x[[2]]))) |> unlist()
+
     dic_attr(df[[i]], "values") <- values_new
     dic_attr(df[[i]], "value_labels") <- value_labels_new
     dic_attr(df[[i]], "item_label") <- paste(prefix, dic_attr(df[[i]], "item_label"))
+    #dic_attr(df[[i]], "item_label") <- NULL
   }
 
   list(df = df, msg = msg)

@@ -26,6 +26,10 @@ dic_attr <- function(x, var) {
   dic_attr <- attr(x, opt("dic"))
   if (is.null(dic_attr)) dic_attr <- list()
 
+  if (missing(var)) {
+    attr(x, opt("dic")) <- values
+    return(x)
+  }
   if (var %in% names(.opt)) {
     dic_attr[[opt(var)]] <- value
   } else {

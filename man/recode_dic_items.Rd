@@ -20,3 +20,10 @@ A recoded data frame
 This function takes a data frame and recodes specified variables based on the
 dictionary.
 }
+\details{
+This function is useful, when you want to recode the 'raw' values from a
+vector in a data.frame based on recoding information provided in a
+dictionary file. For example, you code the answers in a data frame that were
+given to a task. And you have additional information in a dic-file that tells
+you, which answer is correct (1) vs. false (0).
+}

@@ -10,7 +10,7 @@
 
 extract_dic <- function(data) {
 
-  id <- .get_dic_items(data, items_only = TRUE)
+  id <- which_dic(data, items_only = TRUE)
 
   dic_names <- lapply(data[id], function(x) names(attr(x, opt("dic"))))
   dic_names <- unlist(dic_names)

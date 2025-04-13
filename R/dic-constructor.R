@@ -10,7 +10,7 @@
 #' @param weight numeric
 #' @param type defaults to "integer"
 #' @param class default is "item"
-#' @param ... further dic arguments (e.g. `source = "James (1891)")
+#' @param ... further dic arguments (e.g. `source = "James (1891)"`)
 #' @param .list An alternative way to provide class arguments as a list
 #'   (overwrites previous arguments)
 #' @param .coerce_class Logical. If TRUE, tries to coerce classes of 'x' if

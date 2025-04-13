@@ -13,7 +13,7 @@ score_scale(
   label = NULL,
   fun = NULL,
   var_weight = NULL,
-  var_recoding = NULL
+  var_recoding = "scores"
 )
 }
 \arguments{
@@ -41,6 +41,9 @@ See details.}
 
 \item{var_weight}{Name of the \emph{dic} attribute that is applied to derive
 weights. Defaults to \code{weight}.}
+
+\item{var_recode}{Name if the \emph{dic} attribute that may contain recoding
+information. Defaults to \code{scores}.}
 }
 \value{
 A data frame

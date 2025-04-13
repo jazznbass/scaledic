@@ -26,7 +26,7 @@ deploy_dic <- function(data, dic_list) {
 #' @keywords internal
 
 backup_dic <- function(data) {
-  id <- .get_dic_items(data)
+  id <- which_dic(data)
   out <- lapply(data[, id], function(x) attr(x, .opt$dic))
   out
 }
