@@ -47,12 +47,12 @@ list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) %>% kab
 dat <- check_values(dat, replace = NA)
 
 ## ----impute_missing, eval = FALSE---------------------------------------------
-#  # Imputation for items of the subscale Ext
-#  dat <- impute_missing(dat, subscale == "Ext")
-#  
-#  # Imputation for items of the subscale Int
-#  dat <- impute_missing(dat, subscale == "Int")
-#  
+# # Imputation for items of the subscale Ext
+# dat <- impute_missing(dat, subscale == "Ext")
+# 
+# # Imputation for items of the subscale Int
+# dat <- impute_missing(dat, subscale == "Int")
+# 
 
 ## ----impute_missing_eval, include=FALSE---------------------------------------
 dat <- impute_missing(dat, subscale == "Ext")

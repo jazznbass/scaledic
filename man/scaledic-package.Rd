@@ -18,7 +18,7 @@ dat <- check_values(dat, replace = NA)
 dat <- impute_missing(dat, scale == "ITRF" & subscale == "Ext")
 dat <- impute_missing(dat, scale == "ITRF" & subscale == "Int")
 # Show a table with all scales and scale labels included in the data frame
-list_scales(dat, labels = TRUE)
+list_scales(dat, levels = c("scale_label", "subscale_label"))
 # Example with pipeline syntax. Would be much easier to use the "describe" function
 # from the psch packages instead of summarise_all here.
 library(dplyr)

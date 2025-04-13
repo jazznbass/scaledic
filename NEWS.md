@@ -1,3 +1,10 @@
+# scaledic 0.3.5
+
+## New function
+
+- `remove_dic_class()` / `add_dic_class()`: Removes/ adds the dic class from a vector/ variable.
+
+
 # scaledic 0.3.1
 
 - solved bug. extract_dic did not work when type name was in capitals (e.g. "Integer")
