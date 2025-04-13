@@ -115,8 +115,8 @@ dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
 dat$raw_ext <- score_scale(dat, subscale == "Ext", sum = TRUE, max_na = 0)
 
 ## -----------------------------------------------------------------------------
-dat$T_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int)
-dat$T_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext)
+dat$T_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "T")
+dat$T_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "T")
 
 ## -----------------------------------------------------------------------------
 dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")

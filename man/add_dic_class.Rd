@@ -2,7 +2,7 @@
 % Please edit documentation in R/add_dic_class.R
 \name{add_dic_class}
 \alias{add_dic_class}
-\title{Add dictionary class to a data.frame or a vector}
+\title{Add dictionary class to a vector}
 \usage{
 add_dic_class(data)
 }
@@ -10,8 +10,13 @@ add_dic_class(data)
 \item{data}{A vector or a data.frame (or an object that inherits from a data.frame)}
 }
 \value{
-An object not inheriting from class "dic".
+An object inheriting from class "dic".
 }
 \description{
-Add dictionary class to a data.frame or a vector
+Adds the class 'dic' to a vector or all variables within a vector if it contains 'dic' attributes.
+}
+\examples{
+item <- remove_dic_class(ex_itrf$itrf_I_1)
+item
+item |> add_dic_class()
 }

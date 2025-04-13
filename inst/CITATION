@@ -5,13 +5,13 @@ citEntry(entry = "Misc",
   shorttitle   = "scaledic",
   publisher    = "github",
   author       = personList(as.person("Jürgen Wilbert")),
-  year         = "2021",
+  year         = "2025",
   url          = "https://github.com/jazznbass/scaledic",
 
   textVersion  =
   paste0("APA style:\n",
-    "Wilbert, J. (2021). ",
+    "Wilbert, J. (2025). ",
     "scaledic - A dictionary for scales. ",
-    "(0.1) [English]. github. ",
+    "[English]. github. ",
     "https://github.com/jazznbass/scaledic.")
 )
