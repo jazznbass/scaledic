@@ -131,7 +131,7 @@ new_dic <- function(x,
   dic_list <- c(.list, dic_list)
   dic_list <- dic_list[unique(names(dic_list))]
 
-  attr(x, opt("dic")) <- dic_list
+  dic_attr(x) <- dic_list
   attr(x, "label") <- dic_attr(x, "item_label")
   attr(x, "labels") <- dic_attr(x, "values")
 
@@ -183,7 +183,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   msg <- c()
 
-  dic <- attr(data, opt("dic"))
+  dic <- dic_attr(data)
   dic <- c(parameters, dic)
   dic <- dic[unique(names(dic))]
 
@@ -239,7 +239,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   # set dic attributes
 
-  attr(data, opt("dic")) <- dic
+  dic_attr(data) <- dic
   attr(data, "label") <- dic_attr(data, "item_label")
 
   if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
@@ -314,7 +314,7 @@ set_dic <- function(data, .vars = NULL, ...) {
     levels = levels,
     labels = labels
   )
-  attr(out, opt("dic")) <- attr(x, opt("dic"))
+  dic_attr(out) <- dic_attr(x)
   out
 }
 

@@ -146,7 +146,10 @@ score_scale <- function(data,
 
   ### set dictionary attributes
   if (is.null(label)) label <- "score"
-  attr(new_score, opt("dic")) <- list()
+
+  #attr(new_score, opt("dic")) <- list()
+
+  dic_attr(new_score) <- list()
   dic_attr(new_score, "class") <- "score"
   dic_attr(new_score, "score_filter") <- filter
   dic_attr(new_score, "score_function") <- function_name

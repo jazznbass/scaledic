@@ -39,9 +39,9 @@ opt <- function(x) {
 which_dic <- function(data, items_only = TRUE) {
 
   fn <- if (items_only) {
-    function(x) !is.null(attr(x, opt("dic"))) && dic_attr(x, "class") == "item"
+    function(x) !is.null(dic_attr(x)) && dic_attr(x, "class") == "item"
   } else {
-    function(x) !is.null(attr(x, opt("dic")))
+    function(x) !is.null(dic_attr(x))
   }
 
   which(sapply(data, fn))

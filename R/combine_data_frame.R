@@ -18,9 +18,9 @@ combine_data_frames <- function(...) {
 
   add <- function(base, addon) {
 
-    dic_base <- lapply(base, function(x) if(!is.null(attr(x, "dic"))) attr(x, "dic"))
+    dic_base <- lapply(base, function(x) if(!is.null(dic_attr(x))) dic_attr(x))
     dic_base[!sapply(dic_base, is.null)]
-    dic_addon <- lapply(addon, function(x) if(!is.null(attr(x, "dic"))) attr(x, "dic"))
+    dic_addon <- lapply(addon, function(x) if(!is.null(dic_attr(x))) dic_attr(x))
     dic_addon[!sapply(dic_addon, is.null)]
     dic <- c(dic_base, dic_addon)
 
@@ -32,7 +32,7 @@ combine_data_frames <- function(...) {
     data <- rbind(base, addon)
 
     for(item in names(dic)) {
-      if(item %in% names(data)) attr(data[[item]], .opt$dic) <- dic[[item]]
+      if(item %in% names(data)) dic_attr(data[[item]]) <- dic[[item]]
     }
     data <- dic_haven(data)
 

@@ -76,7 +76,7 @@ apply_dic <- function(data,
     filter <- unlist(lapply(dic_scores, function(x) !all(is.na(x))))
     filter <- sort(names(dic_scores)[filter])
     dic_scores <- dic_scores[, filter]
-    attr(data, opt("dic")) <- list(scales = dic_scores)
+    dic_attr(data) <- list(scales = dic_scores)
   }
 
   # loop: apply dic information to each variable --------------------------------------

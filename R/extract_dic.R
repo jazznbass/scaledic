@@ -12,7 +12,7 @@ extract_dic <- function(data) {
 
   id <- which_dic(data, items_only = TRUE)
 
-  dic_names <- lapply(data[id], function(x) names(attr(x, opt("dic"))))
+  dic_names <- lapply(data[id], function(x) names(dic_attr(x)))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
 
@@ -24,7 +24,7 @@ extract_dic <- function(data) {
 
   for (i_row in 1:N) {
 
-    dic <- attr(data[[id[i_row]]], opt("dic"))
+    dic <- dic_attr(data[[id[i_row]]])
     .var <- !dic_names %in% c("value_labels", "values", "missing")
     for (var_col in dic_names[.var]) {
       if (is.null(dic[[var_col]]) || length(dic[[var_col]]) == 0) {

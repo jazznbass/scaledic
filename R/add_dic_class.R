@@ -21,12 +21,12 @@ add_dic_class <- function(data) {
 
   if (inherits(data, "data.frame")) {
     for(i in 1:ncol(data)) {
-      if (!is.null(attr(data[[i]], "dic"))) {
+      if (!is.null(dic_attr(data[[i]]))) {
         data[[i]] <- .add(data[[i]])
       }
     }
   } else {
-    if (!is.null(attr(data, "dic"))) {
+    if (!is.null(dic_attr(data))) {
       data <- .add(data)
     }
   }

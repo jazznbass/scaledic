@@ -51,7 +51,7 @@ recode_dic_items <- function(df,
     if (!is.null(recoding[["default"]])) {
       .new <- rep(recoding[["default"]][[2]], length(df[[i]]))
       class(.new) <- class(df[[i]])
-      attr(.new, opt("dic")) <- dic_attr(df[[i]])
+      dic_attr(.new) <- dic_attr(df[[i]])
     } else {
       .new <- df[[i]]
     }

@@ -20,14 +20,13 @@
 #' @export
 #' @examples
 #' check_values(ex_itrf, return = FALSE)
-check_values <- function(
-  data,
-  replace = NULL,
-  return = TRUE,
-  report = FALSE,
-  include_missing = FALSE,
-  integer_as_float = FALSE,
-  check_type = TRUE) {
+check_values <- function(data,
+                         replace = NULL,
+                         return = TRUE,
+                         report = FALSE,
+                         include_missing = FALSE,
+                         integer_as_float = FALSE,
+                         check_type = TRUE) {
 
   if (!inherits(data, "data.frame")) data <- data.frame(data)
 
@@ -83,7 +82,7 @@ check_values <- function(
 
     x <- data[[i]][id_error]
 
-    attr(x, opt("dic")) <- NULL
+    dic_attr(x) <- NULL
     attr(x, "label") <- NULL
     attr(x, "labels") <- NULL
     class(x) <- class(x)[class(x) != "dic"]

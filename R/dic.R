@@ -59,7 +59,7 @@ dic <- function(data) {
   }
 
   class(data) <- class(data)[!class(data) %in% opt("dic")]
-  attr(data, opt("dic")) <- NULL
+  dic_attr(data) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL
   if (length(first_line) > 0) cat("\n")
