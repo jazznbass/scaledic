@@ -62,7 +62,7 @@ alpha_table <- function(data,
     .id <- apply(data_scale, 1, function(x) all(is.na(x))) |> which()
     if (length(.id) > 0) {
       message(
-        "Removed ", length(id), " rows because all items were missing."
+        "Removed ", length(.id), " rows because all items were missing."
       )
      data_scale <- data_scale[-.id, ]
     }
