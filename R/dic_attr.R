@@ -7,12 +7,16 @@
 #' @return Attribute value
 #' @export
 dic_attr <- function(x, var) {
+  if (missing(var)) {
+    return(attr(x, opt("dic")))
+  }
   out <- attr(x, opt("dic"))
   if (var %in% names(.opt)) {
     out[[opt(var)]]
   } else {
     out[[var]]
   }
+
 }
 
 #' @rdname dic_attr
