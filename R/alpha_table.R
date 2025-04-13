@@ -12,6 +12,8 @@
 #' @param conf_level Confidence level (e.g. 0.95 for 95 percent).
 #' @param check_key Check_key for the psych::alpha function.
 #' @param keys Optional key argument for the psych::alpha function.
+#' @param keys_from_weights If TRUE, tries to define keys from scaledics
+#'   "weights" parameter.
 #' @param RMSEA If TRUE RMSEA is calculated.
 #' @param difficulty If TRUE, the difficulty of the item is calculated.
 #' @param values Sets maximum and minimum valid values necessary to calculate
@@ -33,14 +35,18 @@ alpha_table <- function(data,
                         CI = TRUE,
                         conf_level = 0.95,
                         check_key = TRUE,
-                        keys = "auto",
+                        keys = NULL,
+                        keys_from_weights = TRUE,
                         RMSEA = FALSE,
                         difficulty = FALSE,
                         values = NULL,
                         fa = TRUE) {
 
 
-  keys <- match.arg(keys)
+  if (!is.null(keys)) {
+    check_key <- FALSE
+    keys_from_weights <- FALSE
+  }
 
   if (difficulty && is.null(values)) {
     stop("Can not calculate item difficulty without min and max scale values.")
@@ -52,14 +58,11 @@ alpha_table <- function(data,
     values <- rep(values, length(scales))
 
   for (i in 1:length(scales)) {
-    #if (!is.null(keys)) {
-    #  key <- keys[[i]] else key <- NULL
-    #}
     data_scale <- data[, scales[[i]]]
     .id <- apply(data_scale, 1, function(x) all(is.na(x))) |> which()
     if (length(.id) > 0) {
       message(
-        "Removed ", length(id), " rows because all items were missing."
+        "Removed ", length(.id), " rows because all items were missing."
       )
      data_scale <- data_scale[-.id, ]
     }
@@ -88,10 +91,16 @@ alpha_table <- function(data,
       data_scale <- data_scale[, scales[[i]]]
     }
 
-    if (keys == "auto") {
-      key <- data_scale |>
-        map_dbl(~ as.numeric(dic_attr(.x, "weight"))) |>
-        sign()
+    if (keys_from_weights) {
+      if (requireNamespace("scaledic", quietly = TRUE)) {
+        keys <- data_scale |>
+          map_dbl(~ as.numeric(scaledic::dic_attr(.x, "weight"))) |>
+          sign()
+        check_key <- FALSE
+      } else {
+        keys <- NULL
+        message("Scaledic is not installed, keys can not be extracted automatically.")
+      }
     }
 
     if (!is.null(values)) {
@@ -100,7 +109,7 @@ alpha_table <- function(data,
     }
 
     a <- invisible(
-      psych::alpha(data_scale, check.key = check_key, keys = key,use = "pairwise")
+      psych::alpha(data_scale, check.key = check_key, keys = keys, use = "pairwise")
     )
 
     if (fa) f <- invisible(psych::fa(data_scale))
@@ -175,6 +184,10 @@ alpha_table <- function(data,
       "Std.Alph CI{conf_level * 100}%"
     )
   }
+
+
+  attr(df, "note") <- "Values in brackets depict upper and lower bound of confidence intervals or [min,max] intervals."
+
   message("Note. values in brackets depict upper and lower bound of ",
       "confidence intervals or [min,max] intervals.")
   df

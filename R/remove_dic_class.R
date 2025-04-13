@@ -6,10 +6,10 @@
 #' @return An object not inheriting from class "dic".
 #' @export
 #' @examples
-#' dat <- remove_dic(ex_itrf)
+#' dat <- remove_dic_class(ex_itrf)
 #' class(ex_itrf$itrf_I_1)
 #' class(dat$itrf_I_1)
-remove_dic <- function(data, remove_attributes = FALSE) {
+remove_dic_class <- function(data, remove_attributes = FALSE) {
 
   .remove_dic <- function(x) {
     if (inherits(x, "dic")) {
@@ -29,4 +29,5 @@ remove_dic <- function(data, remove_attributes = FALSE) {
 
   data
 }
+
 

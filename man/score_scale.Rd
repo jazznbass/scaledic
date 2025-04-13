@@ -60,6 +60,6 @@ score_scale(dat, scale == "rel", label = "Religious beliefs")
 # apply the weighted sum function
 score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
 # provide an external function (here the weighted median function from the spatstat package)
-score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
+#score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
 
 }

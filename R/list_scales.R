@@ -50,6 +50,6 @@ list_scales <- function(data,
   out[is.na(out)] <- char_na
 
   out <- out[order(out[[1]]),]
-
+  row.names(out) <- NULL
   out
 }

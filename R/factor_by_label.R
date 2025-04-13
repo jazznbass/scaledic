@@ -12,7 +12,10 @@
 #' @export
 factor_by_label <- function(x) {
   labels <- dic_attr(x, "values")
-  id <- which(!is.na(names(labels)))
-  labels[id] <- names(labels)[id]
-  factor(x, labels = labels)
+  #id <- which(!is.na(names(labels)))
+  #labels[id] <- names(labels)[id]
+    #factor(x, labels = labels)
+  labels <- labels[which(!is.na(names(labels)))]
+  factor(x, levels = labels, labels = names(labels))
+
 }
