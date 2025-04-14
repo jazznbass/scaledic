@@ -18,7 +18,7 @@
 #'   See details.
 #' @param var_weight Name of the *dic* attribute that is applied to derive
 #'   weights. Defaults to `weight`.
-#' @param var_recode Name if the *dic* attribute that may contain recoding
+#' @param var_recoding Name if the *dic* attribute that may contain recoding
 #'   information. Defaults to `scores`.
 #' @details If you provide your own function, the first argument of that
 #'   function must take the vector of values and the second argument the
