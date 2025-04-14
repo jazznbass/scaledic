@@ -5,7 +5,7 @@
 #' @return Dic infos of x
 #' @keywords internal
 #' @export
-dic <- function(data) {
+dic <- function(data, length = 100) {
   prefix <- "# "
   first_line <- paste0(prefix, dic_attr(data, "item_label"))
   if (!is.null(dic_attr(data, "scale_label")) && !identical(dic_attr(data, "scale_label"), NA))
@@ -56,9 +56,19 @@ dic <- function(data) {
       cat(paste0(prefix, "  ",values[id], " = ", names(values[id]), collapse = "\n"))
     }
 
+    if (!is.null(dic_attr(data, "scores"))) {
+      scores <- dic_attr(data, "scores") |> string_to_list()
+      cat("\n", prefix, "Scoring:\n", sep = "")
+      cat(paste0(
+        prefix, "  ", sapply(scores, function(x) x[[1]]), " = ",
+        sapply(scores, function(x) x[[2]]), collapse = "\n"
+      ))
+    }
+
   }
 
-  class(data) <- class(data)[!class(data) %in% opt("dic")]
+  class(data) <- class(data)[class(data) != opt("dic")]
+
   dic_attr(data) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL
@@ -66,11 +76,11 @@ dic <- function(data) {
 
 
   ldat <- length(data)
-  max <- ifelse(ldat < 100, ldat, 100)
+  max <- ifelse(ldat < length, ldat, length)
   cat(prefix, "Length: ", ldat, "\n", sep = "")
 
   print(data[1:max])
-  if (ldat > 100) {
+  if (ldat > length) {
     cat(prefix, "entries omitted\n", sep = "")
   }
 
