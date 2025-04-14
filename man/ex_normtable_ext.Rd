@@ -3,7 +3,7 @@
 \docType{data}
 \name{ex_normtable_ext}
 \alias{ex_normtable_ext}
-\title{Example dataset with a norm table}
+\title{Example of a norm table}
 \format{
 A data frame with 52 rows and 5 variables
 }
@@ -11,6 +11,6 @@ A data frame with 52 rows and 5 variables
 ex_normtable_ext
 }
 \description{
-Example dataset with a norm table
+Normatable for externalising scale
 }
 \keyword{datasets}
