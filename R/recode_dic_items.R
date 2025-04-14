@@ -18,14 +18,17 @@
 #' @export
 recode_dic_items <- function(df,
                              var_recoding = "scores",
-                             prefix = "(recoded)") {
+                             prefix_label = "(recoded)",
+                             split = ";") {
 
   if (inherits(df, "data.frame")) {
     out <- .recode_dic_items(df, var_recoding, prefix = prefix)
   }
 
   if (inherits(df, "dic")) {
-    out <- .recode_dic_items(data.frame(dat = df), var_recoding, prefix = prefix)
+    out <- .recode_dic_items(
+      data.frame(dat = df), var_recoding, prefix_label = prefix_label
+    )
     out$df <- out[["df"]][["dat"]]
   }
 
@@ -36,7 +39,8 @@ recode_dic_items <- function(df,
 
 .recode_dic_items <- function(df,
                               var_recoding = "scores",
-                              prefix = "[recoded]") {
+                              prefix_label = "[recoded]",
+                              split = ";") {
   msg <- c()
 
   for(i in 1:ncol(df)) {
@@ -46,12 +50,18 @@ recode_dic_items <- function(df,
     value_labels_new <- dic_attr(df[[i]], "value_labels")
 
     msg <- c(msg, "Found recoding information and recoded values.")
-    recoding <- string_to_list(recoding)
+    recoding <- string_to_list(recoding, split = split)
 
     if (!is.null(recoding[["default"]])) {
-      .new <- rep(recoding[["default"]][[2]], length(df[[i]]))
+      if (identical(recoding[["default"]][[2]], "NA")) {
+        .new <- rep(NA, length(df[[i]]))
+      } else {
+        .new <- rep(recoding[["default"]][[2]], length(df[[i]]))
+      }
+
       class(.new) <- class(df[[i]])
       dic_attr(.new) <- dic_attr(df[[i]])
+      recoding[["default"]] <- NULL
     } else {
       .new <- df[[i]]
     }
@@ -59,6 +69,8 @@ recode_dic_items <- function(df,
     for (j in 1:length(recoding)) {
       from <- recoding[[j]][1]
       to <- recoding[[j]][2]
+
+      if (identical(to, "NA")) to <- NA
 
       if (dic_attr(df[[i]], "type") %in% opt("numerics")) {
         from <- as.numeric(from)
@@ -76,8 +88,10 @@ recode_dic_items <- function(df,
 
     dic_attr(df[[i]], "values") <- values_new
     dic_attr(df[[i]], "value_labels") <- value_labels_new
-    dic_attr(df[[i]], "item_label") <- paste(prefix, dic_attr(df[[i]], "item_label"))
-    #dic_attr(df[[i]], "item_label") <- NULL
+    dic_attr(df[[i]], "item_label") <- paste(
+      prefix_label, dic_attr(df[[i]], "item_label")
+    )
+    dic_attr(df[[i]], "scores") <- NULL
   }
 
   list(df = df, msg = msg)
