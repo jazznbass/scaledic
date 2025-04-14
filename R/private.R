@@ -146,7 +146,9 @@ return_messages <- function(msg, warning = FALSE) {
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
 
-string_to_list <- function(x, split = ";") {
+string_to_list <- function(x) {
+  split <- getOption("scaledic.string.split")
+
   out <- gsub(" ", "", x) |>
     strsplit(split) |>
     unlist() |>

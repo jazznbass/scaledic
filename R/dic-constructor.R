@@ -253,10 +253,12 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .extract_value_labels <- function(value_labels, type) {
 
+  split <- getOption("scaledic.string.split")
+
   if (is.na(value_labels) || value_labels == "") return(NA)
   value_labels <- value_labels %>%
     as.character() %>%
-    strsplit(";") %>%
+    strsplit(split) %>%
     unlist() %>%
     strsplit("=")
 

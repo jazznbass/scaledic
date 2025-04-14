@@ -11,18 +11,16 @@
 #'
 #' @param df a data frame that contains variables to be recoded
 #' @param var_recoding the name of a variable within the dictionary information
-#' @param prefix Prefix is added to the item label of a recoded item
-#'
+#' @param prefix_label Prefix is added to the item label of a recoded item
 #' @return A recoded data frame
 #'
 #' @export
 recode_dic_items <- function(df,
                              var_recoding = "scores",
-                             prefix_label = "(recoded)",
-                             split = ";") {
+                             prefix_label = "(recoded)") {
 
   if (inherits(df, "data.frame")) {
-    out <- .recode_dic_items(df, var_recoding, prefix = prefix)
+    out <- .recode_dic_items(df, var_recoding, prefix_label = prefix)
   }
 
   if (inherits(df, "dic")) {
@@ -39,8 +37,7 @@ recode_dic_items <- function(df,
 
 .recode_dic_items <- function(df,
                               var_recoding = "scores",
-                              prefix_label = "[recoded]",
-                              split = ";") {
+                              prefix_label = "[recoded]") {
   msg <- c()
 
   for(i in 1:ncol(df)) {
@@ -50,7 +47,7 @@ recode_dic_items <- function(df,
     value_labels_new <- dic_attr(df[[i]], "value_labels")
 
     msg <- c(msg, "Found recoding information and recoded values.")
-    recoding <- string_to_list(recoding, split = split)
+    recoding <- string_to_list(recoding)
 
     if (!is.null(recoding[["default"]])) {
       if (identical(recoding[["default"]][[2]], "NA")) {

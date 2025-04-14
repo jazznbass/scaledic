@@ -6,11 +6,14 @@
 #' @keywords internal
 #' @export
 dic <- function(data, length = 100) {
-  prefix <- "# "
+
+  prefix <- getOption("scaledic.string.prefix")
+
   first_line <- paste0(prefix, dic_attr(data, "item_label"))
-  if (!is.null(dic_attr(data, "scale_label")) && !identical(dic_attr(data, "scale_label"), NA))
+  scale_label <- dic_attr(data, "scale_label")
+  if (!is.null(scale_label) && !identical(scale_label, NA))
     first_line <- paste0(
-      first_line, " (", dic_attr(data, "scale_label"), ")",
+      first_line, " (", scale_label, ")",
       collapse = ""
     )
 
@@ -27,7 +30,6 @@ dic <- function(data, length = 100) {
 
   data_type <- dic_attr(data, "type")
   cat(prefix, "Data type is ", data_type, "\n", sep = "")
-
 
   values <- dic_attr(data, "values")
 
