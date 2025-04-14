@@ -146,13 +146,13 @@ return_messages <- function(msg, warning = FALSE) {
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
 
-string_to_list <- function(x) {
+string_to_list <- function(x, split = ";") {
   out <- gsub(" ", "", x) |>
-    strsplit(",") |>
+    strsplit(split) |>
     unlist() |>
     lapply(function(x) strsplit(trimws(x), "=") |>
     unlist())
-  default <- which(sapply(out, \(x) x[[1]]) == ".default")
+  default <- which(sapply(out, function(x) x[[1]]) == ".default")
   if (length(default) > 0) names(out)[default] <- "default"
   out
 }
