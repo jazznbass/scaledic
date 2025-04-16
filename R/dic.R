@@ -1,6 +1,6 @@
 #' Print dic infos
 #'
-#' @param x A variable with dic infos
+#' @param data A variable with dic infos
 #'
 #' @return Dic infos of x
 #' @keywords internal
@@ -58,12 +58,12 @@ dic <- function(data, length = 100) {
       cat(paste0(prefix, "  ",values[id], " = ", names(values[id]), collapse = "\n"))
     }
 
-    if (!is.null(dic_attr(data, "scores"))) {
-      scores <- dic_attr(data, "scores") |> string_to_list()
-      cat("\n", prefix, "Scoring:\n", sep = "")
+    if (!is.null(dic_attr(data, "recodes"))) {
+      recodes <- dic_attr(data, "recodes")
+      cat("\n", prefix, "Recodes:\n", sep = "")
       cat(paste0(
-        prefix, "  ", sapply(scores, function(x) x[[1]]), " = ",
-        sapply(scores, function(x) x[[2]]), collapse = "\n"
+        prefix, "  ", recodes[[1]], " = ",
+        recodes[[2]], collapse = "\n"
       ))
     }
 

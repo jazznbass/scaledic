@@ -12,7 +12,7 @@
   "class" = "class",
   "score_filter" = "score_filter",
   "score_function" = "score_function",
-  "scores" = "scores",
+  "recodes" = "recodes",
   "numerics" = c("numeric", "integer", "double", "float")
 )
 
@@ -146,17 +146,6 @@ return_messages <- function(msg, warning = FALSE) {
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
 
-string_to_list <- function(x) {
-  split <- getOption("scaledic.string.split")
 
-  out <- gsub(" ", "", x) |>
-    strsplit(split) |>
-    unlist() |>
-    lapply(function(x) strsplit(trimws(x), "=") |>
-    unlist())
-  default <- which(sapply(out, function(x) x[[1]]) == ".default")
-  if (length(default) > 0) names(out)[default] <- "default"
-  out
-}
 
 
