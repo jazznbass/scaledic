@@ -1,18 +1,20 @@
 #' Rename variables based on a list
 #'
-#' @param data A data frame with variables to be renamed
-#' @param file A filename of an Excel file containing at least two columns
-#'   (variables) for renaming. Or a data frame with two columns.
+#' Rename the variable in a dataset based of a provided renaming list
+#'
+#' @param data A data frame
+#' @param file A filename of an Excel file or a data.frame containing at least
+#'   two columns for renaming (variables to rename and target names)
 #' @param to_from When a filename or a data.frame is provided, a named character
 #'   with the names of the target  and source variable names (e.g., c("to" =
 #'   "from")). When no filename is provided, to_from must be a vector with named
-#'   variable names c("to1" = "from1", "to2" = "from2")).
+#'   variable names c("to1" = "from1", "to2" = "from2"))
 #' @param to When a filename or a data.frame is provided, the name of the column
-#'   with the target variable names. When no filename is provided, to must a
-#'   vector with target variable names.
+#'   with the target variable names. When no filename is provided, to must be a
+#'   vector with target variable names
 #' @param from When a filename or a data.frame is provided, the name of the
 #'   column with the source variable names. When no filename is provided, from
-#'   must a vector with source variable names.
+#'   must a vector with source variable names
 #'
 #' @return A data frame
 #' @keywords internal
@@ -34,8 +36,8 @@ rename_by_list <- function(data,
                            to = NULL,
                            from = NULL) {
   if (!is.null(file)) {
-    if (!"data.frame" %in% class(file)) dic <- read_xlsx(file)
-    if ("data.frame" %in% class(file)) dic <- file
+    if (!inherits(file, "data.frame")) dic <- read_xlsx(file)
+    if (inherits(file, "data.frame")) dic <- file
     if (!is.null(to_from)) {
       from <- dic[[to_from]]
       to <- dic[[names(to_from)]]
