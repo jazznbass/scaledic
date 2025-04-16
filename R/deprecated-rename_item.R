@@ -1,4 +1,4 @@
-#' Rename items (depracted version)
+#' (Deprecated) Rename items
 #'
 #' Rename items based on dic information.
 #'
