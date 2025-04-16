@@ -43,7 +43,7 @@ score_scale <- function(data,
                         label = NULL,
                         fun = NULL,
                         var_weight = NULL,
-                        var_recoding = "scores") {
+                        var_recoding = "recodes") {
 
   filter <- deparse(substitute(filter))
 
@@ -72,7 +72,7 @@ score_scale <- function(data,
                          label,
                          fun,
                          var_weight,
-                         var_recoding ="scores",
+                         var_recoding = "recodes",
                          function_name) {
 
   msg <- c()
