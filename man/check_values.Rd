@@ -8,7 +8,7 @@ check_values(
   data,
   replace = NULL,
   return = TRUE,
-  report = FALSE,
+  report = TRUE,
   include_missing = FALSE,
   integer_as_float = FALSE,
   check_type = TRUE

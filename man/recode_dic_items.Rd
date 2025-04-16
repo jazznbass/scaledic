@@ -4,12 +4,10 @@
 \alias{recode_dic_items}
 \title{Recode Dictionary Items}
 \usage{
-recode_dic_items(df, var_recoding = "scores", prefix_label = "(recoded)")
+recode_dic_items(df, prefix_label = "(recoded)")
 }
 \arguments{
 \item{df}{a data frame that contains variables to be recoded}
-
-\item{var_recoding}{the name of a variable within the dictionary information}
 
 \item{prefix_label}{Prefix is added to the item label of a recoded item}
 }

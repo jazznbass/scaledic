@@ -9,7 +9,7 @@ dictionary."><meta property="og:image" content="/logo.png"></head><body>
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@ dictionary."><meta property="og:image" content="/logo.png"></head><body>
 <li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/build_dic_file.html">Tutorial: How to build a dictionary file</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/build_dic_file.html">How to build a dictionary file</a></li>
   </ul></li>
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
@@ -45,7 +45,7 @@ dictionary.</p>
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">recode_dic_items</span><span class="op">(</span><span class="va">df</span>, var_recoding <span class="op">=</span> <span class="st">"scores"</span>, prefix <span class="op">=</span> <span class="st">"(recoded)"</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">recode_dic_items</span><span class="op">(</span><span class="va">df</span>, prefix_label <span class="op">=</span> <span class="st">"(recoded)"</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -56,17 +56,21 @@ dictionary.</p>
 <dd><p>a data frame that contains variables to be recoded</p></dd>
 
 
-<dt id="arg-var-recoding">var_recoding<a class="anchor" aria-label="anchor" href="#arg-var-recoding"></a></dt>
-<dd><p>the name of a variable within the dictionary information</p></dd>
-
-
-<dt id="arg-prefix">prefix<a class="anchor" aria-label="anchor" href="#arg-prefix"></a></dt>
+<dt id="arg-prefix-label">prefix_label<a class="anchor" aria-label="anchor" href="#arg-prefix-label"></a></dt>
 <dd><p>Prefix is added to the item label of a recoded item</p></dd>
 
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     <p>A recoded data frame</p>
+    </div>
+    <div class="section level2">
+    <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
+    <p>This function is useful, when you want to recode the 'raw' values from a
+vector in a data.frame based on recoding information provided in a
+dictionary file. For example, you code the answers in a data frame that were
+given to a task. And you have additional information in a dic-file that tells
+you, which answer is correct (1) vs. false (0).</p>
     </div>
 
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -13,6 +13,7 @@ new_dic(
   missing = NULL,
   weight = 1,
   type = NULL,
+  recodes = NULL,
   class = "item",
   ...,
   .list = NULL,
@@ -30,11 +31,15 @@ new_dic(
 \item{values}{Numeric or character vector with values. The vector can be
 named}
 
+\item{value_labels}{Character of the form \verb{value = label; value2 = label2}}
+
 \item{missing}{Numeric or character vector with values}
 
 \item{weight}{numeric}
 
 \item{type}{defaults to "integer"}
+
+\item{recodes}{Recoding information e.g. \verb{4 = 1, .default = 0}}
 
 \item{class}{default is "item"}
 
@@ -47,8 +52,6 @@ named}
 class does not match the \code{type} argument}
 
 \item{.message_attr}{Logical. For internal use}
-
-\item{value_lables}{Character of the form \verb{value = label; value2 = label2}}
 }
 \value{
 An item of class dic.

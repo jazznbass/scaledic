@@ -13,7 +13,7 @@ score_scale(
   label = NULL,
   fun = NULL,
   var_weight = NULL,
-  var_recoding = "scores"
+  var_recoding = "recodes"
 )
 }
 \arguments{

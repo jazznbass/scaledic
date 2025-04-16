@@ -41,7 +41,7 @@ kable(out, caption = "Basic columns of a dictionary file")
 dat <- apply_dic(dat_itrf, dic_itrf)
 
 ## ----list_scales--------------------------------------------------------------
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) %>% kable()
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> kable()
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -59,25 +59,25 @@ dat <- impute_missing(dat, subscale == "Ext")
 dat <- impute_missing(dat, subscale == "Int")
 
 ## ----descriptives-------------------------------------------------------------
-dat %>% 
-  select_items(subscale == "Int") %>%
+dat |>  
+  select_items(subscale == "Int") |> 
   descriptives(round = 1)
 
 ## ----desc_labels--------------------------------------------------------------
-dat %>% 
-  select_items(subscale == "Int") %>%
-  rename_items() %>%
-  descriptives(round = 1)  %>% 
+dat |> 
+  select_items(subscale == "Int") |> 
+  rename_items() |> 
+  descriptives(round = 1) |> 
   kable()
 
 ## ----exploratory_fa-----------------------------------------------------------
-dat %>%
+dat |> 
   select_items(scale == "ITRF") %>%
-  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) %>%
+  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) |> 
   exploratory_fa(nfactors = 4, cut = 0.4) %>% kable()
 
 ## ----item_analysis------------------------------------------------------------
-scales <- ex_itrf %>% get_scales(
+scales <- ex_itrf |> get_scales(
   'APD' = subscale_2 == "APD",
   'OPP' = subscale_2 == "OPP",
   "SW" = subscale_2 == "SW",
@@ -102,13 +102,12 @@ dat$itrf_ext <- score_scale(dat, scale == "ITRF" & subscale == "Ext", label = "E
 dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "Internalizing")
 
 ## ----desc_scores--------------------------------------------------------------
-dat %>%
-  select_scores() %>%
-  rename_items() %>%
+dat[, c("itrf_ext", "itrf_int")] |> 
+  rename_items() |> 
   descriptives(round = 1)
 
 ## -----------------------------------------------------------------------------
-ex_normtable_int %>% slice(1:10) %>% kable()
+ex_normtable_int |> slice(1:10) |> kable()
 
 ## -----------------------------------------------------------------------------
 dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
@@ -123,5 +122,5 @@ dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
 dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
 
 ## -----------------------------------------------------------------------------
-dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] %>% kable()
+dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] |> kable()
 

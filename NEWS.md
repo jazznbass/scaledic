@@ -1,4 +1,28 @@
-# scaledic 0.3.5
+# scaledic 0.4.0
+
+Introduced new dic attribute: recodes.
+Recodes is useful when you have a test item with multiple response options that 
+are evaluated later on. You can now put the raw responses as the variable values 
+and define `recodes` to tell how to evaluate the raw data.
+
+`recode_dic_items()` can be used to create a new recoded variable or recode all 
+variables in a data.frame that have recoding information in its dic-attributes.
+
+```r
+dat <- new_dic(
+  x = c(1,1,2,3,1,3,4,4,3,2,4,5),
+  item_name = "knowledge_1", 
+  item_label = "What is the captial of Germany?",
+  type = "integer",
+  weight = 1,
+  values = "1:4",
+  value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
+  recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"
+)
+dat
+recode_dic_items(dat)
+```
+
 
 ## New function
 
