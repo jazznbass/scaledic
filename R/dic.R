@@ -1,16 +1,19 @@
 #' Print dic infos
 #'
-#' @param x A variable with dic infos
+#' @param data A variable with dic infos
 #'
 #' @return Dic infos of x
 #' @keywords internal
 #' @export
-dic <- function(data) {
-  prefix <- "# "
+dic <- function(data, length = 100) {
+
+  prefix <- getOption("scaledic.string.prefix")
+
   first_line <- paste0(prefix, dic_attr(data, "item_label"))
-  if (!is.null(dic_attr(data, "scale_label")) && !identical(dic_attr(data, "scale_label"), NA))
+  scale_label <- dic_attr(data, "scale_label")
+  if (!is.null(scale_label) && !identical(scale_label, NA))
     first_line <- paste0(
-      first_line, " (", dic_attr(data, "scale_label"), ")",
+      first_line, " (", scale_label, ")",
       collapse = ""
     )
 
@@ -27,7 +30,6 @@ dic <- function(data) {
 
   data_type <- dic_attr(data, "type")
   cat(prefix, "Data type is ", data_type, "\n", sep = "")
-
 
   values <- dic_attr(data, "values")
 
@@ -56,21 +58,31 @@ dic <- function(data) {
       cat(paste0(prefix, "  ",values[id], " = ", names(values[id]), collapse = "\n"))
     }
 
+    if (!is.null(dic_attr(data, "recodes"))) {
+      recodes <- dic_attr(data, "recodes")
+      cat("\n", prefix, "Recodes:\n", sep = "")
+      cat(paste0(
+        prefix, "  ", recodes[[1]], " = ",
+        recodes[[2]], collapse = "\n"
+      ))
+    }
+
   }
 
-  class(data) <- class(data)[!class(data) %in% opt("dic")]
-  attr(data, opt("dic")) <- NULL
+  class(data) <- class(data)[class(data) != opt("dic")]
+
+  dic_attr(data) <- NULL
   attr(data, "label") <- NULL
   attr(data, "labels") <- NULL
   if (length(first_line) > 0) cat("\n")
 
 
   ldat <- length(data)
-  max <- ifelse(ldat < 100, ldat, 100)
+  max <- ifelse(ldat < length, ldat, length)
   cat(prefix, "Length: ", ldat, "\n", sep = "")
 
   print(data[1:max])
-  if (ldat > 100) {
+  if (ldat > length) {
     cat(prefix, "entries omitted\n", sep = "")
   }
 

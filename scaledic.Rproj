@@ -1,5 +1,4 @@
 Version: 1.0
-
 ProjectId: 0a3c270f-fddf-495c-a915-3bbd19d31ca9
 
 RestoreWorkspace: Default
@@ -22,3 +21,5 @@ PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch --with-keep.source
 PackageBuildArgs: --resave-data
 PackageRoxygenize: rd,collate,namespace,vignette
+
+ProjectName: scaledic

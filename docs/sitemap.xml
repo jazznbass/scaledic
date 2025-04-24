@@ -22,9 +22,11 @@
 <url><loc>/reference/dic_ITRF.html</loc></url>
 <url><loc>/reference/dic_attr.html</loc></url>
 <url><loc>/reference/dic_haven.html</loc></url>
+<url><loc>/reference/enrich_dic.html</loc></url>
 <url><loc>/reference/ex_itrf.html</loc></url>
 <url><loc>/reference/ex_normtable_ext.html</loc></url>
 <url><loc>/reference/ex_normtable_int.html</loc></url>
+<url><loc>/reference/ex_scaledic_data.html</loc></url>
 <url><loc>/reference/exploratory_fa.html</loc></url>
 <url><loc>/reference/extract_dic.html</loc></url>
 <url><loc>/reference/factor_by_label.html</loc></url>
@@ -60,5 +62,6 @@
 <url><loc>/reference/set_dic.html</loc></url>
 <url><loc>/reference/set_label.html</loc></url>
 <url><loc>/reference/sub-.dic.html</loc></url>
+<url><loc>/todo.html</loc></url>
 </urlset>
 

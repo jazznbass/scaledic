@@ -14,7 +14,7 @@ remove_dic_class <- function(data, remove_attributes = FALSE) {
   .remove_dic <- function(x) {
     if (inherits(x, "dic")) {
       class(x) <- class(x)[which(class(x) != "dic")]
-      if (remove_attributes) attr(x, opt("dic")) <- NULL
+      if (remove_attributes) dic_attr(x) <- NULL
     }
     x
   }

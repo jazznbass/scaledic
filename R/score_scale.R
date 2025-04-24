@@ -18,6 +18,8 @@
 #'   See details.
 #' @param var_weight Name of the *dic* attribute that is applied to derive
 #'   weights. Defaults to `weight`.
+#' @param var_recoding Name if the *dic* attribute that may contain recoding
+#'   information. Defaults to `scores`.
 #' @details If you provide your own function, the first argument of that
 #'   function must take the vector of values and the second argument the
 #'   weights.
@@ -41,12 +43,11 @@ score_scale <- function(data,
                         label = NULL,
                         fun = NULL,
                         var_weight = NULL,
-                        var_recoding = NULL) {
+                        var_recoding = "recodes") {
 
   filter <- deparse(substitute(filter))
 
   if (is.null(var_weight)) var_weight <- opt("weight")
-  if (is.null(var_recoding)) var_recoding <- opt("scores")
 
   .score_scale(
     data = data,
@@ -71,7 +72,7 @@ score_scale <- function(data,
                          label,
                          fun,
                          var_weight,
-                         var_recoding ="score",
+                         var_recoding = "recodes",
                          function_name) {
 
   msg <- c()
@@ -96,32 +97,7 @@ score_scale <- function(data,
   df <- tmp$df
   msg <- c(msg, tmp$msg)
 
-  # for(i in 1:ncol(df)) {
-  #   recoding <- dic_attr(df[[i]], var_recoding)
-  #   if (is.null(recoding)) next
-  #   msg <- c(msg, "Found recoding information and recoded values.")
-  #   recoding <- gsub(" ", "", recoding) |>
-  #     strsplit(",") |>
-  #     unlist() |>
-  #     lapply(function(x) strsplit(trimws(x), "=") |> unlist())
-  #   .new <- df[[i]]
-  #   for (j in 1:length(recoding)) {
-  #     from <- recoding[[j]][1]
-  #     to <- recoding[[j]][2]
-  #     if (dic_attr(df[[i]], "type") %in% opt("numerics")) {
-  #       from <- as.numeric(from)
-  #       to <- as.numeric(to)
-  #     }
-  #     .filter <- which(df[[i]] == from)
-  #     .new[.filter] <- to
-  #   }
-  #
-  #   df[[i]] <- .new
-  #
-  #   .values <- lapply(recoding, function(x) as.numeric(unname(x[[2]]))) |> unlist()
-  #   dic_attr(df[[i]], "values") <- .values
-  #
-  # }
+  # min max valid na
 
   if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) {
     min_valid <- trunc(min_valid * nrow(df))
@@ -170,7 +146,10 @@ score_scale <- function(data,
 
   ### set dictionary attributes
   if (is.null(label)) label <- "score"
-  attr(new_score, opt("dic")) <- list()
+
+  #attr(new_score, opt("dic")) <- list()
+
+  dic_attr(new_score) <- list()
   dic_attr(new_score, "class") <- "score"
   dic_attr(new_score, "score_filter") <- filter
   dic_attr(new_score, "score_function") <- function_name

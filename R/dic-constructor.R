@@ -5,12 +5,13 @@
 #' @param item_label Character
 #' @param values Numeric or character vector with values. The vector can be
 #'   named
-#' @param value_lables Character of the form `value = label; value2 = label2`
+#' @param value_labels Character of the form `value = label; value2 = label2`
 #' @param missing Numeric or character vector with values
 #' @param weight numeric
-#' @param type defaults to "integer"
+#' @param type defaults to data type of x
+#' @param recodes Recoding information e.g. `4 = 1, .default = 0`
 #' @param class default is "item"
-#' @param ... further dic arguments (e.g. `source = "James (1891)")
+#' @param ... further dic arguments (e.g. `source = "James (1891)"`)
 #' @param .list An alternative way to provide class arguments as a list
 #'   (overwrites previous arguments)
 #' @param .coerce_class Logical. If TRUE, tries to coerce classes of 'x' if
@@ -29,6 +30,7 @@ new_dic <- function(x,
                     missing = NULL,
                     weight = 1,
                     type = NULL,
+                    recodes = NULL,
                     class = "item",
                     ...,
                     .list = NULL,
@@ -47,8 +49,10 @@ new_dic <- function(x,
   }
 
   if (!has_info(type)) {
-    type <- "integer"
+    type <- "numeric"
     if (is.numeric(x)) type <- "numeric"
+    if (is.integer(x)) type <- "integer"
+    if (is.double(x)) type <- "double"
     if (is.character(x)) type <- "character"
     if (is.factor(x)) type <- "factor"
   }
@@ -70,6 +74,9 @@ new_dic <- function(x,
     names(values)[.id] <- trimws(value_labels[[2]])
   }
 
+  if (has_info(recodes)) {
+    recodes <- .extract_scores(recodes)
+  }
 
   if (identical(type, "integer") && !is.integer(x) && !is.numeric(x)) {
     if (.coerce_class) {
@@ -128,10 +135,12 @@ new_dic <- function(x,
     ...
   )
 
+  if (has_info(recodes)) dic_list$recodes <- recodes
+
   dic_list <- c(.list, dic_list)
   dic_list <- dic_list[unique(names(dic_list))]
 
-  attr(x, opt("dic")) <- dic_list
+  dic_attr(x) <- dic_list
   attr(x, "label") <- dic_attr(x, "item_label")
   attr(x, "labels") <- dic_attr(x, "values")
 
@@ -183,7 +192,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   msg <- c()
 
-  dic <- attr(data, opt("dic"))
+  dic <- dic_attr(data)
   dic <- c(parameters, dic)
   dic <- dic[unique(names(dic))]
 
@@ -239,7 +248,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   # set dic attributes
 
-  attr(data, opt("dic")) <- dic
+  dic_attr(data) <- dic
   attr(data, "label") <- dic_attr(data, "item_label")
 
   if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
@@ -253,10 +262,12 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .extract_value_labels <- function(value_labels, type) {
 
+  split <- getOption("scaledic.string.split")
+
   if (is.na(value_labels) || value_labels == "") return(NA)
   value_labels <- value_labels %>%
     as.character() %>%
-    strsplit(";") %>%
+    strsplit(split) %>%
     unlist() %>%
     strsplit("=")
 
@@ -276,19 +287,35 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 }
 
-.extract_values <- function(x, sep = ";", quotes = FALSE) {
+.extract_values <- function(x) {
   paste0("c(", x, ")") |> str2lang() |> eval()
-  #x <- strsplit(x, sep)[[1]]
-  #x <- lapply(x, function(.) trimws(strsplit(. , "=")[[1]]))
-  #for(i in seq_along(x)) {
-  #  names(x)[i] <- if (quotes) trimws(x[[i]][2], whitespace = "['\"]") else x[[i]][2]
-  #  x[[i]] <- x[[i]][1]
-  #  suppressWarnings(
-  #    if (!is.na(as.double(x[[i]]))) x[[i]] <- as.double(x[[i]])
-  #  )
-  #}
-  #setNames(unlist(x), names(x))
 }
+
+.extract_scores <- function(recodes) {
+
+  split <- getOption("scaledic.string.split")
+
+  if (!has_info(recodes)) return(NULL)
+  recodes <- recodes %>%
+    as.character() %>%
+    strsplit(split) %>%
+    unlist() %>%
+    strsplit("=")
+
+  .n_labels <- length(recodes)
+  out <- data.frame(
+    value = character(.n_labels),
+    recode = character(.n_labels)
+  )
+  for(j in 1:.n_labels) {
+    out[j, 1] <- trimws(recodes[[j]][1])
+    out[j, 2] <- trimws(recodes[[j]][2])
+  }
+
+  out
+
+}
+
 
 .set_factor <- function(x) {
   value_labels <- dic_attr(x, "value_labels")
@@ -314,7 +341,7 @@ set_dic <- function(data, .vars = NULL, ...) {
     levels = levels,
     labels = labels
   )
-  attr(out, opt("dic")) <- attr(x, opt("dic"))
+  dic_attr(out) <- dic_attr(x)
   out
 }
 

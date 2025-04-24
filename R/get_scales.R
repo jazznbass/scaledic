@@ -44,7 +44,7 @@ get_scales <- function(data, ...) {
 }
 
 .get_all_scales <- function(data, scale_attr) {
-  ids <- .get_dic_items(data)
+  ids <- which_dic(data)
   scales <- unlist(lapply(data[ids, ], function(x) dic_attr(x, scale_attr)))
   scales <- unique(scales[!is.na(scales)])
   scale_filters <- paste0(scale_attr, " == '", scales, "'")

@@ -1,10 +1,10 @@
 ---
-title: "Tutorial: How to build a dictionary file"
+title: "How to build a dictionary file"
 author: "Jürgen Wilbert"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Building a dictionary file}
+  %\VignetteIndexEntry{How to build a dictionary file}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -26,7 +26,7 @@ In the following examples I will lay out the construction of a dictionary file.
 First, we need an example data.frame to work with (i.e. the `ex_scaledic_data` example dataset):
 
 ```{r echo=FALSE}
-ex_scaledic_data %>% kable(caption = "ex_scaledic_data")
+ex_scaledic_data |> kable(caption = "ex_scaledic_data")
 ```
 
 Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`[^1].
@@ -43,7 +43,7 @@ We start the example with a very simple dictionary file containing only item lab
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic[, 1:2]
-dic_file %>% kable(caption = "Dictionary file")
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 We combine the *data* file and the *dic* file with the `apply_dic()` function:
@@ -58,8 +58,8 @@ We get the message that the dic file does not contain information of the data*ty
 Let us add `type` information to the dic file:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic %>% select(1,2, type)
-dic_file %>% kable(caption = "Dictionary file")
+dic_file <- ex_scaledic_dic |>select(1,2, type)
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 Most item values are of type `integer` (the item has only whole numbers) with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
@@ -71,8 +71,8 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 Now we can add `weight` information to the dic file. The `weight` attribute tells various *scaledic* functions a) whether the item is inverted or not, and b) how the values of an item are weighted. If a weight value is unsigned (e.g. `1`), the item is not inverted. If a weight value has a negative sign (e.g. `-1`), the item is inverted. If the (absolute) value is not `1`, the item will be weighted when calculating the item scores (e.g. `1.5` will give an item a weight of 1.5).
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic %>% select(1,2, weight, type)
-dic_file %>% kable(caption = "Dictionary file")
+dic_file <- ex_scaledic_dic |>select(1,2, weight, type)
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 In this example, all `weights` are `1` and no item is inverted. 
@@ -88,8 +88,8 @@ Now we add the `values` attribute to the dic file. `values` defines the valid va
 Here is the dic file with added `values`:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic %>% select(1,2, "values", "weight", "type")
-dic_file %>% kable(caption = "Dictionary file")
+dic_file <- ex_scaledic_dic |>select(1,2, "values", "weight", "type")
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 ```{r}
@@ -104,7 +104,7 @@ dat_dic <- check_values(dat_dic, report = TRUE, replace = NA)
 
 
 ```{r}
-dat_dic %>% kable(caption = "data frame with replaced invalid values")
+dat_dic |> kable(caption = "data frame with replaced invalid values")
 ```
 
 Next, we add `value_labels`. Value labels give longer labels for all or some of the values. Value labels are coded in the form `value = label` with a semicolon separating each entry. `m = male; f = female; d = diverse` codes three value label (quotes are not necessary).
@@ -112,12 +112,12 @@ Next, we add `value_labels`. Value labels give longer labels for all or some of 
 Here is the dic file with added `value_labels`:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic %>% select(1,2, "values", "value_labels", "weight", "type")
-dic_file %>% kable(caption = "Dictionary file")
+dic_file <- ex_scaledic_dic |>select(1,2, "values", "value_labels", "weight", "type")
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 ```{r}
-dat_dic <- apply_dic(ex_scaledic_data, dic_file) %>% check_values(replace = NA)
+dat_dic <- apply_dic(ex_scaledic_data, dic_file) |>check_values(replace = NA)
 ```
 
 Now lets see the coding for some of the variables:
@@ -151,8 +151,8 @@ dat_dic$age
 It is a common practice to code missing values with a specific number (rather than just leaving an empty entry on a datasheet). In the example dataset used here, `-999` is used as a missing value. To account for this, we add the `missing` attribute to the *dic* file containing the missing number (e.g., `-999`). Multiple missing values are separated by commas (e.g. `-99, -77`).
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic %>% select(1,2, values, value_labels, weight, type, missing)
-dic_file %>% kable(caption = "Dictionary file")
+dic_file <- ex_scaledic_dic |>select(1,2, values, value_labels, weight, type, missing)
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 The values within the `missing` attributes are automatically replaced with NA when joining a data with a dic file: 
@@ -169,7 +169,7 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
 
 ```{r}
 dat_dic %>%
-  slice(9:20) %>% 
+  slice(9:20) |>
   kable(caption = "Extract from the data frame with replaced missing values and checked values")
 ```
 
@@ -177,7 +177,7 @@ In the last step of this tutorial we will add information about the scales that 
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic
-dic_file %>% kable(caption = "Dictionary file")
+dic_file |>kable(caption = "Dictionary file")
 ```
 
 ```{r}
@@ -187,16 +187,16 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
 When can use the scale attribute to select items:
 
 ```{r}
-dat_dic %>% 
-  select_items(scale == "rel") %>% 
+dat_dic |>
+  select_items(scale == "rel") |>
   descriptives()
 ```
 
 and the `rename_items()` function to get the item labels:
 
 ```{r}
-dat_dic %>% 
-  select_items(scale == "rel") %>% 
+dat_dic |>
+  select_items(scale == "rel") |>
   rename_items() %>%
   descriptives() %>%
   kable()

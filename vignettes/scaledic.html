@@ -504,19 +504,74 @@ The resulting dataset is now ready for use with all other
 the dictionary file and combines them. Missing values are replaced by
 NAs:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Here we use the example dataset &quot;dat_itrf&quot; and the example dic file &quot;dic_itrf&quot;</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat_itrf, dic_itrf)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(dat_itrf, dic_itrf)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#&gt; Found the following invalid values:</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_I_1&#39;</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co">#&gt;   Row:   3192 </span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="co">#&gt; Value:      7 </span></span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_I_2&#39;</span></span>
+<span id="cb1-10"><a href="#cb1-10" tabindex="-1"></a><span class="co">#&gt;   Row:   4651 </span></span>
+<span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_I_13&#39;</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#&gt;   Row:   3699 </span></span>
+<span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#&gt; Value:      4 </span></span>
+<span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_I_20&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18" tabindex="-1"></a><span class="co">#&gt;   Row:   2799 </span></span>
+<span id="cb1-19"><a href="#cb1-19" tabindex="-1"></a><span class="co">#&gt; Value:      4 </span></span>
+<span id="cb1-20"><a href="#cb1-20" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-21"><a href="#cb1-21" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_4&#39;</span></span>
+<span id="cb1-22"><a href="#cb1-22" tabindex="-1"></a><span class="co">#&gt;   Row:   2621 </span></span>
+<span id="cb1-23"><a href="#cb1-23" tabindex="-1"></a><span class="co">#&gt; Value:      6 </span></span>
+<span id="cb1-24"><a href="#cb1-24" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-25"><a href="#cb1-25" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_6&#39;</span></span>
+<span id="cb1-26"><a href="#cb1-26" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-27"><a href="#cb1-27" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-28"><a href="#cb1-28" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-29"><a href="#cb1-29" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_7&#39;</span></span>
+<span id="cb1-30"><a href="#cb1-30" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-31"><a href="#cb1-31" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-32"><a href="#cb1-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-33"><a href="#cb1-33" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_8&#39;</span></span>
+<span id="cb1-34"><a href="#cb1-34" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-35"><a href="#cb1-35" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-36"><a href="#cb1-36" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-37"><a href="#cb1-37" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_9&#39;</span></span>
+<span id="cb1-38"><a href="#cb1-38" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-39"><a href="#cb1-39" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-40"><a href="#cb1-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-41"><a href="#cb1-41" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_10&#39;</span></span>
+<span id="cb1-42"><a href="#cb1-42" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-43"><a href="#cb1-43" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-44"><a href="#cb1-44" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-45"><a href="#cb1-45" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_11&#39;</span></span>
+<span id="cb1-46"><a href="#cb1-46" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-47"><a href="#cb1-47" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-48"><a href="#cb1-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-49"><a href="#cb1-49" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_12&#39;</span></span>
+<span id="cb1-50"><a href="#cb1-50" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-51"><a href="#cb1-51" tabindex="-1"></a><span class="co">#&gt; Value:      9 </span></span>
+<span id="cb1-52"><a href="#cb1-52" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-53"><a href="#cb1-53" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_13&#39;</span></span>
+<span id="cb1-54"><a href="#cb1-54" tabindex="-1"></a><span class="co">#&gt;   Row:   2599   4146 </span></span>
+<span id="cb1-55"><a href="#cb1-55" tabindex="-1"></a><span class="co">#&gt; Value:      9     11 </span></span>
+<span id="cb1-56"><a href="#cb1-56" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb1-57"><a href="#cb1-57" tabindex="-1"></a><span class="co">#&gt; &#39;itrf_E_14&#39;</span></span>
+<span id="cb1-58"><a href="#cb1-58" tabindex="-1"></a><span class="co">#&gt;   Row:   2599 </span></span>
+<span id="cb1-59"><a href="#cb1-59" tabindex="-1"></a><span class="co">#&gt; Value:      9</span></span></code></pre></div>
 <p>Let us take a look at all the scales in the dataset:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">list_scales</span>(dat, <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale_2&quot;</span>), <span class="st">&quot;_label&quot;</span>)) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">list_scales</span>(dat, <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">&quot;scale&quot;</span>, <span class="st">&quot;subscale&quot;</span>, <span class="st">&quot;subscale_2&quot;</span>), <span class="st">&quot;_label&quot;</span>)) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
-<col width="10%" />
-<col width="32%" />
-<col width="15%" />
-<col width="40%" />
+<col width="36%" />
+<col width="17%" />
+<col width="45%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="left">scale_label</th>
 <th align="left">subscale_label</th>
 <th align="left">subscale_2_label</th>
@@ -524,25 +579,21 @@ NAs:</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">itrf_I_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Socially Withdrawn</td>
 </tr>
 <tr class="even">
-<td align="left">itrf_I_2</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Internalizing</td>
 <td align="left">Anxious/Depressed</td>
 </tr>
 <tr class="odd">
-<td align="left">itrf_I_20</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Oppositional/Disruptive</td>
 </tr>
 <tr class="even">
-<td align="left">itrf_E_1</td>
 <td align="left">Integrated teacher report form</td>
 <td align="left">Externalizing</td>
 <td align="left">Academic Productivity/Disorganization</td>
@@ -554,7 +605,8 @@ NAs:</p>
 <h2>Clean raw data</h2>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and
 replace them with NA:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat, <span class="at">replace =</span> <span class="cn">NA</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat, <span class="at">replace =</span> <span class="cn">NA</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co">#&gt; No errors found.</span></span></code></pre></div>
 <p>Now we impute missing values:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Imputation for items of the subscale Ext</span></span>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">impute_missing</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>)</span>
@@ -566,10 +618,10 @@ replace them with NA:</p>
 <h2>Select scales for analyszing</h2>
 <p>Let us look at the descriptive statistics for the
 <em>internalising</em> subscale:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
-<div class="kable-table">
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span>  </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -817,15 +869,14 @@ replace them with NA:</p>
 </tbody>
 </table>
 </div>
-</div>
 <div id="see-items-instead-of-labels" class="section level2">
 <h2>See items instead of labels</h2>
 <p>It is more convenient to see the original items rather than the short
 labels:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat <span class="sc">%&gt;%</span> </span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)  <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span> </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
@@ -1090,10 +1141,10 @@ Bauchschmerzen</td>
 <p>And then we analyse the factor structure. Here we use the
 <code>rename_item()</code> function to get a more convenient
 description.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="at">pattern =</span> <span class="st">&quot;({reverse}){subscale}_{subscale_2}: {label}&quot;</span>, <span class="at">max_chars =</span> <span class="dv">70</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">exploratory_fa</span>(<span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">cut =</span> <span class="fl">0.4</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="at">pattern =</span> <span class="st">&quot;({reverse}){subscale}_{subscale_2}: {label}&quot;</span>, <span class="at">max_chars =</span> <span class="dv">70</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>  <span class="fu">exploratory_fa</span>(<span class="at">nfactors =</span> <span class="dv">4</span>, <span class="at">cut =</span> <span class="fl">0.4</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="78%" />
@@ -1157,7 +1208,7 @@ Mitschülern</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Ist schnell verärgert</td>
-<td align="left">0.77</td>
+<td align="left">0.76</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1172,7 +1223,7 @@ Mitschülern</td>
 <tr class="odd">
 <td align="left">(+)Ext_OPP: Respektiert nicht die Privatsphäre
 anderer</td>
-<td align="left">0.65</td>
+<td align="left">0.64</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
@@ -1188,7 +1239,7 @@ anderer</td>
 <td align="left">(+)Ext_APD: Zeigt Unterrichtsaufgaben nicht
 selbstständig vor</td>
 <td align="left"></td>
-<td align="left">0.81</td>
+<td align="left">0.8</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1203,7 +1254,7 @@ rechtzeitig fertig</td>
 <tr class="odd">
 <td align="left">(+)Ext_APD: Kommt unvorbereitet zum Unterricht</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.74</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1218,7 +1269,7 @@ rechtzeitig fertig</td>
 <td align="left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt
 werden, nicht mit</td>
 <td align="left"></td>
-<td align="left">0.73</td>
+<td align="left">0.72</td>
 <td align="left"></td>
 <td align="left"></td>
 </tr>
@@ -1256,7 +1307,7 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Spielt bevorzugt alleine</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.78</td>
+<td align="left">0.79</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
@@ -1277,7 +1328,7 @@ Mitschülerinnen und Mits</td>
 <td align="left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.55</td>
+<td align="left">0.54</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -1359,7 +1410,7 @@ Details</td>
 <td align="left"></td>
 <td align="left"></td>
 <td align="left"></td>
-<td align="left">0.44</td>
+<td align="left">0.45</td>
 </tr>
 <tr class="odd">
 <td align="left">(+)Int_AD: Klammert sich an Erwachsene</td>
@@ -1377,10 +1428,10 @@ Details</td>
 </tr>
 <tr class="odd">
 <td align="left">SS loadings</td>
-<td align="left">6.01</td>
-<td align="left">4.8</td>
-<td align="left">4.54</td>
-<td align="left">4.34</td>
+<td align="left">6</td>
+<td align="left">4.79</td>
+<td align="left">4.53</td>
+<td align="left">4.35</td>
 </tr>
 <tr class="even">
 <td align="left">Proportion Var</td>
@@ -1413,13 +1464,13 @@ Details</td>
 </tbody>
 </table>
 <p>and provide item analyses</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>scales <span class="ot">&lt;-</span> ex_itrf <span class="sc">%&gt;%</span> <span class="fu">get_scales</span>(</span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>scales <span class="ot">&lt;-</span> ex_itrf <span class="sc">|&gt;</span> <span class="fu">get_scales</span>(</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="st">&#39;APD&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;APD&quot;</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>  <span class="st">&#39;OPP&#39;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;OPP&quot;</span>,</span>
 <span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>  <span class="st">&quot;SW&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;SW&quot;</span>,</span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>  <span class="st">&quot;AD&quot;</span> <span class="ot">=</span> subscale_2 <span class="sc">==</span> <span class="st">&quot;AD&quot;</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>)</span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">alpha_table</span>(dat, <span class="at">scales =</span> scales) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="fu">alpha_table</span>(dat, <span class="at">scales =</span> scales) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <colgroup>
 <col width="4%" />
@@ -1452,11 +1503,11 @@ Details</td>
 <td align="left">APD</td>
 <td align="right">4776</td>
 <td align="right">8</td>
-<td align="left">.91 [.91, .91]</td>
+<td align="left">.91 [.90, .91]</td>
 <td align="left">.91 [.91, .91]</td>
 <td align="left">.56</td>
 <td align="left">[.53, .78]</td>
-<td align="left">[0.38, 0.95]</td>
+<td align="left">[0.39, 0.95]</td>
 <td align="left">[0.75, 1.04]</td>
 <td align="left">[.55, .82]</td>
 </tr>
@@ -1522,7 +1573,7 @@ SW ~~ AD
 ``` r
 fit <- lavaan::cfa(model = model, data = dat)
 lavaan::summary(fit, fit.measures = TRUE)
-lavaan 0.6-19 ended normally after 58 iterations
+lavaan 0.6-19 ended normally after 61 iterations
 
   Estimator                                         ML
   Optimization method                           NLMINB
@@ -1533,13 +1584,13 @@ lavaan 0.6-19 ended normally after 58 iterations
 
 Model Test User Model:
                                                        
-  Test statistic                              21175.370
+  Test statistic                              21226.108
   Degrees of freedom                                588
   P-value (Chi-square)                            0.000
 
 Model Test Baseline Model:
 
-  Test statistic                            110975.444
+  Test statistic                            110970.912
   Degrees of freedom                               630
   P-value                                        0.000
 
@@ -1550,12 +1601,12 @@ User Model versus Baseline Model:
 
 Loglikelihood and Information Criteria:
 
-  Loglikelihood user model (H0)            -152352.262
+  Loglikelihood user model (H0)            -152367.686
   Loglikelihood unrestricted model (H1)             NA
                                                       
-  Akaike (AIC)                              304860.524
-  Bayesian (BIC)                            305365.225
-  Sample-size adjusted Bayesian (SABIC)     305117.370
+  Akaike (AIC)                              304891.371
+  Bayesian (BIC)                            305396.072
+  Sample-size adjusted Bayesian (SABIC)     305148.216
 
 Root Mean Square Error of Approximation:
 
@@ -1579,99 +1630,99 @@ Latent Variables:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD =~                                              
     itrf_E_1          1.000                           
-    itrf_E_2          0.955    0.017   55.437    0.000
-    itrf_E_3          0.916    0.016   57.662    0.000
-    itrf_E_4          0.896    0.015   59.169    0.000
-    itrf_E_5          0.950    0.017   55.699    0.000
-    itrf_E_6          0.823    0.015   53.237    0.000
-    itrf_E_14         0.716    0.013   53.946    0.000
-    itrf_E_15         0.633    0.017   37.783    0.000
+    itrf_E_2          0.959    0.017   55.352    0.000
+    itrf_E_3          0.916    0.016   57.548    0.000
+    itrf_E_4          0.897    0.015   59.011    0.000
+    itrf_E_5          0.948    0.017   55.422    0.000
+    itrf_E_6          0.824    0.016   53.101    0.000
+    itrf_E_14         0.719    0.013   53.937    0.000
+    itrf_E_15         0.634    0.017   37.718    0.000
   OPP =~                                              
     itrf_I_20         1.000                           
-    itrf_E_7          0.847    0.013   65.149    0.000
-    itrf_E_8          1.042    0.015   68.218    0.000
-    itrf_E_9          0.994    0.017   58.336    0.000
-    itrf_E_10         0.892    0.014   65.135    0.000
-    itrf_E_11         1.089    0.016   66.820    0.000
-    itrf_E_12         0.803    0.015   55.029    0.000
-    itrf_E_13         0.980    0.014   67.738    0.000
-    itrf_E_16         0.681    0.013   52.112    0.000
+    itrf_E_7          0.848    0.013   65.104    0.000
+    itrf_E_8          1.044    0.015   68.381    0.000
+    itrf_E_9          0.993    0.017   58.336    0.000
+    itrf_E_10         0.893    0.014   65.158    0.000
+    itrf_E_11         1.089    0.016   66.813    0.000
+    itrf_E_12         0.803    0.015   55.032    0.000
+    itrf_E_13         0.980    0.014   67.755    0.000
+    itrf_E_16         0.680    0.013   52.064    0.000
   SW =~                                               
     itrf_I_1          1.000                           
-    itrf_I_4          1.020    0.017   60.464    0.000
-    itrf_I_5          0.904    0.016   57.154    0.000
-    itrf_I_6          0.758    0.014   55.401    0.000
-    itrf_I_13         0.744    0.020   37.430    0.000
-    itrf_I_14         0.689    0.019   36.206    0.000
-    itrf_I_16         1.000    0.021   48.462    0.000
-    itrf_I_24         0.732    0.019   37.645    0.000
+    itrf_I_4          1.026    0.017   59.822    0.000
+    itrf_I_5          0.910    0.016   56.584    0.000
+    itrf_I_6          0.763    0.014   54.926    0.000
+    itrf_I_13         0.750    0.020   37.303    0.000
+    itrf_I_14         0.693    0.019   35.991    0.000
+    itrf_I_16         1.011    0.021   48.348    0.000
+    itrf_I_24         0.742    0.020   37.664    0.000
   AD =~                                               
     itrf_I_2          1.000                           
-    itrf_I_7          1.123    0.028   40.029    0.000
-    itrf_I_8          1.018    0.027   37.907    0.000
-    itrf_I_9          1.230    0.030   40.654    0.000
-    itrf_I_10         0.862    0.025   34.316    0.000
-    itrf_I_11         0.877    0.026   34.077    0.000
-    itrf_I_12         0.951    0.026   36.148    0.000
-    itrf_I_15         1.136    0.028   40.636    0.000
-    itrf_I_17         1.003    0.027   36.703    0.000
-    itrf_I_19         0.822    0.023   36.490    0.000
-    itrf_I_23         1.135    0.027   42.038    0.000
+    itrf_I_7          1.121    0.028   40.069    0.000
+    itrf_I_8          1.019    0.027   37.972    0.000
+    itrf_I_9          1.230    0.030   40.764    0.000
+    itrf_I_10         0.859    0.025   34.303    0.000
+    itrf_I_11         0.877    0.026   34.183    0.000
+    itrf_I_12         0.949    0.026   36.167    0.000
+    itrf_I_15         1.134    0.028   40.688    0.000
+    itrf_I_17         1.006    0.027   36.838    0.000
+    itrf_I_19         0.820    0.022   36.558    0.000
+    itrf_I_23         1.134    0.027   42.167    0.000
 
 Covariances:
                    Estimate  Std.Err  z-value  P(>|z|)
   APD ~~                                              
-    OPP               0.286    0.011   26.234    0.000
-    SW                0.148    0.007   19.770    0.000
-    AD                0.136    0.007   20.696    0.000
+    OPP               0.285    0.011   26.241    0.000
+    SW                0.146    0.007   19.710    0.000
+    AD                0.136    0.007   20.730    0.000
   OPP ~~                                              
-    SW                0.075    0.006   11.919    0.000
-    AD                0.136    0.006   22.315    0.000
+    SW                0.074    0.006   11.897    0.000
+    AD                0.137    0.006   22.374    0.000
   SW ~~                                               
-    AD                0.133    0.005   25.871    0.000
+    AD                0.131    0.005   25.788    0.000
 
 Variances:
                    Estimate  Std.Err  z-value  P(>|z|)
-   .itrf_E_1          0.460    0.011   43.156    0.000
-   .itrf_E_2          0.378    0.009   42.518    0.000
-   .itrf_E_3          0.290    0.007   41.249    0.000
-   .itrf_E_4          0.243    0.006   40.179    0.000
-   .itrf_E_5          0.366    0.009   42.384    0.000
-   .itrf_E_6          0.332    0.008   43.509    0.000
-   .itrf_E_14         0.238    0.006   43.213    0.000
+   .itrf_E_1          0.461    0.011   43.185    0.000
+   .itrf_E_2          0.378    0.009   42.492    0.000
+   .itrf_E_3          0.288    0.007   41.227    0.000
+   .itrf_E_4          0.243    0.006   40.181    0.000
+   .itrf_E_5          0.368    0.009   42.456    0.000
+   .itrf_E_6          0.332    0.008   43.513    0.000
+   .itrf_E_14         0.237    0.005   43.161    0.000
    .itrf_E_15         0.580    0.012   47.051    0.000
-   .itrf_I_20         0.293    0.007   43.557    0.000
-   .itrf_E_7          0.187    0.004   42.903    0.000
-   .itrf_E_8          0.229    0.006   41.488    0.000
-   .itrf_E_9          0.395    0.009   44.986    0.000
-   .itrf_E_10         0.208    0.005   42.909    0.000
-   .itrf_E_11         0.276    0.007   42.184    0.000
-   .itrf_E_12         0.314    0.007   45.678    0.000
-   .itrf_E_13         0.209    0.005   41.738    0.000
-   .itrf_E_16         0.268    0.006   46.178    0.000
-   .itrf_I_1          0.223    0.005   42.836    0.000
-   .itrf_I_4          0.105    0.003   35.399    0.000
-   .itrf_I_5          0.117    0.003   39.394    0.000
-   .itrf_I_6          0.097    0.002   40.822    0.000
-   .itrf_I_13         0.360    0.008   46.807    0.000
-   .itrf_I_14         0.338    0.007   46.982    0.000
-   .itrf_I_16         0.293    0.007   44.287    0.000
-   .itrf_I_24         0.344    0.007   46.774    0.000
-   .itrf_I_2          0.281    0.006   45.018    0.000
-   .itrf_I_7          0.273    0.006   43.866    0.000
-   .itrf_I_8          0.285    0.006   44.934    0.000
-   .itrf_I_9          0.304    0.007   43.476    0.000
-   .itrf_I_10         0.297    0.006   46.161    0.000
-   .itrf_I_11         0.315    0.007   46.225    0.000
-   .itrf_I_12         0.300    0.007   45.605    0.000
-   .itrf_I_15         0.260    0.006   43.488    0.000
-   .itrf_I_17         0.315    0.007   45.410    0.000
-   .itrf_I_19         0.217    0.005   45.486    0.000
-   .itrf_I_23         0.217    0.005   42.444    0.000
-    APD               0.626    0.021   30.169    0.000
-    OPP               0.530    0.016   33.060    0.000
-    SW                0.285    0.010   29.443    0.000
-    AD                0.191    0.008   23.449    0.000
+   .itrf_I_20         0.292    0.007   43.556    0.000
+   .itrf_E_7          0.188    0.004   42.932    0.000
+   .itrf_E_8          0.227    0.005   41.417    0.000
+   .itrf_E_9          0.395    0.009   44.992    0.000
+   .itrf_E_10         0.208    0.005   42.911    0.000
+   .itrf_E_11         0.276    0.007   42.201    0.000
+   .itrf_E_12         0.314    0.007   45.682    0.000
+   .itrf_E_13         0.209    0.005   41.744    0.000
+   .itrf_E_16         0.268    0.006   46.189    0.000
+   .itrf_I_1          0.227    0.005   42.983    0.000
+   .itrf_I_4          0.105    0.003   35.401    0.000
+   .itrf_I_5          0.117    0.003   39.405    0.000
+   .itrf_I_6          0.096    0.002   40.792    0.000
+   .itrf_I_13         0.360    0.008   46.794    0.000
+   .itrf_I_14         0.339    0.007   46.984    0.000
+   .itrf_I_16         0.291    0.007   44.194    0.000
+   .itrf_I_24         0.343    0.007   46.738    0.000
+   .itrf_I_2          0.281    0.006   45.001    0.000
+   .itrf_I_7          0.274    0.006   43.890    0.000
+   .itrf_I_8          0.286    0.006   44.937    0.000
+   .itrf_I_9          0.303    0.007   43.459    0.000
+   .itrf_I_10         0.298    0.006   46.180    0.000
+   .itrf_I_11         0.315    0.007   46.212    0.000
+   .itrf_I_12         0.301    0.007   45.620    0.000
+   .itrf_I_15         0.260    0.006   43.509    0.000
+   .itrf_I_17         0.315    0.007   45.385    0.000
+   .itrf_I_19         0.216    0.005   45.486    0.000
+   .itrf_I_23         0.216    0.005   42.411    0.000
+    APD               0.623    0.021   30.101    0.000
+    OPP               0.529    0.016   33.069    0.000
+    SW                0.281    0.010   29.170    0.000
+    AD                0.191    0.008   23.503    0.000
 ```
 -->
 </div>
@@ -1682,10 +1733,9 @@ scales.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>dat<span class="sc">$</span>itrf_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Externalizing&quot;</span>)</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>dat<span class="sc">$</span>itrf_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, scale <span class="sc">==</span> <span class="st">&quot;ITRF&quot;</span> <span class="sc">&amp;</span> subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">label =</span> <span class="st">&quot;Internalizing&quot;</span>)</span></code></pre></div>
 <p>and get descriptives for those scores</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>dat <span class="sc">%&gt;%</span></span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">select_scores</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>dat[, <span class="fu">c</span>(<span class="st">&quot;itrf_ext&quot;</span>, <span class="st">&quot;itrf_int&quot;</span>)] <span class="sc">|&gt;</span> </span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>  <span class="fu">descriptives</span>(<span class="at">round =</span> <span class="dv">1</span>)</span></code></pre></div>
 <div class="kable-table">
 <table style="width:100%;">
 <colgroup>
@@ -1716,18 +1766,6 @@ scales.</p>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Internalizing</td>
-<td align="right">4772</td>
-<td align="right">4</td>
-<td align="right">0.3</td>
-<td align="right">0.4</td>
-<td align="right">0</td>
-<td align="right">2.6</td>
-<td align="right">2.6</td>
-<td align="right">0.2</td>
-<td align="right">0.3</td>
-</tr>
-<tr class="even">
 <td align="left">Externalizing</td>
 <td align="right">4776</td>
 <td align="right">0</td>
@@ -1738,6 +1776,18 @@ scales.</p>
 <td align="right">3.0</td>
 <td align="right">0.4</td>
 <td align="right">0.5</td>
+</tr>
+<tr class="even">
+<td align="left">Internalizing</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.4</td>
+<td align="right">0</td>
+<td align="right">2.6</td>
+<td align="right">2.6</td>
+<td align="right">0.2</td>
+<td align="right">0.3</td>
 </tr>
 </tbody>
 </table>
@@ -1752,7 +1802,7 @@ conversion.</p>
 <p>Firstly, you need a data frame (or Excel table etc) which includes
 raw-scores and corresponding norm-scores.</p>
 <p>Here is an example of such a table:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>ex_normtable_int <span class="sc">%&gt;%</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>ex_normtable_int <span class="sc">|&gt;</span> <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1843,13 +1893,13 @@ set the sum argument to <code>TRUE</code>. By setting
 item:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>dat<span class="sc">$</span>raw_int <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Int&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>dat<span class="sc">$</span>raw_ext <span class="ot">&lt;-</span> <span class="fu">score_scale</span>(dat, subscale <span class="sc">==</span> <span class="st">&quot;Ext&quot;</span>, <span class="at">sum =</span> <span class="cn">TRUE</span>, <span class="at">max_na =</span> <span class="dv">0</span>)</span></code></pre></div>
-<p>By default, <code>lookup_norms</code> looks for T values:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>dat<span class="sc">$</span>T_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>dat<span class="sc">$</span>T_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext)</span></code></pre></div>
-<p>But this can easily be changed to percentile ranks, if included:</p>
+<p>Looks up T values:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>dat<span class="sc">$</span>T_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int, <span class="at">to =</span> <span class="st">&quot;T&quot;</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>dat<span class="sc">$</span>T_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext, <span class="at">to =</span> <span class="st">&quot;T&quot;</span>)</span></code></pre></div>
+<p>Or percentile ranks:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>dat<span class="sc">$</span>PR_int <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_int, <span class="at">normtable =</span> ex_normtable_int, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>dat<span class="sc">$</span>PR_ext <span class="ot">&lt;-</span> <span class="fu">lookup_norms</span>(dat<span class="sc">$</span>raw_ext, <span class="at">normtable =</span> ex_normtable_ext, <span class="at">to =</span> <span class="st">&quot;PR&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>dat[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">&quot;T_int&quot;</span>, <span class="st">&quot;T_ext&quot;</span>, <span class="st">&quot;PR_int&quot;</span>, <span class="st">&quot;PR_ext&quot;</span>)] <span class="sc">%&gt;%</span> <span class="fu">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>dat[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="fu">c</span>(<span class="st">&quot;T_int&quot;</span>, <span class="st">&quot;T_ext&quot;</span>, <span class="st">&quot;PR_int&quot;</span>, <span class="st">&quot;PR_ext&quot;</span>)] <span class="sc">|&gt;</span> <span class="fu">kable</span>()</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">

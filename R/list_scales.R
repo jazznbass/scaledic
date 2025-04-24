@@ -12,7 +12,7 @@ list_scales <- function(data,
                         n_items = FALSE,
                         char_na = "") {
 
-  filter <- .get_dic_items(data)
+  filter <- which_dic(data)
   out <- data[, filter]
   out <- sapply(out, function(x)
     cbind(sapply(levels, function(y) dic_attr(x, y)))

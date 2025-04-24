@@ -10,9 +10,9 @@
 
 extract_dic <- function(data) {
 
-  id <- .get_dic_items(data, items_only = TRUE)
+  id <- which_dic(data, items_only = TRUE)
 
-  dic_names <- lapply(data[id], function(x) names(attr(x, opt("dic"))))
+  dic_names <- lapply(data[id], function(x) names(dic_attr(x)))
   dic_names <- unlist(dic_names)
   dic_names <- unique(dic_names)
 
@@ -24,8 +24,9 @@ extract_dic <- function(data) {
 
   for (i_row in 1:N) {
 
-    dic <- attr(data[[id[i_row]]], opt("dic"))
-    .var <- !dic_names %in% c("value_labels", "values", "missing")
+    dic <- dic_attr(data[[id[i_row]]])
+    .var <- !dic_names %in% c("value_labels", "values", "missing", "recodes")
+
     for (var_col in dic_names[.var]) {
       if (is.null(dic[[var_col]]) || length(dic[[var_col]]) == 0) {
         out[i_row, var_col] <- NA
@@ -34,11 +35,8 @@ extract_dic <- function(data) {
       }
     }
 
-    # values to code
+    # values to code ----
     values <- dic[[opt("values")]]
-
-    #value_labels <- dic[[opt("value_labels")]]
-
     dic[[opt("type")]] <- tolower(dic[[opt("type")]])
 
     if (!has_info(values)) {
@@ -77,7 +75,7 @@ extract_dic <- function(data) {
 
     out[i_row, opt("value_labels")] <- value_labels
 
-    # missing to code
+    # missing to code ----
 
     missing <- dic[[opt("missing")]]
     if (has_info(missing)) {
@@ -87,6 +85,17 @@ extract_dic <- function(data) {
     }
 
     out[i_row, opt("missing")] <- missing
+
+    # recodes to code ----
+
+    recodes <- dic[[opt("recodes")]]
+    if (has_info(recodes)) {
+      recodes <- paste0(
+        recodes[[1]], " = ", recodes[[2]],
+        collapse = paste0(getOption("scaledic.string.split"), " ")
+      )
+      out[i_row, opt("recodes")] <- recodes
+    }
 
   }
 

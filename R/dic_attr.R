@@ -23,14 +23,18 @@ dic_attr <- function(x, var) {
 #' @param value set value
 #' @export
 "dic_attr<-" <- function(x, var, value) {
-  dic_attr <- attr(x, opt("dic"))
-  if (is.null(dic_attr)) dic_attr <- list()
+  out <- dic_attr(x)
+  if (is.null(out)) out <- list()
 
-  if (var %in% names(.opt)) {
-    dic_attr[[opt(var)]] <- value
-  } else {
-    dic_attr[[var]] <- value
+  if (missing(var)) {
+    attr(x, opt("dic")) <- value
+    return(x)
   }
-  attr(x, opt("dic")) <- dic_attr
+  if (var %in% names(.opt)) {
+    out[[opt(var)]] <- value
+  } else {
+    out[[var]] <- value
+  }
+  attr(x, opt("dic")) <- out
   x
 }

@@ -25,14 +25,27 @@
 #' @docType data
 "dat_itrf"
 
-#' Example dataset with a norm table
+#' Example of a norm table
+#'
+#' Normatable for internalising scale
 #'
 #' @format A data frame with 48 rows and 5 variables
 #' @docType data
 "ex_normtable_int"
 
-#' Example dataset with a norm table
+#' Example of a norm table
+#'
+#' Normatable for externalising scale
 #'
 #' @format A data frame with 52 rows and 5 variables
 #' @docType data
 "ex_normtable_ext"
+
+#' Example dataset and dic file: Religious beliefs and suicide tendency
+#'
+#' A dataset without dic information containing 20 students (12 items).
+#'
+#' @format A data frame with 20 rows and 12 variables
+#' @aliases ex_scaledic_dic ex_scaledic_data
+#' @docType data
+"ex_scaledic_data"

@@ -9,7 +9,7 @@
 
 deploy_dic <- function(data, dic_list) {
   for(item in names(dic_list)) {
-    if(item %in% names(data)) attr(data[[item]], .opt$dic) <- dic_list[[item]]
+    if(item %in% names(data)) dic_attr(data[[item]]) <- dic_list[[item]]
   }
   data <- dic_haven(data)
   data
@@ -26,7 +26,7 @@ deploy_dic <- function(data, dic_list) {
 #' @keywords internal
 
 backup_dic <- function(data) {
-  id <- .get_dic_items(data)
-  out <- lapply(data[, id], function(x) attr(x, .opt$dic))
+  id <- which_dic(data)
+  out <- lapply(data[, id], function(x) dic_attr(x))
   out
 }

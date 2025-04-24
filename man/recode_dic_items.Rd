@@ -4,14 +4,12 @@
 \alias{recode_dic_items}
 \title{Recode Dictionary Items}
 \usage{
-recode_dic_items(df, var_recoding = "scores", prefix = "(recoded)")
+recode_dic_items(df, prefix_label = "(recoded)")
 }
 \arguments{
 \item{df}{a data frame that contains variables to be recoded}
 
-\item{var_recoding}{the name of a variable within the dictionary information}
-
-\item{prefix}{Prefix is added to the item label of a recoded item}
+\item{prefix_label}{Prefix is added to the item label of a recoded item}
 }
 \value{
 A recoded data frame
@@ -19,4 +17,11 @@ A recoded data frame
 \description{
 This function takes a data frame and recodes specified variables based on the
 dictionary.
+}
+\details{
+This function is useful, when you want to recode the 'raw' values from a
+vector in a data.frame based on recoding information provided in a
+dictionary file. For example, you code the answers in a data frame that were
+given to a task. And you have additional information in a dic-file that tells
+you, which answer is correct (1) vs. false (0).
 }

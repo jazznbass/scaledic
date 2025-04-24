@@ -4,10 +4,10 @@
 \alias{dic}
 \title{Print dic infos}
 \usage{
-dic(data)
+dic(data, length = 100)
 }
 \arguments{
-\item{x}{A variable with dic infos}
+\item{data}{A variable with dic infos}
 }
 \value{
 Dic infos of x

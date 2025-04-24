@@ -1,8 +1,14 @@
-#' Add dictionary class to a data.frame or a vector
+#' Add dictionary class to a vector
+#'
+#' Adds the class 'dic' to a vector or all variables within a vector if it contains 'dic' attributes.
 #'
 #' @param data A vector or a data.frame (or an object that inherits from a data.frame)
 #'
-#' @return An object not inheriting from class "dic".
+#' @return An object inheriting from class "dic".
+#' @examples
+#' item <- remove_dic_class(ex_itrf$itrf_I_1)
+#' item
+#' item |> add_dic_class()
 #' @export
 add_dic_class <- function(data) {
 
@@ -15,10 +21,14 @@ add_dic_class <- function(data) {
 
   if (inherits(data, "data.frame")) {
     for(i in 1:ncol(data)) {
-      data[[i]] <- .add(data[[i]])
+      if (!is.null(dic_attr(data[[i]]))) {
+        data[[i]] <- .add(data[[i]])
+      }
     }
   } else {
-    data <- .add(data)
+    if (!is.null(dic_attr(data))) {
+      data <- .add(data)
+    }
   }
 
   data

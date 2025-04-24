@@ -12,7 +12,7 @@
   "class" = "class",
   "score_filter" = "score_filter",
   "score_function" = "score_function",
-  "scores" = "scores",
+  "recodes" = "recodes",
   "numerics" = c("numeric", "integer", "double", "float")
 )
 
@@ -36,12 +36,12 @@ opt <- function(x) {
 )
 
 
-.get_dic_items <- function(data, items_only = TRUE) {
+which_dic <- function(data, items_only = TRUE) {
 
   fn <- if (items_only) {
-    function(x) !is.null(attr(x, opt("dic"))) && dic_attr(x, "class") == "item"
+    function(x) !is.null(dic_attr(x)) && dic_attr(x, "class") == "item"
   } else {
-    function(x) !is.null(attr(x, opt("dic")))
+    function(x) !is.null(dic_attr(x))
   }
 
   which(sapply(data, fn))
@@ -145,4 +145,7 @@ return_messages <- function(msg, warning = FALSE) {
   msg <- paste0("\n", msg, "\n")
   if (warning) warning(msg, call. = FALSE) else message(msg)
 }
+
+
+
 
