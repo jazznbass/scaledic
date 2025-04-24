@@ -354,27 +354,252 @@ replace them with NA:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span>  </span>
 <span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
-<span><span class="co">#&gt;         name valid missing mean  sd min max range median mad</span></span>
-<span><span class="co">#&gt; 1   itrf_I_1  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 2   itrf_I_2  4772       4  0.3 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 3   itrf_I_4  4772       4  0.3 0.6   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 4   itrf_I_5  4772       4  0.2 0.6   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 5   itrf_I_6  4772       4  0.2 0.5   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 6   itrf_I_7  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 7   itrf_I_8  4772       4  0.3 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 8   itrf_I_9  4772       4  0.5 0.8   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 9  itrf_I_10  4772       4  0.3 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 10 itrf_I_11  4772       4  0.3 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 11 itrf_I_12  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 12 itrf_I_13  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 13 itrf_I_14  4772       4  0.3 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 14 itrf_I_15  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 15 itrf_I_16  4772       4  0.4 0.8   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 16 itrf_I_17  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 17 itrf_I_19  4772       4  0.2 0.6   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 18 itrf_I_23  4772       4  0.4 0.7   0   3     3      0   0</span></span>
-<span><span class="co">#&gt; 19 itrf_I_24  4772       4  0.4 0.7   0   3     3      0   0</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
+<span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">name</th>
+<th align="right">valid</th>
+<th align="right">missing</th>
+<th align="right">mean</th>
+<th align="right">sd</th>
+<th align="right">min</th>
+<th align="right">max</th>
+<th align="right">range</th>
+<th align="right">median</th>
+<th align="right">mad</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">itrf_I_1</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_2</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_4</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_5</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_6</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.2</td>
+<td align="right">0.5</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_7</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_8</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_9</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.5</td>
+<td align="right">0.8</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_10</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_11</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_12</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_13</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_14</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.3</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_15</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_16</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.8</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_17</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_19</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.2</td>
+<td align="right">0.6</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="even">
+<td align="left">itrf_I_23</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+<tr class="odd">
+<td align="left">itrf_I_24</td>
+<td align="right">4772</td>
+<td align="right">4</td>
+<td align="right">0.4</td>
+<td align="right">0.7</td>
+<td align="right">0</td>
+<td align="right">3</td>
+<td align="right">3</td>
+<td align="right">0</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section level2">
 <h2 id="see-items-instead-of-labels">See items instead of labels<a class="anchor" aria-label="anchor" href="#see-items-instead-of-labels"></a>
@@ -650,9 +875,9 @@ Bauchschmerzen</td>
 description.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"({reverse}){subscale}_{subscale_2}: {label}"</span>, max_chars <span class="op">=</span> <span class="fl">70</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
-<span>  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="../reference/exploratory_fa.html">exploratory_fa</a></span><span class="op">(</span>nfactors <span class="op">=</span> <span class="fl">4</span>, cut <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="78%">
@@ -977,7 +1202,7 @@ Details</td>
 <span>  <span class="st">"SW"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>,</span>
 <span>  <span class="st">"AD"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span></span>
 <span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="../reference/alpha_table.html">alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="4%">

@@ -114,7 +114,7 @@ Let us look at the descriptive statistics for the *internalising* subscale:
 dat |>  
   select_items(subscale == "Int") |> 
   descriptives(round = 1) |> 
-  kable() |> 
+  kable()
 ```
 
 ## See items instead of labels

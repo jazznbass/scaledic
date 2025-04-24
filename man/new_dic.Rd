@@ -37,7 +37,7 @@ named}
 
 \item{weight}{numeric}
 
-\item{type}{defaults to "integer"}
+\item{type}{defaults to data type of x}
 
 \item{recodes}{Recoding information e.g. \verb{4 = 1, .default = 0}}
 

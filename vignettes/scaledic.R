@@ -13,9 +13,9 @@ knitr::opts_chunk$set(
 )
 
 ## ----dic_example, echo=FALSE--------------------------------------------------
-dic_itrf  |>  
+dic_itrf |>  
   select(item_name, item_label, scale, scale_label, subscale, subscale_label, values, value_labels, missing, type) |> 
-  slice(2:4)  |> 
+  slice(2:4) |> 
   kable()
 
 ## ----tab_dic_param, echo = FALSE----------------------------------------------
@@ -61,7 +61,8 @@ dat <- impute_missing(dat, subscale == "Int")
 ## ----descriptives-------------------------------------------------------------
 dat |>  
   select_items(subscale == "Int") |> 
-  descriptives(round = 1)
+  descriptives(round = 1) |> 
+  kable()
 
 ## ----desc_labels--------------------------------------------------------------
 dat |> 
@@ -72,9 +73,9 @@ dat |>
 
 ## ----exploratory_fa-----------------------------------------------------------
 dat |> 
-  select_items(scale == "ITRF") %>%
+  select_items(scale == "ITRF") |>
   rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) |> 
-  exploratory_fa(nfactors = 4, cut = 0.4) %>% kable()
+  exploratory_fa(nfactors = 4, cut = 0.4) |> kable()
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf |> get_scales(
@@ -83,7 +84,7 @@ scales <- ex_itrf |> get_scales(
   "SW" = subscale_2 == "SW",
   "AD" = subscale_2 == "AD"
 )
-alpha_table(dat, scales = scales) %>% kable()
+alpha_table(dat, scales = scales) |> kable()
 
 
 ## ----lavaan_model-------------------------------------------------------------

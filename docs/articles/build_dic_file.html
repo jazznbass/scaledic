@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2025-04-15</h4>
+            <h4 data-toc-skip class="date">2025-04-24</h4>
       
 
       <div class="d-none name"><code>build_dic_file.Rmd</code></div>
@@ -859,7 +859,7 @@ week?</td>
 <span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">4</span>     <span class="dv">12</span>     <span class="dv">16</span> </span>
 <span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">13</span>   <span class="sc">-</span><span class="dv">999</span>     <span class="dv">13</span> </span></code></pre></div>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"data frame with replaced invalid values"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">|&gt;</span> <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"data frame with replaced invalid values"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>data frame with replaced invalid values</caption>
 <colgroup>
@@ -1309,7 +1309,7 @@ week?</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file) <span class="sc">%&gt;%</span> <span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file) <span class="sc">|&gt;</span><span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>Found the following invalid values<span class="sc">:</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="st">'rel_2'</span></span>
@@ -1596,7 +1596,7 @@ for invalid entries. To do this, either set
 <span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">9</span><span class="op">:</span><span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu">kable</span><span class="op">(</span>caption <span class="op">=</span> <span class="st">"Extract from the data frame with replaced missing values and checked values"</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
 <caption>Extract from the data frame with replaced missing values and
@@ -2008,8 +2008,8 @@ week?</td>
 <span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Invalid values replaced with <span class="cn">NA</span></span>
 <span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
 <p>When can use the scale attribute to select items:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">"rel"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>dat_dic <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">"rel"</span>) <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>   name valid missing mean   sd min max range median  mad</span>
 <span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="dv">1</span> rel_1    <span class="dv">20</span>       <span class="dv">0</span> <span class="fl">3.65</span> <span class="fl">1.76</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>      <span class="dv">3</span> <span class="fl">1.48</span></span>
@@ -2020,8 +2020,8 @@ week?</td>
 <p>and the <code><a href="../reference/rename_items.html">rename_items()</a></code> function to get the item
 labels:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"rel"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"rel"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="../reference/descriptives.html">descriptives</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">kable</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>

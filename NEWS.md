@@ -27,7 +27,7 @@ recode_dic_items(dat)
 ## New function
 
 - `remove_dic_class()` / `add_dic_class()`: Removes/ adds the dic class from a vector/ variable.
-
+- `enrich_dic()`: Adds dic information to all variables in a dic file without a dic attribute and automatically sets item names, labels, and type.
 
 # scaledic 0.3.1
 

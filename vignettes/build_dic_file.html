@@ -12,7 +12,7 @@
 
 <meta name="author" content="Jürgen Wilbert" />
 
-<meta name="date" content="2025-04-15" />
+<meta name="date" content="2025-04-24" />
 
 <title>How to build a dictionary file</title>
 
@@ -340,7 +340,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <h1 class="title toc-ignore">How to build a dictionary file</h1>
 <h4 class="author">Jürgen Wilbert</h4>
-<h4 class="date">2025-04-15</h4>
+<h4 class="date">2025-04-24</h4>
 
 
 
@@ -1132,7 +1132,7 @@ week?</td>
 <span id="cb5-32"><a href="#cb5-32" tabindex="-1"></a><span class="st">&#39;age&#39;</span></span>
 <span id="cb5-33"><a href="#cb5-33" tabindex="-1"></a>  Row<span class="sc">:</span>      <span class="dv">4</span>     <span class="dv">12</span>     <span class="dv">16</span> </span>
 <span id="cb5-34"><a href="#cb5-34" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">13</span>   <span class="sc">-</span><span class="dv">999</span>     <span class="dv">13</span> </span></code></pre></div>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;data frame with replaced invalid values&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>dat_dic <span class="sc">|&gt;</span> <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;data frame with replaced invalid values&quot;</span>)</span></code></pre></div>
 <table>
 <caption>data frame with replaced invalid values</caption>
 <colgroup>
@@ -1586,7 +1586,7 @@ week?</td>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file) <span class="sc">%&gt;%</span> <span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file) <span class="sc">|&gt;</span><span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>Found the following invalid values<span class="sc">:</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a></span>
 <span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="st">&#39;rel_2&#39;</span></span>
@@ -1874,7 +1874,7 @@ for invalid entries. To do this, either set
 <span id="cb13-28"><a href="#cb13-28" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Invalid values replaced with <span class="cn">NA</span></span>
 <span id="cb13-29"><a href="#cb13-29" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">9</span><span class="sc">:</span><span class="dv">20</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>  <span class="fu">kable</span>(<span class="at">caption =</span> <span class="st">&quot;Extract from the data frame with replaced missing values and checked values&quot;</span>)</span></code></pre></div>
 <table>
 <caption>Extract from the data frame with replaced missing values and
@@ -2290,8 +2290,8 @@ week?</td>
 <span id="cb15-28"><a href="#cb15-28" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Invalid values replaced with <span class="cn">NA</span></span>
 <span id="cb15-29"><a href="#cb15-29" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Missing values replaced with <span class="cn">NA</span></span></code></pre></div>
 <p>When can use the scale attribute to select items:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> </span>
-<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>dat_dic <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>  <span class="fu">descriptives</span>()</span>
 <span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>   name valid missing mean   sd min max range median  mad</span>
 <span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a><span class="dv">1</span> rel_1    <span class="dv">20</span>       <span class="dv">0</span> <span class="fl">3.65</span> <span class="fl">1.76</span>   <span class="dv">1</span>   <span class="dv">6</span>     <span class="dv">5</span>      <span class="dv">3</span> <span class="fl">1.48</span></span>
@@ -2301,8 +2301,8 @@ week?</td>
 <span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a><span class="dv">5</span> rel_5    <span class="dv">19</span>       <span class="dv">1</span> <span class="fl">2.47</span> <span class="fl">1.31</span>   <span class="dv">1</span>   <span class="dv">5</span>     <span class="dv">4</span>      <span class="dv">3</span> <span class="fl">1.48</span></span></code></pre></div>
 <p>and the <code>rename_items()</code> function to get the item
 labels:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>dat_dic <span class="sc">%&gt;%</span> </span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>dat_dic <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>  <span class="fu">select_items</span>(scale <span class="sc">==</span> <span class="st">&quot;rel&quot;</span>) <span class="sc">|&gt;</span></span>
 <span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>  <span class="fu">rename_items</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>  <span class="fu">descriptives</span>() <span class="sc">%&gt;%</span></span>
 <span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="fu">kable</span>()</span></code></pre></div>

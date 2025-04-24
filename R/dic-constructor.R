@@ -8,7 +8,7 @@
 #' @param value_labels Character of the form `value = label; value2 = label2`
 #' @param missing Numeric or character vector with values
 #' @param weight numeric
-#' @param type defaults to "integer"
+#' @param type defaults to data type of x
 #' @param recodes Recoding information e.g. `4 = 1, .default = 0`
 #' @param class default is "item"
 #' @param ... further dic arguments (e.g. `source = "James (1891)"`)
@@ -49,8 +49,10 @@ new_dic <- function(x,
   }
 
   if (!has_info(type)) {
-    type <- "integer"
+    type <- "numeric"
     if (is.numeric(x)) type <- "numeric"
+    if (is.integer(x)) type <- "integer"
+    if (is.double(x)) type <- "double"
     if (is.character(x)) type <- "character"
     if (is.factor(x)) type <- "factor"
   }
