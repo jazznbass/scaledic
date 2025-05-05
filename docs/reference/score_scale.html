@@ -125,25 +125,25 @@ weights.</p>
 <span class="r-in"><span><span class="fu">score_scale</span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"rel"</span>, label <span class="op">=</span> <span class="st">"Religious beliefs"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Religious beliefs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (weighted mean of items: scale == "rel") </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Data type is numeric</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Valid values: From 1 to 5.4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Value labels:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> #   1 = min</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> #   5.4 = max</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Length: 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1]  2.20  1.60 15.20  2.60  3.80  3.60  2.40  3.40  4.40  4.80 15.40  3.40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13]  3.80  2.25  2.60  3.80  3.80  4.50  4.20  3.00</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Data type is numeric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Valid values: From 1 to 5.4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Value labels:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║  1 = min</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║  5.4 = max</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Length: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║ [1]  2.20  1.60 15.20  2.60  3.80  3.60  2.40  3.40  4.40  4.80 15.40  3.40</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║[13]  3.80  2.25  2.60  3.80  3.80  4.50  4.20  3.00</span>
 <span class="r-in"><span><span class="co"># apply the weighted sum function</span></span></span>
 <span class="r-in"><span><span class="fu">score_scale</span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"rel"</span>, label <span class="op">=</span> <span class="st">"Religious beliefs"</span>, sum <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Religious beliefs</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> (weighted sum of items: scale == "rel") </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Data type is numeric</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Valid values: From 5 to 27</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Value labels:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> #   5 = min</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> #   27 = max</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> # Length: 20</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1] 11  8 76 13 19 18 12 17 22 24 77 17 19  9 13 19 19 18 21 15</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Data type is numeric</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Valid values: From 5 to 27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Value labels:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║  5 = min</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║  27 = max</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║Length: 20</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> ║ [1] 11  8 76 13 19 18 12 17 22 24 77 17 19  9 13 19 19 18 21 15</span>
 <span class="r-in"><span><span class="co"># provide an external function (here the weighted median function from the spatstat package)</span></span></span>
 <span class="r-in"><span><span class="co">#score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)</span></span></span>
 <span class="r-in"><span></span></span>

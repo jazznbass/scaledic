@@ -42,6 +42,7 @@ alpha_table <- function(data,
                         values = NULL,
                         fa = TRUE) {
 
+  #warning("This function is deprecated. Please use the nice_alpha_table() function from the wmisc package")
 
   if (!is.null(keys)) {
     check_key <- FALSE

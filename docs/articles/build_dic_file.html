@@ -65,7 +65,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2025-04-24</h4>
+            <h4 data-toc-skip class="date">2025-05-05</h4>
       
 
       <div class="d-none name"><code>build_dic_file.Rmd</code></div>
@@ -1345,43 +1345,43 @@ week?</td>
 <span id="cb7-34"><a href="#cb7-34" tabindex="-1"></a>Value<span class="sc">:</span>     <span class="dv">13</span>   <span class="sc">-</span><span class="dv">999</span>     <span class="dv">13</span> </span></code></pre></div>
 <p>Now lets see the coding for some of the variables:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>rel_1</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co"># How often do you attend church or other religious meetings? </span></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co"># Valid values: 1:6</span></span>
-<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># Value labels:</span></span>
-<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co">#   1 = Never</span></span>
-<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#   2 = Once a year or less</span></span>
-<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#   3 = A few times a year</span></span>
-<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#   4 = A few times a month</span></span>
-<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co">#   5 = Once a week</span></span>
-<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="co">#   6 = More than once/week</span></span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="co"># Length: 20</span></span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a> [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span></code></pre></div>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>║How often do you attend church or other religious meetings? </span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>║Data type is integer</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>║  <span class="dv">1</span> <span class="ot">=</span> Never</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>║  <span class="dv">2</span> <span class="ot">=</span> Once a year or less</span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>║  <span class="dv">3</span> <span class="ot">=</span> A few times a year</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>║  <span class="dv">4</span> <span class="ot">=</span> A few times a month</span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>║  <span class="dv">5</span> <span class="ot">=</span> Once a week</span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>║  <span class="dv">6</span> <span class="ot">=</span> More than once<span class="sc">/</span>week</span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span></code></pre></div>
 <p>Valid values are all integers from 1 to 6 and each value has a
 label.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>sui_1</span>
-<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co"># Did you feel tense in the last week? </span></span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co"># Data type is integer</span></span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co"># Valid values: 0:4</span></span>
-<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="co"># Value labels:</span></span>
-<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="co">#   0 = not at all</span></span>
-<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="co">#   4 = extremely</span></span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="co"># Length: 20</span></span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a> [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="cn">NA</span>  <span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">2</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">1</span></span></code></pre></div>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>║Did you feel tense <span class="cf">in</span> the last week? </span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>║Data type is integer</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>║  <span class="dv">0</span> <span class="ot">=</span> not at all</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>║  <span class="dv">4</span> <span class="ot">=</span> extremely</span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>║ [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="cn">NA</span>  <span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">2</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">1</span></span></code></pre></div>
 <p>Here, valid values are <code>0, 1, 2, 3, 4</code> (short
 <code>0:4</code>) but only the poles (<code>0</code> and <code>4</code>)
 have labels.</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>gender</span>
-<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a><span class="co"># gender </span></span>
-<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># Data type is factor</span></span>
-<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a><span class="co"># Value labels:</span></span>
-<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a><span class="co">#   m = male</span></span>
-<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a><span class="co">#   f = female</span></span>
-<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="co">#   d = diverse</span></span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a><span class="co"># Length: 20</span></span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a> [<span class="dv">1</span>] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   </span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>[<span class="dv">16</span>] d    <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> m    m    m   </span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>Levels<span class="sc">:</span> m f d</span></code></pre></div>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>║gender </span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>║Data type is factor</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>║  m <span class="ot">=</span> male</span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>║  f <span class="ot">=</span> female</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>║  d <span class="ot">=</span> diverse</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>║ [<span class="dv">1</span>] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   </span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>║[<span class="dv">16</span>] d    <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> m    m    m   </span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>║Levels<span class="sc">:</span> m f d</span></code></pre></div>
 <p><code>gender</code> is of type factor. The valid values
 <code>'m', 'f', 'd'</code> have been turned into three factor levels
 with the corresponding labels.</p>
@@ -1393,15 +1393,15 @@ is because R internally would turn the values (here
 <code>1, 2, 3</code>)</p>
 </blockquote>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>age</span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="co"># age </span></span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a><span class="co"># Data type is float</span></span>
-<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="co"># Valid values: From 5 to 11</span></span>
-<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a><span class="co"># Value labels:</span></span>
-<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a><span class="co">#   5 = min</span></span>
-<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="co">#   11 = max</span></span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a><span class="co"># Length: 20</span></span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a> [<span class="dv">1</span>] <span class="fl">10.5</span>  <span class="fl">6.5</span> <span class="fl">10.5</span>   <span class="cn">NA</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span> <span class="fl">10.0</span>  <span class="fl">8.5</span>  <span class="fl">8.5</span>  <span class="fl">7.5</span>   <span class="cn">NA</span>  <span class="fl">7.0</span>  <span class="fl">7.5</span>  <span class="fl">8.5</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>[<span class="dv">16</span>]   <span class="cn">NA</span> <span class="fl">10.5</span> <span class="fl">10.0</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span></span></code></pre></div>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>║age </span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>║Data type is float</span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> From <span class="dv">5</span> to <span class="dv">11</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>║  <span class="dv">5</span> <span class="ot">=</span> min</span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>║  <span class="dv">11</span> <span class="ot">=</span> max</span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="fl">10.5</span>  <span class="fl">6.5</span> <span class="fl">10.5</span>   <span class="cn">NA</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span> <span class="fl">10.0</span>  <span class="fl">8.5</span>  <span class="fl">8.5</span>  <span class="fl">7.5</span>   <span class="cn">NA</span>  <span class="fl">7.0</span>  <span class="fl">7.5</span>  <span class="fl">8.5</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>║[<span class="dv">16</span>]   <span class="cn">NA</span> <span class="fl">10.5</span> <span class="fl">10.0</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span></span></code></pre></div>
 <p><code>age</code> can take all numbers from 5 to 11 (minimum is 5 and
 maximum is 11).</p>
 <p>It is a common practice to code missing values with a specific number
