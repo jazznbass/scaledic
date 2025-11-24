@@ -13,7 +13,7 @@ vignette: >
 library(knitr)
 library(dplyr)
 library(tibble)
-library(psych)
+library(wmisc)
 library(scaledic)
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -26,7 +26,7 @@ In the following examples I will lay out the construction of a dictionary file.
 First, we need an example data.frame to work with (i.e. the `ex_scaledic_data` example dataset):
 
 ```{r echo=FALSE}
-ex_scaledic_data |> kable(caption = "ex_scaledic_data")
+ex_scaledic_data |> wmisc::nice_table(caption = "ex_scaledic_data")
 ```
 
 Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`[^1].

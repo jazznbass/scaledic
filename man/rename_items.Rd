@@ -15,7 +15,7 @@ rename_items(
 \item{data}{A data frame}
 
 \item{pattern}{A character string with the syntax of the glue function (see
-\code{\link[=glue]{glue()}}).}
+\code{\link[glue:glue]{glue::glue()}}).}
 
 \item{max_chars, chars}{If not NULL, only the first n chars of the resulting
 label will be applied.}

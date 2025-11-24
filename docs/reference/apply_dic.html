@@ -119,62 +119,20 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">apply_dic</span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Found the following invalid values:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_1'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   3192 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      7 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_2'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   4651 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_13'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   3699 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_20'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2799 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      4 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_4'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2621 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      6 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_6'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_7'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_8'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_9'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_10'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_11'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_12'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_13'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599   4146 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9     11 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_14'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   Row:   2599 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Value:      9 </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_1' is 7 at row 3192</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_2' is 9 at row 4651</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_13' is 4 at row 3699</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_20' is 4 at row 2799</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_4' is 6 at row 2621</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_6' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_7' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_8' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_9' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_10' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_11' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_12' is 9 at row 2599</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_13' is 9, 11 at rows 2599, 4146</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_14' is 9 at row 2599</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Invalid values replaced with NA</span>
