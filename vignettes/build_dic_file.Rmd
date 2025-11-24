@@ -26,7 +26,7 @@ In the following examples I will lay out the construction of a dictionary file.
 First, we need an example data.frame to work with (i.e. the `ex_scaledic_data` example dataset):
 
 ```{r echo=FALSE}
-ex_scaledic_data |> wmisc::nice_table(caption = "ex_scaledic_data")
+ex_scaledic_data |> wmisc::nice_table(title = "ex_scaledic_data")
 ```
 
 Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`[^1].
@@ -43,7 +43,7 @@ We start the example with a very simple dictionary file containing only item lab
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic[, 1:2]
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file")
 ```
 
 We combine the *data* file and the *dic* file with the `apply_dic()` function:
@@ -59,7 +59,7 @@ Let us add `type` information to the dic file:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, type)
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file")
 ```
 
 Most item values are of type `integer` (the item has only whole numbers) with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
@@ -72,7 +72,7 @@ Now we can add `weight` information to the dic file. The `weight` attribute tell
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, weight, type)
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file")
 ```
 
 In this example, all `weights` are `1` and no item is inverted. 
@@ -89,7 +89,7 @@ Here is the dic file with added `values`:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, "values", "weight", "type")
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file")
 ```
 
 ```{r}
@@ -104,7 +104,7 @@ dat_dic <- check_values(dat_dic, report = TRUE, replace = NA)
 
 
 ```{r}
-dat_dic |> kable(caption = "data frame with replaced invalid values")
+dat_dic |> wmisc::nice_table(title = "data frame with replaced invalid values")
 ```
 
 Next, we add `value_labels`. Value labels give longer labels for all or some of the values. Value labels are coded in the form `value = label` with a semicolon separating each entry. `m = male; f = female; d = diverse` codes three value label (quotes are not necessary).
@@ -113,7 +113,7 @@ Here is the dic file with added `value_labels`:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, "values", "value_labels", "weight", "type")
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(caption = "Dictionary file")
 ```
 
 ```{r}
@@ -152,7 +152,7 @@ It is a common practice to code missing values with a specific number (rather th
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, values, value_labels, weight, type, missing)
-dic_file |>kable(caption = "Dictionary file")
+dic_file |>wmisc::nice_table(title = "Dictionary file")
 ```
 
 The values within the `missing` attributes are automatically replaced with NA when joining a data with a dic file: 
@@ -170,14 +170,14 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
 ```{r}
 dat_dic %>%
   slice(9:20) |>
-  kable(caption = "Extract from the data frame with replaced missing values and checked values")
+  wmisc::nice_table(title = "Extract from the data frame with replaced missing values and checked values")
 ```
 
 In the last step of this tutorial we will add information about the scales that the items belong to. Therefore, we add a new attribute called `scale` to the dic file and another attribute `scale_label` for a longer description (we could have named these attributes in any other way as they are not *predefined* attributes):
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic
-dic_file |>kable(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file")
 ```
 
 ```{r}
@@ -189,7 +189,7 @@ When can use the scale attribute to select items:
 ```{r}
 dat_dic |>
   select_items(scale == "rel") |>
-  descriptives()
+  wmisc::nice_descriptives()
 ```
 
 and the `rename_items()` function to get the item labels:
@@ -197,7 +197,6 @@ and the `rename_items()` function to get the item labels:
 ```{r}
 dat_dic |>
   select_items(scale == "rel") |>
-  rename_items() %>%
-  descriptives() %>%
-  kable()
+  rename_items() |>
+  wmisc::nice_descriptives()
 ```
