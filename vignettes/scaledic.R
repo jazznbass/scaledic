@@ -4,6 +4,7 @@ library(dplyr)
 library(tibble)
 library(scaledic)
 library(stringr)
+library(wmisc)
 
 knitr::opts_chunk$set(
   message = FALSE,
@@ -33,7 +34,7 @@ out <- tribble(
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
 )
-kable(out, caption = "Basic columns of a dictionary file")
+wmisc::nice_table(out, caption = "Basic columns of a dictionary file")
 
 
 ## ----apply_dic----------------------------------------------------------------
@@ -41,7 +42,7 @@ kable(out, caption = "Basic columns of a dictionary file")
 dat <- apply_dic(dat_itrf, dic_itrf)
 
 ## ----list_scales--------------------------------------------------------------
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> kable()
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table()
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -61,21 +62,20 @@ dat <- impute_missing(dat, subscale == "Int")
 ## ----descriptives-------------------------------------------------------------
 dat |>  
   select_items(subscale == "Int") |> 
-  descriptives(round = 1) |> 
-  kable()
+  wmisc::nice_descriptives(round = 1)
 
 ## ----desc_labels--------------------------------------------------------------
 dat |> 
   select_items(subscale == "Int") |> 
   rename_items() |> 
-  descriptives(round = 1) |> 
-  kable()
+  wmisc::nice_descriptives(round = 1)
 
 ## ----exploratory_fa-----------------------------------------------------------
 dat |> 
   select_items(scale == "ITRF") |>
   rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}", max_chars = 70) |> 
-  exploratory_fa(nfactors = 4, cut = 0.4) |> kable()
+  psych::fa(nfactors = 4) |> 
+  wmisc::nice_efa(cut = 0.4)
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf |> get_scales(
@@ -84,7 +84,7 @@ scales <- ex_itrf |> get_scales(
   "SW" = subscale_2 == "SW",
   "AD" = subscale_2 == "AD"
 )
-alpha_table(dat, scales = scales) |> kable()
+wmisc::nice_alpha_table(dat, scales = scales)
 
 
 ## ----lavaan_model-------------------------------------------------------------
@@ -105,10 +105,10 @@ dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "I
 ## ----desc_scores--------------------------------------------------------------
 dat[, c("itrf_ext", "itrf_int")] |> 
   rename_items() |> 
-  descriptives(round = 1)
+  wmisc::nice_descriptives(round = 1)
 
 ## -----------------------------------------------------------------------------
-ex_normtable_int |> slice(1:10) |> kable()
+ex_normtable_int |> slice(1:10) |> wmisc::nice_table()
 
 ## -----------------------------------------------------------------------------
 dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
@@ -123,5 +123,5 @@ dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
 dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
 
 ## -----------------------------------------------------------------------------
-dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] |> kable()
+dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] |> wmisc::nice_table()
 

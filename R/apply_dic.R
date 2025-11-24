@@ -278,7 +278,8 @@ apply_dic <- function(data,
   }
 
   # Check for \r\n in value labels
-  if (any(grepl("\r\n", "; ", x = dic[[.dic_file$value_labels]]))) {
+
+  if (any(grepl("\r\n", x = dic[[.dic_file$value_labels]]))) {
     msg <- c(msg, "Found linebreaks in value_labels and replaced them with ';'")
     dic[[.dic_file$value_labels]] <- gsub("\r\n", "; ", x =  dic[[.dic_file$value_labels]])
   }

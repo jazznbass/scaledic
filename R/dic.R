@@ -81,10 +81,19 @@ dic <- function(data, length = 100) {
   max <- ifelse(ldat < length, ldat, length)
   cat(prefix, "Length: ", ldat, "\n", sep = "")
 
-  print(data[1:max])
+  print_with_prefix(data[1:max])
   if (ldat > length) {
     cat(prefix, "entries omitted\n", sep = "")
   }
 
   invisible(dic_attr(data))
 }
+
+
+print_with_prefix <- function(x, ...) {
+  output <- capture.output(print(x, ...))
+  #output <- gsub("^\\s*\\[\\d+\\]", "", output)
+  cat(paste0(getOption("scaledic.string.prefix"), output), sep = "\n")
+  invisible(x)
+}
+

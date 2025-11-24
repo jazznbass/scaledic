@@ -2,7 +2,7 @@
 library(knitr)
 library(dplyr)
 library(tibble)
-library(psych)
+library(wmisc)
 library(scaledic)
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
 )
 
 ## ----echo=FALSE---------------------------------------------------------------
-ex_scaledic_data |> kable(caption = "ex_scaledic_data")
+ex_scaledic_data |> wmisc::nice_table(caption = "ex_scaledic_data")
 
 ## ----echo=FALSE---------------------------------------------------------------
 dic_file <- ex_scaledic_dic[, 1:2]

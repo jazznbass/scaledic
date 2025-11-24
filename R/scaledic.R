@@ -13,7 +13,7 @@
   op <- options()
   op_scan <- list(
     scaledic.string.split = ";",
-    scaledic.string.prefix = "# "
+    scaledic.string.prefix = "\u2551" #\u2502" #"# "
   )
 
   toset <- !(names(op_scan) %in% names(op))
