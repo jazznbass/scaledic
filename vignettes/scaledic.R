@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 dic_itrf |>  
   select(item_name, item_label, scale, scale_label, subscale, subscale_label, values, value_labels, missing, type) |> 
   slice(2:4) |> 
-  kable()
+  wmisc::nice_table(cols_align = list(left = 1:10))
 
 ## ----tab_dic_param, echo = FALSE----------------------------------------------
 out <- tribble(
@@ -34,15 +34,18 @@ out <- tribble(
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
 )
-wmisc::nice_table(out, caption = "Basic columns of a dictionary file")
+wmisc::nice_table(out, caption = "Basic columns of a dictionary file", cols_align = list(left = 2:3))
 
 
 ## ----apply_dic----------------------------------------------------------------
 # Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"
 dat <- apply_dic(dat_itrf, dic_itrf)
 
-## ----list_scales--------------------------------------------------------------
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table()
+## -----------------------------------------------------------------------------
+# list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label"))
+
+## -----------------------------------------------------------------------------
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table(cols_align = list(left = 2:3))
 
 ## ----check_values-------------------------------------------------------------
 dat <- check_values(dat, replace = NA)
@@ -59,12 +62,15 @@ dat <- check_values(dat, replace = NA)
 dat <- impute_missing(dat, subscale == "Ext")
 dat <- impute_missing(dat, subscale == "Int")
 
-## ----descriptives-------------------------------------------------------------
+## -----------------------------------------------------------------------------
+# dat |> select_items(subscale == "Int")
+
+## -----------------------------------------------------------------------------
 dat |>  
   select_items(subscale == "Int") |> 
   wmisc::nice_descriptives(round = 1)
 
-## ----desc_labels--------------------------------------------------------------
+## -----------------------------------------------------------------------------
 dat |> 
   select_items(subscale == "Int") |> 
   rename_items() |> 
@@ -79,13 +85,13 @@ dat |>
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf |> get_scales(
-  'APD' = subscale_2 == "APD",
-  'OPP' = subscale_2 == "OPP",
-  "SW" = subscale_2 == "SW",
-  "AD" = subscale_2 == "AD"
+  'Anxious_Depressed' = subscale_2 == "APD",
+  'Oppositional_Disruptive' = subscale_2 == "OPP",
+  "Socially_Withdrawn" = subscale_2 == "SW",
+  "Academic_Productivity_Disorganization" = subscale_2 == "AD"
 )
 wmisc::nice_alpha_table(dat, scales = scales)
-
+wmisc::nice_item_analysis(dat, scales = scales)
 
 ## ----lavaan_model-------------------------------------------------------------
 model <- lavaan_model(scales, orthogonal = FALSE)
@@ -95,7 +101,7 @@ cat(model)
 
 ## ----lavaan_cfa, comment = ""-------------------------------------------------
 fit <- lavaan::cfa(model = model, data = dat)
-lavaan::summary(fit, fit.measures = TRUE)
+wmisc::nice_sem(fit)
 
 
 ## ----scores-------------------------------------------------------------------
@@ -123,5 +129,12 @@ dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
 dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
 
 ## -----------------------------------------------------------------------------
-dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] |> wmisc::nice_table()
+
+cols <- paste0(c("raw", "T", "PR"), rep(c("_int", "_ext"), each = 3))
+wmisc::nice_table(
+  dat[1:10, cols], 
+  cols_label = list(raw_int = "Raw", T_int = "T", PR_int = "PR", raw_ext = "Raw", T_ext = "T", PR_ext = "PR"),
+  label_na = "-",
+  spanner = list(Internalizing = 1:3, Externalizing = 4:6)
+)
 

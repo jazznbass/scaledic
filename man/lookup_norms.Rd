@@ -10,7 +10,8 @@ lookup_norms(
   normtable,
   from = "raw",
   to = "T",
-  group_label = names(group)
+  group_label = names(group),
+  label = NULL
 )
 }
 \arguments{
@@ -27,6 +28,8 @@ multiple group categorizations.}
 
 \item{group_label}{Label of the group variable in file or a list with group
 labels for multiple group categorizations.}
+
+\item{label}{Item label of the resulting variable}
 }
 \value{
 A vector with norm values.
