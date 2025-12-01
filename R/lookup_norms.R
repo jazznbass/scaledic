@@ -10,7 +10,7 @@
 #' @param to Label of the norm score variable in file.
 #' @param group_label Label of the group variable in file or a list with group
 #'   labels for multiple group categorizations.
-#'
+#' @param label Item label of the resulting variable
 #' @return A vector with norm values.
 #' @export
 #'
@@ -37,7 +37,8 @@ lookup_norms <- function(rawscores,
                          normtable,
                          from = "raw",
                          to = "T",
-                         group_label = names(group)) {
+                         group_label = names(group),
+                         label = NULL) {
 
   msg <- c()
 
@@ -108,6 +109,12 @@ lookup_norms <- function(rawscores,
 
   if (length(msg) > 0) {
     warning(paste0(1:length(msg), ": ", msg, sep = "\n"), call. = FALSE)
+  }
+
+  if (!is.null(label)) {
+    dic_attr(out, "item_label") <- label
+    dic_attr(out, "item_name") <- label
+    attr(out, "label") <- label
   }
 
   out

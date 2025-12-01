@@ -41,7 +41,7 @@ Here is an extract from an example *dic-file*:
 dic_itrf |>  
   select(item_name, item_label, scale, scale_label, subscale, subscale_label, values, value_labels, missing, type) |> 
   slice(2:4) |> 
-  kable()
+  wmisc::nice_table(cols_align = list(left = 1:10))
 ```
 
 A dictionary file can contain any additional attributes. This means that you can add a column with any name to store relevant information (e.g. the scale and scale label to which an item belongs, a translation of the item name). However, there are some predefined attributes with a specific meaning. The table below shows these attributes:
@@ -61,7 +61,7 @@ out <- tribble(
   "type", "Data type (factor, integer, float, real)", "integer",
   "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
 )
-wmisc::nice_table(out, caption = "Basic columns of a dictionary file")
+wmisc::nice_table(out, caption = "Basic columns of a dictionary file", cols_align = list(left = 2:3))
 
 ```
 
@@ -79,9 +79,18 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 
 Let us take a look at all the scales in the dataset:
 
-```{r list_scales}
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table()
+
+```{r}
+#| label: list_scales
+#| eval: false
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label"))
 ```
+
+```{r}
+#| echo: false
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table(cols_align = list(left = 2:3))
+```
+
 
 ## Clean raw data
 
@@ -111,17 +120,28 @@ dat <- impute_missing(dat, subscale == "Int")
 
 Let us look at the descriptive statistics for the *internalising* subscale:
 
-```{r descriptives}
+```{r}
+#| label: descriptives
+#| eval: false
+dat |> select_items(subscale == "Int")
+```
+
+```{r}
+#| echo: false
 dat |>  
   select_items(subscale == "Int") |> 
   wmisc::nice_descriptives(round = 1)
 ```
 
+
+
 ## See items instead of labels
 
 It is more convenient to see the original items rather than the short labels:
 
-```{r desc_labels}
+```{r}
+#| label: desc_labels
+
 dat |> 
   select_items(subscale == "Int") |> 
   rename_items() |> 
@@ -142,16 +162,16 @@ and provide item analyses
 
 ```{r item_analysis}
 scales <- ex_itrf |> get_scales(
-  'APD' = subscale_2 == "APD",
-  'OPP' = subscale_2 == "OPP",
-  "SW" = subscale_2 == "SW",
-  "AD" = subscale_2 == "AD"
+  'Anxious_Depressed' = subscale_2 == "APD",
+  'Oppositional_Disruptive' = subscale_2 == "OPP",
+  "Socially_Withdrawn" = subscale_2 == "SW",
+  "Academic_Productivity_Disorganization" = subscale_2 == "AD"
 )
 wmisc::nice_alpha_table(dat, scales = scales)
-
+wmisc::nice_item_analysis(dat, scales = scales)
 ```
 
-<!--
+
 and even a confirmatory factor analysis with the use of the lavaan package.
 
 ```{r lavaan_model}
@@ -164,10 +184,10 @@ cat(model)
 
 ```{r lavaan_cfa, comment = ""}
 fit <- lavaan::cfa(model = model, data = dat)
-lavaan::summary(fit, fit.measures = TRUE)
+wmisc::nice_sem(fit)
 
 ```
--->
+
 
 ## Build scale scores
 
@@ -221,6 +241,17 @@ dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
 dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
 ```
 
+Which can look like that:
+
 ```{r}
-dat[1:10, c("T_int", "T_ext", "PR_int", "PR_ext")] |> wmisc::nice_table()
+#| echo: false
+
+
+cols <- paste0(c("raw", "T", "PR"), rep(c("_int", "_ext"), each = 3))
+wmisc::nice_table(
+  dat[1:10, cols], 
+  cols_label = list(raw_int = "Raw", T_int = "T", PR_int = "PR", raw_ext = "Raw", T_ext = "T", PR_ext = "PR"),
+  label_na = "-",
+  spanner = list(Internalizing = 1:3, Externalizing = 4:6)
+)
 ```

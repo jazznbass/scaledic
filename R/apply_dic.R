@@ -37,6 +37,7 @@ apply_dic <- function(data,
                       impute_values = FALSE,
                       rename_var = NULL) {
 
+  on.exit(print_messages())
   msg <- c()
 
   if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
@@ -55,10 +56,8 @@ apply_dic <- function(data,
     to_from <- to_from[!is.na(to_from)]
     .duplicates <- names(to_from) %in% names(data)
     if(any(.duplicates)){
-      msg <- c(msg, paste0(
-        "Skipped renaming column to an already existing name: ",
-        paste0(names(to_from)[.duplicates], collapse = ", ")
-      ))
+      add_message("Skipped renaming column to an already existing name: ",
+                  paste0(names(to_from)[.duplicates], collapse = ", "))
       to_from <- to_from[!.duplicates]
     }
     for(i in 1:length(to_from)) {
@@ -88,10 +87,7 @@ apply_dic <- function(data,
     # look up column in data frame corresponding to item_name
     id <- which(names(data) == dic[[opt("item_name")]][i])
     if (length(id) > 1) {
-      msg <- c(msg, paste0(
-        "Multiple ids found",
-        paste0(names(data)[id], collapse = ", ")
-      ))
+      add_message("Multiple ids found", paste0(names(data)[id], collapse = ", "))
     }
 
     if (length(id) == 0) {
@@ -137,41 +133,37 @@ apply_dic <- function(data,
       .coerce_class = coerce_class,
       .message_attr = TRUE
     )
-
-    msg <- c(msg, attr(data[[id]], "messages"))
-    attr(data[[id]], "messages") <- NULL
   }
 
   # var not found messages ------
 
   if (!is.null(var_not_df)) {
-    msg <- c(msg, paste0(
-      length(var_not_df), " of ", nrow(dic),
-      " variables from dic not found in data file:",
-      paste0(var_not_df, collapse = ", ")
-    ))
+    add_message(length(var_not_df), " of ", nrow(dic),
+                " variables from dic not found in data file: ",
+                paste0(var_not_df, collapse = ", ")
+    )
   }
 
   # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
-    msg <- c(msg, "Missing values replaced with NA")
+    add_message("Missing values replaced with NA")
   }
 
   # check values ----
   if (check_values) {
-    msg <- c(msg, "Invalid values replaced with NA")
+    add_message("Invalid values replaced with NA")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
   # score scales ----
-  if (score_scales && nrow(dic_scores > 0)) {
-    msg <- c(msg, "Invalid values replaced with NA")
+  if (score_scales && ncol(dic_scores > 0)) {
+    add_message("Invalid values replaced with NA")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
-    if (impute_values) msg <- c(msg, "Scales imputed")
-    msg <- c(msg, "Scales scored")
+    if (impute_values) add_message("Scales imputed")
+    add_message("Scales scored")
     data <- score_from_dic(data, impute_values = impute_values)
   }
 
@@ -238,9 +230,7 @@ apply_dic <- function(data,
   # type NA to integer
   miss_type <- which(is.na(dic[[.dic_file$type]]))
   if (length(miss_type) > 0) {
-    msg <- c(msg, paste0(
-      "'type' attribute missing and replaced with an estimation (", length(miss_type), "x)"
-    ))
+    add_message("'type' attribute missing and replaced with an estimation (", length(miss_type), "x)")
   }
 
   # missing values and value_labels
@@ -250,9 +240,7 @@ apply_dic <- function(data,
   # weight NA to 1
   miss_weight <- which(is.na(dic[[.dic_file$weight]]) & filter_items)
   if (length(miss_weight) > 0) {
-    msg <- c(msg, paste0(
-      "Missing weight found and replaced with 1 (", length(miss_weight), "x)"
-    ))
+    add_message("Missing weight found and replaced with 1 (", length(miss_weight), "x)")
     dic[miss_weight, .dic_file$weight] <- 1
   }
 
@@ -262,10 +250,7 @@ apply_dic <- function(data,
     if (is.na(dic[[.dic_file$item_label]][i])) missing_label <- c(missing_label, i)
   }
   if (!is.null(missing_label)) {
-    msg <- c(msg, paste0(
-      "Missing item_label found at variabel no. ",
-      paste0(missing_label, collapse = ", "), " in dic file."
-    ))
+    add_message("Missing item_label found at variabel no. ", paste0(missing_label, collapse = ", "), " in dic file.")
   }
 
   # check for duplicated item_names in dic
@@ -280,7 +265,7 @@ apply_dic <- function(data,
   # Check for \r\n in value labels
 
   if (any(grepl("\r\n", x = dic[[.dic_file$value_labels]]))) {
-    msg <- c(msg, "Found linebreaks in value_labels and replaced them with ';'")
+    add_message("Found linebreaks in value_labels and replaced them with ';'")
     dic[[.dic_file$value_labels]] <- gsub("\r\n", "; ", x =  dic[[.dic_file$value_labels]])
   }
 

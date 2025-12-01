@@ -1,3 +1,9 @@
+# scaledic 0.4.1
+
+* Added more check functions and
+* Implemented a new sessage system (not finished yet)
+* `apply_dic()`: when value_labels are defined but values are NA, replaces values with value_labels definition.
+
 # scaledic 0.4.0
 
 Introduced new dic attribute: recodes.
