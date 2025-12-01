@@ -38,7 +38,7 @@ new_dic <- function(x,
                     .message_attr = FALSE) {
 
 
-  msg <- c()
+  on.exit(print_messages())
 
   if (!has_info(item_name)) {
     item_name <- as.character(match.call()[2])
@@ -68,9 +68,16 @@ new_dic <- function(x,
   }
 
   if (has_info(value_labels)) {
-    .id <- sapply(value_labels[[1]], function(x)
-      which(as.character(x) == as.character(values)
-    ))
+
+    if (isTRUE(is.na(values))) {
+      values <- value_labels[[1]]
+      add_message("values defintion for ", item_name, " is missing and taken from value_labels definition.")
+    }
+    .id <- sapply(value_labels[[1]], function(x) {
+        id <- which(as.character(x) == as.character(values))
+        id
+    })
+
     names(values)[.id] <- trimws(value_labels[[2]])
   }
 
@@ -80,46 +87,42 @@ new_dic <- function(x,
 
   if (identical(type, "integer") && !is.integer(x) && !is.numeric(x)) {
     if (.coerce_class) {
-      msg <- c(msg, paste0(
-        "Class should be integer but is ", paste0(class(x), collapse = ", "),
-        ". Coerced to integer"
-      ))
+      add_message("Class should be integer but is ", paste0(class(x), collapse = ", "),
+        ". Coerced to integer")
       x[] <- as.integer(x)
       class(x) <- "integer"
     } else {
-      msg <- c(msg, paste0(
-        "Class should be integer but is ", paste0(class(x), collapse = ", ")
-      ))
+      add_message("Class should be integer but is ", paste0(class(x), collapse = ", "))
     }
   }
 
   if (type %in% c("float", "double") && !is.double(x) && !is.numeric(x)) {
     if (.coerce_class) {
-      msg <- c(msg, paste0(
+      add_message(
         "Class should be double but is ", paste0(class(x), collapse = ", "),
         ". Coerced to integer"
-      ))
+      )
       x[] <- as.double(x)
       class(x) <- "numeric"
     } else {
-      msg <- c(msg, paste0(
+      add_message(
         "Class should be double but is ", paste0(class(x), collapse = ", ")
-      ))
+      )
     }
   }
 
   if (type == "numeric" && !is.numeric(x)) {
       if (.coerce_class) {
-        msg <- c(msg, paste0(
+        add_message(
           "Class should be numeric but is ", paste0(class(x), collapse = ", "),
           ". Coerced to numeric"
-        ))
+        )
         x[] <- as.double(x)
         class(x) <- "numeric"
       } else {
-        msg <- c(msg, paste0(
+        add_message(
           "Class should be numeric but is ", paste0(class(x), collapse = ", ")
-        ))
+        )
       }
   }
 
@@ -147,8 +150,6 @@ new_dic <- function(x,
   if (type == "factor") x <- .set_factor(x)
 
   class(x) <- c("dic", class(x))
-
-  if (.message_attr) attr(x, "messages") <- msg else return_messages(msg)
 
   x
 }

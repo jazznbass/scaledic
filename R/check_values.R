@@ -61,7 +61,7 @@ check_values <- function(data,
       id_error <- which(!(data[[i]] %in% c(values, missing)) & !is.na(data[[i]]))
     }
 
-    if (type %in% c("float", "real", "numeric", "")) {
+    if (type %in% c("float", "real", "numeric", "double", "")) {
       id_error <- which(
         (data[[i]] > max(values) | data[[i]] < min(values)) &
         !is.na(data[[i]]) & !data[[i]] %in% missing

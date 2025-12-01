@@ -15,6 +15,10 @@ score_from_dic <- function(data,
     dic <- attributes(data)$dic$scales
   }
 
+  if (is.null(dic) || ncol(dic) == 0) {
+    return(data)
+  }
+
   if (!is.null(dic)) dic <- dic[!is.na(dic[[opt("score_filter")]]), ]
 
   if (!identical(nrow(dic) > 0, TRUE)) {
