@@ -45,6 +45,8 @@ score_scale <- function(data,
                         var_weight = NULL,
                         var_recoding = "recodes") {
 
+  on.exit(print_messages())
+
   filter <- deparse(substitute(filter))
 
   if (is.null(var_weight)) var_weight <- opt("weight")
@@ -75,8 +77,6 @@ score_scale <- function(data,
                          var_recoding = "recodes",
                          function_name) {
 
-  msg <- c()
-
   values <- NA
   if(is.null(fun)) {
     if (sum) {
@@ -95,7 +95,6 @@ score_scale <- function(data,
 
   tmp <- .recode_dic_items(df, var_recoding)
   df <- tmp$df
-  msg <- c(msg, tmp$msg)
 
   # min max valid na
 
@@ -115,7 +114,7 @@ score_scale <- function(data,
     weight <- dic_attr(x, var_weight)
     if (is.null(weight)) {
       weight <- 1
-      msg <- c(msg, "Weight information missing. Set weight to 1.")
+      add_message("Weight information missing. Set weight to 1.")
     }
     as.numeric(weight)
   }
@@ -163,8 +162,6 @@ score_scale <- function(data,
   dic_attr(new_score, "item_label") <- label
   dic_attr(new_score, "item_name") <- label
   attr(new_score, "label") <- label
-
-  return_messages(msg)
 
   new_score
 }

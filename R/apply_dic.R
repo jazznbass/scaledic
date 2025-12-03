@@ -38,7 +38,6 @@ apply_dic <- function(data,
                       rename_var = NULL) {
 
   on.exit(print_messages())
-  msg <- c()
 
   if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
   if (inherits(data, "character")) data <- .read_by_suffix(data)
@@ -46,8 +45,7 @@ apply_dic <- function(data,
   # missing missing variable
   if (is.null(dic[[opt("missing")]])) replace_missing <- FALSE
 
-  dic <- .clean_dic_file(dic, msg)
-  msg <- attr(dic, "msg")
+  dic <- .clean_dic_file(dic)
 
   # rename variables by rename_var ---------------------------------------------
 
@@ -173,12 +171,10 @@ apply_dic <- function(data,
     data <- dic_haven(data)
   }
 
-  return_messages(msg)
-
   data
 }
 
-.clean_dic_file <- function(dic, msg) {
+.clean_dic_file <- function(dic) {
 
   #rename dic names
   names(dic) <- tolower(names(dic))
@@ -269,6 +265,5 @@ apply_dic <- function(data,
     dic[[.dic_file$value_labels]] <- gsub("\r\n", "; ", x =  dic[[.dic_file$value_labels]])
   }
 
-  attr(dic, "msg") <- msg
   dic
 }

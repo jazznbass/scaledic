@@ -17,6 +17,8 @@
 recode_dic_items <- function(df,
                              prefix_label = "(recoded)") {
 
+  on.exit(print_messages())
+
   if (inherits(df, "data.frame")) {
     out <- .recode_dic_items(df, prefix_label = prefix_label)
   }
@@ -28,14 +30,12 @@ recode_dic_items <- function(df,
     out$df <- out[["df"]][["dat"]]
   }
 
-
-  return_messages(out$msg)
   out$df
 }
 
 .recode_dic_items <- function(df,
                               prefix_label = "[recoded]") {
-  msg <- c()
+
 
   var_recodes <- opt("recodes")
 
@@ -43,7 +43,7 @@ recode_dic_items <- function(df,
     recoding <- dic_attr(df[[i]], var_recodes)
     if (!has_info(recoding)) next
 
-    msg <- c(msg, "Found recoding information and recoded values.")
+    add_message("Found recoding information and recoded values.")
 
     default <- NA
     id_default <- which(recoding[[1]] == ".default")
@@ -87,6 +87,6 @@ recode_dic_items <- function(df,
     dic_attr(df[[i]], "recodes") <- NULL
   }
 
-  list(df = df, msg = msg)
+  list(df = df)
 
 }
