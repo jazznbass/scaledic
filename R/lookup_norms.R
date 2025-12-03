@@ -40,7 +40,7 @@ lookup_norms <- function(rawscores,
                          group_label = names(group),
                          label = NULL) {
 
-  msg <- c()
+  on.exit(print_messages())
 
   if (inherits(normtable, "character")) {
     normtable <- .read_by_suffix(normtable)
@@ -81,21 +81,21 @@ lookup_norms <- function(rawscores,
     if (is.na(y)) {
       id <- which(normtable[[from]] == x)
       if (length(id) > 1) {
-        msg <<- c(msg, paste0(
+        add_message(
           "Multiple values found for raw ", x,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."
-        ))
+        )
         return(NA)
       }
     } else {
       id <- which(normtable[[from]] == x & normtable[[group_label]] == y)
       if (length(id) > 1) {
-        msg <<- c(msg, paste0(
+        add_message(
           "Multiple values found for raw ", x, " and group ", y,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."
-        ))
+        )
         return(NA)
       }
     }
@@ -106,10 +106,6 @@ lookup_norms <- function(rawscores,
 
   if (is.null(group)) group <- NA
   out <- mapply(lookup, rawscores, group)
-
-  if (length(msg) > 0) {
-    warning(paste0(1:length(msg), ": ", msg, sep = "\n"), call. = FALSE)
-  }
 
   if (!is.null(label)) {
     dic_attr(out, "item_label") <- label

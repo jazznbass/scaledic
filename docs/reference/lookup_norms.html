@@ -110,17 +110,19 @@ labels for multiple group categorizations.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## When group values are not specified exactly, raw scores can be ambiguous:</span></span></span>
 <span class="r-in"><span><span class="fu">lookup_norms</span><span class="op">(</span><span class="va">rawscores</span>, group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="va">group_gender</span><span class="op">)</span>, normtable <span class="op">=</span> <span class="va">normtable</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1: Multiple values found for raw 5 and group m (50, 47). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 5 and group m (50, 47). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 3 and group w (51, 48). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 4: Multiple values found for raw 1 and group w (47, 44). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Multiple values found for raw 1 and group w (47, 44). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 3 and group w (51, 48). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 5 and group m (50, 47). NA returned. (2x)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">lookup_norms</span><span class="op">(</span><span class="va">rawscores</span>, normtable <span class="op">=</span> <span class="va">normtable</span><span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>1: Multiple values found for raw 5 (50, 47, 55, 52). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 5 (50, 47, 55, 52). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 3 (46, 43, 51, 48). NA returned.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> 4: Multiple values found for raw 1 (42, 39, 47, 44). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions:</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Multiple values found for raw 1 (42, 39, 47, 44). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 3 (46, 43, 51, 48). NA returned.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 5 (50, 47, 55, 52). NA returned. (2x)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
 </code></pre></div>
     </div>

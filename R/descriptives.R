@@ -10,15 +10,15 @@
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
 
-  msg <- c()
+  on.exit(print_messages())
 
   .filter <- sapply(data, is.numeric)
 
   if (any(!.filter)) {
-    msg <- c(msg, paste0(
+    add_message(
       "Some variables are not numeric and dropped from the analysis: ",
       paste0(names(.filter)[!.filter], collapse = ", ")
-    ))
+    )
   }
 
   data <- data[, .filter]
@@ -41,9 +41,7 @@ descriptives <- function(data, round = 2, labels = FALSE) {
   out <- data.frame(out)
   out <- cbind(name = rownames(out), out)
   rownames(out) <- NULL
-  if (labels) msg <- c(msg, "Deprecated. Use rename_items().")
-
-  return_messages(msg)
+  if (labels) add_message("Deprecated. Use rename_items().")
 
   out
 }

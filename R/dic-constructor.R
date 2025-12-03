@@ -191,7 +191,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .set_dic <- function(data, parameters, .item_name = "") {
 
-  msg <- c()
+  on.exit(print_messages())
 
   dic <- dic_attr(data)
   dic <- c(parameters, dic)
@@ -199,24 +199,24 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (!"class" %in% names(dic)) dic[["class"]] <- "item"
   if (!"item_name" %in% names(dic)) {
-    msg <- c(msg, paste0(
+    add_message(
       "Attribute 'item_name' missing and set to '", .item_name, "'."
-    ))
+    )
     dic[["item_name"]] <- .item_name
     dic[["item_name"]] <- .item_name
   }
   if (!"item_label" %in% names(dic)) {
-    msg <- c(msg, paste0(
+    add_message(
         "Attribute 'item_label' missing and set to '", dic[["item_name"]], "'."
-    ))
+    )
     dic[["item_label"]] <- dic[["item_name"]]
   }
   if (!"type" %in% names(dic)) {
-    msg <- c(msg, "Attribute 'type' missing and set to 'integer'.")
+    add_message("Attribute 'type' missing and set to 'integer'.")
     dic[["type"]] <- "integer"#class(data)
   }
   if (!"weight" %in% names(dic)) {
-    msg <- c(msg, "Attribute 'weight' missing and set to 1.")
+    add_message("Attribute 'weight' missing and set to 1.")
     dic[["weight"]] <- 1
   }
 
@@ -234,10 +234,10 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (dic[["type"]] == "factor") {
     if (!all(unique(data) %in% dic[["value_labels"]]$value)) {
-      msg <- c(msg, paste0(
+      add_message(
         "Vector has values not defined as value_labels. ",
         "These are automatically set to NA."
-      ))
+      )
     }
 
     data <- factor(
@@ -253,10 +253,6 @@ set_dic <- function(data, .vars = NULL, ...) {
   attr(data, "label") <- dic_attr(data, "item_label")
 
   if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
-
-  if (length(msg) > 0) {
-    message(paste0(1:length(msg), ": ", msg, "\n"))
-  }
 
   data
 }
