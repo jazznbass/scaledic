@@ -1,7 +1,6 @@
 messages <- new.env()
 messages$messages <- c()
 messages$last_messages <- c()
-messages$depth <- 0L
 
 add_message <- function(..., collapse = "") {
   msg <- paste(c(...), collapse = collapse)
@@ -28,9 +27,4 @@ print_messages <- function(warning = FALSE, header = TRUE) {
   }
   messages$last_messages <- messages$messages
   messages$messages <- c()
-}
-
-init_messages <- function() {
-  messages$depth <- messages$depth + 1L
-  on.exit(print_messages(), add = TRUE)
 }
