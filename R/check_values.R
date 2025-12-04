@@ -28,6 +28,8 @@ check_values <- function(data,
                          integer_as_float = FALSE,
                          check_type = TRUE) {
 
+  on.exit(print_messages())
+
   if (!inherits(data, "data.frame")) data <- data.frame(data)
 
   id <- which_dic(data)
@@ -97,26 +99,28 @@ check_values <- function(data,
 
     if (!is.null(replace) && length(id_error) > 0) {
       data[id_error, i] <- replace
+      add_message("Invalid values replaced with ", deparse(replace))
     }
   }
 
   if (report && length(errors) > 0) {
-    cat("Found the following invalid values:\n\n")
-
+    msg <- c()
     for(i in seq_along(errors)) {
       word <- if (length(errors[[i]]) > 1) "rows" else "row"
-      cat(
+      msg <- c(msg, paste0(
         "'", names(errors)[[i]], "' is ",
         paste0(errors[[i]], collapse = ", "), " at ", word, " ",
         paste0(names(errors[[i]]), collapse = ", "),
         sep = ""
-      )
-      #cat("'", names(errors)[[i]], "'\n", sep = "")
-      #print(c("Row:" = "Value:", errors[[i]]), quote = FALSE)
-      cat("\n")
+      ))
+
     }
+    add_message(
+      "Found the following invalid values:\n  ",
+      paste0(msg, collapse = "\n  ")
+    )
   }
-  if (report && length(errors) == 0) cat("No errors found.\n")
+  if (report && length(errors) == 0) add_message("No errors found.\n")
   if (return) {
     return(data)
   }

@@ -150,14 +150,14 @@ apply_dic <- function(data,
 
   # check values ----
   if (check_values) {
-    add_message("Invalid values replaced with NA")
+    #add_message("Invalid values replaced with NA")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
   # score scales ----
   if (score_scales && ncol(dic_scores > 0)) {
-    add_message("Invalid values replaced with NA")
+    #add_message("Invalid values replaced with NA")
     vars <- names(data) %in% dic[[.opt$item_name]]
     data[, vars] <- check_values(data[, vars], replace = NA)
     if (impute_values) add_message("Scales imputed")
@@ -170,7 +170,6 @@ apply_dic <- function(data,
   if (set_label_attr) {
     data <- dic_haven(data)
   }
-
   data
 }
 
