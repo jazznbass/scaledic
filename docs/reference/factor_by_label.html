@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,19 +61,11 @@
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat_dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">ex_scaledic_data</span>, <span class="va">ex_scaledic_dic</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found the following invalid values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'rel_2' is 66 at row 3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'rel_4' is 11 at row 9</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'rel_5' is 66 at row 11</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'sui_1' is 55 at row 10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'sui_4' is 66 at row 17</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'age' is 13, 13 at rows 4, 16</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Invalid values replaced with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Missing values replaced with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Scales scored</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (replace_missing)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Replaced 1 missing value in 'age' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Replaced 1 missing value in 'rel_3' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Replaced 1 missing value in 'rel_4' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 4: Replaced 1 missing value in 'sui_2' with NA</span>
 <span class="r-in"><span><span class="co"># Proportions of responses</span></span></span>
 <span class="r-in"><span><span class="va">dat_dic</span><span class="op">$</span><span class="va">rel_2</span> <span class="op">|&gt;</span> <span class="fu">factor_by_label</span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/proportions.html" class="external-link">prop.table</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>

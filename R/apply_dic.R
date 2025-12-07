@@ -67,6 +67,7 @@ apply_dic <- function(data,
 
   .filter <- dic[[opt("class")]] == "scale"
   dic_scores <- dic[.filter, ]
+  if (nrow(dic_scores) == 0) score_scales <- FALSE
   dic <- dic[!.filter, ]
 
   if (nrow(dic_scores) > 0) {
@@ -145,7 +146,7 @@ apply_dic <- function(data,
   # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
-    add_message("Missing values replaced with NA")
+    #add_message("Missing values replaced with NA")
   }
 
   # check values ----

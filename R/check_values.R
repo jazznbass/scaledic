@@ -99,7 +99,7 @@ check_values <- function(data,
 
     if (!is.null(replace) && length(id_error) > 0) {
       data[id_error, i] <- replace
-      add_message("Invalid values replaced with ", deparse(replace))
+      #add_message("Invalid values replaced with ", deparse(replace))
     }
   }
 
@@ -116,7 +116,9 @@ check_values <- function(data,
 
     }
     add_message(
-      "Found the following invalid values:\n  ",
+      if (is.null(replace)) "Found the following invalid values:\n  "
+        else
+      paste0("Replaced the following invalid values with ", deparse(replace), ":\n  "),
       paste0(msg, collapse = "\n  ")
     )
   }

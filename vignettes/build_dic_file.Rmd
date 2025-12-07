@@ -43,7 +43,7 @@ We start the example with a very simple dictionary file containing only item lab
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic[, 1:2]
-dic_file |> wmisc::nice_table(title = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2))
 ```
 
 We combine the *data* file and the *dic* file with the `apply_dic()` function:
@@ -59,7 +59,7 @@ Let us add `type` information to the dic file:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, type)
-dic_file |> wmisc::nice_table(title = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:3))
 ```
 
 Most item values are of type `integer` (the item has only whole numbers) with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
@@ -72,7 +72,7 @@ Now we can add `weight` information to the dic file. The `weight` attribute tell
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, weight, type)
-dic_file |> wmisc::nice_table(title = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:4))
 ```
 
 In this example, all `weights` are `1` and no item is inverted. 
@@ -89,7 +89,7 @@ Here is the dic file with added `values`:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, "values", "weight", "type")
-dic_file |> wmisc::nice_table(title = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:5))
 ```
 
 ```{r}
@@ -99,9 +99,8 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 Invalid values can be replaced automatically with the `check_values()` function.
 
 ```{r}
-dat_dic <- check_values(dat_dic, report = TRUE, replace = NA) 
+dat_dic <- check_values(dat_dic, replace = NA) 
 ```
-
 
 ```{r}
 dat_dic |> wmisc::nice_table(title = "data frame with replaced invalid values")
@@ -113,11 +112,13 @@ Here is the dic file with added `value_labels`:
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, "values", "value_labels", "weight", "type")
-dic_file |> wmisc::nice_table(caption = "Dictionary file")
+dic_file |> wmisc::nice_table(caption = "Dictionary file", cols_align = list(left = "all"))
 ```
 
 ```{r}
-dat_dic <- apply_dic(ex_scaledic_data, dic_file) |>check_values(replace = NA)
+dat_dic <- ex_scaledic_data |> 
+  apply_dic(dic_file) |>
+  check_values(replace = NA)
 ```
 
 Now lets see the coding for some of the variables:
@@ -152,7 +153,7 @@ It is a common practice to code missing values with a specific number (rather th
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic |>select(1,2, values, value_labels, weight, type, missing)
-dic_file |>wmisc::nice_table(title = "Dictionary file")
+dic_file |>wmisc::nice_table(title = "Dictionary file", cols_align = list(left = "all"))
 ```
 
 The values within the `missing` attributes are automatically replaced with NA when joining a data with a dic file: 
@@ -161,35 +162,25 @@ The values within the `missing` attributes are automatically replaced with NA wh
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-To turn off this behavior, set the argument `replace_missing = FALSE`. Default, values are not checked for invalid entries. To do this, either set `check_values = TRUE` or apply the `check_values()` function.
-
-```{r}
-dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
-```
-
-```{r}
-dat_dic %>%
-  slice(9:20) |>
-  wmisc::nice_table(title = "Extract from the data frame with replaced missing values and checked values")
-```
+To turn off this behavior, set the argument `replace_missing = FALSE`. 
 
 In the last step of this tutorial we will add information about the scales that the items belong to. Therefore, we add a new attribute called `scale` to the dic file and another attribute `scale_label` for a longer description (we could have named these attributes in any other way as they are not *predefined* attributes):
 
 ```{r echo=FALSE}
 dic_file <- ex_scaledic_dic
-dic_file |> wmisc::nice_table(title = "Dictionary file")
+dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = "all"))
 ```
 
 ```{r}
 dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
 ```
 
-When can use the scale attribute to select items:
+You can use the scale attribute to select items:
 
 ```{r}
 dat_dic |>
   select_items(scale == "rel") |>
-  wmisc::nice_descriptives()
+  wmisc::nice_descriptives(round = 2)
 ```
 
 and the `rename_items()` function to get the item labels:
@@ -198,5 +189,5 @@ and the `rename_items()` function to get the item labels:
 dat_dic |>
   select_items(scale == "rel") |>
   rename_items() |>
-  wmisc::nice_descriptives()
+  wmisc::nice_descriptives(round = 2)
 ```

@@ -85,10 +85,10 @@ dat |>
 
 ## ----item_analysis------------------------------------------------------------
 scales <- ex_itrf |> get_scales(
-  'Anxious_Depressed' = subscale_2 == "APD",
-  'Oppositional_Disruptive' = subscale_2 == "OPP",
-  "Socially_Withdrawn" = subscale_2 == "SW",
-  "Academic_Productivity_Disorganization" = subscale_2 == "AD"
+  'Anxious/Depressed' = subscale_2 == "APD",
+  'Oppositional/Disruptive' = subscale_2 == "OPP",
+  "Socially Withdrawn" = subscale_2 == "SW",
+  "Academic Productivity/Disorganization" = subscale_2 == "AD"
 )
 wmisc::nice_alpha_table(dat, scales = scales)
 wmisc::nice_item_analysis(dat, scales = scales)

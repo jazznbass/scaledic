@@ -4,7 +4,7 @@
 \alias{replace_missing}
 \title{Replace Missing values}
 \usage{
-replace_missing(data, replace = NA, report = FALSE)
+replace_missing(data, replace = NA, report = TRUE)
 }
 \arguments{
 \item{data}{A data frame}

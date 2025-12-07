@@ -80,7 +80,7 @@ dic <- function(data, length = 100) {
   ldat <- length(data)
   max <- ifelse(ldat < length, ldat, length)
 
-  cat(prefix, "Length: ", ldat, " (", sum(is.na(data), na.rm = TRUE), " missing)", "\n", sep = "")
+  cat(prefix, "Length: ", ldat, " (", sum(is.na(data), na.rm = TRUE), " NA)", "\n", sep = "")
 
   print_with_prefix(data[1:max])
   if (ldat > length) {

@@ -7,7 +7,7 @@
 #' @return A character string with a lavaan model definition
 #' @export
 lavaan_model <- function(scales, adds = "", orthogonal = FALSE) {
-  labels <- names(scales)
+  labels <-  gsub("[^A-Za-z0-9]", "_", names(scales))
   model <- lapply(scales, function(x) paste0(x, collapse = " + "))
   model <- paste0(labels, " =~ ",  model, collapse = "\n")
   model <- paste0(model, "\n", adds, "\n")

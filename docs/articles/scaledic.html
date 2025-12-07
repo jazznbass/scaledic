@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -1109,23 +1109,7 @@ the dictionary file and combines them. Missing values are replaced by
 NAs:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Here we use the example dataset "dat_itrf" and the example dic file "dic_itrf"</span></span>
-<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Found the following invalid values:</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; 'itrf_I_1' is 7 at row 3192</span></span>
-<span><span class="co">#&gt; 'itrf_I_2' is 9 at row 4651</span></span>
-<span><span class="co">#&gt; 'itrf_I_13' is 4 at row 3699</span></span>
-<span><span class="co">#&gt; 'itrf_I_20' is 4 at row 2799</span></span>
-<span><span class="co">#&gt; 'itrf_E_4' is 6 at row 2621</span></span>
-<span><span class="co">#&gt; 'itrf_E_6' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_7' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_8' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_9' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_10' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_11' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_12' is 9 at row 2599</span></span>
-<span><span class="co">#&gt; 'itrf_E_13' is 9, 11 at rows 2599, 4146</span></span>
-<span><span class="co">#&gt; 'itrf_E_14' is 9 at row 2599</span></span></code></pre></div>
+<span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></code></pre></div>
 <p>Let us take a look at all the scales in the dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span><span class="op">)</span>, <span class="st">"_label"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
@@ -1615,8 +1599,7 @@ NAs:</p>
 <p>Firstly, we check for invalid values in the dataset (e.g., typos) and
 replace them with NA:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span>
-<span><span class="co">#&gt; No errors found.</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></code></pre></div>
 <p>Now we impute missing values:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Imputation for items of the subscale Ext</span></span>
@@ -3913,10 +3896,10 @@ description.</p>
 <p>and provide item analyses</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">scales</span> <span class="op">&lt;-</span> <span class="va">ex_itrf</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/get_scales.html">get_scales</a></span><span class="op">(</span></span>
-<span>  <span class="st">'Anxious_Depressed'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>,</span>
-<span>  <span class="st">'Oppositional_Disruptive'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>,</span>
-<span>  <span class="st">"Socially_Withdrawn"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>,</span>
-<span>  <span class="st">"Academic_Productivity_Disorganization"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span></span>
+<span>  <span class="st">'Anxious/Depressed'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"APD"</span>,</span>
+<span>  <span class="st">'Oppositional/Disruptive'</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"OPP"</span>,</span>
+<span>  <span class="st">"Socially Withdrawn"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"SW"</span>,</span>
+<span>  <span class="st">"Academic Productivity/Disorganization"</span> <span class="op">=</span> <span class="va">subscale_2</span> <span class="op">==</span> <span class="st">"AD"</span></span>
 <span><span class="op">)</span></span>
 <span><span class="fu">wmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wmisc/man/nice_alpha_table.html" class="external-link">nice_alpha_table</a></span><span class="op">(</span><span class="va">dat</span>, scales <span class="op">=</span> <span class="va">scales</span><span class="op">)</span></span></code></pre></div>
 <div id="jxjpdfbnhb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
@@ -4396,7 +4379,7 @@ description.</p>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="Scale" class="gt_row gt_left">Anxious_Depressed</td>
+<td headers="Scale" class="gt_row gt_left">Anxious/Depressed</td>
 <td headers="items" class="gt_row gt_center">8</td>
 <td headers="cases" class="gt_row gt_center">[4776, 4776]</td>
 <td headers="Raw" class="gt_row gt_center">.91 [.90, .91]</td>
@@ -4408,7 +4391,7 @@ description.</p>
 <td headers="|Loadings|" class="gt_row gt_center">[.55, .82]</td>
 </tr>
 <tr>
-<td headers="Scale" class="gt_row gt_left">Oppositional_Disruptive</td>
+<td headers="Scale" class="gt_row gt_left">Oppositional/Disruptive</td>
 <td headers="items" class="gt_row gt_center">9</td>
 <td headers="cases" class="gt_row gt_center">[4776, 4776]</td>
 <td headers="Raw" class="gt_row gt_center">.94 [.93, .94]</td>
@@ -4420,7 +4403,7 @@ description.</p>
 <td headers="|Loadings|" class="gt_row gt_center">[.69, .85]</td>
 </tr>
 <tr>
-<td headers="Scale" class="gt_row gt_left">Socially_Withdrawn</td>
+<td headers="Scale" class="gt_row gt_left">Socially Withdrawn</td>
 <td headers="items" class="gt_row gt_center">8</td>
 <td headers="cases" class="gt_row gt_center">[4772, 4772]</td>
 <td headers="Raw" class="gt_row gt_center">.88 [.87, .88]</td>
@@ -4432,7 +4415,7 @@ description.</p>
 <td headers="|Loadings|" class="gt_row gt_center">[.56, .86]</td>
 </tr>
 <tr>
-<td headers="Scale" class="gt_row gt_left">Academic_Productivity_Disorganization</td>
+<td headers="Scale" class="gt_row gt_left">Academic Productivity/Disorganization</td>
 <td headers="items" class="gt_row gt_center">11</td>
 <td headers="cases" class="gt_row gt_center">[4772, 4772]</td>
 <td headers="Raw" class="gt_row gt_center">.88 [.88, .89]</td>
@@ -4916,451 +4899,451 @@ description.</p>
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Anxious_Depressed&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Anxious_Depressed</strong><br><em>n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56</em></span></th>
+<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Anxious/Depressed&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Anxious/Depressed</strong><br><em>n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_1</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.95</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">1.04</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.74</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.77</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_2</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.76</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.98</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.75</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.78</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_3</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.58</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.90</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.75</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.80</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_4</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.57</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.86</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.78</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.82</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_5</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.93</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.96</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.74</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.78</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_6</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.53</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.87</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.69</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.74</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_14</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.38</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.75</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.71</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.75</td>
 </tr>
 <tr>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_15</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.70</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.91</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.53</td>
-<td headers="**Anxious_Depressed**  
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.55</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Oppositional_Disruptive&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Oppositional_Disruptive</strong><br><em>n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63</em></span></th>
+<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Oppositional/Disruptive&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Oppositional/Disruptive</strong><br><em>n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_I_20</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.55</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.91</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.76</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.79</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_7</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.35</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.75</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.79</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.82</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_8</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.49</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.90</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.84</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_9</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.83</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.96</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.73</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.75</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_10</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.40</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.79</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.78</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.81</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_11</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.77</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.95</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.84</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_12</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.46</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.81</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.71</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.73</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_13</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.47</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.85</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.85</td>
 </tr>
 <tr>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  Labels" class="gt_row gt_left">itrf_E_16</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  mean" class="gt_row gt_center">0.35</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.72</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.68</td>
-<td headers="**Oppositional_Disruptive**  
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.69</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Socially_Withdrawn&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Socially_Withdrawn</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48</em></span></th>
+<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Socially Withdrawn&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Socially Withdrawn</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_1</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.38</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.71</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.65</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.72</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_4</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.31</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.63</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.78</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.86</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_5</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.24</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.59</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.72</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.80</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_6</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.21</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.51</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.72</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.79</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_13</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.42</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.72</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.56</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.58</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_14</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.35</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.69</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.56</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.57</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_16</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.43</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.76</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.66</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.71</td>
 </tr>
 <tr>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_24</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.38</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.71</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.53</td>
-<td headers="**Socially_Withdrawn**  
+<td headers="**Socially Withdrawn**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.56</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Academic_Productivity_Disorganization&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Academic_Productivity_Disorganization</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41</em></span></th>
+<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Academic Productivity/Disorganization&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Academic Productivity/Disorganization</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_2</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.35</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.60</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.65</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_7</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.41</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.72</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.64</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.69</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_8</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.35</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.61</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.66</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_9</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.48</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.77</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.64</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.68</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_10</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.28</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.66</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.52</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.56</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_11</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.33</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.68</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.52</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.55</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_12</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.37</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.56</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.60</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_15</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.37</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.71</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.65</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.70</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_17</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.38</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.71</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.56</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.60</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_19</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.23</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.59</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.57</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.62</td>
 </tr>
 <tr>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  Labels" class="gt_row gt_left">itrf_I_23</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  mean" class="gt_row gt_center">0.36</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.68</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.69</td>
-<td headers="**Academic_Productivity_Disorganization**  
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.74</td>
 </tr>
 </tbody>
