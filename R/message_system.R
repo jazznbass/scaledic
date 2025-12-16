@@ -7,7 +7,7 @@ add_message <- function(..., collapse = "") {
   messages$messages <- c(messages$messages, msg)
 }
 
-print_messages <- function(warning = FALSE, header = TRUE) {
+print_messages <- function(warning = FALSE, header = TRUE, header_prefix = "!") {
 
   msg <- messages$messages
   if (length(msg) > 0) {
@@ -18,7 +18,7 @@ print_messages <- function(warning = FALSE, header = TRUE) {
     msg <- paste0(1:length(msg), ": ", names(msg), collapse = "\n")
 
     if (header){
-      msg <- paste0("Cautions:", " (", as.character(sys.call(-1)[[1]]), ")\n", msg, "\n")
+      msg <- paste0(header_prefix, " (", as.character(sys.call(-1)[[1]]), ")\n", msg, "\n")
     }
     else {
       msg <- paste0("\n", msg, "\n")
