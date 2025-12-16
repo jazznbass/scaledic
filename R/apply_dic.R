@@ -39,8 +39,14 @@ apply_dic <- function(data,
 
   on.exit(print_messages())
 
-  if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
-  if (inherits(data, "character")) data <- .read_by_suffix(data)
+  if (inherits(dic, "character")) {
+    add_message("Import ", dic, " as the dictionary file")
+    dic <- .read_by_suffix(dic)
+  }
+  if (inherits(data, "character")) {
+    add_message("Import ", data, " as the data file")
+    data <- .read_by_suffix(data)
+  }
 
   # missing missing variable
   if (is.null(dic[[opt("missing")]])) replace_missing <- FALSE
@@ -50,16 +56,22 @@ apply_dic <- function(data,
   # rename variables by rename_var ---------------------------------------------
 
   if (!is.null(rename_var)) {
-    to_from <- setNames(dic[[rename_var]], dic[[opt("item_name")]])
-    to_from <- to_from[!is.na(to_from)]
-    .duplicates <- names(to_from) %in% names(data)
-    if(any(.duplicates)){
-      add_message("Skipped renaming column to an already existing name: ",
-                  paste0(names(to_from)[.duplicates], collapse = ", "))
-      to_from <- to_from[!.duplicates]
-    }
-    for(i in 1:length(to_from)) {
-      names(data)[which(names(data) == to_from[i])] <- names(to_from[i])
+    if (!rename_var %in% names(data)) {
+      add_message("Rename variable '", rename_var, "' not found in data file.")
+    } else {
+      to_from <- setNames(dic[[rename_var]], dic[[opt("item_name")]])
+      to_from <- to_from[!is.na(to_from)]
+      .duplicates <- names(to_from) %in% names(data)
+      if(any(.duplicates)){
+        add_message("Skipped renaming column to an already existing name: ",
+                    paste0(names(to_from)[.duplicates], collapse = ", "))
+        to_from <- to_from[!.duplicates]
+        add_message("Took the '", rename_var, "' column to rename ",
+                    length(.duplicates), " item names.")
+      }
+      for(i in 1:length(to_from)) {
+        names(data)[which(names(data) == to_from[i])] <- names(to_from[i])
+      }
     }
   }
 
@@ -146,20 +158,19 @@ apply_dic <- function(data,
   # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
-    #add_message("Missing values replaced with NA")
   }
 
   # check values ----
   if (check_values) {
     #add_message("Invalid values replaced with NA")
-    vars <- names(data) %in% dic[[.opt$item_name]]
+    vars <- names(data) %in% dic[[opt("item_name")]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
   # score scales ----
   if (score_scales && ncol(dic_scores > 0)) {
     #add_message("Invalid values replaced with NA")
-    vars <- names(data) %in% dic[[.opt$item_name]]
+    vars <- names(data) %in% dic[[opt("item_name")]]
     data[, vars] <- check_values(data[, vars], replace = NA)
     if (impute_values) add_message("Scales imputed")
     add_message("Scales scored")
