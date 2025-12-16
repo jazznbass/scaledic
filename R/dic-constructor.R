@@ -16,7 +16,6 @@
 #'   (overwrites previous arguments)
 #' @param .coerce_class Logical. If TRUE, tries to coerce classes of 'x' if
 #'   class does not match the `type` argument
-#' @param .message_attr Logical. For internal use
 #' @return An item of class dic.
 #' @export
 #'
@@ -34,8 +33,7 @@ new_dic <- function(x,
                     class = "item",
                     ...,
                     .list = NULL,
-                    .coerce_class = TRUE,
-                    .message_attr = FALSE) {
+                    .coerce_class = TRUE) {
 
 
   on.exit(print_messages())
@@ -85,7 +83,7 @@ new_dic <- function(x,
     recodes <- .extract_scores(recodes)
   }
 
-  if (identical(type, "integer") && !is.integer(x) && !is.numeric(x)) {
+  if (identical(type, "integer") && !is.integer(x) && !is.numeric(x) && !all(is.na(x))) {
     if (.coerce_class) {
       add_message("Class should be integer but is ", paste0(class(x), collapse = ", "),
         ". Coerced to integer")
@@ -96,7 +94,7 @@ new_dic <- function(x,
     }
   }
 
-  if (type %in% c("float", "double") && !is.double(x) && !is.numeric(x)) {
+  if (type %in% c("float", "double") && !is.double(x) && !is.numeric(x) && !all(is.na(x))) {
     if (.coerce_class) {
       add_message(
         "Class should be double but is ", paste0(class(x), collapse = ", "),
@@ -111,7 +109,7 @@ new_dic <- function(x,
     }
   }
 
-  if (type == "numeric" && !is.numeric(x)) {
+  if (type == "numeric" && !is.numeric(x) && !all(is.na(x))) {
       if (.coerce_class) {
         add_message(
           "Class should be numeric but is ", paste0(class(x), collapse = ", "),
@@ -262,6 +260,21 @@ set_dic <- function(data, .vars = NULL, ...) {
   split <- getOption("scaledic.string.split")
 
   if (is.na(value_labels) || value_labels == "") return(NA)
+
+  n_equal <- sum(gregexpr("=", value_labels)[[1]] > 0)
+  n_split <- sum(gregexpr(split, value_labels)[[1]] > 0)
+
+  if (count_chars("=", value_labels) == 0) {
+    add_message("No equal sign found in value_labels. Entry is misspecified.")
+    return(NA)
+  }
+
+  if (count_chars("=", value_labels) - count_chars(";", value_labels) != 1) {
+    add_message("value_labels entry is misspecified ",
+                "(Did you use ", split, " as a separator for value labels?).")
+    return(NA)
+  }
+
   value_labels <- value_labels %>%
     as.character() %>%
     strsplit(split) %>%
@@ -277,8 +290,28 @@ set_dic <- function(data, .vars = NULL, ...) {
     out[j, 1] <- trimws(value_labels[[j]][1])
     out[j, 2] <- trimws(value_labels[[j]][2])
   }
-  if (type %in% c("integer", "numeric", "float", "double"))
-    out[["value"]] <- as.numeric(out[["value"]])
+
+  if (any(is.na(out))) {
+    add_message("value_labels entry is misspecified ",
+                "(Did you forget to add a label after an = sign?).")
+    return(NA)
+  }
+
+  if (type %in% c("integer", "numeric", "float", "double")) {
+    id_na <- which(
+      suppressWarnings(sapply(out[["value"]], function(y) is.na(as.numeric(y))))
+    )
+    if (length(id_na) > 0) {
+      add_message(
+        if_one(id_na, "Name", "Names"),
+        " from value_label ", if_one(id_na, "is", "are"), " not numeric: ",
+        paste0(out[["value"]][id_na], collapse = ", "), " ",
+        if_one(id_na, "is", "are"), " not applied."
+      )
+    }
+    out[["value"]] <- suppressWarnings(as.numeric(out[["value"]]))
+    if (length(id_na) > 0) out <- out[-id_na,]
+  }
 
   out
 
