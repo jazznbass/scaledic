@@ -12,6 +12,19 @@
 #' @param df a data frame that contains variables to be recoded
 #' @param prefix_label Prefix is added to the item label of a recoded item
 #' @return A recoded data frame
+#' @examples
+#' q1 <- new_dic(
+#'   x = c(1,1,2,3,1,3,4,4,3,2,4,5),
+#'   item_name = "knowledge_1",
+#'   item_label = "What is the capital of Germany?",
+#'   type = "integer",
+#'   weight = 1,
+#'   values = "1:4",
+#'   value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
+#'   recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"
+#' )
+#' q1
+#' recode_dic_items(q1)
 #'
 #' @export
 recode_dic_items <- function(df,
