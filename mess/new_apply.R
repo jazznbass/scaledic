@@ -178,14 +178,14 @@ old_apply_dic <- function(data,
   # check values ----
   if (check_values) {
     msg <- c(msg, "Invalid values replaced with NA")
-    vars <- names(data) %in% dic[[.opt$item_name]]
+    vars <- names(data) %in% dic[[opt("item_name")]]
     data[, vars] <- check_values(data[, vars], replace = NA)
   }
 
   # score scales ----
   if (score_scales && nrow(dic_scores > 0)) {
     msg <- c(msg, "Invalid values replaced with NA")
-    vars <- names(data) %in% dic[[.opt$item_name]]
+    vars <- names(data) %in% dic[[opt("item_name")]]
     data[, vars] <- check_values(data[, vars], replace = NA)
     if (impute_values) msg <- c(msg, "Scales imputed")
     msg <- c(msg, "Scales scored")

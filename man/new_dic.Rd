@@ -17,8 +17,7 @@ new_dic(
   class = "item",
   ...,
   .list = NULL,
-  .coerce_class = TRUE,
-  .message_attr = FALSE
+  .coerce_class = TRUE
 )
 }
 \arguments{
@@ -50,8 +49,6 @@ named}
 
 \item{.coerce_class}{Logical. If TRUE, tries to coerce classes of 'x' if
 class does not match the \code{type} argument}
-
-\item{.message_attr}{Logical. For internal use}
 }
 \value{
 An item of class dic.

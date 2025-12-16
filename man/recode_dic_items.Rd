@@ -25,3 +25,18 @@ dictionary file. For example, you code the answers in a data frame that were
 given to a task. And you have additional information in a dic-file that tells
 you, which answer is correct (1) vs. false (0).
 }
+\examples{
+q1 <- new_dic(
+  x = c(1,1,2,3,1,3,4,4,3,2,4,5),
+  item_name = "knowledge_1",
+  item_label = "What is the capital of Germany?",
+  type = "integer",
+  weight = 1,
+  values = "1:4",
+  value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
+  recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"
+)
+q1
+recode_dic_items(q1)
+
+}

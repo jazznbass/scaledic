@@ -64,7 +64,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2025-12-07</h4>
+            <h4 data-toc-skip class="date">2025-12-15</h4>
       
 
       <div class="d-none name"><code>build_dic_file.Rmd</code></div>
@@ -1367,7 +1367,7 @@ has two columns, <code>item_name</code> and <code>item_label</code>:</p>
 <p>We combine the <em>data</em> file and the <em>dic</em> file with the
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code> function:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>Cautions<span class="sc">:</span> (new_dic)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="sc">!</span> (new_dic)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="st">'type'</span> attribute missing and replaced with an <span class="fu">estimation</span> (<span class="dv">12</span>x)</span></code></pre></div>
 <p>We get the message that the dic file does not contain information of
 the data<em>type</em> (e.g. <code>integer</code>, <code>factor</code>,
@@ -3034,7 +3034,7 @@ indicates three valid text entries).</p>
 <p>Invalid values can be replaced automatically with the
 <code><a href="../reference/check_values.html">check_values()</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat_dic, <span class="at">replace =</span> <span class="cn">NA</span>) </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>Cautions<span class="sc">:</span> (check_values)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="sc">!</span> (check_values)</span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced the following invalid values with <span class="cn">NA</span><span class="sc">:</span></span>
 <span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="st">'rel_2'</span> is <span class="dv">66</span> at row <span class="dv">3</span></span>
 <span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>  <span class="st">'rel_3'</span> is <span class="sc">-</span><span class="dv">999</span> at row <span class="dv">14</span></span>
@@ -4366,7 +4366,7 @@ labels for all or some of the values. Value labels are coded in the form
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> ex_scaledic_data <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  <span class="fu">apply_dic</span>(dic_file) <span class="sc">|&gt;</span></span>
 <span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">check_values</span>(<span class="at">replace =</span> <span class="cn">NA</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>Cautions<span class="sc">:</span> (check_values)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="sc">!</span> (check_values)</span>
 <span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced the following invalid values with <span class="cn">NA</span><span class="sc">:</span></span>
 <span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a>  <span class="st">'rel_2'</span> is <span class="dv">66</span> at row <span class="dv">3</span></span>
 <span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>  <span class="st">'rel_3'</span> is <span class="sc">-</span><span class="dv">999</span> at row <span class="dv">14</span></span>
@@ -5023,7 +5023,7 @@ account for this, we add the <code>missing</code> attribute to the
 <p>The values within the <code>missing</code> attributes are
 automatically replaced with NA when joining a data with a dic file:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>Cautions<span class="sc">:</span> (replace_missing)</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
 <span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
 <span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
 <span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
@@ -5639,12 +5639,12 @@ attributes):</p>
 </table>
 </div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file, <span class="at">check_values =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>Cautions<span class="sc">:</span> (replace_missing)</span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
 <span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
 <span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'sui_2'</span> with <span class="cn">NA</span></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>Cautions<span class="sc">:</span> (check_values)</span>
+<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="sc">!</span> (check_values)</span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced the following invalid values with <span class="cn">NA</span><span class="sc">:</span></span>
 <span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  <span class="st">'rel_2'</span> is <span class="dv">66</span> at row <span class="dv">3</span></span>
 <span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a>  <span class="st">'rel_4'</span> is <span class="dv">11</span> at row <span class="dv">9</span></span>

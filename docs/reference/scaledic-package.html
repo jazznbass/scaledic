@@ -50,9 +50,9 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># apply a dictionary file to a data frame</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (new_dic)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (new_dic)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (replace_missing)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (replace_missing)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Replaced 15 missing value in 'itrf_E_16' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Replaced 15 missing value in 'itrf_I_10' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Replaced 15 missing value in 'itrf_I_19' with NA</span>
@@ -89,7 +89,7 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 34: Replaced 52 missing value in 'itrf_E_14' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 35: Replaced 528 missing value in 'itrf_I_1' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 36: Replaced 73 missing value in 'itrf_E_4' with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (check_values)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (check_values)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Replaced the following invalid values with NA:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_I_1' is 7 at row 3192</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_I_2' is 9 at row 4651</span>
@@ -105,11 +105,11 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_12' is 9 at row 2599</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_13' is 9, 11 at rows 2599, 4146</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_14' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (apply_dic)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (apply_dic)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Scales scored</span>
 <span class="r-in"><span><span class="co"># check for typos (not allowed values)</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (check_values)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (check_values)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: No errors found.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-in"><span><span class="co"># Single imputation (EM algorith from the Amelia package)</span></span></span>
@@ -151,14 +151,14 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_I_20 0.55</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_1  0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_2  0.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_3  0.58</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_2  0.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_3  0.57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_4  0.57</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_5  0.93</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_6  0.53</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_7  0.35</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_8  0.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_9  0.83</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_9  0.82</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_10 0.40</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_11 0.77</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_12 0.46</span>

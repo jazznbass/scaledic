@@ -18,7 +18,7 @@ variables in a data.frame that have recoding information in its dic-attributes.
 dat <- new_dic(
   x = c(1,1,2,3,1,3,4,4,3,2,4,5),
   item_name = "knowledge_1", 
-  item_label = "What is the captial of Germany?",
+  item_label = "What is the capital of Germany?",
   type = "integer",
   weight = 1,
   values = "1:4",

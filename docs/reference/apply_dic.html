@@ -117,9 +117,9 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu">apply_dic</span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (new_dic)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (new_dic)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (replace_missing)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (replace_missing)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Replaced 15 missing value in 'itrf_E_16' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Replaced 15 missing value in 'itrf_I_10' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Replaced 15 missing value in 'itrf_I_19' with NA</span>
@@ -156,7 +156,7 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 34: Replaced 52 missing value in 'itrf_E_14' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 35: Replaced 528 missing value in 'itrf_I_1' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 36: Replaced 73 missing value in 'itrf_E_4' with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (check_values)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (check_values)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Replaced the following invalid values with NA:</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_I_1' is 7 at row 3192</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_I_2' is 9 at row 4651</span>
@@ -172,7 +172,7 @@ dic file is used to rename variables from rename_var to item_name.</p></dd>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_12' is 9 at row 2599</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_13' is 9, 11 at rows 2599, 4146</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span>   'itrf_E_14' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions: (apply_dic)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (apply_dic)</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Scales scored</span>
 <span class="r-in"><span><span class="fu"><a href="descriptives.html">descriptives</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         name valid missing mean   sd min  max range median  mad</span>

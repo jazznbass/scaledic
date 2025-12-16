@@ -1,5 +1,19 @@
 
 
+q2 <- new_dic(
+  c("Paris", "London", "Berlin"),
+  item_name = "knowledge_2",
+  item_label = "What is the Captial of Germany?",
+  type = "character",
+  weight = 1,
+  recodes = ".default = 0; Berlin = 1"
+)
+q2
+dic_attr(q2)$recodes$recode
+recode_dic_items(q2)
+
+# -------
+
 library(scaledic)
 
 dat <- new_dic(
