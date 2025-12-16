@@ -30,8 +30,8 @@ impute_missing <- function(data,
 
   if (force_to_scale) {
     for (i in id) {
-      type <- dic_attr(data[[i]], .opt$type)
-      values <- dic_attr(data[[i]], .opt$values)
+      type <- dic_attr(data[[i]], opt("type"))
+      values <- dic_attr(data[[i]], opt("values"))
       if (!(type %in% c("integer", "float", "real", "numeric", "double")) || is.null(values)) next
       x <- data[[i]]
       max_values <- max(values)

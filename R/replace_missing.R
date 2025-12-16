@@ -7,15 +7,17 @@
 #' @export
 replace_missing <- function(data, replace = NA, report = TRUE) {
   on.exit(print_messages())
-  id <- which(sapply(data, function(x) !is.null(attr(x, .opt$dic))))
+  id <- which(sapply(data, function(x) !is.null(attr(x, opt("dic")))))
   var_names <- names(data)
 
   for (i in id) {
-    id_missing <- which(data[[i]] %in% dic_attr(data[[i]], opt("missing")))
+    missing_values <- dic_attr(data[[i]], opt("missing"))
+    if (length(missing_values) == 1 && is.na(missing_values)) next
+    id_missing <- which(data[[i]] %in% missing_values)
     if (report && length(id_missing)) {
       add_message(
         "Replaced ", length(id_missing)," missing ",
-        if (length(id_missing == 1)) "value" else "values",
+        if_one(id_missing, "value", "values"),
         " in '", var_names[i], "' ",
         #"(", round((length(id_missing) / sum(!is.na(data[[i]]))) * 100), "%)",
         "with ", deparse(replace)

@@ -37,8 +37,8 @@ rename_items <- function(data,
   # end
 
   for (col in 1:ncol(data)) {
-    if (is.null(attr(data[[col]], .opt$dic))) next
-    new_label <- .glue_dic(attr(data[[col]], .opt$dic), pattern = pattern)
+    if (is.null(attr(data[[col]], opt("dic")))) next
+    new_label <- .glue_dic(attr(data[[col]], opt("dic")), pattern = pattern)
     if (length(new_label) != 0) {
       if (!is.null(max_chars)) new_label <- substring(new_label, 1, max_chars)
       names(data)[col] <- new_label

@@ -31,9 +31,9 @@ score_from_dic <- function(data,
 
   for(i in 1:nrow(dic)) {
     sum <- if (dic[[opt("score_function")]][i] == "mean") FALSE else TRUE
-    new_var <- dic[[.opt$item_name]][i]
-    filter <- dic[[.opt$score_filter]][i]
-    label <- dic[[.opt$item_label]][i]
+    new_var <- dic[[opt("item_name")]][i]
+    filter <- dic[[opt("score_filter")]][i]
+    label <- dic[[opt("item_label")]][i]
 
     if (impute_values) {
       data <- .impute_missing(data, filter)

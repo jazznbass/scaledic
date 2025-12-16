@@ -30,7 +30,7 @@ rename_items_deprecated <- function(data,
 
 
   for (col in 1:ncol(data)) {
-    if (is.null(attr(data[[col]], .opt$dic))) next
+    if (is.null(attr(data[[col]], opt("dic")))) next
     new_label <- ""
     for(i in 1:length(pattern)) {
       pat <- pattern[i]
@@ -48,7 +48,7 @@ rename_items_deprecated <- function(data,
       }
       if (pat == "values")
         tmp_label <- paste0("(",
-          paste0(dic_attr(data[[col]], .opt$values), collapse = ", "),
+          paste0(dic_attr(data[[col]], opt("values")), collapse = ", "),
           ")"
         )
 
@@ -62,8 +62,8 @@ rename_items_deprecated <- function(data,
         )
 
 
-      if (pat == "label") pat <- .opt$item_label
-      if (pat == "name") pat <- .opt$item_name
+      if (pat == "label") pat <- opt("item_label")
+      if (pat == "name") pat <- opt("item_name")
 
       new_pat <- !(pat %in% c("reverse", "values", "value_labels"))
       if (new_pat) tmp_label <- dic_attr(data[[col]], pat)
