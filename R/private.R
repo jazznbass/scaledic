@@ -52,7 +52,7 @@ which_dic <- function(data, items_only = TRUE) {
   if (!is.null(class)) filter <- paste0(filter, " & class == '", class, "'")
   dic <- extract_dic(data)
   id <- with(dic, eval(str2lang(filter)))
-  out <- which(names(data) %in% dic[[.opt$item_name]][id])
+  out <- which(names(data) %in% dic[[opt("item_name")]][id])
   if (names) out <- names(data)[out]
   out
 }
@@ -133,6 +133,15 @@ which_dic <- function(data, items_only = TRUE) {
   stop("File extension not recognised. ",
        "Please provide separately read data frame."
   )
+
+}
+
+if_one <- function(x, singular, plural) {
+  if (length(x) == 1) singular else plural
+}
+
+count_chars <- function(char, x) {
+  sum(gregexpr(char, x)[[1]] > 0)
 }
 
 # return_messages <- function(msg, warning = FALSE) {
