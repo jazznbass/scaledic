@@ -11,6 +11,8 @@ score_from_dic <- function(data,
                            dic = NULL,
                            impute_values = FALSE) {
 
+  init_messages(); on.exit(print_messages())
+
   if (!is.null(attributes(data)$dic$scales)) {
     dic <- attributes(data)$dic$scales
   }
@@ -36,6 +38,7 @@ score_from_dic <- function(data,
     label <- dic[[opt("item_label")]][i]
 
     if (impute_values) {
+      add_message("Scales imputed", frame = -2)
       data <- .impute_missing(data, filter)
     }
 
@@ -49,7 +52,7 @@ score_from_dic <- function(data,
       sum = sum,
       var_weight = "weight"
     )
-
+    add_message("Created '", new_var, "' with scale definition '",filter, "'.")
   }
 
   data

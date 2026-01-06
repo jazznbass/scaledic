@@ -16,8 +16,8 @@ new_dic(
   recodes = NULL,
   class = "item",
   ...,
-  .list = NULL,
-  .coerce_class = TRUE
+  .coerce_class = TRUE,
+  .format_date = "\%Y-\%m-\%d"
 )
 }
 \arguments{
@@ -44,18 +44,34 @@ named}
 
 \item{...}{further dic arguments (e.g. \code{source = "James (1891)"})}
 
-\item{.list}{An alternative way to provide class arguments as a list
-(overwrites previous arguments)}
-
 \item{.coerce_class}{Logical. If TRUE, tries to coerce classes of 'x' if
 class does not match the \code{type} argument}
+
+\item{.format_date}{Optional string that is applied when character variable is
+coerced to a 'Date' class.}
 }
 \value{
 An item of class dic.
 }
 \description{
-Dictionary class low level constructor
+This is a low-level constructor for dic objects.
+}
+\details{
+Standard attributes are: \code{"item_name"}, \code{"item_label"}, \code{"weight"}, \code{"type"},
+\code{"values"}, \code{"value_labels"}, \code{"missing"}, \code{"recodes"}.
 }
 \examples{
-x <- new_dic(1:100, item_label = "The label of this item")
+x <- new_dic(
+  sample(c(1:5, -99), 20, replace = TRUE),
+  item_name = "My item",
+  item_label = "The label of this item",
+  values = "1:5",
+  value_labels = "1 = no; 2 = mhh; 3 = Okish; 4 = good; 5 = mighty",
+  missing = "-99"
+)
+x
 }
+\seealso{
+\code{set_dic()}
+}
+\keyword{internal}

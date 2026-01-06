@@ -45,7 +45,7 @@ score_scale <- function(data,
                         var_weight = NULL,
                         var_recoding = "recodes") {
 
-  on.exit(print_messages())
+  init_messages(); on.exit(print_messages())
 
   filter <- deparse(substitute(filter))
 
@@ -89,7 +89,7 @@ score_scale <- function(data,
     }
   }
 
-  df <- data[, .get_index(data = data, filter, class = "item")]
+  df <- data[, get_index_from_dic(data = data, filter, class = "item")]
 
   # recode items
 
@@ -164,6 +164,33 @@ score_scale <- function(data,
   attr(new_score, "label") <- label
 
   new_score
+}
+
+
+.weighted_mean <- function(x, weights) {
+  weighted.mean(x, weights, na.rm = TRUE)
+}
+
+.weighted_sum <- function(x, weights) {
+  sum(x * weights, na.rm = TRUE)
+}
+
+
+.mean <- function(x, min_valid, max_na) {
+
+  if (isTRUE(min_valid < 1) && isTRUE(min_valid > 0)) min_valid <- trunc(min_valid * length(x))
+  if(isTRUE(sum(!is.na(x)) < min_valid)) {
+    return(NA)
+  }
+
+  if (isTRUE(max_na < 1) && isTRUE(max_na > 0))
+    max_na <- trunc(max_na * length(x))
+  if(isTRUE(sum(is.na(x)) > max_na)) {
+    return(NA)
+  }
+
+  mean(x, na.rm = TRUE)
+
 }
 
 

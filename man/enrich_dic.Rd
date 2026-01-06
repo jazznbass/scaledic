@@ -7,9 +7,25 @@
 enrich_dic(dat)
 }
 \arguments{
-\item{dat}{A data frame}
+\item{dat}{A data frame.}
+}
+\value{
+A data frame with dic information added to all variables.
 }
 \description{
 Adds dic information to all variables in a data frame that do not have a dic
-attribute.
+attribute. This is useful when creating a dic from a data frame that has some variables
+already enriched with dic information and some that are not.
+The function uses the variable name as item_name and the variable label
+(if present) or the variable name as item_label.
 }
+\examples{
+df <- data.frame(
+  age = c(25, 30, 35),
+  gender = c("M", "F", "M")
+)
+df$age <- new_dic(df$age, item_name = "age", item_label = "Age of respondent")
+df_enriched <- enrich_dic(df)
+attributes(df_enriched$gender)$dic |> str()
+}
+\keyword{internal}

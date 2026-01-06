@@ -10,7 +10,7 @@ dic_attr(x, var)
 dic_attr(x, var) <- value
 }
 \arguments{
-\item{x}{Variable}
+\item{x}{A vector or a data.frame}
 
 \item{var}{Attribute}
 

@@ -1,11 +1,17 @@
 #' Extract a dictionary from a data file with dic information
 #'
+#' This function extracts the dictionary information from a data frame
+#' containing dic attributes and returns it as a data frame in a dictionary
+#' format.
+#'
 #' @param data A data frame with dic information.
 #'
 #' @return A data frame in a dictionary format.
-#' @examples
-#' extract_dic(ex_itrf)
 #'
+#' @examples
+#' ## extract dic from ex_itrf
+#' ex_itrf_dic <- extract_dic(ex_itrf)
+#' head(ex_itrf_dic)
 #' @export
 
 extract_dic <- function(data) {

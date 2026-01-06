@@ -17,3 +17,8 @@ A data frame with dic information
 \description{
 haven labels to dic files
 }
+\examples{
+ex_itrf_dic <- haven_dic(ex_itrf, remove_haven_class = TRUE)
+ex_itrf_copy <- dic_haven(ex_itrf_dic)
+
+}

@@ -40,10 +40,10 @@ lookup_norms <- function(rawscores,
                          group_label = names(group),
                          label = NULL) {
 
-  on.exit(print_messages())
+  init_messages(); on.exit(print_messages())
 
   if (inherits(normtable, "character")) {
-    normtable <- .read_by_suffix(normtable)
+    normtable <- read_by_suffix(normtable)
   }
 
   if (!is.null(group)) {

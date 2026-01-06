@@ -1,8 +1,27 @@
-#' Table with alpha values
+#' Table with alpha values and item statistics for multiple scales
 #'
 #' Returns a data.frame with item analyses for the provided scales.
+#' Useful for reporting scale reliabilities and item statistics in
+#' manuscripts.
 #'
-#' @param data A data Frame
+#' The function uses the psych::alpha function to calculate Cronbach's alpha
+#' and standardized alpha. Additionally, it calculates item means, standard
+#' deviations, item discriminations (item-total correlations), and item
+#' difficulties (if requested). If the 'fa' argument is set to TRUE, a
+#' one-factor exploratory factor analysis is performed, and the minimum and
+#' maximum absolute factor loadings are reported.
+#' The function can also compute confidence intervals for alpha and
+#' standardized alpha.
+#' It handles missing data by removing rows with all items missing for each scale.
+#' Variables with zero variance are automatically excluded from the analysis,
+#' and a message is displayed indicating which variables were dropped.
+#' The resulting data frame contains concise scale indices, making it easy to
+#' report scale reliabilities and item statistics in manuscripts.
+#' @seealso
+#' \code{\link[psych]{alpha}}, \code{\link[psych]{fa}}, \code{\link[scaledic]{dic_attr}}
+#'
+#' @author Jürgen Wilbert
+#' @param data A data Frame or tibble containing the item responses.
 #' @param scales A list containing vectors with variable names. Each list
 #'   element defines one scale. Named list elements are used as labels.
 #' @param labels Label names for scales (defaults to named list elements in
@@ -27,6 +46,7 @@
 #'   Ext = scale == "ITRF" & subscale == "Ext"
 #' )
 #' alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
+#'
 #' @export
 alpha_table <- function(data,
                         scales,
@@ -198,5 +218,10 @@ alpha_table <- function(data,
   f <- qf(c(1 - (1 - ci) / 2, (1 - ci) / 2), n - 1, (n - 1) * (items - 1))
   out <- 1 - (1 - alpha) * f
   out
+}
+
+.nice_num <- function(x, digits = 2) {
+  fmt <- paste0("%.", digits, "f")
+  sub("^(-?)0.", "\\1.", sprintf(fmt, x))
 }
 

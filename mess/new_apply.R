@@ -11,8 +11,8 @@ old_apply_dic <- function(data,
 
   msg <- c()
 
-  if (inherits(dic, "character")) dic <- .read_by_suffix(dic)
-  if (inherits(data, "character")) data <- .read_by_suffix(data)
+  if (inherits(dic, "character")) dic <- read_by_suffix(dic)
+  if (inherits(data, "character")) data <- read_by_suffix(data)
 
   # missing missing variable
   if (is.null(dic[[.dic_file$missing]])) replace_missing <- FALSE
@@ -40,7 +40,7 @@ old_apply_dic <- function(data,
 
   # extract scoring information from dic file -----
 
-  .filter <- dic[[.dic_file$class]] == "scale"
+  .filter <- dic[[opt("class")]] == "scale"
   dic_scores <- dic[.filter, ]
   dic <- dic[!.filter, ]
 

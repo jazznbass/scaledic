@@ -3,6 +3,10 @@
 #' @param data A data frame containing variables with haven labels
 #' @param remove_haven_class If TRUE, haven labels are removed.
 #' @return A data frame with dic information
+#' @examples
+#' ex_itrf_dic <- haven_dic(ex_itrf, remove_haven_class = TRUE)
+#' ex_itrf_copy <- dic_haven(ex_itrf_dic)
+#'
 #' @export
 haven_dic <- function(data, remove_haven_class = FALSE) {
   for(i in 1:ncol(data)) {
@@ -43,12 +47,13 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
   data
 }
 
-#' Create haven labels and value labels from dic
+#' Create haven labels and value labels from dic files
 #'
-#' @param data A data frame containing `dic` information
+#' @param data A data frame containing `dic` information.
 #' @param overwrite Logical. If `TRUE`, overwrites existing haven labels.
 #'
-#' @return A data frame with haven labels and value labels
+#' @return A data frame with haven labels and value labels.
+#'
 #' @examples
 #' ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
 #' ex_itrf_copy <- dic_haven(ex_itrf)

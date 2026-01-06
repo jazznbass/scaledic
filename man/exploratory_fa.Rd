@@ -17,16 +17,27 @@ If not provided, default names are chosen.}
 \item{cut}{Loadings below cut will be omitted in the resulting data frame.}
 
 \item{round}{Number of digits to round loadings (based on the base::round
-function)}
+function).}
 }
 \value{
-A data.frame
+A data.frame.
 }
 \description{
-Exploratory factor analysis based on the psych::fa function
+Creates a data frame with factor loadings and variance explained.
 }
 \examples{
+## Without factor names
 ex_itrf  |>
   select_items(subscale \%in\% c('Int', 'Ext'))  |>
   exploratory_fa(nfactors = 2)
+## With factor names
+ex_itrf  |>
+  select_items(subscale \%in\% c('Int', 'Ext'))  |>
+  exploratory_fa(nfactors = 2, factor_names = c("Internalizing", "Externalizing"))
+}
+\seealso{
+\code{\link[psych]{fa}}
+}
+\author{
+Jürgen Wilbert
 }

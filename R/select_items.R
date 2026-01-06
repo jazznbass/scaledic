@@ -18,7 +18,7 @@ select_items <- function(data,
 
   filter <- deparse(substitute(filter))
 
-  id <- .get_index(data = data, filter = filter, class = "item", names = FALSE)
+  id <- get_index_from_dic(data = data, filter = filter, class = "item", names = FALSE)
   if (names_only) return(names(data)[id])
   if (index_only) return(id)
   data[, id, drop = FALSE]

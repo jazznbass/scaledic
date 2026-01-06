@@ -10,7 +10,7 @@
 #' @export
 descriptives <- function(data, round = 2, labels = FALSE) {
 
-  on.exit(print_messages())
+  init_messages(); on.exit(print_messages())
 
   .filter <- sapply(data, is.numeric)
 

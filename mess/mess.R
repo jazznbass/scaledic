@@ -1,5 +1,7 @@
 
 
+
+
 q2 <- new_dic(
   c("Paris", "London", "Berlin"),
   item_name = "knowledge_2",
@@ -41,13 +43,11 @@ my::file_path("sciebo", "tmp", "bodo") |> dir()
 
 library(readr)
 dat <- readr::read_csv("~/sciebo/tmp/bodo/survey_472834_R_data_file Kopie.csv")
-
-View(dat)
-
 dic <- readr::read_delim("~/sciebo/tmp/bodo/survey_472834_R_syntax_file_DICTIONARY_v2.csv",
                          delim = ";", escape_double = FALSE, trim_ws = TRUE)
-
-apply_dic(dat, dic)
+dic[which(dic$item_name == "startdate"), "type"] <- "date"
+dat$startdate |> class()
+df <- apply_dic(dat, dic)
 
 
 new_dic(
@@ -168,7 +168,7 @@ do.call("select_items", scales)
 
 filter <- deparse(substitute(filter))
 
-id <- .get_index(data = data, filter = filter, class = "item", names = FALSE)
+id <- get_index_from_dic(data = data, filter = filter, class = "item", names = FALSE)
 if (names_only) return(names(data)[id])
 
 do.call("scaledic:::-get_index",

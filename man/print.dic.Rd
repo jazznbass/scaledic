@@ -17,4 +17,3 @@ Dic infos of x
 \description{
 Print dic infos
 }
-\keyword{internal}

@@ -1,8 +1,8 @@
-#' Combine data frames
+#' Combine data frames with dic information
 #'
 #' Combine data frames (rows and columns) and keep dic information.
 #'
-#' @param ... data frames with dic information
+#' @param ... data frames with dic information to be combined.
 #'
 #' @return A combined data frame with all rows and columns from the provided
 #'   data frames.
@@ -11,6 +11,8 @@
 #'   entailed in both data frames has dic information, the resulting data frame
 #'   will keep the dic information of the data frame that is first listed as an
 #'   argument.
+#'   If a variable is present in one data frame but not in another, the missing
+#'   values will be filled with NA.
 #' @export
 
 combine_data_frames <- function(...) {

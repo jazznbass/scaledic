@@ -13,9 +13,12 @@ extract_dic(data)
 A data frame in a dictionary format.
 }
 \description{
-Extract a dictionary from a data file with dic information
+This function extracts the dictionary information from a data frame
+containing dic attributes and returns it as a data frame in a dictionary
+format.
 }
 \examples{
-extract_dic(ex_itrf)
-
+## extract dic from ex_itrf
+ex_itrf_dic <- extract_dic(ex_itrf)
+head(ex_itrf_dic)
 }

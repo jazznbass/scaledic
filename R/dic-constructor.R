@@ -1,5 +1,11 @@
 #' Dictionary class low level constructor
 #'
+#' This is a low-level constructor for dic objects.
+#'
+#' Standard attributes are: `"item_name"`, `"item_label"`, `"weight"`, `"type"`,
+#' `"values"`, `"value_labels"`, `"missing"`, `"recodes"`.
+#'
+#' @seealso `set_dic()`
 #' @param x A variable
 #' @param item_name Character
 #' @param item_label Character
@@ -12,15 +18,23 @@
 #' @param recodes Recoding information e.g. `4 = 1, .default = 0`
 #' @param class default is "item"
 #' @param ... further dic arguments (e.g. `source = "James (1891)"`)
-#' @param .list An alternative way to provide class arguments as a list
-#'   (overwrites previous arguments)
 #' @param .coerce_class Logical. If TRUE, tries to coerce classes of 'x' if
 #'   class does not match the `type` argument
+#' @param .format_date Optional string that is applied when character variable is
+#'   coerced to a 'Date' class.
 #' @return An item of class dic.
 #' @export
-#'
+#' @keywords internal
 #' @examples
-#' x <- new_dic(1:100, item_label = "The label of this item")
+#' x <- new_dic(
+#'   sample(c(1:5, -99), 20, replace = TRUE),
+#'   item_name = "My item",
+#'   item_label = "The label of this item",
+#'   values = "1:5",
+#'   value_labels = "1 = no; 2 = mhh; 3 = Okish; 4 = good; 5 = mighty",
+#'   missing = "-99"
+#' )
+#' x
 new_dic <- function(x,
                     item_name = NULL,
                     item_label = NULL,
@@ -32,34 +46,48 @@ new_dic <- function(x,
                     recodes = NULL,
                     class = "item",
                     ...,
-                    .list = NULL,
-                    .coerce_class = TRUE) {
+                    .coerce_class = TRUE,
+                    .format_date = "%Y-%m-%d") {
 
 
-  on.exit(print_messages())
+  init_messages(); on.exit(print_messages())
+
+  # validate/ normalize missing attributes -----
 
   if (!has_info(item_name)) {
     item_name <- as.character(match.call()[2])
+    add_message(
+      "'item_name' definition is missing and set to '", item_name, "'."
+    )
   }
-
   if (!has_info(item_label)) {
+    add_message(
+      "'item_label' definition is missing and copied from item_name."
+    )
     item_label <- item_name
   }
-
-  if (!has_info(type)) {
-    type <- "numeric"
-    if (is.numeric(x)) type <- "numeric"
-    if (is.integer(x)) type <- "integer"
-    if (is.double(x)) type <- "double"
-    if (is.character(x)) type <- "character"
-    if (is.factor(x)) type <- "factor"
+  if (!has_info(weight)) {
+    weight <- 1
+    add_message("'weight' definition is missing and set to 1.")
+  }
+  if (!has_info(class)) {
+    class <- "item"
+    add_message("'class' definition is missing and set to 'item'.")
   }
 
-  if (has_info(values)) {
-    if (length(values) == 1 && inherits(values, "character")) {
-      values <- .extract_values(values)
-    }
+  # check and estimate type ----
+  type <- .check_type(type, x)
+
+  # check and coerce class of x -----
+  if (.coerce_class) {
+    x <- .check_coerce_class(x, type, .format_date, item_name)
   }
+  class(x) <- unique(c("dic", class(x)))
+
+  # extract values, value_labels, missing  --------
+
+  values <- .extract_values(values, type, item_name, field = "values")
+  missing_values <- .extract_values(missing, type, item_name, field = "missing")
 
   if (has_info(value_labels)) {
     value_labels <- .extract_value_labels(value_labels, type)
@@ -67,218 +95,88 @@ new_dic <- function(x,
 
   if (has_info(value_labels)) {
 
-    if (isTRUE(is.na(values))) {
-      values <- value_labels[[1]]
-      add_message("values defintion for ", item_name, " is missing and taken from value_labels definition.")
+    if (!has_info(values) && has_info(value_labels$value)) {
+      values <- value_labels$value
+      add_message("'values' defintion for item '", item_name,
+                  "' is missing and taken from 'value_labels' definition.")
     }
-    .id <- sapply(value_labels[[1]], function(x) {
-        id <- which(as.character(x) == as.character(values))
-        id
+    .id <- sapply(value_labels$value, function(x) {
+      id <- which(as.character(x) == as.character(values))
+      if (length(id) == 0) {
+        add_message(
+          "Value from 'value_labels' definition not found in 'values' ",
+          "definition for item '", item_name, "'.", frame = -4
+        )
+        return(NA)
+      }
+      id
     })
-
-    names(values)[.id] <- trimws(value_labels[[2]])
+    if (!any(is.na(.id))) names(values)[.id] <- trimws(value_labels$label)
   }
 
+  # when type is factor, create factor -----
+  if (type == "factor") x <- .set_factor(x)
+
+  # extract recodes --------
   if (has_info(recodes)) {
     recodes <- .extract_scores(recodes)
   }
 
-  if (identical(type, "integer") && !is.integer(x) && !is.numeric(x) && !all(is.na(x))) {
-    if (.coerce_class) {
-      add_message("Class should be integer but is ", paste0(class(x), collapse = ", "),
-        ". Coerced to integer")
-      x[] <- as.integer(x)
-      class(x) <- "integer"
-    } else {
-      add_message("Class should be integer but is ", paste0(class(x), collapse = ", "))
-    }
-  }
-
-  if (type %in% c("float", "double") && !is.double(x) && !is.numeric(x) && !all(is.na(x))) {
-    if (.coerce_class) {
-      add_message(
-        "Class should be double but is ", paste0(class(x), collapse = ", "),
-        ". Coerced to integer"
-      )
-      x[] <- as.double(x)
-      class(x) <- "numeric"
-    } else {
-      add_message(
-        "Class should be double but is ", paste0(class(x), collapse = ", ")
-      )
-    }
-  }
-
-  if (type == "numeric" && !is.numeric(x) && !all(is.na(x))) {
-      if (.coerce_class) {
-        add_message(
-          "Class should be numeric but is ", paste0(class(x), collapse = ", "),
-          ". Coerced to numeric"
-        )
-        x[] <- as.double(x)
-        class(x) <- "numeric"
-      } else {
-        add_message(
-          "Class should be numeric but is ", paste0(class(x), collapse = ", ")
-        )
-      }
-  }
-
+  # set list of dic-attributes ----
   dic_list <- list(
     item_name = item_name,
     item_label = item_label,
     values = values,
     value_labels = value_labels,
-    missing = missing,
+    missing = missing_values,
     weight = weight,
     type = type,
     class = class,
     ...
   )
-
   if (has_info(recodes)) dic_list$recodes <- recodes
 
-  dic_list <- c(.list, dic_list)
-  dic_list <- dic_list[unique(names(dic_list))]
-
   dic_attr(x) <- dic_list
+
+  # add haven labels ----
   attr(x, "label") <- dic_attr(x, "item_label")
-  attr(x, "labels") <- dic_attr(x, "values")
-
-  if (type == "factor") x <- .set_factor(x)
-
-  class(x) <- c("dic", class(x))
+  if (has_info(values) && !is.null(names(values)))
+    attr(x, "labels") <- dic_attr(x, "values")
 
   x
 }
 
-#' Set dictionary information to variables
-#'
-#' @param data A data frame or a vector.
-#' @param .vars Character vector with variable names. If data is a data frame,
-#'   address these variables. If left `NULL` and data is a data frame, all
-#'   variables from the data frame are addressed.
-#' @param ... dic attributes of the form `attribute = value`.
-#' @details Standard attributes are: `"item_name"`, `"item_label"`, `"weight"`,
-#'   `"type"`, `"values"`, `"value_labels"`, `"missing"`.
-#' @return A data frame or a vector with added dic attributes.
-#' @examples
-#' hap_1 <- sample(1:5, 30, replace = TRUE)
-#' set_dic(hap_1,
-#'    item_label = "How do you feel today?",
-#'    scale = "hap",
-#'    scale_label = "Happiness",
-#'    values = 1:3,
-#'    value_labels = "1 = not happy; 2 = in between; 3 = happy"
-#' )
-#' @export
-set_dic <- function(data, .vars = NULL, ...) {
-
-  parameters <- list(...)
-
-  if (inherits(data, "data.frame")) {
-    if (is.null(.vars)) .vars <- names(data)
-    for(i in seq_along(.vars)) {
-      data[[.vars[i]]] <- .set_dic(data[[.vars[i]]], parameters, .vars[i])
-    }
-    return(data)
-  }
-
-  .set_dic(data, parameters, .item_name = as.character(match.call()[2]))
-}
-
-.set_dic <- function(data, parameters, .item_name = "") {
-
-  on.exit(print_messages())
-
-  dic <- dic_attr(data)
-  dic <- c(parameters, dic)
-  dic <- dic[unique(names(dic))]
-
-  if (!"class" %in% names(dic)) dic[["class"]] <- "item"
-  if (!"item_name" %in% names(dic)) {
-    add_message(
-      "Attribute 'item_name' missing and set to '", .item_name, "'."
-    )
-    dic[["item_name"]] <- .item_name
-    dic[["item_name"]] <- .item_name
-  }
-  if (!"item_label" %in% names(dic)) {
-    add_message(
-        "Attribute 'item_label' missing and set to '", dic[["item_name"]], "'."
-    )
-    dic[["item_label"]] <- dic[["item_name"]]
-  }
-  if (!"type" %in% names(dic)) {
-    add_message("Attribute 'type' missing and set to 'integer'.")
-    dic[["type"]] <- "integer"#class(data)
-  }
-  if (!"weight" %in% names(dic)) {
-    add_message("Attribute 'weight' missing and set to 1.")
-    dic[["weight"]] <- 1
-  }
-
-  if ("value_labels" %in% names(dic)) {
-    value_labels <- .extract_value_labels(dic[["value_labels"]], dic[["type"]])
-    for (i in 1:nrow(value_labels)) {
-      value <- as.numeric(value_labels[i, 1])
-      .id <- which(dic[["values"]] == value)
-      names(dic[["values"]])[.id] <- trimws(value_labels[i, 2])
-    }
-    dic[["value_labels"]] <- value_labels
-  }
-
-  # define factors
-
-  if (dic[["type"]] == "factor") {
-    if (!all(unique(data) %in% dic[["value_labels"]]$value)) {
-      add_message(
-        "Vector has values not defined as value_labels. ",
-        "These are automatically set to NA."
-      )
-    }
-
-    data <- factor(
-      data,
-      levels = dic[["values"]],
-      labels = dic[["value_labels"]]$label
-    )
-  }
-
-  # set dic attributes
-
-  dic_attr(data) <- dic
-  attr(data, "label") <- dic_attr(data, "item_label")
-
-  if (!inherits(data, "dic")) class(data) <- c("dic", class(data))
-
-  data
-}
-
 .extract_value_labels <- function(value_labels, type) {
 
-  split <- getOption("scaledic.string.split")
+  char_split <- getOption("scaledic.string.split")
+
+  if (grepl("\r\n", x = value_labels)) {
+    add_message(
+      "Found linebreaks in 'value_labels' definition and replaced them with '",
+      char_split, "'", frame = -2
+    )
+    value_labels <- gsub("\r\n", char_split, x = value_labels)
+  }
 
   if (is.na(value_labels) || value_labels == "") return(NA)
 
-  n_equal <- sum(gregexpr("=", value_labels)[[1]] > 0)
-  n_split <- sum(gregexpr(split, value_labels)[[1]] > 0)
-
   if (count_chars("=", value_labels) == 0) {
-    add_message("No equal sign found in value_labels. Entry is misspecified.")
+    add_message("No equal sign found in value_labels. Entry is misspecified.",
+                frame = -2)
     return(NA)
   }
 
-  if (count_chars("=", value_labels) - count_chars(";", value_labels) != 1) {
+  if (count_chars("=", value_labels) - count_chars(char_split, value_labels) != 1) {
     add_message("value_labels entry is misspecified ",
-                "(Did you use ", split, " as a separator for value labels?).")
+                "(you must use ", char_split, " as a separator for value labels).",
+                frame = -2)
     return(NA)
   }
 
-  value_labels <- value_labels %>%
-    as.character() %>%
-    strsplit(split) %>%
-    unlist() %>%
+  value_labels <- value_labels  |>
+    as.character() |>
+    strsplit(char_split) |>
+    unlist() |>
     strsplit("=")
 
   .n_labels <- length(value_labels)
@@ -317,19 +215,16 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 }
 
-.extract_values <- function(x) {
-  paste0("c(", x, ")") |> str2lang() |> eval()
-}
 
 .extract_scores <- function(recodes) {
 
-  split <- getOption("scaledic.string.split")
+  char_split <- getOption("scaledic.string.split")
 
   if (!has_info(recodes)) return(NULL)
-  recodes <- recodes %>%
-    as.character() %>%
-    strsplit(split) %>%
-    unlist() %>%
+  recodes <- recodes |>
+    as.character() |>
+    strsplit(char_split) |>
+    unlist() |>
     strsplit("=")
 
   .n_labels <- length(recodes)
@@ -346,7 +241,6 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 }
 
-
 .set_factor <- function(x) {
   value_labels <- dic_attr(x, "value_labels")
 
@@ -360,23 +254,283 @@ set_dic <- function(data, .vars = NULL, ...) {
     labels <- unname(dic_attr(x, "values"))
   }
 
-  # sensible value_labels exist
-  #if (!identical(value_labels, NA) && !identical(value_labels, "")) {
-  #  levels <- value_labels$value
-  #  labels <- value_labels$label
-  #}
-
   out <- factor(
     x,
     levels = levels,
     labels = labels
   )
   dic_attr(out) <- dic_attr(x)
+  class(out) <- c("dic", "factor")
   out
 }
 
-has_info <- function(x) {
-  if (is.null(x) || isTRUE(is.na(x)) || identical(unname(x), "")) return(FALSE)
-  TRUE
+#' Parse a `values` specification from a dic file
+#'
+#' Supported syntax:
+#' - Integers: "1, 2, 3"
+#' - Integer ranges: "5:11" (inclusive)
+#' - Mixed: "1, 3:5, 9"
+#' - Float: "min, max" (two numeric values)
+#' - Character/factor: "'m', 'f', 'd'" or "\"m\", \"f\""
+#'
+#' No code evaluation is performed.
+#'
+#' @keywords internal
+.extract_values <- function(values,
+                            type,
+                            item,
+                            field) {
+
+  if (!has_info(values)) return(NULL)
+  values <- trimws(as.character(values))
+  if (!nzchar(values)) return(NULL)
+
+  msg_prefix <- paste0(" in item '", item, "' field '", field, "'")
+
+  values <- trimws(unlist(strsplit(values, ",")))
+  values <- values[nzchar(values)]
+
+  if (!length(values)) {
+    add_message("no entries found for values", msg_prefix, frame = -2)
+    return(NULL)
+  }
+
+  if (type %in% opt("numerics")) {
+    values <- .expand_colon(values, msg_prefix, type = type)
+    if (!is.null(values)) values <- suppressWarnings(as.numeric(values))
+  }
+
+  if (type == "factor") {
+    values <- .expand_colon(values, msg_prefix, type = type)
+  }
+
+  if (type %in% c("character", "factor")) {
+
+    if (is.numeric(values)) {
+      add_message(type, " 'values' defintions need quotes -> added quotes",
+                  frame = -2
+      )
+      values <- sapply(values, function(x) paste0("'", x, "'"))
+    }
+    # Must be fully quoted, no embedded quotes of same type
+    unquote_one <- function(p) {
+
+      if (grepl("^'.*'$", p)) {
+        inner <- substr(p, 2, nchar(p) - 1)
+        if (grepl("'", inner, fixed = TRUE)) {
+          add_message("single-quoted values must not contain unescaped single ",
+                      "quotes", msg_prefix, frame = -3)
+          return(NA_character_)
+        }
+        return(inner)
+      }
+      if (grepl('^".*"$', p)) {
+        inner <- substr(p, 2, nchar(p) - 1)
+        if (grepl('"', inner, fixed = TRUE)) {
+          add_message("double-quoted values must not contain unescaped double ",
+                      "quotes", msg_prefix, frame = -3)
+          return(NA_character_)
+        }
+        return(inner)
+      }
+      add_message(
+        "Character values should be quoted with single or double quotes ",
+        "-> added quotes", msg_prefix, frame = -3
+      )
+      return(paste0("'", p, "'"))
+    }
+    values <- vapply(values, unquote_one, character(1))
+  }
+
+  # ---------- numeric / integer / double / float ----------
+
+  if (type %in% opt("numerics")) {
+
+    # float: exactly two numeric values (min, max)
+    if (field == "values" && type == "double") {
+      if (length(values) != 2) {
+        add_message("Type 'double' requires exactly two numbers for min and max",
+                    msg_prefix, frame = -2)
+        return(NULL)
+      }
+      values <- suppressWarnings(as.numeric(values))
+
+      if (values[1] > values[2]) {
+        add_message("min must be <= max", msg_prefix, frame = -2)
+        return(NULL)
+      }
+    }
+
+  }
+
+  if (any(is.na(values))) {
+    add_message("could not parse some values", msg_prefix, frame = -3)
+    return(NULL)
+  }
+
+  # integer: all values must be integers
+  if (type == "integer") {
+    if (any(values %% 1 != 0)) {
+      add_message("type 'integer' cannot contain non-integer values", msg_prefix,
+                  frame = -2)
+    }
+  }
+
+  values <- unique(values)
+  values
+}
+
+
+.expand_colon <- function(values, msg_prefix, type) {
+  parse_number <- function(s) {
+    s <- trimws(s)
+    if (is.na(suppressWarnings(as.numeric(s)))) {
+      if (type %in% opt("numerics")) {
+        add_message("could not parse numeric value: ", s, msg_prefix, frame = -4)
+        return(NA_real_)
+      }
+      return(s)
+    }
+    suppressWarnings(as.numeric(s))
+  }
+
+  out <- c()
+  for (t in values) {
+    t <- trimws(t)
+
+    # range?
+    if (grepl(":", t, fixed = TRUE)) {
+      # strict: single colon, integer endpoints
+      if (length(gregexpr(":", t, fixed = TRUE)[[1]]) != 1) {
+        add_message("invalid range token ", t, msg_prefix, frame = -3)
+        return(NULL)
+      }
+      ab <- trimws(unlist(strsplit(t, ":", fixed = TRUE)))
+      if (length(ab) != 2) {
+        add_message("invalid range token ", t, msg_prefix, frame = -3)
+        return(NULL)
+      }
+
+      a <- parse_number(ab[1]); b <- parse_number(ab[2])
+      if (any(is.na(c(a, b)))) {
+        add_message("range endpoints must be numeric: ", t, msg_prefix, frame = -3)
+        return(NULL)
+      }
+
+      if (a %% 1 != 0 || b %% 1 != 0) {
+        add_message("range endpoints must be integers: ", t, msg_prefix, frame = -3)
+        return(NULL)
+      }
+
+      a <- as.integer(a); b <- as.integer(b)
+      if (a <= b) out <- c(out, seq.int(a, b)) else out <- c(out, seq.int(a, b, by = -1L))
+      next
+    }
+
+    # single number
+    n <- parse_number(t)
+    if (is.na(n)) {
+      add_message("invalid numeric token: ", t, msg_prefix, frame = -3)
+      return(NULL)
+    }
+    out <- c(out, n)
+  }
+  out
+}
+
+
+.check_coerce_class <- function(x, type, .format_date, item_name) {
+
+  pre_NA <- sum(is.na(x))
+
+  if (type == "double" && !is.double(x)) {
+    add_message(
+      "'type' defintion is 'double' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'double'."
+    )
+    x[] <- suppressWarnings(as.double(x))
+  }
+
+  if (type == "integer" && any(x[!is.na(x)] %% 1 != 0)) {
+    add_message(
+      "'type' defintion is 'integer' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'integer'."
+    )
+    x[] <- suppressWarnings(as.integer(x))
+  }
+
+  if (type == "numeric" && !is.numeric(x)) {
+    add_message(
+      "'type' defintion is 'numeric' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'numeric'."
+    )
+    x[] <- suppressWarnings(as.numeric(x))
+  }
+
+  if (type == "character" && !is.character(x)) {
+    add_message(
+      "'type' defintion is 'character' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'character'."
+    )
+    x[] <- suppressWarnings(as.character(x))
+  }
+
+  if (type == "logical" && !is.logical(x)) {
+    add_message(
+      "'type' defintion is 'logical' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'logical'."
+    )
+    x[] <- suppressWarnings(as.logical(x))
+  }
+
+  if (type == "date" && is.character(x)) {
+    add_message(
+      "'type' defintion is 'date' but variable is of class 'character' ",
+      "--> coerced to 'date' with format ", .format_date
+    )
+    x <- suppressWarnings(as.Date(x, format = .format_date))
+  }
+
+  if (type == "date" &&
+      !inherits(x, c("Date", "POSIXct", "POSIXt", "character"))) {
+    add_message(
+      "'type' defintion is 'date' but variable is of class '",
+      paste0(class(x), collapse = ", "), "' --> coerced to 'character'."
+    )
+    x[] <- suppressWarnings(as.character(x))
+  }
+  post_NA <- sum(is.na(x))
+  if (post_NA > pre_NA) {
+    add_message(
+      "Coercion to '", type, "' introduced ", post_NA - pre_NA,
+      " additional NA values in item '", item_name, "'."
+    )
+  }
+
+  x
+}
+
+.check_type <- function(type, x) {
+  # type estimation --------
+  if (!has_info(type)) {
+    type <- "numeric"
+    if (is.numeric(x)) type <- "numeric"
+    if (is.integer(x)) type <- "integer"
+    if (is.double(x)) type <- "double"
+    if (is.character(x)) type <- "character"
+    if (is.factor(x)) type <- "factor"
+    if (is.logical(x)) type <- "logical"
+    if (inherits(x, c("Date", "POSIXct", "POSIXt"))) type <- "date"
+    add_message("Type is missing and is estimated as ", "'", type, "'.", frame = -2)
+  }
+
+  # type check --------
+
+  if (type %in% c("real", "float", "numeric")) {
+    type <- "double"
+    add_message("Type 'real' or 'float' is replaced by 'double'.")
+  }
+
+  type
 }
 

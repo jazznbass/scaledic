@@ -1,9 +1,11 @@
-#' Add dictionary class to a vector
+#' Add dictionary class to a vector or data.frame
 #'
-#' Adds the class 'dic' to a vector or all variables within a vector if it contains 'dic' attributes.
+#' Adds the class 'dic' to a vector or all variables within a vector if it
+#' contains 'dic' attributes.
 #'
-#' @param data A vector or a data.frame (or an object that inherits from a data.frame)
-#'
+#' @param data A vector or a data.frame (or an object that inherits from a
+#'   data.frame) containing dic attributes.
+#' @keywords internal
 #' @return An object inheriting from class "dic".
 #' @examples
 #' item <- remove_dic_class(ex_itrf$itrf_I_1)

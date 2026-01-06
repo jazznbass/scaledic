@@ -15,9 +15,9 @@ check_values(
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame.}
 
-\item{replace}{Value which relaces unvalid values (e.g., NA).}
+\item{replace}{Value which replaces invalid values (e.g., NA).}
 
 \item{return}{If TRUE, a data frame is returned with replaced values.}
 
@@ -29,18 +29,13 @@ dic file) will be considered as valid values.}
 \item{integer_as_float}{If TRUE, type 'integer' will be handled as 'float'.
 That is, only values outside the minimum and the maximum of the provided
 valid values will be considered invalid.}
-
-\item{check_type}{If TRUE, it will check if the class of a variable conflicts
-with the 'type' as defined in the dic information. When a type is numeric
-and the class is 'character' it will try to convert the class to a numeric
-class.}
 }
 \value{
-A data frame with replaced values if replaces is not NULL.
+A data frame with replaced values if \code{replaces} is not NULL.
 }
 \description{
 Checks if values in variables are valid according to the 'values' and 'type'
-dictionary attributes.
+dictionary attributes. Invalid values can be replaced with a specified value.
 }
 \examples{
 check_values(ex_itrf, return = FALSE)

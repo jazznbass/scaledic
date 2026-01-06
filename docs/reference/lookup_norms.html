@@ -110,17 +110,57 @@ labels for multiple group categorizations.</p></dd>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## When group values are not specified exactly, raw scores can be ambiguous:</span></span></span>
 <span class="r-in"><span><span class="fu">lookup_norms</span><span class="op">(</span><span class="va">rawscores</span>, group <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>gender <span class="op">=</span> <span class="va">group_gender</span><span class="op">)</span>, normtable <span class="op">=</span> <span class="va">normtable</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (lookup_norms)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (                " (", paste0((normtable[[to]][id]), collapse = ", "), )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             add_message("Multiple values found for raw ", x,  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             add_message("Multiple values found for raw ", x,  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (            return(NA))</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:                   collapse = ", "), ")", ". NA returned.") (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2:                 ")", ". NA returned.") (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        id &lt;- which(normtable[[from]] == x &amp; normtable[[group_label]] == )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     else { (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        if (length(id) &gt; 1) {)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             y) (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2:         id &lt;- which(normtable[[from]] == x) (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        return(NA))</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     if (length(id) == 0)  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (    if (is.na(y)) {)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: { (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (    })</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:         } (8x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (function (x, y) )</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Multiple values found for raw 1 and group w (47, 44). NA returned.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 3 and group w (51, 48). NA returned.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 5 and group m (50, 47). NA returned. (2x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (})</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     normtable[[to]][id] (4x)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">lookup_norms</span><span class="op">(</span><span class="va">rawscores</span>, normtable <span class="op">=</span> <span class="va">normtable</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (lookup_norms)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (                " (", paste0((normtable[[to]][id]), collapse = ", "), )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             add_message("Multiple values found for raw ", x,  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             add_message("Multiple values found for raw ", x,  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (            return(NA))</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:                   collapse = ", "), ")", ". NA returned.") (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2:                 ")", ". NA returned.") (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        id &lt;- which(normtable[[from]] == x &amp; normtable[[group_label]] == )</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     else { (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        if (length(id) &gt; 1) {)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:             y) (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 2:         id &lt;- which(normtable[[from]] == x) (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (        return(NA))</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     if (length(id) == 0)  (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (    if (is.na(y)) {)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: { (4x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (    })</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:         } (8x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (function (x, y) )</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Multiple values found for raw 1 (42, 39, 47, 44). NA returned.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Multiple values found for raw 3 (46, 43, 51, 48). NA returned.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Multiple values found for raw 5 (50, 47, 55, 52). NA returned. (2x)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> ! (})</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> 1:     normtable[[to]][id] (4x)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] NA NA NA NA</span>
 </code></pre></div>
     </div>
@@ -133,7 +173,7 @@ labels for multiple group categorizations.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

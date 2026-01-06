@@ -1,0 +1,32 @@
+# Create haven labels and value labels from dic files
+
+Create haven labels and value labels from dic files
+
+## Usage
+
+``` r
+dic_haven(data, overwrite = TRUE)
+```
+
+## Arguments
+
+- data:
+
+  A data frame containing `dic` information.
+
+- overwrite:
+
+  Logical. If `TRUE`, overwrites existing haven labels.
+
+## Value
+
+A data frame with haven labels and value labels.
+
+## Examples
+
+``` r
+ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
+ex_itrf_copy <- dic_haven(ex_itrf)
+identical(ex_itrf, ex_itrf_copy)
+#> [1] TRUE
+```

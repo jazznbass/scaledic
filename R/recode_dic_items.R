@@ -30,7 +30,7 @@
 recode_dic_items <- function(df,
                              prefix_label = "(recoded)") {
 
-  on.exit(print_messages())
+  init_messages(); on.exit(print_messages())
 
   if (inherits(df, "data.frame")) {
     out <- .recode_dic_items(df, prefix_label = prefix_label)

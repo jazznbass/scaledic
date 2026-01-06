@@ -10,12 +10,13 @@ factor_by_label(x)
 \item{x}{A vector with dic information.}
 }
 \value{
-A factor
+A factor with levels based on the value labels.
 }
 \description{
 Turns a dic variable into a factor based on the value labels
 }
 \examples{
+# Apply a dictionary to data
 dat_dic <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
 # Proportions of responses
 dat_dic$rel_2 |> factor_by_label() |> table() |> prop.table()

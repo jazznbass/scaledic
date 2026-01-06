@@ -19,7 +19,7 @@ impute_missing <- function(data,
 
 .impute_missing <- function(data, filter, force_to_scale = TRUE) {
 
-  id <- .get_index(data, filter, class = "item")
+  id <- get_index_from_dic(data, filter, class = "item")
   if (!any(is.na(data[, id]))) {
     message("No missing data.\n")
     return(data)

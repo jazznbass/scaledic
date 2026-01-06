@@ -1,6 +1,6 @@
 #' Set and get dictionary attributes
 #'
-#' @param x Variable
+#' @param x A vector or a data.frame
 #' @param var Attribute
 #'
 #'
@@ -11,6 +11,7 @@ dic_attr <- function(x, var) {
     return(attr(x, opt("dic")))
   }
   out <- attr(x, opt("dic"))
+  if (is.null(out)) return(NULL)
   if (var %in% names(.opt)) {
     out[[opt(var)]]
   } else {
