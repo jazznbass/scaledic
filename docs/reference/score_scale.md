@@ -80,13 +80,7 @@ must take the vector of values and the second argument the weights.
 
 ``` r
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
-#> ! (dic)
-#> 1: Type 'real' or 'float' is replaced by 'double'.
-#> ! (replace_missing)
-#> 1: Replaced 1 missing value in 'age' with NA
-#> 2: Replaced 1 missing value in 'rel_3' with NA
-#> 3: Replaced 1 missing value in 'rel_4' with NA
-#> 4: Replaced 1 missing value in 'sui_2' with NA
+#> 5 messages generated (type show_messages() to see details).
 # apply the default weighted mean function
 score_scale(dat, scale == "rel", label = "Religious beliefs")
 #> Religious beliefs

@@ -36,10 +36,7 @@ We combine the *data* file and the *dic* file with the
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type is missing and is estimated as 'character'.
-2: Type is missing and is estimated as 'double'. (8x)
-3: Type is missing and is estimated as 'integer'. (3x)
+12 messages generated (type show_messages() to see details).
 ```
 
 We get the message that the dic file does not contain information of the
@@ -63,8 +60,7 @@ nominal scale with several levels).
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
+1 messages generated (type show_messages() to see details).
 ```
 
 Now we can add `weight` information to the dic file. The `weight`
@@ -84,8 +80,7 @@ Again, we join dic and data file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
+1 messages generated (type show_messages() to see details).
 ```
 
 Now we add the `values` attribute to the dic file. `values` defines the
@@ -108,8 +103,7 @@ Here is the dic file with added `values`:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
+1 messages generated (type show_messages() to see details).
 ```
 
 Invalid values can be replaced automatically with the
@@ -117,16 +111,7 @@ Invalid values can be replaced automatically with the
 
 ``` r
 dat_dic <- check_values(dat_dic, replace = NA) 
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_3' is -999 at row 14
-  'rel_4' is 11, -999 at rows 9, 18
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_2' is -999 at row 9
-  'sui_4' is 66 at row 17
-  'age' is 13, -999, 13 at rows 4, 12, 16
+1 messages generated (type show_messages() to see details).
 ```
 
 ``` r
@@ -162,18 +147,7 @@ Here is the dic file with added `value_labels`:
 dat_dic <- ex_scaledic_data |> 
   apply_dic(dic_file) |>
   check_values(replace = NA)
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_3' is -999 at row 14
-  'rel_4' is 11, -999 at rows 9, 18
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_2' is -999 at row 9
-  'sui_4' is 66 at row 17
-  'age' is 13, -999, 13 at rows 4, 12, 16
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
+2 messages generated (type show_messages() to see details).
 ```
 
 Now lets see the coding for some of the variables:
@@ -267,13 +241,7 @@ with NA when joining a data with a dic file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
-! (replace_missing)
-1: Replaced 1 missing value in 'age' with NA
-2: Replaced 1 missing value in 'rel_3' with NA
-3: Replaced 1 missing value in 'rel_4' with NA
-4: Replaced 1 missing value in 'sui_2' with NA
+5 messages generated (type show_messages() to see details).
 ```
 
 To turn off this behavior, set the argument `replace_missing = FALSE`.
@@ -288,21 +256,7 @@ way as they are not *predefined* attributes):
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_4' is 11 at row 9
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_4' is 66 at row 17
-  'age' is 13, 13 at rows 4, 16
-! (dic)
-1: Type 'real' or 'float' is replaced by 'double'.
-! (replace_missing)
-1: Replaced 1 missing value in 'age' with NA
-2: Replaced 1 missing value in 'rel_3' with NA
-3: Replaced 1 missing value in 'rel_4' with NA
-4: Replaced 1 missing value in 'sui_2' with NA
+6 messages generated (type show_messages() to see details).
 ```
 
 You can use the scale attribute to select items:

@@ -89,66 +89,7 @@ Jürgen Wilbert
 
 ``` r
 dat <- apply_dic(dat_itrf, dic_itrf)
-#> ! (apply_dic)
-#> 1: Dictionary file includes scale definitions.
-#> ! (check_values)
-#> 1: Replaced the following invalid values with NA:
-#>   'itrf_I_1' is 7 at row 3192
-#>   'itrf_I_2' is 9 at row 4651
-#>   'itrf_I_13' is 4 at row 3699
-#>   'itrf_I_20' is 4 at row 2799
-#>   'itrf_E_4' is 6 at row 2621
-#>   'itrf_E_6' is 9 at row 2599
-#>   'itrf_E_7' is 9 at row 2599
-#>   'itrf_E_8' is 9 at row 2599
-#>   'itrf_E_9' is 9 at row 2599
-#>   'itrf_E_10' is 9 at row 2599
-#>   'itrf_E_11' is 9 at row 2599
-#>   'itrf_E_12' is 9 at row 2599
-#>   'itrf_E_13' is 9, 11 at rows 2599, 4146
-#>   'itrf_E_14' is 9 at row 2599
-#> ! (eval)
-#> 1: This is a test message.
-#> ! (replace_missing)
-#> 1: Replaced 15 missing values in 'itrf_E_16' with NA
-#> 2: Replaced 15 missing values in 'itrf_I_10' with NA
-#> 3: Replaced 15 missing values in 'itrf_I_19' with NA
-#> 4: Replaced 15 missing values in 'itrf_I_9' with NA
-#> 5: Replaced 160 missing values in 'itrf_E_3' with NA
-#> 6: Replaced 18 missing values in 'itrf_E_8' with NA
-#> 7: Replaced 18 missing values in 'itrf_I_2' with NA
-#> 8: Replaced 18 missing values in 'itrf_I_4' with NA
-#> 9: Replaced 19 missing values in 'itrf_E_1' with NA
-#> 10: Replaced 19 missing values in 'itrf_E_10' with NA
-#> 11: Replaced 19 missing values in 'itrf_E_9' with NA
-#> 12: Replaced 19 missing values in 'itrf_I_11' with NA
-#> 13: Replaced 19 missing values in 'itrf_I_14' with NA
-#> 14: Replaced 19 missing values in 'itrf_I_17' with NA
-#> 15: Replaced 20 missing values in 'itrf_E_7' with NA
-#> 16: Replaced 21 missing values in 'itrf_E_11' with NA
-#> 17: Replaced 21 missing values in 'itrf_I_12' with NA
-#> 18: Replaced 21 missing values in 'itrf_I_13' with NA
-#> 19: Replaced 21 missing values in 'itrf_I_15' with NA
-#> 20: Replaced 21 missing values in 'itrf_I_16' with NA
-#> 21: Replaced 21 missing values in 'itrf_I_5' with NA
-#> 22: Replaced 22 missing values in 'itrf_E_12' with NA
-#> 23: Replaced 22 missing values in 'itrf_E_2' with NA
-#> 24: Replaced 22 missing values in 'itrf_I_20' with NA
-#> 25: Replaced 22 missing values in 'itrf_I_6' with NA
-#> 26: Replaced 23 missing values in 'itrf_E_13' with NA
-#> 27: Replaced 23 missing values in 'itrf_I_8' with NA
-#> 28: Replaced 24 missing values in 'itrf_E_6' with NA
-#> 29: Replaced 25 missing values in 'itrf_I_7' with NA
-#> 30: Replaced 27 missing values in 'itrf_E_15' with NA
-#> 31: Replaced 29 missing values in 'itrf_I_24' with NA
-#> 32: Replaced 35 missing values in 'itrf_I_23' with NA
-#> 33: Replaced 47 missing values in 'itrf_E_5' with NA
-#> 34: Replaced 52 missing values in 'itrf_E_14' with NA
-#> 35: Replaced 528 missing values in 'itrf_I_1' with NA
-#> 36: Replaced 73 missing values in 'itrf_E_4' with NA
-#> ! (score_from_dic)
-#> 1: Created 'itrf_ext' with scale definition 'scale == "ITRF" & subscale == "Ext"'.
-#> 2: Created 'itrf_int' with scale definition 'scale == "ITRF" & subscale == "Int"'.
+#> 41 messages generated (type show_messages() to see details).
 descriptives(dat)
 #>         name valid missing mean   sd min  max range median  mad
 #> 1   itrf_I_1  4247     529 0.38 0.72   0 3.00  3.00   0.00 0.00

@@ -55,7 +55,5 @@ A data frame with replaced values if `replaces` is not NULL.
 
 ``` r
 check_values(ex_itrf, return = FALSE)
-#> ! (check_values)
-#> 1: No errors found.
-#> 
+#> 1 messages generated (type show_messages() to see details).
 ```

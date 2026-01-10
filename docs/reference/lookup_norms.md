@@ -71,32 +71,10 @@ lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), no
 
 ## When group values are not specified exactly, raw scores can be ambiguous:
 lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
-#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
-#> 1:             add_message("Multiple values found for raw ", x,  (4x)
-#> ! (            return(NA))
-#> 1:                 ")", ". NA returned.") (4x)
-#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
-#> 1:     else { (4x)
-#> ! (        if (length(id) > 1) {)
-#> 1:         id <- which(normtable[[from]] == x) (4x)
-#> ! (    })
-#> 1:         } (4x)
-#> ! (})
-#> 1:     normtable[[to]][id] (4x)
+#> 28 messages generated (type show_messages() to see details).
 #> [1] NA NA NA NA
 
 lookup_norms(rawscores, normtable = normtable)
-#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
-#> 1:             add_message("Multiple values found for raw ", x,  (4x)
-#> ! (            return(NA))
-#> 1:                 ")", ". NA returned.") (4x)
-#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
-#> 1:     else { (4x)
-#> ! (        if (length(id) > 1) {)
-#> 1:         id <- which(normtable[[from]] == x) (4x)
-#> ! (    })
-#> 1:         } (4x)
-#> ! (})
-#> 1:     normtable[[to]][id] (4x)
+#> 28 messages generated (type show_messages() to see details).
 #> [1] NA NA NA NA
 ```
