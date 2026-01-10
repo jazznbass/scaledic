@@ -8,7 +8,7 @@
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
 #' @importFrom readxl read_excel read_xlsx
-#' @importFrom vctrs vec_ptype2 vec_cast
+#' @import vctrs
 #' @import purrr
 #' @import stats
 #' @importFrom dplyr %>% relocate select full_join all_of rename as_tibble

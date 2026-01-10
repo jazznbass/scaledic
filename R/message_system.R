@@ -7,16 +7,41 @@ init_messages <- function() {
   messages$depth <- messages$depth + 1
 }
 
-add_message <- function(..., collapse = "", frame = -1, detail = 1) {
+#' Add a message to the message system
+#'
+#' This function adds a message to the internal message system. Messages can be printed later using `print_messages()`.
+#' #' @param ... Components of the message to be concatenated.
+#' @param collapse A string to separate the components of the message.
+#' @param frame An integer or character indicating the frame from which the message originates.
+#' @param detail An integer indicating the detail level of the message.
+#' @param warning Logical. If TRUE, the message is treated as a warning.
+#' @return None. The function modifies the internal message environment.
+#' @examples
+#' init_messages()
+#' add_message("This is a test message.")
+#' print_messages()
+#' @export
+#' @keywords internal
+#'
+add_message <- function(...,
+                        collapse = "",
+                        frame = -1,
+                        detail = 1,
+                        warning = FALSE) {
   msg <- paste(c(...), collapse = collapse)
+
+  if (is.character(frame)) {
+    call <- frame
+  } else {
+    call <- deparse(sys.call(frame)[[1]])
+  }
   messages$messages <- c(
     messages$messages,
-    list(list(msg = msg, call = deparse(sys.call(frame)[[1]])), detail = detail)
+    list(list(msg = msg, call = call), detail = detail, warning = warning)
   )
 }
 
-print_messages <- function(warning = FALSE,
-                           header = TRUE,
+print_messages <- function(header = TRUE,
                            header_prefix = "!",
                            details = 1) {
 
@@ -30,7 +55,7 @@ print_messages <- function(warning = FALSE,
     # convert to data frame
     msg <- messages$messages |>
       unlist() |>
-      matrix(ncol = 3, byrow = TRUE) |>
+      matrix(ncol = 4, byrow = TRUE) |>
       as.data.frame()
 
     # filter by details
@@ -52,7 +77,8 @@ print_messages <- function(warning = FALSE,
       else {
         msg <- paste0("\n", msg, "\n")
       }
-      if (warning) warning(msg, call. = FALSE) else message(msg)
+
+      if (getOption("scaledic.print.messages")) message(msg)
     }
   }
   messages$last_messages <- messages$messages

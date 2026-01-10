@@ -104,7 +104,7 @@ apply_dic <- function(data,
       as.list(dic[i_dic, ]),
       list(.coerce_class = coerce_class, .format_date = format_date)
     )
-    data[[id_valid[i]]] <- do.call("new_dic", args)
+    data[[id_valid[i]]] <- do.call("dic", args)
   }
 
   if (score_scales) {

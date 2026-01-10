@@ -2,76 +2,20 @@
 % Please edit documentation in R/dic-constructor.R
 \name{new_dic}
 \alias{new_dic}
-\title{Dictionary class low level constructor}
+\title{Low-level constructor for dic vectors}
 \usage{
-new_dic(
-  x,
-  item_name = NULL,
-  item_label = NULL,
-  values = NULL,
-  value_labels = NULL,
-  missing = NULL,
-  weight = 1,
-  type = NULL,
-  recodes = NULL,
-  class = "item",
-  ...,
-  .coerce_class = TRUE,
-  .format_date = "\%Y-\%m-\%d"
-)
+new_dic(x, dic_attributes = list(), label = NULL, labels = NULL)
 }
 \arguments{
-\item{x}{A variable}
+\item{x}{An atomic vector (integer/double/logical/character/factor/Date, ...)}
 
-\item{item_name}{Character}
+\item{dic_attributes}{A named list with dic metadata.}
 
-\item{item_label}{Character}
+\item{label}{Optional haven-style variable label.}
 
-\item{values}{Numeric or character vector with values. The vector can be
-named}
-
-\item{value_labels}{Character of the form \verb{value = label; value2 = label2}}
-
-\item{missing}{Numeric or character vector with values}
-
-\item{weight}{numeric}
-
-\item{type}{defaults to data type of x}
-
-\item{recodes}{Recoding information e.g. \verb{4 = 1, .default = 0}}
-
-\item{class}{default is "item"}
-
-\item{...}{further dic arguments (e.g. \code{source = "James (1891)"})}
-
-\item{.coerce_class}{Logical. If TRUE, tries to coerce classes of 'x' if
-class does not match the \code{type} argument}
-
-\item{.format_date}{Optional string that is applied when character variable is
-coerced to a 'Date' class.}
-}
-\value{
-An item of class dic.
+\item{labels}{Optional haven-style value labels (named vector).}
 }
 \description{
-This is a low-level constructor for dic objects.
-}
-\details{
-Standard attributes are: \code{"item_name"}, \code{"item_label"}, \code{"weight"}, \code{"type"},
-\code{"values"}, \code{"value_labels"}, \code{"missing"}, \code{"recodes"}.
-}
-\examples{
-x <- new_dic(
-  sample(c(1:5, -99), 20, replace = TRUE),
-  item_name = "My item",
-  item_label = "The label of this item",
-  values = "1:5",
-  value_labels = "1 = no; 2 = mhh; 3 = Okish; 4 = good; 5 = mighty",
-  missing = "-99"
-)
-x
-}
-\seealso{
-\code{set_dic()}
+Low-level constructor for dic vectors
 }
 \keyword{internal}
