@@ -14,7 +14,7 @@ dic_attr(x, var) <- value
 
 - x:
 
-  Variable
+  A vector or a data.frame
 
 - var:
 

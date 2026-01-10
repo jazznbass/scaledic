@@ -6,7 +6,7 @@ Subset a dic variable
 
 ``` r
 # S3 method for class 'dic'
-x[i = length(x), ...]
+x[i = TRUE, ...]
 ```
 
 ## Arguments

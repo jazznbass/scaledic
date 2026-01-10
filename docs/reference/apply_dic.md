@@ -8,14 +8,14 @@ Joins a data frame with a dictionary file.
 apply_dic(
   data,
   dic,
-  factors = TRUE,
   set_label_attr = TRUE,
   coerce_class = TRUE,
   replace_missing = TRUE,
   score_scales = TRUE,
   check_values = FALSE,
   impute_values = FALSE,
-  rename_var = NULL
+  rename_var = NULL,
+  format_date = "%Y-%m-%d"
 )
 ```
 
@@ -30,11 +30,6 @@ apply_dic(
 
   A data frame comprising a dictionary or a character string with a
   filename (for now an Microsoft Excel file) containing a dictionary.
-
-- factors:
-
-  If set TRUE, variables defined as type `factor` in the dic file will
-  be turned into factors.
 
 - set_label_attr:
 
@@ -67,8 +62,14 @@ apply_dic(
 
 - rename_var:
 
-  When a character is provided, corresponding column from the dic file
-  is used to rename variables from rename_var to item_name.
+  When a character is provided, corresponding column from the dic-file
+  is used to rename variables from 'rename_var' (old) to 'item_name'
+  (new) in the `data` data frame.
+
+- format_date:
+
+  Optional string that is applied when character variable is coerced to
+  a 'Date' class.
 
 ## Value
 
@@ -88,8 +89,6 @@ Jürgen Wilbert
 
 ``` r
 dat <- apply_dic(dat_itrf, dic_itrf)
-#> ! (.clean_dic_file)
-#> 1: 'type' attribute missing and replaced with an estimation (2x)
 #> ! (apply_dic)
 #> 1: Dictionary file includes scale definitions.
 #> ! (check_values)
@@ -108,6 +107,8 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 #>   'itrf_E_12' is 9 at row 2599
 #>   'itrf_E_13' is 9, 11 at rows 2599, 4146
 #>   'itrf_E_14' is 9 at row 2599
+#> ! (eval)
+#> 1: This is a test message.
 #> ! (replace_missing)
 #> 1: Replaced 15 missing values in 'itrf_E_16' with NA
 #> 2: Replaced 15 missing values in 'itrf_I_10' with NA

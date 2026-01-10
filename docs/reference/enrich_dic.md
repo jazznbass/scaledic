@@ -30,15 +30,9 @@ df <- data.frame(
   gender = c("M", "F", "M")
 )
 df$age <- new_dic(df$age, item_name = "age", item_label = "Age of respondent")
+#> Error in new_dic(df$age, item_name = "age", item_label = "Age of respondent"): unused arguments (item_name = "age", item_label = "Age of respondent")
 df_enriched <- enrich_dic(df)
+#> Error in new_dic(dat[[i]], item_name = item_name, item_label = item_label): unused arguments (item_name = item_name, item_label = item_label)
 attributes(df_enriched$gender)$dic |> str()
-#> List of 8
-#>  $ item_name   : chr "gender"
-#>  $ item_label  : chr "gender"
-#>  $ values      : NULL
-#>  $ value_labels: NULL
-#>  $ missing     : NULL
-#>  $ weight      : num 1
-#>  $ type        : chr "character"
-#>  $ class       : chr "item"
+#> Error: object 'df_enriched' not found
 ```

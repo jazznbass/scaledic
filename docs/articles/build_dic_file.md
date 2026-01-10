@@ -36,8 +36,10 @@ We combine the *data* file and the *dic* file with the
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (.clean_dic_file)
-1: 'type' attribute missing and replaced with an estimation (12x)
+! (dic)
+1: Type is missing and is estimated as 'character'.
+2: Type is missing and is estimated as 'double'. (8x)
+3: Type is missing and is estimated as 'integer'. (3x)
 ```
 
 We get the message that the dic file does not contain information of the
@@ -61,6 +63,8 @@ nominal scale with several levels).
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ```
 
 Now we can add `weight` information to the dic file. The `weight`
@@ -80,6 +84,8 @@ Again, we join dic and data file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ```
 
 Now we add the `values` attribute to the dic file. `values` defines the
@@ -102,6 +108,8 @@ Here is the dic file with added `values`:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ```
 
 Invalid values can be replaced automatically with the
@@ -164,6 +172,8 @@ dat_dic <- ex_scaledic_data |>
   'sui_2' is -999 at row 9
   'sui_4' is 66 at row 17
   'age' is 13, -999, 13 at rows 4, 12, 16
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ```
 
 Now lets see the coding for some of the variables:
@@ -180,7 +190,8 @@ dat_dic$rel_1
 ║  4 = A few times a month
 ║  5 = Once a week
 ║  6 = More than once/week
-║Length: 20 (0 NA; 0 invalid)
+║ 
+║Length is 20 (0 NA; 0 invalid)
 ║ [1] 1 3 1 2 5 3 3 4 2 6 6 6 3 6 2 3 4 5 6 2
 ```
 
@@ -194,7 +205,8 @@ dat_dic$sui_1
 ║Value labels:
 ║  0 = not at all
 ║  4 = extremely
-║Length: 20 (1 NA; 0 invalid)
+║ 
+║Length is 20 (1 NA; 0 invalid)
 ║ [1]  2  4  3  0  1  3  0  0  1 NA  4  1  2  4  2  1  3  1  0  1
 ```
 
@@ -209,7 +221,8 @@ dat_dic$gender
 ║  m = male
 ║  f = female
 ║  d = diverse
-║Length: 20 (1 NA; 0 invalid)
+║ 
+║Length is 20 (1 NA; 0 invalid)
 ║ [1] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   
 ║[16] d    <NA> m    m    m   
 ║Levels: m f d
@@ -226,12 +239,13 @@ turned into three factor levels with the corresponding labels.
 ``` r
 dat_dic$age
 ║age 
-║Data type is float
+║Data type is double
 ║Valid values: From 5 to 11
 ║Value labels:
 ║  5 = min
 ║  11 = max
-║Length: 20 (3 NA; 0 invalid)
+║ 
+║Length is 20 (3 NA; 0 invalid)
 ║ [1] 10.5  6.5 10.5   NA  8.0  6.0  6.0 10.0  8.5  8.5  7.5   NA  7.0  7.5  8.5
 ║[16]   NA 10.5 10.0  8.0  6.0
 ```
@@ -253,6 +267,8 @@ with NA when joining a data with a dic file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ! (replace_missing)
 1: Replaced 1 missing value in 'age' with NA
 2: Replaced 1 missing value in 'rel_3' with NA
@@ -280,6 +296,8 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
   'sui_1' is 55 at row 10
   'sui_4' is 66 at row 17
   'age' is 13, 13 at rows 4, 16
+! (dic)
+1: Type 'real' or 'float' is replaced by 'double'.
 ! (replace_missing)
 1: Replaced 1 missing value in 'age' with NA
 2: Replaced 1 missing value in 'rel_3' with NA

@@ -23,6 +23,8 @@ A factor with levels based on the value labels.
 ``` r
 # Apply a dictionary to data
 dat_dic <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+#> ! (dic)
+#> 1: Type 'real' or 'float' is replaced by 'double'.
 #> ! (replace_missing)
 #> 1: Replaced 1 missing value in 'age' with NA
 #> 2: Replaced 1 missing value in 'rel_3' with NA

@@ -44,29 +44,9 @@ q1 <- new_dic(
   value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
   recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"
 )
+#> Error in new_dic(x = c(1, 1, 2, 3, 1, 3, 4, 4, 3, 2, 4, 5), item_name = "knowledge_1",     item_label = "What is the capital of Germany?", type = "integer",     weight = 1, values = "1:4", value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",     recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"): unused arguments (item_name = "knowledge_1", item_label = "What is the capital of Germany?", type = "integer", weight = 1, values = "1:4", value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin", recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1")
 q1
-#> ║What is the capital of Germany? 
-#> ║Data type is integer
-#> ║Valid values: 1:4
-#> ║Value labels:
-#> ║  1 = Brussels
-#> ║  2 = Hamburg
-#> ║  3 = Bonn
-#> ║  4 = Berlin
-#> ║Recodes:
-#> ║  1 = -1
-#> ║  2 = 0
-#> ║  3 = 0
-#> ║  4 = 1
-#> ║Length: 12 (0 NA; 1 invalid)
-#> ║ [1] 1 1 2 3 1 3 4 4 3 2 4 5
+#> Error: object 'q1' not found
 recode_dic_items(q1)
-#> ! (.recode_dic_items)
-#> 1: Found recoding information and recoded values.
-#> ║(recoded) What is the capital of Germany? 
-#> ║Data type is integer
-#> ║Valid values: -1:1
-#> 
-#> ║Length: 12 (1 NA; 0 invalid)
-#> ║ [1] -1 -1  0  0 -1  0  1  1  0  0  1 NA
+#> Error: object 'q1' not found
 ```

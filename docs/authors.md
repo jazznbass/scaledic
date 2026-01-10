@@ -7,7 +7,7 @@
 
 ## Citation
 
-APA style: Wilbert, J. (2025). scaledic - A dictionary for scales.
+APA style: Wilbert, J. (2026). scaledic - A dictionary for scales.
 \[English\]. github. https://github.com/jazznbass/scaledic.
 
     @Misc{,
@@ -15,6 +15,6 @@ APA style: Wilbert, J. (2025). scaledic - A dictionary for scales.
       shorttitle = {scaledic},
       publisher = {github},
       author = {Jürgen Wilbert},
-      year = {2025},
+      year = {2026},
       url = {https://github.com/jazznbass/scaledic},
     }

@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,7 +64,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2026-01-02</h4>
+            <h4 data-toc-skip class="date">2026-01-10</h4>
       
 
       <div class="d-none name"><code>build_dic_file.Rmd</code></div>
@@ -1367,8 +1367,10 @@ has two columns, <code>item_name</code> and <code>item_label</code>:</p>
 <p>We combine the <em>data</em> file and the <em>dic</em> file with the
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code> function:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="sc">!</span> (.clean_dic_file)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> <span class="st">'type'</span> attribute missing and replaced with an <span class="fu">estimation</span> (<span class="dv">12</span>x)</span></code></pre></div>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'character'</span>.</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'double'</span>. (<span class="dv">8</span>x)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'integer'</span>. (<span class="dv">3</span>x)</span></code></pre></div>
 <p>We get the message that the dic file does not contain information of
 the data<em>type</em> (e.g. <code>integer</code>, <code>factor</code>,
 <code>character</code>). The <code>type</code> attribute is used in
@@ -1910,8 +1912,9 @@ in the dic file.</p>
 whole numbers) with the exception of <code>gender</code> which is of
 type <code>factor</code> (i.e. it has a nominal scale with several
 levels).</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">ex_scaledic_data</span>, <span class="va">dic_file</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span></code></pre></div>
 <p>Now we can add <code>weight</code> information to the dic file. The
 <code>weight</code> attribute tells various <em>scaledic</em> functions
 a) whether the item is inverted or not, and b) how the values of an item
@@ -2460,8 +2463,9 @@ scores (e.g. <code>1.5</code> will give an item a weight of 1.5).</p>
 <p>In this example, all <code>weights</code> are <code>1</code> and no
 item is inverted.</p>
 <p>Again, we join dic and data file:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">ex_scaledic_data</span>, <span class="va">dic_file</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span></code></pre></div>
 <p>Now we add the <code>values</code> attribute to the dic file.
 <code>values</code> defines the valid values that a variable can take.
 Explicitly defining the <code>values</code> makes it possible to
@@ -3029,8 +3033,9 @@ indicates three valid text entries).</p>
 </tbody>
 </table>
 </div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">ex_scaledic_data</span>, <span class="va">dic_file</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span></code></pre></div>
 <p>Invalid values can be replaced automatically with the
 <code><a href="../reference/check_values.html">check_values()</a></code> function.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">check_values</span>(dat_dic, <span class="at">replace =</span> <span class="cn">NA</span>) </span>
@@ -4375,7 +4380,9 @@ labels for all or some of the values. Value labels are coded in the form
 <span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a>  <span class="st">'sui_1'</span> is <span class="dv">55</span> at row <span class="dv">10</span></span>
 <span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  <span class="st">'sui_2'</span> is <span class="sc">-</span><span class="dv">999</span> at row <span class="dv">9</span></span>
 <span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>  <span class="st">'sui_4'</span> is <span class="dv">66</span> at row <span class="dv">17</span></span>
-<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  <span class="st">'age'</span> is <span class="dv">13</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">13</span> at rows <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">16</span></span></code></pre></div>
+<span id="cb7-13"><a href="#cb7-13" tabindex="-1"></a>  <span class="st">'age'</span> is <span class="dv">13</span>, <span class="sc">-</span><span class="dv">999</span>, <span class="dv">13</span> at rows <span class="dv">4</span>, <span class="dv">12</span>, <span class="dv">16</span></span>
+<span id="cb7-14"><a href="#cb7-14" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb7-15"><a href="#cb7-15" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span></code></pre></div>
 <p>Now lets see the coding for some of the variables:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>rel_1</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>║How often do you attend church or other religious meetings? </span>
@@ -4388,8 +4395,9 @@ labels for all or some of the values. Value labels are coded in the form
 <span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a>║  <span class="dv">4</span> <span class="ot">=</span> A few times a month</span>
 <span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a>║  <span class="dv">5</span> <span class="ot">=</span> Once a week</span>
 <span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>║  <span class="dv">6</span> <span class="ot">=</span> More than once<span class="sc">/</span>week</span>
-<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span> (<span class="dv">0</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
-<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span></code></pre></div>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>║ </span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>║Length is <span class="dv">20</span> (<span class="dv">0</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="dv">1</span> <span class="dv">3</span> <span class="dv">1</span> <span class="dv">2</span> <span class="dv">5</span> <span class="dv">3</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">2</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">6</span> <span class="dv">3</span> <span class="dv">6</span> <span class="dv">2</span> <span class="dv">3</span> <span class="dv">4</span> <span class="dv">5</span> <span class="dv">6</span> <span class="dv">2</span></span></code></pre></div>
 <p>Valid values are all integers from 1 to 6 and each value has a
 label.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>sui_1</span>
@@ -4399,8 +4407,9 @@ label.</p>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>║  <span class="dv">0</span> <span class="ot">=</span> not at all</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>║  <span class="dv">4</span> <span class="ot">=</span> extremely</span>
-<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span> (<span class="dv">1</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
-<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>║ [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="cn">NA</span>  <span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">2</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">1</span></span></code></pre></div>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>║ </span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a>║Length is <span class="dv">20</span> (<span class="dv">1</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>║ [<span class="dv">1</span>]  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">0</span>  <span class="dv">0</span>  <span class="dv">1</span> <span class="cn">NA</span>  <span class="dv">4</span>  <span class="dv">1</span>  <span class="dv">2</span>  <span class="dv">4</span>  <span class="dv">2</span>  <span class="dv">1</span>  <span class="dv">3</span>  <span class="dv">1</span>  <span class="dv">0</span>  <span class="dv">1</span></span></code></pre></div>
 <p>Here, valid values are <code>0, 1, 2, 3, 4</code> (short
 <code>0:4</code>) but only the poles (<code>0</code> and <code>4</code>)
 have labels.</p>
@@ -4411,10 +4420,11 @@ have labels.</p>
 <span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a>║  m <span class="ot">=</span> male</span>
 <span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>║  f <span class="ot">=</span> female</span>
 <span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>║  d <span class="ot">=</span> diverse</span>
-<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span> (<span class="dv">1</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
-<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>║ [<span class="dv">1</span>] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   </span>
-<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>║[<span class="dv">16</span>] d    <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> m    m    m   </span>
-<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>║Levels<span class="sc">:</span> m f d</span></code></pre></div>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>║ </span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>║Length is <span class="dv">20</span> (<span class="dv">1</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>║ [<span class="dv">1</span>] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   </span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a>║[<span class="dv">16</span>] d    <span class="sc">&lt;</span><span class="cn">NA</span><span class="sc">&gt;</span> m    m    m   </span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a>║Levels<span class="sc">:</span> m f d</span></code></pre></div>
 <p><code>gender</code> is of type factor. The valid values
 <code>'m', 'f', 'd'</code> have been turned into three factor levels
 with the corresponding labels.</p>
@@ -4427,14 +4437,15 @@ is because R internally would turn the values (here
 </blockquote>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>age</span>
 <span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>║age </span>
-<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>║Data type is float</span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a>║Data type is double</span>
 <span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> From <span class="dv">5</span> to <span class="dv">11</span></span>
 <span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
 <span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a>║  <span class="dv">5</span> <span class="ot">=</span> min</span>
 <span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a>║  <span class="dv">11</span> <span class="ot">=</span> max</span>
-<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>║Length<span class="sc">:</span> <span class="dv">20</span> (<span class="dv">3</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
-<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="fl">10.5</span>  <span class="fl">6.5</span> <span class="fl">10.5</span>   <span class="cn">NA</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span> <span class="fl">10.0</span>  <span class="fl">8.5</span>  <span class="fl">8.5</span>  <span class="fl">7.5</span>   <span class="cn">NA</span>  <span class="fl">7.0</span>  <span class="fl">7.5</span>  <span class="fl">8.5</span></span>
-<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>║[<span class="dv">16</span>]   <span class="cn">NA</span> <span class="fl">10.5</span> <span class="fl">10.0</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span></span></code></pre></div>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>║ </span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>║Length is <span class="dv">20</span> (<span class="dv">3</span> <span class="cn">NA</span>; <span class="dv">0</span> invalid)</span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a>║ [<span class="dv">1</span>] <span class="fl">10.5</span>  <span class="fl">6.5</span> <span class="fl">10.5</span>   <span class="cn">NA</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span>  <span class="fl">6.0</span> <span class="fl">10.0</span>  <span class="fl">8.5</span>  <span class="fl">8.5</span>  <span class="fl">7.5</span>   <span class="cn">NA</span>  <span class="fl">7.0</span>  <span class="fl">7.5</span>  <span class="fl">8.5</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a>║[<span class="dv">16</span>]   <span class="cn">NA</span> <span class="fl">10.5</span> <span class="fl">10.0</span>  <span class="fl">8.0</span>  <span class="fl">6.0</span></span></code></pre></div>
 <p><code>age</code> can take all numbers from 5 to 11 (minimum is 5 and
 maximum is 11).</p>
 <p>It is a common practice to code missing values with a specific number
@@ -5023,11 +5034,13 @@ account for this, we add the <code>missing</code> attribute to the
 <p>The values within the <code>missing</code> attributes are
 automatically replaced with NA when joining a data with a dic file:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
-<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
-<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
-<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
-<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
-<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'sui_2'</span> with <span class="cn">NA</span></span></code></pre></div>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'sui_2'</span> with <span class="cn">NA</span></span></code></pre></div>
 <p>To turn off this behavior, set the argument
 <code>replace_missing = FALSE</code>.</p>
 <p>In the last step of this tutorial we will add information about the
@@ -5647,11 +5660,13 @@ attributes):</p>
 <span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a>  <span class="st">'sui_1'</span> is <span class="dv">55</span> at row <span class="dv">10</span></span>
 <span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>  <span class="st">'sui_4'</span> is <span class="dv">66</span> at row <span class="dv">17</span></span>
 <span id="cb13-9"><a href="#cb13-9" tabindex="-1"></a>  <span class="st">'age'</span> is <span class="dv">13</span>, <span class="dv">13</span> at rows <span class="dv">4</span>, <span class="dv">16</span></span>
-<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
-<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
-<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
-<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
-<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'sui_2'</span> with <span class="cn">NA</span></span></code></pre></div>
+<span id="cb13-10"><a href="#cb13-10" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
+<span id="cb13-11"><a href="#cb13-11" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type <span class="st">'real'</span> or <span class="st">'float'</span> is replaced by <span class="st">'double'</span>.</span>
+<span id="cb13-12"><a href="#cb13-12" tabindex="-1"></a><span class="sc">!</span> (replace_missing)</span>
+<span id="cb13-13"><a href="#cb13-13" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'age'</span> with <span class="cn">NA</span></span>
+<span id="cb13-14"><a href="#cb13-14" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_3'</span> with <span class="cn">NA</span></span>
+<span id="cb13-15"><a href="#cb13-15" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'rel_4'</span> with <span class="cn">NA</span></span>
+<span id="cb13-16"><a href="#cb13-16" tabindex="-1"></a><span class="dv">4</span><span class="sc">:</span> Replaced <span class="dv">1</span> missing value <span class="cf">in</span> <span class="st">'sui_2'</span> with <span class="cn">NA</span></span></code></pre></div>
 <p>You can use the scale attribute to select items:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">dat_dic</span> <span class="op">|&gt;</span></span>

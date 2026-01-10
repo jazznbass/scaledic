@@ -1,7 +1,8 @@
 # Check values
 
 Checks if values in variables are valid according to the 'values' and
-'type' dictionary attributes.
+'type' dictionary attributes. Invalid values can be replaced with a
+specified value.
 
 ## Usage
 
@@ -25,7 +26,7 @@ check_values(
 
 - replace:
 
-  Value which relaces unvalid values (e.g., NA).
+  Value which replaces invalid values (e.g., NA).
 
 - return:
 
@@ -46,16 +47,9 @@ check_values(
   values outside the minimum and the maximum of the provided valid
   values will be considered invalid.
 
-- check_type:
-
-  If TRUE, it will check if the class of a variable conflicts with the
-  'type' as defined in the dic information. When a type is numeric and
-  the class is 'character' it will try to convert the class to a numeric
-  class.
-
 ## Value
 
-A data frame with replaced values if replaces is not NULL.
+A data frame with replaced values if `replaces` is not NULL.
 
 ## Examples
 

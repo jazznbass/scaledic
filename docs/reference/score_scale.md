@@ -80,6 +80,8 @@ must take the vector of values and the second argument the weights.
 
 ``` r
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+#> ! (dic)
+#> 1: Type 'real' or 'float' is replaced by 'double'.
 #> ! (replace_missing)
 #> 1: Replaced 1 missing value in 'age' with NA
 #> 2: Replaced 1 missing value in 'rel_3' with NA
@@ -94,7 +96,8 @@ score_scale(dat, scale == "rel", label = "Religious beliefs")
 #> ║Value labels:
 #> ║  1 = min
 #> ║  5.4 = max
-#> ║Length: 20 (0 NA; 2 invalid)
+#> ║ 
+#> ║Length is 20 (0 NA; 2 invalid)
 #> ║ [1]  2.20  1.60 15.20  2.60  3.80  3.60  2.40  3.40  4.40  4.80 15.40  3.40
 #> ║[13]  3.80  2.25  2.60  3.80  3.80  4.50  4.20  3.00
 # apply the weighted sum function
@@ -106,7 +109,8 @@ score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
 #> ║Value labels:
 #> ║  5 = min
 #> ║  27 = max
-#> ║Length: 20 (0 NA; 2 invalid)
+#> ║ 
+#> ║Length is 20 (0 NA; 2 invalid)
 #> ║ [1] 11  8 76 13 19 18 12 17 22 24 77 17 19  9 13 19 19 18 21 15
 # provide an external function (here the weighted median function from the spatstat package)
 #score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)

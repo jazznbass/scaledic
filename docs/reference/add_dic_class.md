@@ -305,7 +305,8 @@ item |> add_dic_class()
 #> ║  1 = slightly problematic
 #> ║  2 = problematic
 #> ║  3 = strongly problematic
-#> ║Length: 4776 (529 NA; 0 invalid)
+#> ║ 
+#> ║Length is 4776 (529 NA; 0 invalid)
 #> ║  [1]  1  0  0  1  0  0  2  1  2  1  2 NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 #> ║ [26] NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA NA
 #> ║ [51] NA NA NA NA NA NA NA NA NA NA NA NA NA  0 NA  0  0  1  0  0  0  0  2  1  0

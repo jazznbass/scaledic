@@ -1,3 +1,9 @@
+# scaledic 0.5.0
+
+* Reworked internals of dic attributes handling.
+* Reworked internals of class "dic".
+* `apply_dic()`: now uses new constructor function `dic()`.
+
 # scaledic 0.4.1
 
 * Added more check functions and

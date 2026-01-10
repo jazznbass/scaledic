@@ -15,7 +15,7 @@ The function uses the variable name as item_name and the variable label
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,17 +77,11 @@ The function uses the variable name as item_name and the variable label
 <span class="r-in"><span>  gender <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"M"</span>, <span class="st">"F"</span>, <span class="st">"M"</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">df</span><span class="op">$</span><span class="va">age</span> <span class="op">&lt;-</span> <span class="fu"><a href="new_dic.html">new_dic</a></span><span class="op">(</span><span class="va">df</span><span class="op">$</span><span class="va">age</span>, item_name <span class="op">=</span> <span class="st">"age"</span>, item_label <span class="op">=</span> <span class="st">"Age of respondent"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_dic(df$age, item_name = "age", item_label = "Age of respondent"):</span> unused arguments (item_name = "age", item_label = "Age of respondent")</span>
 <span class="r-in"><span><span class="va">df_enriched</span> <span class="op">&lt;-</span> <span class="fu">enrich_dic</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in new_dic(dat[[i]], item_name = item_name, item_label = item_label):</span> unused arguments (item_name = item_name, item_label = item_label)</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/attributes.html" class="external-link">attributes</a></span><span class="op">(</span><span class="va">df_enriched</span><span class="op">$</span><span class="va">gender</span><span class="op">)</span><span class="op">$</span><span class="va">dic</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> List of 8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ item_name   : chr "gender"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ item_label  : chr "gender"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ values      : NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ value_labels: NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ missing     : NULL</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ weight      : num 1</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ type        : chr "character"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  $ class       : chr "item"</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error:</span> object 'df_enriched' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

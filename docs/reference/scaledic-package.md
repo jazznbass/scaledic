@@ -12,8 +12,6 @@ Juergen Wilbert \[aut, cre\]
 ``` r
 # apply a dictionary file to a data frame
 dat <- apply_dic(dat_itrf, dic_itrf)
-#> ! (.clean_dic_file)
-#> 1: 'type' attribute missing and replaced with an estimation (2x)
 #> ! (apply_dic)
 #> 1: Dictionary file includes scale definitions.
 #> ! (check_values)

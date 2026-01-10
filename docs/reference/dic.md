@@ -1,23 +1,78 @@
-# Prints dic infos of a variable with dic infos.
+# Create a dic vector (factory)
 
-Prints dic infos of a variable with dic infos.
+Create a dic vector (factory)
 
 ## Usage
 
 ``` r
-dic(data, length = 100)
+dic(
+  x,
+  item_name = NULL,
+  item_label = NULL,
+  values = NULL,
+  value_labels = NULL,
+  missing = NULL,
+  weight = 1,
+  type = NULL,
+  recodes = NULL,
+  class = "item",
+  ...,
+  dic_attributes = NULL,
+  .coerce_class = TRUE,
+  .format_date = "%Y-%m-%d"
+)
 ```
 
 ## Arguments
 
-- data:
+- x:
 
-  A variable with dic infos.
+  A vector.
 
-- length:
+- item_name:
 
-  Number of entries to be printed.
+  Character.
 
-## Value
+- item_label:
 
-Dic infos of x and the first `length` entries of `data`.
+  Character.
+
+- values:
+
+  Numeric or character vector with values. The vector can be named.
+
+- value_labels:
+
+  Character of the form `value = label; value2 = label2`
+
+- missing:
+
+  Numeric or character vector with values.
+
+- weight:
+
+  numeric.
+
+- type:
+
+  defaults to data type of x.
+
+- recodes:
+
+  Recoding information e.g. `4 = 1, .default = 0`.
+
+- class:
+
+  default is "item".
+
+- dic_attributes:
+
+  Optional pre-built attribute list (skips parsing if given).
+
+- .coerce_class:
+
+  If TRUE, coerce x to match `type`.
+
+- .format_date:
+
+  Date format for coercion from character -\> Date.

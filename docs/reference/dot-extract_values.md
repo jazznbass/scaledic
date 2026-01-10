@@ -1,4 +1,4 @@
-# Safely parse a `values` specification from a dic file
+# Parse a `values` specification from a dic file
 
 Supported syntax:
 
