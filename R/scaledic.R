@@ -14,6 +14,7 @@
   op_scan <- list(
     scaledic.string.split = ";",
     scaledic.string.prefix = "\u2551", #\u2502" #"# "
+    scaledic.print.concise.messages = TRUE,
     scaledic.print.messages = TRUE,
     scaledic.print.warnings = TRUE
   )

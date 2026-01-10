@@ -41,7 +41,8 @@ add_message <- function(...,
   )
 }
 
-print_messages <- function(header = TRUE,
+print_messages <- function(concise = getOption("scaledic.print.concise.messages", TRUE),
+                           header = TRUE,
                            header_prefix = "!",
                            details = 1) {
 
@@ -58,29 +59,47 @@ print_messages <- function(header = TRUE,
       matrix(ncol = 4, byrow = TRUE) |>
       as.data.frame()
 
-    # filter by details
-    msg <- msg[msg[[3]] <= details, 1:2]
-
-    # split messages by call
-    msg_list <- split(msg[[1]], msg[[2]])
-
-    for(i_msg in 1:length(msg_list)) {
-      msg <- table(msg_list[[i_msg]])
-      for(i in seq_along(msg)){
-        if (msg[i] > 1) names(msg)[i] <- paste0(names(msg)[i], " (", msg[i], "x)")
-      }
-      msg <- paste0(1:length(msg), ": ", names(msg), collapse = "\n")
-
-      if (header){
-        msg <- paste0(header_prefix, " (", names(msg_list[i_msg]), ")\n", msg, "\n")
-      }
-      else {
-        msg <- paste0("\n", msg, "\n")
-      }
-
+    if (concise == TRUE) {
+      msg <- paste0(nrow(msg), " messages generated (type show_messages() to see details).")
       if (getOption("scaledic.print.messages")) message(msg)
+    } else {
+      # filter by details
+      msg <- msg[msg[[3]] <= details, 1:2]
+
+      # split messages by call
+      msg_list <- split(msg[[1]], msg[[2]])
+
+      for(i_msg in 1:length(msg_list)) {
+        msg <- table(msg_list[[i_msg]])
+        for(i in seq_along(msg)){
+          if (msg[i] > 1) names(msg)[i] <- paste0(names(msg)[i], " (", msg[i], "x)")
+        }
+        msg <- paste0(1:length(msg), ": ", names(msg), collapse = "\n")
+
+        if (header){
+          msg <- paste0(header_prefix, " (", names(msg_list[i_msg]), ")\n", msg, "\n")
+        }
+        else {
+          msg <- paste0("\n", msg, "\n")
+        }
+
+        if (getOption("scaledic.print.messages")) message(msg)
+      }
     }
+
   }
   messages$last_messages <- messages$messages
   messages$messages <- list()
 }
+
+#' Print the last set of messages
+#'
+#' This function prints the last set of messages stored in the message system.
+#' @export
+show_messages <- function() {
+  old_messages <- messages$messages
+  messages$messages <- messages$last_messages
+  print_messages(concise = FALSE)
+  messages$messages <- old_messages
+}
+
