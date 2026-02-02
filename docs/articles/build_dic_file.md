@@ -36,7 +36,10 @@ We combine the *data* file and the *dic* file with the
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-12 messages generated (type show_messages() to see details).
+! (dic)
+1: Type is missing and is estimated as 'character'.
+2: Type is missing and is estimated as 'double'. (8x)
+3: Type is missing and is estimated as 'integer'. (3x)
 ```
 
 We get the message that the dic file does not contain information of the
@@ -44,11 +47,11 @@ data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute
 is used in various *scaledic* functions. For example when the data is
 checked for invalid values, missing values are imputed, or scales are
 scored. A variable can be one of the following types: `integer` for
-numbers without decimals, `float` for numbers with decimals, `character`
-for variables with text, and `factor` for variables with text or numbers
-that are levels of a factor. *Scaledic* will estimate the data type from
-the given data when the `type` attribute is not provided in the dic
-file.
+numbers without decimals, `double` for numbers with decimals,
+`character` for variables with text, and `factor` for variables with
+text or numbers that are levels of a factor. *Scaledic* will estimate
+the data type from the given data when the `type` attribute is not
+provided in the dic file.
 
 Let us add `type` information to the dic file:
 
@@ -60,7 +63,6 @@ nominal scale with several levels).
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-1 messages generated (type show_messages() to see details).
 ```
 
 Now we can add `weight` information to the dic file. The `weight`
@@ -80,7 +82,6 @@ Again, we join dic and data file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-1 messages generated (type show_messages() to see details).
 ```
 
 Now we add the `values` attribute to the dic file. `values` defines the
@@ -103,7 +104,6 @@ Here is the dic file with added `values`:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-1 messages generated (type show_messages() to see details).
 ```
 
 Invalid values can be replaced automatically with the
@@ -111,7 +111,16 @@ Invalid values can be replaced automatically with the
 
 ``` r
 dat_dic <- check_values(dat_dic, replace = NA) 
-1 messages generated (type show_messages() to see details).
+! (check_values)
+1: Replaced the following invalid values with NA:
+  'rel_2' is 66 at row 3
+  'rel_3' is -999 at row 14
+  'rel_4' is 11, -999 at rows 9, 18
+  'rel_5' is 66 at row 11
+  'sui_1' is 55 at row 10
+  'sui_2' is -999 at row 9
+  'sui_4' is 66 at row 17
+  'age' is 13, -999, 13 at rows 4, 12, 16
 ```
 
 ``` r
@@ -147,7 +156,16 @@ Here is the dic file with added `value_labels`:
 dat_dic <- ex_scaledic_data |> 
   apply_dic(dic_file) |>
   check_values(replace = NA)
-2 messages generated (type show_messages() to see details).
+! (check_values)
+1: Replaced the following invalid values with NA:
+  'rel_2' is 66 at row 3
+  'rel_3' is -999 at row 14
+  'rel_4' is 11, -999 at rows 9, 18
+  'rel_5' is 66 at row 11
+  'sui_1' is 55 at row 10
+  'sui_2' is -999 at row 9
+  'sui_4' is 66 at row 17
+  'age' is 13, -999, 13 at rows 4, 12, 16
 ```
 
 Now lets see the coding for some of the variables:
@@ -155,8 +173,8 @@ Now lets see the coding for some of the variables:
 ``` r
 dat_dic$rel_1
 ║How often do you attend church or other religious meetings? 
-║Data type is integer
-║Valid values: 1:6
+║Data type is float
+║Valid values: From 1 to 6
 ║Value labels:
 ║  1 = Never
 ║  2 = Once a year or less
@@ -174,8 +192,8 @@ Valid values are all integers from 1 to 6 and each value has a label.
 ``` r
 dat_dic$sui_1
 ║Did you feel tense in the last week? 
-║Data type is integer
-║Valid values: 0:4
+║Data type is float
+║Valid values: From 0 to 4
 ║Value labels:
 ║  0 = not at all
 ║  4 = extremely
@@ -241,7 +259,11 @@ with NA when joining a data with a dic file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-5 messages generated (type show_messages() to see details).
+! (replace_missing)
+1: Replaced 1 missing value in 'age' with NA
+2: Replaced 1 missing value in 'rel_3' with NA
+3: Replaced 1 missing value in 'rel_4' with NA
+4: Replaced 1 missing value in 'sui_2' with NA
 ```
 
 To turn off this behavior, set the argument `replace_missing = FALSE`.
@@ -256,7 +278,19 @@ way as they are not *predefined* attributes):
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
-6 messages generated (type show_messages() to see details).
+! (check_values)
+1: Replaced the following invalid values with NA:
+  'rel_2' is 66 at row 3
+  'rel_4' is 11 at row 9
+  'rel_5' is 66 at row 11
+  'sui_1' is 55 at row 10
+  'sui_4' is 66 at row 17
+  'age' is 13, 13 at rows 4, 16
+! (replace_missing)
+1: Replaced 1 missing value in 'age' with NA
+2: Replaced 1 missing value in 'rel_3' with NA
+3: Replaced 1 missing value in 'rel_4' with NA
+4: Replaced 1 missing value in 'sui_2' with NA
 ```
 
 You can use the scale attribute to select items:

@@ -2,11 +2,25 @@
 % Please edit documentation in R/c.dic.R
 \name{c.dic}
 \alias{c.dic}
-\title{Concatenate dic vectors while keeping dic metadata}
+\title{Concatenate dic vectors while keeping dic metadata from the first argument}
 \usage{
 \method{c}{dic}(..., recursive = FALSE)
+}
+\arguments{
+\item{...}{dic vectors to be concatenated.}
+
+\item{recursive}{logical. Should the result be recursive if any of the
+inputs are lists? Default is FALSE.}
+}
+\value{
+A dic vector resulting from concatenation of the provided dic
+vectors, with dic attributes taken from the first argument.
 }
 \description{
 Keeps dic attributes from the first dic argument and restores them after
 concatenation.
+}
+\details{
+If multiple dic arguments are provided, dic attributes from the other
+arguments are ignored.
 }

@@ -7,9 +7,9 @@
 get_dic_attribute(data, attribute, duplicates = TRUE)
 }
 \arguments{
-\item{data}{A data frame with dic information}
+\item{data}{A data frame with dic information.}
 
-\item{attribute}{Name of label attribute}
+\item{attribute}{Name of label attribute to retrieve.}
 
 \item{duplicates}{If FALSE, duplicated attributes will be removed from
 returned vector.}
@@ -18,8 +18,14 @@ returned vector.}
 Vector of attributes. If an attribute is not present, NA is returned.
 }
 \description{
-Get a dictionary attribute of one or more variables.
+Retrieves a specific dic attribute from all variables in a data frame.
+}
+\details{
+If an attribute is not present for a variable, NA is returned for that variable.
+If duplicates is set to FALSE, only unique attribute values are returned.
 }
 \examples{
-select_items(ex_itrf, subscale == "Int") |> get_dic_attribute("item_label")
+ex_itrf |>
+  select_items(subscale == "Int") |>
+  get_dic_attribute("item_label")
 }

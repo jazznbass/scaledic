@@ -1,6 +1,10 @@
-# Look up norm table values
+# Look up norm table values based on raw scores and group affiliations
 
-Transforms raw values to norm values based on a norm table.
+Transforms raw values to norm values based on a norm table. If group
+affiliations are provided, these are used to identify the correct norm
+values. If no group affiliations are provided, norm values are looked up
+based on raw scores only. In case of ambiguities (e.g., multiple norm
+values for the same raw score), NA is returned and a message is printed.
 
 ## Usage
 
@@ -25,7 +29,8 @@ lookup_norms(
 - group:
 
   A vector with group affiliations or a list with vectors for multiple
-  group categorizations.
+  group categorizations. If NULL (default), no group affiliations are
+  used.
 
 - normtable:
 
@@ -42,15 +47,18 @@ lookup_norms(
 - group_label:
 
   Label of the group variable in file or a list with group labels for
-  multiple group categorizations.
+  multiple group categorizations. If NULL (default), "group" is used as
+  group label.
 
 - label:
 
-  Item label of the resulting variable
+  Item label of the resulting variable. If NULL (default), no label is
+  set.
 
 ## Value
 
-A vector with norm values.
+A vector with norm values. If ambiguities occur, NA is returned for the
+respective raw score(s) and a message is printed.
 
 ## Examples
 
@@ -71,10 +79,32 @@ lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), no
 
 ## When group values are not specified exactly, raw scores can be ambiguous:
 lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
-#> 28 messages generated (type show_messages() to see details).
+#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
+#> 1:             add_message("Multiple values found for raw ", x,  (4x)
+#> ! (            return(NA))
+#> 1:                 ")", ". NA returned.") (4x)
+#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
+#> 1:     else { (4x)
+#> ! (        if (length(id) > 1) {)
+#> 1:         id <- which(normtable[[from]] == x) (4x)
+#> ! (    })
+#> 1:         } (4x)
+#> ! (})
+#> 1:     normtable[[to]][id] (4x)
 #> [1] NA NA NA NA
 
 lookup_norms(rawscores, normtable = normtable)
-#> 28 messages generated (type show_messages() to see details).
+#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
+#> 1:             add_message("Multiple values found for raw ", x,  (4x)
+#> ! (            return(NA))
+#> 1:                 ")", ". NA returned.") (4x)
+#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
+#> 1:     else { (4x)
+#> ! (        if (length(id) > 1) {)
+#> 1:         id <- which(normtable[[from]] == x) (4x)
+#> ! (    })
+#> 1:         } (4x)
+#> ! (})
+#> 1:     normtable[[to]][id] (4x)
 #> [1] NA NA NA NA
 ```

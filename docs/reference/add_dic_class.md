@@ -1,7 +1,9 @@
 # Add dictionary class to a vector or data.frame
 
 Adds the class 'dic' to a vector or all variables within a vector if it
-contains 'dic' attributes.
+contains 'dic' attributes but does not yet inherit from class 'dic'.
+This is useful when dic attributes have been added to a vector or
+data.frame but the class 'dic' has been removed (e.g., by subsetting).
 
 ## Usage
 
@@ -18,7 +20,14 @@ add_dic_class(data)
 
 ## Value
 
-An object inheriting from class "dic".
+An object inheriting from class "dic". If a data.frame is provided, a
+data.frame with columns inheriting from class "dic".
+
+## Details
+
+If a data.frame is provided, all columns are checked for dic attributes
+and the class 'dic' is added to those columns that have dic attributes
+but do not yet inherit from class 'dic'.
 
 ## Examples
 

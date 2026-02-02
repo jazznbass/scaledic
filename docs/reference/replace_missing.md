@@ -1,6 +1,8 @@
 # Replace Missing values
 
-Replace Missing values
+This function replaces missing values in a data frame based on the
+missing value definitions provided in the dic attributes of the
+variables. Variables without dic attributes are ignored.
 
 ## Usage
 
@@ -16,7 +18,7 @@ replace_missing(data, replace = NA, report = TRUE)
 
 - replace:
 
-  Replace value for missing values
+  Replace value for missing values (default is NA).
 
 - report:
 

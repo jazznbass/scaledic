@@ -52,7 +52,7 @@ We combine the *data* file and the *dic* file with the `apply_dic()` function:
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed, or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `float` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
+We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed, or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `double` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
 *Scaledic* will estimate the data type from the given data when the `type` attribute is not provided in the dic file. 
 
 Let us add `type` information to the dic file:

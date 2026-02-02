@@ -1,10 +1,20 @@
-# returns the index numbers of items in a data frame that contain dic values
+# returns the index numbers of items in a data frame that have dic attributes
 
-- If item_only is FALSE then only dic infos for items of class item are
-  returned.
+returns the index numbers of items in a data frame that have dic
+attributes
 
 ## Usage
 
 ``` r
 which_dic(data, items_only = TRUE)
 ```
+
+## Arguments
+
+- data:
+
+  A data frame
+
+- items_only:
+
+  If TRUE, only items of class "item" are considered

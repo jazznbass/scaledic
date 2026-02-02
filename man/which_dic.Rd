@@ -2,13 +2,16 @@
 % Please edit documentation in R/private.R
 \name{which_dic}
 \alias{which_dic}
-\title{returns the index numbers of items in a data frame that contain dic values}
+\title{returns the index numbers of items in a data frame that have dic attributes}
 \usage{
 which_dic(data, items_only = TRUE)
 }
-\description{
-\itemize{
-\item If item_only is FALSE then only dic infos for items of class item are returned.
+\arguments{
+\item{data}{A data frame}
+
+\item{items_only}{If TRUE, only items of class "item" are considered}
 }
+\description{
+returns the index numbers of items in a data frame that have dic attributes
 }
 \keyword{internal}

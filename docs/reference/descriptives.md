@@ -1,6 +1,7 @@
 # Table with descriptive statistics
 
-Table with descriptive statistics
+Computes descriptive statistics for all numeric variables in a data
+frame.
 
 ## Usage
 

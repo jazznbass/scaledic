@@ -53,7 +53,15 @@ coerced to a 'Date' class.}
 A data frame with dictionary information.
 }
 \description{
-Joins a data frame with a dictionary file.
+Joins a data frame with a dictionary file. The dictionary file provides
+information about each variable in the data frame such as variable labels,
+value labels, missing values, and scale definitions. The function applies
+this information to the data frame. Optionally, missing values are replaced
+with NAs, and scales are scored.
+}
+\details{
+This is a key function in the \code{scaledic} package as it prepares a data
+frame for further analyses by applying the dictionary information.
 }
 \examples{
 dat <- apply_dic(dat_itrf, dic_itrf)
@@ -65,5 +73,5 @@ descriptives(dat)
  }}, \code{\link{dic_haven}}
 }
 \author{
-Jürgen Wilbert
+Juergen Wilbert
 }

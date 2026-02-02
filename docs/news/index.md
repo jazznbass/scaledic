@@ -7,6 +7,15 @@
 - [`apply_dic()`](../reference/apply_dic.md): now uses new constructor
   function [`dic()`](../reference/dic.md).
 
+### New function
+
+- [`as_dic()`](../reference/as_dic.md): Converts a variable into a dic
+  object by adding dic attributes.
+- [`is_dic()`](../reference/is_dic.md): Checks if a variable is a dic
+  object.
+- [`dic()`](../reference/dic.md): Constructor function for dic objects.
+  Used internally by [`apply_dic()`](../reference/apply_dic.md).
+
 ## scaledic 0.4.1
 
 - Added more check functions and
@@ -221,9 +230,8 @@ added to output
 
 ## scaledic 0.1.8.2 (2020-04-07)
 
-- New function: [`rename_by_list()`](../reference/rename_by_list.md) for
-  renaming variables in a data file based on a provided list with named
-  strings.
+- New function: `rename_by_list()` for renaming variables in a data file
+  based on a provided list with named strings.
 
 ## scaledic 0.1.8.0 (2020-03-25)
 

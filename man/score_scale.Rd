@@ -2,11 +2,12 @@
 % Please edit documentation in R/score_scale.R
 \name{score_scale}
 \alias{score_scale}
-\title{Score scale calculates scale scores.}
+\title{Score scale calculates scale scores}
 \usage{
 score_scale(
   data,
-  filter,
+  filter = NULL,
+  scales = NULL,
   sum = FALSE,
   min_valid = 1,
   max_na = NA,
@@ -17,9 +18,12 @@ score_scale(
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame.}
 
-\item{filter}{A logical expression for any \emph{dic} attribute (e.g. \code{scale == "ITRF" & subscale == "Int"})}
+\item{filter}{A logical expression for any \emph{dic} attribute (e.g. \code{scale == "ITRF" & subscale == "Int"}).}
+
+\item{scales}{Alternatively, a named list with scale definition created with
+the \code{get_scales()} function. Not used when \code{filter} is provided.}
 
 \item{sum}{If \code{FALSE}, a weighted mean function is applied for building the
 scores. If \code{TRUE}, a weighted sum function is applied. When argument fun is
@@ -46,12 +50,24 @@ weights. Defaults to \code{weight}.}
 information. Defaults to \code{scores}.}
 }
 \value{
-A data frame
+A data frame with the calculated scale score. If only the filter argument
+is provided, a vector with the calculated scale score is returned.
 }
 \description{
-Score scale calculates scale scores.
+Calculates scale scores based on item variables defined in the dictionary.
+Uses a weighted mean (default) or weighted sum function to calculate the
+scores. Allows for filtering items based on any \emph{dic} attribute (e.g.,
+\code{scale}, \code{subscale}, etc.). Also allows for providing a custom function for
+calculating the scores.
 }
 \details{
+If the filter argument is provided, scale scores are calculated based on that
+filter. If the scales argument is provided, scale scores are calculated for
+each scale defined in that list.
+The default function for calculating the scale score is a weighted mean function.
+
+If you provide your own function, the first argument of that function must
+take the vector of values and the second argument the weights.
 If you provide your own function, the first argument of that
 function must take the vector of values and the second argument the
 weights.
@@ -64,5 +80,11 @@ score_scale(dat, scale == "rel", label = "Religious beliefs")
 score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
 # provide an external function (here the weighted median function from the spatstat package)
 #score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
-
+}
+\seealso{
+\code{\link{get_scales}}, \code{\link{apply_dic}},
+\code{\link{dic_attr}}
+}
+\author{
+Jürgen Wilbert
 }

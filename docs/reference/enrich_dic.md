@@ -22,6 +22,12 @@ enrich_dic(dat)
 
 A data frame with dic information added to all variables.
 
+## Details
+
+This function loops through all variables in the data frame and checks
+if they have a dic attribute. If not, it adds a dic attribute using the
+variable name and label.
+
 ## Examples
 
 ``` r
@@ -32,7 +38,16 @@ df <- data.frame(
 df$age <- new_dic(df$age, item_name = "age", item_label = "Age of respondent")
 #> Error in new_dic(df$age, item_name = "age", item_label = "Age of respondent"): unused arguments (item_name = "age", item_label = "Age of respondent")
 df_enriched <- enrich_dic(df)
-#> Error in new_dic(dat[[i]], item_name = item_name, item_label = item_label): unused arguments (item_name = item_name, item_label = item_label)
+#> ! (dic)
+#> 1: Type is missing and is estimated as 'double'.
+#> ! (dic)
+#> 1: Type is missing and is estimated as 'character'.
 attributes(df_enriched$gender)$dic |> str()
-#> Error: object 'df_enriched' not found
+#> List of 6
+#>  $ item_name : chr "gender"
+#>  $ item_label: chr "gender"
+#>  $ weight    : num 1
+#>  $ type      : chr "character"
+#>  $ class     : chr "item"
+#>  $ recodes   : NULL
 ```

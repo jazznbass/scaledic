@@ -9,7 +9,7 @@ replace_missing(data, replace = NA, report = TRUE)
 \arguments{
 \item{data}{A data frame}
 
-\item{replace}{Replace value for missing values}
+\item{replace}{Replace value for missing values (default is NA).}
 
 \item{report}{If TRUE, proportion of missing values is printed.}
 }
@@ -17,5 +17,7 @@ replace_missing(data, replace = NA, report = TRUE)
 A data frame with replaced missing values.
 }
 \description{
-Replace Missing values
+This function replaces missing values in a data frame based on the
+missing value definitions provided in the dic attributes of the variables.
+Variables without dic attributes are ignored.
 }

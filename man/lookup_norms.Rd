@@ -2,7 +2,7 @@
 % Please edit documentation in R/lookup_norms.R
 \name{lookup_norms}
 \alias{lookup_norms}
-\title{Look up norm table values}
+\title{Look up norm table values based on raw scores and group affiliations}
 \usage{
 lookup_norms(
   rawscores,
@@ -18,7 +18,8 @@ lookup_norms(
 \item{rawscores}{A vector with raw scores.}
 
 \item{group}{A vector with group affiliations or a list with vectors for
-multiple group categorizations.}
+multiple group categorizations. If NULL (default), no group
+affiliations are used.}
 
 \item{normtable}{An excel file name or a data frame containing a norm table.}
 
@@ -27,15 +28,21 @@ multiple group categorizations.}
 \item{to}{Label of the norm score variable in file.}
 
 \item{group_label}{Label of the group variable in file or a list with group
-labels for multiple group categorizations.}
+labels for multiple group categorizations. If NULL (default), "group" is used
+as group label.}
 
-\item{label}{Item label of the resulting variable}
+\item{label}{Item label of the resulting variable. If NULL (default), no label is set.}
 }
 \value{
-A vector with norm values.
+A vector with norm values. If ambiguities occur, NA is returned
+for the respective raw score(s) and a message is printed.
 }
 \description{
 Transforms raw values to norm values based on a norm table.
+If group affiliations are provided, these are used to identify the correct
+norm values. If no group affiliations are provided, norm values are looked up
+based on raw scores only. In case of ambiguities (e.g., multiple norm
+values for the same raw score), NA is returned and a message is printed.
 }
 \examples{
 normtable <- data.frame(

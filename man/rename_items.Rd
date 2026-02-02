@@ -2,7 +2,7 @@
 % Please edit documentation in R/rename_item.R
 \name{rename_items}
 \alias{rename_items}
-\title{Rename items}
+\title{Rename items based on dic information.}
 \usage{
 rename_items(
   data,
@@ -12,19 +12,32 @@ rename_items(
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame.}
 
 \item{pattern}{A character string with the syntax of the glue function (see
-\code{\link[glue:glue]{glue::glue()}}).}
+\code{\link[glue:glue]{glue::glue()}}). It can include any dic attribute enclosed in curly braces,
+e.g. "{item_label}", "{item_name}", "{values}", "{weight}", etc.}
 
 \item{max_chars, chars}{If not NULL, only the first n chars of the resulting
 label will be applied.}
 }
 \value{
-A renamed data frame
+A renamed data frame with variable names based on dic attributes.
 }
 \description{
-Rename items based on dic information.
+This function renames the variables in a data frame based on the dic
+attributes. The new names are created using the glue syntax (see \code{\link[glue:glue]{glue::glue()}})
+and can include item name, item label, and other dic information.
+}
+\details{
+The default pattern is "{item_label}", which renames the variables to their
+item labels. Other available dic attributes can be used in the pattern, such
+as "item_name", "values", "value_labels", "weight", etc.
+For example, the pattern "{item_name}: {item_label}" will rename the variables
+to "item_name: item_label".
+
+If the resulting label exceeds \code{max_chars}, it will be truncated to the
+specified length.
 }
 \examples{
 ex_itrf  |>

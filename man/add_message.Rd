@@ -27,4 +27,7 @@ init_messages()
 add_message("This is a test message.")
 print_messages()
 }
+\author{
+Juergen Wilbert
+}
 \keyword{internal}

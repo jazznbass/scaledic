@@ -1,13 +1,18 @@
-# Score scale calculates scale scores.
+# Score scale calculates scale scores
 
-Score scale calculates scale scores.
+Calculates scale scores based on item variables defined in the
+dictionary. Uses a weighted mean (default) or weighted sum function to
+calculate the scores. Allows for filtering items based on any *dic*
+attribute (e.g., `scale`, `subscale`, etc.). Also allows for providing a
+custom function for calculating the scores.
 
 ## Usage
 
 ``` r
 score_scale(
   data,
-  filter,
+  filter = NULL,
+  scales = NULL,
   sum = FALSE,
   min_valid = 1,
   max_na = NA,
@@ -22,12 +27,18 @@ score_scale(
 
 - data:
 
-  A data frame
+  A data frame.
 
 - filter:
 
   A logical expression for any *dic* attribute (e.g.
-  `scale == "ITRF" & subscale == "Int"`)
+  `scale == "ITRF" & subscale == "Int"`).
+
+- scales:
+
+  Alternatively, a named list with scale definition created with the
+  [`get_scales()`](get_scales.md) function. Not used when `filter` is
+  provided.
 
 - sum:
 
@@ -69,22 +80,46 @@ score_scale(
 
 ## Value
 
-A data frame
+A data frame with the calculated scale score. If only the filter
+argument is provided, a vector with the calculated scale score is
+returned.
 
 ## Details
 
+If the filter argument is provided, scale scores are calculated based on
+that filter. If the scales argument is provided, scale scores are
+calculated for each scale defined in that list. The default function for
+calculating the scale score is a weighted mean function.
+
 If you provide your own function, the first argument of that function
-must take the vector of values and the second argument the weights.
+must take the vector of values and the second argument the weights. If
+you provide your own function, the first argument of that function must
+take the vector of values and the second argument the weights.
+
+## See also
+
+[`get_scales`](get_scales.md), [`apply_dic`](apply_dic.md),
+[`dic_attr`](dic_attr.md)
+
+## Author
+
+Jürgen Wilbert
 
 ## Examples
 
 ``` r
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
-#> 5 messages generated (type show_messages() to see details).
+#> ! (replace_missing)
+#> 1: Replaced 1 missing value in 'age' with NA
+#> 2: Replaced 1 missing value in 'rel_3' with NA
+#> 3: Replaced 1 missing value in 'rel_4' with NA
+#> 4: Replaced 1 missing value in 'sui_2' with NA
 # apply the default weighted mean function
 score_scale(dat, scale == "rel", label = "Religious beliefs")
 #> Religious beliefs
-#> (weighted mean of items: scale == "rel") 
+#> (weighted mean of items: ==)Religious beliefs
+#> (weighted mean of items: scale)Religious beliefs
+#> (weighted mean of items: rel) 
 #> ║Data type is numeric
 #> ║Valid values: From 1 to 5.4
 #> ║Value labels:
@@ -97,7 +132,9 @@ score_scale(dat, scale == "rel", label = "Religious beliefs")
 # apply the weighted sum function
 score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
 #> Religious beliefs
-#> (weighted sum of items: scale == "rel") 
+#> (weighted sum of items: ==)Religious beliefs
+#> (weighted sum of items: scale)Religious beliefs
+#> (weighted sum of items: rel) 
 #> ║Data type is numeric
 #> ║Valid values: From 5 to 27
 #> ║Value labels:

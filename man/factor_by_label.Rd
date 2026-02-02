@@ -10,10 +10,12 @@ factor_by_label(x)
 \item{x}{A vector with dic information.}
 }
 \value{
-A factor with levels based on the value labels.
+A factor with levels based on the value labels. If no value labels
+are present, an empty factor is returned.
 }
 \description{
-Turns a dic variable into a factor based on the value labels
+This function takes a vector with dic information and converts it into a factor
+based on the value labels stored in the dic attributes.
 }
 \examples{
 # Apply a dictionary to data

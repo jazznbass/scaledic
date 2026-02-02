@@ -1,6 +1,6 @@
 # haven labels to dic files
 
-haven labels to dic files
+Convert haven labelled data frames to dic files
 
 ## Usage
 
@@ -12,7 +12,7 @@ haven_dic(data, remove_haven_class = FALSE)
 
 - data:
 
-  A data frame containing variables with haven labels
+  A data frame containing variables with haven labels.
 
 - remove_haven_class:
 
@@ -20,7 +20,13 @@ haven_dic(data, remove_haven_class = FALSE)
 
 ## Value
 
-A data frame with dic information
+A data frame with dic information.
+
+## Details
+
+This function converts a data frame with haven labels into a data frame
+containing dic information. Item labels and value labels are extracted
+from the haven attributes and stored in dic attributes.
 
 ## Examples
 

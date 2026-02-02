@@ -33,6 +33,10 @@ add_message(..., collapse = "", frame = -1, detail = 1, warning = FALSE)
 
 None. The function modifies the internal message environment.
 
+## Author
+
+Juergen Wilbert
+
 ## Examples
 
 ``` r

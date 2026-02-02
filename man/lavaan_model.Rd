@@ -2,20 +2,31 @@
 % Please edit documentation in R/lavaan_model.R
 \name{lavaan_model}
 \alias{lavaan_model}
-\title{Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis}
+\title{Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis
+based on provided scales and items.}
 \usage{
 lavaan_model(scales, adds = "", orthogonal = FALSE)
 }
 \arguments{
-\item{scales}{A list with scale information}
+\item{scales}{A list with scale information. Each element in the list corresponds to a scale
+and contains a character vector with item names.}
 
-\item{adds}{Additional model definitions}
+\item{adds}{Additional model definitions as a character string.}
 
 \item{orthogonal}{IF TRUE, covariance parameters are set for orthogonal latent factors.}
 }
 \value{
-A character string with a lavaan model definition
+A character string with a lavaan model definition.
 }
 \description{
 Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis
+based on provided scales and items.
+}
+\details{
+\itemize{
+\item Each scale in \code{scales} is defined as a latent factor, with items
+as observed indicators.
+\item If \code{orthogonal = TRUE}, covariance parameters between latent factors are set to zero.
+\item Additional model definitions can be added via \code{adds}.
+}
 }

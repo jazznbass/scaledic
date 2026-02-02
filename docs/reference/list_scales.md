@@ -1,6 +1,8 @@
-# List scales
+# List scales in a data frame based on dic attributes
 
-List scales
+Lists scales and subscales defined in the dic attributes of a data
+frame. This is useful for getting an overview of the scales present in a
+dataset that uses dic attributes to define scales.
 
 ## Usage
 
@@ -17,7 +19,7 @@ list_scales(
 
 - data:
 
-  The target data frame
+  The target data frame.
 
 - levels:
 
@@ -26,7 +28,7 @@ list_scales(
 
 - n_items:
 
-  If TRUE, number of items for each scale is shown
+  If TRUE, number of items for each scale is shown.
 
 - char_na:
 
@@ -34,4 +36,11 @@ list_scales(
 
 ## Value
 
-A data.frame with scales on different levels
+A data.frame with scales on different levels.
+
+## Details
+
+The function extracts scale information from dic attributes of variables
+in the data frame. By default, it looks for attributes named "scale",
+"subscale", and "subscale_2". It can also count the number of items for
+each scale or subscale if requested.

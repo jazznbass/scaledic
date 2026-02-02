@@ -15,7 +15,21 @@ A data frame in a dictionary format.
 \description{
 This function extracts the dictionary information from a data frame
 containing dic attributes and returns it as a data frame in a dictionary
-format.
+format. The resulting data frame contains one row per variable with dic
+information and columns for each dic attribute, such as item_name,
+item_label, values, value_labels, missing, recodes, and others.
+The function handles different variable types and formats the values,
+value labels, missing values, and recodes appropriately for inclusion in
+the dictionary data frame.
+}
+\details{
+The function first identifies the variables in the data frame that
+have dic attributes. It then creates an empty data frame with columns for
+each dic attribute and fills in the information for each variable. Special
+handling is done for the values, value labels, missing values, and recodes
+to ensure they are formatted correctly for the dictionary.
+This function is useful for extracting and exporting the dic information
+from a data frame for documentation or further processing.
 }
 \examples{
 ## extract dic from ex_itrf

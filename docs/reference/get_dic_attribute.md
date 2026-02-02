@@ -1,6 +1,6 @@
 # Get a dictionary attribute of one or more variables.
 
-Get a dictionary attribute of one or more variables.
+Retrieves a specific dic attribute from all variables in a data frame.
 
 ## Usage
 
@@ -12,11 +12,11 @@ get_dic_attribute(data, attribute, duplicates = TRUE)
 
 - data:
 
-  A data frame with dic information
+  A data frame with dic information.
 
 - attribute:
 
-  Name of label attribute
+  Name of label attribute to retrieve.
 
 - duplicates:
 
@@ -26,10 +26,18 @@ get_dic_attribute(data, attribute, duplicates = TRUE)
 
 Vector of attributes. If an attribute is not present, NA is returned.
 
+## Details
+
+If an attribute is not present for a variable, NA is returned for that
+variable. If duplicates is set to FALSE, only unique attribute values
+are returned.
+
 ## Examples
 
 ``` r
-select_items(ex_itrf, subscale == "Int") |> get_dic_attribute("item_label")
+ex_itrf |>
+  select_items(subscale == "Int") |>
+  get_dic_attribute("item_label")
 #>  [1] "Verbringt zu viel Zeit alleine"                                       
 #>  [2] "Beschwert sich über Krankheit oder Schmerzen"                         
 #>  [3] "Vermeidet soziale Interaktionen"                                      

@@ -1,6 +1,7 @@
 # Turns a dic variable into a factor based on the value labels
 
-Turns a dic variable into a factor based on the value labels
+This function takes a vector with dic information and converts it into a
+factor based on the value labels stored in the dic attributes.
 
 ## Usage
 
@@ -16,14 +17,19 @@ factor_by_label(x)
 
 ## Value
 
-A factor with levels based on the value labels.
+A factor with levels based on the value labels. If no value labels are
+present, an empty factor is returned.
 
 ## Examples
 
 ``` r
 # Apply a dictionary to data
 dat_dic <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
-#> 5 messages generated (type show_messages() to see details).
+#> ! (replace_missing)
+#> 1: Replaced 1 missing value in 'age' with NA
+#> 2: Replaced 1 missing value in 'rel_3' with NA
+#> 3: Replaced 1 missing value in 'rel_4' with NA
+#> 4: Replaced 1 missing value in 'sui_2' with NA
 # Proportions of responses
 dat_dic$rel_2 |> factor_by_label() |> table() |> prop.table()
 #> 

@@ -1,6 +1,6 @@
 # Create haven labels and value labels from dic files
 
-Create haven labels and value labels from dic files
+Convert dic files to haven labelled data frames
 
 ## Usage
 
@@ -21,6 +21,12 @@ dic_haven(data, overwrite = TRUE)
 ## Value
 
 A data frame with haven labels and value labels.
+
+## Details
+
+This function converts a data frame containing dic information into a
+data frame with haven labels. Item labels and value labels are extracted
+from the dic attributes and stored as haven attributes.
 
 ## Examples
 

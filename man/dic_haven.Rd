@@ -15,7 +15,12 @@ dic_haven(data, overwrite = TRUE)
 A data frame with haven labels and value labels.
 }
 \description{
-Create haven labels and value labels from dic files
+Convert dic files to haven labelled data frames
+}
+\details{
+This function converts a data frame containing dic information into a data
+frame with haven labels. Item labels and value labels are extracted from
+the dic attributes and stored as haven attributes.
 }
 \examples{
 ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
