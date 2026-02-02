@@ -80,6 +80,7 @@ print_dic <- function(x, length = 100, ...) {
         prefix, "  ", recodes[[1]], " = ",
         recodes[[2]], collapse = "\n"
       ))
+      cat("\n")
     }
 
   }
