@@ -1,17 +1,33 @@
-#' Check values
+#' Check values in data frame according to dic attributes
 #'
 #' Checks if values in variables are valid according to the 'values' and 'type'
 #' dictionary attributes. Invalid values can be replaced with a specified value.
+#' An overview of invalid values can be reported.
+#'
+#' This function only checks variables that have dic attributes. Variables
+#' without dic attributes are ignored.
+#'
+#' By default, integer variables are treated as float variables. That is,
+#' only values outside the provided valid values are considered invalid. If
+#' `integer_as_float` is set to FALSE, only values not included in the provided
+#' valid values are considered invalid.
+#'
+#' If `include_missing` is set to TRUE, values provided as 'missing' in the dic
+#' file are considered valid values.
 #'
 #' @param data A data frame.
-#' @param replace Value which replaces invalid values (e.g., NA).
-#' @param return If TRUE, a data frame is returned with replaced values.
+#' @param replace Value which replaces invalid values (e.g., NA). If NULL, no
+#'  replacement is done.
+#' @param return If TRUE, a data frame is returned with replaced values. If FALSE,
+#'  no data frame is returned.
 #' @param report If TRUE, an overview of invalid values will be given.
 #' @param include_missing If TRUE, missing values (provided as 'missing' in the
-#'   dic file) will be considered as valid values.
+#'   dic file) will be considered as valid values. If FALSE, missing values will be
+#'   considered as invalid values.
 #' @param integer_as_float If TRUE, type 'integer' will be handled as 'float'.
 #'   That is, only values outside the minimum and the maximum of the provided
-#'   valid values will be considered invalid.
+#'   valid values will be considered invalid. If FALSE, only values not included
+#'   in the provided valid values will be considered invalid.
 #' @return A data frame with replaced values if `replaces` is not NULL.
 #' @export
 #' @examples
@@ -21,8 +37,7 @@ check_values <- function(data,
                          return = TRUE,
                          report = TRUE,
                          include_missing = FALSE,
-                         integer_as_float = FALSE,
-                         check_type = TRUE) {
+                         integer_as_float = TRUE) {
 
   init_messages(); on.exit(print_messages())
 
@@ -84,7 +99,13 @@ check_values <- function(data,
   }
 }
 
-
+#' Identify invalid values in a vector according to dic attributes
+#' @keywords internal
+#' @param x A dic vector
+#' @param include_missing If TRUE, missing values (provided as 'missing' in the
+#'  dic file) will be considered as valid values. If FALSE, missing values will
+#'  be considered as invalid values.
+#' @return A vector with indices of invalid values
 id_invalid_values <- function(x, include_missing = FALSE) {
 
   id_invalid_values <- NULL

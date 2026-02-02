@@ -1,11 +1,20 @@
-#' List scales
+#' List scales in a data frame based on dic attributes
 #'
-#' @param data The target data frame
+#' Lists scales and subscales defined in the dic attributes of a data frame.
+#' This is useful for getting an overview of the scales present in a dataset
+#' that uses dic attributes to define scales.
+#'
+#' @details
+#' The function extracts scale information from dic attributes of variables
+#' in the data frame. By default, it looks for attributes named "scale",
+#' "subscale", and "subscale_2". It can also count the number
+#' of items for each scale or subscale if requested.
+#'
+#' @param data The target data frame.
 #' @param levels Character vector with names of dic attributes used to extract scale information.
-#' @param n_items If TRUE, number of items for each scale is shown
+#' @param n_items If TRUE, number of items for each scale is shown.
 #' @param char_na Character for NAs.
-#'
-#' @return A data.frame with scales on different levels
+#' @return A data.frame with scales on different levels.
 #' @export
 list_scales <- function(data,
                         levels = c("scale", "subscale", "subscale_2"),

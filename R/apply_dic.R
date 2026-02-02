@@ -1,6 +1,13 @@
 #' Apply dictionary to data frame
 #'
-#' Joins a data frame with a dictionary file.
+#' Joins a data frame with a dictionary file. The dictionary file provides
+#' information about each variable in the data frame such as variable labels,
+#' value labels, missing values, and scale definitions. The function applies
+#' this information to the data frame. Optionally, missing values are replaced
+#' with NAs, and scales are scored.
+#'
+#' This is a key function in the \code{scaledic} package as it prepares a data
+#' frame for further analyses by applying the dictionary information.
 #'
 #' @param data Data frame or a character string with a filename (for now an
 #'   Microsoft Excel file) containing the data.
@@ -27,7 +34,7 @@
 #' @seealso \code{\link{new_dic}}, \code{\link{replace_missing}},
 #'  \code{\link{score_from_dic}}, \code{\link{check_values
 #'  }}, \code{\link{dic_haven}}
-#' @author Jürgen Wilbert
+#' @author Juergen Wilbert
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)
 #' descriptives(dat)

@@ -1,8 +1,14 @@
 #' haven labels to dic files
 #'
-#' @param data A data frame containing variables with haven labels
+#' Convert haven labelled data frames to dic files
+#'
+#' This function converts a data frame with haven labels into a data frame
+#' containing dic information. Item labels and value labels are extracted from
+#' the haven attributes and stored in dic attributes.
+#'
+#' @param data A data frame containing variables with haven labels.
 #' @param remove_haven_class If TRUE, haven labels are removed.
-#' @return A data frame with dic information
+#' @return A data frame with dic information.
 #' @examples
 #' ex_itrf_dic <- haven_dic(ex_itrf, remove_haven_class = TRUE)
 #' ex_itrf_copy <- dic_haven(ex_itrf_dic)
@@ -49,11 +55,15 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
 
 #' Create haven labels and value labels from dic files
 #'
+#' Convert dic files to haven labelled data frames
+#'
+#' This function converts a data frame containing dic information into a data
+#' frame with haven labels. Item labels and value labels are extracted from
+#' the dic attributes and stored as haven attributes.
+#'
 #' @param data A data frame containing `dic` information.
 #' @param overwrite Logical. If `TRUE`, overwrites existing haven labels.
-#'
 #' @return A data frame with haven labels and value labels.
-#'
 #' @examples
 #' ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
 #' ex_itrf_copy <- dic_haven(ex_itrf)

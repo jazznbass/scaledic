@@ -1,10 +1,18 @@
 #' Extract a model definition that can be applied to lavaan::cfa for a confirmatory factor analysis
+#' based on provided scales and items.
 #'
-#' @param scales A list with scale information
-#' @param adds Additional model definitions
+#' @details
+#' - Each scale in `scales` is defined as a latent factor, with items
+#'  as observed indicators.
+#' - If `orthogonal = TRUE`, covariance parameters between latent factors are set to zero.
+#' - Additional model definitions can be added via `adds`.
+#'
+#' @param scales A list with scale information. Each element in the list corresponds to a scale
+#' and contains a character vector with item names.
+#' @param adds Additional model definitions as a character string.
 #' @param orthogonal IF TRUE, covariance parameters are set for orthogonal latent factors.
 #'
-#' @return A character string with a lavaan model definition
+#' @return A character string with a lavaan model definition.
 #' @export
 lavaan_model <- function(scales, adds = "", orthogonal = FALSE) {
   labels <-  gsub("[^A-Za-z0-9]", "_", names(scales))

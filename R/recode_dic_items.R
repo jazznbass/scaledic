@@ -1,19 +1,20 @@
 #' Recode Dictionary Items
 #'
-#' This function takes a data frame and recodes specified variables based on the
-#' dictionary.
+#' This function takes a data frame and recodes variables based on the
+#' `recodes` attribute stored in the dic attributes of a variable.
 #'
-#' This function is useful, when you want to recode the 'raw' values from a
-#' vector in a data.frame based on recoding information provided in a
-#' dictionary file. For example, you code the answers in a data frame that were
-#' given to a task. And you have additional information in a dic-file that tells
-#' you, which answer is correct (1) vs. false (0).
+#' For each variable in the data frame, if a `recodes` attribute is found,
+#' the function creates a new variable where the values are recoded according
+#' to the specified recoding rules. The original variable is replaced with the
+#' recoded variable, and the item label is updated to indicate that the variable
+#' has been recoded.
 #'
-#' @param df a data frame that contains variables to be recoded
-#' @param prefix_label Prefix is added to the item label of a recoded item
-#' @return A recoded data frame
+#' @param df a data frame.
+#' @param prefix_label Prefix is added to the item label of a recoded item.
+#' @return A data frame with recoded variables.
+#' @author Juergen Wilbert
 #' @examples
-#' q1 <- new_dic(
+#' q1 <- dic(
 #'   x = c(1,1,2,3,1,3,4,4,3,2,4,5),
 #'   item_name = "knowledge_1",
 #'   item_label = "What is the capital of Germany?",
@@ -21,7 +22,7 @@
 #'   weight = 1,
 #'   values = "1:4",
 #'   value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
-#'   recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1"
+#'   recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1; .default = NA"
 #' )
 #' q1
 #' recode_dic_items(q1)
@@ -46,9 +47,7 @@ recode_dic_items <- function(df,
   out$df
 }
 
-.recode_dic_items <- function(df,
-                              prefix_label = "[recoded]") {
-
+.recode_dic_items <- function(df, prefix_label) {
 
   var_recodes <- opt("recodes")
 
@@ -59,7 +58,7 @@ recode_dic_items <- function(df,
     add_message("Found recoding information and recoded values.")
 
     default <- NA
-    id_default <- which(recoding[[1]] == ".default")
+    id_default <- which(recoding[["value"]] == ".default")
     if (length(id_default) > 0) {
       default <- recoding[[2]][[id_default]]
       recoding <- recoding[-id_default, ]

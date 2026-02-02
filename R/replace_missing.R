@@ -1,13 +1,18 @@
 #' Replace Missing values
 #'
+#' This function replaces missing values in a data frame based on the
+#' missing value definitions provided in the dic attributes of the variables.
+#' Variables without dic attributes are ignored.
+#'
 #' @param data A data frame
-#' @param replace Replace value for missing values
+#' @param replace Replace value for missing values (default is NA).
 #' @param report If TRUE, proportion of missing values is printed.
 #' @return A data frame with replaced missing values.
 #' @export
 replace_missing <- function(data, replace = NA, report = TRUE) {
   init_messages(); on.exit(print_messages())
-  id <- which(sapply(data, function(x) !is.null(attr(x, opt("dic")))))
+
+  id <- which_dic(data)
   var_names <- names(data)
 
   for (i in id) {
@@ -19,7 +24,6 @@ replace_missing <- function(data, replace = NA, report = TRUE) {
         "Replaced ", length(id_missing)," missing ",
         if_one(id_missing, "value", "values"),
         " in '", var_names[i], "' ",
-        #"(", round((length(id_missing) / sum(!is.na(data[[i]]))) * 100), "%)",
         "with ", deparse(replace)
       )
     }

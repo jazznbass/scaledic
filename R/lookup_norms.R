@@ -1,19 +1,25 @@
-#' Look up norm table values
+#' Look up norm table values based on raw scores and group affiliations
 #'
 #' Transforms raw values to norm values based on a norm table.
+#' If group affiliations are provided, these are used to identify the correct
+#' norm values. If no group affiliations are provided, norm values are looked up
+#' based on raw scores only. In case of ambiguities (e.g., multiple norm
+#' values for the same raw score), NA is returned and a message is printed.
 #'
 #' @param rawscores A vector with raw scores.
 #' @param group A vector with group affiliations or a list with vectors for
-#'   multiple group categorizations.
+#'   multiple group categorizations. If NULL (default), no group
+#'   affiliations are used.
 #' @param normtable An excel file name or a data frame containing a norm table.
 #' @param from Label of the raw score variable in file.
 #' @param to Label of the norm score variable in file.
 #' @param group_label Label of the group variable in file or a list with group
-#'   labels for multiple group categorizations.
-#' @param label Item label of the resulting variable
-#' @return A vector with norm values.
+#'   labels for multiple group categorizations. If NULL (default), "group" is used
+#'   as group label.
+#' @param label Item label of the resulting variable. If NULL (default), no label is set.
+#' @return A vector with norm values. If ambiguities occur, NA is returned
+#'  for the respective raw score(s) and a message is printed.
 #' @export
-#'
 #' @examples
 #' normtable <- data.frame(
 #'   age = rep(c(6, 8, 6, 8), each = 11),
@@ -44,6 +50,13 @@ lookup_norms <- function(rawscores,
 
   if (inherits(normtable, "character")) {
     normtable <- read_by_suffix(normtable)
+  }
+
+  if (!from %in% names(normtable)) {
+    stop(from, " was not found in normtable.")
+  }
+  if (!to %in% names(normtable)) {
+    stop(to, " was not found in normtable.")
   }
 
   if (!is.null(group)) {

@@ -14,7 +14,6 @@
 #'   If a variable is present in one data frame but not in another, the missing
 #'   values will be filled with NA.
 #' @export
-
 combine_data_frames <- function(...) {
   dfs <- list(...)
 
