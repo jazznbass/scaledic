@@ -36,9 +36,10 @@ opt <- function(x) {
   .opt[x] |> unlist() |> unname()
 }
 
-#' returns the index numbers of items in a data frame that contain dic values
+#' returns the index numbers of items in a data frame that have dic attributes
 #'
-#' - If item_only is FALSE then only dic infos for items of class item are returned.
+#' @param data A data frame
+#' @param items_only If TRUE, only items of class "item" are considered
 #' @keywords internal
 which_dic <- function(data, items_only = TRUE) {
   fn <- if (items_only) {
@@ -48,16 +49,6 @@ which_dic <- function(data, items_only = TRUE) {
   }
   which(sapply(data, fn))
 }
-
-get_index_from_dic <- function(data, filter, names = TRUE, class = NULL) {
-  if (!is.null(class)) filter <- paste0(filter, " & class == '", class, "'")
-  dic <- extract_dic(data)
-  id <- with(dic, eval(str2lang(filter)))
-  out <- which(names(data) %in% dic[[opt("item_name")]][id])
-  if (names) out <- names(data)[out]
-  out
-}
-
 
 #' Decides based on suffix which function to use for reading a data.file
 #'
@@ -70,7 +61,6 @@ read_by_suffix <- function(filename) {
   stop("File extension not recognised. ",
        "Please provide separately read data frame."
   )
-
 }
 
 #' Helper for singular or plural output
