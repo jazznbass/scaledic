@@ -16,6 +16,7 @@ init_messages <- function() {
 #' @param detail An integer indicating the detail level of the message.
 #' @param warning Logical. If TRUE, the message is treated as a warning.
 #' @return None. The function modifies the internal message environment.
+#' @author Juergen Wilbert
 #' @examples
 #' init_messages()
 #' add_message("This is a test message.")
@@ -52,24 +53,21 @@ print_messages <- function(concise = getOption("scaledic.print.concise.messages"
 
   msg <- messages$messages
   if (length(messages$messages) > 0) {
-
     # convert to data frame
     msg <- messages$messages |>
       unlist() |>
       matrix(ncol = 4, byrow = TRUE) |>
       as.data.frame()
 
-    if (concise == TRUE) {
-      msg <- paste0(nrow(msg), " messages generated (type show_messages() to see details).")
-      if (getOption("scaledic.print.messages")) message(msg)
-    } else {
-      # filter by details
-      msg <- msg[msg[[3]] <= details, 1:2]
+    # filter by details
+    msg <- msg[msg[[3]] <= details, 1:2]
 
-      # split messages by call
-      msg_list <- split(msg[[1]], msg[[2]])
+    # split messages by call
+    msg_list <- split(msg[[1]], msg[[2]])
 
+    if (length(msg_list) != 0) {
       for(i_msg in 1:length(msg_list)) {
+
         msg <- table(msg_list[[i_msg]])
         for(i in seq_along(msg)){
           if (msg[i] > 1) names(msg)[i] <- paste0(names(msg)[i], " (", msg[i], "x)")
@@ -83,10 +81,19 @@ print_messages <- function(concise = getOption("scaledic.print.concise.messages"
           msg <- paste0("\n", msg, "\n")
         }
 
+        if (concise == TRUE) {
+          max_messages <- 50
+          if (length(msg) > max_messages) {
+            msg <- paste0("Showing first ", max_messages, " of ", length(msg), " messages:\n",
+                          paste0(msg[1:max_messages], collapse = "\n"),
+                          "\n... (use show_messages() to see all messages)")
+          }
+        }
+
         if (getOption("scaledic.print.messages")) message(msg)
       }
-    }
 
+    }
   }
   messages$last_messages <- messages$messages
   messages$messages <- list()
