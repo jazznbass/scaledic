@@ -4,6 +4,12 @@
 * Reworked internals of class "dic".
 * `apply_dic()`: now uses new constructor function `dic()`.
 
+## New function
+
+- `as_dic()`: Converts a variable into a dic object by adding dic attributes.
+- `is_dic()`: Checks if a variable is a dic object.
+- `dic()`: Constructor function for dic objects. Used internally by `apply_dic()`.
+
 # scaledic 0.4.1
 
 * Added more check functions and

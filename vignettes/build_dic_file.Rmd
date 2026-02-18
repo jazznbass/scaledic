@@ -11,8 +11,6 @@ vignette: >
 
 ```{r setup, include = FALSE}
 library(knitr)
-library(dplyr)
-library(tibble)
 library(wmisc)
 library(scaledic)
 knitr::opts_chunk$set(
@@ -58,7 +56,7 @@ We get the message that the dic file does not contain information of the data*ty
 Let us add `type` information to the dic file:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic |>select(1,2, type)
+dic_file <- ex_scaledic_dic |> subset(select = c(1,2,type))
 dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:3))
 ```
 
@@ -71,7 +69,7 @@ dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 Now we can add `weight` information to the dic file. The `weight` attribute tells various *scaledic* functions a) whether the item is inverted or not, and b) how the values of an item are weighted. If a weight value is unsigned (e.g. `1`), the item is not inverted. If a weight value has a negative sign (e.g. `-1`), the item is inverted. If the (absolute) value is not `1`, the item will be weighted when calculating the item scores (e.g. `1.5` will give an item a weight of 1.5).
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic |>select(1,2, weight, type)
+dic_file <- ex_scaledic_dic |> subset(select = c(1,2, weight, type))
 dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:4))
 ```
 
@@ -88,7 +86,7 @@ Now we add the `values` attribute to the dic file. `values` defines the valid va
 Here is the dic file with added `values`:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic |>select(1,2, "values", "weight", "type")
+dic_file <- ex_scaledic_dic |> subset(select = c(1,2, values, weight, type))
 dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:5))
 ```
 
@@ -111,7 +109,7 @@ Next, we add `value_labels`. Value labels give longer labels for all or some of 
 Here is the dic file with added `value_labels`:
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic |>select(1,2, "values", "value_labels", "weight", "type")
+dic_file <- ex_scaledic_dic |>subset(select = c(1,2, values, value_labels, weight, type))
 dic_file |> wmisc::nice_table(caption = "Dictionary file", cols_align = list(left = "all"))
 ```
 
@@ -152,7 +150,7 @@ dat_dic$age
 It is a common practice to code missing values with a specific number (rather than just leaving an empty entry on a datasheet). In the example dataset used here, `-999` is used as a missing value. To account for this, we add the `missing` attribute to the *dic* file containing the missing number (e.g., `-999`). Multiple missing values are separated by commas (e.g. `-99, -77`).
 
 ```{r echo=FALSE}
-dic_file <- ex_scaledic_dic |>select(1,2, values, value_labels, weight, type, missing)
+dic_file <- ex_scaledic_dic |>subset(select = c(1,2, values, value_labels, weight, type, missing))
 dic_file |>wmisc::nice_table(title = "Dictionary file", cols_align = list(left = "all"))
 ```
 

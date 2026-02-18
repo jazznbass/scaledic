@@ -11,10 +11,7 @@ vignette: >
 
 ```{r setup, include = FALSE}
 library(knitr)
-library(dplyr)
-library(tibble)
 library(scaledic)
-library(stringr)
 library(wmisc)
 
 knitr::opts_chunk$set(
@@ -38,30 +35,25 @@ A dictionary file is a table with one row for each variable and one column for e
 Here is an extract from an example *dic-file*:
 
 ```{r dic_example, echo=FALSE}
-dic_itrf |>  
-  select(item_name, item_label, scale, scale_label, subscale, subscale_label, values, value_labels, missing, type) |> 
-  slice(2:4) |> 
+dic_itrf[2:4, c("item_name", "item_label", "scale", "scale_label", "subscale", 
+                "subscale_label", "values", "value_labels", "missing", "type")]|> 
   wmisc::nice_table(cols_align = list(left = 1:10))
 ```
 
 A dictionary file can contain any additional attributes. This means that you can add a column with any name to store relevant information (e.g. the scale and scale label to which an item belongs, a translation of the item name). However, there are some predefined attributes with a specific meaning. The table below shows these attributes:
 
 ```{r tab_dic_param, echo = FALSE}
-out <- tribble(
-  ~Parameter, ~Meaning, ~Example,
-  "item_name", "A short item name", "itrf_1",
-  "item_label", "Full text of the item", "Vermeidet die Teilnahme an Diskussionen im Unterricht",
-  #"scale", "Abreviation of the scale the item belongs to", "irtf",
-  #"scale_label", "Name of the scale", "Integrated Teacher Report Form",
-  #"subscale", "Abrevation of the sub scale", "int",
-  #"subscale_label", "Name of the sub scale", "internalizing problems",
-  "values", "Valid response values in an R manner", "1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)",
-  "value_labels", "Labels for each response value", "0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark",
-  "missing", "Missing values", "-888, -999",
-  "type", "Data type (factor, integer, float, real)", "integer",
-  "weight", "Reversion of item and its weight", "1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)",
-)
-wmisc::nice_table(out, caption = "Basic columns of a dictionary file", cols_align = list(left = 2:3))
+"
+  Parameter   | Meaning                                 | Example
+  item_name   | A short item name                       | itrf_1
+  item_label  | Full text of the item                   | Vermeidet die Teilnahme an Diskussionen im Unterricht
+  values      | Valid response values in an R manner    | 1:5 (for integers 1 to 5) 1,2,3 (for integers 1, 2, 3)
+  value_labels| Labels for each response value          | 0 = nicht; 1 = leicht; 2 = mäßig; 3 = stark
+  missing     | Missing values                          | -888, -999
+  type        | Data type (factor, integer, float, real)| integer
+  weight      | Reversion of item and its weight        | 1 (positive), -1 (reverse), 1.5 (positive, weights 1.5 times)
+" |> 
+  wmisc::nice_table(caption = "Basic columns of a dictionary file", cols_align = list(left = 2:3))
 
 ```
 
@@ -83,12 +75,12 @@ Let us take a look at all the scales in the dataset:
 ```{r}
 #| label: list_scales
 #| eval: false
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label"))
+list_scales(dat, "subscale_label", "subscale_2_label")
 ```
 
 ```{r}
 #| echo: false
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label")) |> wmisc::nice_table(cols_align = list(left = 2:3))
+list_scales(dat, "subscale_label", "subscale_2_label") |> wmisc::nice_table(cols_align = list(left = 2))
 ```
 
 
@@ -217,7 +209,7 @@ Firstly, you need a data frame (or Excel table etc) which includes raw-scores an
 Here is an example of such a table:
 
 ```{r}
-ex_normtable_int |> slice(1:10) |> wmisc::nice_table()
+ex_normtable_int |> head() |> wmisc::nice_table()
 ```
 
 Then we need raw-scores from a scale. If they do not exist, you may use the `score_scales` function to add sum scores. Therefore set the sum argument to `TRUE`. By setting `max_na = 0`, we do not allow missing values in any scale item:
