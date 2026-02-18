@@ -11,54 +11,66 @@
 #' of items for each scale or subscale if requested.
 #'
 #' @param data The target data frame.
-#' @param levels Character vector with names of dic attributes used to extract scale information.
-#' @param n_items If TRUE, number of items for each scale is shown.
-#' @param char_na Character for NAs.
+#' @param levels Character vector with names of dic attributes used to extract
+#'  scale information.
+#' @param .n_items If TRUE, number of items for each scale is added in parentheses.
+#' @param .char_na Character for NAs.
+#' @param ... Additional dic attribute names to include in the output. Overrides
+#'  the `levels` argument if provided.
 #' @return A data.frame with scales on different levels.
+#' @examples
+#' ## List default scales
+#' ex_itrf |> list_scales()
+#'
+#' ## List custom scale levels
+#' ex_itrf |> list_scales("subscale_label", "subscale_2_label")
 #' @export
 list_scales <- function(data,
-                        levels = c("scale", "subscale", "subscale_2"),
-                        n_items = FALSE,
-                        char_na = "") {
+                        ...,
+                        levels = NULL,
+                        .n_items = FALSE,
+                        .char_na = "") {
 
-  filter <- which_dic(data)
-  out <- data[, filter]
-  out <- sapply(out, function(x)
-    cbind(sapply(levels, function(y) dic_attr(x, y)))
-  )
-  out <- as.matrix(out)
-  if (length(levels) > 1) out <- t(out)
-  out <- as.data.frame(out)
+  dots <- c(...)
+
+  if (length(dots) > 0) {
+    if (!is.null(levels)) {
+      warning("Both 'levels' and '...' provided. 'levels' will be ignored.")
+    }
+    levels <- c(dots)
+  }
+  if (is.null(levels)) {
+    levels <- c("scale", "subscale", "subscale_2")
+  }
+
+  out <- lapply(data[, which_dic(data)], function(x) dic_attr(x)[levels] |> unlist())
+
+  out <- do.call(rbind, out) |> as.data.frame()
   names(out) <- levels
 
-  if (n_items) {
-    n_scale <- list()
-    for (i in 1:length(levels)) {
-      n_scale[[i]] <- out %>%
-        select(levels[i]) %>%
-        table() %>%
-        as.data.frame()
-    }
-
-    for (i in 1:length(levels)) {
-      if (nrow(n_scale[[i]]) > 0) {
-        by <- "."
-        names(by) <- levels[i]
-        rn <- "Freq"
-        names(rn) <- paste0("n ", levels[i])
-        out <- out %>%
-          full_join(n_scale[[i]], by = by) %>%
-          rename(!!!rn)
+  if (.n_items) {
+    n_scale <- vector("list", length(levels))
+    for (i in seq_along(levels)) {
+      level_names <-  unique(out[[levels[i]]])
+      for(x in level_names) {
+        id <- which(out[[levels[i]]] == x)
+        out[[levels[i]]][id] <- paste0(x, " (n=", length(id), ")")
       }
     }
   }
 
+  # drop duplicate rows
   out <- unique(out)
-  out <- out[, colSums(is.na(out)) != nrow(out)]
+  # drop columns with all NAs
+  out <- out[, colSums(is.na(out)) != nrow(out), drop = FALSE]
+  # convert to character
   out[] <- lapply(out, as.character)
-  out[is.na(out)] <- char_na
-
-  out <- out[order(out[[1]]),]
+  # replace NAs
+  out[is.na(out)] <- .char_na
+  # order by first column
+  out <- out[order(out[[1]]), , drop = FALSE]
+  # reset row names
   row.names(out) <- NULL
+
   out
 }
