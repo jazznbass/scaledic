@@ -32,9 +32,10 @@ print_dic <- function(x, length = 100, ...) {
 
   if (dic_attr(x, "class") == "score") {
     first_line <- paste0(
-      dic_attr(x, "item_label"), "\n(",
-      dic_attr(x, "score_function"), " of items: ",
-      dic_attr(x, "score_filter"), ")",
+      prefix, dic_attr(x, "item_label"), "\n",
+      prefix,
+      "Scored scale: ", deparse(dic_attr(x, "score_function")), " of items: ",
+      deparse(dic_attr(x, "score_filter")),
       collapse = ""
     )
   }
