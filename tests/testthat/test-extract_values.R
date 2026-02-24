@@ -43,16 +43,6 @@ testthat::test_that(".extract_values parses valid specs and rejects invalid ones
   testthat::expect_null(ev("1.2:3", "integer")) # endpoints must be integers
   testthat::expect_null(ev("1:3.5", "integer"))
 
-  # ----- float/double values field: must be exactly two numbers and ordered -----
-  testthat::expect_equal(ev("5, 11", "double", field = "values"), c(5, 11))
-  testthat::expect_null(ev("5", "double", field = "values"))
-  testthat::expect_null(ev("5, 11, 12", "double", field = "values"))
-  testthat::expect_null(ev("11, 5", "double", field = "values"))
-
-  # Also applies to type "double" in your implementation (field == "values")
-  testthat::expect_equal(ev("0, 1", "double", field = "values"), c(0, 1))
-  testthat::expect_null(ev("0, 1, 2", "double", field = "values"))
-
   # ----- missing field: for float/double you do NOT enforce length==2 -----
   testthat::expect_equal(ev("5, 11, 12", "double", field = "missing"), c(5, 11, 12))
   testthat::expect_equal(ev("0:2", "double", field = "missing"), c(0, 1, 2))

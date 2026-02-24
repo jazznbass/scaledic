@@ -123,7 +123,7 @@ dat  |>
 #> OPP:itrf_E_8  0.49
 #> OPP:itrf_E_9  0.82
 #> OPP:itrf_E_10 0.40
-#> OPP:itrf_E_11 0.77
+#> OPP:itrf_E_11 0.76
 #> OPP:itrf_E_12 0.46
 #> OPP:itrf_E_13 0.47
 #> APD:itrf_E_14 0.38

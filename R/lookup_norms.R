@@ -59,10 +59,23 @@ lookup_norms <- function(rawscores,
     stop(to, " was not found in normtable.")
   }
 
+  # Checks if a cell in the normtable is NA and if so,
+  # replaces NA with the last valid previous entry
+  normtable <- lapply(normtable, function(col) {
+    if (!any(is.na(col))) return(col)
+    for (i in 2:length(col)) {
+      if (is.na(col[i])) col[i] <- col[i-1]
+    }
+    col
+  }) |> as.data.frame()
+
+
+  # Check group variable
   if (!is.null(group)) {
     if (is.null(group_label)) group_label <- "group"
     if (!is.list(group)) group <- list(group)
 
+    # Create new group variable in normtable by pasting together group variables
     new_group_var <- paste(group_label, collapse = "#")
     normtable[[new_group_var]] <- do.call(
       paste,  c(normtable[, unlist(group_label), drop = FALSE], list(sep = "#"))
@@ -81,13 +94,6 @@ lookup_norms <- function(rawscores,
         stop("Length of 'group' is smaller than length of 'rawscore'.")
       }
     }
-  }
-
-  if (!from %in% names(normtable)) {
-    stop(from, " was not found in normtable.")
-  }
-  if (!to %in% names(normtable)) {
-    stop(to, " was not found in normtable.")
   }
 
   lookup <- function(x, y) {
@@ -120,13 +126,13 @@ lookup_norms <- function(rawscores,
   if (is.null(group)) group <- NA
   out <- mapply(lookup, rawscores, group)
 
-  if (!is.null(label)) {
-    dic_attr(out, "item_label") <- label
-    dic_attr(out, "item_name") <- label
-    attr(out, "label") <- label
-  }
+  if (is.null(label)) label <- paste0(to, "_score")
 
-  out
+  dic(out,
+    item_name = label,
+    item_label = label,
+    type = if (is.numeric(out)) "numeric" else NULL
+  )
 }
 
 

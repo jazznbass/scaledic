@@ -545,7 +545,8 @@ data sets.</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="item_name">item_name</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="a-"> </th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="item_name">item_name</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="item_label">item_label</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="scale">scale</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="scale_label">scale_label</th>
@@ -554,10 +555,11 @@ data sets.</p>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="values">values</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="value_labels">value_labels</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="missing">missing</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="type">type</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="type">type</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
+<td headers=" " class="gt_row gt_left">2</td>
 <td headers="item_name" class="gt_row gt_left">itrf_I_1</td>
 <td headers="item_label" class="gt_row gt_left">Verbringt zu viel Zeit alleine</td>
 <td headers="scale" class="gt_row gt_left">ITRF</td>
@@ -567,9 +569,10 @@ data sets.</p>
 <td headers="values" class="gt_row gt_left">0:3</td>
 <td headers="value_labels" class="gt_row gt_left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td headers="missing" class="gt_row gt_left">-99</td>
-<td headers="type" class="gt_row gt_left">integer</td>
+<td headers="type" class="gt_row gt_center">integer</td>
 </tr>
 <tr>
+<td headers=" " class="gt_row gt_left">3</td>
 <td headers="item_name" class="gt_row gt_left">itrf_I_2</td>
 <td headers="item_label" class="gt_row gt_left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td headers="scale" class="gt_row gt_left">ITRF</td>
@@ -579,9 +582,10 @@ data sets.</p>
 <td headers="values" class="gt_row gt_left">0:3</td>
 <td headers="value_labels" class="gt_row gt_left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td headers="missing" class="gt_row gt_left">-99</td>
-<td headers="type" class="gt_row gt_left">integer</td>
+<td headers="type" class="gt_row gt_center">integer</td>
 </tr>
 <tr>
+<td headers=" " class="gt_row gt_left">4</td>
 <td headers="item_name" class="gt_row gt_left">itrf_I_4</td>
 <td headers="item_label" class="gt_row gt_left">Vermeidet soziale Interaktionen</td>
 <td headers="scale" class="gt_row gt_left">ITRF</td>
@@ -591,7 +595,7 @@ data sets.</p>
 <td headers="values" class="gt_row gt_left">0:3</td>
 <td headers="value_labels" class="gt_row gt_left">0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic</td>
 <td headers="missing" class="gt_row gt_left">-99</td>
-<td headers="type" class="gt_row gt_left">integer</td>
+<td headers="type" class="gt_row gt_center">integer</td>
 </tr>
 </tbody>
 </table>
@@ -1112,7 +1116,7 @@ NAs:</p>
 <span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></code></pre></div>
 <p>Let us take a look at all the scales in the dataset:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale"</span>, <span class="st">"subscale"</span>, <span class="st">"subscale_2"</span><span class="op">)</span>, <span class="st">"_label"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, <span class="st">"subscale_label"</span>, <span class="st">"subscale_2_label"</span><span class="op">)</span></span></code></pre></div>
 <div id="ulbfdpbcyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>#ulbfdpbcyv table {
   font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
@@ -1564,30 +1568,25 @@ NAs:</p>
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="scale_label">scale_label</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="subscale_label">subscale_label</th>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="subscale_label">subscale_label</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="subscale_2_label">subscale_2_label</th>
     </tr></thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="scale_label" class="gt_row gt_left">Integrated teacher report form</td>
-<td headers="subscale_label" class="gt_row gt_left">Internalizing</td>
-<td headers="subscale_2_label" class="gt_row gt_left">Socially Withdrawn</td>
-</tr>
-<tr>
-<td headers="scale_label" class="gt_row gt_left">Integrated teacher report form</td>
-<td headers="subscale_label" class="gt_row gt_left">Internalizing</td>
-<td headers="subscale_2_label" class="gt_row gt_left">Anxious/Depressed</td>
-</tr>
-<tr>
-<td headers="scale_label" class="gt_row gt_left">Integrated teacher report form</td>
 <td headers="subscale_label" class="gt_row gt_left">Externalizing</td>
 <td headers="subscale_2_label" class="gt_row gt_left">Oppositional/Disruptive</td>
 </tr>
 <tr>
-<td headers="scale_label" class="gt_row gt_left">Integrated teacher report form</td>
 <td headers="subscale_label" class="gt_row gt_left">Externalizing</td>
 <td headers="subscale_2_label" class="gt_row gt_left">Academic Productivity/Disorganization</td>
+</tr>
+<tr>
+<td headers="subscale_label" class="gt_row gt_left">Internalizing</td>
+<td headers="subscale_2_label" class="gt_row gt_left">Socially Withdrawn</td>
+</tr>
+<tr>
+<td headers="subscale_label" class="gt_row gt_left">Internalizing</td>
+<td headers="subscale_2_label" class="gt_row gt_left">Anxious/Depressed</td>
 </tr>
 </tbody>
 </table>
@@ -2084,7 +2083,7 @@ replace them with NA:</p>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_1</td>
+<td headers="Variable" class="gt_row gt_left">Verbringt zu viel Zeit alleine</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2096,7 +2095,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_2</td>
+<td headers="Variable" class="gt_row gt_left">Beschwert sich über Krankheit oder Schmerzen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2108,7 +2107,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_4</td>
+<td headers="Variable" class="gt_row gt_left">Vermeidet soziale Interaktionen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2120,7 +2119,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_5</td>
+<td headers="Variable" class="gt_row gt_left">Spielt bevorzugt alleine</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.2</td>
@@ -2132,7 +2131,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_6</td>
+<td headers="Variable" class="gt_row gt_left">Geht nicht auf Kontaktversuche der Mitschülerinnen und Mitschüler ein</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.2</td>
@@ -2144,7 +2143,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_7</td>
+<td headers="Variable" class="gt_row gt_left">Macht sich Sorgen über unwichtige Details</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2156,7 +2155,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_8</td>
+<td headers="Variable" class="gt_row gt_left">Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2168,7 +2167,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_9</td>
+<td headers="Variable" class="gt_row gt_left">Wirkt unglücklich oder traurig</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.5</td>
@@ -2180,7 +2179,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_10</td>
+<td headers="Variable" class="gt_row gt_left">Klammert sich an Erwachsene</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2192,7 +2191,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_11</td>
+<td headers="Variable" class="gt_row gt_left">Verhält sich nervös</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2204,7 +2203,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_12</td>
+<td headers="Variable" class="gt_row gt_left">Verhält sich ängstlich</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2216,7 +2215,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_13</td>
+<td headers="Variable" class="gt_row gt_left">Behauptet sich nicht gegenüber anderen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2228,7 +2227,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_14</td>
+<td headers="Variable" class="gt_row gt_left">Verhält sich übermäßig schüchtern</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.3</td>
@@ -2240,7 +2239,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_15</td>
+<td headers="Variable" class="gt_row gt_left">Beklagt sich oder jammert</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2252,7 +2251,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_16</td>
+<td headers="Variable" class="gt_row gt_left">Beteiligt sich nicht an Gruppenaktionen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2264,7 +2263,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_17</td>
+<td headers="Variable" class="gt_row gt_left">Macht sich selbst schlecht</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2276,7 +2275,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_19</td>
+<td headers="Variable" class="gt_row gt_left">Weint oder ist weinerlich</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.2</td>
@@ -2288,7 +2287,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_23</td>
+<td headers="Variable" class="gt_row gt_left">Macht sich ständig Sorgen</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -2300,7 +2299,7 @@ replace them with NA:</p>
 <td headers="MAD" class="gt_row gt_center">0</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">itrf_I_24</td>
+<td headers="Variable" class="gt_row gt_left">Lässt sich langsam auf neue Personen ein</td>
 <td headers="Valid" class="gt_row gt_center">4772</td>
 <td headers="Missing" class="gt_row gt_center">4</td>
 <td headers="Mean" class="gt_row gt_center">0.4</td>
@@ -3529,7 +3528,7 @@ description.</p>
 <td headers="Loadings  MR3" class="gt_row gt_center"></td>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
-<td headers="Loadings  Communalities" class="gt_row gt_center">0.71</td>
+<td headers="Loadings  Communalities" class="gt_row gt_center">0.7</td>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.01</td>
 </tr>
 <tr>
@@ -3610,7 +3609,7 @@ description.</p>
 <td headers="Loadings  MR3" class="gt_row gt_center">0.8</td>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
-<td headers="Loadings  Communalities" class="gt_row gt_center">0.68</td>
+<td headers="Loadings  Communalities" class="gt_row gt_center">0.67</td>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
 </tr>
 <tr>
@@ -3632,15 +3631,6 @@ description.</p>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.07</td>
 </tr>
 <tr>
-<td headers="Loadings  Variables" class="gt_row gt_left">(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
-<td headers="Loadings  MR1" class="gt_row gt_center"></td>
-<td headers="Loadings  MR3" class="gt_row gt_center">0.73</td>
-<td headers="Loadings  MR2" class="gt_row gt_center"></td>
-<td headers="Loadings  MR4" class="gt_row gt_center"></td>
-<td headers="Loadings  Communalities" class="gt_row gt_center">0.61</td>
-<td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
-</tr>
-<tr>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Ext_APD: Nimmt Materialien, die zu Hause benötigt werden, nicht mit</td>
 <td headers="Loadings  MR1" class="gt_row gt_center"></td>
 <td headers="Loadings  MR3" class="gt_row gt_center">0.73</td>
@@ -3650,13 +3640,22 @@ description.</p>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
 </tr>
 <tr>
+<td headers="Loadings  Variables" class="gt_row gt_left">(+)Ext_APD: Kontrolliert seine eigene Arbeit nicht</td>
+<td headers="Loadings  MR1" class="gt_row gt_center"></td>
+<td headers="Loadings  MR3" class="gt_row gt_center">0.73</td>
+<td headers="Loadings  MR2" class="gt_row gt_center"></td>
+<td headers="Loadings  MR4" class="gt_row gt_center"></td>
+<td headers="Loadings  Communalities" class="gt_row gt_center">0.61</td>
+<td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
+</tr>
+<tr>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Ext_APD: Beginnt mit der Aufgabenbearbeitung nicht selbstständig</td>
 <td headers="Loadings  MR1" class="gt_row gt_center"></td>
 <td headers="Loadings  MR3" class="gt_row gt_center">0.72</td>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
 <td headers="Loadings  Communalities" class="gt_row gt_center">0.61</td>
-<td headers="Loadings  Complexity" class="gt_row gt_center">1.04</td>
+<td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
 </tr>
 <tr>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Ext_APD: Beteiligt sich nicht am Unterricht</td>
@@ -3698,9 +3697,9 @@ description.</p>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Int_SW: Verbringt zu viel Zeit alleine</td>
 <td headers="Loadings  MR1" class="gt_row gt_center"></td>
 <td headers="Loadings  MR3" class="gt_row gt_center"></td>
-<td headers="Loadings  MR2" class="gt_row gt_center">0.67</td>
+<td headers="Loadings  MR2" class="gt_row gt_center">0.66</td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
-<td headers="Loadings  Communalities" class="gt_row gt_center">0.51</td>
+<td headers="Loadings  Communalities" class="gt_row gt_center">0.5</td>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.03</td>
 </tr>
 <tr>
@@ -3716,10 +3715,10 @@ description.</p>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Int_SW: Verhält sich übermäßig schüchtern</td>
 <td headers="Loadings  MR1" class="gt_row gt_center"></td>
 <td headers="Loadings  MR3" class="gt_row gt_center"></td>
-<td headers="Loadings  MR2" class="gt_row gt_center">0.54</td>
+<td headers="Loadings  MR2" class="gt_row gt_center">0.55</td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
 <td headers="Loadings  Communalities" class="gt_row gt_center">0.45</td>
-<td headers="Loadings  Complexity" class="gt_row gt_center">1.85</td>
+<td headers="Loadings  Complexity" class="gt_row gt_center">1.84</td>
 </tr>
 <tr>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Int_SW: Behauptet sich nicht gegenüber anderen</td>
@@ -3737,7 +3736,7 @@ description.</p>
 <td headers="Loadings  MR2" class="gt_row gt_center">0.47</td>
 <td headers="Loadings  MR4" class="gt_row gt_center"></td>
 <td headers="Loadings  Communalities" class="gt_row gt_center"></td>
-<td headers="Loadings  Complexity" class="gt_row gt_center">1.47</td>
+<td headers="Loadings  Complexity" class="gt_row gt_center">1.48</td>
 </tr>
 <tr>
 <td headers="Loadings  Variables" class="gt_row gt_left">(+)Int_AD: Beschwert sich über Kopfschmerzen oder Bauchschmerzen</td>
@@ -3753,7 +3752,7 @@ description.</p>
 <td headers="Loadings  MR1" class="gt_row gt_center"></td>
 <td headers="Loadings  MR3" class="gt_row gt_center"></td>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
-<td headers="Loadings  MR4" class="gt_row gt_center">0.72</td>
+<td headers="Loadings  MR4" class="gt_row gt_center">0.71</td>
 <td headers="Loadings  Communalities" class="gt_row gt_center">0.54</td>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.01</td>
 </tr>
@@ -3808,7 +3807,7 @@ description.</p>
 <td headers="Loadings  MR3" class="gt_row gt_center"></td>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
 <td headers="Loadings  MR4" class="gt_row gt_center">0.47</td>
-<td headers="Loadings  Communalities" class="gt_row gt_center">0.51</td>
+<td headers="Loadings  Communalities" class="gt_row gt_center">0.5</td>
 <td headers="Loadings  Complexity" class="gt_row gt_center">1.82</td>
 </tr>
 <tr>
@@ -3836,7 +3835,7 @@ description.</p>
 <td headers="Loadings  MR2" class="gt_row gt_center"></td>
 <td headers="Loadings  MR4" class="gt_row gt_center">0.4</td>
 <td headers="Loadings  Communalities" class="gt_row gt_center"></td>
-<td headers="Loadings  Complexity" class="gt_row gt_center">1.7</td>
+<td headers="Loadings  Complexity" class="gt_row gt_center">1.71</td>
 </tr>
 <tr class="gt_group_heading_row">
 <th colspan="7" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;Variances&lt;/span&gt;"><span class="gt_from_md">Variances</span></th>
@@ -3845,7 +3844,7 @@ description.</p>
 <td headers="Variances  Variables" class="gt_row gt_left">Eigenvalues</td>
 <td headers="Variances  MR1" class="gt_row gt_center">6</td>
 <td headers="Variances  MR3" class="gt_row gt_center">4.8</td>
-<td headers="Variances  MR2" class="gt_row gt_center">4.54</td>
+<td headers="Variances  MR2" class="gt_row gt_center">4.53</td>
 <td headers="Variances  MR4" class="gt_row gt_center">4.35</td>
 <td headers="Variances  Communalities" class="gt_row gt_center"></td>
 <td headers="Variances  Complexity" class="gt_row gt_center"></td>
@@ -4382,7 +4381,7 @@ description.</p>
 <td headers="Scale" class="gt_row gt_left">Anxious/Depressed</td>
 <td headers="items" class="gt_row gt_center">8</td>
 <td headers="cases" class="gt_row gt_center">[4776, 4776]</td>
-<td headers="Raw" class="gt_row gt_center">.91 [.91, .91]</td>
+<td headers="Raw" class="gt_row gt_center">.91 [.90, .91]</td>
 <td headers="Standardized" class="gt_row gt_center">.91 [.91, .91]</td>
 <td headers="Homogeneity" class="gt_row gt_center">.56</td>
 <td headers="Discriminations" class="gt_row gt_center">[.53, .78]</td>
@@ -4400,7 +4399,7 @@ description.</p>
 <td headers="Discriminations" class="gt_row gt_center">[.68, .81]</td>
 <td headers="Means" class="gt_row gt_center">[0.35, 0.83]</td>
 <td headers="SDs" class="gt_row gt_center">[0.72, 0.96]</td>
-<td headers="|Loadings|" class="gt_row gt_center">[.70, .85]</td>
+<td headers="|Loadings|" class="gt_row gt_center">[.69, .85]</td>
 </tr>
 <tr>
 <td headers="Scale" class="gt_row gt_left">Socially Withdrawn</td>
@@ -4408,7 +4407,7 @@ description.</p>
 <td headers="cases" class="gt_row gt_center">[4772, 4772]</td>
 <td headers="Raw" class="gt_row gt_center">.88 [.87, .88]</td>
 <td headers="Standardized" class="gt_row gt_center">.88 [.88, .89]</td>
-<td headers="Homogeneity" class="gt_row gt_center">.49</td>
+<td headers="Homogeneity" class="gt_row gt_center">.48</td>
 <td headers="Discriminations" class="gt_row gt_center">[.53, .78]</td>
 <td headers="Means" class="gt_row gt_center">[0.21, 0.43]</td>
 <td headers="SDs" class="gt_row gt_center">[0.51, 0.76]</td>
@@ -4887,19 +4886,20 @@ description.</p>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading">
-<td colspan="5" class="gt_heading gt_title gt_font_normal gt_bottom_border" style><span class="gt_from_md"><strong>Table</strong><br><em>Item analysis</em></span></td>
+<td colspan="6" class="gt_heading gt_title gt_font_normal gt_bottom_border" style><span class="gt_from_md"><strong>Table</strong><br><em>Item analysis</em></span></td>
     </tr>
 <tr class="gt_col_headings">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Labels">Labels</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="mean"><span class="gt_from_md"><em>M</em></span></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="sd"><span class="gt_from_md"><em>SD</em></span></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="r.drop"><i>r<sub>it</sub></i></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="alpha_dropped"><i>ΔAlpha</i></th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="loadings">Loadings</th>
     </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Anxious/Depressed&lt;/strong&gt;&lt;br /&gt;
+<th colspan="6" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Anxious/Depressed&lt;/strong&gt;&lt;br /&gt;
 &lt;em&gt;n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Anxious/Depressed</strong><br><em>n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
@@ -4912,6 +4912,8 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.74</td>
 <td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.77</td>
 </tr>
 <tr>
@@ -4920,9 +4922,11 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.76</td>
 <td headers="**Anxious/Depressed**  
-*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.97</td>
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.98</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.75</td>
+<td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.02</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.78</td>
 </tr>
@@ -4930,11 +4934,13 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_3</td>
 <td headers="**Anxious/Depressed**  
-*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.57</td>
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.58</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.90</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.75</td>
+<td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.02</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.80</td>
 </tr>
@@ -4942,11 +4948,13 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  Labels" class="gt_row gt_left">itrf_E_4</td>
 <td headers="**Anxious/Depressed**  
-*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.58</td>
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  mean" class="gt_row gt_center">0.57</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.86</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.78</td>
+<td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.02</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.82</td>
 </tr>
@@ -4960,6 +4968,8 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.74</td>
 <td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.78</td>
 </tr>
 <tr>
@@ -4971,6 +4981,8 @@ description.</p>
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  sd" class="gt_row gt_center">0.87</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.69</td>
+<td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.74</td>
 </tr>
@@ -4984,6 +4996,8 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.71</td>
 <td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.75</td>
 </tr>
 <tr>
@@ -4996,10 +5010,12 @@ description.</p>
 <td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  r.drop" class="gt_row gt_center">0.53</td>
 <td headers="**Anxious/Depressed**  
+*n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  alpha_dropped" class="gt_row gt_center">0.00</td>
+<td headers="**Anxious/Depressed**  
 *n = 4776; Alpha = .91; Std. alpha = .91; Homogeneity = .56*  loadings" class="gt_row gt_center">0.55</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Oppositional/Disruptive&lt;/strong&gt;&lt;br /&gt;
+<th colspan="6" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Oppositional/Disruptive&lt;/strong&gt;&lt;br /&gt;
 &lt;em&gt;n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Oppositional/Disruptive</strong><br><em>n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
@@ -5011,6 +5027,8 @@ description.</p>
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.91</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.76</td>
+<td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.79</td>
 </tr>
@@ -5024,6 +5042,8 @@ description.</p>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.79</td>
 <td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.82</td>
 </tr>
 <tr>
@@ -5035,6 +5055,8 @@ description.</p>
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.90</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
+<td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.84</td>
 </tr>
@@ -5048,6 +5070,8 @@ description.</p>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.73</td>
 <td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">0.00</td>
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.75</td>
 </tr>
 <tr>
@@ -5059,6 +5083,8 @@ description.</p>
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.79</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.78</td>
+<td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.81</td>
 </tr>
@@ -5072,6 +5098,8 @@ description.</p>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
 <td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.84</td>
 </tr>
 <tr>
@@ -5083,6 +5111,8 @@ description.</p>
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  sd" class="gt_row gt_center">0.81</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.71</td>
+<td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">0.00</td>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.73</td>
 </tr>
@@ -5096,6 +5126,8 @@ description.</p>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.81</td>
 <td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.85</td>
 </tr>
 <tr>
@@ -5108,110 +5140,128 @@ description.</p>
 <td headers="**Oppositional/Disruptive**  
 *n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  r.drop" class="gt_row gt_center">0.68</td>
 <td headers="**Oppositional/Disruptive**  
-*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.70</td>
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  alpha_dropped" class="gt_row gt_center">0.00</td>
+<td headers="**Oppositional/Disruptive**  
+*n = 4776; Alpha = .94; Std. alpha = .94; Homogeneity = .63*  loadings" class="gt_row gt_center">0.69</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Socially Withdrawn&lt;/strong&gt;&lt;br /&gt;
-&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Socially Withdrawn</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49</em></span></th>
+<th colspan="6" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Socially Withdrawn&lt;/strong&gt;&lt;br /&gt;
+&lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Socially Withdrawn</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_1</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_1</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.38</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.38</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.71</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.71</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.65</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.65</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.73</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.02</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.72</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_4</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_4</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.31</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.31</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.63</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.63</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.78</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.78</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.86</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.03</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.86</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_5</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_5</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.24</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.24</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.59</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.59</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.72</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.72</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.80</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.02</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.80</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_6</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_6</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.21</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.21</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.51</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.51</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.72</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.72</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.79</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.02</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.79</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_13</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_13</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.42</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.42</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.72</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.72</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.56</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.56</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.58</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.58</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_14</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_14</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.35</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.35</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.69</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.69</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.56</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.56</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.57</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.57</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_16</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_16</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.43</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.43</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.76</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.76</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.66</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.66</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.71</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">-0.02</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.71</td>
 </tr>
 <tr>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  Labels" class="gt_row gt_left">itrf_I_24</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  Labels" class="gt_row gt_left">itrf_I_24</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  mean" class="gt_row gt_center">0.38</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  mean" class="gt_row gt_center">0.38</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  sd" class="gt_row gt_center">0.71</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  sd" class="gt_row gt_center">0.71</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  r.drop" class="gt_row gt_center">0.53</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  r.drop" class="gt_row gt_center">0.53</td>
 <td headers="**Socially Withdrawn**  
-*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .49*  loadings" class="gt_row gt_center">0.56</td>
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  alpha_dropped" class="gt_row gt_center">0.00</td>
+<td headers="**Socially Withdrawn**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .48*  loadings" class="gt_row gt_center">0.56</td>
 </tr>
 <tr class="gt_group_heading_row">
-<th colspan="5" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Academic Productivity/Disorganization&lt;/strong&gt;&lt;br /&gt;
+<th colspan="6" class="gt_group_heading" style="text-align: center;" scope="colgroup" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Academic Productivity/Disorganization&lt;/strong&gt;&lt;br /&gt;
 &lt;em&gt;n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41&lt;/em&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Academic Productivity/Disorganization</strong><br><em>n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41</em></span></th>
     </tr>
 <tr class="gt_row_group_first">
@@ -5223,6 +5273,8 @@ description.</p>
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.60</td>
+<td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.65</td>
 </tr>
@@ -5236,6 +5288,8 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.64</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.69</td>
 </tr>
 <tr>
@@ -5247,6 +5301,8 @@ description.</p>
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.61</td>
+<td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.66</td>
 </tr>
@@ -5260,6 +5316,8 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.64</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.68</td>
 </tr>
 <tr>
@@ -5271,6 +5329,8 @@ description.</p>
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.66</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.52</td>
+<td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.56</td>
 </tr>
@@ -5284,6 +5344,8 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.52</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.55</td>
 </tr>
 <tr>
@@ -5295,6 +5357,8 @@ description.</p>
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.69</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.56</td>
+<td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.60</td>
 </tr>
@@ -5308,6 +5372,8 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.65</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.70</td>
 </tr>
 <tr>
@@ -5319,6 +5385,8 @@ description.</p>
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  sd" class="gt_row gt_center">0.71</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.56</td>
+<td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.60</td>
 </tr>
@@ -5332,6 +5400,8 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.57</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.01</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.62</td>
 </tr>
 <tr>
@@ -5344,9 +5414,15 @@ description.</p>
 <td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  r.drop" class="gt_row gt_center">0.69</td>
 <td headers="**Academic Productivity/Disorganization**  
+*n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  alpha_dropped" class="gt_row gt_center">-0.02</td>
+<td headers="**Academic Productivity/Disorganization**  
 *n = 4772; Alpha = .88; Std. alpha = .88; Homogeneity = .41*  loadings" class="gt_row gt_center">0.74</td>
 </tr>
 </tbody>
+<tfoot><tr class="gt_footnotes">
+<td class="gt_footnote" colspan="6"> <span class="gt_from_md"><em>Note.</em> <i>r</i><sub>it</sub> is the item-total correlation. Homogeneity is the average inter-item correlation. Difficulty is mean rescaled to [0,1]. ΔAlpha is the change in raw alpha when the item is dropped. Loadings are based on a one factor exploratory factor analysis.</span>
+</td>
+    </tr></tfoot>
 </table>
 </div>
 <p>and even a confirmatory factor analysis with the use of the lavaan
@@ -5364,23 +5440,23 @@ package.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">fit</span> <span class="op">&lt;-</span> <span class="fu">lavaan</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/lavaan/man/cfa.html" class="external-link">cfa</a></span><span class="op">(</span>model <span class="op">=</span> <span class="va">model</span>, data <span class="op">=</span> <span class="va">dat</span><span class="op">)</span></span>
 <span><span class="fu">wmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wmisc/man/nice_sem.html" class="external-link">nice_sem</a></span><span class="op">(</span><span class="va">fit</span><span class="op">)</span></span></code></pre></div>
-<div id="yfoahjacsh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yfoahjacsh table {
+<div id="acshjjucax" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#acshjjucax table {
   font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yfoahjacsh thead, #yfoahjacsh tbody, #yfoahjacsh tfoot, #yfoahjacsh tr, #yfoahjacsh td, #yfoahjacsh th {
+#acshjjucax thead, #acshjjucax tbody, #acshjjucax tfoot, #acshjjucax tr, #acshjjucax td, #acshjjucax th {
   border-style: none;
 }
 
-#yfoahjacsh p {
+#acshjjucax p {
   margin: 0;
   padding: 0;
 }
 
-#yfoahjacsh .gt_table {
+#acshjjucax .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -5406,12 +5482,12 @@ package.</p>
   border-left-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_caption {
+#acshjjucax .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yfoahjacsh .gt_title {
+#acshjjucax .gt_title {
   color: #333333;
   font-size: 100%;
   font-weight: initial;
@@ -5423,7 +5499,7 @@ package.</p>
   border-bottom-width: 0;
 }
 
-#yfoahjacsh .gt_subtitle {
+#acshjjucax .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -5435,7 +5511,7 @@ package.</p>
   border-top-width: 0;
 }
 
-#yfoahjacsh .gt_heading {
+#acshjjucax .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -5447,13 +5523,13 @@ package.</p>
   border-right-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_bottom_border {
+#acshjjucax .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
 }
 
-#yfoahjacsh .gt_col_headings {
+#acshjjucax .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -5468,7 +5544,7 @@ package.</p>
   border-right-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_col_heading {
+#acshjjucax .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5488,7 +5564,7 @@ package.</p>
   overflow-x: hidden;
 }
 
-#yfoahjacsh .gt_column_spanner_outer {
+#acshjjucax .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5500,15 +5576,15 @@ package.</p>
   padding-right: 4px;
 }
 
-#yfoahjacsh .gt_column_spanner_outer:first-child {
+#acshjjucax .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yfoahjacsh .gt_column_spanner_outer:last-child {
+#acshjjucax .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yfoahjacsh .gt_column_spanner {
+#acshjjucax .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -5520,11 +5596,11 @@ package.</p>
   width: 100%;
 }
 
-#yfoahjacsh .gt_spanner_row {
+#acshjjucax .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yfoahjacsh .gt_group_heading {
+#acshjjucax .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5550,7 +5626,7 @@ package.</p>
   text-align: left;
 }
 
-#yfoahjacsh .gt_empty_group_heading {
+#acshjjucax .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -5565,15 +5641,15 @@ package.</p>
   vertical-align: middle;
 }
 
-#yfoahjacsh .gt_from_md > :first-child {
+#acshjjucax .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yfoahjacsh .gt_from_md > :last-child {
+#acshjjucax .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yfoahjacsh .gt_row {
+#acshjjucax .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5592,7 +5668,7 @@ package.</p>
   overflow-x: hidden;
 }
 
-#yfoahjacsh .gt_stub {
+#acshjjucax .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5605,7 +5681,7 @@ package.</p>
   padding-right: 5px;
 }
 
-#yfoahjacsh .gt_stub_row_group {
+#acshjjucax .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -5619,15 +5695,15 @@ package.</p>
   vertical-align: top;
 }
 
-#yfoahjacsh .gt_row_group_first td {
+#acshjjucax .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yfoahjacsh .gt_row_group_first th {
+#acshjjucax .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yfoahjacsh .gt_summary_row {
+#acshjjucax .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5637,16 +5713,16 @@ package.</p>
   padding-right: 5px;
 }
 
-#yfoahjacsh .gt_first_summary_row {
+#acshjjucax .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_first_summary_row.thick {
+#acshjjucax .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yfoahjacsh .gt_last_summary_row {
+#acshjjucax .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5656,7 +5732,7 @@ package.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_grand_summary_row {
+#acshjjucax .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -5666,7 +5742,7 @@ package.</p>
   padding-right: 5px;
 }
 
-#yfoahjacsh .gt_first_grand_summary_row {
+#acshjjucax .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5676,7 +5752,7 @@ package.</p>
   border-top-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_last_grand_summary_row_top {
+#acshjjucax .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -5686,11 +5762,11 @@ package.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_striped {
+#acshjjucax .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yfoahjacsh .gt_table_body {
+#acshjjucax .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -5699,7 +5775,7 @@ package.</p>
   border-bottom-color: #000000;
 }
 
-#yfoahjacsh .gt_footnotes {
+#acshjjucax .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5713,7 +5789,7 @@ package.</p>
   border-right-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_footnote {
+#acshjjucax .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -5722,7 +5798,7 @@ package.</p>
   padding-right: 5px;
 }
 
-#yfoahjacsh .gt_sourcenotes {
+#acshjjucax .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -5736,7 +5812,7 @@ package.</p>
   border-right-color: #D3D3D3;
 }
 
-#yfoahjacsh .gt_sourcenote {
+#acshjjucax .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -5744,72 +5820,72 @@ package.</p>
   padding-right: 5px;
 }
 
-#yfoahjacsh .gt_left {
+#acshjjucax .gt_left {
   text-align: left;
 }
 
-#yfoahjacsh .gt_center {
+#acshjjucax .gt_center {
   text-align: center;
 }
 
-#yfoahjacsh .gt_right {
+#acshjjucax .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yfoahjacsh .gt_font_normal {
+#acshjjucax .gt_font_normal {
   font-weight: normal;
 }
 
-#yfoahjacsh .gt_font_bold {
+#acshjjucax .gt_font_bold {
   font-weight: bold;
 }
 
-#yfoahjacsh .gt_font_italic {
+#acshjjucax .gt_font_italic {
   font-style: italic;
 }
 
-#yfoahjacsh .gt_super {
+#acshjjucax .gt_super {
   font-size: 65%;
 }
 
-#yfoahjacsh .gt_footnote_marks {
+#acshjjucax .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yfoahjacsh .gt_asterisk {
+#acshjjucax .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yfoahjacsh .gt_indent_1 {
+#acshjjucax .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yfoahjacsh .gt_indent_2 {
+#acshjjucax .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yfoahjacsh .gt_indent_3 {
+#acshjjucax .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yfoahjacsh .gt_indent_4 {
+#acshjjucax .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yfoahjacsh .gt_indent_5 {
+#acshjjucax .gt_indent_5 {
   text-indent: 25px;
 }
 
-#yfoahjacsh .katex-display {
+#acshjjucax .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#yfoahjacsh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#acshjjucax div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -5843,7 +5919,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.75</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.77</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">110.64</td>
+<td headers="Latent variables  z" class="gt_row gt_center">110.77</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5852,7 +5928,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.76</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.79</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">120.04</td>
+<td headers="Latent variables  z" class="gt_row gt_center">120.02</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5861,7 +5937,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.79</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">136.54</td>
+<td headers="Latent variables  z" class="gt_row gt_center">135.58</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5870,16 +5946,16 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.83</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">149.01</td>
+<td headers="Latent variables  z" class="gt_row gt_center">148.15</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Latent variables  parameter" class="gt_row gt_left">Anxious_Depressed → itrf_E_5</td>
 <td headers="Latent variables  Beta" class="gt_row gt_center">0.78</td>
-<td headers="Latent variables  lower" class="gt_row gt_center">0.77</td>
+<td headers="Latent variables  lower" class="gt_row gt_center">0.76</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.79</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">120.74</td>
+<td headers="Latent variables  z" class="gt_row gt_center">120.22</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5888,7 +5964,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.74</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.76</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">106.65</td>
+<td headers="Latent variables  z" class="gt_row gt_center">106.50</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5897,7 +5973,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.74</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.77</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">110.05</td>
+<td headers="Latent variables  z" class="gt_row gt_center">109.90</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5906,7 +5982,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.53</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.57</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">51.27</td>
+<td headers="Latent variables  z" class="gt_row gt_center">51.36</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5915,7 +5991,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.79</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">141.69</td>
+<td headers="Latent variables  z" class="gt_row gt_center">141.76</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5924,16 +6000,16 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.83</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">155.28</td>
+<td headers="Latent variables  z" class="gt_row gt_center">155.03</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Latent variables  parameter" class="gt_row gt_left">Oppositional_Disruptive → itrf_E_8</td>
 <td headers="Latent variables  Beta" class="gt_row gt_center">0.85</td>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.84</td>
-<td headers="Latent variables  upper" class="gt_row gt_center">0.86</td>
+<td headers="Latent variables  upper" class="gt_row gt_center">0.85</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.00</td>
-<td headers="Latent variables  z" class="gt_row gt_center">182.62</td>
+<td headers="Latent variables  z" class="gt_row gt_center">181.97</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5942,7 +6018,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.74</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.77</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">112.60</td>
+<td headers="Latent variables  z" class="gt_row gt_center">112.49</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5951,7 +6027,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.83</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">155.11</td>
+<td headers="Latent variables  z" class="gt_row gt_center">154.79</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5960,7 +6036,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.82</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.84</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.00</td>
-<td headers="Latent variables  z" class="gt_row gt_center">168.82</td>
+<td headers="Latent variables  z" class="gt_row gt_center">168.90</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5969,7 +6045,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.71</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.74</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">97.26</td>
+<td headers="Latent variables  z" class="gt_row gt_center">97.22</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5978,7 +6054,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.83</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.85</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.00</td>
-<td headers="Latent variables  z" class="gt_row gt_center">176.98</td>
+<td headers="Latent variables  z" class="gt_row gt_center">176.69</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -5987,16 +6063,16 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.67</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.71</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">85.94</td>
+<td headers="Latent variables  z" class="gt_row gt_center">85.80</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Latent variables  parameter" class="gt_row gt_left">Socially_Withdrawn → itrf_I_1</td>
-<td headers="Latent variables  Beta" class="gt_row gt_center">0.75</td>
-<td headers="Latent variables  lower" class="gt_row gt_center">0.74</td>
+<td headers="Latent variables  Beta" class="gt_row gt_center">0.74</td>
+<td headers="Latent variables  lower" class="gt_row gt_center">0.73</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.76</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">104.75</td>
+<td headers="Latent variables  z" class="gt_row gt_center">102.48</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6005,16 +6081,16 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.85</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.87</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.00</td>
-<td headers="Latent variables  z" class="gt_row gt_center">179.27</td>
+<td headers="Latent variables  z" class="gt_row gt_center">179.03</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Latent variables  parameter" class="gt_row gt_left">Socially_Withdrawn → itrf_I_5</td>
 <td headers="Latent variables  Beta" class="gt_row gt_center">0.82</td>
-<td headers="Latent variables  lower" class="gt_row gt_center">0.81</td>
+<td headers="Latent variables  lower" class="gt_row gt_center">0.80</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.83</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">142.59</td>
+<td headers="Latent variables  z" class="gt_row gt_center">141.60</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6023,7 +6099,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.78</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.81</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">127.36</td>
+<td headers="Latent variables  z" class="gt_row gt_center">127.41</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6041,7 +6117,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.51</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.56</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">48.31</td>
+<td headers="Latent variables  z" class="gt_row gt_center">48.38</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6050,7 +6126,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.69</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.72</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">87.14</td>
+<td headers="Latent variables  z" class="gt_row gt_center">87.13</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6059,7 +6135,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.54</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.58</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">52.10</td>
+<td headers="Latent variables  z" class="gt_row gt_center">52.14</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6068,7 +6144,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.62</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.66</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">66.96</td>
+<td headers="Latent variables  z" class="gt_row gt_center">66.95</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6077,7 +6153,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.67</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.70</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">79.31</td>
+<td headers="Latent variables  z" class="gt_row gt_center">79.32</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6086,7 +6162,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.62</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.66</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">67.67</td>
+<td headers="Latent variables  z" class="gt_row gt_center">67.65</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6095,7 +6171,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.68</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.71</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">83.62</td>
+<td headers="Latent variables  z" class="gt_row gt_center">83.66</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6104,7 +6180,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.55</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.59</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">53.20</td>
+<td headers="Latent variables  z" class="gt_row gt_center">53.16</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6113,7 +6189,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.54</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.58</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">52.50</td>
+<td headers="Latent variables  z" class="gt_row gt_center">52.39</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6122,7 +6198,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.58</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.62</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">59.64</td>
+<td headers="Latent variables  z" class="gt_row gt_center">59.57</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6131,7 +6207,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.68</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.71</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">83.27</td>
+<td headers="Latent variables  z" class="gt_row gt_center">83.08</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6140,7 +6216,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.60</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.64</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">62.44</td>
+<td headers="Latent variables  z" class="gt_row gt_center">62.41</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6149,7 +6225,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.59</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.63</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">61.34</td>
+<td headers="Latent variables  z" class="gt_row gt_center">61.29</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6158,7 +6234,7 @@ package.</p>
 <td headers="Latent variables  lower" class="gt_row gt_center">0.71</td>
 <td headers="Latent variables  upper" class="gt_row gt_center">0.74</td>
 <td headers="Latent variables  se" class="gt_row gt_center">0.01</td>
-<td headers="Latent variables  z" class="gt_row gt_center">94.33</td>
+<td headers="Latent variables  z" class="gt_row gt_center">94.21</td>
 <td headers="Latent variables  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr class="gt_group_heading_row">
@@ -6170,7 +6246,7 @@ package.</p>
 <td headers="Covariances  lower" class="gt_row gt_center">0.47</td>
 <td headers="Covariances  upper" class="gt_row gt_center">0.52</td>
 <td headers="Covariances  se" class="gt_row gt_center">0.01</td>
-<td headers="Covariances  z" class="gt_row gt_center">41.49</td>
+<td headers="Covariances  z" class="gt_row gt_center">41.55</td>
 <td headers="Covariances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6179,7 +6255,7 @@ package.</p>
 <td headers="Covariances  lower" class="gt_row gt_center">0.32</td>
 <td headers="Covariances  upper" class="gt_row gt_center">0.38</td>
 <td headers="Covariances  se" class="gt_row gt_center">0.01</td>
-<td headers="Covariances  z" class="gt_row gt_center">24.92</td>
+<td headers="Covariances  z" class="gt_row gt_center">24.94</td>
 <td headers="Covariances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6188,7 +6264,7 @@ package.</p>
 <td headers="Covariances  lower" class="gt_row gt_center">0.37</td>
 <td headers="Covariances  upper" class="gt_row gt_center">0.42</td>
 <td headers="Covariances  se" class="gt_row gt_center">0.01</td>
-<td headers="Covariances  z" class="gt_row gt_center">28.48</td>
+<td headers="Covariances  z" class="gt_row gt_center">28.52</td>
 <td headers="Covariances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6204,18 +6280,18 @@ package.</p>
 <td headers="Covariances  parameter" class="gt_row gt_left">Oppositional_Disruptive ↔ Academic_Productivity_Disorganization</td>
 <td headers="Covariances  Beta" class="gt_row gt_center">0.43</td>
 <td headers="Covariances  lower" class="gt_row gt_center">0.40</td>
-<td headers="Covariances  upper" class="gt_row gt_center">0.46</td>
+<td headers="Covariances  upper" class="gt_row gt_center">0.45</td>
 <td headers="Covariances  se" class="gt_row gt_center">0.01</td>
-<td headers="Covariances  z" class="gt_row gt_center">32.61</td>
+<td headers="Covariances  z" class="gt_row gt_center">32.58</td>
 <td headers="Covariances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Covariances  parameter" class="gt_row gt_left">Socially_Withdrawn ↔ Academic_Productivity_Disorganization</td>
 <td headers="Covariances  Beta" class="gt_row gt_center">0.57</td>
-<td headers="Covariances  lower" class="gt_row gt_center">0.54</td>
+<td headers="Covariances  lower" class="gt_row gt_center">0.55</td>
 <td headers="Covariances  upper" class="gt_row gt_center">0.59</td>
 <td headers="Covariances  se" class="gt_row gt_center">0.01</td>
-<td headers="Covariances  z" class="gt_row gt_center">49.43</td>
+<td headers="Covariances  z" class="gt_row gt_center">49.49</td>
 <td headers="Covariances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr class="gt_group_heading_row">
@@ -6225,9 +6301,9 @@ package.</p>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_E_1</td>
 <td headers="Variances  Beta" class="gt_row gt_center">0.42</td>
 <td headers="Variances  lower" class="gt_row gt_center">0.40</td>
-<td headers="Variances  upper" class="gt_row gt_center">0.45</td>
+<td headers="Variances  upper" class="gt_row gt_center">0.44</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">40.85</td>
+<td headers="Variances  z" class="gt_row gt_center">40.81</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6236,34 +6312,34 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.38</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.42</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">39.52</td>
+<td headers="Variances  z" class="gt_row gt_center">39.50</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_E_3</td>
-<td headers="Variances  Beta" class="gt_row gt_center">0.35</td>
+<td headers="Variances  Beta" class="gt_row gt_center">0.36</td>
 <td headers="Variances  lower" class="gt_row gt_center">0.34</td>
-<td headers="Variances  upper" class="gt_row gt_center">0.37</td>
+<td headers="Variances  upper" class="gt_row gt_center">0.38</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">37.52</td>
+<td headers="Variances  z" class="gt_row gt_center">37.60</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_E_4</td>
 <td headers="Variances  Beta" class="gt_row gt_center">0.33</td>
 <td headers="Variances  lower" class="gt_row gt_center">0.31</td>
-<td headers="Variances  upper" class="gt_row gt_center">0.34</td>
+<td headers="Variances  upper" class="gt_row gt_center">0.35</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">36.19</td>
+<td headers="Variances  z" class="gt_row gt_center">36.24</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_E_5</td>
 <td headers="Variances  Beta" class="gt_row gt_center">0.40</td>
 <td headers="Variances  lower" class="gt_row gt_center">0.38</td>
-<td headers="Variances  upper" class="gt_row gt_center">0.41</td>
+<td headers="Variances  upper" class="gt_row gt_center">0.42</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">39.43</td>
+<td headers="Variances  z" class="gt_row gt_center">39.47</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6272,7 +6348,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.42</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.46</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">41.46</td>
+<td headers="Variances  z" class="gt_row gt_center">41.47</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6290,7 +6366,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.67</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.72</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">59.09</td>
+<td headers="Variances  z" class="gt_row gt_center">59.02</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6299,7 +6375,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.34</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.37</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">39.33</td>
+<td headers="Variances  z" class="gt_row gt_center">39.32</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6308,7 +6384,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.31</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.35</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">38.17</td>
+<td headers="Variances  z" class="gt_row gt_center">38.18</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6317,7 +6393,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.27</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.30</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">36.20</td>
+<td headers="Variances  z" class="gt_row gt_center">36.23</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6326,7 +6402,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.41</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.45</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">42.54</td>
+<td headers="Variances  z" class="gt_row gt_center">42.55</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6335,7 +6411,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.31</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.35</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">38.18</td>
+<td headers="Variances  z" class="gt_row gt_center">38.20</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6344,7 +6420,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.29</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.32</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">37.14</td>
+<td headers="Variances  z" class="gt_row gt_center">37.13</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6362,7 +6438,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.28</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.31</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">36.58</td>
+<td headers="Variances  z" class="gt_row gt_center">36.59</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6371,16 +6447,16 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.50</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.55</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">47.19</td>
+<td headers="Variances  z" class="gt_row gt_center">47.22</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_I_1</td>
-<td headers="Variances  Beta" class="gt_row gt_center">0.44</td>
-<td headers="Variances  lower" class="gt_row gt_center">0.42</td>
-<td headers="Variances  upper" class="gt_row gt_center">0.46</td>
+<td headers="Variances  Beta" class="gt_row gt_center">0.45</td>
+<td headers="Variances  lower" class="gt_row gt_center">0.43</td>
+<td headers="Variances  upper" class="gt_row gt_center">0.47</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">40.94</td>
+<td headers="Variances  z" class="gt_row gt_center">41.30</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6389,16 +6465,16 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.24</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.28</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">31.68</td>
+<td headers="Variances  z" class="gt_row gt_center">31.64</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
 <td headers="Variances  parameter" class="gt_row gt_left">itrf_I_5</td>
-<td headers="Variances  Beta" class="gt_row gt_center">0.33</td>
+<td headers="Variances  Beta" class="gt_row gt_center">0.34</td>
 <td headers="Variances  lower" class="gt_row gt_center">0.32</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.35</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">35.72</td>
+<td headers="Variances  z" class="gt_row gt_center">35.78</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6407,7 +6483,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.35</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.39</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">37.60</td>
+<td headers="Variances  z" class="gt_row gt_center">37.55</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6416,7 +6492,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.67</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.72</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">58.47</td>
+<td headers="Variances  z" class="gt_row gt_center">58.43</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6425,7 +6501,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.69</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.74</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">60.54</td>
+<td headers="Variances  z" class="gt_row gt_center">60.45</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6434,7 +6510,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.48</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.53</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">44.43</td>
+<td headers="Variances  z" class="gt_row gt_center">44.39</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6443,7 +6519,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.67</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.71</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">57.86</td>
+<td headers="Variances  z" class="gt_row gt_center">57.81</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6461,7 +6537,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.51</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.55</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">45.05</td>
+<td headers="Variances  z" class="gt_row gt_center">45.04</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6479,7 +6555,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.49</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.53</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">43.89</td>
+<td headers="Variances  z" class="gt_row gt_center">43.87</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6488,7 +6564,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.65</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.70</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">55.85</td>
+<td headers="Variances  z" class="gt_row gt_center">55.87</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6497,7 +6573,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.66</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.71</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">56.29</td>
+<td headers="Variances  z" class="gt_row gt_center">56.36</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6506,7 +6582,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.61</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.66</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">52.31</td>
+<td headers="Variances  z" class="gt_row gt_center">52.34</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6515,7 +6591,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.49</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.54</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">43.98</td>
+<td headers="Variances  z" class="gt_row gt_center">44.02</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6524,7 +6600,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.60</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.64</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">51.00</td>
+<td headers="Variances  z" class="gt_row gt_center">51.01</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6533,7 +6609,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.60</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.65</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">51.50</td>
+<td headers="Variances  z" class="gt_row gt_center">51.52</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6542,7 +6618,7 @@ package.</p>
 <td headers="Variances  lower" class="gt_row gt_center">0.45</td>
 <td headers="Variances  upper" class="gt_row gt_center">0.49</td>
 <td headers="Variances  se" class="gt_row gt_center">0.01</td>
-<td headers="Variances  z" class="gt_row gt_center">41.41</td>
+<td headers="Variances  z" class="gt_row gt_center">41.42</td>
 <td headers="Variances  p" class="gt_row gt_center">&lt;.001</td>
 </tr>
 <tr>
@@ -6604,7 +6680,7 @@ package.</p>
 </tr>
 <tr>
 <td headers="Modelfit  parameter" class="gt_row gt_left">Χ²(588) / p-value</td>
-<td headers="Modelfit  Beta" class="gt_row gt_center">21266.27</td>
+<td headers="Modelfit  Beta" class="gt_row gt_center">21213.65</td>
 <td headers="Modelfit  lower" class="gt_row gt_center">0.00</td>
 <td headers="Modelfit  upper" class="gt_row gt_center"><br></td>
 <td headers="Modelfit  se" class="gt_row gt_center"><br></td>
@@ -6658,7 +6734,7 @@ package.</p>
 </tr>
 <tr>
 <td headers="Modelfit  parameter" class="gt_row gt_left">AIC</td>
-<td headers="Modelfit  Beta" class="gt_row gt_center">304529.26</td>
+<td headers="Modelfit  Beta" class="gt_row gt_center">304933.08</td>
 <td headers="Modelfit  lower" class="gt_row gt_center"><br></td>
 <td headers="Modelfit  upper" class="gt_row gt_center"><br></td>
 <td headers="Modelfit  se" class="gt_row gt_center"><br></td>
@@ -6667,7 +6743,7 @@ package.</p>
 </tr>
 <tr>
 <td headers="Modelfit  parameter" class="gt_row gt_left">BIC</td>
-<td headers="Modelfit  Beta" class="gt_row gt_center">305033.97</td>
+<td headers="Modelfit  Beta" class="gt_row gt_center">305437.78</td>
 <td headers="Modelfit  lower" class="gt_row gt_center"><br></td>
 <td headers="Modelfit  upper" class="gt_row gt_center"><br></td>
 <td headers="Modelfit  se" class="gt_row gt_center"><br></td>
@@ -6695,23 +6771,23 @@ scales.</p>
 <code class="sourceCode R"><span><span class="va">dat</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"itrf_ext"</span>, <span class="st">"itrf_int"</span><span class="op">)</span><span class="op">]</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu"><a href="../reference/rename_items.html">rename_items</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> </span>
 <span>  <span class="fu">wmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wmisc/man/nice_descriptives.html" class="external-link">nice_descriptives</a></span><span class="op">(</span>round <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></code></pre></div>
-<div id="vsowgnmhyx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vsowgnmhyx table {
+<div id="kakivayhwc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#kakivayhwc table {
   font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vsowgnmhyx thead, #vsowgnmhyx tbody, #vsowgnmhyx tfoot, #vsowgnmhyx tr, #vsowgnmhyx td, #vsowgnmhyx th {
+#kakivayhwc thead, #kakivayhwc tbody, #kakivayhwc tfoot, #kakivayhwc tr, #kakivayhwc td, #kakivayhwc th {
   border-style: none;
 }
 
-#vsowgnmhyx p {
+#kakivayhwc p {
   margin: 0;
   padding: 0;
 }
 
-#vsowgnmhyx .gt_table {
+#kakivayhwc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -6737,12 +6813,12 @@ scales.</p>
   border-left-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_caption {
+#kakivayhwc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vsowgnmhyx .gt_title {
+#kakivayhwc .gt_title {
   color: #333333;
   font-size: 100%;
   font-weight: initial;
@@ -6754,7 +6830,7 @@ scales.</p>
   border-bottom-width: 0;
 }
 
-#vsowgnmhyx .gt_subtitle {
+#kakivayhwc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -6766,7 +6842,7 @@ scales.</p>
   border-top-width: 0;
 }
 
-#vsowgnmhyx .gt_heading {
+#kakivayhwc .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -6778,13 +6854,13 @@ scales.</p>
   border-right-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_bottom_border {
+#kakivayhwc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
 }
 
-#vsowgnmhyx .gt_col_headings {
+#kakivayhwc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -6799,7 +6875,7 @@ scales.</p>
   border-right-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_col_heading {
+#kakivayhwc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6819,7 +6895,7 @@ scales.</p>
   overflow-x: hidden;
 }
 
-#vsowgnmhyx .gt_column_spanner_outer {
+#kakivayhwc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6831,15 +6907,15 @@ scales.</p>
   padding-right: 4px;
 }
 
-#vsowgnmhyx .gt_column_spanner_outer:first-child {
+#kakivayhwc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vsowgnmhyx .gt_column_spanner_outer:last-child {
+#kakivayhwc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vsowgnmhyx .gt_column_spanner {
+#kakivayhwc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -6851,11 +6927,11 @@ scales.</p>
   width: 100%;
 }
 
-#vsowgnmhyx .gt_spanner_row {
+#kakivayhwc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vsowgnmhyx .gt_group_heading {
+#kakivayhwc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6881,7 +6957,7 @@ scales.</p>
   text-align: left;
 }
 
-#vsowgnmhyx .gt_empty_group_heading {
+#kakivayhwc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -6896,15 +6972,15 @@ scales.</p>
   vertical-align: middle;
 }
 
-#vsowgnmhyx .gt_from_md > :first-child {
+#kakivayhwc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vsowgnmhyx .gt_from_md > :last-child {
+#kakivayhwc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vsowgnmhyx .gt_row {
+#kakivayhwc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6923,7 +6999,7 @@ scales.</p>
   overflow-x: hidden;
 }
 
-#vsowgnmhyx .gt_stub {
+#kakivayhwc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6936,7 +7012,7 @@ scales.</p>
   padding-right: 5px;
 }
 
-#vsowgnmhyx .gt_stub_row_group {
+#kakivayhwc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -6950,15 +7026,15 @@ scales.</p>
   vertical-align: top;
 }
 
-#vsowgnmhyx .gt_row_group_first td {
+#kakivayhwc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vsowgnmhyx .gt_row_group_first th {
+#kakivayhwc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vsowgnmhyx .gt_summary_row {
+#kakivayhwc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6968,16 +7044,16 @@ scales.</p>
   padding-right: 5px;
 }
 
-#vsowgnmhyx .gt_first_summary_row {
+#kakivayhwc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_first_summary_row.thick {
+#kakivayhwc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vsowgnmhyx .gt_last_summary_row {
+#kakivayhwc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -6987,7 +7063,7 @@ scales.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_grand_summary_row {
+#kakivayhwc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -6997,7 +7073,7 @@ scales.</p>
   padding-right: 5px;
 }
 
-#vsowgnmhyx .gt_first_grand_summary_row {
+#kakivayhwc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7007,7 +7083,7 @@ scales.</p>
   border-top-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_last_grand_summary_row_top {
+#kakivayhwc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7017,11 +7093,11 @@ scales.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_striped {
+#kakivayhwc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vsowgnmhyx .gt_table_body {
+#kakivayhwc .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -7030,7 +7106,7 @@ scales.</p>
   border-bottom-color: #000000;
 }
 
-#vsowgnmhyx .gt_footnotes {
+#kakivayhwc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7044,7 +7120,7 @@ scales.</p>
   border-right-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_footnote {
+#kakivayhwc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7053,7 +7129,7 @@ scales.</p>
   padding-right: 5px;
 }
 
-#vsowgnmhyx .gt_sourcenotes {
+#kakivayhwc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7067,7 +7143,7 @@ scales.</p>
   border-right-color: #D3D3D3;
 }
 
-#vsowgnmhyx .gt_sourcenote {
+#kakivayhwc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7075,72 +7151,72 @@ scales.</p>
   padding-right: 5px;
 }
 
-#vsowgnmhyx .gt_left {
+#kakivayhwc .gt_left {
   text-align: left;
 }
 
-#vsowgnmhyx .gt_center {
+#kakivayhwc .gt_center {
   text-align: center;
 }
 
-#vsowgnmhyx .gt_right {
+#kakivayhwc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vsowgnmhyx .gt_font_normal {
+#kakivayhwc .gt_font_normal {
   font-weight: normal;
 }
 
-#vsowgnmhyx .gt_font_bold {
+#kakivayhwc .gt_font_bold {
   font-weight: bold;
 }
 
-#vsowgnmhyx .gt_font_italic {
+#kakivayhwc .gt_font_italic {
   font-style: italic;
 }
 
-#vsowgnmhyx .gt_super {
+#kakivayhwc .gt_super {
   font-size: 65%;
 }
 
-#vsowgnmhyx .gt_footnote_marks {
+#kakivayhwc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vsowgnmhyx .gt_asterisk {
+#kakivayhwc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vsowgnmhyx .gt_indent_1 {
+#kakivayhwc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vsowgnmhyx .gt_indent_2 {
+#kakivayhwc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vsowgnmhyx .gt_indent_3 {
+#kakivayhwc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vsowgnmhyx .gt_indent_4 {
+#kakivayhwc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vsowgnmhyx .gt_indent_5 {
+#kakivayhwc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#vsowgnmhyx .katex-display {
+#kakivayhwc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#vsowgnmhyx div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#kakivayhwc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -7206,24 +7282,24 @@ conversion.</p>
 raw-scores and corresponding norm-scores.</p>
 <p>Here is an example of such a table:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">ex_normtable_int</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">wmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wmisc/man/nice_table.default.html" class="external-link">nice_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<div id="swdrtousvo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#swdrtousvo table {
+<code class="sourceCode R"><span><span class="va">ex_normtable_int</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu">wmisc</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/wmisc/man/nice_table.default.html" class="external-link">nice_table</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div id="votjvtjbuy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#votjvtjbuy table {
   font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#swdrtousvo thead, #swdrtousvo tbody, #swdrtousvo tfoot, #swdrtousvo tr, #swdrtousvo td, #swdrtousvo th {
+#votjvtjbuy thead, #votjvtjbuy tbody, #votjvtjbuy tfoot, #votjvtjbuy tr, #votjvtjbuy td, #votjvtjbuy th {
   border-style: none;
 }
 
-#swdrtousvo p {
+#votjvtjbuy p {
   margin: 0;
   padding: 0;
 }
 
-#swdrtousvo .gt_table {
+#votjvtjbuy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7249,12 +7325,12 @@ raw-scores and corresponding norm-scores.</p>
   border-left-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_caption {
+#votjvtjbuy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#swdrtousvo .gt_title {
+#votjvtjbuy .gt_title {
   color: #333333;
   font-size: 100%;
   font-weight: initial;
@@ -7266,7 +7342,7 @@ raw-scores and corresponding norm-scores.</p>
   border-bottom-width: 0;
 }
 
-#swdrtousvo .gt_subtitle {
+#votjvtjbuy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7278,7 +7354,7 @@ raw-scores and corresponding norm-scores.</p>
   border-top-width: 0;
 }
 
-#swdrtousvo .gt_heading {
+#votjvtjbuy .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -7290,13 +7366,13 @@ raw-scores and corresponding norm-scores.</p>
   border-right-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_bottom_border {
+#votjvtjbuy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
 }
 
-#swdrtousvo .gt_col_headings {
+#votjvtjbuy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -7311,7 +7387,7 @@ raw-scores and corresponding norm-scores.</p>
   border-right-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_col_heading {
+#votjvtjbuy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7331,7 +7407,7 @@ raw-scores and corresponding norm-scores.</p>
   overflow-x: hidden;
 }
 
-#swdrtousvo .gt_column_spanner_outer {
+#votjvtjbuy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7343,15 +7419,15 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 4px;
 }
 
-#swdrtousvo .gt_column_spanner_outer:first-child {
+#votjvtjbuy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#swdrtousvo .gt_column_spanner_outer:last-child {
+#votjvtjbuy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#swdrtousvo .gt_column_spanner {
+#votjvtjbuy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -7363,11 +7439,11 @@ raw-scores and corresponding norm-scores.</p>
   width: 100%;
 }
 
-#swdrtousvo .gt_spanner_row {
+#votjvtjbuy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#swdrtousvo .gt_group_heading {
+#votjvtjbuy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7393,7 +7469,7 @@ raw-scores and corresponding norm-scores.</p>
   text-align: left;
 }
 
-#swdrtousvo .gt_empty_group_heading {
+#votjvtjbuy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7408,15 +7484,15 @@ raw-scores and corresponding norm-scores.</p>
   vertical-align: middle;
 }
 
-#swdrtousvo .gt_from_md > :first-child {
+#votjvtjbuy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#swdrtousvo .gt_from_md > :last-child {
+#votjvtjbuy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#swdrtousvo .gt_row {
+#votjvtjbuy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7435,7 +7511,7 @@ raw-scores and corresponding norm-scores.</p>
   overflow-x: hidden;
 }
 
-#swdrtousvo .gt_stub {
+#votjvtjbuy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7448,7 +7524,7 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 5px;
 }
 
-#swdrtousvo .gt_stub_row_group {
+#votjvtjbuy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7462,15 +7538,15 @@ raw-scores and corresponding norm-scores.</p>
   vertical-align: top;
 }
 
-#swdrtousvo .gt_row_group_first td {
+#votjvtjbuy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#swdrtousvo .gt_row_group_first th {
+#votjvtjbuy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#swdrtousvo .gt_summary_row {
+#votjvtjbuy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7480,16 +7556,16 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 5px;
 }
 
-#swdrtousvo .gt_first_summary_row {
+#votjvtjbuy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_first_summary_row.thick {
+#votjvtjbuy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#swdrtousvo .gt_last_summary_row {
+#votjvtjbuy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7499,7 +7575,7 @@ raw-scores and corresponding norm-scores.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_grand_summary_row {
+#votjvtjbuy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -7509,7 +7585,7 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 5px;
 }
 
-#swdrtousvo .gt_first_grand_summary_row {
+#votjvtjbuy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7519,7 +7595,7 @@ raw-scores and corresponding norm-scores.</p>
   border-top-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_last_grand_summary_row_top {
+#votjvtjbuy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7529,11 +7605,11 @@ raw-scores and corresponding norm-scores.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_striped {
+#votjvtjbuy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#swdrtousvo .gt_table_body {
+#votjvtjbuy .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -7542,7 +7618,7 @@ raw-scores and corresponding norm-scores.</p>
   border-bottom-color: #000000;
 }
 
-#swdrtousvo .gt_footnotes {
+#votjvtjbuy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7556,7 +7632,7 @@ raw-scores and corresponding norm-scores.</p>
   border-right-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_footnote {
+#votjvtjbuy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -7565,7 +7641,7 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 5px;
 }
 
-#swdrtousvo .gt_sourcenotes {
+#votjvtjbuy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -7579,7 +7655,7 @@ raw-scores and corresponding norm-scores.</p>
   border-right-color: #D3D3D3;
 }
 
-#swdrtousvo .gt_sourcenote {
+#votjvtjbuy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -7587,72 +7663,72 @@ raw-scores and corresponding norm-scores.</p>
   padding-right: 5px;
 }
 
-#swdrtousvo .gt_left {
+#votjvtjbuy .gt_left {
   text-align: left;
 }
 
-#swdrtousvo .gt_center {
+#votjvtjbuy .gt_center {
   text-align: center;
 }
 
-#swdrtousvo .gt_right {
+#votjvtjbuy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#swdrtousvo .gt_font_normal {
+#votjvtjbuy .gt_font_normal {
   font-weight: normal;
 }
 
-#swdrtousvo .gt_font_bold {
+#votjvtjbuy .gt_font_bold {
   font-weight: bold;
 }
 
-#swdrtousvo .gt_font_italic {
+#votjvtjbuy .gt_font_italic {
   font-style: italic;
 }
 
-#swdrtousvo .gt_super {
+#votjvtjbuy .gt_super {
   font-size: 65%;
 }
 
-#swdrtousvo .gt_footnote_marks {
+#votjvtjbuy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#swdrtousvo .gt_asterisk {
+#votjvtjbuy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#swdrtousvo .gt_indent_1 {
+#votjvtjbuy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#swdrtousvo .gt_indent_2 {
+#votjvtjbuy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#swdrtousvo .gt_indent_3 {
+#votjvtjbuy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#swdrtousvo .gt_indent_4 {
+#votjvtjbuy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#swdrtousvo .gt_indent_5 {
+#votjvtjbuy .gt_indent_5 {
   text-indent: 25px;
 }
 
-#swdrtousvo .katex-display {
+#votjvtjbuy .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#swdrtousvo div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#votjvtjbuy div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -7707,34 +7783,6 @@ raw-scores and corresponding norm-scores.</p>
 <td headers="PR" class="gt_row gt_center">60</td>
 <td headers="T_from_PR" class="gt_row gt_center">52</td>
 </tr>
-<tr>
-<td headers="group" class="gt_row gt_left">all</td>
-<td headers="raw" class="gt_row gt_center">6</td>
-<td headers="T" class="gt_row gt_center">49</td>
-<td headers="PR" class="gt_row gt_center">64</td>
-<td headers="T_from_PR" class="gt_row gt_center">54</td>
-</tr>
-<tr>
-<td headers="group" class="gt_row gt_left">all</td>
-<td headers="raw" class="gt_row gt_center">7</td>
-<td headers="T" class="gt_row gt_center">50</td>
-<td headers="PR" class="gt_row gt_center">68</td>
-<td headers="T_from_PR" class="gt_row gt_center">55</td>
-</tr>
-<tr>
-<td headers="group" class="gt_row gt_left">all</td>
-<td headers="raw" class="gt_row gt_center">8</td>
-<td headers="T" class="gt_row gt_center">52</td>
-<td headers="PR" class="gt_row gt_center">72</td>
-<td headers="T_from_PR" class="gt_row gt_center">56</td>
-</tr>
-<tr>
-<td headers="group" class="gt_row gt_left">all</td>
-<td headers="raw" class="gt_row gt_center">9</td>
-<td headers="T" class="gt_row gt_center">53</td>
-<td headers="PR" class="gt_row gt_center">75</td>
-<td headers="T_from_PR" class="gt_row gt_center">57</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -7755,23 +7803,23 @@ item:</p>
 <code class="sourceCode R"><span><span class="va">dat</span><span class="op">$</span><span class="va">PR_int</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lookup_norms.html">lookup_norms</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">raw_int</span>, normtable <span class="op">=</span> <span class="va">ex_normtable_int</span>, to <span class="op">=</span> <span class="st">"PR"</span><span class="op">)</span></span>
 <span><span class="va">dat</span><span class="op">$</span><span class="va">PR_ext</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lookup_norms.html">lookup_norms</a></span><span class="op">(</span><span class="va">dat</span><span class="op">$</span><span class="va">raw_ext</span>, normtable <span class="op">=</span> <span class="va">ex_normtable_ext</span>, to <span class="op">=</span> <span class="st">"PR"</span><span class="op">)</span></span></code></pre></div>
 <p>Which can look like that:</p>
-<div id="tjvtjbuyqe" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#tjvtjbuyqe table {
+<div id="qeeqodszye" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qeeqodszye table {
   font-family: times, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#tjvtjbuyqe thead, #tjvtjbuyqe tbody, #tjvtjbuyqe tfoot, #tjvtjbuyqe tr, #tjvtjbuyqe td, #tjvtjbuyqe th {
+#qeeqodszye thead, #qeeqodszye tbody, #qeeqodszye tfoot, #qeeqodszye tr, #qeeqodszye td, #qeeqodszye th {
   border-style: none;
 }
 
-#tjvtjbuyqe p {
+#qeeqodszye p {
   margin: 0;
   padding: 0;
 }
 
-#tjvtjbuyqe .gt_table {
+#qeeqodszye .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -7797,12 +7845,12 @@ item:</p>
   border-left-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_caption {
+#qeeqodszye .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#tjvtjbuyqe .gt_title {
+#qeeqodszye .gt_title {
   color: #333333;
   font-size: 100%;
   font-weight: initial;
@@ -7814,7 +7862,7 @@ item:</p>
   border-bottom-width: 0;
 }
 
-#tjvtjbuyqe .gt_subtitle {
+#qeeqodszye .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -7826,7 +7874,7 @@ item:</p>
   border-top-width: 0;
 }
 
-#tjvtjbuyqe .gt_heading {
+#qeeqodszye .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -7838,13 +7886,13 @@ item:</p>
   border-right-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_bottom_border {
+#qeeqodszye .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 3px;
   border-bottom-color: #000000;
 }
 
-#tjvtjbuyqe .gt_col_headings {
+#qeeqodszye .gt_col_headings {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -7859,7 +7907,7 @@ item:</p>
   border-right-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_col_heading {
+#qeeqodszye .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7879,7 +7927,7 @@ item:</p>
   overflow-x: hidden;
 }
 
-#tjvtjbuyqe .gt_column_spanner_outer {
+#qeeqodszye .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7891,15 +7939,15 @@ item:</p>
   padding-right: 4px;
 }
 
-#tjvtjbuyqe .gt_column_spanner_outer:first-child {
+#qeeqodszye .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tjvtjbuyqe .gt_column_spanner_outer:last-child {
+#qeeqodszye .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tjvtjbuyqe .gt_column_spanner {
+#qeeqodszye .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #000000;
@@ -7911,11 +7959,11 @@ item:</p>
   width: 100%;
 }
 
-#tjvtjbuyqe .gt_spanner_row {
+#qeeqodszye .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#tjvtjbuyqe .gt_group_heading {
+#qeeqodszye .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7941,7 +7989,7 @@ item:</p>
   text-align: left;
 }
 
-#tjvtjbuyqe .gt_empty_group_heading {
+#qeeqodszye .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -7956,15 +8004,15 @@ item:</p>
   vertical-align: middle;
 }
 
-#tjvtjbuyqe .gt_from_md > :first-child {
+#qeeqodszye .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tjvtjbuyqe .gt_from_md > :last-child {
+#qeeqodszye .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tjvtjbuyqe .gt_row {
+#qeeqodszye .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -7983,7 +8031,7 @@ item:</p>
   overflow-x: hidden;
 }
 
-#tjvtjbuyqe .gt_stub {
+#qeeqodszye .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -7996,7 +8044,7 @@ item:</p>
   padding-right: 5px;
 }
 
-#tjvtjbuyqe .gt_stub_row_group {
+#qeeqodszye .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -8010,15 +8058,15 @@ item:</p>
   vertical-align: top;
 }
 
-#tjvtjbuyqe .gt_row_group_first td {
+#qeeqodszye .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tjvtjbuyqe .gt_row_group_first th {
+#qeeqodszye .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#tjvtjbuyqe .gt_summary_row {
+#qeeqodszye .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8028,16 +8076,16 @@ item:</p>
   padding-right: 5px;
 }
 
-#tjvtjbuyqe .gt_first_summary_row {
+#qeeqodszye .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_first_summary_row.thick {
+#qeeqodszye .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tjvtjbuyqe .gt_last_summary_row {
+#qeeqodszye .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8047,7 +8095,7 @@ item:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_grand_summary_row {
+#qeeqodszye .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -8057,7 +8105,7 @@ item:</p>
   padding-right: 5px;
 }
 
-#tjvtjbuyqe .gt_first_grand_summary_row {
+#qeeqodszye .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8067,7 +8115,7 @@ item:</p>
   border-top-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_last_grand_summary_row_top {
+#qeeqodszye .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -8077,11 +8125,11 @@ item:</p>
   border-bottom-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_striped {
+#qeeqodszye .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tjvtjbuyqe .gt_table_body {
+#qeeqodszye .gt_table_body {
   border-top-style: solid;
   border-top-width: 3px;
   border-top-color: #000000;
@@ -8090,7 +8138,7 @@ item:</p>
   border-bottom-color: #000000;
 }
 
-#tjvtjbuyqe .gt_footnotes {
+#qeeqodszye .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8104,7 +8152,7 @@ item:</p>
   border-right-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_footnote {
+#qeeqodszye .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -8113,7 +8161,7 @@ item:</p>
   padding-right: 5px;
 }
 
-#tjvtjbuyqe .gt_sourcenotes {
+#qeeqodszye .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -8127,7 +8175,7 @@ item:</p>
   border-right-color: #D3D3D3;
 }
 
-#tjvtjbuyqe .gt_sourcenote {
+#qeeqodszye .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -8135,72 +8183,72 @@ item:</p>
   padding-right: 5px;
 }
 
-#tjvtjbuyqe .gt_left {
+#qeeqodszye .gt_left {
   text-align: left;
 }
 
-#tjvtjbuyqe .gt_center {
+#qeeqodszye .gt_center {
   text-align: center;
 }
 
-#tjvtjbuyqe .gt_right {
+#qeeqodszye .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tjvtjbuyqe .gt_font_normal {
+#qeeqodszye .gt_font_normal {
   font-weight: normal;
 }
 
-#tjvtjbuyqe .gt_font_bold {
+#qeeqodszye .gt_font_bold {
   font-weight: bold;
 }
 
-#tjvtjbuyqe .gt_font_italic {
+#qeeqodszye .gt_font_italic {
   font-style: italic;
 }
 
-#tjvtjbuyqe .gt_super {
+#qeeqodszye .gt_super {
   font-size: 65%;
 }
 
-#tjvtjbuyqe .gt_footnote_marks {
+#qeeqodszye .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#tjvtjbuyqe .gt_asterisk {
+#qeeqodszye .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tjvtjbuyqe .gt_indent_1 {
+#qeeqodszye .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tjvtjbuyqe .gt_indent_2 {
+#qeeqodszye .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tjvtjbuyqe .gt_indent_3 {
+#qeeqodszye .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tjvtjbuyqe .gt_indent_4 {
+#qeeqodszye .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tjvtjbuyqe .gt_indent_5 {
+#qeeqodszye .gt_indent_5 {
   text-indent: 25px;
 }
 
-#tjvtjbuyqe .katex-display {
+#qeeqodszye .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#tjvtjbuyqe div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#qeeqodszye div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -8225,84 +8273,84 @@ item:</p>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="raw_int" class="gt_row gt_left">1</td>
-<td headers="T_int" class="gt_row gt_center">43</td>
-<td headers="PR_int" class="gt_row gt_center">35</td>
-<td headers="raw_ext" class="gt_row gt_center">0.00000</td>
+<td headers="raw_int" class="gt_row gt_left">0.05263158</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.0000000</td>
 <td headers="T_ext" class="gt_row gt_center">40</td>
 <td headers="PR_ext" class="gt_row gt_center">14</td>
 </tr>
 <tr>
-<td headers="raw_int" class="gt_row gt_left">1</td>
-<td headers="T_int" class="gt_row gt_center">43</td>
-<td headers="PR_int" class="gt_row gt_center">35</td>
-<td headers="raw_ext" class="gt_row gt_center">6.00000</td>
-<td headers="T_ext" class="gt_row gt_center">46</td>
-<td headers="PR_ext" class="gt_row gt_center">49</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">4</td>
-<td headers="T_int" class="gt_row gt_center">47</td>
-<td headers="PR_int" class="gt_row gt_center">55</td>
-<td headers="raw_ext" class="gt_row gt_center">7.00000</td>
-<td headers="T_ext" class="gt_row gt_center">47</td>
-<td headers="PR_ext" class="gt_row gt_center">53</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">24</td>
-<td headers="T_int" class="gt_row gt_center">71</td>
-<td headers="PR_int" class="gt_row gt_center">95</td>
-<td headers="raw_ext" class="gt_row gt_center">48.00000</td>
-<td headers="T_ext" class="gt_row gt_center">87</td>
-<td headers="PR_ext" class="gt_row gt_center">100</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">4</td>
-<td headers="T_int" class="gt_row gt_center">47</td>
-<td headers="PR_int" class="gt_row gt_center">55</td>
-<td headers="raw_ext" class="gt_row gt_center">24.00000</td>
-<td headers="T_ext" class="gt_row gt_center">64</td>
-<td headers="PR_ext" class="gt_row gt_center">89</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">2</td>
-<td headers="T_int" class="gt_row gt_center">44</td>
-<td headers="PR_int" class="gt_row gt_center">42</td>
-<td headers="raw_ext" class="gt_row gt_center">10.00000</td>
-<td headers="T_ext" class="gt_row gt_center">50</td>
-<td headers="PR_ext" class="gt_row gt_center">64</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">16</td>
-<td headers="T_int" class="gt_row gt_center">61</td>
-<td headers="PR_int" class="gt_row gt_center">88</td>
-<td headers="raw_ext" class="gt_row gt_center">0.00000</td>
-<td headers="T_ext" class="gt_row gt_center">40</td>
-<td headers="PR_ext" class="gt_row gt_center">14</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">3</td>
-<td headers="T_int" class="gt_row gt_center">46</td>
-<td headers="PR_int" class="gt_row gt_center">49</td>
-<td headers="raw_ext" class="gt_row gt_center">6.00000</td>
-<td headers="T_ext" class="gt_row gt_center">46</td>
-<td headers="PR_ext" class="gt_row gt_center">49</td>
-</tr>
-<tr>
-<td headers="raw_int" class="gt_row gt_left">9</td>
-<td headers="T_int" class="gt_row gt_center">53</td>
-<td headers="PR_int" class="gt_row gt_center">75</td>
-<td headers="raw_ext" class="gt_row gt_center">20.10317</td>
+<td headers="raw_int" class="gt_row gt_left">0.05263158</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.3529412</td>
 <td headers="T_ext" class="gt_row gt_center">-</td>
 <td headers="PR_ext" class="gt_row gt_center">-</td>
 </tr>
 <tr>
-<td headers="raw_int" class="gt_row gt_left">4</td>
-<td headers="T_int" class="gt_row gt_center">47</td>
-<td headers="PR_int" class="gt_row gt_center">55</td>
-<td headers="raw_ext" class="gt_row gt_center">38.00000</td>
-<td headers="T_ext" class="gt_row gt_center">77</td>
-<td headers="PR_ext" class="gt_row gt_center">98</td>
+<td headers="raw_int" class="gt_row gt_left">0.21052632</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.4117647</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">1.26315789</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">2.8235294</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.21052632</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">1.4117647</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.10526316</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.5882353</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.84210526</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.0000000</td>
+<td headers="T_ext" class="gt_row gt_center">40</td>
+<td headers="PR_ext" class="gt_row gt_center">14</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.15789474</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">0.3529412</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.47368421</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">1.2352941</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
+</tr>
+<tr>
+<td headers="raw_int" class="gt_row gt_left">0.21052632</td>
+<td headers="T_int" class="gt_row gt_center">-</td>
+<td headers="PR_int" class="gt_row gt_center">-</td>
+<td headers="raw_ext" class="gt_row gt_center">2.2352941</td>
+<td headers="T_ext" class="gt_row gt_center">-</td>
+<td headers="PR_ext" class="gt_row gt_center">-</td>
 </tr>
 </tbody>
 </table>

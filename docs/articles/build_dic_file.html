@@ -64,7 +64,7 @@
                         <h4 data-toc-skip class="author">Jürgen
 Wilbert</h4>
             
-            <h4 data-toc-skip class="date">2026-02-02</h4>
+            <h4 data-toc-skip class="date">2026-02-24</h4>
       
 
       <div class="d-none name"><code>build_dic_file.Rmd</code></div>
@@ -1369,8 +1369,7 @@ has two columns, <code>item_name</code> and <code>item_label</code>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>dat_dic <span class="ot">&lt;-</span> <span class="fu">apply_dic</span>(ex_scaledic_data, dic_file)</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="sc">!</span> (dic)</span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'character'</span>.</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'double'</span>. (<span class="dv">8</span>x)</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="dv">3</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'integer'</span>. (<span class="dv">3</span>x)</span></code></pre></div>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="dv">2</span><span class="sc">:</span> Type is missing and is estimated as <span class="st">'numeric'</span>. (<span class="dv">11</span>x)</span></code></pre></div>
 <p>We get the message that the dic file does not contain information of
 the data<em>type</em> (e.g. <code>integer</code>, <code>factor</code>,
 <code>character</code>). The <code>type</code> attribute is used in
@@ -1903,7 +1902,7 @@ in the dic file.</p>
 <tr>
 <td headers="item_name" class="gt_row gt_left">age</td>
 <td headers="item_label" class="gt_row gt_left">age</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 </tr>
 </tbody>
 </table>
@@ -2454,7 +2453,7 @@ scores (e.g. <code>1.5</code> will give an item a weight of 1.5).</p>
 <td headers="item_name" class="gt_row gt_left">age</td>
 <td headers="item_label" class="gt_row gt_left">age</td>
 <td headers="weight" class="gt_row gt_left">1</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 </tr>
 </tbody>
 </table>
@@ -3026,7 +3025,7 @@ indicates three valid text entries).</p>
 <td headers="item_label" class="gt_row gt_left">age</td>
 <td headers="values" class="gt_row gt_left">5, 11</td>
 <td headers="weight" class="gt_row gt_left">1</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 </tr>
 </tbody>
 </table>
@@ -4360,7 +4359,7 @@ labels for all or some of the values. Value labels are coded in the form
 <td headers="values" class="gt_row gt_left">5, 11</td>
 <td headers="value_labels" class="gt_row gt_left">5 = min; 11 = max</td>
 <td headers="weight" class="gt_row gt_left">1</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 </tr>
 </tbody>
 </table>
@@ -4381,8 +4380,8 @@ labels for all or some of the values. Value labels are coded in the form
 <p>Now lets see the coding for some of the variables:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>rel_1</span>
 <span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>║How often do you attend church or other religious meetings? </span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>║Data type is float</span>
-<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> From <span class="dv">1</span> to <span class="dv">6</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>║Data type is integer</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span></span>
 <span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
 <span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>║  <span class="dv">1</span> <span class="ot">=</span> Never</span>
 <span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>║  <span class="dv">2</span> <span class="ot">=</span> Once a year or less</span>
@@ -4397,8 +4396,8 @@ labels for all or some of the values. Value labels are coded in the form
 label.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>dat_dic<span class="sc">$</span>sui_1</span>
 <span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>║Did you feel tense <span class="cf">in</span> the last week? </span>
-<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>║Data type is float</span>
-<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> From <span class="dv">0</span> to <span class="dv">4</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>║Data type is integer</span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a>║Valid values<span class="sc">:</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">4</span></span>
 <span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a>║Value labels<span class="sc">:</span></span>
 <span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a>║  <span class="dv">0</span> <span class="ot">=</span> not at all</span>
 <span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a>║  <span class="dv">4</span> <span class="ot">=</span> extremely</span>
@@ -5020,7 +5019,7 @@ account for this, we add the <code>missing</code> attribute to the
 <td headers="values" class="gt_row gt_left">5, 11</td>
 <td headers="value_labels" class="gt_row gt_left">5 = min; 11 = max</td>
 <td headers="weight" class="gt_row gt_left">1</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 <td headers="missing" class="gt_row gt_left">-999</td>
 </tr>
 </tbody>
@@ -5637,7 +5636,7 @@ attributes):</p>
 <td headers="scale_label" class="gt_row gt_left">Miscellaneous</td>
 <td headers="values" class="gt_row gt_left">5, 11</td>
 <td headers="value_labels" class="gt_row gt_left">5 = min; 11 = max</td>
-<td headers="type" class="gt_row gt_left">float</td>
+<td headers="type" class="gt_row gt_left">double</td>
 <td headers="weight" class="gt_row gt_left">1</td>
 <td headers="missing" class="gt_row gt_left">-999</td>
 </tr>
@@ -6132,7 +6131,7 @@ attributes):</p>
 </thead>
 <tbody class="gt_table_body">
 <tr>
-<td headers="Variable" class="gt_row gt_left">rel_1</td>
+<td headers="Variable" class="gt_row gt_left">How often do you attend church or other religious meetings?</td>
 <td headers="Valid" class="gt_row gt_center">20</td>
 <td headers="Missing" class="gt_row gt_center">0</td>
 <td headers="Mean" class="gt_row gt_center">3.65</td>
@@ -6144,7 +6143,7 @@ attributes):</p>
 <td headers="MAD" class="gt_row gt_center">1.48</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">rel_2</td>
+<td headers="Variable" class="gt_row gt_left">How often do you spend time in private religious activities, such as prayer, meditation or Bible study?</td>
 <td headers="Valid" class="gt_row gt_center">19</td>
 <td headers="Missing" class="gt_row gt_center">1</td>
 <td headers="Mean" class="gt_row gt_center">3.32</td>
@@ -6156,7 +6155,7 @@ attributes):</p>
 <td headers="MAD" class="gt_row gt_center">2.97</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">rel_3</td>
+<td headers="Variable" class="gt_row gt_left">In my life, I experience the presence of the Divine (i.e., God)</td>
 <td headers="Valid" class="gt_row gt_center">19</td>
 <td headers="Missing" class="gt_row gt_center">1</td>
 <td headers="Mean" class="gt_row gt_center">3.37</td>
@@ -6168,7 +6167,7 @@ attributes):</p>
 <td headers="MAD" class="gt_row gt_center">1.48</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">rel_4</td>
+<td headers="Variable" class="gt_row gt_left">My religious beliefs are what really lie behind my whole approach to life</td>
 <td headers="Valid" class="gt_row gt_center">18</td>
 <td headers="Missing" class="gt_row gt_center">2</td>
 <td headers="Mean" class="gt_row gt_center">3.17</td>
@@ -6180,7 +6179,7 @@ attributes):</p>
 <td headers="MAD" class="gt_row gt_center">1.48</td>
 </tr>
 <tr>
-<td headers="Variable" class="gt_row gt_left">rel_5</td>
+<td headers="Variable" class="gt_row gt_left">I try hard to carry my religion over into all other dealings in life</td>
 <td headers="Valid" class="gt_row gt_center">19</td>
 <td headers="Missing" class="gt_row gt_center">1</td>
 <td headers="Mean" class="gt_row gt_center">2.47</td>

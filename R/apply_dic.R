@@ -61,8 +61,10 @@ apply_dic <- function(data,
     data <- read_by_suffix(data)
   }
 
-  # check dic-file
+  # check dic-file ----
   dic <- .clean_dic_file(dic)
+
+  attr(data, "info") <- c(attr(data, "info"), attr(dic, "info"))
 
   # rename variables by rename_var ---------------------------------------------
   if (!is.null(rename_var)) {
@@ -74,6 +76,7 @@ apply_dic <- function(data,
   .filter <- which(dic[[opt("class")]] == "scale")
   if (length(.filter) > 0) {
     dic_scores <- dic[.filter, , drop = FALSE]
+    row.names(dic_scores) <- 1:nrow(dic_scores)
     dic <- dic[-.filter, , drop = FALSE]
     add_message("Dictionary file includes scale definitions.")
     filter_col <- vapply(dic_scores, function(x) !all(is.na(x)), logical(1))
@@ -106,6 +109,7 @@ apply_dic <- function(data,
 
   for (i in seq_along(id_valid)) {
     i_dic  <- i_dic_valid[i]   # dic row index
+
     args <- c(
       list(x = data[[id_valid[i]]]),
       as.list(dic[i_dic, ]),
@@ -158,7 +162,16 @@ apply_dic <- function(data,
 
   # delete rows with comments (first sign of the first column is a #)
   .filter <- which(apply(dic, 1, function(x) isTRUE(substr(as.character(x[1]), 1, 1) == "#")))
-  if (length(.filter) > 0) dic <- dic[-.filter, , drop = FALSE]
+  if (length(.filter) > 0) {
+    # collapse all information in a filtered row into a string that is added as an attribute to the dic data frame
+    comment <- apply(dic[.filter, , drop = FALSE], 1, function(x) {
+      x <- x[!is.na(x)]
+      gsub("^#", "", paste0(x, collapse = " ")) |> trimws()
+    })
+    comment <- paste0(comment, collapse = "\n")
+    attr(dic, "info") <- list(dic_file_comment = comment)
+    dic <- dic[-.filter, , drop = FALSE]
+  }
 
   # filter if variable "active" is available
   if ("active" %in% names(dic)) {

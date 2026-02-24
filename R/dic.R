@@ -75,6 +75,7 @@ dic <- function(x,
   }
 
   # build attributes (parsing/validation)
+
   attrs <- create_dic_attributes(
     x = x,
     item_name = item_name,
@@ -327,19 +328,19 @@ dic <- function(x,
   if (type %in% opt("numerics")) {
 
     # float: exactly two numeric values (min, max)
-    if (field == "values" && type == "double") {
-      if (length(values) != 2) {
-        add_message("Type 'double' requires exactly two numbers for min and max",
-                    msg_prefix, frame = -5)
-        return(NULL)
-      }
-      values <- suppressWarnings(as.numeric(values))
-
-      if (values[1] > values[2]) {
-        add_message("min must be <= max", msg_prefix, frame = -4)
-        return(NULL)
-      }
-    }
+    #if (field == "values" && type == "double") {
+    #  if (length(values) != 2) {
+    #    add_message("Type 'double' expects exactly two numbers for min and max",
+    #                msg_prefix, frame = -5)
+    #    return(NULL)
+    #  }
+    #  values <- suppressWarnings(as.numeric(values))
+    #
+    #  if (values[1] > values[2]) {
+    #    add_message("min must be <= max", msg_prefix, frame = -4)
+    #    return(NULL)
+    #  }
+    #}
 
   }
 
@@ -506,10 +507,9 @@ dic <- function(x,
 .check_type <- function(type, x) {
   # type estimation --------
   if (!has_info(type)) {
-    type <- "numeric"
     if (is.numeric(x)) type <- "numeric"
-    if (is.integer(x)) type <- "integer"
-    if (is.double(x)) type <- "double"
+    #if (is.integer(x)) type <- "integer"
+    #if (is.double(x)) type <- "numeric"
     if (is.character(x)) type <- "character"
     if (is.factor(x)) type <- "factor"
     if (is.logical(x)) type <- "logical"
@@ -520,8 +520,8 @@ dic <- function(x,
   # type check --------
 
   if (type %in% c("real", "float", "numeric")) {
-    type <- "double"
-    add_message("Type 'real' or 'float' is replaced by 'double'.", detail = 2, frame = -3)
+    type <- "numeric"
+    add_message("Type 'real' or 'float' is replaced by 'numeric'.", detail = 2, frame = -3)
   }
 
   type

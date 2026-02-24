@@ -6,6 +6,15 @@
 - Reworked internals of class “dic”.
 - [`apply_dic()`](../reference/apply_dic.md): now uses new constructor
   function [`dic()`](../reference/dic.md).
+- Adds dic-file comments as “info” attribute to data.frames created by
+  [`apply_dic()`](../reference/apply_dic.md).
+- [`lookup_norms()`](../reference/lookup_norms.md): Now creates
+  variables with dic attributes.
+- [`lookup_norms()`](../reference/lookup_norms.md): Now fills in missing
+  cells of a normtable. This is usefull when you have a normtable with
+  grouping variables and don’t fill in the repeated values for each
+  group (e.g. age). Now you just can fill in the first row for each
+  group and the function will fill in the rest of the cells for you.
 
 ### New function
 
@@ -14,7 +23,6 @@
 - [`is_dic()`](../reference/is_dic.md): Checks if a variable is a dic
   object.
 - [`dic()`](../reference/dic.md): Constructor function for dic objects.
-  Used internally by [`apply_dic()`](../reference/apply_dic.md).
 
 ## scaledic 0.4.1
 
@@ -36,7 +44,7 @@ create a new recoded variable or recode all variables in a data.frame
 that have recoding information in its dic-attributes.
 
 ``` r
-dat <- new_dic(
+dat <- dic(
   x = c(1,1,2,3,1,3,4,4,3,2,4,5),
   item_name = "knowledge_1", 
   item_label = "What is the capital of Germany?",
@@ -64,8 +72,9 @@ recode_dic_items(dat)
 - solved bug. extract_dic did not work when type name was in capitals
   (e.g. “Integer”)
 
-- `alphy_table()`: New argument `keys_from_weights`. If TRUE, tries to
-  extract keys argument from scaledics weights parameter.
+- [`alpha_table()`](../reference/alpha_table.md): New argument
+  `keys_from_weights`. If TRUE, tries to extract keys argument from
+  scaledics weights parameter.
 
 ## scaledic 0.3.0
 

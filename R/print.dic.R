@@ -45,6 +45,11 @@ print_dic <- function(x, length = 100, ...) {
   x_type <- dic_attr(x, "type")
   cat(prefix, "Data type is ", x_type, "\n", sep = "")
 
+  if(has_info(dic_attr(x, "weight"))) {
+    if (dic_attr(x, "weight") < 0)
+      cat(prefix, "* item is reverse coded \n", sep = "")
+  }
+
   values <- dic_attr(x, "values")
 
   if (has_info(values)) {

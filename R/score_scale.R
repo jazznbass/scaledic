@@ -34,13 +34,14 @@
 #'   (e.g., 0.5 = 50 percent NAs are allowed).
 #' @param label A character string with a label for the resulting score
 #'   variable. Automatically generated if label is not set.
-#' @param sum If `FALSE`, a weighted mean function is applied for building the
+#' @param sum (Deprecated) If `FALSE`, a weighted mean function is applied for building the
 #'   scores. If `TRUE`, a weighted sum function is applied. When argument fun is
 #'   set, `sum` is ignored.
 #' @param var_weight Name of the *dic* attribute that is applied to derive
 #'   weights. Defaults to `weight`.
 #' @param var_recoding Name if the *dic* attribute that may contain recoding
 #'   information. Defaults to `scores`.
+#' @param use_weights If `TRUE`, weights are applied when calculating the scores.
 #' @return A data frame with the calculated scale score. If only the filter argument
 #'  is provided, a vector with the calculated scale score is returned.
 #' @seealso \code{\link{get_scales}}, \code{\link{apply_dic}},
@@ -63,7 +64,8 @@ score_scale <- function(data,
                         label = NULL,
                         sum = NULL,
                         var_weight = NULL,
-                        var_recoding = "recodes") {
+                        var_recoding = "recodes",
+                        use_weights = TRUE) {
 
   init_messages(); on.exit(print_messages())
 
@@ -106,6 +108,7 @@ score_scale <- function(data,
       fun = fun,
       var_weight = var_weight,
       var_recoding = var_recoding,
+      use_weights = use_weights,
       function_name = deparse(match.call()$fun)
     )
     names(new_scores)[i_scale] <- dic_attr(new_scores[[i_scale]], "item_label")
@@ -127,6 +130,7 @@ score_scale <- function(data,
                          sum = NULL,
                          var_weight,
                          var_recoding = "recodes",
+                         use_weights = TRUE,
                          function_name) {
 
 
@@ -176,15 +180,17 @@ score_scale <- function(data,
   }
 
   weight <- sapply(df, .get_weight)
+  if (!use_weights) weight <- rep(1, length(weight))
   sign <- sign(weight)
   weight <- abs(weight)
+
 
   max_values <- sapply(df, function(.x) max(dic_attr(.x, "values")))
   min_values <- sapply(df, function(.x) min(dic_attr(.x, "values")))
 
   # determines invalid values based on min_valid and max_na and returns NA for those cases. For valid cases,
 
-  id_valid <- apply(dat, 1, function(x)
+  id_valid <- apply(df, 1, function(x)
     if(isTRUE(sum(!is.na(x)) < min_valid) || isTRUE(sum(is.na(x)) > max_na)) {
       FALSE
     } else {

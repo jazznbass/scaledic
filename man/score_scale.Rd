@@ -14,7 +14,8 @@ score_scale(
   label = NULL,
   sum = NULL,
   var_weight = NULL,
-  var_recoding = "recodes"
+  var_recoding = "recodes",
+  use_weights = TRUE
 )
 }
 \arguments{
@@ -46,7 +47,7 @@ threshold. A value between 0 and 1 indicates a proportion of values
 \item{label}{A character string with a label for the resulting score
 variable. Automatically generated if label is not set.}
 
-\item{sum}{If \code{FALSE}, a weighted mean function is applied for building the
+\item{sum}{(Deprecated) If \code{FALSE}, a weighted mean function is applied for building the
 scores. If \code{TRUE}, a weighted sum function is applied. When argument fun is
 set, \code{sum} is ignored.}
 
@@ -55,6 +56,8 @@ weights. Defaults to \code{weight}.}
 
 \item{var_recoding}{Name if the \emph{dic} attribute that may contain recoding
 information. Defaults to \code{scores}.}
+
+\item{use_weights}{If \code{TRUE}, weights are applied when calculating the scores.}
 }
 \value{
 A data frame with the calculated scale score. If only the filter argument

@@ -18,8 +18,8 @@ create_norms <- function(raw) {
   normtable
 }
 
-ex_normtable_int <- create_norms(score_scale(ex_itrf, subscale == "Int", sum = TRUE, max_na = 0)  )
-ex_normtable_ext <- create_norms(score_scale(ex_itrf, subscale == "Ext", sum = TRUE, max_na = 0)  )
+ex_normtable_int <- create_norms(score_scale(ex_itrf, subscale == "Int", fun = "sum", max_na = 0)  )
+ex_normtable_ext <- create_norms(score_scale(ex_itrf, subscale == "Ext", fun = "sum", max_na = 0)  )
 
 
 usethis::use_data(

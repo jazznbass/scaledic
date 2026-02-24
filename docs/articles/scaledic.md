@@ -26,11 +26,11 @@ data sets.
 
 Here is an extract from an example *dic-file*:
 
-| item_name | item_label | scale | scale_label | subscale | subscale_label | values | value_labels | missing | type |
-|----|----|----|----|----|----|----|----|----|----|
-| itrf_I_1 | Verbringt zu viel Zeit alleine | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
-| itrf_I_2 | Beschwert sich über Krankheit oder Schmerzen | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
-| itrf_I_4 | Vermeidet soziale Interaktionen | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
+|  | item_name | item_label | scale | scale_label | subscale | subscale_label | values | value_labels | missing | type |
+|----|----|----|----|----|----|----|----|----|----|----|
+| 2 | itrf_I_1 | Verbringt zu viel Zeit alleine | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
+| 3 | itrf_I_2 | Beschwert sich über Krankheit oder Schmerzen | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
+| 4 | itrf_I_4 | Vermeidet soziale Interaktionen | ITRF | Integrated teacher report form | Int | Internalizing | 0:3 | 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic | -99 | integer |
 
 A dictionary file can contain any additional attributes. This means that
 you can add a column with any name to store relevant information
@@ -67,15 +67,15 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 Let us take a look at all the scales in the dataset:
 
 ``` r
-list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label"))
+list_scales(dat, "subscale_label", "subscale_2_label")
 ```
 
-| scale_label | subscale_label | subscale_2_label |
-|----|----|----|
-| Integrated teacher report form | Internalizing | Socially Withdrawn |
-| Integrated teacher report form | Internalizing | Anxious/Depressed |
-| Integrated teacher report form | Externalizing | Oppositional/Disruptive |
-| Integrated teacher report form | Externalizing | Academic Productivity/Disorganization |
+| subscale_label | subscale_2_label                      |
+|----------------|---------------------------------------|
+| Externalizing  | Oppositional/Disruptive               |
+| Externalizing  | Academic Productivity/Disorganization |
+| Internalizing  | Socially Withdrawn                    |
+| Internalizing  | Anxious/Depressed                     |
 
 ## Clean raw data
 
@@ -210,7 +210,7 @@ raw-scores and corresponding norm-scores.
 Here is an example of such a table:
 
 ``` r
-ex_normtable_int |> slice(1:10) |> wmisc::nice_table()
+ex_normtable_int |> head() |> wmisc::nice_table()
 ```
 
 | group | raw | T   | PR  | T_from_PR |
@@ -221,10 +221,6 @@ ex_normtable_int |> slice(1:10) |> wmisc::nice_table()
 | all   | 3   | 46  | 49  | 50        |
 | all   | 4   | 47  | 55  | 51        |
 | all   | 5   | 48  | 60  | 52        |
-| all   | 6   | 49  | 64  | 54        |
-| all   | 7   | 50  | 68  | 55        |
-| all   | 8   | 52  | 72  | 56        |
-| all   | 9   | 53  | 75  | 57        |
 
 Then we need raw-scores from a scale. If they do not exist, you may use
 the `score_scales` function to add sum scores. Therefore set the sum

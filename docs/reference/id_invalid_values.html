@@ -42,7 +42,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">id_invalid_values</span><span class="op">(</span><span class="va">x</span>, include_missing <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">id_invalid_values</span><span class="op">(</span><span class="va">x</span>, include_missing <span class="op">=</span> <span class="cn">FALSE</span>, integer_as_numeric <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -57,6 +57,10 @@
 <dd><p>If TRUE, missing values (provided as 'missing' in the
 dic file) will be considered as valid values. If FALSE, missing values will
 be considered as invalid values.</p></dd>
+
+
+<dt id="arg-integer-as-numeric">integer_as_numeric<a class="anchor" aria-label="anchor" href="#arg-integer-as-numeric"></a></dt>
+<dd><p>If TRUE, type 'integer' will be handled as 'numeric'.</p></dd>
 
 </dl></div>
     <div class="section level2">

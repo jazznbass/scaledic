@@ -10,7 +10,7 @@ check_values(
   return = TRUE,
   report = TRUE,
   include_missing = FALSE,
-  integer_as_float = TRUE
+  integer_as_numeric = TRUE
 )
 }
 \arguments{
@@ -28,7 +28,7 @@ no data frame is returned.}
 dic file) will be considered as valid values. If FALSE, missing values will be
 considered as invalid values.}
 
-\item{integer_as_float}{If TRUE, type 'integer' will be handled as 'float'.
+\item{integer_as_numeric}{If TRUE, type 'integer' will be handled as 'numeric'.
 That is, only values outside the minimum and the maximum of the provided
 valid values will be considered invalid. If FALSE, only values not included
 in the provided valid values will be considered invalid.}

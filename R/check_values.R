@@ -24,7 +24,7 @@
 #' @param include_missing If TRUE, missing values (provided as 'missing' in the
 #'   dic file) will be considered as valid values. If FALSE, missing values will be
 #'   considered as invalid values.
-#' @param integer_as_float If TRUE, type 'integer' will be handled as 'float'.
+#' @param integer_as_numeric If TRUE, type 'integer' will be handled as 'numeric'.
 #'   That is, only values outside the minimum and the maximum of the provided
 #'   valid values will be considered invalid. If FALSE, only values not included
 #'   in the provided valid values will be considered invalid.
@@ -37,7 +37,7 @@ check_values <- function(data,
                          return = TRUE,
                          report = TRUE,
                          include_missing = FALSE,
-                         integer_as_float = TRUE) {
+                         integer_as_numeric = TRUE) {
 
   init_messages(); on.exit(print_messages())
 
@@ -49,11 +49,7 @@ check_values <- function(data,
 
   for (i in id) {
 
-    if(dic_attr(data[[i]], "type") %in% "integer" && integer_as_float) {
-      dic_attr(data[[i]], "type") <- "float"
-    }
-
-    id_invalid_values <- id_invalid_values(data[[i]], include_missing)
+    id_invalid_values <- id_invalid_values(data[[i]], include_missing, integer_as_numeric)
 
     x <- data[[i]][id_invalid_values]
 
@@ -105,14 +101,16 @@ check_values <- function(data,
 #' @param include_missing If TRUE, missing values (provided as 'missing' in the
 #'  dic file) will be considered as valid values. If FALSE, missing values will
 #'  be considered as invalid values.
+#' @param integer_as_numeric If TRUE, type 'integer' will be handled as 'numeric'.
 #' @return A vector with indices of invalid values
-id_invalid_values <- function(x, include_missing = FALSE) {
+id_invalid_values <- function(x, include_missing = FALSE, integer_as_numeric = TRUE) {
 
   id_invalid_values <- NULL
 
   values <- dic_attr(x, "values")
   missing <- dic_attr(x, "missing")
   type <- dic_attr(x, "type")
+  if (integer_as_numeric && identical(type, "integer")) type <- "numeric"
   if (!include_missing) missing <- NULL
 
   if (has_info(values) || has_info(missing)) {
@@ -120,7 +118,7 @@ id_invalid_values <- function(x, include_missing = FALSE) {
       id_invalid_values <- which(!(x %in% c(values, missing)) & !is.na(x))
     }
 
-    if (type %in% c("float", "real", "numeric", "double", "")) {
+    if (type %in% c("float", "real", "numeric", "double")) {
       id_invalid_values <- which(
         (x > max(values) | x < min(values)) &
           !is.na(x) & !x %in% missing

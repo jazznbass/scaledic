@@ -75,7 +75,11 @@ group_age <- c("6", "8", "6", "8")
 group_gender <- c("m", "m", "w", "w")
 
 lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), normtable)
-#> [1] 50 47 51 44
+#> ║T_score 
+#> ║Data type is numeric
+#> ║ 
+#> ║Length is 4 (0 NA; 0 invalid)
+#> ║[1] 50 47 51 44
 
 ## When group values are not specified exactly, raw scores can be ambiguous:
 lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
@@ -89,9 +93,15 @@ lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtab
 #> 1:         id <- which(normtable[[from]] == x) (4x)
 #> ! (    })
 #> 1:         } (4x)
+#> ! (dic)
+#> 1: Type is missing and is estimated as 'logical'.
 #> ! (})
 #> 1:     normtable[[to]][id] (4x)
-#> [1] NA NA NA NA
+#> ║T_score 
+#> ║Data type is logical
+#> ║ 
+#> ║Length is 4 (4 NA; 0 invalid)
+#> ║[1] NA NA NA NA
 
 lookup_norms(rawscores, normtable = normtable)
 #> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
@@ -104,7 +114,13 @@ lookup_norms(rawscores, normtable = normtable)
 #> 1:         id <- which(normtable[[from]] == x) (4x)
 #> ! (    })
 #> 1:         } (4x)
+#> ! (dic)
+#> 1: Type is missing and is estimated as 'logical'.
 #> ! (})
 #> 1:     normtable[[to]][id] (4x)
-#> [1] NA NA NA NA
+#> ║T_score 
+#> ║Data type is logical
+#> ║ 
+#> ║Length is 4 (4 NA; 0 invalid)
+#> ║[1] NA NA NA NA
 ```

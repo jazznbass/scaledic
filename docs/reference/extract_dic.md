@@ -62,25 +62,25 @@ head(ex_itrf_dic)
 #> 4 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic
 #> 5 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic
 #> 6 0 = not problematic; 1 = slightly problematic; 2 = problematic; 3 = strongly problematic
-#>   missing weight scale subscale subscale_2                    scale_label
-#> 1     -99      1  ITRF      Int         SW Integrated teacher report form
-#> 2     -99      1  ITRF      Int         AD Integrated teacher report form
-#> 3     -99      1  ITRF      Int         SW Integrated teacher report form
-#> 4     -99      1  ITRF      Int         SW Integrated teacher report form
-#> 5     -99      1  ITRF      Int         SW Integrated teacher report form
-#> 6     -99      1  ITRF      Int         AD Integrated teacher report form
-#>   subscale_label   subscale_2_label    type                            source
-#> 1  Internalizing Socially Withdrawn integer Volpe et al. et al. (unpublished)
-#> 2  Internalizing  Anxious/Depressed integer Volpe et al. et al. (unpublished)
-#> 3  Internalizing Socially Withdrawn integer Volpe et al. et al. (unpublished)
-#> 4  Internalizing Socially Withdrawn integer Volpe et al. et al. (unpublished)
-#> 5  Internalizing Socially Withdrawn integer Volpe et al. et al. (unpublished)
-#> 6  Internalizing  Anxious/Depressed integer Volpe et al. et al. (unpublished)
-#>   class score_filter score_function index note
-#> 1  item         <NA>           <NA>     1 <NA>
-#> 2  item         <NA>           <NA>     2 <NA>
-#> 3  item         <NA>           <NA>     4 <NA>
-#> 4  item         <NA>           <NA>     5 <NA>
-#> 5  item         <NA>           <NA>     6 <NA>
-#> 6  item         <NA>           <NA>     7 <NA>
+#>   missing weight    type class recodes index scale subscale subscale_2
+#> 1     -99      1 integer  item      NA     1  ITRF      Int         SW
+#> 2     -99      1 integer  item      NA     2  ITRF      Int         AD
+#> 3     -99      1 integer  item      NA     4  ITRF      Int         SW
+#> 4     -99      1 integer  item      NA     5  ITRF      Int         SW
+#> 5     -99      1 integer  item      NA     6  ITRF      Int         SW
+#> 6     -99      1 integer  item      NA     7  ITRF      Int         AD
+#>                      scale_label subscale_label   subscale_2_label
+#> 1 Integrated teacher report form  Internalizing Socially Withdrawn
+#> 2 Integrated teacher report form  Internalizing  Anxious/Depressed
+#> 3 Integrated teacher report form  Internalizing Socially Withdrawn
+#> 4 Integrated teacher report form  Internalizing Socially Withdrawn
+#> 5 Integrated teacher report form  Internalizing Socially Withdrawn
+#> 6 Integrated teacher report form  Internalizing  Anxious/Depressed
+#>                              source note score_filter score_function
+#> 1 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
+#> 2 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
+#> 3 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
+#> 4 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
+#> 5 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
+#> 6 Volpe et al. et al. (unpublished) <NA>         <NA>           <NA>
 ```

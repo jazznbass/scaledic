@@ -234,12 +234,11 @@ item
 #> [4729]  0  0  1  0  0  0  2  1  1  1  0  0  0  1  1  0  0  0  0  0  0  2  0  3
 #> [4753]  0  2  1  0  0  0  0  0  1  1  0  0  0  0  0  0  0  0  1  0  2  0  0  1
 #> attr(,"dic")
-#> attr(,"dic")$value_labels
-#>   value                label
-#> 1     0      not problematic
-#> 2     1 slightly problematic
-#> 3     2          problematic
-#> 4     3 strongly problematic
+#> attr(,"dic")$item_name
+#> [1] "itrf_I_1"
+#> 
+#> attr(,"dic")$item_label
+#> [1] "Verbringt zu viel Zeit alleine"
 #> 
 #> attr(,"dic")$values
 #>      not problematic slightly problematic          problematic 
@@ -247,11 +246,30 @@ item
 #> strongly problematic 
 #>                    3 
 #> 
+#> attr(,"dic")$value_labels
+#>   value                label
+#> 1     0      not problematic
+#> 2     1 slightly problematic
+#> 3     2          problematic
+#> 4     3 strongly problematic
+#> 
 #> attr(,"dic")$missing
 #> [1] -99
 #> 
-#> attr(,"dic")$item_name
-#> [1] "itrf_I_1"
+#> attr(,"dic")$weight
+#> [1] 1
+#> 
+#> attr(,"dic")$type
+#> [1] "integer"
+#> 
+#> attr(,"dic")$class
+#> [1] "item"
+#> 
+#> attr(,"dic")$recodes
+#> NULL
+#> 
+#> attr(,"dic")$index
+#> [1] 1
 #> 
 #> attr(,"dic")$scale
 #> [1] "ITRF"
@@ -271,31 +289,16 @@ item
 #> attr(,"dic")$subscale_2_label
 #> [1] "Socially Withdrawn"
 #> 
-#> attr(,"dic")$item_label
-#> [1] "Verbringt zu viel Zeit alleine"
-#> 
-#> attr(,"dic")$weight
-#> [1] 1
-#> 
-#> attr(,"dic")$type
-#> [1] "integer"
-#> 
 #> attr(,"dic")$source
 #> [1] "Volpe et al. et al. (unpublished)"
 #> 
-#> attr(,"dic")$class
-#> [1] "item"
+#> attr(,"dic")$note
+#> [1] NA
 #> 
 #> attr(,"dic")$score_filter
 #> [1] NA
 #> 
 #> attr(,"dic")$score_function
-#> [1] NA
-#> 
-#> attr(,"dic")$index
-#> [1] 1
-#> 
-#> attr(,"dic")$note
 #> [1] NA
 #> 
 #> attr(,"label")

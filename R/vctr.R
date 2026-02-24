@@ -15,7 +15,7 @@
 
 .get_base_class <- function(x) {
   if (inherits(x, "integer")) return("integer")
-  if (inherits(x, c("double", "numeric"))) return("double")
+  if (inherits(x, c("double", "numeric"))) return("numeric")
   if (inherits(x, "character")) return("character")
   if (inherits(x, "logical")) return("logical")
   if (inherits(x, "factor")) return("factor")
@@ -44,8 +44,8 @@
     return(x)
   }
 
-  if (base_class == "double") {
-    dic_attr(x, opt("type")) <- "double"
+  if (base_class == "numeric") {
+    dic_attr(x, opt("type")) <- "numeric"
     x[] <- as.double(x)
     return(x)
   }

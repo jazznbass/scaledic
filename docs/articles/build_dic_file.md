@@ -38,8 +38,7 @@ We combine the *data* file and the *dic* file with the
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ! (dic)
 1: Type is missing and is estimated as 'character'.
-2: Type is missing and is estimated as 'double'. (8x)
-3: Type is missing and is estimated as 'integer'. (3x)
+2: Type is missing and is estimated as 'numeric'. (11x)
 ```
 
 We get the message that the dic file does not contain information of the
@@ -150,7 +149,7 @@ Here is the dic file with added `value_labels`:
 | sui_4 | Did you feel inferior in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
 | sui_5 | Did you have problems falling asleep in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
 | gender | gender | 'm', 'f', 'd' | m = male; f = female; d = diverse | 1 | factor |
-| age | age | 5, 11 | 5 = min; 11 = max | 1 | float |
+| age | age | 5, 11 | 5 = min; 11 = max | 1 | double |
 
 ``` r
 dat_dic <- ex_scaledic_data |> 
@@ -173,8 +172,8 @@ Now lets see the coding for some of the variables:
 ``` r
 dat_dic$rel_1
 ║How often do you attend church or other religious meetings? 
-║Data type is float
-║Valid values: From 1 to 6
+║Data type is integer
+║Valid values: 1:6
 ║Value labels:
 ║  1 = Never
 ║  2 = Once a year or less
@@ -192,8 +191,8 @@ Valid values are all integers from 1 to 6 and each value has a label.
 ``` r
 dat_dic$sui_1
 ║Did you feel tense in the last week? 
-║Data type is float
-║Valid values: From 0 to 4
+║Data type is integer
+║Valid values: 0:4
 ║Value labels:
 ║  0 = not at all
 ║  4 = extremely

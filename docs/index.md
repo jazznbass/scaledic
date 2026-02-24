@@ -319,9 +319,7 @@ Bug reports, questions, and contributions are welcome:
 
 ------------------------------------------------------------------------
 
-## License and citation
-
-`scaledic` is released under the [MIT License](LICENSE).
+## citation
 
 If you use `scaledic` in publications, please cite it using:
 

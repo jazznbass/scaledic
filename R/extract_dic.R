@@ -131,5 +131,12 @@ extract_dic <- function(data) {
     out[new_ids, names(new_rows)] <- new_rows
   }
 
+  if (!is.null(attributes(data)$info$dic_file_comment)) {
+    comments <- attributes(data)$info$dic_file_comment
+    comments <- paste0("# ", strsplit(comments, "\n")[[1]])
+    out[(nrow(out) + 1):(nrow(out) + length(comments)), "item_name"] <- comments
+    rownames(out) <- 1:nrow(out)
+  }
+
   out
 }
