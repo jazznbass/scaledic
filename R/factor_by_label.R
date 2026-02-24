@@ -17,5 +17,11 @@
 factor_by_label <- function(x) {
   labels <- dic_attr(x, "values")
   labels <- labels[which(!is.na(names(labels)))]
-  factor(x, levels = labels, labels = names(labels))
+  out <- factor(x, levels = labels, labels = names(labels))
+  class(out) <- c("dic", class(out))
+  dic_attr(out) <- dic_attr(x)
+  dic_attr(out, "type") <- "factor"
+  dic_attr(out, "values") <- setNames(1:length(levels(out)), levels(out))
+  dic_attr(out, "value_labels") <- data.frame(value = 1:length(levels(out)), label = levels(out))
+  out
 }
