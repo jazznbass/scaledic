@@ -23,8 +23,7 @@
 #'   variables of the data frame included in the dic file.
 #' @param impute_values If TRUE and score_scales is TRUE, missing values are
 #'   automatically imputed based on scale information provided in the dic file.
-#' @param score_scales If TRUE and the dic files contains score scale
-#'   definitions these are applied to the data frame.
+#' @param score_scales Deprecated. Use `score_from_dic()` instead.
 #' @param rename_var When a character is provided, corresponding column from the
 #'   dic-file is used to rename variables from 'rename_var' (old) to 'item_name'
 #'   (new) in the `data` data frame.
@@ -44,20 +43,20 @@ apply_dic <- function(data,
                       set_label_attr = TRUE,
                       coerce_class = TRUE,
                       replace_missing = TRUE,
-                      score_scales = TRUE,
+                      score_scales = FALSE,
                       check_values = FALSE,
                       impute_values = FALSE,
                       rename_var = NULL,
                       format_date = "%Y-%m-%d") {
 
-  init_messages(); on.exit(print_messages())
+
 
   if (inherits(dic, "character")) {
-    add_message("Import ", dic, " as the dictionary file")
+    notify("Import ", dic, " as the dictionary file")
     dic <- read_by_suffix(dic)
   }
   if (inherits(data, "character")) {
-    add_message("Import ", data, " as the data file")
+    notify("Import ", data, " as the data file")
     data <- read_by_suffix(data)
   }
 
@@ -78,14 +77,17 @@ apply_dic <- function(data,
     dic_scores <- dic[.filter, , drop = FALSE]
     row.names(dic_scores) <- 1:nrow(dic_scores)
     dic <- dic[-.filter, , drop = FALSE]
-    add_message("Dictionary file includes scale definitions.")
+    notify("Dictionary file includes scale definitions.")
+    warn("Scale information in dic files ",
+                "are not scored automatically (since 0.5.0). ",
+                "Use `score_from_dic()` to score scales.")
+
     filter_col <- vapply(dic_scores, function(x) !all(is.na(x)), logical(1))
     filter_col <- sort(names(dic_scores)[filter_col])
     dic_scores <- dic_scores[, filter_col, drop = FALSE]
     dic_attr(data) <- list(scales = dic_scores)
   } else {
     dic_scores <- NULL
-    score_scales <- FALSE
   }
 
   # identify valid variables from dic in data frame --------------------------
@@ -97,7 +99,7 @@ apply_dic <- function(data,
   var_not_df <- dic[[opt("item_name")]][which(is.na(id_match))]
 
   if (length(var_not_df) > 0) {
-    add_message(
+    notify(
       length(var_not_df), " of ", nrow(dic),
       " items from dic not found in data file: ",
       paste0(var_not_df, collapse = ", ")
@@ -118,11 +120,6 @@ apply_dic <- function(data,
     data[[id_valid[i]]] <- do.call("dic", args)
   }
 
-  if (score_scales) {
-    replace_missing <- TRUE
-    check_values <- TRUE
-  }
-
   # replace missing ----
   if (replace_missing) {
     data <- replace_missing(data)
@@ -135,7 +132,9 @@ apply_dic <- function(data,
 
   # score scales ----
   if (score_scales) {
-    data <- score_from_dic(data, impute_values = impute_values)
+    warn("Scoring scales in `apply_dic` is deprecated. ",
+                "Use `score_from_dic()` instead.")
+    #data <- score_from_dic(data, impute_values = impute_values)
   }
 
   # return ----
@@ -207,7 +206,7 @@ apply_dic <- function(data,
   .duplicates <- duplicated(dic[[opt("item_name")]])
   if (any(.duplicates)) {
     id <- dic[[opt("item_name")]][which(.duplicates)]
-    stop(
+    abort(
       paste0("Item names duplicated in dic-file: ", paste0(id, collapse = ", "))
     )
   }
@@ -217,18 +216,18 @@ apply_dic <- function(data,
 
 .rename_by_variable <- function(rename_var, dic, data) {
   if (!rename_var %in% names(dic)) {
-    add_message("Rename variable '", rename_var, "' not found in dic-file.", frame = -2)
+    notify("Rename variable '", rename_var, "' not found in dic-file.", frame = -2)
   } else {
     to_from <- setNames(dic[[rename_var]], dic[[opt("item_name")]])
     to_from <- to_from[!is.na(to_from)]
     .duplicates <- names(to_from) %in% names(data)
     if(any(.duplicates)){
-      add_message("Skipped renaming column to an already existing name: ",
+      notify("Skipped renaming column to an already existing name: ",
                   paste0(names(to_from)[.duplicates], collapse = ", "), frame = -2)
       to_from <- to_from[!.duplicates]
 
     }
-    add_message(
+    notify(
       "Took the '", rename_var, "' column to rename ",
       sum(!.duplicates), " item names.", frame = -2
     )
