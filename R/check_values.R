@@ -39,7 +39,7 @@ check_values <- function(data,
                          include_missing = FALSE,
                          integer_as_numeric = TRUE) {
 
-  init_messages(); on.exit(print_messages())
+  
 
   if (!inherits(data, "data.frame")) data <- data.frame(data)
 
@@ -78,7 +78,7 @@ check_values <- function(data,
       ))
 
     }
-    add_message(
+    notify(
       if (is.null(replace)) {
         "Found the following invalid values:\n  "
       } else {
@@ -87,7 +87,7 @@ check_values <- function(data,
       paste0(msg, collapse = "\n  ")
     )
   }
-  if (report && length(errors) == 0) add_message("No errors found.\n")
+  if (report && length(errors) == 0) notify("No errors found.\n")
   if (return) {
     return(data)
   } else {

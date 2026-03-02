@@ -1,112 +1,66 @@
-messages <- new.env()
-messages$messages <- list()
-messages$last_messages <- list()
-messages$depth <- 0
-
-init_messages <- function() {
-  messages$depth <- messages$depth + 1
-}
-
-#' Add a message to the message system
+#' Throws a message
 #'
-#' This function adds a message to the internal message system. Messages can be printed later using `print_messages()`.
-#' #' @param ... Components of the message to be concatenated.
-#' @param collapse A string to separate the components of the message.
-#' @param frame An integer or character indicating the frame from which the message originates.
-#' @param detail An integer indicating the detail level of the message.
-#' @param warning Logical. If TRUE, the message is treated as a warning.
-#' @return None. The function modifies the internal message environment.
-#' @author Juergen Wilbert
-#' @examples
-#' init_messages()
-#' add_message("This is a test message.")
-#' print_messages()
-#' @export
+#' Messages can be shown with different levels
+#' of detail and as warnings. This is a convenience wrapper for internal use.
+#'
+#' @param ... The message. This can be a character string or a
+#'   combination of character strings and variables.
+#' @param detail The level of detail for the message. Messages with a detail
+#'   level higher than the current detail level set in the options will not be
+#'   shown. The default is 1.
+#' @param warning If TRUE, the message will be shown as a warning. If FALSE
+#'   (default), the message will be shown as an informational message.
 #' @keywords internal
-#'
-add_message <- function(...,
-                        collapse = "",
-                        frame = -1,
-                        detail = 1,
-                        warning = FALSE) {
-  msg <- paste(c(...), collapse = collapse)
 
-  if (is.character(frame)) {
-    call <- frame
+notify <- function(... , type = "!", detail = 1, warning = FALSE) {
+
+  if (detail > getOption("scaledic.msg.detail", default = 1))
+    return(invisible(NULL))
+
+  msg <- paste0(...)
+  msg <- gsub("\\n", "\n  ", msg)
+  if (type == "h1") {
+    msg <- paste0("\u256D\u2500 ", msg)
+    msg <- cli::col_blue(msg)
+    type <- ""
+  }
+
+  msg <- setNames(msg, type)
+  if (!warning) {
+    rlang::inform(msg)
   } else {
-    call <- deparse(sys.call(frame)[[1]])
+    rlang::warn(msg)
   }
-  messages$messages <- c(
-    messages$messages,
-    list(list(msg = msg, call = call), detail = detail, warning = warning)
-  )
+  invisible(NULL)
 }
 
-print_messages <- function(concise = getOption("scaledic.print.concise.messages", TRUE),
-                           header = TRUE,
-                           header_prefix = "!",
-                           details = 1) {
-
-  messages$depth <- messages$depth - 1
-
-  if (messages$depth > 0) return()
-
-  msg <- messages$messages
-  if (length(messages$messages) > 0) {
-    # convert to data frame
-    msg <- messages$messages |>
-      unlist() |>
-      matrix(ncol = 4, byrow = TRUE) |>
-      as.data.frame()
-
-    # filter by details
-    msg <- msg[msg[[3]] <= details, 1:2]
-
-    # split messages by call
-    msg_list <- split(msg[[1]], msg[[2]])
-
-    if (length(msg_list) != 0) {
-      for(i_msg in 1:length(msg_list)) {
-
-        msg <- table(msg_list[[i_msg]])
-        for(i in seq_along(msg)){
-          if (msg[i] > 1) names(msg)[i] <- paste0(names(msg)[i], " (", msg[i], "x)")
-        }
-        msg <- paste0(1:length(msg), ": ", names(msg), collapse = "\n")
-
-        if (header){
-          msg <- paste0(header_prefix, " (", names(msg_list[i_msg]), ")\n", msg, "\n")
-        }
-        else {
-          msg <- paste0("\n", msg, "\n")
-        }
-
-        if (concise == TRUE) {
-          max_messages <- 50
-          if (length(msg) > max_messages) {
-            msg <- paste0("Showing first ", max_messages, " of ", length(msg), " messages:\n",
-                          paste0(msg[1:max_messages], collapse = "\n"),
-                          "\n... (use show_messages() to see all messages)")
-          }
-        }
-
-        if (getOption("scaledic.print.messages")) message(msg)
-      }
-
-    }
-  }
-  messages$last_messages <- messages$messages
-  messages$messages <- list()
+warn <- function(...) {
+  notify(..., warning = TRUE)
 }
 
-#' Print the last set of messages
+#' Throws an error
 #'
-#' This function prints the last set of messages stored in the message system.
-#' @export
-show_messages <- function() {
-  old_messages <- messages$messages
-  messages$messages <- messages$last_messages
-  print_messages(concise = FALSE)
-  messages$messages <- old_messages
+#' This is a convenience wrapper for internal use.
+#'
+#' @param ... The message. This can be a character string or a
+#'   combination of character strings and variables.
+#' @param class An optional class or vector of classes to add to the error.
+#' @param call If TRUE, the call will be included in the error message. Default
+#'   is FALSE.
+#' @keywords internal
+abort <- function(..., class = NULL, call = FALSE) {
+
+  call <- if (isTRUE(call)) {
+    rlang::caller_env()
+  } else if (identical(call, FALSE) || is.null(call)) {
+    NULL
+  } else {
+    call
+  }
+
+  msg <- paste0(...)
+  rlang::abort(message = msg, class = class, call = call)
+
+  invisible(NULL)
 }
 

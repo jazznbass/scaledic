@@ -46,7 +46,7 @@ lookup_norms <- function(rawscores,
                          group_label = names(group),
                          label = NULL) {
 
-  init_messages(); on.exit(print_messages())
+  
 
   if (inherits(normtable, "character")) {
     normtable <- read_by_suffix(normtable)
@@ -91,7 +91,7 @@ lookup_norms <- function(rawscores,
       if (length(group) == 1) {
         group <- rep(group, length = length(rawscores))
       } else {
-        stop("Length of 'group' is smaller than length of 'rawscore'.")
+        abort("Length of 'group' is smaller than length of 'rawscore'.")
       }
     }
   }
@@ -100,7 +100,7 @@ lookup_norms <- function(rawscores,
     if (is.na(y)) {
       id <- which(normtable[[from]] == x)
       if (length(id) > 1) {
-        add_message(
+        notify(
           "Multiple values found for raw ", x,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."
@@ -110,7 +110,7 @@ lookup_norms <- function(rawscores,
     } else {
       id <- which(normtable[[from]] == x & normtable[[group_label]] == y)
       if (length(id) > 1) {
-        add_message(
+        notify(
           "Multiple values found for raw ", x, " and group ", y,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."

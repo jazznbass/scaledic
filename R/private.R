@@ -58,7 +58,7 @@ read_by_suffix <- function(filename) {
   if (ext == "xlsx") return(readxl::read_xlsx(filename))
   if (ext == "xls") return(readxl::read_xls(filename))
   if (ext == "csv") return(utils::read.csv(filename))
-  stop("File extension not recognised. ",
+  abort("File extension not recognised. ",
        "Please provide separately read data frame."
   )
 }

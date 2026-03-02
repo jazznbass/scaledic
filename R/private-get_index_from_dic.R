@@ -13,7 +13,7 @@ get_index_from_dic <- function(data, filter, names = TRUE, class = NULL) {
     filter <- deparse(filter)
   }
   if (!is.character(filter)) {
-    stop("Internal error:",
+    abort("Internal error:",
          "filter must be a character string, call, or expression. Filter is of type ",
          class(filter))
   }
