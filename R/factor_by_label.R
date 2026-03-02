@@ -4,6 +4,7 @@
 #' based on the value labels stored in the dic attributes.
 #'
 #' @param x A vector with dic information.
+#' @param ordered If TRUE, the resulting factor will be ordered. Default is FALSE.
 #' @return A factor with levels based on the value labels. If no value labels
 #'   are present, an empty factor is returned.
 #' @examples
@@ -14,10 +15,10 @@
 #' # A cross table
 #' table(factor_by_label(dat_dic$rel_1), dat_dic$gender)
 #' @export
-factor_by_label <- function(x) {
+factor_by_label <- function(x, ordered) {
   labels <- dic_attr(x, "values")
   labels <- labels[which(!is.na(names(labels)))]
-  out <- factor(x, levels = labels, labels = names(labels))
+  out <- factor(x, levels = labels, labels = names(labels), ordered = ordered)
   class(out) <- c("dic", class(out))
   dic_attr(out) <- dic_attr(x)
   dic_attr(out, "type") <- "factor"
