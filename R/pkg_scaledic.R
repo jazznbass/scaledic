@@ -9,9 +9,7 @@
 #' @importFrom openxlsx write.xlsx
 #' @importFrom readxl read_excel read_xlsx
 #' @import vctrs
-#' @import purrr
 #' @import stats
-#' @importFrom dplyr %>% relocate select full_join all_of rename as_tibble
 #' @importFrom glue glue
 #' @importFrom tools file_ext
 #' @examples

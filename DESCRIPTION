@@ -15,20 +15,15 @@ Depends:
   R (>= 3.5.0)
 Imports: 
   Amelia, 
-  purrr, 
-  dplyr,
+  mice,
   openxlsx,
   readxl,
   stats,
   vctrs,
   tools,
+  rlang,
   glue
 Suggests:
-    knitr,
-    tibble,
-    psych,
-    MASS,
-    rmarkdown,
     testthat (>= 3.0.0)
 License: GPL (>= 3)
 Encoding: UTF-8
