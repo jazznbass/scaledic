@@ -43,6 +43,9 @@ print_dic <- function(x, length = 100, ...) {
   if (length(first_line) > 0) cat(first_line, "\n")
 
   x_type <- dic_attr(x, "type")
+  if (x_type == "factor" && is.ordered(x)) {
+    x_type <- "ordered factor"
+  }
   cat(prefix, "Data type is ", x_type, "\n", sep = "")
 
   if(has_info(dic_attr(x, "weight"))) {
