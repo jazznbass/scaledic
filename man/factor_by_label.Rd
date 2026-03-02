@@ -4,10 +4,12 @@
 \alias{factor_by_label}
 \title{Turns a dic variable into a factor based on the value labels}
 \usage{
-factor_by_label(x)
+factor_by_label(x, ordered)
 }
 \arguments{
 \item{x}{A vector with dic information.}
+
+\item{ordered}{If TRUE, the resulting factor will be ordered. Default is FALSE.}
 }
 \value{
 A factor with levels based on the value labels. If no value labels

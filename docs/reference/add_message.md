@@ -7,7 +7,7 @@ of the message to be concatenated.
 ## Usage
 
 ``` r
-add_message(..., collapse = "", frame = -1, detail = 1, warning = FALSE)
+notify(..., collapse = "", frame = -1, detail = 1, warning = FALSE)
 ```
 
 ## Arguments
@@ -42,7 +42,7 @@ Juergen Wilbert
 ``` r
 init_messages()
 #> Error in init_messages(): could not find function "init_messages"
-add_message("This is a test message.")
+notify("This is a test message.")
 print_messages()
 #> Error in print_messages(): could not find function "print_messages"
 ```

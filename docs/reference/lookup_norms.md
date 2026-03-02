@@ -83,20 +83,11 @@ lookup_norms(rawscores, group = list(age = group_age, gender = group_gender), no
 
 ## When group values are not specified exactly, raw scores can be ambiguous:
 lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtable)
-#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
-#> 1:             add_message("Multiple values found for raw ", x,  (4x)
-#> ! (            return(NA))
-#> 1:                 ")", ". NA returned.") (4x)
-#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
-#> 1:     else { (4x)
-#> ! (        if (length(id) > 1) {)
-#> 1:         id <- which(normtable[[from]] == x) (4x)
-#> ! (    })
-#> 1:         } (4x)
-#> ! (dic)
-#> 1: Type is missing and is estimated as 'logical'.
-#> ! (})
-#> 1:     normtable[[to]][id] (4x)
+#> ! Multiple values found for raw 5 and group m (50, 47). NA returned.
+#> ! Multiple values found for raw 5 and group m (50, 47). NA returned.
+#> ! Multiple values found for raw 3 and group w (51, 48). NA returned.
+#> ! Multiple values found for raw 1 and group w (47, 44). NA returned.
+#> ! Type of T_score is missing and is estimated as 'logical'.
 #> ║T_score 
 #> ║Data type is logical
 #> ║ 
@@ -104,20 +95,11 @@ lookup_norms(rawscores, group = list(gender = group_gender), normtable = normtab
 #> ║[1] NA NA NA NA
 
 lookup_norms(rawscores, normtable = normtable)
-#> ! (                " and group ", y, " (", paste0((normtable[[to]][id]), )
-#> 1:             add_message("Multiple values found for raw ", x,  (4x)
-#> ! (            return(NA))
-#> 1:                 ")", ". NA returned.") (4x)
-#> ! (        id <- which(normtable[[from]] == x & normtable[[group_label]] == )
-#> 1:     else { (4x)
-#> ! (        if (length(id) > 1) {)
-#> 1:         id <- which(normtable[[from]] == x) (4x)
-#> ! (    })
-#> 1:         } (4x)
-#> ! (dic)
-#> 1: Type is missing and is estimated as 'logical'.
-#> ! (})
-#> 1:     normtable[[to]][id] (4x)
+#> ! Multiple values found for raw 5 (50, 47, 55, 52). NA returned.
+#> ! Multiple values found for raw 5 (50, 47, 55, 52). NA returned.
+#> ! Multiple values found for raw 3 (46, 43, 51, 48). NA returned.
+#> ! Multiple values found for raw 1 (42, 39, 47, 44). NA returned.
+#> ! Type of T_score is missing and is estimated as 'logical'.
 #> ║T_score 
 #> ║Data type is logical
 #> ║ 

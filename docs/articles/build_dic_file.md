@@ -15,7 +15,7 @@ attributes can be divided in two classes. Firstly, *predefined*
 attributes with a specific name and *additional* attributed that can
 have any name. The *predefined* attributes are identified by their
 specific names. Theses are: `item_name`, `item_label`, `values`,
-`value_labels`, `missing`, `weight`, and `type`[^1].
+`value_labels`, `missing`, `weight`, and `type`.
 
 *Additional* attributes can have any name and are mainly used for
 selecting items or displaying additional information of an item (e.g.,
@@ -26,7 +26,7 @@ of an item; the translation of an item).
 
 We start the example with a very simple dictionary file containing only
 item labels and the corresponding item names (i.e, the corresponding
-variable names in our data frame)[^2]. The dictionary file has two
+variable names in our data frame)[^1]. The dictionary file has two
 columns, `item_name` and `item_label`:
 
 [TABLE]
@@ -36,29 +36,38 @@ We combine the *data* file and the *dic* file with the
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (dic)
-1: Type is missing and is estimated as 'character'.
-2: Type is missing and is estimated as 'numeric'. (11x)
+ [33m! [39m Type of rel_1 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of rel_2 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of rel_3 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of rel_4 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of rel_5 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of sui_1 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of sui_2 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of sui_3 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of sui_4 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of sui_5 is missing and is estimated as 'numeric'.
+ [33m! [39m Type of gender is missing and is estimated as 'character'.
+ [33m! [39m Type of age is missing and is estimated as 'numeric'.
 ```
 
 We get the message that the dic file does not contain information of the
-data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute
+data*type* (e.g. `numeric`, `factor`, `character`). The `type` attribute
 is used in various *scaledic* functions. For example when the data is
 checked for invalid values, missing values are imputed, or scales are
 scored. A variable can be one of the following types: `integer` for
-numbers without decimals, `double` for numbers with decimals,
-`character` for variables with text, and `factor` for variables with
-text or numbers that are levels of a factor. *Scaledic* will estimate
-the data type from the given data when the `type` attribute is not
-provided in the dic file.
+numbers without decimals, `numeric` for numbers with or without
+decimals, `character` for variables with text, and `factor` for
+variables with text or numbers that are levels of a factor. *Scaledic*
+will estimate the data type from the given data when the `type`
+attribute is not provided in the dic file.
 
 Let us add `type` information to the dic file:
 
 [TABLE]
 
-Most item values are of type `integer` (the item has only whole numbers)
-with the exception of `gender` which is of type `factor` (i.e. it has a
-nominal scale with several levels).
+Most item values are of type `numeric` with the exception of `gender`
+which is of type `factor` (i.e. it has a nominal scale with several
+levels).
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
@@ -110,16 +119,15 @@ Invalid values can be replaced automatically with the
 
 ``` r
 dat_dic <- check_values(dat_dic, replace = NA) 
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_3' is -999 at row 14
-  'rel_4' is 11, -999 at rows 9, 18
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_2' is -999 at row 9
-  'sui_4' is 66 at row 17
-  'age' is 13, -999, 13 at rows 4, 12, 16
+ [33m! [39m Replaced the following invalid values with NA:
+    'rel_2' is 66 at row 3
+    'rel_3' is -999 at row 14
+    'rel_4' is 11, -999 at rows 9, 18
+    'rel_5' is 66 at row 11
+    'sui_1' is 55 at row 10
+    'sui_2' is -999 at row 9
+    'sui_4' is 66 at row 17
+    'age' is 13, -999, 13 at rows 4, 12, 16
 ```
 
 ``` r
@@ -138,33 +146,32 @@ Here is the dic file with added `value_labels`:
 
 | item_name | item_label | values | value_labels | weight | type |
 |----|----|----|----|----|----|
-| rel_1 | How often do you attend church or other religious meetings? | 1:6 | 1 = Never; 2 = Once a year or less; 3 = A few times a year; 4 = A few times a month; 5 = Once a week; 6 = More than once/week | 1 | integer |
-| rel_2 | How often do you spend time in private religious activities, such as prayer, meditation or Bible study? | 1:6 | 1 = Rarely or never; 2 = A few times a month; 3 = Once a week; 4 = Two or more times/week; 5 = Daily; 6 = More than once a day | 1 | integer |
-| rel_3 | In my life, I experience the presence of the Divine (i.e., God) | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | integer |
-| rel_4 | My religious beliefs are what really lie behind my whole approach to life | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | integer |
-| rel_5 | I try hard to carry my religion over into all other dealings in life | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | integer |
-| sui_1 | Did you feel tense in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
-| sui_2 | Did you feel blue in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
-| sui_3 | Did you feel irritated in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
-| sui_4 | Did you feel inferior in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
-| sui_5 | Did you have problems falling asleep in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | integer |
+| rel_1 | How often do you attend church or other religious meetings? | 1:6 | 1 = Never; 2 = Once a year or less; 3 = A few times a year; 4 = A few times a month; 5 = Once a week; 6 = More than once/week | 1 | numeric |
+| rel_2 | How often do you spend time in private religious activities, such as prayer, meditation or Bible study? | 1:6 | 1 = Rarely or never; 2 = A few times a month; 3 = Once a week; 4 = Two or more times/week; 5 = Daily; 6 = More than once a day | 1 | numeric |
+| rel_3 | In my life, I experience the presence of the Divine (i.e., God) | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | numeric |
+| rel_4 | My religious beliefs are what really lie behind my whole approach to life | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | numeric |
+| rel_5 | I try hard to carry my religion over into all other dealings in life | 1:5 | 1 = Definitely not true; 2 = Tends not to be true; 3 = Unsure; 4 = Tends to be true; 5 = Definitely true of me | 1 | numeric |
+| sui_1 | Did you feel tense in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | numeric |
+| sui_2 | Did you feel blue in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | numeric |
+| sui_3 | Did you feel irritated in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | numeric |
+| sui_4 | Did you feel inferior in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | numeric |
+| sui_5 | Did you have problems falling asleep in the last week? | 0:4 | 0 = not at all; 4 = extremely | 1 | numeric |
 | gender | gender | 'm', 'f', 'd' | m = male; f = female; d = diverse | 1 | factor |
-| age | age | 5, 11 | 5 = min; 11 = max | 1 | double |
+| age | age | 5, 11 | 5 = min; 11 = max | 1 | numeric |
 
 ``` r
 dat_dic <- ex_scaledic_data |> 
   apply_dic(dic_file) |>
   check_values(replace = NA)
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_3' is -999 at row 14
-  'rel_4' is 11, -999 at rows 9, 18
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_2' is -999 at row 9
-  'sui_4' is 66 at row 17
-  'age' is 13, -999, 13 at rows 4, 12, 16
+ [33m! [39m Replaced the following invalid values with NA:
+    'rel_2' is 66 at row 3
+    'rel_3' is -999 at row 14
+    'rel_4' is 11, -999 at rows 9, 18
+    'rel_5' is 66 at row 11
+    'sui_1' is 55 at row 10
+    'sui_2' is -999 at row 9
+    'sui_4' is 66 at row 17
+    'age' is 13, -999, 13 at rows 4, 12, 16
 ```
 
 Now lets see the coding for some of the variables:
@@ -172,8 +179,8 @@ Now lets see the coding for some of the variables:
 ``` r
 dat_dic$rel_1
 ║How often do you attend church or other religious meetings? 
-║Data type is integer
-║Valid values: 1:6
+║Data type is numeric
+║Valid values: From 1 to 6
 ║Value labels:
 ║  1 = Never
 ║  2 = Once a year or less
@@ -191,8 +198,8 @@ Valid values are all integers from 1 to 6 and each value has a label.
 ``` r
 dat_dic$sui_1
 ║Did you feel tense in the last week? 
-║Data type is integer
-║Valid values: 0:4
+║Data type is numeric
+║Valid values: From 0 to 4
 ║Value labels:
 ║  0 = not at all
 ║  4 = extremely
@@ -230,7 +237,7 @@ turned into three factor levels with the corresponding labels.
 ``` r
 dat_dic$age
 ║age 
-║Data type is double
+║Data type is numeric
 ║Valid values: From 5 to 11
 ║Value labels:
 ║  5 = min
@@ -258,11 +265,10 @@ with NA when joining a data with a dic file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
-! (replace_missing)
-1: Replaced 1 missing value in 'age' with NA
-2: Replaced 1 missing value in 'rel_3' with NA
-3: Replaced 1 missing value in 'rel_4' with NA
-4: Replaced 1 missing value in 'sui_2' with NA
+ [33m! [39m Replaced 1 missing value in 'rel_3' with NA
+ [33m! [39m Replaced 1 missing value in 'rel_4' with NA
+ [33m! [39m Replaced 1 missing value in 'sui_2' with NA
+ [33m! [39m Replaced 1 missing value in 'age' with NA
 ```
 
 To turn off this behavior, set the argument `replace_missing = FALSE`.
@@ -277,19 +283,17 @@ way as they are not *predefined* attributes):
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
-! (check_values)
-1: Replaced the following invalid values with NA:
-  'rel_2' is 66 at row 3
-  'rel_4' is 11 at row 9
-  'rel_5' is 66 at row 11
-  'sui_1' is 55 at row 10
-  'sui_4' is 66 at row 17
-  'age' is 13, 13 at rows 4, 16
-! (replace_missing)
-1: Replaced 1 missing value in 'age' with NA
-2: Replaced 1 missing value in 'rel_3' with NA
-3: Replaced 1 missing value in 'rel_4' with NA
-4: Replaced 1 missing value in 'sui_2' with NA
+ [33m! [39m Replaced 1 missing value in 'rel_3' with NA
+ [33m! [39m Replaced 1 missing value in 'rel_4' with NA
+ [33m! [39m Replaced 1 missing value in 'sui_2' with NA
+ [33m! [39m Replaced 1 missing value in 'age' with NA
+ [33m! [39m Replaced the following invalid values with NA:
+    'rel_2' is 66 at row 3
+    'rel_4' is 11 at row 9
+    'rel_5' is 66 at row 11
+    'sui_1' is 55 at row 10
+    'sui_4' is 66 at row 17
+    'age' is 13, 13 at rows 4, 16
 ```
 
 You can use the scale attribute to select items:
@@ -314,9 +318,5 @@ dat_dic |>
 
 [TABLE]
 
-[^1]: Actually there are three more predefined attributes `class`,
-    `scale_function`, and `scale_filter` that are not explained in this
-    tutorial.
-
-[^2]: The easiest way to create a dictionary file is to use a
+[^1]: The easiest way to create a dictionary file is to use a
     spreadsheet program and to import the file.

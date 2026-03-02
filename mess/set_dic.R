@@ -35,7 +35,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
 .set_dic <- function(data, parameters, .item_name = "") {
 
-  init_messages(); on.exit(print_messages())
+  
 
   dic <- dic_attr(data)
   dic <- c(parameters, dic)
@@ -43,24 +43,24 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (!"class" %in% names(dic)) dic[["class"]] <- "item"
   if (!"item_name" %in% names(dic)) {
-    add_message(
+    notify(
       "Attribute 'item_name' missing and set to '", .item_name, "'."
     )
     dic[["item_name"]] <- .item_name
     dic[["item_name"]] <- .item_name
   }
   if (!"item_label" %in% names(dic)) {
-    add_message(
+    notify(
       "Attribute 'item_label' missing and set to '", dic[["item_name"]], "'."
     )
     dic[["item_label"]] <- dic[["item_name"]]
   }
   if (!"type" %in% names(dic)) {
-    add_message("Attribute 'type' missing and set to 'integer'.")
+    notify("Attribute 'type' missing and set to 'integer'.")
     dic[["type"]] <- "integer"#class(data)
   }
   if (!"weight" %in% names(dic)) {
-    add_message("Attribute 'weight' missing and set to 1.")
+    notify("Attribute 'weight' missing and set to 1.")
     dic[["weight"]] <- 1
   }
 
@@ -78,7 +78,7 @@ set_dic <- function(data, .vars = NULL, ...) {
 
   if (dic[["type"]] == "factor") {
     if (!all(unique(data) %in% dic[["value_labels"]]$value)) {
-      add_message(
+      notify(
         "Vector has values not defined as value_labels. ",
         "These are automatically set to NA."
       )

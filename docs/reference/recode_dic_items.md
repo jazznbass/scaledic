@@ -67,8 +67,7 @@ q1
 #> ║Length is 12 (0 NA; 1 invalid)
 #> ║ [1] 1 1 2 3 1 3 4 4 3 2 4 5
 recode_dic_items(q1)
-#> ! (.recode_dic_items)
-#> 1: Found recoding information and recoded values.
+#> ! Found recoding information and recoded values.
 #> ║(recoded) What is the capital of Germany? 
 #> ║Data type is integer
 #> ║Valid values: -1:1

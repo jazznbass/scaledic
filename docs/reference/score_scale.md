@@ -18,7 +18,6 @@ score_scale(
   max_na = NA,
   label = NULL,
   sum = NULL,
-  var_weight = NULL,
   var_recoding = "recodes",
   use_weights = TRUE
 )
@@ -48,22 +47,23 @@ score_scale(
   data.frame of item values and a numeric vector of weights as
   arguments. The function should return a single numeric value
   representing the calculated score. Predefined functions are "mean"
-  (weighted mean), "sum" (weighted sum), and "fa_scores" (factor scores
-  based on a factor analysis with one factor using the psych package).
+  (weighted mean), "sum" (weighted sum), "fa_score" (factor scores based
+  on a factor analysis with one factor), and "pc_score" (scores based on
+  the first principal component).
 
 - min_valid:
 
   Minimal number of valid values of each case. The score of a case will
   be set to NA if the number of valid values is below this threshold. A
   value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
-  percent of values have to be valid).
+  percent at least have to be valid).
 
 - max_na:
 
   Maximum number of NA values of each case. The score of a case will be
   set to NA if the number of valid values is above this threshold. A
   value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
-  percent NAs are allowed).
+  percent at most NAs are allowed).
 
 - label:
 
@@ -75,11 +75,6 @@ score_scale(
   (Deprecated) If `FALSE`, a weighted mean function is applied for
   building the scores. If `TRUE`, a weighted sum function is applied.
   When argument fun is set, `sum` is ignored.
-
-- var_weight:
-
-  Name of the *dic* attribute that is applied to derive weights.
-  Defaults to `weight`.
 
 - var_recoding:
 
@@ -116,13 +111,14 @@ Jürgen Wilbert
 
 ``` r
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
-#> ! (replace_missing)
-#> 1: Replaced 1 missing value in 'age' with NA
-#> 2: Replaced 1 missing value in 'rel_3' with NA
-#> 3: Replaced 1 missing value in 'rel_4' with NA
-#> 4: Replaced 1 missing value in 'sui_2' with NA
+#> ! Replaced 1 missing value in 'rel_3' with NA
+#> ! Replaced 1 missing value in 'rel_4' with NA
+#> ! Replaced 1 missing value in 'sui_2' with NA
+#> ! Replaced 1 missing value in 'age' with NA
 # apply the default weighted mean function
 score_scale(dat, scale == "rel", label = "Religious beliefs")
+#> ╭─ scoring 'Religious beliefs' with 'mean'
+#> ℹ Scores calculated for 20 cases (100%)
 #> ║Religious beliefs
 #> ║Scored scale: "mean" of items: scale == "rel" 
 #> ║Data type is numeric
@@ -132,10 +128,14 @@ score_scale(dat, scale == "rel", label = "Religious beliefs")
 #> ║[13]  3.80  2.25  2.60  3.80  3.80  4.50  4.20  3.00
 # apply the weighted sum function
 score_scale(dat, scale == "rel", label = "Religious beliefs", fun = "sum")
+#> ╭─ scoring 'Religious beliefs' with 'sum'
+#> ! Scores for 2 cases with missing values are scaled to the full number of items.
+#> ℹ Scores calculated for 20 cases (100%)
 #> ║Religious beliefs
 #> ║Scored scale: "sum" of items: scale == "rel" 
 #> ║Data type is numeric
 #> ║ 
 #> ║Length is 20 (0 NA; 0 invalid)
-#> ║ [1] 11  8 76 13 19 18 12 17 22 24 77 17 19  9 13 19 19 18 21 15
+#> ║ [1] 11.00  8.00 76.00 13.00 19.00 18.00 12.00 17.00 22.00 24.00 77.00 17.00
+#> ║[13] 19.00 11.25 13.00 19.00 19.00 22.50 21.00 15.00
 ```

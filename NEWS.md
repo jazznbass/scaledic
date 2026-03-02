@@ -138,8 +138,8 @@ scales <- list(
 - `get_dic_attribute()`. Returns a list with dic attributes for a dataframe.
 
 ```.r
-ex_itrf %>% 
-  select_items(subscale == "Int") %>% 
+ex_itrf |> 
+  select_items(subscale == "Int") |> 
   get_dic_attribute("item_label")
 
 ```
@@ -149,8 +149,8 @@ ex_itrf %>%
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 
 ``` .r
-ex_itrf %>% select(1:5) %>%
-  rename_item("{reverse}{item_name}: {item_label}")
+ex_itrf |> head(5) |>
+  rename_items("{reverse}{item_name}: {item_label}")
 ```
 
 # scaledic 0.1.27

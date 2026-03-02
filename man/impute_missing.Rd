@@ -4,28 +4,41 @@
 \alias{impute_missing}
 \title{Impute missing values}
 \usage{
-impute_missing(data, filter = NULL, force_to_scale = TRUE)
+impute_missing(
+  data,
+  filter = NULL,
+  method = "continuous",
+  force_to_scale = TRUE
+)
 }
 \arguments{
 \item{data}{A data frame.}
 
-\item{filter}{A logical expression for any dic attribute
-(e.g. \code{scale == "ITRF" & subscale == "Int"}).}
+\item{filter}{A logical expression for any dic attribute (e.g. \code{scale == "ITRF" & subscale == "Int"}).}
+
+\item{method}{Method for imputation. Either "continuous" (default) or
+"ordinal". If "continuous", the Amelia package will be used for imputation.
+If "ordinal", the mice package will be used for imputation with ordinal
+logistic regression.}
 
 \item{force_to_scale}{If TRUE, imputed values will be rounded and forced to
 the scale. That is, a value below the scale's minimum or maximum will be
-set to the scale's minimum and maximum.
-If FALSE, imputed values will not be adjusted.}
+set to the scale's minimum and maximum. If FALSE, imputed values will not
+be adjusted.}
 }
 \value{
 A data frame with imputed data.
 }
 \description{
-Impute missing values in items using the Amelia package.
+Impute missing values in items of a data frame based on their dic attributes.
+You can specify a filter to select which items to impute based on their dic
+attributes. If force_to_scale is set to TRUE, the imputed values will be
+rounded and constrained to the scale's minimum and maximum values.
 }
 \details{
-This function uses the Amelia package to impute missing values in items of a
-data frame. You can specify a filter to select which items to impute based on
-their dic attributes. If force_to_scale is set to TRUE, the imputed values
-will be rounded and constrained to the scale's minimum and maximum values.
+This function uses the Amelia (continuous) or mice (ordinal) package
+to impute missing values in items of a data frame. You can specify a filter
+to select which items to impute based on their dic attributes. If
+force_to_scale is set to TRUE, the imputed values will be rounded and
+constrained to the scale's minimum and maximum values.
 }

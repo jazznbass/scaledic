@@ -4,7 +4,7 @@
 \alias{.check_type}
 \title{Check and estimate type if missing}
 \usage{
-.check_type(type, x)
+.check_type(type, x, item_name)
 }
 \description{
 Check and estimate type if missing

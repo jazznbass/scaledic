@@ -5,7 +5,12 @@ Impute missing values in items using the Amelia package.
 ## Usage
 
 ``` r
-impute_missing(data, filter = NULL, force_to_scale = TRUE)
+impute_missing(
+  data,
+  filter = NULL,
+  method = "continuous",
+  force_to_scale = TRUE
+)
 ```
 
 ## Arguments
@@ -18,6 +23,13 @@ impute_missing(data, filter = NULL, force_to_scale = TRUE)
 
   A logical expression for any dic attribute (e.g.
   `scale == "ITRF" & subscale == "Int"`).
+
+- method:
+
+  Method for imputation. Either "continuous" (default) or "ordinal". If
+  "continuous", the Amelia package will be used for imputation. If
+  "ordinal", the mice package will be used for imputation with ordinal
+  logistic regression.
 
 - force_to_scale:
 

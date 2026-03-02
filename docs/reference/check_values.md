@@ -71,7 +71,6 @@ dic file are considered valid values.
 
 ``` r
 check_values(ex_itrf, return = FALSE)
-#> ! (check_values)
-#> 1: No errors found.
-#> 
+#> ! No errors found.
+#>   
 ```

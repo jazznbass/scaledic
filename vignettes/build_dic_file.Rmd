@@ -27,9 +27,7 @@ First, we need an example data.frame to work with (i.e. the `ex_scaledic_data` e
 ex_scaledic_data |> wmisc::nice_table(title = "ex_scaledic_data")
 ```
 
-Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`[^1].
-
-[^1]: Actually there are three more predefined attributes `class`, `scale_function`, and `scale_filter` that are not explained in this tutorial.
+Second, we need a dictionary file that is also a **data.frame**. Each row of a dictionary file addresses a variable (also called *item* in this context) and each column holds a specific attribute. These attributes can be divided in two classes. Firstly, *predefined* attributes with a specific name and *additional* attributed that can have any name. The *predefined* attributes are identified by their specific names. Theses are: `item_name`, `item_label`, `values`, `value_labels`, `missing`, `weight`, and `type`.
 
 *Additional* attributes can have any name and are mainly used for selecting items or displaying additional information of an item (e.g., the scale and subscale an item belongs to; the reference and the author of an item; the translation of an item).
 
@@ -50,7 +48,7 @@ We combine the *data* file and the *dic* file with the `apply_dic()` function:
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-We get the message that the dic file does not contain information of the data*type* (e.g. `integer`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed, or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `double` for numbers with decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
+We get the message that the dic file does not contain information of the data*type* (e.g. `numeric`, `factor`, `character`). The `type` attribute is used in various *scaledic* functions. For example when the data is checked for invalid values, missing values are imputed, or scales are scored. A variable can be one of the following types: `integer` for numbers without decimals, `numeric` for numbers with or without decimals, `character` for variables with text, and `factor` for variables with text or numbers that are levels of a factor. 
 *Scaledic* will estimate the data type from the given data when the `type` attribute is not provided in the dic file. 
 
 Let us add `type` information to the dic file:
@@ -60,7 +58,7 @@ dic_file <- ex_scaledic_dic |> subset(select = c(1,2,type))
 dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left = 2:3))
 ```
 
-Most item values are of type `integer` (the item has only whole numbers) with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
+Most item values are of type `numeric` with the exception of `gender` which is of type `factor` (i.e. it has a nominal scale with several levels).
 
 ```{r}
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)

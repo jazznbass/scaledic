@@ -160,16 +160,16 @@
 <span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>)</span></code></pre></div>
 <ul><li>
 <code><a href="../reference/get_dic_attribute.html">get_dic_attribute()</a></code>. Returns a list with dic attributes for a dataframe.</li>
-</ul><div class="sourceCode" id="cb5"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">"Int"</span>) <span class="sc">%&gt;%</span> </span>
+</ul><div class="sourceCode" id="cb5"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ex_itrf <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">"Int"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">get_dic_attribute</span>(<span class="st">"item_label"</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reworked-0-2-5">Reworked<a class="anchor" aria-label="anchor" href="#reworked-0-2-5"></a></h3>
 <ul><li>
 <code><a href="../reference/rename_items.html">rename_items()</a></code>: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)</li>
-</ul><div class="sourceCode" id="cb6"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">rename_item</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
+</ul><div class="sourceCode" id="cb6"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ex_itrf <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
 </div>
 </div>
     <div class="section level2">

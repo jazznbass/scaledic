@@ -10,7 +10,7 @@ apply_dic(
   set_label_attr = TRUE,
   coerce_class = TRUE,
   replace_missing = TRUE,
-  score_scales = TRUE,
+  score_scales = FALSE,
   check_values = FALSE,
   impute_values = FALSE,
   rename_var = NULL,
@@ -33,8 +33,7 @@ corrected.}
 \item{replace_missing}{If TRUE, missing values from the dic are replaced with
 NAs in the data frame.}
 
-\item{score_scales}{If TRUE and the dic files contains score scale
-definitions these are applied to the data frame.}
+\item{score_scales}{Deprecated. Use \code{score_from_dic()} instead.}
 
 \item{check_values}{If TRUE, performs the check_values function on the
 variables of the data frame included in the dic file.}

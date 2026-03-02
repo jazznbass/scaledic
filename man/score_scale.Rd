@@ -13,7 +13,6 @@ score_scale(
   max_na = NA,
   label = NULL,
   sum = NULL,
-  var_weight = NULL,
   var_recoding = "recodes",
   use_weights = TRUE
 )
@@ -28,40 +27,38 @@ the \code{get_scales()} function. Not used when \code{filter} is provided.}
 
 \item{fun}{A function or a string with the name of a predefined function that
 is applied to calculate the scale score. The function should take a
-data.frame of item values and a numeric vector of weights as arguments.
-The function should return a single numeric value representing the
-calculated score. Predefined functions are "mean" (weighted mean),
-"sum" (weighted sum), and "fa_scores" (factor scores based on a factor
-analysis with one factor using the psych package).}
+data.frame of item values and a numeric vector of weights as arguments. The
+function should return a single numeric value representing the calculated
+score. Predefined functions are "mean" (weighted mean), "sum" (weighted
+sum), "fa_score" (factor scores based on a factor analysis with one
+factor), and "pc_score" (scores based on the first principal component).}
 
 \item{min_valid}{Minimal number of valid values of each case. The score of a
 case will be set to NA if the number of valid values is below this
-threshold. A value between 0 and 1 indicates a proportion of
-values (e.g., 0.5 = 50 percent of values have to be valid).}
+threshold. A value between 0 and 1 indicates a proportion of values (e.g.,
+0.5 = 50 percent at least have to be valid).}
 
-\item{max_na}{Maximum number of NA values of each case. The score of a
-case will be set to NA if the number of valid values is above this
-threshold. A value between 0 and 1 indicates a proportion of values
-(e.g., 0.5 = 50 percent NAs are allowed).}
+\item{max_na}{Maximum number of NA values of each case. The score of a case
+will be set to NA if the number of valid values is above this threshold. A
+value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
+percent at most NAs are allowed).}
 
 \item{label}{A character string with a label for the resulting score
 variable. Automatically generated if label is not set.}
 
-\item{sum}{(Deprecated) If \code{FALSE}, a weighted mean function is applied for building the
-scores. If \code{TRUE}, a weighted sum function is applied. When argument fun is
-set, \code{sum} is ignored.}
-
-\item{var_weight}{Name of the \emph{dic} attribute that is applied to derive
-weights. Defaults to \code{weight}.}
+\item{sum}{(Deprecated) If \code{FALSE}, a weighted mean function is applied for
+building the scores. If \code{TRUE}, a weighted sum function is applied. When
+argument fun is set, \code{sum} is ignored.}
 
 \item{var_recoding}{Name if the \emph{dic} attribute that may contain recoding
 information. Defaults to \code{scores}.}
 
-\item{use_weights}{If \code{TRUE}, weights are applied when calculating the scores.}
+\item{use_weights}{If \code{TRUE}, weights are applied when calculating the
+scores.}
 }
 \value{
-A data frame with the calculated scale score. If only the filter argument
-is provided, a vector with the calculated scale score is returned.
+A data frame with the calculated scale score. If only the filter
+argument is provided, a vector with the calculated scale score is returned.
 }
 \description{
 Calculates scale scores based on item variables defined in the dictionary.
@@ -73,9 +70,8 @@ calculating the scores.
 \details{
 If the filter argument is provided, scale scores are calculated based on that
 filter. If the scales argument is provided, scale scores are calculated for
-each scale defined in that list.
-The default function for calculating the scale score is "mean", a weighted
-mean function.
+each scale defined in that list. The default function for calculating the
+scale score is "mean", a weighted mean function.
 }
 \examples{
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)

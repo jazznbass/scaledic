@@ -50,29 +50,29 @@ new_dic_old <- function(x,
                         .format_date = "%Y-%m-%d") {
 
 
-  init_messages(); on.exit(print_messages())
+  
 
   # validate/ normalize missing attributes -----
 
   if (!has_info(item_name)) {
     item_name <- as.character(match.call()[2])
-    add_message(
+    notify(
       "'item_name' definition is missing and set to '", item_name, "'."
     )
   }
   if (!has_info(item_label)) {
-    add_message(
+    notify(
       "'item_label' definition is missing and copied from item_name."
     )
     item_label <- item_name
   }
   if (!has_info(weight)) {
     weight <- 1
-    add_message("'weight' definition is missing and set to 1.")
+    notify("'weight' definition is missing and set to 1.")
   }
   if (!has_info(class)) {
     class <- "item"
-    add_message("'class' definition is missing and set to 'item'.")
+    notify("'class' definition is missing and set to 'item'.")
   }
 
   # check and estimate type ----
@@ -97,13 +97,13 @@ new_dic_old <- function(x,
 
     if (!has_info(values) && has_info(value_labels$value)) {
       values <- value_labels$value
-      add_message("'values' defintion for item '", item_name,
+      notify("'values' defintion for item '", item_name,
                   "' is missing and taken from 'value_labels' definition.")
     }
     .id <- sapply(value_labels$value, function(x) {
       id <- which(as.character(x) == as.character(values))
       if (length(id) == 0) {
-        add_message(
+        notify(
           "Value from 'value_labels' definition not found in 'values' ",
           "definition for item '", item_name, "'.", frame = -4
         )

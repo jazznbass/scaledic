@@ -67,4 +67,3 @@
   based on dictionary attributes
 - [`select_scores()`](select_scores.md) : (Deprecated) Select scale
   scores
-- [`show_messages()`](show_messages.md) : Print the last set of messages

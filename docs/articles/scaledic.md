@@ -137,7 +137,7 @@ dat |>
 and provide item analyses
 
 ``` r
-scales <- ex_itrf |> get_scales(
+scales <- dat |> get_scales(
   'Anxious/Depressed' = subscale_2 == "APD",
   'Oppositional/Disruptive' = subscale_2 == "OPP",
   "Socially Withdrawn" = subscale_2 == "SW",
@@ -190,7 +190,8 @@ dat$itrf_int <- score_scale(dat, scale == "ITRF" & subscale == "Int", label = "I
 and get descriptives for those scores
 
 ``` r
-dat[, c("itrf_ext", "itrf_int")] |> 
+dat |> 
+  subset(select = c(itrf_ext, itrf_int)) |> 
   rename_items() |> 
   wmisc::nice_descriptives(round = 1)
 ```
