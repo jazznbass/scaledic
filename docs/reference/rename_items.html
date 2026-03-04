@@ -67,7 +67,7 @@ and can include item name, item label, and other dic information.</p>
 <dt id="arg-pattern">pattern<a class="anchor" aria-label="anchor" href="#arg-pattern"></a></dt>
 <dd><p>A character string with the syntax of the glue function (see
 <code><a href="https://glue.tidyverse.org/reference/glue.html" class="external-link">glue::glue()</a></code>). It can include any dic attribute enclosed in curly braces,
-e.g. "item_label", "item_name", "values", "weight", etc.</p></dd>
+e.g. "{item_label}", "{item_name}", "{values}", "{weight}", etc.</p></dd>
 
 
 <dt id="arg-max-chars-chars">max_chars, chars<a class="anchor" aria-label="anchor" href="#arg-max-chars-chars"></a></dt>
@@ -81,10 +81,10 @@ label will be applied.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The default pattern is "item_label", which renames the variables to their
+    <p>The default pattern is "{item_label}", which renames the variables to their
 item labels. Other available dic attributes can be used in the pattern, such
 as "item_name", "values", "value_labels", "weight", etc.
-For example, the pattern "item_name: item_label" will rename the variables
+For example, the pattern "{item_name}: {item_label}" will rename the variables
 to "item_name: item_label".</p>
 <p>If the resulting label exceeds <code>max_chars</code>, it will be truncated to the
 specified length.</p>

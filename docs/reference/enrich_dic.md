@@ -35,10 +35,9 @@ df <- data.frame(
   age = c(25, 30, 35),
   gender = c("M", "F", "M")
 )
-df$age <- new_dic(df$age, item_name = "age", item_label = "Age of respondent")
-#> Error in new_dic(df$age, item_name = "age", item_label = "Age of respondent"): unused arguments (item_name = "age", item_label = "Age of respondent")
-df_enriched <- enrich_dic(df)
+df$age <- dic(df$age, item_name = "age", item_label = "Age of respondent")
 #> ! Type of age is missing and is estimated as 'numeric'.
+df_enriched <- enrich_dic(df)
 #> ! Type of gender is missing and is estimated as 'character'.
 attributes(df_enriched$gender)$dic |> str()
 #> List of 6

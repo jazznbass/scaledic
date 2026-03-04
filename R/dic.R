@@ -27,6 +27,7 @@
 #' @param type defaults to data type of x.
 #' @param recodes Recoding information e.g. `4 = 1, .default = 0`.
 #' @param class default is "item".
+#' @param ... Additional attributes to be added to the dic attribute list.
 #' @param dic_attributes Optional pre-built attribute list (skips parsing if given).
 #' @param .coerce_class If TRUE, coerce x to match `type`.
 #' @param .format_date Date format for coercion from character -> Date.
@@ -126,7 +127,6 @@ dic <- function(x,
 #' Build and validate dic attribute list
 #'
 #' @param x Optional. Used for type estimation only if `type` missing.
-#' @param validate If FALSE: minimal normalization only (no parsing/checks).
 #' @keywords internal
 create_dic_attributes <- function(x = NULL,
                                   item_name = NULL,
@@ -147,13 +147,13 @@ create_dic_attributes <- function(x = NULL,
   prefix <- paste0("'", item_name, "': ")
 
   if (!has_info(item_label)) {
-    notify(prefix, "'item_label' definition is missing and copied from item_name.")
+    notify(prefix, "'item_label' definition is missing and copied from item_name.", detail = 2)
     item_label <- item_name
   }
 
   if (!has_info(weight)) {
     weight <- 1
-    notify(prefix, "'weight' definition is missing and set to 1.")
+    notify(prefix, "'weight' definition is missing and set to 1.", detail = 2)
   }
 
   if (!has_info(class)) {

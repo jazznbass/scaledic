@@ -2,7 +2,7 @@
 
 
 
-q2 <- new_dic(
+q2 <- dic(
   c("Paris", "London", "Berlin"),
   item_name = "knowledge_2",
   item_label = "What is the Captial of Germany?",
@@ -46,7 +46,9 @@ dat <- readr::read_csv("~/sciebo/tmp/bodo/survey_472834_R_data_file Kopie.csv")
 dic <- readr::read_delim("~/sciebo/tmp/bodo/survey_472834_R_syntax_file_DICTIONARY_v2.csv",
                          delim = ";", escape_double = FALSE, trim_ws = TRUE)
 dic[which(dic$item_name == "startdate"), "type"] <- "date"
-dat$startdate |> class()
+dic[which(dic$item_name == "submitdate"), "type"] <- "date"
+dic[which(dic$item_name == "datestamp"), "type"] <- "date"
+
 df <- apply_dic(dat, dic)
 
 

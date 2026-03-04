@@ -151,7 +151,7 @@
   if (type %in% c("character", "factor")) {
 
     if (is.numeric(values)) {
-      notify(type, " 'values' defintions need quotes -> added quotes")
+      notify(type, " 'values' defintions need quotes -> added quotes", detail = 2)
       values <- sapply(values, function(x) paste0("'", x, "'"))
     }
     # Must be fully quoted, no embedded quotes of same type
@@ -177,7 +177,7 @@
       }
       notify(
         "Character values should be quoted with single or double quotes ",
-        "-> added quotes", msg_prefix
+        "-> added quotes", msg_prefix, detail = 2
       )
       return(paste0("'", p, "'"))
     }

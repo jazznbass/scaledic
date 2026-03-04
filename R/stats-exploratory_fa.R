@@ -37,8 +37,8 @@ exploratory_fa <- function(...,
   out <- round(out, round)
   out[abs(out) < cut] <- ""
   out <- as.data.frame(out)
-  if (!is.null(factor_names)) names(out) <- factor_names[1:ncol(names)]
   out <- rbind(out, round(var_exp, round))
+  if (!is.null(factor_names)) names(out) <- factor_names[1:ncol(out)]
   out
 }
 

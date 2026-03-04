@@ -16,7 +16,7 @@ rename_items(
 
 \item{pattern}{A character string with the syntax of the glue function (see
 \code{\link[glue:glue]{glue::glue()}}). It can include any dic attribute enclosed in curly braces,
-e.g. "{item_label}", "{item_name}", "{values}", "{weight}", etc.}
+e.g. "\{item_label\}", "\{item_name\}", "\{values\}", "\{weight\}", etc.}
 
 \item{max_chars, chars}{If not NULL, only the first n chars of the resulting
 label will be applied.}
@@ -30,10 +30,10 @@ attributes. The new names are created using the glue syntax (see \code{\link[glu
 and can include item name, item label, and other dic information.
 }
 \details{
-The default pattern is "{item_label}", which renames the variables to their
+The default pattern is "\{item_label\}", which renames the variables to their
 item labels. Other available dic attributes can be used in the pattern, such
 as "item_name", "values", "value_labels", "weight", etc.
-For example, the pattern "{item_name}: {item_label}" will rename the variables
+For example, the pattern "\{item_name\}: \{item_label\}" will rename the variables
 to "item_name: item_label".
 
 If the resulting label exceeds \code{max_chars}, it will be truncated to the

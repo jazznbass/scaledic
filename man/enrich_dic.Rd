@@ -29,7 +29,7 @@ df <- data.frame(
   age = c(25, 30, 35),
   gender = c("M", "F", "M")
 )
-df$age <- new_dic(df$age, item_name = "age", item_label = "Age of respondent")
+df$age <- dic(df$age, item_name = "age", item_label = "Age of respondent")
 df_enriched <- enrich_dic(df)
 attributes(df_enriched$gender)$dic |> str()
 }

@@ -83,37 +83,33 @@ list_scales(dat, levels = c("scale_label", "subscale_label"))
 #> 2 Integrated teacher report form  Externalizing
 # Example with pipeline syntax. Would be much easier to use the "describe" function
 # from the psch packages instead of summarise_all here.
-library(dplyr)
-#> 
-#> Attaching package: ‘dplyr’
-#> The following objects are masked from ‘package:stats’:
-#> 
-#>     filter, lag
-#> The following objects are masked from ‘package:base’:
-#> 
-#>     intersect, setdiff, setequal, union
 dat  |>
   select_items(scale == "ITRF" & subscale == "Ext")  |>
   rename_items(pattern = "{subscale_2}:{name}")  |>
-  summarise_all(mean, na.rm = TRUE)  |>
-  round(2)  |>
-  t()
-#>               [,1]
-#> OPP:itrf_I_20 0.55
-#> APD:itrf_E_1  0.95
-#> APD:itrf_E_2  0.76
-#> APD:itrf_E_3  0.57
-#> APD:itrf_E_4  0.58
-#> APD:itrf_E_5  0.93
-#> APD:itrf_E_6  0.53
-#> OPP:itrf_E_7  0.35
-#> OPP:itrf_E_8  0.49
-#> OPP:itrf_E_9  0.82
-#> OPP:itrf_E_10 0.40
-#> OPP:itrf_E_11 0.77
-#> OPP:itrf_E_12 0.46
-#> OPP:itrf_E_13 0.47
-#> APD:itrf_E_14 0.38
-#> APD:itrf_E_15 0.70
-#> OPP:itrf_E_16 0.35
+  lapply(function(x) fivenum(x)) |>
+  as.data.frame()
+#>   OPP.itrf_I_20 APD.itrf_E_1 APD.itrf_E_2 APD.itrf_E_3 APD.itrf_E_4
+#> 1             0            0            0            0            0
+#> 2             0            0            0            0            0
+#> 3             0            1            0            0            0
+#> 4             1            2            1            1            1
+#> 5             3            3            3            3            3
+#>   APD.itrf_E_5 APD.itrf_E_6 OPP.itrf_E_7 OPP.itrf_E_8 OPP.itrf_E_9
+#> 1            0            0            0            0            0
+#> 2            0            0            0            0            0
+#> 3            1            0            0            0            1
+#> 4            1            1            0            1            1
+#> 5            3            3            3            3            3
+#>   OPP.itrf_E_10 OPP.itrf_E_11 OPP.itrf_E_12 OPP.itrf_E_13 APD.itrf_E_14
+#> 1             0             0             0             0             0
+#> 2             0             0             0             0             0
+#> 3             0             0             0             0             0
+#> 4             0             1             1             1             1
+#> 5             3             3             3             3             3
+#>   APD.itrf_E_15 OPP.itrf_E_16
+#> 1             0             0
+#> 2             0             0
+#> 3             0             0
+#> 4             1             0
+#> 5             3             3
 ```

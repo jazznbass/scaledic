@@ -22,7 +22,7 @@ new_dic <- function(x,
                     labels = NULL) {
 
   stopifnot(is.list(dic_attributes))
-  dic_attributes <- modifyList(dic_attributes_default(), dic_attributes)
+  dic_attributes <- utils::modifyList(dic_attributes_default(), dic_attributes)
 
   out <- structure(
     x,

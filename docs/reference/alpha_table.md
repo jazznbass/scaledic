@@ -117,6 +117,13 @@ scales <- get_scales(ex_itrf,
   Ext = scale == "ITRF" & subscale == "Ext"
 )
 alpha_table(ex_itrf, scales = scales, difficulty = TRUE, values = list(c(0, 3)), RMSEA = TRUE)
-#> Removed 4 rows because all items were missing.
-#> Error in map_dbl(data_scale, ~as.numeric(scaledic::dic_attr(.x, "weight"))): could not find function "map_dbl"
+#> ! This function is deprecated. Please use the nice_alpha_table() function from the wmisc package.
+#> ! Removed 4 rows because all items were missing.
+#> Note. values in brackets depict upper and lower bound of confidence intervals or [min,max] intervals.
+#>   Scale    n n items    Alpha CI95% Std.Alph CI95% Homogeneity Discriminations
+#> 1   Int 4247      19 .91 [.91, .92] .91 [.91, .92]         .36      [.49, .68]
+#> 2   Ext 4616      17 .93 [.93, .93] .93 [.93, .93]         .44      [.39, .74]
+#>   Difficulties        Means          SDs |Loadings| RMSEA
+#> 1   [.07, .16] [0.21, 0.48] [0.51, 0.77] [.52, .70]  .154
+#> 2   [.12, .32] [0.35, 0.95] [0.72, 1.04] [.38, .78]  .196
 ```

@@ -68,6 +68,10 @@ dic(
 
   default is "item".
 
+- ...:
+
+  Additional attributes to be added to the dic attribute list.
+
 - dic_attributes:
 
   Optional pre-built attribute list (skips parsing if given).

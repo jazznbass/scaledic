@@ -43,6 +43,8 @@ named.}
 
 \item{class}{default is "item".}
 
+\item{...}{Additional attributes to be added to the dic attribute list.}
+
 \item{dic_attributes}{Optional pre-built attribute list (skips parsing if given).}
 
 \item{.coerce_class}{If TRUE, coerce x to match \code{type}.}

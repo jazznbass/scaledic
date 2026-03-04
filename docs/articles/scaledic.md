@@ -1,5 +1,26 @@
 # Introduction to scaledic
 
+    ## scaledic 0.5.0 (2026-03-03)
+
+    ## wmisc 0.4.3 (2026-02-21)
+
+    ## 
+    ## Attaching package: 'wmisc'
+
+    ## The following objects are masked from 'package:scaledic':
+    ## 
+    ##     alpha_table, combine_data_frames, ex_itrf
+
+    ## This is lavaan 0.6-21
+    ## lavaan is FREE software! Please report any bugs.
+
+    ## 
+    ## Attaching package: 'psych'
+
+    ## The following object is masked from 'package:lavaan':
+    ## 
+    ##     cor2cov
+
 ## What is a dictionary file?
 
 When you conduct research based on questionnaires or psychometric tests

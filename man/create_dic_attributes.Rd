@@ -20,8 +20,6 @@ create_dic_attributes(
 }
 \arguments{
 \item{x}{Optional. Used for type estimation only if \code{type} missing.}
-
-\item{validate}{If FALSE: minimal normalization only (no parsing/checks).}
 }
 \description{
 Build and validate dic attribute list

@@ -123,7 +123,7 @@ print_dic <- function(x, length = 100, ...) {
 
 
 .print_with_prefix <- function(x, ...) {
-  output <- capture.output(print(x, ...))
+  output <- utils::capture.output(print(x, ...))
   cat(paste0(getOption("scaledic.string.prefix"), output), sep = "\n")
   invisible(x)
 }

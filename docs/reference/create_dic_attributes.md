@@ -25,7 +25,3 @@ create_dic_attributes(
 - x:
 
   Optional. Used for type estimation only if `type` missing.
-
-- validate:
-
-  If FALSE: minimal normalization only (no parsing/checks).

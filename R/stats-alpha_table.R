@@ -62,7 +62,7 @@ alpha_table <- function(data,
                         values = NULL,
                         fa = TRUE) {
 
-  #warning("This function is deprecated. Please use the nice_alpha_table() function from the wmisc package")
+  notify("This function is deprecated. Please use the nice_alpha_table() function from the wmisc package.")
 
   if (!is.null(keys)) {
     check_key <- FALSE
@@ -82,7 +82,7 @@ alpha_table <- function(data,
     data_scale <- data[, scales[[i]]]
     .id <- apply(data_scale, 1, function(x) all(is.na(x))) |> which()
     if (length(.id) > 0) {
-      message(
+      notify(
         "Removed ", length(.id), " rows because all items were missing."
       )
      data_scale <- data_scale[-.id, ]
@@ -92,7 +92,7 @@ alpha_table <- function(data,
 
     if (any(.var == 0, na.rm = TRUE)) {
       filter_names <- names(data_scale)[which(.var == 0)]
-      message(
+      notify(
         "Variable with no variance dropped from analyses: ",
         paste0(filter_names, collapse = ", ")
       )
@@ -103,7 +103,7 @@ alpha_table <- function(data,
 
     if (any(is.na(.var), na.rm = TRUE)) {
       filter_names <- names(data_scale)[which(is.na(.var))]
-      message(
+      notify(
         "Variable with NA variance dropped from analyses: ",
         paste0(filter_names, collapse = ", ")
       )
@@ -113,15 +113,10 @@ alpha_table <- function(data,
     }
 
     if (keys_from_weights) {
-      if (requireNamespace("scaledic", quietly = TRUE)) {
         keys <- data_scale |>
-          map_dbl(~ as.numeric(scaledic::dic_attr(.x, "weight"))) |>
+          sapply(function(.x) as.numeric(scaledic::dic_attr(.x, "weight"))) |>
           sign()
         check_key <- FALSE
-      } else {
-        keys <- NULL
-        message("Scaledic is not installed, keys can not be extracted automatically.")
-      }
     }
 
     if (!is.null(values)) {

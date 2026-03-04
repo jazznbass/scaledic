@@ -60,8 +60,7 @@ score_from_dic <- function(data,
       label = dic[[opt("item_label")]][i],
       fun = dic[[opt("score_function")]][i],
       min_valid = 1,
-      max_na = NA,
-      var_weight = "weight"
+      max_na = NA
     )
     names(new_var)[i] <- dic[[opt("item_name")]][i]
   }

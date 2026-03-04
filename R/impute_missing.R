@@ -42,7 +42,7 @@ impute_missing <- function(data,
 
   if (method == "continuous") {
     cl <- class(data) # has problems with tibbles
-    tmp <- capture.output(imputations <- Amelia::amelia(
+    tmp <- utils::capture.output(imputations <- Amelia::amelia(
       as.data.frame(data[, id]),
       boot.type = "none",
       m = 1

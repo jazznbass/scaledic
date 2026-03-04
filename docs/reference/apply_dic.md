@@ -86,8 +86,7 @@ frame for further analyses by applying the dictionary information.
 ## See also
 
 [`new_dic`](new_dic.md), [`replace_missing`](replace_missing.md),
-[`score_from_dic`](score_from_dic.md), `check_values `,
-[`dic_haven`](dic_haven.md)
+[`score_from_dic`](score_from_dic.md), [`dic_haven`](dic_haven.md)
 
 ## Author
 

@@ -233,10 +233,6 @@ score_functions <- list(
   "mean" = function(df, weights) {
     apply(df, 1, function(x) weighted.mean(x, weights, na.rm = TRUE))
   },
-  #"fa_score" = function(df, weights) {
-  #  fa <- psych::fa(df, nfactors = 1)
-  #  psych::factor.scores(df, fa, impute = "mean")$scores |> as.numeric()
-  #},
   "fa_score" = function(df, weights) {
     m <- as.matrix(df)
     # impute missing values with column means

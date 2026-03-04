@@ -27,7 +27,7 @@ rename_items(
   A character string with the syntax of the glue function (see
   [`glue::glue()`](https://glue.tidyverse.org/reference/glue.html)). It
   can include any dic attribute enclosed in curly braces, e.g.
-  "item_label", "item_name", "values", "weight", etc.
+  "{item_label}", "{item_name}", "{values}", "{weight}", etc.
 
 - max_chars, chars:
 
@@ -40,10 +40,10 @@ A renamed data frame with variable names based on dic attributes.
 
 ## Details
 
-The default pattern is "item_label", which renames the variables to
+The default pattern is "{item_label}", which renames the variables to
 their item labels. Other available dic attributes can be used in the
 pattern, such as "item_name", "values", "value_labels", "weight", etc.
-For example, the pattern "item_name: item_label" will rename the
+For example, the pattern "{item_name}: {item_label}" will rename the
 variables to "item_name: item_label".
 
 If the resulting label exceeds `max_chars`, it will be truncated to the

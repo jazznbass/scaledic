@@ -31,8 +31,7 @@
 #'   coerced to a 'Date' class.
 #' @return A data frame with dictionary information.
 #' @seealso \code{\link{new_dic}}, \code{\link{replace_missing}},
-#'  \code{\link{score_from_dic}}, \code{\link{check_values
-#'  }}, \code{\link{dic_haven}}
+#'  \code{\link{score_from_dic}}, \code{\link{dic_haven}}
 #' @author Juergen Wilbert
 #' @examples
 #' dat <- apply_dic(dat_itrf, dic_itrf)
