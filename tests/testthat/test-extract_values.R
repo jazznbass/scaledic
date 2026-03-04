@@ -30,8 +30,9 @@ testthat::test_that(".extract_values parses valid specs and rejects invalid ones
   testthat::expect_null(ev("1, a, 3", "numeric"))
 
   # ----- integer: non-integer token -> returns unique values but message is emitted -----
+  out <- ev("1, 2.5, 3", "integer")
   testthat::expect_silent({
-    out <- ev("1, 2.5, 3", "integer")
+
     testthat::expect_true(is.numeric(out))
     testthat::expect_true(all(out %in% c(1, 2.5, 3)))
   })

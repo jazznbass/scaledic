@@ -92,13 +92,16 @@ dic_file |> wmisc::nice_table(title = "Dictionary file", cols_align = list(left 
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
 ```
 
-Invalid values can be replaced automatically with the `check_values()` function.
+Factor 'gender' has a value (-999) which is not provided in the `values` attribute. For factors, these are replaced with NA.
+
+Invalid values for all other data types can be replaced automatically with the `check_values()` function.
 
 ```{r}
 dat_dic <- check_values(dat_dic, replace = NA) 
 ```
 
 ```{r}
+#| echo=FALSE
 dat_dic |> wmisc::nice_table(title = "data frame with replaced invalid values")
 ```
 

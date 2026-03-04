@@ -4,7 +4,7 @@
 \alias{.check_coerce_class}
 \title{Check and coerce class of x to match type}
 \usage{
-.check_coerce_class(x, type, .format_date, item_name)
+.check_coerce_class(x, attrs, .format_date)
 }
 \description{
 Check and coerce class of x to match type

@@ -4,7 +4,7 @@
 \alias{factor_by_label}
 \title{Turns a dic variable into a factor based on the value labels}
 \usage{
-factor_by_label(x, ordered)
+factor_by_label(x, ordered = FALSE)
 }
 \arguments{
 \item{x}{A vector with dic information.}
