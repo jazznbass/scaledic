@@ -39,55 +39,29 @@ check_values <- function(data,
                          include_missing = FALSE,
                          integer_as_numeric = TRUE) {
 
-  
+  #if (!inherits(data, "data.frame")) data <- data.frame(data)
 
-  if (!inherits(data, "data.frame")) data <- data.frame(data)
+  for (i in which_dic(data)) {
 
-  id <- which_dic(data)
-  name <- names(data)
-  errors <- list()
-
-  for (i in id) {
-
-    id_invalid_values <- id_invalid_values(data[[i]], include_missing, integer_as_numeric)
-
-    x <- data[[i]][id_invalid_values]
-
-    dic_attr(x) <- NULL
-    attr(x, "label") <- NULL
-    attr(x, "labels") <- NULL
-    class(x) <- class(x)[class(x) != "dic"]
-    names(x) <- id_invalid_values
-    if (!(length(id_invalid_values) > 0)) x <- NULL
-    errors[[name[i]]] <- x
-
+    id_invalid_values <- id_invalid_values(
+      data[[i]],
+      include_missing,
+      integer_as_numeric
+    )
+    if (report && length(id_invalid_values) > 0) {
+      notify(
+        names(data)[i], "' invalid at ",
+        if_one(id_invalid_values, "row ", "rows "),
+        paste0(id_invalid_values, collapse = ", "),
+        " (is ", paste0(data[[i]][id_invalid_values], collapse = ", "), ")",
+        if (!is.null(replace)) paste0(" -> set as ", deparse(replace))
+      )
+    }
     if (!is.null(replace) && length(id_invalid_values) > 0) {
       data[id_invalid_values, i] <- replace
     }
   }
 
-  if (report && length(errors) > 0) {
-    msg <- c()
-    for(i in seq_along(errors)) {
-      word <- if (length(errors[[i]]) > 1) "rows" else "row"
-      msg <- c(msg, paste0(
-        "'", names(errors)[[i]], "' is ",
-        paste0(errors[[i]], collapse = ", "), " at ", word, " ",
-        paste0(names(errors[[i]]), collapse = ", "),
-        sep = ""
-      ))
-
-    }
-    notify(
-      if (is.null(replace)) {
-        "Found the following invalid values:\n  "
-      } else {
-        paste0("Replaced the following invalid values with ", deparse(replace), ":\n  ")
-      },
-      paste0(msg, collapse = "\n  ")
-    )
-  }
-  if (report && length(errors) == 0) notify("No errors found.\n")
   if (return) {
     return(data)
   } else {
@@ -127,11 +101,10 @@ id_invalid_values <- function(x, include_missing = FALSE, integer_as_numeric = T
 
   }
 
+
   if (type %in% "factor") {
     id_invalid_values <- which(
-      !(x %in% levels(x)) &
-        !is.na(x) &
-        !x %in% missing
+      !(x %in% levels(x)) & !is.na(x) & !x %in% missing
     )
   }
 
