@@ -15,7 +15,7 @@
 #' # A cross table
 #' table(factor_by_label(dat_dic$rel_1), dat_dic$gender)
 #' @export
-factor_by_label <- function(x, ordered) {
+factor_by_label <- function(x, ordered = FALSE) {
   labels <- dic_attr(x, "values")
   labels <- labels[which(!is.na(names(labels)))]
   out <- factor(x, levels = labels, labels = names(labels), ordered = ordered)
