@@ -16,8 +16,7 @@ create_dic_attributes(
   type = NULL,
   recodes = NULL,
   class = "item",
-  ...,
-  validate = TRUE
+  ...
 )
 ```
 

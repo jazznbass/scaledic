@@ -112,26 +112,25 @@ Here is the dic file with added `values`:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+ [33m! [39m Set 1 NA in factor 'gender' for value -999
 ```
 
-Invalid values can be replaced automatically with the
-[`check_values()`](../reference/check_values.md) function.
+Factor ‘gender’ has a value (-999) which is not provided in the `values`
+attribute. For factors, these are replaced with NA.
+
+Invalid values for all other data types can be replaced automatically
+with the [`check_values()`](../reference/check_values.md) function.
 
 ``` r
 dat_dic <- check_values(dat_dic, replace = NA) 
- [33m! [39m Replaced the following invalid values with NA:
-    'rel_2' is 66 at row 3
-    'rel_3' is -999 at row 14
-    'rel_4' is 11, -999 at rows 9, 18
-    'rel_5' is 66 at row 11
-    'sui_1' is 55 at row 10
-    'sui_2' is -999 at row 9
-    'sui_4' is 66 at row 17
-    'age' is 13, -999, 13 at rows 4, 12, 16
-```
-
-``` r
-dat_dic |> wmisc::nice_table(title = "data frame with replaced invalid values")
+ [33m! [39m rel_2' invalid at row 3 (is 66) -> set as NA
+ [33m! [39m rel_3' invalid at row 14 (is -999) -> set as NA
+ [33m! [39m rel_4' invalid at rows 9, 18 (is 11, -999) -> set as NA
+ [33m! [39m rel_5' invalid at row 11 (is 66) -> set as NA
+ [33m! [39m sui_1' invalid at row 10 (is 55) -> set as NA
+ [33m! [39m sui_2' invalid at row 9 (is -999) -> set as NA
+ [33m! [39m sui_4' invalid at row 17 (is 66) -> set as NA
+ [33m! [39m age' invalid at rows 4, 12, 16 (is 13, -999, 13) -> set as NA
 ```
 
 [TABLE]
@@ -163,15 +162,15 @@ Here is the dic file with added `value_labels`:
 dat_dic <- ex_scaledic_data |> 
   apply_dic(dic_file) |>
   check_values(replace = NA)
- [33m! [39m Replaced the following invalid values with NA:
-    'rel_2' is 66 at row 3
-    'rel_3' is -999 at row 14
-    'rel_4' is 11, -999 at rows 9, 18
-    'rel_5' is 66 at row 11
-    'sui_1' is 55 at row 10
-    'sui_2' is -999 at row 9
-    'sui_4' is 66 at row 17
-    'age' is 13, -999, 13 at rows 4, 12, 16
+ [33m! [39m Set 1 NA in factor 'gender' for value -999
+ [33m! [39m rel_2' invalid at row 3 (is 66) -> set as NA
+ [33m! [39m rel_3' invalid at row 14 (is -999) -> set as NA
+ [33m! [39m rel_4' invalid at rows 9, 18 (is 11, -999) -> set as NA
+ [33m! [39m rel_5' invalid at row 11 (is 66) -> set as NA
+ [33m! [39m sui_1' invalid at row 10 (is 55) -> set as NA
+ [33m! [39m sui_2' invalid at row 9 (is -999) -> set as NA
+ [33m! [39m sui_4' invalid at row 17 (is 66) -> set as NA
+ [33m! [39m age' invalid at rows 4, 12, 16 (is 13, -999, 13) -> set as NA
 ```
 
 Now lets see the coding for some of the variables:
@@ -221,9 +220,10 @@ dat_dic$gender
 ║  d = diverse
 ║ 
 ║Length is 20 (1 NA; 0 invalid)
-║ [1] f    d    d    f    f    d    f    f    f    f    m    m    m    m    d   
-║[16] d    <NA> m    m    m   
-║Levels: m f d
+║ [1] female  diverse diverse female  female  diverse female  female  female 
+║[10] female  male    male    male    male    diverse diverse <NA>    male   
+║[19] male    male   
+║Levels: male female diverse
 ```
 
 `gender` is of type factor. The valid values `'m', 'f', 'd'` have been
@@ -265,6 +265,7 @@ with NA when joining a data with a dic file:
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file)
+ [33m! [39m Set 1 NA in factor 'gender' for value -999
  [33m! [39m Replaced 1 missing value in 'rel_3' with NA
  [33m! [39m Replaced 1 missing value in 'rel_4' with NA
  [33m! [39m Replaced 1 missing value in 'sui_2' with NA
@@ -283,17 +284,17 @@ way as they are not *predefined* attributes):
 
 ``` r
 dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+ [33m! [39m Set 1 NA in factor 'gender' for value -999
  [33m! [39m Replaced 1 missing value in 'rel_3' with NA
  [33m! [39m Replaced 1 missing value in 'rel_4' with NA
  [33m! [39m Replaced 1 missing value in 'sui_2' with NA
  [33m! [39m Replaced 1 missing value in 'age' with NA
- [33m! [39m Replaced the following invalid values with NA:
-    'rel_2' is 66 at row 3
-    'rel_4' is 11 at row 9
-    'rel_5' is 66 at row 11
-    'sui_1' is 55 at row 10
-    'sui_4' is 66 at row 17
-    'age' is 13, 13 at rows 4, 16
+ [33m! [39m rel_2' invalid at row 3 (is 66) -> set as NA
+ [33m! [39m rel_4' invalid at row 9 (is 11) -> set as NA
+ [33m! [39m rel_5' invalid at row 11 (is 66) -> set as NA
+ [33m! [39m sui_1' invalid at row 10 (is 55) -> set as NA
+ [33m! [39m sui_4' invalid at row 17 (is 66) -> set as NA
+ [33m! [39m age' invalid at rows 4, 16 (is 13, 13) -> set as NA
 ```
 
 You can use the scale attribute to select items:

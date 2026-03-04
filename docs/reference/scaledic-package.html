@@ -51,7 +51,7 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># apply a dictionary file to a data frame</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Dictionary file includes scale definitions.</span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span><span style="color: #BBBB00;">!</span> Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to score scales.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to... [truncated]</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 528 missing values in 'itrf_I_1' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 18 missing values in 'itrf_I_2' with NA</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 18 missing values in 'itrf_I_4' with NA</span>
@@ -90,21 +90,20 @@
 <span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 15 missing values in 'itrf_E_16' with NA</span>
 <span class="r-in"><span><span class="co"># check for typos (not allowed values)</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced the following invalid values with NA:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_I_1' is 7 at row 3192</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_I_2' is 9 at row 4651</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_I_13' is 4 at row 3699</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_I_20' is 4 at row 2799</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_4' is 6 at row 2621</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_6' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_7' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_8' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_9' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_10' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_11' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_12' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_13' is 9, 11 at rows 2599, 4146</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     'itrf_E_14' is 9 at row 2599</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_1' invalid at row 3192 (is 7) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_2' invalid at row 4651 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_13' invalid at row 3699 (is 4) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_20' invalid at row 2799 (is 4) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_4' invalid at row 2621 (is 6) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_6' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_7' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_8' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_9' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_10' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_11' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_12' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_13' invalid at rows 2599, 4146 (is 9, 11) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_14' invalid at row 2599 (is 9) -&gt; set as NA</span>
 <span class="r-in"><span><span class="co"># Single imputation (EM algorith from the Amelia package)</span></span></span>
 <span class="r-in"><span><span class="co"># based on the variables of the provided scale</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span><span class="op">)</span></span></span>

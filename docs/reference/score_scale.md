@@ -111,6 +111,7 @@ Jürgen Wilbert
 
 ``` r
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
+#> ! Set 1 NA in factor 'gender' for value -999
 #> ! Replaced 1 missing value in 'rel_3' with NA
 #> ! Replaced 1 missing value in 'rel_4' with NA
 #> ! Replaced 1 missing value in 'sui_2' with NA

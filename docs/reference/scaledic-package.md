@@ -13,7 +13,7 @@ Juergen Wilbert \[aut, cre\]
 # apply a dictionary file to a data frame
 dat <- apply_dic(dat_itrf, dic_itrf)
 #> ! Dictionary file includes scale definitions.
-#> Warning: ! Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to score scales.
+#> ! Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to... [truncated]
 #> ! Replaced 528 missing values in 'itrf_I_1' with NA
 #> ! Replaced 18 missing values in 'itrf_I_2' with NA
 #> ! Replaced 18 missing values in 'itrf_I_4' with NA
@@ -52,21 +52,20 @@ dat <- apply_dic(dat_itrf, dic_itrf)
 #> ! Replaced 15 missing values in 'itrf_E_16' with NA
 # check for typos (not allowed values)
 dat <- check_values(dat, replace = NA)
-#> ! Replaced the following invalid values with NA:
-#>     'itrf_I_1' is 7 at row 3192
-#>     'itrf_I_2' is 9 at row 4651
-#>     'itrf_I_13' is 4 at row 3699
-#>     'itrf_I_20' is 4 at row 2799
-#>     'itrf_E_4' is 6 at row 2621
-#>     'itrf_E_6' is 9 at row 2599
-#>     'itrf_E_7' is 9 at row 2599
-#>     'itrf_E_8' is 9 at row 2599
-#>     'itrf_E_9' is 9 at row 2599
-#>     'itrf_E_10' is 9 at row 2599
-#>     'itrf_E_11' is 9 at row 2599
-#>     'itrf_E_12' is 9 at row 2599
-#>     'itrf_E_13' is 9, 11 at rows 2599, 4146
-#>     'itrf_E_14' is 9 at row 2599
+#> ! itrf_I_1' invalid at row 3192 (is 7) -> set as NA
+#> ! itrf_I_2' invalid at row 4651 (is 9) -> set as NA
+#> ! itrf_I_13' invalid at row 3699 (is 4) -> set as NA
+#> ! itrf_I_20' invalid at row 2799 (is 4) -> set as NA
+#> ! itrf_E_4' invalid at row 2621 (is 6) -> set as NA
+#> ! itrf_E_6' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_7' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_8' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_9' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_10' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_11' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_12' invalid at row 2599 (is 9) -> set as NA
+#> ! itrf_E_13' invalid at rows 2599, 4146 (is 9, 11) -> set as NA
+#> ! itrf_E_14' invalid at row 2599 (is 9) -> set as NA
 # Single imputation (EM algorith from the Amelia package)
 # based on the variables of the provided scale
 dat <- impute_missing(dat, scale == "ITRF" & subscale == "Ext")

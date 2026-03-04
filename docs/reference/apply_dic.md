@@ -98,7 +98,7 @@ Juergen Wilbert
 ``` r
 dat <- apply_dic(dat_itrf, dic_itrf)
 #> ! Dictionary file includes scale definitions.
-#> Warning: ! Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to score scales.
+#> ! Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to... [truncated]
 #> ! Replaced 528 missing values in 'itrf_I_1' with NA
 #> ! Replaced 18 missing values in 'itrf_I_2' with NA
 #> ! Replaced 18 missing values in 'itrf_I_4' with NA
