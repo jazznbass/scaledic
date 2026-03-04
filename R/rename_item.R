@@ -1,13 +1,25 @@
-#' Rename items
-#'
 #' Rename items based on dic information.
 #'
-#' @param data A data frame
+#' This function renames the variables in a data frame based on the dic
+#' attributes. The new names are created using the glue syntax (see [glue()])
+#' and can include item name, item label, and other dic information.
+#'
+#' The default pattern is "\{item_label\}", which renames the variables to their
+#' item labels. Other available dic attributes can be used in the pattern, such
+#' as "item_name", "values", "value_labels", "weight", etc.
+#' For example, the pattern "\{item_name\}: \{item_label\}" will rename the variables
+#' to "item_name: item_label".
+#'
+#' If the resulting label exceeds `max_chars`, it will be truncated to the
+#' specified length.
+#'
+#' @param data A data frame.
 #' @param pattern A character string with the syntax of the glue function (see
-#'   [glue()]).
+#'   [glue()]). It can include any dic attribute enclosed in curly braces,
+#'   e.g. "\{item_label\}", "\{item_name\}", "\{values\}", "\{weight\}", etc.
 #' @param max_chars,chars If not NULL, only the first n chars of the resulting
 #'   label will be applied.
-#' @return A renamed data frame
+#' @return A renamed data frame with variable names based on dic attributes.
 #' @examples
 #' ex_itrf  |>
 #'   rename_items(pattern = "{reverse}{name}: {label}")  |>
@@ -37,8 +49,8 @@ rename_items <- function(data,
   # end
 
   for (col in 1:ncol(data)) {
-    if (is.null(attr(data[[col]], .opt$dic))) next
-    new_label <- .glue_dic(attr(data[[col]], .opt$dic), pattern = pattern)
+    if (is.null(attr(data[[col]], opt("dic")))) next
+    new_label <- .glue_dic(attr(data[[col]], opt("dic")), pattern = pattern)
     if (length(new_label) != 0) {
       if (!is.null(max_chars)) new_label <- substring(new_label, 1, max_chars)
       names(data)[col] <- new_label
@@ -54,17 +66,6 @@ rename_items <- function(data,
   dic_env$label <- dic_env$item_label
   dic_env$name <- dic_env$item_name
   dic_env$values <- paste0(dic_env$values, collapse = ",")
-
-  #if (!is.null(dic_env$value_labels)) {
-  #  dic_env$value_labels <- paste0(
-  #    dic_env$value_labels$value,
-  #    " = ",
-  #    dic_env$value_labels$label,
-  #    collapse = "; "
-  #  )
-  #} else {
-  #  dic_env$value_labels <- NA
-  #}
 
   glue(pattern, .envir = list2env(dic_env))
 }

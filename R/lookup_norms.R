@@ -1,19 +1,25 @@
-#' Look up norm table values
+#' Look up norm table values based on raw scores and group affiliations
 #'
 #' Transforms raw values to norm values based on a norm table.
+#' If group affiliations are provided, these are used to identify the correct
+#' norm values. If no group affiliations are provided, norm values are looked up
+#' based on raw scores only. In case of ambiguities (e.g., multiple norm
+#' values for the same raw score), NA is returned and a message is printed.
 #'
 #' @param rawscores A vector with raw scores.
 #' @param group A vector with group affiliations or a list with vectors for
-#'   multiple group categorizations.
+#'   multiple group categorizations. If NULL (default), no group
+#'   affiliations are used.
 #' @param normtable An excel file name or a data frame containing a norm table.
 #' @param from Label of the raw score variable in file.
 #' @param to Label of the norm score variable in file.
 #' @param group_label Label of the group variable in file or a list with group
-#'   labels for multiple group categorizations.
-#' @param label Item label of the resulting variable
-#' @return A vector with norm values.
+#'   labels for multiple group categorizations. If NULL (default), "group" is used
+#'   as group label.
+#' @param label Item label of the resulting variable. If NULL (default), no label is set.
+#' @return A vector with norm values. If ambiguities occur, NA is returned
+#'  for the respective raw score(s) and a message is printed.
 #' @export
-#'
 #' @examples
 #' normtable <- data.frame(
 #'   age = rep(c(6, 8, 6, 8), each = 11),
@@ -40,16 +46,36 @@ lookup_norms <- function(rawscores,
                          group_label = names(group),
                          label = NULL) {
 
-  on.exit(print_messages())
+  
 
   if (inherits(normtable, "character")) {
-    normtable <- .read_by_suffix(normtable)
+    normtable <- read_by_suffix(normtable)
   }
 
+  if (!from %in% names(normtable)) {
+    stop(from, " was not found in normtable.")
+  }
+  if (!to %in% names(normtable)) {
+    stop(to, " was not found in normtable.")
+  }
+
+  # Checks if a cell in the normtable is NA and if so,
+  # replaces NA with the last valid previous entry
+  normtable <- lapply(normtable, function(col) {
+    if (!any(is.na(col))) return(col)
+    for (i in 2:length(col)) {
+      if (is.na(col[i])) col[i] <- col[i-1]
+    }
+    col
+  }) |> as.data.frame()
+
+
+  # Check group variable
   if (!is.null(group)) {
     if (is.null(group_label)) group_label <- "group"
     if (!is.list(group)) group <- list(group)
 
+    # Create new group variable in normtable by pasting together group variables
     new_group_var <- paste(group_label, collapse = "#")
     normtable[[new_group_var]] <- do.call(
       paste,  c(normtable[, unlist(group_label), drop = FALSE], list(sep = "#"))
@@ -65,23 +91,16 @@ lookup_norms <- function(rawscores,
       if (length(group) == 1) {
         group <- rep(group, length = length(rawscores))
       } else {
-        stop("Length of 'group' is smaller than length of 'rawscore'.")
+        abort("Length of 'group' is smaller than length of 'rawscore'.")
       }
     }
-  }
-
-  if (!from %in% names(normtable)) {
-    stop(from, " was not found in normtable.")
-  }
-  if (!to %in% names(normtable)) {
-    stop(to, " was not found in normtable.")
   }
 
   lookup <- function(x, y) {
     if (is.na(y)) {
       id <- which(normtable[[from]] == x)
       if (length(id) > 1) {
-        add_message(
+        notify(
           "Multiple values found for raw ", x,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."
@@ -91,7 +110,7 @@ lookup_norms <- function(rawscores,
     } else {
       id <- which(normtable[[from]] == x & normtable[[group_label]] == y)
       if (length(id) > 1) {
-        add_message(
+        notify(
           "Multiple values found for raw ", x, " and group ", y,
           " (", paste0((normtable[[to]][id]), collapse = ", "), ")",
           ". NA returned."
@@ -107,13 +126,13 @@ lookup_norms <- function(rawscores,
   if (is.null(group)) group <- NA
   out <- mapply(lookup, rawscores, group)
 
-  if (!is.null(label)) {
-    dic_attr(out, "item_label") <- label
-    dic_attr(out, "item_name") <- label
-    attr(out, "label") <- label
-  }
+  if (is.null(label)) label <- paste0(to, "_score")
 
-  out
+  dic(out,
+    item_name = label,
+    item_label = label,
+    type = if (is.numeric(out)) "numeric" else NULL
+  )
 }
 
 

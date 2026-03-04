@@ -1,8 +1,18 @@
 #' haven labels to dic files
 #'
-#' @param data A data frame containing variables with haven labels
+#' Convert haven labelled data frames to dic files
+#'
+#' This function converts a data frame with haven labels into a data frame
+#' containing dic information. Item labels and value labels are extracted from
+#' the haven attributes and stored in dic attributes.
+#'
+#' @param data A data frame containing variables with haven labels.
 #' @param remove_haven_class If TRUE, haven labels are removed.
-#' @return A data frame with dic information
+#' @return A data frame with dic information.
+#' @examples
+#' ex_itrf_dic <- haven_dic(ex_itrf, remove_haven_class = TRUE)
+#' ex_itrf_copy <- dic_haven(ex_itrf_dic)
+#'
 #' @export
 haven_dic <- function(data, remove_haven_class = FALSE) {
   for(i in 1:ncol(data)) {
@@ -15,40 +25,45 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
         .id <- which(!class(data[[i]]) %in% c("haven_labelled", "vctrs_vctr"))
         class(data[[i]]) <- class(data[[i]])[.id]
       }
-      if(is.null(attr(data[[i]], .opt$dic))) {
+      if(is.null(attr(data[[i]], opt("dic")))) {
         data[[i]] <- dic(data[[i]])
-        dic_attr(data[[i]], .opt$item_name) <- names(data)[i]
+        dic_attr(data[[i]], opt("item_name")) <- names(data)[i]
       }
       if (length(item_label) == 1)
-        dic_attr(data[[i]], .opt$item_label) <- item_label
+        dic_attr(data[[i]], opt("item_label")) <- item_label
       if (length(item_label) > 1) {
         warning("Label for ", item_name, " has legnth > 1")
-        dic_attr(data[[i]], .opt$item_label) <- item_name
+        dic_attr(data[[i]], opt("item_label")) <- item_name
       }
     }
 
     if (!is.null(value_labels)) {
-      if(is.null(attr(data[[i]], .opt$dic))){
+      if(is.null(attr(data[[i]], opt("dic")))){
         data[[i]] <- dic(data[[i]])
-        dic_attr(data[[i]], .opt$item_name) <- names(data)[i]
+        dic_attr(data[[i]], opt("item_name")) <- names(data)[i]
       }
-      dic_attr(data[[i]], .opt$values) <- value_labels
+      dic_attr(data[[i]], opt("values")) <- value_labels
     }
 
-    dic_attr(data[[i]], .opt$item_name) <- item_name
+    dic_attr(data[[i]], opt("item_name")) <- item_name
 
-    if (is.null(dic_attr(data[[i]], .opt$class)))
-      dic_attr(data[[i]], .opt$class) <- "item"
+    if (is.null(dic_attr(data[[i]], opt("class"))))
+      dic_attr(data[[i]], opt("class")) <- "item"
   }
   data
 }
 
-#' Create haven labels and value labels from dic
+#' Create haven labels and value labels from dic files
 #'
-#' @param data A data frame containing `dic` information
+#' Convert dic files to haven labelled data frames
+#'
+#' This function converts a data frame containing dic information into a data
+#' frame with haven labels. Item labels and value labels are extracted from
+#' the dic attributes and stored as haven attributes.
+#'
+#' @param data A data frame containing `dic` information.
 #' @param overwrite Logical. If `TRUE`, overwrites existing haven labels.
-#'
-#' @return A data frame with haven labels and value labels
+#' @return A data frame with haven labels and value labels.
 #' @examples
 #' ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)
 #' ex_itrf_copy <- dic_haven(ex_itrf)
@@ -57,9 +72,9 @@ haven_dic <- function(data, remove_haven_class = FALSE) {
 dic_haven <- function(data, overwrite = TRUE) {
   for(i in which_dic(data, items_only = FALSE)) {
     if (overwrite || is.null(attr(data[[i]], "label")))
-      attr(data[[i]], "label") <- dic_attr(data[[i]], .opt$item_label)
+      attr(data[[i]], "label") <- dic_attr(data[[i]], opt("item_label"))
     if (overwrite || is.null(attr(data[[i]], "labels")))
-      attr(data[[i]], "labels") <- dic_attr(data[[i]], .opt$values)
+      attr(data[[i]], "labels") <- dic_attr(data[[i]], opt("values"))
   }
   data
 }

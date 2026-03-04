@@ -7,21 +7,39 @@
 recode_dic_items(df, prefix_label = "(recoded)")
 }
 \arguments{
-\item{df}{a data frame that contains variables to be recoded}
+\item{df}{a data frame.}
 
-\item{prefix_label}{Prefix is added to the item label of a recoded item}
+\item{prefix_label}{Prefix is added to the item label of a recoded item.}
 }
 \value{
-A recoded data frame
+A data frame with recoded variables.
 }
 \description{
-This function takes a data frame and recodes specified variables based on the
-dictionary.
+This function takes a data frame and recodes variables based on the
+\code{recodes} attribute stored in the dic attributes of a variable.
 }
 \details{
-This function is useful, when you want to recode the 'raw' values from a
-vector in a data.frame based on recoding information provided in a
-dictionary file. For example, you code the answers in a data frame that were
-given to a task. And you have additional information in a dic-file that tells
-you, which answer is correct (1) vs. false (0).
+For each variable in the data frame, if a \code{recodes} attribute is found,
+the function creates a new variable where the values are recoded according
+to the specified recoding rules. The original variable is replaced with the
+recoded variable, and the item label is updated to indicate that the variable
+has been recoded.
+}
+\examples{
+q1 <- dic(
+  x = c(1,1,2,3,1,3,4,4,3,2,4,5),
+  item_name = "knowledge_1",
+  item_label = "What is the capital of Germany?",
+  type = "integer",
+  weight = 1,
+  values = "1:4",
+  value_labels = "1 = Brussels; 2 = Hamburg; 3 = Bonn; 4 = Berlin",
+  recodes = "1 = -1; 2 = 0; 3 = 0; 4 = 1; .default = NA"
+)
+q1
+recode_dic_items(q1)
+
+}
+\author{
+Juergen Wilbert
 }

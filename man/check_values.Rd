@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_values.R
 \name{check_values}
 \alias{check_values}
-\title{Check values}
+\title{Check values in data frame according to dic attributes}
 \usage{
 check_values(
   data,
@@ -10,37 +10,48 @@ check_values(
   return = TRUE,
   report = TRUE,
   include_missing = FALSE,
-  integer_as_float = FALSE,
-  check_type = TRUE
+  integer_as_numeric = TRUE
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame.}
 
-\item{replace}{Value which relaces unvalid values (e.g., NA).}
+\item{replace}{Value which replaces invalid values (e.g., NA). If NULL, no
+replacement is done.}
 
-\item{return}{If TRUE, a data frame is returned with replaced values.}
+\item{return}{If TRUE, a data frame is returned with replaced values. If FALSE,
+no data frame is returned.}
 
 \item{report}{If TRUE, an overview of invalid values will be given.}
 
 \item{include_missing}{If TRUE, missing values (provided as 'missing' in the
-dic file) will be considered as valid values.}
+dic file) will be considered as valid values. If FALSE, missing values will be
+considered as invalid values.}
 
-\item{integer_as_float}{If TRUE, type 'integer' will be handled as 'float'.
+\item{integer_as_numeric}{If TRUE, type 'integer' will be handled as 'numeric'.
 That is, only values outside the minimum and the maximum of the provided
-valid values will be considered invalid.}
-
-\item{check_type}{If TRUE, it will check if the class of a variable conflicts
-with the 'type' as defined in the dic information. When a type is numeric
-and the class is 'character' it will try to convert the class to a numeric
-class.}
+valid values will be considered invalid. If FALSE, only values not included
+in the provided valid values will be considered invalid.}
 }
 \value{
-A data frame with replaced values if replaces is not NULL.
+A data frame with replaced values if \code{replaces} is not NULL.
 }
 \description{
 Checks if values in variables are valid according to the 'values' and 'type'
-dictionary attributes.
+dictionary attributes. Invalid values can be replaced with a specified value.
+An overview of invalid values can be reported.
+}
+\details{
+This function only checks variables that have dic attributes. Variables
+without dic attributes are ignored.
+
+By default, integer variables are treated as float variables. That is,
+only values outside the provided valid values are considered invalid. If
+\code{integer_as_float} is set to FALSE, only values not included in the provided
+valid values are considered invalid.
+
+If \code{include_missing} is set to TRUE, values provided as 'missing' in the dic
+file are considered valid values.
 }
 \examples{
 check_values(ex_itrf, return = FALSE)

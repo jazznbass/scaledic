@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,6 +36,27 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.5.0" id="scaledic-050">scaledic 0.5.0<a class="anchor" aria-label="anchor" href="#scaledic-050"></a></h2>
+<ul><li>Reworked internals of dic attributes handling.</li>
+<li>Reworked internals of class “dic”.</li>
+<li>
+<code><a href="../reference/apply_dic.html">apply_dic()</a></code>: now uses new constructor function <code><a href="../reference/dic.html">dic()</a></code>.</li>
+<li>Adds dic-file comments as “info” attribute to data.frames created by <code><a href="../reference/apply_dic.html">apply_dic()</a></code>.</li>
+<li>
+<code><a href="../reference/lookup_norms.html">lookup_norms()</a></code>: Now creates variables with dic attributes.</li>
+<li>
+<code><a href="../reference/lookup_norms.html">lookup_norms()</a></code>: Now fills in missing cells of a normtable. This is usefull when you have a normtable with grouping variables and don’t fill in the repeated values for each group (e.g. age). Now you just can fill in the first row for each group and the function will fill in the rest of the cells for you.</li>
+</ul><div class="section level3">
+<h3 id="new-function-0-5-0">New function<a class="anchor" aria-label="anchor" href="#new-function-0-5-0"></a></h3>
+<ul><li>
+<code><a href="../reference/as_dic.html">as_dic()</a></code>: Converts a variable into a dic object by adding dic attributes.</li>
+<li>
+<code><a href="../reference/is_dic.html">is_dic()</a></code>: Checks if a variable is a dic object.</li>
+<li>
+<code><a href="../reference/dic.html">dic()</a></code>: Constructor function for dic objects.</li>
+</ul></div>
+</div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.1" id="scaledic-041">scaledic 0.4.1<a class="anchor" aria-label="anchor" href="#scaledic-041"></a></h2>
 <ul><li>Added more check functions and</li>
 <li>Implemented a new sessage system (not finished yet)</li>
@@ -47,10 +68,10 @@
 <p>Introduced new dic attribute: recodes. Recodes is useful when you have a test item with multiple response options that are evaluated later on. You can now put the raw responses as the variable values and define <code>recodes</code> to tell how to evaluate the raw data.</p>
 <p><code><a href="../reference/recode_dic_items.html">recode_dic_items()</a></code> can be used to create a new recoded variable or recode all variables in a data.frame that have recoding information in its dic-attributes.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/new_dic.html">new_dic</a></span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/dic.html">dic</a></span><span class="op">(</span></span>
 <span>  x <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>,<span class="fl">1</span>,<span class="fl">2</span>,<span class="fl">3</span>,<span class="fl">1</span>,<span class="fl">3</span>,<span class="fl">4</span>,<span class="fl">4</span>,<span class="fl">3</span>,<span class="fl">2</span>,<span class="fl">4</span>,<span class="fl">5</span><span class="op">)</span>,</span>
 <span>  item_name <span class="op">=</span> <span class="st">"knowledge_1"</span>, </span>
-<span>  item_label <span class="op">=</span> <span class="st">"What is the captial of Germany?"</span>,</span>
+<span>  item_label <span class="op">=</span> <span class="st">"What is the capital of Germany?"</span>,</span>
 <span>  type <span class="op">=</span> <span class="st">"integer"</span>,</span>
 <span>  weight <span class="op">=</span> <span class="fl">1</span>,</span>
 <span>  values <span class="op">=</span> <span class="st">"1:4"</span>,</span>
@@ -70,7 +91,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="scaledic-031">scaledic 0.3.1<a class="anchor" aria-label="anchor" href="#scaledic-031"></a></h2>
 <ul><li><p>solved bug. extract_dic did not work when type name was in capitals (e.g. “Integer”)</p></li>
-<li><p><code>alphy_table()</code>: New argument <code>keys_from_weights</code>. If TRUE, tries to extract keys argument from scaledics weights parameter.</p></li>
+<li><p><code><a href="../reference/alpha_table.html">alpha_table()</a></code>: New argument <code>keys_from_weights</code>. If TRUE, tries to extract keys argument from scaledics weights parameter.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.0" id="scaledic-030">scaledic 0.3.0<a class="anchor" aria-label="anchor" href="#scaledic-030"></a></h2>
@@ -139,16 +160,16 @@
 <span id="cb4-19"><a href="#cb4-19" tabindex="-1"></a>)</span></code></pre></div>
 <ul><li>
 <code><a href="../reference/get_dic_attribute.html">get_dic_attribute()</a></code>. Returns a list with dic attributes for a dataframe.</li>
-</ul><div class="sourceCode" id="cb5"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">"Int"</span>) <span class="sc">%&gt;%</span> </span>
+</ul><div class="sourceCode" id="cb5"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>ex_itrf <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="fu">select_items</span>(subscale <span class="sc">==</span> <span class="st">"Int"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">get_dic_attribute</span>(<span class="st">"item_label"</span>)</span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="reworked-0-2-5">Reworked<a class="anchor" aria-label="anchor" href="#reworked-0-2-5"></a></h3>
 <ul><li>
 <code><a href="../reference/rename_items.html">rename_items()</a></code>: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)</li>
-</ul><div class="sourceCode" id="cb6"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ex_itrf <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">rename_item</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
+</ul><div class="sourceCode" id="cb6"><pre class="sourceCode .r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>ex_itrf <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="fu">rename_items</span>(<span class="st">"{reverse}{item_name}: {item_label}"</span>)</span></code></pre></div>
 </div>
 </div>
     <div class="section level2">
@@ -194,7 +215,7 @@
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.8.2" id="scaledic-0182-2020-04-07">scaledic 0.1.8.2 (2020-04-07)<a class="anchor" aria-label="anchor" href="#scaledic-0182-2020-04-07"></a></h2>
-<ul><li>New function: <code><a href="../reference/rename_by_list.html">rename_by_list()</a></code> for renaming variables in a data file based on a provided list with named strings.</li>
+<ul><li>New function: <code>rename_by_list()</code> for renaming variables in a data file based on a provided list with named strings.</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1.8.0" id="scaledic-0180-2020-03-25">scaledic 0.1.8.0 (2020-03-25)<a class="anchor" aria-label="anchor" href="#scaledic-0180-2020-03-25"></a></h2>
@@ -202,7 +223,7 @@
 <li>
 <code><a href="../reference/apply_dic.html">apply_dic()</a></code>: If a charcter string is passed to the <code>dic</code> argument instead of a data frame, the function will take this as a filename and tries to load the file.</li>
 <li>
-<code>get_dic()</code> renamed to <code><a href="../reference/backup_dic.html">backup_dic()</a></code>
+<code>get_dic()</code> renamed to <code><a href="../reference/deploy_dic.html">backup_dic()</a></code>
 </li>
 </ul></div>
     <div class="section level2">
@@ -276,7 +297,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

@@ -2,20 +2,25 @@
 % Please edit documentation in R/haven.R
 \name{dic_haven}
 \alias{dic_haven}
-\title{Create haven labels and value labels from dic}
+\title{Create haven labels and value labels from dic files}
 \usage{
 dic_haven(data, overwrite = TRUE)
 }
 \arguments{
-\item{data}{A data frame containing \code{dic} information}
+\item{data}{A data frame containing \code{dic} information.}
 
 \item{overwrite}{Logical. If \code{TRUE}, overwrites existing haven labels.}
 }
 \value{
-A data frame with haven labels and value labels
+A data frame with haven labels and value labels.
 }
 \description{
-Create haven labels and value labels from dic
+Convert dic files to haven labelled data frames
+}
+\details{
+This function converts a data frame containing dic information into a data
+frame with haven labels. Item labels and value labels are extracted from
+the dic attributes and stored as haven attributes.
 }
 \examples{
 ex_itrf_copy <- haven_dic(ex_itrf, remove_haven_class = TRUE)

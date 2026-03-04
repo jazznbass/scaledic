@@ -4,19 +4,31 @@
 \alias{score_from_dic}
 \title{Automatic scale scoring from a dic file}
 \usage{
-score_from_dic(data, dic = NULL, impute_values = FALSE)
+score_from_dic(data, dic = NULL)
 }
 \arguments{
-\item{data}{A data frame with dic information}
+\item{data}{A data frame with dic information. The dic information can be
+provided as an attribute of the data frame or as a separate argument.}
 
-\item{dic}{A dic file with scoring information}
-
-\item{impute_values}{If TRUE, missing values are imputed before scoring.}
+\item{dic}{A dic file with scoring information. If NULL, the function will
+attempt to retrieve dic information from the data frame's attributes.}
 }
 \value{
-A data frame with added scale scores.
+A data frame with added scale scores. The new variables will be named
+according to the 'item_name' column in the dic file.
 }
 \description{
-Automatic scale scoring from a dic file
+This function is deprecated. Please score scales directly from within R. Use
+the \code{\link[=get_scales]{get_scales()}} and \code{\link[=score_scale]{score_scale()}} functions. This function takes a
+data frame and a dic file with scale definitions and applies the specified
+scoring functions to create new variables for each scale. The scoring
+functions can be specified in the dic file, and if not provided, it defaults
+to using the mean of the items in the scale. The new variables will be named
+according to the 'item_name' column in the dic file. The function first
+checks for the presence of dic information either in the data frame's
+attributes or as a separate argument. It then iterates through each scale
+defined in the dic file, applies the specified scoring function to the
+relevant items, and creates new variables for each scale. Finally, it returns
+a data frame with the new scale scores.
 }
 \keyword{internal}

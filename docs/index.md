@@ -1,0 +1,332 @@
+# scaledic
+
+`scaledic` is an R package for **extending data frames and tibbles with
+psychometric scale information**.
+
+It lets you attach a rich *item dictionary* to each variable, including:
+
+- Item name and full item text
+- Scale and subscale membership
+- Reverse-coding and item weights
+- Valid values and value labels
+- Special codes for missing values
+- Arbitrary additional attributes (e.g. translations, references)
+
+On top of this metadata layer, `scaledic` provides tools to:
+
+- Clean raw questionnaire data (detect and fix invalid values, apply
+  missing-value codes)
+- Impute missing item responses within scales
+- Select and rename items by scale/subscale attributes
+- Build scale and subscale scores
+- Look up norm scores (e.g. T-scores, percentile ranks)
+- Prepare data for exploratory and confirmatory factor analyses
+
+The package works and is used in practice, but it is still
+**experimental**: core syntax may change, and documentation is under
+active development.
+
+A rendered introduction and examples are available on the package
+website:  
+<https://jazznbass.github.io/scaledic/>
+
+------------------------------------------------------------------------
+
+## Installation
+
+`scaledic` is not on CRAN. Install it from GitHub.
+
+### Stable version (main branch)
+
+``` r
+# install.packages("remotes")
+remotes::install_github("jazznbass/scaledic", ref = "main")
+```
+
+### Development version (dev branch)
+
+The development branch may include new features and syntax changes.
+
+``` r
+remotes::install_github("jazznbass/scaledic", ref = "dev")
+```
+
+Then load the package:
+
+``` r
+library(scaledic)
+```
+
+------------------------------------------------------------------------
+
+## Core idea: item dictionaries
+
+### Why a dictionary?
+
+In questionnaire and test data you often need, per item:
+
+- Full text and short labels
+- Scale and subscale membership
+- Reverse-coding information
+- Valid values and value labels
+- Special missing codes
+
+Base R data frames can only store a small part of this conveniently.  
+`scaledic` moves this information into a *dictionary file* and attaches
+it back to your data.
+
+### What is a dictionary file?
+
+A dictionary file is a data frame with:
+
+- **One row per item (variable)**
+- **One column per attribute**
+
+There are some predefined columns with a special meaning:
+
+| Column | Meaning | Example |
+|----|----|----|
+| `item_name` | Short item/variable name | `itrf_1` |
+| `item_label` | Full text of the item | *Vermeidet die Teilnahme an …* |
+| `values` | Valid response values (R-style syntax) | `1:5`, `1,2,3`, `'m','f','d'` |
+| `value_labels` | Labels for response values | `0 = none; 1 = mild; 2 = moderate; …` |
+| `missing` | Codes used to denote missing values | `-888, -999` |
+| `type` | Data type | `integer`, `float`, `factor`, `character` |
+| `weight` | Reverse and weight (`-1` = reverse, `1.5` = 1.5× weight, …) | `1`, `-1`, `1.5` |
+
+In addition, you can add **arbitrary attributes** in extra columns
+(e.g. `scale`, `scale_label`, `subscale`, `subscale_label`,
+translations, references, …).
+
+------------------------------------------------------------------------
+
+## Basic workflow
+
+### 1. Apply a dictionary to your data
+
+You typically start with a raw data frame and a dictionary file:
+
+``` r
+library(scaledic)
+
+# Example data and dictionary shipped with the package
+data("dat_itrf")
+data("dic_itrf")
+
+# Combine data and dictionary; missing codes are turned into NA
+dat <- apply_dic(dat_itrf, dic_itrf)
+```
+
+After [`apply_dic()`](reference/apply_dic.md), each variable described
+in `dic_itrf` has a `dic` attribute containing its dictionary
+information. The resulting data set `dat` is now ready for use with
+other `scaledic` functions.
+
+You can list the scales in the data:
+
+``` r
+list_scales(dat, paste0(c("scale", "subscale", "subscale_2"), "_label"))
+```
+
+### 2. Clean raw data
+
+Check for invalid values (e.g. typos not covered by `values`) and
+replace them:
+
+``` r
+dat <- check_values(dat, replace = NA)
+```
+
+Impute missing values within a subset of items (e.g. defined by
+subscale):
+
+``` r
+# Impute missing values for "Ext" subscale items
+dat <- impute_missing(dat, subscale == "Ext")
+
+# Impute missing values for "Int" subscale items
+dat <- impute_missing(dat, subscale == "Int")
+```
+
+The selection condition in
+[`impute_missing()`](reference/impute_missing.md) uses dictionary
+attributes (here `subscale`).
+
+### 3. Select and rename items by scale/subscale
+
+You can select items based on dictionary attributes such as `scale`,
+`subscale`, etc.:
+
+``` r
+# Select items of the "Int" (internalizing) subscale
+dat_int <- select_items(dat, subscale == "Int")
+```
+
+To work with more descriptive variable names (e.g. in descriptive
+statistics or factor analysis), use
+[`rename_items()`](reference/rename_items.md):
+
+``` r
+dat_int_lab <- dat |>
+  select_items(subscale == "Int") |>
+  rename_items()
+
+# Example: descriptive statistics with labels (using wmisc)
+wmisc::nice_descriptives(dat_int_lab, round = 1)
+```
+
+You can also construct custom labels from multiple dictionary fields:
+
+``` r
+dat_fa <- dat |>
+  select_items(scale == "ITRF") |>
+  rename_items(pattern = "({reverse}){subscale}_{subscale_2}: {label}",
+               max_chars = 70)
+```
+
+This is especially convenient for factor analysis or item analysis.
+
+### 4. Build scale scores
+
+Use [`score_scale()`](reference/score_scale.md) to compute scale or
+subscale scores from items defined by dictionary attributes:
+
+``` r
+# Externalizing and Internalizing scores for the ITRF scale
+dat$itrf_ext <- score_scale(
+  dat,
+  scale == "ITRF" & subscale == "Ext",
+  label = "Externalizing"
+)
+
+dat$itrf_int <- score_scale(
+  dat,
+  scale == "ITRF" & subscale == "Int",
+  label = "Internalizing"
+)
+```
+
+Get descriptives for these scores:
+
+``` r
+dat[, c("itrf_ext", "itrf_int")] |>
+  rename_items() |>
+  wmisc::nice_descriptives(round = 1)
+```
+
+### 5. Look up norms
+
+If you have norm tables (e.g. to convert raw scores to T-scores or
+percentile ranks), use [`lookup_norms()`](reference/lookup_norms.md):
+
+``` r
+# Example norm tables for internalizing and externalizing scales
+data("ex_normtable_int")
+data("ex_normtable_ext")
+
+# Ensure raw scores exist (sum of items, no missing values allowed here)
+dat$raw_int <- score_scale(dat, subscale == "Int", sum = TRUE, max_na = 0)
+dat$raw_ext <- score_scale(dat, subscale == "Ext", sum = TRUE, max_na = 0)
+
+# Convert raw scores to T-scores
+dat$T_int  <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "T")
+dat$T_ext  <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "T")
+
+# Or percentile ranks
+dat$PR_int <- lookup_norms(dat$raw_int, normtable = ex_normtable_int, to = "PR")
+dat$PR_ext <- lookup_norms(dat$raw_ext, normtable = ex_normtable_ext, to = "PR")
+```
+
+------------------------------------------------------------------------
+
+## Building a dictionary (overview)
+
+Although dictionary creation is usually explained in vignettes, the
+basic structure is:
+
+``` r
+# Skeleton of a dictionary for an example data frame ex_scaledic_data
+dic_file <- tibble::tibble(
+  item_name    = c("rel_1", "rel_2", "gender", "age"),
+  item_label   = c("Item text for rel_1", "Item text for rel_2",
+                   "Gender", "Age in years"),
+  type         = c("integer", "integer", "factor", "integer"),
+  weight       = c(1, 1, 1, 1),
+  values       = c("1:6", "1:6", "'m','f','d'", "5:11"),
+  value_labels = c(
+    "1 = never; 6 = always",
+    "1 = never; 6 = always",
+    "m = male; f = female; d = diverse",
+    ""
+  ),
+  missing      = c("-999", "-999", "-999", "-999"),
+  scale        = c("rel", "rel", "demo", "demo"),
+  scale_label  = c("Relation scale", "Relation scale",
+                   "Demographics", "Demographics")
+)
+
+dat_dic <- apply_dic(ex_scaledic_data, dic_file, check_values = TRUE)
+```
+
+Key points:
+
+- `type` is used by many functions (checking values, imputing,
+  scoring).  
+  If omitted, `scaledic` will attempt to infer it from the data.
+- `values` and `value_labels` allow
+  [`check_values()`](reference/check_values.md) to detect typos and to
+  construct valid factors.
+- `missing` codes are automatically turned into `NA` by
+  [`apply_dic()`](reference/apply_dic.md) (unless
+  `replace_missing = FALSE`).
+- Additional attributes like `scale`/`scale_label` are free-form and
+  extremely useful for item selection and labelling.
+
+For a full step-by-step guide, see the vignette *“How to build a
+dictionary file”*.
+
+------------------------------------------------------------------------
+
+## Included example data
+
+`scaledic` ships with example data and dictionaries, including:
+
+- `dat_itrf` / `dic_itrf`  
+  Data and dictionary for the **Integrated Teacher Report Form**
+  questionnaire.
+- `ex_scaledic_data` / `ex_scaledic_dic`  
+  Smaller teaching examples for building and applying dictionaries.
+- `ex_normtable_int`, `ex_normtable_ext`  
+  Example norm tables for internalizing and externalizing scales.
+
+These allow you to reproduce the examples from the vignettes and the
+package website.
+
+------------------------------------------------------------------------
+
+## Project status and contributions
+
+`scaledic` is **under active development**:
+
+- Functionality is in place and usable for real data.
+- The API and syntax may still change, especially on the `dev` branch.
+- Documentation (vignettes, website) is being expanded.
+
+Bug reports, questions, and contributions are welcome:
+
+- Issues and suggestions: <https://github.com/jazznbass/scaledic/issues>
+- Package website: <https://jazznbass.github.io/scaledic/>
+
+------------------------------------------------------------------------
+
+## citation
+
+If you use `scaledic` in publications, please cite it using:
+
+``` r
+citation("scaledic")
+```
+
+> Wilbert, J. (2026). *scaledic: Extend R Data Frames with Psychometric
+> Scale Dictionaries*. R package, GitHub version. Available at
+> <https://github.com/jazznbass/scaledic>.

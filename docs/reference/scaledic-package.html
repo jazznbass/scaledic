@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">scaledic</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.4.1</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,47 +50,70 @@
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># apply a dictionary file to a data frame</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="apply_dic.html">apply_dic</a></span><span class="op">(</span><span class="va">dat_itrf</span>, <span class="va">dic_itrf</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: 'type' attribute missing and replaced with an estimation (2x)</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Found the following invalid values:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_1' is 7 at row 3192</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_2' is 9 at row 4651</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_13' is 4 at row 3699</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_I_20' is 4 at row 2799</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_4' is 6 at row 2621</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_6' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_7' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_8' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_9' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_10' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_11' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_12' is 9 at row 2599</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_13' is 9, 11 at rows 2599, 4146</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 'itrf_E_14' is 9 at row 2599</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Cautions:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 1: Invalid values replaced with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 2: Missing values replaced with NA</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> 3: Scales scored</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Dictionary file includes scale definitions.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Scale information in dic files are not scored automatically (since 0.5.0). Use `score_from_dic()` to... [truncated]</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 528 missing values in 'itrf_I_1' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 18 missing values in 'itrf_I_2' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 18 missing values in 'itrf_I_4' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_I_5' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 22 missing values in 'itrf_I_6' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 25 missing values in 'itrf_I_7' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 23 missing values in 'itrf_I_8' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 15 missing values in 'itrf_I_9' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 15 missing values in 'itrf_I_10' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_I_11' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_I_12' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_I_13' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_I_14' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_I_15' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_I_16' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_I_17' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 15 missing values in 'itrf_I_19' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 22 missing values in 'itrf_I_20' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 35 missing values in 'itrf_I_23' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 29 missing values in 'itrf_I_24' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_E_1' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 22 missing values in 'itrf_E_2' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 160 missing values in 'itrf_E_3' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 73 missing values in 'itrf_E_4' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 47 missing values in 'itrf_E_5' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 24 missing values in 'itrf_E_6' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 20 missing values in 'itrf_E_7' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 18 missing values in 'itrf_E_8' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_E_9' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 19 missing values in 'itrf_E_10' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 21 missing values in 'itrf_E_11' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 22 missing values in 'itrf_E_12' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 23 missing values in 'itrf_E_13' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 52 missing values in 'itrf_E_14' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 27 missing values in 'itrf_E_15' with NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Replaced 15 missing values in 'itrf_E_16' with NA</span>
 <span class="r-in"><span><span class="co"># check for typos (not allowed values)</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="check_values.html">check_values</a></span><span class="op">(</span><span class="va">dat</span>, replace <span class="op">=</span> <span class="cn">NA</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> No errors found.</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_1' invalid at row 3192 (is 7) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_2' invalid at row 4651 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_13' invalid at row 3699 (is 4) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_I_20' invalid at row 2799 (is 4) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_4' invalid at row 2621 (is 6) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_6' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_7' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_8' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_9' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_10' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_11' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_12' invalid at row 2599 (is 9) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_13' invalid at rows 2599, 4146 (is 9, 11) -&gt; set as NA</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> itrf_E_14' invalid at row 2599 (is 9) -&gt; set as NA</span>
 <span class="r-in"><span><span class="co"># Single imputation (EM algorith from the Amelia package)</span></span></span>
 <span class="r-in"><span><span class="co"># based on the variables of the provided scale</span></span></span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Imputation 1 --</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1  2  3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">╭─ Applied 'Amelia' for single imputation with EM algorithm </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Imputed 615 values (0.8%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Forced 58 imputed values to scales' min and max values.</span>
 <span class="r-in"><span><span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="impute_missing.html">impute_missing</a></span><span class="op">(</span><span class="va">dat</span>, <span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Int"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> Warning: There are observations in the data that are completely missing. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>          These observations will remain unimputed in the final datasets. </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> -- Imputation 1 --</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   1  2  3</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #0000BB;">╭─ Applied 'Amelia' for single imputation with EM algorithm </span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Imputed 908 values (1%)</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> Forced 71 imputed values to scales' min and max values.</span>
 <span class="r-in"><span><span class="co"># Show a table with all scales and scale labels included in the data frame</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="list_scales.html">list_scales</a></span><span class="op">(</span><span class="va">dat</span>, levels <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"scale_label"</span>, <span class="st">"subscale_label"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                      scale_label subscale_label</span>
@@ -98,39 +121,35 @@
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2 Integrated teacher report form  Externalizing</span>
 <span class="r-in"><span><span class="co"># Example with pipeline syntax. Would be much easier to use the "describe" function</span></span></span>
 <span class="r-in"><span><span class="co"># from the psch packages instead of summarise_all here.</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Attaching package: ‘dplyr’</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:stats’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     filter, lag</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> The following objects are masked from ‘package:base’:</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span>     intersect, setdiff, setequal, union</span>
 <span class="r-in"><span><span class="va">dat</span>  <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="select_items.html">select_items</a></span><span class="op">(</span><span class="va">scale</span> <span class="op">==</span> <span class="st">"ITRF"</span> <span class="op">&amp;</span> <span class="va">subscale</span> <span class="op">==</span> <span class="st">"Ext"</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu"><a href="rename_items.html">rename_items</a></span><span class="op">(</span>pattern <span class="op">=</span> <span class="st">"{subscale_2}:{name}"</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise_all.html" class="external-link">summarise_all</a></span><span class="op">(</span><span class="va">mean</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/Round.html" class="external-link">round</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span>  <span class="op">|&gt;</span></span></span>
-<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/t.html" class="external-link">t</a></span><span class="op">(</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               [,1]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_I_20 0.55</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_1  0.95</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_2  0.76</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_3  0.58</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_4  0.57</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_5  0.93</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_6  0.53</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_7  0.35</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_8  0.49</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_9  0.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_10 0.40</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_11 0.77</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_12 0.46</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_13 0.47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_14 0.38</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> APD:itrf_E_15 0.70</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> OPP:itrf_E_16 0.35</span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">lapply</a></span><span class="op">(</span><span class="kw">function</span><span class="op">(</span><span class="va">x</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/stats/fivenum.html" class="external-link">fivenum</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
+<span class="r-in"><span>  <span class="fu"><a href="https://rdrr.io/r/base/as.data.frame.html" class="external-link">as.data.frame</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   OPP.itrf_I_20 APD.itrf_E_1 APD.itrf_E_2 APD.itrf_E_3 APD.itrf_E_4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0            0            0            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             0            0            0            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0            1            0            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             1            2            1            1            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             3            3            3            3            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   APD.itrf_E_5 APD.itrf_E_6 OPP.itrf_E_7 OPP.itrf_E_8 OPP.itrf_E_9</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1            0            0            0            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2            0            0            0            0            0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3            1            0            0            0            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4            1            1            0            1            1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5            3            3            3            3            3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   OPP.itrf_E_10 OPP.itrf_E_11 OPP.itrf_E_12 OPP.itrf_E_13 APD.itrf_E_14</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0             0             0             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             0             0             0             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0             0             0             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             0             1             1             1             1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             3             3             3             3             3</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   APD.itrf_E_15 OPP.itrf_E_16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3             0             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4             1             0</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5             3             3</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -142,7 +161,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>

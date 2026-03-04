@@ -10,15 +10,25 @@ dic_attr(x, var)
 dic_attr(x, var) <- value
 }
 \arguments{
-\item{x}{Variable}
+\item{x}{A vector or a data.frame.}
 
-\item{var}{Attribute}
+\item{var}{Attribute name. If missing, the full attribute list is returned.}
 
-\item{value}{set value}
+\item{value}{set value.}
 }
 \value{
 Attribute value
+
+Modified object with updated attribute.
 }
 \description{
-Set and get dictionary attributes
+Get or set dictionary attributes of a vector or a data.frame.
+}
+\examples{
+# set dic attributes
+x <- 1:5
+dic_attr(x, "class") <- "item"
+dic_attr(x, "item_label") <- "An example item"
+dic_attr(x, "item_label")
+dic_attr(x)
 }

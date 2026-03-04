@@ -4,18 +4,23 @@
 \alias{factor_by_label}
 \title{Turns a dic variable into a factor based on the value labels}
 \usage{
-factor_by_label(x)
+factor_by_label(x, ordered = FALSE)
 }
 \arguments{
 \item{x}{A vector with dic information.}
+
+\item{ordered}{If TRUE, the resulting factor will be ordered. Default is FALSE.}
 }
 \value{
-A factor
+A factor with levels based on the value labels. If no value labels
+are present, an empty factor is returned.
 }
 \description{
-Turns a dic variable into a factor based on the value labels
+This function takes a vector with dic information and converts it into a factor
+based on the value labels stored in the dic attributes.
 }
 \examples{
+# Apply a dictionary to data
 dat_dic <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
 # Proportions of responses
 dat_dic$rel_2 |> factor_by_label() |> table() |> prop.table()

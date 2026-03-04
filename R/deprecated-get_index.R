@@ -18,6 +18,43 @@ get_index <- function(data, filter = NULL, scale = NULL, subscale = NULL,
     filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
   }
 
-    .get_index(data = data, filter = filter, names = names, class = class)
+    get_index_from_dic(data = data, filter = filter, names = names, class = class)
 }
 
+.to_filter <- function(scale = NULL, subscale = NULL, subscale_2 = NULL) {
+
+  filter <- NULL
+
+  if (!is.null(scale))
+    filter <- paste0(
+      "scale %in% c(", paste0("'", scale,"'", collapse = ", "), ")",
+      collapse = ""
+    )
+
+  if (!is.null(subscale)) {
+    tmp <- paste0(
+      "subscale %in% c(", paste0("'", subscale,"'", collapse = ", "), ")",
+      collapse = ""
+    )
+    if (is.null(filter)) {
+      filter <- tmp
+    } else {
+      filter <- paste0(filter, " & ", tmp)
+    }
+  }
+
+  if (!is.null(subscale_2)) {
+    tmp <- paste0(
+      "subscale_2 %in% c(", paste0("'", subscale_2,"'", collapse = ", "), ")",
+      collapse = ""
+    )
+    if (is.null(filter)) {
+      filter <- tmp
+    } else {
+      filter <- paste0(filter, " & ", tmp)
+    }
+  }
+
+  filter
+
+}

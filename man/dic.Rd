@@ -2,17 +2,72 @@
 % Please edit documentation in R/dic.R
 \name{dic}
 \alias{dic}
-\title{Print dic infos}
+\title{Create a dic vector with metadata attributes}
 \usage{
-dic(data, length = 100)
+dic(
+  x,
+  item_name = NULL,
+  item_label = NULL,
+  values = NULL,
+  value_labels = NULL,
+  missing = NULL,
+  weight = 1,
+  type = NULL,
+  recodes = NULL,
+  class = "item",
+  ...,
+  dic_attributes = NULL,
+  .coerce_class = TRUE,
+  .format_date = "\%Y-\%m-\%d"
+)
 }
 \arguments{
-\item{data}{A variable with dic infos}
-}
-\value{
-Dic infos of x
+\item{x}{A vector.}
+
+\item{item_name}{Character.}
+
+\item{item_label}{Character.}
+
+\item{values}{Numeric or character vector with values. The vector can be
+named.}
+
+\item{value_labels}{Character of the form \verb{value = label; value2 = label2}.}
+
+\item{missing}{Numeric or character vector with values.}
+
+\item{weight}{numeric.}
+
+\item{type}{defaults to data type of x.}
+
+\item{recodes}{Recoding information e.g. \verb{4 = 1, .default = 0}.}
+
+\item{class}{default is "item".}
+
+\item{...}{Additional attributes to be added to the dic attribute list.}
+
+\item{dic_attributes}{Optional pre-built attribute list (skips parsing if given).}
+
+\item{.coerce_class}{If TRUE, coerce x to match \code{type}.}
+
+\item{.format_date}{Date format for coercion from character -> Date.}
 }
 \description{
-Print dic infos
+Factory function to create a \code{dic} vector with appropriate attributes.
+This function performs parsing and validation of the provided metadata.
+It is recommended to use this function to create \code{dic} objects rather than
+manually setting attributes.
 }
-\keyword{internal}
+\details{
+Details:
+\itemize{
+\item If \code{item_name} is missing, it is derived from the variable name in
+the calling environment.
+\item If \code{type} is missing, it is estimated from the class of \code{x}.
+\item If \code{values} or \code{value_labels} are provided, they are parsed
+according to the specified \code{type}.
+\item If \code{.coerce_class} is TRUE (default), \code{x} is coerced to match the
+specified \code{type}.
+\item If \code{type} is "factor", a factor is created from \code{x} and \code{values}.
+\item The resulting object is of class \code{dic} with appropriate attributes set.
+}
+}

@@ -2,12 +2,12 @@
 % Please edit documentation in R/combine_data_frame.R
 \name{combine_data_frames}
 \alias{combine_data_frames}
-\title{Combine data frames}
+\title{Combine data frames with dic information}
 \usage{
 combine_data_frames(...)
 }
 \arguments{
-\item{...}{data frames with dic information}
+\item{...}{data frames with dic information to be combined.}
 }
 \value{
 A combined data frame with all rows and columns from the provided
@@ -22,4 +22,6 @@ that contain dic information into one data frame. When a variable that is
 entailed in both data frames has dic information, the resulting data frame
 will keep the dic information of the data frame that is first listed as an
 argument.
+If a variable is present in one data frame but not in another, the missing
+values will be filled with NA.
 }

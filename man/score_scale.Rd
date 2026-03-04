@@ -2,67 +2,88 @@
 % Please edit documentation in R/score_scale.R
 \name{score_scale}
 \alias{score_scale}
-\title{Score scale calculates scale scores.}
+\title{Score scale calculates scale scores}
 \usage{
 score_scale(
   data,
-  filter,
-  sum = FALSE,
+  filter = NULL,
+  scales = NULL,
+  fun = "mean",
   min_valid = 1,
   max_na = NA,
   label = NULL,
-  fun = NULL,
-  var_weight = NULL,
-  var_recoding = "recodes"
+  sum = NULL,
+  var_recoding = "recodes",
+  use_weights = TRUE
 )
 }
 \arguments{
-\item{data}{A data frame}
+\item{data}{A data frame.}
 
-\item{filter}{A logical expression for any \emph{dic} attribute (e.g. \code{scale == "ITRF" & subscale == "Int"})}
+\item{filter}{A logical expression for any \emph{dic} attribute (e.g. \code{scale == "ITRF" & subscale == "Int"}).}
 
-\item{sum}{If \code{FALSE}, a weighted mean function is applied for building the
-scores. If \code{TRUE}, a weighted sum function is applied. When argument fun is
-set, \code{sum} is ignored.}
+\item{scales}{Alternatively, a named list with scale definition created with
+the \code{get_scales()} function. Not used when \code{filter} is provided.}
 
-\item{min_valid}{Minimal number of valid values that is required for
-calculating the mean. A value between 0 and 1 indicates a proportion of
-values (e.g., 0.5 = 50 percent of values have to be valid).}
+\item{fun}{A function or a string with the name of a predefined function that
+is applied to calculate the scale score. The function should take a
+data.frame of item values and a numeric vector of weights as arguments. The
+function should return a single numeric value representing the calculated
+score. Predefined functions are "mean" (weighted mean), "sum" (weighted
+sum), "fa_score" (factor scores based on a factor analysis with one
+factor), and "pc_score" (scores based on the first principal component).}
 
-\item{max_na}{Maximum number of NAs that are allowed before returning NA. A
+\item{min_valid}{Minimal number of valid values of each case. The score of a
+case will be set to NA if the number of valid values is below this
+threshold. A value between 0 and 1 indicates a proportion of values (e.g.,
+0.5 = 50 percent at least have to be valid).}
+
+\item{max_na}{Maximum number of NA values of each case. The score of a case
+will be set to NA if the number of valid values is above this threshold. A
 value between 0 and 1 indicates a proportion of values (e.g., 0.5 = 50
-percent NAs are allowed).}
+percent at most NAs are allowed).}
 
 \item{label}{A character string with a label for the resulting score
 variable. Automatically generated if label is not set.}
 
-\item{fun}{A function for calculating the score (e.g., \code{weighted.median}).
-See details.}
-
-\item{var_weight}{Name of the \emph{dic} attribute that is applied to derive
-weights. Defaults to \code{weight}.}
+\item{sum}{(Deprecated) If \code{FALSE}, a weighted mean function is applied for
+building the scores. If \code{TRUE}, a weighted sum function is applied. When
+argument fun is set, \code{sum} is ignored.}
 
 \item{var_recoding}{Name if the \emph{dic} attribute that may contain recoding
 information. Defaults to \code{scores}.}
+
+\item{use_weights}{If \code{TRUE}, weights are applied when calculating the
+scores.}
 }
 \value{
-A data frame
+A data frame with the calculated scale score. If only the filter
+argument is provided, a vector with the calculated scale score is returned.
 }
 \description{
-Score scale calculates scale scores.
+Calculates scale scores based on item variables defined in the dictionary.
+Uses a weighted mean (default) or weighted sum function to calculate the
+scores. Allows for filtering items based on any \emph{dic} attribute (e.g.,
+\code{scale}, \code{subscale}, etc.). Also allows for providing a custom function for
+calculating the scores.
 }
 \details{
-If you provide your own function, the first argument of that
-function must take the vector of values and the second argument the
-weights.
+If the filter argument is provided, scale scores are calculated based on that
+filter. If the scales argument is provided, scale scores are calculated for
+each scale defined in that list. The default function for calculating the
+scale score is "mean", a weighted mean function.
 }
 \examples{
 dat <- apply_dic(ex_scaledic_data, ex_scaledic_dic)
 # apply the default weighted mean function
 score_scale(dat, scale == "rel", label = "Religious beliefs")
 # apply the weighted sum function
-score_scale(dat, scale == "rel", label = "Religious beliefs", sum = TRUE)
-# provide an external function (here the weighted median function from the spatstat package)
-#score_scale(dat, scale == "rel", label = "Religious beliefs", fun = spatstat.geom::weighted.median)
-
+score_scale(dat, scale == "rel", label = "Religious beliefs", fun = "sum")
+}
+\seealso{
+\code{\link{get_scales}}, \code{\link{apply_dic}},
+\code{\link{dic_attr}}
+}
+\author{
+Jürgen Wilbert
 }

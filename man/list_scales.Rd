@@ -2,27 +2,41 @@
 % Please edit documentation in R/list_scales.R
 \name{list_scales}
 \alias{list_scales}
-\title{List scales}
+\title{List scales in a data frame based on dic attributes}
 \usage{
-list_scales(
-  data,
-  levels = c("scale", "subscale", "subscale_2"),
-  n_items = FALSE,
-  char_na = ""
-)
+list_scales(data, ..., levels = NULL, .n_items = FALSE, .char_na = "")
 }
 \arguments{
-\item{data}{The target data frame}
+\item{data}{The target data frame.}
 
-\item{levels}{Character vector with names of dic attributes used to extract scale information.}
+\item{...}{Additional dic attribute names to include in the output. Overrides
+the \code{levels} argument if provided.}
 
-\item{n_items}{If TRUE, number of items for each scale is shown}
+\item{levels}{Character vector with names of dic attributes used to extract
+scale information.}
 
-\item{char_na}{Character for NAs.}
+\item{.n_items}{If TRUE, number of items for each scale is added in parentheses.}
+
+\item{.char_na}{Character for NAs.}
 }
 \value{
-A data.frame with scales on different levels
+A data.frame with scales on different levels.
 }
 \description{
-List scales
+Lists scales and subscales defined in the dic attributes of a data frame.
+This is useful for getting an overview of the scales present in a dataset
+that uses dic attributes to define scales.
+}
+\details{
+The function extracts scale information from dic attributes of variables
+in the data frame. By default, it looks for attributes named "scale",
+"subscale", and "subscale_2". It can also count the number
+of items for each scale or subscale if requested.
+}
+\examples{
+## List default scales
+ex_itrf |> list_scales()
+
+## List custom scale levels
+ex_itrf |> list_scales("subscale_label", "subscale_2_label")
 }

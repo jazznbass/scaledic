@@ -16,11 +16,13 @@ defining a dic attribute for automatic scale definition.}
 A (named) list with character vectors of item names.
 }
 \description{
-Extracts a list of item names based on dic information
+This function extracts item names from a data frame based on dic information
+and returns them as a list. Each entry in the list corresponds to a scale
+defined by a logical expression or by all instances of a dic attribute.
 }
 \details{
 This function is basically a wrapper around the \code{select_items(data = data, filter = ..., names_only = TRUE)} function. It takes multiple filter
-expressions for a single data frame and returns the item names. This is
+expressions for a single data frame and returns the names. This is
 mostly helpful for functions that take multiple scale definitions like
 \code{alpha_table()}. If you provide a name instead of a logical expression,
 that name must be a dic attribute. A list of scales will be created based
@@ -35,6 +37,6 @@ get_scales(ex_itrf,
   'AD' = subscale_2 == "AD"
 )
 
-## generate scale list based on all instances of an attribute
+## generate scale list based on all values of a dic attribute
 get_scales(ex_itrf, subscale_2)
 }

@@ -1,13 +1,28 @@
 #' Extract a dictionary from a data file with dic information
 #'
-#' @param data A data frame with dic information.
+#' This function extracts the dictionary information from a data frame
+#' containing dic attributes and returns it as a data frame in a dictionary
+#' format. The resulting data frame contains one row per variable with dic
+#' information and columns for each dic attribute, such as item_name,
+#' item_label, values, value_labels, missing, recodes, and others.
+#' The function handles different variable types and formats the values,
+#' value labels, missing values, and recodes appropriately for inclusion in
+#' the dictionary data frame.
+#' @details The function first identifies the variables in the data frame that
+#' have dic attributes. It then creates an empty data frame with columns for
+#' each dic attribute and fills in the information for each variable. Special
+#' handling is done for the values, value labels, missing values, and recodes
+#' to ensure they are formatted correctly for the dictionary.
+#' This function is useful for extracting and exporting the dic information
+#' from a data frame for documentation or further processing.
 #'
+#' @param data A data frame with dic information.
 #' @return A data frame in a dictionary format.
 #' @examples
-#' extract_dic(ex_itrf)
-#'
+#' ## extract dic from ex_itrf
+#' ex_itrf_dic <- extract_dic(ex_itrf)
+#' head(ex_itrf_dic)
 #' @export
-
 extract_dic <- function(data) {
 
   id <- which_dic(data, items_only = TRUE)
@@ -114,6 +129,15 @@ extract_dic <- function(data) {
     new_rows <- attributes(data)$dic$scales
     new_ids <- (nrow(out) + 1):(nrow(out) + nrow(new_rows))
     out[new_ids, names(new_rows)] <- new_rows
+  }
+
+  if (is.list(attributes(data)$info)) {
+    if (!is.null(attributes(data)$info$dic_file_comment)) {
+      comments <- attributes(data)$info$dic_file_comment
+      comments <- paste0("# ", strsplit(comments, "\n")[[1]])
+      out[(nrow(out) + 1):(nrow(out) + length(comments)), "item_name"] <- comments
+      rownames(out) <- 1:nrow(out)
+    }
   }
 
   out

@@ -1,5 +1,21 @@
 
 
+
+
+q2 <- dic(
+  c("Paris", "London", "Berlin"),
+  item_name = "knowledge_2",
+  item_label = "What is the Captial of Germany?",
+  type = "character",
+  weight = 1,
+  recodes = ".default = 0; Berlin = 1"
+)
+q2
+dic_attr(q2)$recodes$recode
+recode_dic_items(q2)
+
+# -------
+
 library(scaledic)
 
 dat <- new_dic(
@@ -27,13 +43,13 @@ my::file_path("sciebo", "tmp", "bodo") |> dir()
 
 library(readr)
 dat <- readr::read_csv("~/sciebo/tmp/bodo/survey_472834_R_data_file Kopie.csv")
-
-View(dat)
-
 dic <- readr::read_delim("~/sciebo/tmp/bodo/survey_472834_R_syntax_file_DICTIONARY_v2.csv",
                          delim = ";", escape_double = FALSE, trim_ws = TRUE)
+dic[which(dic$item_name == "startdate"), "type"] <- "date"
+dic[which(dic$item_name == "submitdate"), "type"] <- "date"
+dic[which(dic$item_name == "datestamp"), "type"] <- "date"
 
-apply_dic(dat, dic)
+df <- apply_dic(dat, dic)
 
 
 new_dic(
@@ -154,7 +170,7 @@ do.call("select_items", scales)
 
 filter <- deparse(substitute(filter))
 
-id <- .get_index(data = data, filter = filter, class = "item", names = FALSE)
+id <- get_index_from_dic(data = data, filter = filter, class = "item", names = FALSE)
 if (names_only) return(names(data)[id])
 
 do.call("scaledic:::-get_index",

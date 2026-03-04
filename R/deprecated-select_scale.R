@@ -22,6 +22,6 @@ select_scale <- function(data,
     filter <- .to_filter(scale = scale, subscale = subscale, subscale_2 = subscale_2)
   }
 
-  id <- .get_index(data = data, filter = filter, class = "item")
+  id <- get_index_from_dic(data = data, filter = filter, class = "item")
   data[, id, drop = FALSE]
 }

@@ -7,12 +7,8 @@
 #' @author Juergen Wilbert \[aut, cre\]
 #' @keywords package
 #' @importFrom openxlsx write.xlsx
-#' @importFrom readxl read_excel read_xlsx
-#' @importFrom vctrs vec_ptype2 vec_cast
-#' @import purrr
-#' @import Amelia
+#' @import vctrs
 #' @import stats
-#' @importFrom dplyr %>% relocate select full_join all_of rename as_tibble
 #' @importFrom glue glue
 #' @importFrom tools file_ext
 #' @examples
@@ -28,13 +24,11 @@
 #' list_scales(dat, levels = c("scale_label", "subscale_label"))
 #' # Example with pipeline syntax. Would be much easier to use the "describe" function
 #' # from the psch packages instead of summarise_all here.
-#' library(dplyr)
 #' dat  |>
 #'   select_items(scale == "ITRF" & subscale == "Ext")  |>
 #'   rename_items(pattern = "{subscale_2}:{name}")  |>
-#'   summarise_all(mean, na.rm = TRUE)  |>
-#'   round(2)  |>
-#'   t()
+#'   lapply(function(x) fivenum(x)) |>
+#'   as.data.frame()
 "_PACKAGE"
 
 

@@ -1,3 +1,24 @@
+# scaledic 0.5.0
+
+* Reworked internals of dic attributes handling.
+* Reworked internals of class "dic".
+* `apply_dic()`: now uses new constructor function `dic()`.
+* Adds dic-file comments as "info" attribute to data.frames created by `apply_dic()`.
+* `lookup_norms()`: Now creates variables with dic attributes.
+* `lookup_norms()`: Now fills in missing cells of a normtable. This is usefull 
+  when you have a normtable with grouping variables and don't fill in the repeated 
+  values for each group (e.g. age). Now you just can fill in the first row for each 
+  group and the function will fill in the rest of the cells for you.
+
+
+
+
+## New function
+
+- `as_dic()`: Converts a variable into a dic object by adding dic attributes.
+- `is_dic()`: Checks if a variable is a dic object.
+- `dic()`: Constructor function for dic objects.
+
 # scaledic 0.4.1
 
 * Added more check functions and
@@ -15,10 +36,10 @@ and define `recodes` to tell how to evaluate the raw data.
 variables in a data.frame that have recoding information in its dic-attributes.
 
 ```r
-dat <- new_dic(
+dat <- dic(
   x = c(1,1,2,3,1,3,4,4,3,2,4,5),
   item_name = "knowledge_1", 
-  item_label = "What is the captial of Germany?",
+  item_label = "What is the capital of Germany?",
   type = "integer",
   weight = 1,
   values = "1:4",
@@ -39,7 +60,7 @@ recode_dic_items(dat)
 
 - solved bug. extract_dic did not work when type name was in capitals (e.g. "Integer")
 
-- `alphy_table()`: New argument `keys_from_weights`. If TRUE, tries to extract keys argument from scaledics weights parameter.
+- `alpha_table()`: New argument `keys_from_weights`. If TRUE, tries to extract keys argument from scaledics weights parameter.
 
 # scaledic 0.3.0
 
@@ -117,8 +138,8 @@ scales <- list(
 - `get_dic_attribute()`. Returns a list with dic attributes for a dataframe.
 
 ```.r
-ex_itrf %>% 
-  select_items(subscale == "Int") %>% 
+ex_itrf |> 
+  select_items(subscale == "Int") |> 
   get_dic_attribute("item_label")
 
 ```
@@ -128,8 +149,8 @@ ex_itrf %>%
 - `rename_items()`: Much more versatile syntax applying the tidyvers glue function. Old functionality kept but throws a deprecated warning.)
 
 ``` .r
-ex_itrf %>% select(1:5) %>%
-  rename_item("{reverse}{item_name}: {item_label}")
+ex_itrf |> head(5) |>
+  rename_items("{reverse}{item_name}: {item_label}")
 ```
 
 # scaledic 0.1.27

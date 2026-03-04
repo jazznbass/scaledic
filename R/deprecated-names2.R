@@ -20,8 +20,8 @@ names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_wei
   warning("Deprecated. Please use 'rename_items()'")
 
   for (i in 1:ncol(data)) {
-    if (is.null(attr(data[[i]], .opt$dic))) next
-    item_label <- dic_attr(data[[i]], .opt$item_label)
+    if (is.null(attr(data[[i]], opt("dic")))) next
+    item_label <- dic_attr(data[[i]], opt("item_label"))
     item_prefix <- ""
     if (any(c("reverse", "weight") %in% prefix))
       item_prefix <- paste0(
@@ -32,7 +32,7 @@ names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_wei
     if ("subscale" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale), char_sep)
     if ("subscale2" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$subscale_2), char_sep)
     if ("index" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$index), char_sep)
-    if ("name" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], .opt$item_name), char_sep)
+    if ("name" %in% prefix) item_prefix <- paste0(item_prefix, dic_attr(data[[i]], opt("item_name")), char_sep)
 
     if (item_prefix != "") {
       item_prefix <- paste0(substring(item_prefix, 1, nchar(item_prefix) - length(char_sep)), char_prefix_end)
@@ -50,7 +50,7 @@ names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_wei
 names2label <- function(data) {
   warning("Deprecated. Please use 'rename_items()'")
   for (i in 1:ncol(data)) {
-    label <- dic_attr(data[[i]], .opt$item_label)
+    label <- dic_attr(data[[i]], opt("item_label"))
     if (!is.null(label)) names(data)[i] <- label
   }
   data

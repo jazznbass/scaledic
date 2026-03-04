@@ -44,7 +44,7 @@ ex_scaledic_dic <- data.frame(
   scale_label = c(rep(c("Religious beliefs", "Suicide tendency"), each = 5), rep("Miscellaneous",2)),
   values = c(rep("1:6", 2), rep("1:5", 3), rep("0:4", 5), "'m', 'f', 'd'", "5, 11"),
   value_labels = c(value_labels, "m = male; f = female; d = diverse", "5 = min; 11 = max"),
-  type = c(rep("integer", n_var), "factor", "float"),
+  type = c(rep("numeric", n_var), "factor", "numeric"),
   weight = 1,
   missing = c(rep("-999", n_var), "", "-999")
 )
