@@ -78,7 +78,7 @@ apply_dic <- function(data,
     row.names(dic_scores) <- 1:nrow(dic_scores)
     dic <- dic[-.filter, , drop = FALSE]
     notify("Dictionary file includes scale definitions.")
-    warn("Scale information in dic files ",
+    notify("Scale information in dic files ",
                 "are not scored automatically (since 0.5.0). ",
                 "Use `score_from_dic()` to score scales.")
 
