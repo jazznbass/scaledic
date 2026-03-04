@@ -14,7 +14,8 @@
 
 notify <- function(... , type = "!", detail = 1, warning = FALSE) {
 
-  if (detail > getOption("scaledic.msg.detail", default = 1))
+
+  if (detail > getOption("wmisc.msg.detail", default = 1))
     return(invisible(NULL))
 
   msg <- paste0(...)
@@ -25,6 +26,10 @@ notify <- function(... , type = "!", detail = 1, warning = FALSE) {
     type <- ""
   }
 
+  max_char <- getOption("wmisc.msg.max", default = 100)
+  if (nchar(msg) > max_char) {
+    msg <- paste0(substring(msg, 1, max_char), "... [truncated]")
+  }
   msg <- setNames(msg, type)
   if (!warning) {
     rlang::inform(msg)
