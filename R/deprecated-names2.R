@@ -3,19 +3,27 @@
 #' Set names of items as long labels and vice versa.
 #'
 #' @param data A data frame
-#' @param chars If not NULL, only the first n chars og the long label will be applied.
-#' @param prefix A character string or vector of character strings defining a prefix.
-#' May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "najme".
+#' @param chars If not NULL, only the first n chars og the long label will be
+#'   applied.
+#' @param prefix A character string or vector of character strings defining a
+#'   prefix. May include "scale", "subscale", "subscale2", "index", "reverse",
+#'   "weight", or "najme".
 #' @param char_sep Character with separator between prefix information.
-#' @param char_weight Character vector of length two with signs for negative and positive weights.
+#' @param char_weight Character vector of length two with signs for negative and
+#'   positive weights.
 #' @param char_prefix_end Character with separator between prefix and item.
-#' @details names2item renames to the long label.
-#' names2label renames to the short label.
+#' @details names2item renames to the long label. names2label renames to the
+#'   short label.
 #'
 #' @return A renamed data frame
 #' @keywords internal
 #' @export
-names2item <- function(data, chars = NULL, prefix = "", char_sep = "_", char_weight = c("(-)", "(+)"), char_prefix_end = ": ") {
+names2item <- function(data,
+                       chars = NULL,
+                       prefix = "",
+                       char_sep = "_",
+                       char_weight = c("(-)", "(+)"),
+                       char_prefix_end = ": ") {
 
   warning("Deprecated. Please use 'rename_items()'")
 
