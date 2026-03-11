@@ -1,10 +1,11 @@
 #' Turns a dic variable into a factor based on the value labels
 #'
-#' This function takes a vector with dic information and converts it into a factor
-#' based on the value labels stored in the dic attributes.
+#' This function takes a vector with dic information and converts it into a
+#' factor based on the value labels stored in the dic attributes.
 #'
 #' @param x A vector with dic information.
-#' @param ordered If TRUE, the resulting factor will be ordered. Default is FALSE.
+#' @param ordered If TRUE, the resulting factor will be ordered. Default is
+#'   FALSE.
 #' @return A factor with levels based on the value labels. If no value labels
 #'   are present, an empty factor is returned.
 #' @examples
