@@ -1,3 +1,5 @@
+## version 0.1.0
+
 #' Throws a message
 #'
 #' Messages can be shown with different levels
