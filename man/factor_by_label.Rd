@@ -9,15 +9,16 @@ factor_by_label(x, ordered = FALSE)
 \arguments{
 \item{x}{A vector with dic information.}
 
-\item{ordered}{If TRUE, the resulting factor will be ordered. Default is FALSE.}
+\item{ordered}{If TRUE, the resulting factor will be ordered. Default is
+FALSE.}
 }
 \value{
 A factor with levels based on the value labels. If no value labels
 are present, an empty factor is returned.
 }
 \description{
-This function takes a vector with dic information and converts it into a factor
-based on the value labels stored in the dic attributes.
+This function takes a vector with dic information and converts it into a
+factor based on the value labels stored in the dic attributes.
 }
 \examples{
 # Apply a dictionary to data

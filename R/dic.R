@@ -102,11 +102,13 @@ dic <- function(x,
     if (!has_info(labels)) labels <- sort(unique(x))
     if (is.null(names(labels))) names(labels) <- labels
     nas <- sum(is.na(x))
-    prelevels <- unique(x)
+
+    prelevels <- unique(x) |> as.character()
     x <- factor(x, levels = labels, labels = names(labels), ordered = FALSE)
     if (sum(is.na(x)) > nas) {
       mislabels <- setdiff(prelevels, labels)
       nas <- sum(is.na(x)) - nas
+      browser
       notify(
         "Set ", nas, if_one(nas, " NA ", " NAs "),
         "in factor '", attrs$item_name, "' for ",

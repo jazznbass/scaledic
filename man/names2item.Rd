@@ -19,14 +19,17 @@ names2label(data)
 \arguments{
 \item{data}{A data frame}
 
-\item{chars}{If not NULL, only the first n chars og the long label will be applied.}
+\item{chars}{If not NULL, only the first n chars og the long label will be
+applied.}
 
-\item{prefix}{A character string or vector of character strings defining a prefix.
-May include "scale", "subscale", "subscale2", "index", "reverse", "weight", or "najme".}
+\item{prefix}{A character string or vector of character strings defining a
+prefix. May include "scale", "subscale", "subscale2", "index", "reverse",
+"weight", or "najme".}
 
 \item{char_sep}{Character with separator between prefix information.}
 
-\item{char_weight}{Character vector of length two with signs for negative and positive weights.}
+\item{char_weight}{Character vector of length two with signs for negative and
+positive weights.}
 
 \item{char_prefix_end}{Character with separator between prefix and item.}
 }
@@ -37,7 +40,7 @@ A renamed data frame
 Set names of items as long labels and vice versa.
 }
 \details{
-names2item renames to the long label.
-names2label renames to the short label.
+names2item renames to the long label. names2label renames to the
+short label.
 }
 \keyword{internal}

@@ -19,11 +19,18 @@
 factor_by_label <- function(x, ordered = FALSE) {
   labels <- dic_attr(x, "values")
   labels <- labels[which(!is.na(names(labels)))]
-  out <- factor(x, levels = labels, labels = names(labels), ordered = ordered)
-  class(out) <- c("dic", class(out))
+
+  out <- if (is.factor(x)) {
+    factor(x, levels = names(labels), labels = names(labels), ordered = ordered)
+  } else {
+    factor(x, levels = labels, labels = names(labels), ordered = ordered)
+  }
+
+  class(out) <- c("dic", setdiff(class(out), "dic"))
   dic_attr(out) <- dic_attr(x)
   dic_attr(out, "type") <- "factor"
   dic_attr(out, "values") <- setNames(1:length(levels(out)), levels(out))
-  dic_attr(out, "value_labels") <- data.frame(value = 1:length(levels(out)), label = levels(out))
+  dic_attr(out, "value_labels") <- data.frame(value = 1:length(levels(out)),
+                                              label = levels(out))
   out
 }

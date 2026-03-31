@@ -150,11 +150,12 @@
 
   if (type %in% c("character", "factor")) {
 
-    if (is.numeric(values)) {
-      notify(type, " 'values' defintions need quotes -> added quotes", detail = 2)
-      values <- sapply(values, function(x) paste0("'", x, "'"))
-    }
+    #if (is.numeric(values)) {
+    #  notify(type, " 'values' defintions need quotes -> added quotes", detail = 2)
+    #  values <- sapply(values, function(x) paste0("'", x, "'"))
+    #}
     # Must be fully quoted, no embedded quotes of same type
+
     unquote_one <- function(p) {
 
       if (grepl("^'.*'$", p)) {
@@ -181,29 +182,11 @@
       )
       return(paste0("'", p, "'"))
     }
-    values <- vapply(values, unquote_one, character(1))
+
+    if (is.character(values)) values <- vapply(values, unquote_one, character(1))
   }
 
   # ---------- numeric / integer / double / float ----------
-
-  if (type %in% opt("numerics")) {
-
-    # float: exactly two numeric values (min, max)
-    #if (field == "values" && type == "double") {
-    #  if (length(values) != 2) {
-    #    notify("Type 'double' expects exactly two numbers for min and max",
-    #                msg_prefix)
-    #    return(NULL)
-    #  }
-    #  values <- suppressWarnings(as.numeric(values))
-    #
-    #  if (values[1] > values[2]) {
-    #    notify("min must be <= max", msg_prefix)
-    #    return(NULL)
-    #  }
-    #}
-
-  }
 
   if (any(is.na(values))) {
     notify("could not parse some values", msg_prefix)

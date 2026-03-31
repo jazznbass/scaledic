@@ -231,7 +231,11 @@ score_functions <- list(
     m * ncol(df)
   },
   "mean" = function(df, weights) {
-    apply(df, 1, function(x) weighted.mean(x, weights, na.rm = TRUE))
+    if (identical(weights, 1)) {
+      apply(df, 1, function(x) mean(x, na.rm = TRUE))
+    } else {
+      apply(df, 1, function(x) weighted.mean(x, weights, na.rm = TRUE))
+    }
   },
   "fa_score" = function(df, weights) {
     m <- as.matrix(df)
